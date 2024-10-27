@@ -1,0 +1,57 @@
+"InstallScript"
+{
+	"Registry"
+	{
+		"HKEY_LOCAL_MACHINE\\SOFTWARE\\GSC Game World\\STALKER-COP"
+		{
+			"string"
+			{
+				"InstallPath"		"%INSTALLDIR%"
+				"InstallSource"		"stkcop-st-for-pack"
+				"Installvers"		"1.6.02"
+				"InstallUserName"		"%USERNAME%"
+				"english"
+				{
+					"InstallLang"		"en"
+				}
+				"french"
+				{
+					"InstallLang"		"fr"
+				}
+				"german"
+				{
+					"InstallLang"		"ge"
+				}
+				"italian"
+				{
+					"InstallLang"		"it"
+				}
+				"spanish"
+				{
+					"InstallLang"		"sp"
+				}
+				"russian"
+				{
+					"InstallLang"		"ru"
+				}
+			}
+			"dword"
+			{
+				"InstallPatchID"		"11994"
+			}
+		}
+	}
+	"Run Process"
+	{
+		"DirectX"
+		{
+			"Process 1"		"%INSTALLDIR%\\DirectX\\DXSETUP.exe"
+			"Command 1"		"/silent"
+			"NoCleanUp"		"1"
+		}
+	}
+}
+"kvsignatures"
+{
+	"InstallScript"		"0354c62058f1b70432d3c81643fbc1385333d11f3d13713c20f329c96b913249904068052d6ccaab4a4dc0e7fe499f563aae3a2d79aa26dddb4536844f7d972f53218db5895a3d6542ce3984914045a94a041c778c6418647f75f6890f913a37bfd628d38c7e80cc0626dfa18d1152fdd93e908843dc2158d819dd7a9d1608f5"
+}
