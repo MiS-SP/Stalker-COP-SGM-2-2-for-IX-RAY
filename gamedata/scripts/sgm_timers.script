@@ -1,0 +1,231 @@
+---==================================================================================================---
+--------------------------------------------------------------------------------------------------------
+-----------------------------------(Работа с таймерами)-------------------------------------------------
+--------------------------------------------------------------------------------------------------------
+---==================================================================================================---
+function timers_main()
+   timers_update() 
+end
+function timers_update() 
+   if check_flague_timer("timer_hud_message") then
+      abort_flague_timer("timer_hud_message")
+      release_hud("hud_message_event")
+      release_hud("hud_message_event_long")
+      sgm_flags.value_headshot_counter=0
+      sgm_flags.value_rank_counter=0
+   end
+   if check_flague_timer("timer_hud_crash") then
+      abort_flague_timer("timer_hud_crash")
+      release_hud("hud_crash_info")
+   end
+   run_flague_timer("timer_auto_energy",1)
+   run_flague_timer("timer_allspawn_auto_print",1)
+   run_flague_timer("timer_aura_inactivity_ppe",1)
+   run_flague_timer("timer_aura_inactivity_cam",1)
+   run_flague_timer("timer_carrying_dressed_delay",1)
+   run_flague_timer("timer_detector_with_bolt",1)
+   run_flague_timer("timer_use_bandage",1)
+   run_flague_timer("timer_use_medkit",1)
+   run_flague_timer("timer_use_psy_complex",1)
+   run_flague_timer("timer_use_antirad",1)
+   run_flague_timer("timer_monster_cap_charge",2)
+   run_flague_timer("timer_monster_cap_control",2)
+   --//Таймер автоэнергетика//-->
+   if sgm_flags.string_auto_energy_type~="nil" and sgm_flags.string_auto_energy_type==0 then
+      sgm_flags.string_auto_energy_type="nil"
+   end
+   --//Таймер армейских часов//-->
+   if ui_mod_elements.army_timer_active==true then
+      ui_mod_elements.army_timer_value=string.format(math.floor(time_global()/1000))-ui_mod_elements.army_timer_deprive
+   else
+      if ui_mod_elements.army_timer_value>0 then
+         ui_mod_elements.army_timer_value=0
+      end
+   end
+   --//Таймер МП-3 плеера//-->
+   if ui_mod_elements.mp3_plays~=nil then
+      ui_mod_elements.mp3_length_position=string.format(math.floor(time_global()/1000))-ui_mod_elements.mp3_last_position
+   end
+   --//Таймер спального мешка//-->
+   if check_flague_timer("timer_sleeping_bag") then
+      abort_flague_timer("timer_sleeping_bag")
+      level.add_pp_effector("black.ppe",76470,true)
+   end
+   --//Таймер депозитного счета//-->
+   local deposit_allow=read_mod_param("bankir_deposit_allow")
+   local deposit_percent=read_mod_param("bankir_deposit_percent")
+   local deposit_cash=read_mod_param("bankir_deposit_cash")
+   if (level.get_time_hours()>=20 or level.get_time_hours()<=18) and (deposit_allow~=nil and deposit_allow=="false") then
+      write_mod_param("bankir_deposit_allow","true")
+   elseif ((level.get_time_hours()==19) or check_difference_missed_time(19,59,"deposit_percent")) and (deposit_allow~=nil and deposit_allow=="true") and deposit_cash~=nil and deposit_cash~=0 then
+      if deposit_allow=="true" then
+         local currert=read_mod_param("bankir_deposit_cash")
+         local new_percent=math.floor(currert*r_mod_params("number","bankirs_default_percent",0.07))
+         write_mod_param("bankir_deposit_percent",deposit_percent+new_percent)
+         write_mod_param("bankir_deposit_allow","false")
+      end
+      use_difference_missed_time("deposit_percent")
+   end
+   --//Таймер генерации курса электронной валюты//-->
+   if check_seconds(10) then
+      if check_game_timer("web_money_course_timer")==nil then
+         start_game_timer("web_money_course_timer",6,"hours")
+      elseif check_game_timer("web_money_course_timer") then
+         write_mod_param("web_money_course",math.random(sgm_flags.value_webmoney_course_from,sgm_flags.value_webmoney_course_before)/100)
+         start_game_timer("web_money_course_timer",6,"hours")
+      end
+   end
+   --//Событие пропуска времени//-->
+   if sgm_flags.table_mod_utils["on_forward_game_time_saved"]~=nil then
+      if sgm_flags.table_mod_utils["on_forward_game_time_loaded"]==nil and check_ui_worked() then
+         sgm_flags.table_mod_utils["on_forward_game_time_loaded"]=get_general_game_time()
+         sgm_flags.table_mod_utils["on_forward_game_time_check_timer"]=time_global()+2000
+      end
+      if sgm_flags.table_mod_utils["on_forward_game_time_check_timer"]~=nil then
+         if time_global()>=sgm_flags.table_mod_utils["on_forward_game_time_check_timer"] then
+            sgm_flags.table_mod_utils["on_forward_game_time_check_timer"]=nil
+            sgm_flags.table_mod_utils["on_forward_game_time_loaded"]=nil
+            sgm_flags.table_mod_utils["on_forward_game_time_saved"]=nil
+         end
+      end
+   end
+   --//Таймер заполнения ящиков//-->
+   if check_seconds(3) then
+      if check_game_timer("supply_fill_timer")==nil then
+         start_game_timer("supply_fill_timer",2,"hours")
+      elseif check_game_timer("supply_fill_timer") then
+         sgm_supply.check_and_spawn_supply()
+         start_game_timer("supply_fill_timer",2,"hours")
+      end
+   end
+   --//Таймер респауна сквадов участвующих в войне//-->
+   if check_seconds(5) then
+      if check_game_timer("community_war_respawn_timer")==nil then
+         start_game_timer("community_war_respawn_timer",30)
+      elseif check_game_timer("community_war_respawn_timer") then
+         check_and_respawn_community_war()
+         start_game_timer("community_war_respawn_timer",30)
+      end
+   end
+   --//Таймер секретного спауна предметов//-->
+   if check_seconds(30) then
+      sgm_place.secret_items_check_and_spawn()
+   end
+   --//Событие завершения ночи//-->
+   if check_seconds(2) then
+      if level.get_time_hours()>=4 and level.get_time_hours()<=7 then
+         change_flag_value("bool_every_night_end",true)
+      else
+         change_flag_value("bool_every_night_end",false)
+      end
+   end
+   --//Событие окончания месяца//-->
+   if get_general_game_time(nil,nil,nil,true)==44639 then
+      change_flag_value("bool_end_of_the_month",true)
+   end
+   if sgm_flags.bool_end_of_the_month==true and get_general_game_time(nil,nil,nil,true)<44639 then
+      sgm_flags.bool_end_of_the_month=false
+      write_mod_param("until_game_time",read_mod_param("until_game_time")+44639)
+   end
+   --//Чистка отпущенных телоранителей//-->
+   if check_flague_timer("timer_bodyguard_release") and sgm_flags.value_bodyguard_release_victim~=0 then
+      if get_object_story_id(sgm_flags.value_bodyguard_release_victim)~=nil then
+         unregister_story_object_by_id(sgm_flags.value_bodyguard_release_victim)
+      end
+      alife():release(alife():object(sgm_flags.value_bodyguard_release_victim),true)
+      sgm_flags.value_bodyguard_release_victim=0
+      abort_flague_timer("timer_bodyguard_release")
+   end
+   --//Таймер потребности сна//-->
+   if r_mod_params("bool","need_actor_dream",true) then
+     if sgm_flags.timer_approach_sleep==0 and read_mod_param("sleep_factor")~=nil then  
+        write_mod_param("sleep_factor",read_mod_param("sleep_factor")+1)
+        start_flague_timer("timer_approach_sleep",8000)
+     end
+     if check_flague_timer("timer_approach_sleep") then
+        abort_flague_timer("timer_approach_sleep")
+     end
+     if read_mod_param("sleep_factor")~=nil then
+        if read_mod_param("sleep_factor")<0 then
+           write_mod_param("sleep_factor",0)
+        end
+     end
+   end
+   --//Таймер снижения воздействия ауры бездействия//-->
+   if sgm_flags.bool_aura_inactivity_inc==false and read_mod_param("aura_inactivity_factor")~=nil then
+       local aura_factor=read_mod_param("aura_inactivity_factor")
+       if aura_factor>0 then
+          if sgm_flags.timer_aura_inactivity_dec==0 then  
+             write_mod_param("aura_inactivity_factor",aura_factor-1)
+             if db.actor:object("emulator_brain_waves") then
+                start_flague_timer("timer_aura_inactivity_dec",800)
+             else
+                start_flague_timer("timer_aura_inactivity_dec",1200)
+             end
+          end
+          if check_flague_timer("timer_aura_inactivity_dec") then
+             abort_flague_timer("timer_aura_inactivity_dec")
+          end
+       elseif aura_factor<0 then
+          write_mod_param("aura_inactivity_factor",0)
+       end
+   end
+   --//Таймер кошачего глаза//-->
+   if check_game_timer("drug_cat_eye_timer") then
+      abort_game_timer("drug_cat_eye_timer")
+      level.remove_pp_effector(19811)
+   end
+   --//Таймера для колобков//-->
+   run_flague_timer("timer_one_seconds",3,1000)
+   run_flague_timer("timer_two_seconds",3,2000)
+   run_flague_timer("timer_three_seconds",3,3000)
+   run_flague_timer("timer_four_seconds",3,4000)
+   run_flague_timer("timer_fifth_seconds",3,5000)
+   run_flague_timer("timer_ten_seconds",3,10000)
+   run_flague_timer("timer_twenty_seconds",3,20000)
+   run_flague_timer("timer_thirty_seconds",3,30000)
+   run_flague_timer("timer_fourty_seconds",3,40000)
+   run_flague_timer("timer_fifty_seconds",3,50000)
+   if check_flague_timer("timer_one_seconds") then
+      abort_flague_timer("timer_one_seconds")
+      sgm_callbacks.every_one_seconds_callback()
+   end
+   if check_flague_timer("timer_two_seconds") then
+      abort_flague_timer("timer_two_seconds")
+      sgm_callbacks.every_two_seconds_callback()
+   end
+   if check_flague_timer("timer_three_seconds") then
+      abort_flague_timer("timer_three_seconds")
+      sgm_callbacks.every_three_seconds_callback()
+   end
+   if check_flague_timer("timer_four_seconds") then
+      abort_flague_timer("timer_four_seconds")
+      sgm_callbacks.every_four_seconds_callback()
+   end
+   if check_flague_timer("timer_fifth_seconds") then
+      abort_flague_timer("timer_fifth_seconds")
+      sgm_callbacks.every_fifth_seconds_callback()
+   end
+   if check_flague_timer("timer_ten_seconds") then
+      abort_flague_timer("timer_ten_seconds")
+      sgm_callbacks.every_ten_seconds_callback()
+   end
+   if check_flague_timer("timer_twenty_seconds") then
+      abort_flague_timer("timer_twenty_seconds")
+      sgm_callbacks.every_twenty_seconds_callback()
+   end
+   if check_flague_timer("timer_thirty_seconds") then
+      abort_flague_timer("timer_thirty_seconds")
+      sgm_callbacks.every_thirty_seconds_callback()
+   end
+   if check_flague_timer("timer_fourty_seconds") then
+      abort_flague_timer("timer_fourty_seconds")
+      sgm_callbacks.every_fourty_seconds_callback()
+   end
+   if check_flague_timer("timer_fifty_seconds") then
+      abort_flague_timer("timer_fifty_seconds")
+      sgm_callbacks.every_fifty_seconds_callback()
+   end
+end
+
+---------------------------------//Copyright GeJorge//-----------------------------------------------

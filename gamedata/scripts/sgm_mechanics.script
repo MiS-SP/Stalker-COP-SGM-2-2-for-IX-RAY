@@ -1,0 +1,133 @@
+---==================================================================================================---
+--------------------------------------------------------------------------------------------------------
+---------------------------------------(ящик механика)--------------------------------------------------
+--------------------------------------------------------------------------------------------------------
+---==================================================================================================---
+function mechanics_main()
+   mechanics_update()
+end
+function mechanics_update()
+   mod_param_set_safe("zat_mechanic_stripping",3)
+   mod_param_set_safe("jup_mechanic_stripping",5)
+   mod_param_set_safe("pri_mechanic_stripping",8)
+   if r_mod_params("bool","need_mechanic_details",true) then
+      if dont_has_alife_info("mechanic_boxs_spawn") then
+         create("zat_mechanic_box",104.468,-3.937,183.496,1146041,316)
+         create("jup_mechanic_box",-42.570,3.487,177.268,647662,348)
+         create("pri_mechanic_box",143.849,-0.096,-193.169,371363,709)
+         give_info("mechanic_boxs_spawn")
+      end
+      if read_mod_param("zat_mechanic_stripping")~=nil then
+         if read_mod_param("zat_mechanic_stripping")<0 then
+            write_mod_param("zat_mechanic_stripping",0)
+         end
+      end
+      if read_mod_param("jup_mechanic_stripping")~=nil then
+         if read_mod_param("jup_mechanic_stripping")<0 then
+            write_mod_param("jup_mechanic_stripping",0)
+         end
+      end
+      if read_mod_param("pri_mechanic_stripping")~=nil then
+         if read_mod_param("pri_mechanic_stripping")<0 then
+            write_mod_param("pri_mechanic_stripping",0)
+         end
+      end
+   end
+end
+function mechanic_box_checker(victim)
+   register_check_to_mechanic_box(victim,"zat_mechanic_box","zat_mechanic_box_need_processing","zat_mechanic_box_checking","zat_mechanic_stripping",3.5)
+   register_check_to_mechanic_box(victim,"jup_mechanic_box","jup_mechanic_box_need_processing","jup_mechanic_box_checking","jup_mechanic_stripping",4.1)
+   register_check_to_mechanic_box(victim,"pri_mechanic_box","pri_mechanic_box_need_processing","pri_mechanic_box_checking","pri_mechanic_stripping",4.0)
+end
+function register_check_to_mechanic_box(victim,box_section,need_process_info,checking_info,counter_param,tip_dist)
+   local pre_dist_tip=precond_hud(3)
+   local pre_exception=level.name()~="pripyat" or (level.name()=="pripyat" and dont_has_alife_info("pri_a28_actor_in_zone_stay"))
+   if find_in_string(victim:section(),box_section) then
+      if victim:is_inv_box_empty()==false and r_mod_params("bool","need_mechanic_details",true) and dont_has_alife_info(need_process_info) then
+         give_info(need_process_info)
+      elseif victim:is_inv_box_empty()==true and has_alife_info(need_process_info) then
+         disable_info(need_process_info)
+      end
+      if victim:is_inv_box_empty()==true and has_alife_info(checking_info) then
+         disable_info(checking_info)
+      end
+      if has_alife_info(need_process_info) and has_alife_info(checking_info) then
+         mechanic_box_processing(victim,counter_param)
+      end
+      if distance_between_safe(db.actor,victim)<=tip_dist and pre_dist_tip and r_mod_params("bool","need_mechanic_details",true) and pre_exception then
+         if dont_has_alife_info("mechanic_boxs_help") then
+            game.start_tutorial("about_mechanic_stripping")
+            give_info("mechanic_boxs_help")
+         end
+         add_hud("hud_mechanic_stripping_f_el",game.translate_string("st_mechanic_stripping_count"),true,true)
+         add_hud("hud_mechanic_stripping_s_el",math.floor(read_mod_param(counter_param)),true,true)
+      else
+         release_hud("hud_mechanic_stripping_f_el")
+         release_hud("hud_mechanic_stripping_s_el")
+      end
+   end
+end
+function calculate_bonus(victim)
+   local level_name=level.name()
+   local cond_a_zaton=level_name=="zaton" and has_alife_info("sgm_reached_zaton_assistant")
+   local cond_a_jupiter=level_name=="jupiter" and has_alife_info("sgm_reached_jupiter_assistant")
+   local cond_a_pripyat=level_name=="pripyat" and has_alife_info("sgm_reached_prypiat_assistant")
+   local cost_bonus,cond_bonus,cond_fine,type_bonus,achiev_bonus=0.0,0.0,0.0,0.0,0.0
+   if victim:condition()>=0.90 then
+      cond_bonus=0.25
+   end
+   if victim:condition()<=0.10 then
+      cond_fine=0.10
+   elseif victim:condition()<=0.20 then
+      cond_fine=0.06
+   end
+   if find_in_string(sgm_functions.ReadWeaponType(victim:section()),"unique") then
+      type_bonus=0.25
+   elseif find_in_string(sgm_functions.ReadWeaponType(victim:section()),"heavy") then
+      type_bonus=0.20
+   end
+   if sgm_functions.ReadCost(victim:section())>=300000 then
+      cost_bonus=80.0
+   elseif sgm_functions.ReadCost(victim:section())>=250000 then
+      cost_bonus=60.0
+   elseif sgm_functions.ReadCost(victim:section())>=200000 then
+      cost_bonus=40.0
+   elseif sgm_functions.ReadCost(victim:section())>=150000 then
+      cost_bonus=30.0
+   elseif sgm_functions.ReadCost(victim:section())>=100000 then
+      cost_bonus=10.0
+   elseif sgm_functions.ReadCost(victim:section())>=65000 then
+      cost_bonus=3.5
+   elseif sgm_functions.ReadCost(victim:section())>=25000 then
+      cost_bonus=0.1
+   end
+   if cond_a_zaton or cond_a_jupiter or cond_a_pripyat then
+      achiev_bonus=0.10
+   end
+   return cost_bonus+cond_bonus+type_bonus+achiev_bonus-cond_fine
+end
+function mechanic_box_processing(victim,parse_to)
+   local function calc(temp,item)
+      if item~=nil then
+         local item_value=0.0
+         if sgm_functions.GetItemSlot(item:section())==1 then
+            item_value=(1.0/math.random(3,5))+calculate_bonus(item)
+         elseif sgm_functions.GetItemSlot(item:section())==2 then
+            item_value=(1.0/math.random(2,3))+calculate_bonus(item)
+         elseif sgm_functions.GetItemSlot(item:section())==6 then
+            item_value=(1.0/math.random(1,2))+calculate_bonus(item)
+         elseif sgm_functions.GetItemSlot(item:section())==11 then
+            item_value=(1.0/math.random(2,3))+calculate_bonus(item)
+         elseif find_in_string(item:section(),"af_") then
+            item_value=math.random(1,3) 
+         end
+         write_mod_param(parse_to,read_mod_param(parse_to)+item_value)
+	 alife():release(alife():object(item:id()),true)
+      end
+   end
+   victim:iterate_inventory_box(calc,victim)
+end
+
+
+-------------------------------------//Copyright GeJorge//-------------------------------------------------
+

@@ -1,0 +1,116 @@
+---==================================================================================================---
+--------------------------------------------------------------------------------------------------------
+------------------------------(Работа с глобальными переменными)----------------------------------------
+--------------------------------------------------------------------------------------------------------
+---==================================================================================================---
+function variables_main()
+   variables_update()
+end
+function variables_update()
+    --//Контроль уровня громкости в МП-3 плеере//-->
+    if read_mod_param("mp3_currert_volume")==nil then
+       write_mod_param("mp3_currert_volume",0.5)
+    elseif read_mod_param("mp3_currert_volume")~=nil then
+       if read_mod_param("mp3_currert_volume")<0.0 then 
+          write_mod_param("mp3_currert_volume",0.0)
+       elseif read_mod_param("mp3_currert_volume")>1.0 then 
+          write_mod_param("mp3_currert_volume",1.0)
+       end
+    end
+    --//Образователь цикла депозитного накопителя//-->
+    if read_mod_param("bankir_deposit_passed_time")~=nil then
+       if read_mod_param("bankir_deposit_passed_time")>31 then
+          write_mod_param("bankir_deposit_passed_time",1)
+       end
+    end
+    --//Контроль лимита сна на базах//-->
+    if read_mod_param("dream_limited")~=nil then
+       local r_dream_limited=r_mod_params("number","dream_limited_interval",60)
+       if (r_dream_limited==0 or sgm_flags.string_approach_sleep_color~="normal") and read_mod_param("dream_limited")~="none" then
+          write_mod_param("dream_limited","none")
+       elseif r_dream_limited>0 and read_mod_param("dream_limited")~="none" and get_general_game_time()-read_mod_param("dream_limited")>=r_dream_limited then
+          write_mod_param("dream_limited","none")
+       end
+    end
+    --//Контроль электронных денег//-->
+    if read_mod_param("actor_web_money")~=nil then
+       if read_mod_param("actor_web_money")<0 then
+          write_mod_param("actor_web_money",0)
+       end
+    end
+    --//Контроль уровня торговли//-->
+    if read_mod_param("trader_supplies_stage")~=nil then
+       if read_mod_param("trader_supplies_stage")<0 then
+          write_mod_param("trader_supplies_stage",0)
+       end
+    end
+    --//Проверка Sigerous Top//-->
+    if get_flag_value("bool_cheat_mode_activate") then
+       if sgm_functions.read_variable("sigerous_top_allowed")~=nil and sgm_functions.read_variable("sigerous_top_allowed")=="true" then
+          sgm_functions.write_variable("sigerous_top_allowed","false")
+          run_choose_box("yes","sigerous_top",game.translate_string("st_sigerous_top_4_text"))
+          sigerous_top_update()
+       end
+    end
+    --//Контроль накопленных токсинов в организме ГГ//-->
+    if read_mod_param("actor_toxicity")~=nil then
+       if r_mod_params("bool","present_toxicity",true)==true then
+          if read_mod_param("actor_toxicity")<-1.0 then 
+             write_mod_param("actor_toxicity",-1.0)
+          elseif read_mod_param("actor_toxicity")>1.0 then 
+             write_mod_param("actor_toxicity",1.0)
+          elseif read_mod_param("actor_toxicity")>-0.01 and read_mod_param("actor_toxicity")<0.01 then 
+             write_mod_param("actor_toxicity",0.0)
+          end
+       else
+          if read_mod_param("actor_toxicity")~=-1.0 then 
+             write_mod_param("actor_toxicity",-1.0)
+          end
+       end
+    end
+    --//Запуск таймера вызова затмения//-->
+    if read_mod_param("blackday_main_timer")==nil then
+       start_game_timer("blackday_main_timer",math.random(get_blackday_frequency(1,"start"),get_blackday_frequency(2,"start")))
+    end
+    --//Инициализация pstor данных//-->
+    mod_param_set_safe("actor_rank")
+    mod_param_set_safe("actor_web_money")
+    mod_param_set_safe("actor_toxicity",-1.0)
+    mod_param_set_safe("alfa_pda_collected",0)
+    mod_param_set_safe("alfa_squad_z_count")
+    mod_param_set_safe("alfa_squad_j_count")
+    mod_param_set_safe("alfa_squad_p_count")
+    mod_param_set_safe("aura_inactivity_factor")
+    mod_param_set_safe("bankir_capital_cash")
+    mod_param_set_safe("bankir_deposit_cash")
+    mod_param_set_safe("bankir_deposit_percent")
+    mod_param_set_safe("bankir_deposit_passed_time")
+    mod_param_set_safe("bankir_deposit_allow","false")
+    mod_param_set_safe("blackday_stage","step_end")
+    mod_param_set_safe("sleep_factor")
+    mod_param_set_safe("dream_limited","none")
+    mod_param_set_safe("remote_charge_1_id")
+    mod_param_set_safe("remote_charge_1_timer")
+    mod_param_set_safe("remote_charge_1_allow",false)
+    mod_param_set_safe("remote_charge_2_id")
+    mod_param_set_safe("remote_charge_2_timer")
+    mod_param_set_safe("remote_charge_2_allow",false)
+    mod_param_set_safe("remote_charge_3_id")
+    mod_param_set_safe("remote_charge_3_timer")
+    mod_param_set_safe("remote_charge_3_allow",false)
+    mod_param_set_safe("until_game_time")
+    mod_param_set_safe("employer_activate","false")
+    mod_param_set_safe("global_pattern",math.random(1,2))
+    mod_param_set_safe("trader_supplies_stage",0)
+    mod_param_set_safe("shustriy_available_tasks",3)
+    mod_param_set_safe("web_money_course",math.random(sgm_flags.value_webmoney_course_from,sgm_flags.value_webmoney_course_before)/100)
+    sgm_functions.set_safe_variable("currert_level",level.name())
+    sgm_functions.set_safe_variable("start_game_timer",get_general_game_time())
+    sgm_functions.set_safe_variable("sigerous_top_name","nil")
+    sgm_functions.set_safe_variable("sigerous_top_location","nil")
+    sgm_functions.set_safe_variable("sigerous_top_allowed","false")
+    sgm_functions.set_safe_variable("sigerous_top_difficulty",get_difficulty())
+end
+
+
+-------------------------------------//Copyright GeJorge//-------------------------------------------------

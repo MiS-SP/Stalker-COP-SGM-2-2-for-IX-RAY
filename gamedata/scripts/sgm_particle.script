@@ -1,0 +1,108 @@
+---==================================================================================================---
+--------------------------------------------------------------------------------------------------------
+-----------------------------------(Система партиклов)--------------------------------------------------
+--------------------------------------------------------------------------------------------------------
+---==================================================================================================---
+particle_attached={}
+function particle_attach(option)
+   particle_attached[option.obj:id()]={}
+   particle_attached[option.obj:id()].particle=particles_object(option.particle)
+   particle_attached[option.obj:id()].obj=option.obj
+   particle_attached[option.obj:id()].pos=option.pos
+   particle_attached[option.obj:id()].bone=option.bone
+   particle_attached[option.obj:id()].length=option.length or 0
+   particle_attached[option.obj:id()].looped=option.looped or false
+   particle_attached[option.obj:id()].start_time=time_global()
+   particle_attached[option.obj:id()].started=false
+   particle_play(particle_attached[option.obj:id()])
+   if option.snd then
+      particle_attached[option.obj:id()].snd=sound_object(option.snd)
+      particle_attached[option.obj:id()].snd_looped=option.snd_looped or false
+      sound_play(particle_attached[option.obj:id()])
+   end
+end
+function particle_play(option)
+   if option.particle:playing()==false then
+      local pos
+      if option.bone and option.obj then
+         pos=option.obj:bone_position(option.bone)
+      elseif option.pos then
+         pos=option.pos
+      end
+      if pos then
+         option.particle:play_at_pos(pos)
+         option.started=true
+      end
+   end
+end
+function sound_play(option)
+   if option.snd and option.snd:playing()==false then
+      if option.snd_looped then
+         option.snd:play_at_pos(option.obj,option.obj:position(),0,sound_object.s3d)
+      else
+         option.snd:play_at_pos(option.obj,option.obj:position(),0,sound_object.s3d+sound_object.looped)
+      end
+   end
+end
+function particle_stop(option)
+   if option.particle:playing() then
+      option.particle:stop_deffered()
+   end
+end
+function sound_stop(option)
+   if option.snd and option.snd:playing() then
+      option.snd:stop()
+   end
+end
+function complex_stop(id)
+   local option=particle_attached[id]
+   if not option then return end
+   particle_stop(option)
+   sound_stop(option)
+   particle_attached[id]=nil
+end
+function particle_update(obj_id)
+   local option=particle_attached[obj_id]
+   if not option then return end
+   if option.started==false then return end
+   if option.snd and option.snd:playing() then
+      local pos
+      if option.bone and option.obj then
+         pos=option.obj:bone_position(option.bone)
+      end
+      if pos then
+         option.snd:set_position(pos)
+      end
+   else
+      if option.started==true then
+         if option.snd_looped==true then
+            sound_play(option)
+         end
+      end
+   end
+   if option.particle:playing() then
+      if option.length>0 and time_global()>option.start_time+option.length then
+         particle_stop(option)
+         sound_stop(option)
+         option.started=false
+         option.looped=false
+         option.snd_looped=false
+      end
+      local pos
+      if option.bone and option.obj then
+         pos=option.obj:bone_position(option.bone)
+         option.pos=pos
+      end
+      if pos then
+         option.particle:play_at_pos(pos)
+      end
+   else
+      if option.started==true then
+         if option.looped==true then
+            particle_play(option)
+         end
+      end
+   end
+end
+
+-------------------------------------//Copyright GeJorge//-------------------------------------------------

@@ -1,0 +1,73 @@
+---==================================================================================================---
+--------------------------------------------------------------------------------------------------------
+--------------------------------------(ящик-утилизатор)-------------------------------------------------
+--------------------------------------------------------------------------------------------------------
+---==================================================================================================---
+function utilizator_main()
+   utilizator_update()
+end
+function utilizator_update()
+   local level_name=level.name()
+   if dont_has_alife_info("utilizators_spawn") then
+      create("zat_utilizator_box",116.411,-3.935,176.399,1165984,316)
+      create("jup_utilizator_box",-49.738,-0.619,197.104,636191,368)
+      create("pri_utilizator_box",158.308,-0.095,-184.755,387157,708)
+      give_info("utilizators_spawn")
+   end
+end
+function utilizator_checker(victim)
+   if check_seconds(1) then
+      register_check_to_box(victim,"zat_utilizator_box","zat_utilizator_has_items","zat_utilizator_cash")
+      register_check_to_box(victim,"jup_utilizator_box","jup_utilizator_has_items","jup_utilizator_cash")
+      register_check_to_box(victim,"pri_utilizator_box","pri_utilizator_has_items","pri_utilizator_cash")
+   end
+end
+function utilizator_reward(victim)
+   register_reward_to_box(victim,"zat_utilizator_box","zat_utilizator_cash")
+   register_reward_to_box(victim,"jup_utilizator_box","jup_utilizator_cash")
+   register_reward_to_box(victim,"pri_utilizator_box","pri_utilizator_cash")
+end
+function register_check_to_box(victim,box_section,has_item_info,cash_param)
+   if find_in_string(victim:section(),box_section) then
+      if victim:is_inv_box_empty()==false and dont_has_alife_info(has_item_info) then
+         give_info(has_item_info)
+         if dont_has_alife_info("utilizators_tutorial") then
+            game.start_tutorial("about_utilizator_box")
+            give_info("utilizators_tutorial")
+            game_hide_menu()
+         end
+      elseif victim:is_inv_box_empty()==true and has_alife_info(has_item_info) then
+         disable_info(has_item_info)
+      end
+      if has_alife_info(has_item_info) and distance_between(db.actor,victim)>r_mod_params("number","utilizator_process_distance",80) then
+         if read_mod_param(cash_param)==nil then
+            write_mod_param(cash_param,0)
+         end
+         start_process(victim,cash_param)
+      end
+   end
+end
+function register_reward_to_box(victim,box_section,cash_param)
+   if find_in_string(victim:section(),box_section) then
+      if read_mod_param(cash_param)~=nil and read_mod_param(cash_param)>0 then
+         game_hide_menu()
+         dialogs.relocate_money(db.actor,read_mod_param(cash_param),"in",8000)
+         write_mod_param(cash_param,0)
+         game_hide_menu()
+         congratulate_with_event(10000,game.translate_string("st_utilizator_used_event"),true)
+      end
+   end
+end
+function start_process(victim,parse_to)
+   local function calc(temp,item)
+      if item~=nil then
+         local main_cost=math.floor(((sgm_functions.ReadCost(item:section())*item:condition())*r_mod_params("number","utilizator_cash_multiplier",0.06)))
+         write_mod_param(parse_to,read_mod_param(parse_to)+main_cost)
+	 alife():release(alife():object(item:id()),true)
+      end
+   end
+   victim:iterate_inventory_box(calc,victim)
+end
+
+-------------------------------------//Copyright GeJorge//-------------------------------------------------
+

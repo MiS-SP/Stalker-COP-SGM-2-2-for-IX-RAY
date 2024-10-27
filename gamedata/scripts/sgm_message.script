@@ -1,0 +1,53 @@
+---==================================================================================================---
+--------------------------------------------------------------------------------------------------------
+--------------------------------------(Функции оповещения)----------------------------------------------
+--------------------------------------------------------------------------------------------------------
+---==================================================================================================---
+function message_main()
+   news_update()
+   tutorial_update()
+end
+function news_update()
+   if read_mod_param("bankir_deposit_percent",true)>0 then
+      if level.get_time_hours()==20 and level.get_time_minutes()<=45 and dont_has_alife_info("about_bankir_percent") and check_ui_worked() and sgm_flags.table_mod_utils["on_forward_game_time_saved"]==nil then
+         if read_mod_param("bankir_deposit_passed_time")~=nil and level.get_time_days()>=read_mod_param("bankir_deposit_passed_time") then
+            news_manager.bankir_tip(db.actor,0,"bankir",18000,nil,"st_about_deposit_title","st_about_deposit_part0","st_about_deposit_part1",read_mod_param("bankir_deposit_percent",true),"st_about_deposit_part2",read_mod_param("bankir_deposit_cash",true))
+         end
+         give_info("about_bankir_percent")
+      end
+   end
+   if ((level.get_time_hours()==20 and level.get_time_minutes()>45) or level.get_time_hours()>=21 or level.get_time_hours()<=19) and has_alife_info("about_bankir_percent") then
+      disable_info("about_bankir_percent")
+   end
+   if check_difference_missed_time(19,59,"deposit_status_message") then
+      use_difference_missed_time("deposit_status_message")
+      disable_info("about_bankir_percent")
+   end
+end
+function tutorial_update()
+   if sgm_flags.value_pstor_factor>15918 then
+      game.start_tutorial("about_critical_pstor")
+      sgm_flags.value_pstor_factor=0
+   end
+   if read_mod_param("actor_toxicity")~=nil and r_mod_params("bool","present_toxicity",true)==true then
+      if read_mod_param("actor_toxicity")>0.0 then
+         if dont_has_alife_info("message_critical_toxicity") then
+            game.start_tutorial("about_critical_toxicity")
+            give_info("message_critical_toxicity")
+         end
+      else
+         if has_alife_info("message_critical_toxicity") then
+            disable_info("message_critical_toxicity")
+         end
+      end
+   end
+   if level.name()=="agroprom_underground" then
+      if has_alife_info("agru_crash_danger_message") and dont_has_alife_info("message_agroprom_underground_danger") then
+         game.start_tutorial("about_agroprom_underground_danger")
+         give_info("message_agroprom_underground_danger")
+      end
+   end
+end
+
+-------------------------------------//Copyright GeJorge//-------------------------------------------------
+

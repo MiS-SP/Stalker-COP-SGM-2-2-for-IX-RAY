@@ -1,0 +1,181 @@
+--/ SGM in
+-- todo возможно стоить удалить, а конфиги переписать с использованием dltx
+sim_board.simulation_bad_levels = { { "l04u_labx18" }, { "military" }, { "agroprom" }, { "agroprom_underground" }, { "escape" }, { "marsh" }, { "red_forest" } }
+-- todo подумать как перезаписать
+local group_id_by_levels = { zaton = 1, pripyat = 2, jupiter = 3, labx8 = 4, jupiter_underground = 5, darkvalley = 6, l04u_labx18 = 7, military = 8, agroprom = 9, agroprom_underground = 10, escape = 11, marsh = 12, red_forest = 13 }
+--/ SGM out
+simulation_activities.night_stalker = {
+	squad = nil,
+	smart = {
+		base      = { prec = function(squad, target) return in_time_interval(18, 8) and not xr_conditions.surge_started() and
+			not travel_manager.check_squad_for_enemies(squad) and
+			(target:name() == "zat_stalker_base_smart" or target:name() == "jup_a6" or target:name() == "pri_a16") end },
+		surge     = { prec = function() return xr_conditions.surge_started() end },
+		territory = { prec = function() return in_time_interval(8, 18) and not xr_conditions.surge_started() end },
+		resource  = { prec = function(squad, target) return in_time_interval(8, 18) and not xr_conditions.surge_started() end } -- and squad:has_detector()
+	},
+	actor = nil
+}
+simulation_activities.rasvet = {
+	squad = nil,
+	smart = {
+		base      = { prec = function(squad, target) return in_time_interval(18, 8) and not xr_conditions.surge_started() and
+			not travel_manager.check_squad_for_enemies(squad) and
+			(target:name() == "zat_stalker_base_smart" or target:name() == "jup_a6" or target:name() == "pri_a16") end },
+		surge     = { prec = function() return xr_conditions.surge_started() end },
+		territory = { prec = function() return in_time_interval(8, 18) and not xr_conditions.surge_started() end },
+		resource  = { prec = function(squad, target) return in_time_interval(8, 18) and not xr_conditions.surge_started() end } -- and squad:has_detector()
+	},
+	actor = nil
+}
+simulation_activities.renegade = {
+	squad = nil,
+	smart = {
+		territory = { prec = function() return not xr_conditions.surge_started() end },
+		surge     = { prec = function() return xr_conditions.surge_started() end }
+	},
+	actor = nil
+}
+simulation_activities.alfa_force = {
+	squad = nil,
+	smart = { territory = { prec = function() return true end }
+	},
+	actor = { prec = function(squad, target) return simulation_objects.sim_dist_to(squad, target) <= 150 end }
+}
+simulation_activities.mercenary = {
+	squad = nil,
+	smart = {
+		territory = { prec = function() return not xr_conditions.surge_started() end },
+		surge     = { prec = function() return xr_conditions.surge_started() end }
+	},
+	actor = { prec = function(squad, target) return simulation_objects.sim_dist_to(squad, target) <= 150 end }
+}
+simulation_activities.bandit_enemy = {
+	squad = nil,
+	smart = {
+		territory = { prec = function() return not xr_conditions.surge_started() end },
+		surge     = { prec = function() return xr_conditions.surge_started() end }
+	},
+	actor = { prec = function(squad, target) return simulation_objects.sim_dist_to(squad, target) <= 150 end }
+}
+simulation_activities.killer_enemy = {
+	squad = nil,
+	smart = {
+		territory = { prec = function() return not xr_conditions.surge_started() end },
+		surge     = { prec = function() return xr_conditions.surge_started() end }
+	},
+	actor = { prec = function(squad, target) return simulation_objects.sim_dist_to(squad, target) <= 150 end }
+}
+-- todo неправильно, подумать как переписать
+simulation_activities.monster_zombied_night.squad = {
+	renegade      = { prec = function(squad, target) return in_time_interval(19, 6) and
+		simulation_objects.sim_dist_to(squad, target) <= 150 end },
+	alfa_force    = { prec = function(squad, target) return in_time_interval(19, 6) and
+		simulation_objects.sim_dist_to(squad, target) <= 150 end },
+	mercenary     = { prec = function(squad, target) return in_time_interval(6, 19) and
+		simulation_objects.sim_dist_to(squad, target) <= 150 end },
+	bandit_enemy  = { prec = function(squad, target) return in_time_interval(6, 19) and
+		simulation_objects.sim_dist_to(squad, target) <= 150 end },
+	killer_enemy  = { prec = function(squad, target) return in_time_interval(6, 19) and
+		simulation_objects.sim_dist_to(squad, target) <= 150 end },
+	night_stalker = { prec = function(squad, target) return in_time_interval(6, 19) and
+		simulation_objects.sim_dist_to(squad, target) <= 150 end },
+	rasvet        = { prec = function(squad, target) return in_time_interval(6, 19) and
+		simulation_objects.sim_dist_to(squad, target) <= 150 end },
+}
+
+--' Создание нового отряда
+-- todo оставить так?
+function sim_board:create_squad(spawn_smart, sq_id)
+	printf("create squad called")
+	local squad_id = tostring(sq_id)
+
+	local squad = alife():create(squad_id, spawn_smart.position,
+		spawn_smart.m_level_vertex_id,
+		spawn_smart.m_game_vertex_id)
+	--local squad = squad_class(self, squad_id, faction_name, settings_id)
+	--squad:init_squad(spawn_smart)
+	printf("Creating squad[%s] in smart[%s]", squad_id, spawn_smart:name())
+	--' Определяем в каком смарте создать новый отряд
+	squad:create_npc(spawn_smart)
+	squad:set_squad_relation()
+	self:assign_squad_to_smart(squad, spawn_smart.id)
+	--/ SGM in
+	sgm_callbacks.on_squad_create(squad_id, squad.id, sgm_g.get_level_by_game_vertex(spawn_smart.m_game_vertex_id))
+	--/ SGM out
+	--' Пересчитываем Team, Squad, Group
+	for k in squad:squad_members() do
+		local obj = k.object
+		squad.board:setup_squad_and_group(obj)
+	end
+	return squad
+end
+
+--' Создание нового отряда
+function sim_board:create_force(sq_id, x, y, z, lv, gv)
+	printf("create squad called")
+	local squad_id = tostring(sq_id)
+	local squad = alife():create(squad_id, vector():set(x, y, z), lv, gv)
+	squad:create_member(x, y, z, lv, gv)
+	squad:set_squad_relation()
+	sgm_callbacks.on_squad_create(squad_id, squad.id, sgm_g.get_level_by_game_vertex(gv))
+	for k in squad:squad_members() do
+		local obj = k.object
+		squad.board:setup_squad_and_group(obj)
+	end
+	return squad
+end
+
+function sim_board:fill_start_position_for_bad_levels()
+	for k, v in pairs(simulation_bad_levels) do
+		local section_name = "start_position_" .. v[1]
+		if not setting_ini:section_exist(section_name) then
+			return
+		end
+		local n = setting_ini:line_count(section_name)
+		for i = 0, n - 1 do
+			local result, id, value = setting_ini:r_line(section_name, i, "", "")
+			local smrt_names = utils.parse_names(value)
+			for t, p in pairs(smrt_names) do
+				local smart = self.smarts_by_names[p]
+				if smart == nil then
+					abort("Wrong smart name [%s] in start position", tostring(p))
+				end
+				local squad = self:create_squad(smart, id)
+				--/debug_to_file(section_name..".txt",id)
+				self:enter_smart(squad, smart.id)
+			end
+		end
+	end
+end
+
+--' Заполнение стартового расположения
+local old_fill_start_position = sim_board.fill_start_position
+
+-- может не работать т .к. проверка на  bad_level перемещена в конец
+function sim_board:fill_start_position()
+	old_fill_start_position(self)
+	sim_board:fill_start_position_for_bad_levels()
+end
+function sim_board:get_smart_population_by_name(smart_name)
+	return self.smarts[self:get_smart_by_name(smart_name).id].stayed_squad_quan
+end
+function sim_board:check_community_in_smart(smart_name, need_community, ignore_monster)
+	local result = true
+	if ignore_monster == nil then ignore_monster = false end
+	for k, v in pairs(self.smarts[self:get_smart_by_name(smart_name).id].squads) do
+		if k ~= nil then
+			if v.player_id ~= need_community then
+				--/give_quick_news("community="..v.player_id.."|smart_name="..smart_name)
+				if ignore_monster == false then
+					result = false
+				elseif ignore_monster == true then
+					if find_out_string(v.player_id, "monster") then
+						result = false
+					end
+				end
+			end
+		end
+	end
+	return result
+end

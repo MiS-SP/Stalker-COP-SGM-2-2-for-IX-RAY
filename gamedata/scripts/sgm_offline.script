@@ -1,0 +1,53 @@
+---==================================================================================================---
+--------------------------------------------------------------------------------------------------------
+--------------------------(Запуск и прекращение оффлайн режима для НПС)---------------------------------
+--------------------------------------------------------------------------------------------------------
+---==================================================================================================---
+function offline_main()
+   offline_update()
+end
+function offline_update()
+   if get_table_lines(sgm_flags.table_mod_offline)>0 then
+      for k,v in pairs(sgm_flags.table_mod_offline) do
+         for m,n in pairs(sgm_flags.table_mod_offline[k]) do
+            if m=="switch" then
+               if n==true then
+                  object_switch_offline(k)
+                  write_obj_mod_param(k,"offline_mode",sgm_flags.table_mod_offline[k].cond,true)
+               elseif n==false then
+                  object_switch_online(k)
+                  clear_obj_mod_param(k,"offline_mode",true)
+                  sgm_flags.table_mod_offline[k]=nil
+               end
+            end
+            if m=="cond" then
+               if read_obj_mod_param(k,"offline_mode",true)~=nil and exists(sgm_flags.table_mod_offline[k].cond) then
+                  local cond_performed=sgm_functions.check_string_condlist(sgm_flags.table_mod_offline[k].cond)
+                  if cond_performed==true or cond_performed=="true" then
+                     if sgm_flags.table_mod_offline[k].switch==true then
+                        sgm_flags.table_mod_offline[k].switch=false
+                     end
+                  end
+               end
+            end
+         end
+      end
+   end
+end
+function queue_on_offline(obj_id,cond)
+   if sgm_flags.table_mod_offline[obj_id]==nil then
+      sgm_flags.table_mod_offline[obj_id]={}
+   end
+   sgm_flags.table_mod_offline[obj_id].switch=true
+   sgm_flags.table_mod_offline[obj_id].cond=cond
+end
+function queue_on_online(obj_id)
+   if sgm_flags.table_mod_offline[obj_id]==nil then
+      sgm_flags.table_mod_offline[obj_id]={}
+   end
+   sgm_flags.table_mod_offline[obj_id].switch=false
+end
+
+
+---------------------------------//Copyright GeJorge//-----------------------------------------------
+

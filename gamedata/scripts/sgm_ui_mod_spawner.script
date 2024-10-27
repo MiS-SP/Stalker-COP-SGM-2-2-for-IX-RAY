@@ -1,0 +1,714 @@
+---==================================================================================================---
+--------------------------------------------------------------------------------------------------------
+------------------------------------(Аллспан меню СГМа)-------------------------------------------------
+--------------------------------------------------------------------------------------------------------
+---==================================================================================================---
+local artefacts_table = {
+"af_medusa",
+"af_cristall_flower",
+"af_night_star",
+"af_vyvert",
+"af_gravi",
+"af_gold_fish",
+"af_cristall",
+"af_fireball",
+"af_dummy_glassbeads",
+"af_eye",
+"af_fire",
+"af_blood",
+"af_mincer_meat",
+"af_soul",
+"af_fuzz_kolobok",
+"af_baloon",
+"af_glass",
+"af_electra_sparkler",
+"af_electra_flash",
+"af_electra_moonlight",
+"af_dummy_battery",
+"af_dummy_dummy",
+"af_ice",
+"af_compass",
+"af_oasis_heart",
+"jup_b1_half_artifact",
+"af_quest_b14_twisted",
+"af_quest_b206_dyavol_flowers",
+"af_acid_star",
+"af_monolit",
+"af_geliy",
+"af_vaselisk",
+"af_dragon_eye",
+"af_prodigy_1_danger",
+"af_prodigy_2_danger",
+"af_prodigy_3_danger",
+"af_prodigy_4_danger",
+"af_prodigy_5_danger",
+"af_prodigy_6_danger",
+"af_prodigy_1_processed",
+"af_prodigy_2_processed",
+"af_prodigy_3_processed",
+"af_prodigy_4_processed",
+"af_prodigy_5_processed",
+"af_prodigy_6_processed",
+"af_medusa_breeding_1",
+"af_medusa_breeding_2",
+"af_medusa_breeding_3",
+"af_cristall_flower_breeding_1",
+"af_cristall_flower_breeding_2",
+"af_cristall_flower_breeding_3",
+"af_night_star_breeding_1",
+"af_night_star_breeding_2",
+"af_night_star_breeding_3",
+"af_vyvert_breeding_1",
+"af_vyvert_breeding_2",
+"af_vyvert_breeding_3",
+"af_gravi_breeding_1",
+"af_gravi_breeding_2",
+"af_gravi_breeding_3",
+"af_gold_fish_breeding_1",
+"af_gold_fish_breeding_2",
+"af_gold_fish_breeding_3",
+"af_cristall_breeding_1",
+"af_cristall_breeding_2",
+"af_cristall_breeding_3",
+"af_fireball_breeding_1",
+"af_fireball_breeding_2",
+"af_fireball_breeding_3",
+"af_dummy_glassbeads_breeding_1",
+"af_dummy_glassbeads_breeding_2",
+"af_dummy_glassbeads_breeding_3",
+"af_eye_breeding_1",
+"af_eye_breeding_2",
+"af_eye_breeding_3",
+"af_fire_breeding_1",
+"af_fire_breeding_2",
+"af_fire_breeding_3",
+"af_blood_breeding_1",
+"af_blood_breeding_2",
+"af_blood_breeding_3",
+"af_mincer_meat_breeding_1",
+"af_mincer_meat_breeding_2",
+"af_mincer_meat_breeding_3",
+"af_soul_breeding_1",
+"af_soul_breeding_2",
+"af_soul_breeding_3",
+"af_fuzz_kolobok_breeding_1",
+"af_fuzz_kolobok_breeding_2",
+"af_fuzz_kolobok_breeding_3",
+"af_baloon_breeding_1",
+"af_baloon_breeding_2",
+"af_baloon_breeding_3",
+"af_glass_breeding_1",
+"af_glass_breeding_2",
+"af_glass_breeding_3",
+"af_electra_sparkler_breeding_1",
+"af_electra_sparkler_breeding_2",
+"af_electra_sparkler_breeding_3",
+"af_electra_flash_breeding_1",
+"af_electra_flash_breeding_2",
+"af_electra_flash_breeding_3",
+"af_electra_moonlight_breeding_1",
+"af_electra_moonlight_breeding_2",
+"af_electra_moonlight_breeding_3",
+"af_dummy_battery_breeding_1",
+"af_dummy_battery_breeding_2",
+"af_dummy_battery_breeding_3",
+"af_dummy_dummy_breeding_1",
+"af_dummy_dummy_breeding_2",
+"af_dummy_dummy_breeding_3",
+"af_ice_breeding_1",
+"af_ice_breeding_2",
+"af_ice_breeding_3",
+"af_monolit_breeding_1",
+"af_monolit_breeding_2",
+"af_monolit_breeding_3",
+"af_geliy_breeding_1",
+"af_geliy_breeding_2",
+"af_geliy_breeding_3",
+"af_vaselisk_breeding_1",
+"af_vaselisk_breeding_2",
+"af_vaselisk_breeding_3",
+"af_dragon_eye_breeding_1",
+"af_dragon_eye_breeding_2",
+"af_dragon_eye_breeding_3",
+"cev_plastin_1",
+"cev_plastin_2",
+"cev_plastin_3",
+"cev_plastin_4",
+"cev_plastin_5"
+}
+local outfits_table = {
+"helm_respirator",
+"helm_hardhat",
+"helm_protective",
+"helm_tactic",
+"helm_battle",
+"helm_respirator_joker",
+"helm_hardhat_snag",
+"helm_spectacles",
+"helm_mercenary",
+"helm_piranhas",
+"novice_outfit",
+"stalker_outfit",
+"svoboda_light_outfit",
+"dolg_outfit",
+"scientific_outfit",
+"cs_heavy_outfit",
+"svoboda_heavy_outfit",
+"specops_outfit",
+"military_outfit",
+"dolg_heavy_outfit",
+"exo_outfit",
+"novice_stalker_outfit",
+"novice_bandit_outfit",
+"killer_outfit",
+"heavy_stalker_outfit",
+"bandit_raid_outfit",
+"svoboda_army_outfit",
+"bandit_prikid_outfit",
+"ecolog_regular_outfit",
+"ecolog_military_outfit",
+"monolith_outfit",
+"cs_specnaz_outfit",
+"csky_exo_outfit",
+"freedom_exo_outfit",
+"dolg_exo_outfit",
+"monolit_exo_outfit",
+"bandit_exo_outfit",
+"army_exo_outfit",
+"killer_exo_outfit",
+"stalker_outfit_barge",
+"stalker_reinforced_outfit",
+"army_nauchniy_outfit",
+"reduce_novice_outfit",
+"reduce_stalker_outfit",
+"reduce_svoboda_light_outfit",
+"reduce_svoboda_heavy_outfit",
+"reduce_dolg_outfit",
+"reduce_dolg_heavy_outfit",
+"reduce_scientific_outfit",
+"reduce_cs_heavy_outfit",
+"reduce_specops_outfit",
+"reduce_military_outfit",
+"reduce_exo_outfit",
+"reduce_novice_stalker_outfit",
+"reduce_novice_bandit_outfit",
+"reduce_killer_outfit",
+"reduce_ecolog_regular_outfit",
+"reduce_ecolog_military_outfit",
+"reduce_monolith_outfit",
+"reduce_heavy_stalker_outfit",
+"reduce_bandit_raid_outfit",
+"reduce_svoboda_army_outfit",
+"reduce_bandit_prikid_outfit",
+"reduce_cs_specnaz_outfit",
+"reduce_csky_exo_outfit",
+"reduce_freedom_exo_outfit",
+"reduce_dolg_exo_outfit",
+"reduce_bandit_exo_outfit",
+"reduce_army_exo_outfit",
+"reduce_monolit_exo_outfit",
+"reduce_killer_exo_outfit"
+}
+local devices_table = {
+"toolkit_1",
+"toolkit_2",
+"toolkit_3",
+"activate_knife",
+"activate_knife_m1",
+"activate_knife_m2",
+"activate_knife_m3",
+"activate_knife_m4",
+"activate_knife_m5",
+"activate_knife_m6",
+"activate_knife_m7",
+"activate_knife_m8",
+"activate_knife_m9",
+"activate_binocular",
+"activate_binocular_m1",
+"activate_binocular_m2",
+"activate_binocular_m3",
+"personal_marker",
+"minetrap_detector",
+"minetrap_elite_detector",
+"remote_explosive_charge",
+"remote_charge_control",
+"disk_breaking",
+"demolution_ballon",
+"demolution_kanistra",
+"demolution_barrel",
+"guidebook_mono",
+"guidebook_alternal",
+"personal_pda",
+"conventer_grenade_box",
+"army_timer",
+"repair_outfit_box",
+"repair_outfit_box_used",
+"repair_arms_box",
+"repair_arms_box_used",
+"emulator_brain_waves",
+"mp3_player",
+"personal_rukzak",
+"detector_simple",
+"detector_advanced",
+"detector_elite",
+"detector_scientific",
+"detector_omega",
+"detector_simple_up",
+"detector_advanced_up",
+"detector_elite_up",
+"detector_scientific_up",
+"detector_omega_up",
+"detector_serafim",
+"money_meshochek_100_500",
+"money_meshochek_100_3000",
+"money_meshochek_500_1000",
+"money_meshochek_1000_1500",
+"money_meshochek_1000_5000",
+"money_meshochek_1500_2000",
+"money_meshochek_2000_3000",
+"money_meshochek_3000_4000",
+"money_meshochek_4000_5000",
+"money_meshochek_5000_10000",
+"money_meshochek_10000_15000",
+"money_meshochek_15000_20000",
+"geiger_counter",
+"signaller_toolkit_1",
+"signaller_toolkit_2",
+"quest_flash_light",
+"quest_arms_case",
+"quest_heavy_medkits",
+"quest_photo_device",
+"quest_drink_beylis",
+"quest_frequency_radio",
+"quest_sharpshooter_binocular",
+"quest_live_water",
+"quest_medic_medkit",
+"quest_bloodsucker_vaccine",
+"quest_bloodsucker_letter_1",
+"quest_bloodsucker_letter_2",
+"device_pda_cherniy",
+"special_helicopter_key",
+"flash_avoid_witnesses",
+"device_pda_alfa_commander_novice",
+"device_pda_alfa_commander_regular",
+"device_pda_alfa_commander_experienced",
+"device_pda_alfa_commander_veteran",
+"device_pda_alfa_commander_master",
+"device_pda_b1_commander",
+"device_pda_b1_renegade_1",
+"device_pda_b1_renegade_2",
+"device_pda_b1_renegade_3",
+"detector_battery_1",
+"detector_battery_2",
+"detector_battery_3",
+"mobile_tool",
+"x18_secret_docks_1",
+"x18_secret_docks_2",
+"x18_secret_docks_3",
+"val_key_from_safe",
+"zat_medic_antidote",
+"zat_wisdom_book_1",
+"zat_wisdom_book_2",
+"zat_wisdom_book_3",
+"zat_mad_dog_pda",
+"pri_inquisitor_pda_1",
+"pri_inquisitor_pda_2",
+"pri_fenix_brother_medallion",
+"val_access_card_x18",
+"val_b4_baltazar_pda",
+"val_renegade_money_case",
+"mil_hole_bomb",
+"jup_b2_detector_info_1",
+"jup_b2_detector_info_2",
+"esc_key_from_gate",
+"zat_homsa_quests_special_info",
+"esc_b2_tamerlan_flash",
+"esc_b3_safe_flash",
+"jup_rasvet_gudvin_pda",
+"jup_rasvet_gudvin_letter",
+"wpn_vintorez_bomber",
+"shustriy_ingram_m10",
+"shustriy_ak47",
+"shustriy_mossberg_590mk",
+"shustriy_steyr_aug_ss190",
+"x18_secret_gs67",
+"zat_ecolog_spez_case",
+"pri_alf_info_1",
+"pri_alf_info_2",
+"pri_alf_info_3",
+"val_lucas_spez_scanner",
+"val_lucas_quests_info_1",
+"val_lucas_quests_info_2",
+"val_lucas_quests_info_3",
+"zat_sultan_contra_info_1",
+"zat_sultan_contra_info_2",
+"zat_sultan_contra_info_3",
+"jup_b12_plant_memory_1",
+"jup_b12_plant_memory_2",
+"jup_b12_plant_memory_3",
+"jup_b12_plant_toolkit",
+"pri_b35_lab_x8_key",
+"zat_a23_labx8_key",
+"zat_alfa_performer_bandit_pda",
+"zat_alfa_customer_pda",
+"jup_azot_charge_scanner",
+"jup_azot_charge_instruments",
+"jup_azot_simply_raciya",
+"red_psyho_development_1",
+"red_psyho_development_2",
+"red_psyho_killer_pda_1",
+"red_psyho_killer_pda_2",
+"red_psyho_ecolog_pda",
+"zat_unique_treasure_1_card",
+"zat_unique_treasure_2_card",
+}
+local food_and_drugs_table = {
+"bag_medkit_1",
+"bag_medkit_2",
+"bag_medkit_3",
+"bag_medkit_4",
+"bandage",
+"antirad",
+"bio_bandage",
+"psy_complex",
+"medkit",
+"medkit_army",
+"medkit_scientic",
+"medkit_elite",
+"medkit_used",
+"medkit_army_used",
+"medkit_scientic_used",
+"medkit_elite_used",
+"drug_booster",
+"drug_coagulant",
+"drug_psy_blockade",
+"drug_antidot",
+"drug_radioprotector",
+"drug_anabiotic",
+"drug_engine",
+"drug_cat_eye",
+"bread",
+"kolbasa",
+"conserva",
+"vodka",
+"energy_drink",
+"wild_drink",
+"nuts",
+"sardina",
+"olivki",
+"cheese",
+"galet",
+"shokolad",
+"batonchik",
+"beer",
+"juice",
+"mutant_snork_booty",
+"mutant_psevdodog_booty",
+"mutant_krovosos_booty",
+"mutant_boar_booty",
+"mutant_dog_booty",
+"mutant_flesh_booty",
+"mutant_giant_booty",
+"mutant_chimera_booty",
+"mutant_controler_booty",
+"mutant_burer_booty",
+"capture_meal_chimera",
+"capture_meal_gigant",
+"capture_meal_boar",
+"capture_meal_dog",
+"capture_meal_flesh",
+"capture_meal_tushkano",
+"capture_meal_pseudodog",
+"capture_meal_snork"
+}
+local wpn_addons_table = {
+"wpn_addon_silencer_9x19",
+"wpn_addon_silencer_11.43x23",
+"wpn_addon_silencer_5.56x45",
+"wpn_addon_silencer_5.45x39",
+"wpn_addon_silencer_9x39",
+"wpn_addon_scope",
+"wpn_addon_scope_x2.7",
+"wpn_addon_scope_detector",
+"wpn_addon_scope_night",
+"wpn_addon_scope_susat",
+"wpn_addon_scope_susat_x1.6",
+"wpn_addon_scope_susat_custom",
+"wpn_addon_scope_susat_dusk",
+"wpn_addon_scope_susat_night",
+"wpn_addon_silencer",
+"wpn_addon_grenade_launcher",
+"wpn_addon_grenade_launcher_m203"
+}
+local weapons_table = {
+"grenade_f1_double",
+"grenade_rgd5_double",
+"grenade_gd-05_double",
+"wpn_abakan_m1",
+"wpn_abakan_m2",
+"wpn_abakan_m3",
+"wpn_ak74u_m1",
+"wpn_ak74u_m2",
+"wpn_ak74u_m3",
+"wpn_ak74_m1",
+"wpn_ak74_m2",
+"wpn_ak74_m3",
+"wpn_beretta_m1",
+"wpn_beretta_m2",
+"wpn_beretta_m3",
+"wpn_bm16_m1",
+"wpn_bm16_m2",
+"wpn_bm16_m3",
+"wpn_fort_m1",
+"wpn_fort_m2",
+"wpn_fort_m3",
+"wpn_groza_m1",
+"wpn_groza_m2",
+"wpn_groza_m3",
+"wpn_lr300_m1",
+"wpn_lr300_m2",
+"wpn_lr300_m3",
+"wpn_mp5_m1",
+"wpn_mp5_m2",
+"wpn_mp5_m3",
+"wpn_pm_m1",
+"wpn_pm_m2",
+"wpn_pm_m3",
+"wpn_sig220_m1",
+"wpn_sig220_m2",
+"wpn_sig220_m3",
+"wpn_sig550_m1",
+"wpn_sig550_m2",
+"wpn_sig550_m3",
+"wpn_spas12_m1",
+"wpn_spas12_m2",
+"wpn_spas12_m3",
+"wpn_toz34_m1",
+"wpn_toz34_m2",
+"wpn_toz34_m3",
+"wpn_vintorez_m1",
+"wpn_vintorez_m2",
+"wpn_vintorez_m3",
+"wpn_wincheaster1300_m1",
+"wpn_wincheaster1300_m2",
+"wpn_wincheaster1300_m3",
+"wpn_pm",
+"wpn_pb",
+"wpn_fort",
+"wpn_hpsa",
+"wpn_beretta",
+"wpn_walther",
+"wpn_sig220",
+"wpn_colt1911",
+"wpn_usp",
+"wpn_desert_eagle",
+"wpn_bm16",
+"wpn_toz34",
+"wpn_wincheaster1300",
+"wpn_spas12",
+"wpn_protecta",
+"wpn_ak74u",
+"wpn_mp5",
+"wpn_ak74",
+"wpn_abakan",
+"wpn_l85",
+"wpn_lr300",
+"wpn_sig550",
+"wpn_groza",
+"wpn_val",
+"wpn_vintorez",
+"wpn_svu",
+"wpn_svd",
+"wpn_rg-6",
+"wpn_rpg7",
+"wpn_g36",
+"wpn_fn2000",
+"wpn_pkm",
+"wpn_gauss",
+"wpn_pm_actor",
+"wpn_fort_actor",
+"wpn_fort_snag",
+"wpn_sig220_nimble",
+"wpn_usp_nimble",
+"wpn_desert_eagle_nimble",
+"wpn_wincheaster1300_trapper",
+"wpn_spas12_nimble",
+"wpn_protecta_nimble",
+"wpn_ak74u_snag",
+"wpn_mp5_nimble",
+"wpn_sig550_luckygun",
+"wpn_groza_nimble",
+"wpn_vintorez_nimble",
+"wpn_svu_nimble",
+"wpn_svd_nimble",
+"wpn_g36_nimble",
+"wpn_fn2000_nimble",
+"wpn_pkm_zulus",
+"pri_a17_gauss_rifle",
+"grenade_f1",
+"grenade_rgd5",
+"grenade_gd-05",
+"grenade_gd-05_lighting"
+}
+local ammo_table = {
+"ammo_container",
+"ammo_dumdum",
+"ammo_box_10_vog",
+"ammo_box_10_m209",
+"ammo_9x18_fmj",
+"ammo_9x18_pmm",
+"ammo_9x19_fmj",
+"ammo_9x19_pbp",
+"ammo_11.43x23_fmj",
+"ammo_11.43x23_hydro",
+"ammo_5.45x39_fmj",
+"ammo_5.45x39_ap",
+"ammo_5.56x45_ss190",
+"ammo_5.56x45_ap",
+"ammo_pkm_100",
+"ammo_7.62x54_7h1",
+"ammo_gauss",
+"ammo_gauss_cardan",
+"ammo_9x39_pab9",
+"ammo_9x39_ap",
+"ammo_12x70_buck",
+"ammo_12x76_zhekan",
+"ammo_og-7b",
+"ammo_vog-25",
+"ammo_m209"
+}
+class "spawn_item" (CUIListBoxItem)
+function spawn_item:__init(height) super(height)
+   self.section               = self:GetTextItem()
+   self:SetTextColor         (GetARGB(255, 210, 210, 210))
+   self.section:SetFont         (GetFontLetterica18Russian())
+   self.section:SetWndSize      (vector2():set(400,height))
+   self.section:SetEllipsis      (true)
+end
+class "spawn_item_dialog" (CUIScriptWnd)
+function spawn_item_dialog:__init() super()
+    self:InitControls   ()
+    self:InitCallBacks   ()
+    self:FillList(weapons_table)
+end
+function spawn_item_dialog:__finalize()
+end
+function spawn_item_dialog:FillList(tbl)
+   self.list:Clear()
+   for i = 1, #tbl do
+      self:AddItemToList(tbl[i])
+   end
+end
+function spawn_item_dialog:InitControls()
+   local xml            = CScriptXmlInit()
+   local ctrl
+   xml:ParseFile         ("ui_spawn_dlg.xml")
+   ctrl               = xml:InitFrame("background",self)
+   self:SetWndPos         (vector2():set(100,100))
+   self:SetWndSize         (vector2():set(ctrl:GetWidth(), ctrl:GetHeight()))
+   ctrl= xml:Init3tButton("btn_weapons",self)
+   self:Register            (ctrl, "btn_weapons")
+   ctrl= xml:Init3tButton("btn_addons",self)
+   self:Register            (ctrl, "btn_addons")
+   ctrl= xml:Init3tButton("btn_outfits",self)
+   self:Register            (ctrl, "btn_outfits")
+   ctrl= xml:Init3tButton("btn_devices",self)
+   self:Register            (ctrl, "btn_devices")
+   ctrl= xml:Init3tButton("btn_ammo",self)
+   self:Register            (ctrl, "btn_ammo")
+   ctrl= xml:Init3tButton("btn_artefacts",self)
+   self:Register            (ctrl, "btn_artefacts")
+   ctrl= xml:Init3tButton("btn_food",self)
+   self:Register            (ctrl, "btn_food")
+   self.list = xml:InitListBox   ("list",self)
+   self.list:ShowSelectedItem   (true)
+   self:Register            (self.list, "list_window")
+   self.check               = xml:InitCheck("check_own_to_actor",self)
+   self.check:SetCheck         (true)
+   ctrl= xml:Init3tButton("btn_create",self)
+   self:Register            (ctrl, "btn_create")
+   ctrl = xml:Init3tButton      ("btn_close",self)
+   self:Register            (ctrl, "btn_close")
+end
+function spawn_item_dialog:InitCallBacks()
+   self:AddCallback("btn_create",      ui_events.BUTTON_CLICKED,             self.OnButton_create_clicked,   self)
+   self:AddCallback("btn_close",      ui_events.BUTTON_CLICKED,             self.OnButton_close_clicked,   self)
+   self:AddCallback("list_window",      ui_events.WINDOW_LBUTTON_DB_CLICK,     self.OnButton_create_clicked,   self)
+   self:AddCallback("btn_artefacts",   ui_events.BUTTON_CLICKED,            self.OnButton_artefacts_clicked,   self)
+   self:AddCallback("btn_outfits",      ui_events.BUTTON_CLICKED,            self.OnButton_outfits_clicked,   self)
+   self:AddCallback("btn_devices",      ui_events.BUTTON_CLICKED,            self.OnButton_devices_clicked,   self)
+   self:AddCallback("btn_food",      ui_events.BUTTON_CLICKED,            self.OnButton_food_clicked,   self)
+   self:AddCallback("btn_weapons",      ui_events.BUTTON_CLICKED,            self.OnButton_weapons_clicked,   self)
+   self:AddCallback("btn_addons",      ui_events.BUTTON_CLICKED,            self.OnButton_addons_clicked,   self)
+   self:AddCallback("btn_ammo",      ui_events.BUTTON_CLICKED,            self.OnButton_ammo_clicked,   self)
+end
+function spawn_item_dialog:OnButton_artefacts_clicked()
+   self:FillList(artefacts_table)
+end
+function spawn_item_dialog:OnButton_outfits_clicked()
+   self:FillList(outfits_table)
+end
+function spawn_item_dialog:OnButton_devices_clicked()
+   self:FillList(devices_table)
+end
+function spawn_item_dialog:OnButton_food_clicked()
+   self:FillList(food_and_drugs_table)
+end
+function spawn_item_dialog:OnButton_weapons_clicked()
+   self:FillList(weapons_table)
+end
+function spawn_item_dialog:OnButton_addons_clicked()
+   self:FillList(wpn_addons_table)
+end
+function spawn_item_dialog:OnButton_ammo_clicked()
+   self:FillList(ammo_table)
+end
+function spawn_item_dialog:OnButton_create_clicked()
+   if self.list:GetSize()==0 then
+      return
+   end
+   local item=self.list:GetSelectedItem()
+   if not item  then return end
+   local item_section=item.section:GetText()
+   local id
+   if self.check:GetCheck() then
+      id = db.actor:id()
+   else
+      id = -1
+   end
+   alife():create(tostring(item_section),db.actor:position(),0,0,id)
+   change_flag_value("bool_cheat_mode_activate",true)
+end
+function spawn_item_dialog:OnButton_close_clicked()
+   self:HideDialog()
+   set_ui_worked()
+   _G.si_dlg = nil
+end
+function spawn_item_dialog:OnKeyboard(dik, keyboard_action)
+   CUIScriptWnd.OnKeyboard(self,dik,keyboard_action)
+   local bind = dik_to_bind(dik)
+   if bind == key_bindings.kQUIT then
+      self:OnButton_close_clicked()
+      set_ui_worked()
+   else
+      if dik==28 then
+         self:OnButton_create_clicked()
+         set_ui_worked()
+      end
+   end
+   return true
+end
+function spawn_item_dialog:AddItemToList(item_section)
+   local item_title=game.translate_string(sgm_functions.ReadCaption(item_section))
+   local source=spawn_item(22)
+   source.section:SetText(item_section)
+   self.list:AddExistingItem(source)
+   source.title=source:AddTextField(item_title,0)
+   source.title:SetWndPos(vector2():set(265,0))
+end
+function main()
+   if _G.si_dlg==nil then
+      _G.si_dlg = spawn_item_dialog()
+   end
+   _G.si_dlg:ShowDialog(true)
+end

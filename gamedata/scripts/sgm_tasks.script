@@ -1,0 +1,2403 @@
+---==================================================================================================---
+--------------------------------------------------------------------------------------------------------
+----------------------------------(Обработка квестов)---------------------------------------------------
+--------------------------------------------------------------------------------------------------------
+---==================================================================================================---
+zat_monsters_wave_spawner=false
+zat_monsters_wave_table = {
+wave_1 = {
+  mut_1 = "zat_monsters_wave_1_boar,3,zat_monsters_wave_1_flesh,3",
+  mut_2 = "zat_monsters_wave_1_pseudodog,3,zat_monsters_wave_1_dog,3",
+  mut_3 = "zat_monsters_wave_1_psy_dog,zat_monsters_wave_1_pseudodog,5",
+  mut_4 = "zat_monsters_wave_1_boar,4,zat_monsters_wave_1_flesh,2",
+  mut_5 = "zat_monsters_wave_1_boar,2,zat_monsters_wave_1_flesh,4",
+  pos_1 = {{209.785,-7.112,-138.351,1320142,77}},
+  pos_2 = {{93.215,-6.192,-78.318,1127637,53}},
+  pos_3 = {{165.447,-7.169,-61.733,1248902,84}},
+  pos_4 = {{69.416,-7.350,-108.785,1082623,53}},
+  pos_5 = {{71.873,-6.313,-175.988,1087888,170}}
+  },
+wave_2 = {
+  mut_1 = "zat_monsters_wave_2_psy_dog,zat_monsters_wave_2_dog,5",
+  mut_2 = "zat_monsters_wave_2_boar,6",
+  mut_3 = "zat_monsters_wave_2_boar,3,zat_monsters_wave_2_flesh,3",
+  mut_4 = "zat_monsters_wave_2_snork,4,zat_monsters_wave_2_chimera,zat_monsters_wave_2_bloodsucker",
+  mut_5 = "zat_monsters_wave_2_dog,5,zat_monsters_wave_2_pseudodog",
+  mut_6 = "zat_monsters_wave_2_flesh,4,zat_monsters_wave_2_boar,2",
+  pos_1 = {{227.654,-7.384,-96.864,1352832,278}},
+  pos_2 = {{93.215,-6.192,-78.318,1127637,53}},
+  pos_3 = {{165.447,-7.169,-61.733,1248902,84}},
+  pos_4 = {{69.416,-7.350,-108.785,1082623,53}},
+  pos_5 = {{132.300,-7.369,-58.569,1193279,152}},
+  pos_6 = {{71.873,-6.313,-175.988,1087888,170}}
+  },
+wave_3 = {
+  mut_1 = "zat_monsters_wave_3_boar,3,zat_monsters_wave_3_flesh,3",
+  mut_2 = "zat_monsters_wave_3_pseudodog,zat_monsters_wave_3_dog,4,zat_monsters_wave_3_psy_dog",
+  mut_3 = "zat_monsters_wave_3_dog,4,zat_monsters_wave_3_pseudodog,2",
+  mut_4 = "zat_monsters_wave_3_snork,5,zat_monsters_wave_3_bloodsucker",
+  mut_5 = "zat_monsters_wave_3_chimera,zat_monsters_wave_3_snork,5",
+  mut_6 = "zat_monsters_wave_3_psy_dog,zat_monsters_wave_3_dog,3,zat_monsters_wave_3_pseudodog,2",
+  mut_7 = "zat_monsters_wave_3_flesh,5,zat_monsters_wave_3_boar,2",
+  pos_1 = {{209.785,-7.112,-138.351,1320142,77}},
+  pos_2 = {{227.654,-7.384,-96.864,1352832,278}},
+  pos_3 = {{93.215,-6.192,-78.318,1127637,53}},
+  pos_4 = {{165.447,-7.169,-61.733,1248902,84}},
+  pos_5 = {{69.416,-7.350,-108.785,1082623,53}},
+  pos_6 = {{132.300,-7.369,-58.569,1193279,152}},
+  pos_7 = {{71.873,-6.313,-175.988,1087888,170}}
+  }
+}
+function task_main()
+   task_update()
+end
+function task_update()
+   local level_name=level.name()
+   local actor_pos=db.actor:position()
+   --/Оригинальный сюжет
+   if has_alife_info("cop_storyline_restored") and dont_has_alife_info("cop_storyline_restored_inited") then
+      add_task("zat_b101_heli_5_crash")
+      add_task("zat_b28_heli_3_crash")
+      add_task("jup_b8_heli_4_crash")
+      add_task("zat_b100_heli_2_crash")
+      add_task("jup_b9_heli_1_crash")
+      give_info("cop_storyline_restored_inited")
+   end
+   --/Места крушения вертолетов на Агропроме
+   if has_alife_info("cop_storyline_restored_inited") and dont_has_alife_info("agr_research_heli_crash_start") then
+      give_info("agr_research_heli_crash_start")
+      give_info("agr_research_heli_1_crash_start")
+      give_info("agr_research_heli_2_crash_start")
+      create("agr_heli_1",123.6971206665,3.5235214233398,-78.04248046875,256016,1467)
+      create("agr_heli_2",-118.09610748291,8.8947334289551,-97.173950195313,64408,1531)
+      add_task("agr_research_heli_1_crash")
+      add_task("agr_research_heli_2_crash")
+   end
+   --/Условия для некоторых квестов
+   if has_alife_info("zat_b7_actor_help_stalkers") and dont_has_alife_info("zat_b5_actor_with_stalkers") then
+      if has_alife_info("zat_bandit_base_leader_death") and has_several_info("zat_bandit_base_bodyguard_","_death",1,4) then
+         if dont_has_alife_info("zat_lesnichestvo_svobodno") then 
+            give_info("zat_lesnichestvo_svobodno") 
+         end
+      else
+         if has_alife_info("zat_lesnichestvo_svobodno") then 
+            disable_info("zat_lesnichestvo_svobodno") 
+         end
+      end
+   end
+   --/Квест:Заказы Шустрого
+   if dont_has_alife_info("shustriy_find_4_allow") and read_mod_param("shustriy_available_tasks")~=nil and read_mod_param("shustriy_available_tasks")<=0 then
+      if check_game_timer("shustriy_d_timer")==nil then
+         start_game_timer("shustriy_d_timer",math.random(1,2),"days")
+      elseif check_game_timer("shustriy_d_timer") then
+         inc_mod_param("shustriy_available_tasks")
+         give_info("shustriy_find_4_allow")
+         abort_game_timer("shustriy_d_timer")
+      end
+   end
+   --/Квест:Цветы Дьявола
+   if has_alife_info("jup_a6_rasvet_medik_quest_kostoprav") and dont_has_alife_info("jup_a6_rasvet_medik_quest_have_flowers") then
+      local cnt = 0
+      local function jup_spez_count(npc, item)
+         if item:section() == "af_quest_b206_dyavol_flowers" then
+            cnt = cnt + 1
+         end
+      end
+      db.actor:iterate_inventory(jup_spez_count, nil)
+      if cnt > 2 then
+         give_info("jup_a6_rasvet_medik_quest_have_flowers")
+      end	    	   
+   end
+   --/Квест:Именное оружие
+   if has_alife_info("jup_find_gromoboy_vintar_start") and dont_has_alife_info("jup_find_gromoboy_vintar_fake_loot") and dont_has_alife_info("jup_find_gromoboy_vintar_safe") and dont_has_alife_info("jup_find_gromoboy_vintar_fail") then
+      if story_id_not_found("jup_monolith_thief") then
+         give_info("jup_find_gromoboy_vintar_safe")
+         replace_quest_corpse("jup_monolith_thief_replace_spot","jup_thief_voron_pda",-335.597,1.494,263.818,149065,380)
+      end
+   end
+   --/Квест:Грязная работа
+   if has_alife_info("pri_necessary_kill_kasilov_in_zone") and dont_has_alife_info("pri_necessary_kill_kasilov_fail") and dont_has_alife_info("pri_necessary_kill_kasilov_pda") and dont_has_alife_info("pri_necessary_kill_kasilov_safe") then
+      if story_id_not_found("pri_army_kasilov") then
+         give_info("pri_necessary_kill_kasilov_safe")
+         replace_quest_corpse("pri_army_kasilov_replace_spot","device_pda_kasilov",-168.822,-0.274,-307.464,41745,853)
+      end
+   end
+   --/Квест:Научный доклад
+   if has_alife_info("pri_find_science_briefing_start") and dont_has_alife_info("pri_find_science_briefing_naydeno") and dont_has_alife_info("pri_find_science_briefing_safe") then
+      if story_id_not_found("pri_ecolog_briefing") then
+         give_info("pri_find_science_briefing_safe")
+         replace_quest_corpse("pri_ecolog_briefing_replace_spot","important_science_docks",323.518,-8.536,275.314,485438,682)
+      end
+   end
+   --/Квест:Искупление Грехов
+   if has_alife_info("actor_entry_in_monolith") then
+      if has_alife_info("pri_expiation_sin_3_start") and dont_has_alife_info("pri_expiation_sin_3_complete") and dont_has_alife_info("pri_expiation_sin_3_fail") then
+         if dont_has_alife_info("pri_expiation_sin_3_info_matched") and ((has_alife_info("pri_expiation_sin_3_info_with_sich") and (has_alife_info("pri_expiation_sin_3_info_with_gavaec") or has_alife_info("pri_expiation_sin_3_info_with_ozerskiy"))) or (has_alife_info("pri_expiation_sin_3_info_with_gavaec") and (has_alife_info("pri_expiation_sin_3_info_with_sich") or has_alife_info("pri_expiation_sin_3_info_with_ozerskiy"))) or (has_alife_info("pri_expiation_sin_3_info_with_ozerskiy") and (has_alife_info("pri_expiation_sin_3_info_with_sich") or has_alife_info("pri_expiation_sin_3_info_with_gavaec")))) then
+            create("jup_monolith_retranslator_spot",450.023,31.103,-457.384,1430289,555)
+            create("jup_monolith_retranslator",450.023,31.103,-457.384,1430289,555)
+            give_info("pri_expiation_sin_3_info_matched")
+            game_autosave_assign("save_pri_expiation_sin_3_retranslator_gather_info")
+         end
+         if dont_has_alife_info("pri_expiation_sin_3_teleport_retranslator") and has_alife_info("pri_expiation_sin_3_install") then
+            create("box_konteyner",-170.902,0.548,-342.223,40299,806)
+            give_info("pri_expiation_sin_3_teleport_retranslator")
+         end
+         if dont_has_alife_info("pri_expiation_sin_3_enemy_destroyed") and has_several_info("pri_killer_barricaded_","_death",1,18) then
+            give_info("pri_expiation_sin_3_enemy_destroyed")
+            game_autosave_assign("save_pri_expiation_sin_3_market_destroyed")
+         end
+      end
+      if dont_has_alife_info("pri_expiation_sin_1_allow") then
+         if check_game_timer("pri_expiation_sin_1_timer")==nil then
+            start_game_timer("pri_expiation_sin_1_timer",1,"days")
+         elseif check_game_timer("pri_expiation_sin_1_timer") then
+            give_info("pri_expiation_sin_1_allow")
+            abort_game_timer("pri_expiation_sin_1_timer")
+         end
+      elseif has_alife_info("pri_expiation_sin_1_complete") and dont_has_alife_info("pri_expiation_sin_2_allow") then
+         if check_game_timer("pri_expiation_sin_2_timer")==nil then
+            start_game_timer("pri_expiation_sin_2_timer",1,"days")
+         elseif check_game_timer("pri_expiation_sin_2_timer") then
+            give_info("pri_expiation_sin_2_allow")
+            abort_game_timer("pri_expiation_sin_2_timer")
+         end
+      elseif has_alife_info("pri_expiation_sin_2_complete") and dont_has_alife_info("pri_expiation_sin_3_allow") then
+         if check_game_timer("pri_expiation_sin_3_timer")==nil then
+            start_game_timer("pri_expiation_sin_3_timer",1,"days")
+         elseif check_game_timer("pri_expiation_sin_3_timer") then
+            give_info("pri_expiation_sin_3_allow")
+            abort_game_timer("pri_expiation_sin_3_timer")
+         end
+      elseif has_alife_info("pri_expiation_sin_3_kiborg_final_talk") and dont_has_alife_info("pri_expiation_sin_3_repair_completed") then
+         if check_game_timer("pri_expiation_sin_3_repair_timer")==nil then
+            start_game_timer("pri_expiation_sin_3_repair_timer",1,"days")
+         elseif check_game_timer("pri_expiation_sin_3_repair_timer") then
+            give_info("pri_expiation_sin_3_repair_completed")
+            sgm_dialogs.pri_expiation_sin_3_create_base()
+            game_autosave_assign("save_pri_expiation_sin_3_repair_finished")
+            abort_game_timer("pri_expiation_sin_3_repair_timer")
+         end
+      end
+   end
+   --/Квест:Тайное противостояние
+   if has_alife_info("zat_b103_merc_task_spez_loki_1_1_talking") and dont_has_alife_info("zat_b103_merc_task_spez_1_1_sutki_come") then
+      if check_game_timer("zat_quest_spez_3_timer")==nil then
+         start_game_timer("zat_quest_spez_3_timer",12,"hours")
+      elseif check_game_timer("zat_quest_spez_3_timer") then
+	 xr_effects.zat_b103_merc_task_spez_1_create()
+         give_info("zat_b103_merc_task_spez_1_1_sutki_come")
+         abort_game_timer("zat_quest_spez_3_timer")
+      end
+   end
+   if has_alife_info("zat_b103_merc_task_spez_shulga_2_1_talking") and dont_has_alife_info("zat_b103_merc_task_spez_shulga_2_1_sutki_come") then
+      if check_game_timer("zat_quest_spez_4_timer")==nil then
+         start_game_timer("zat_quest_spez_4_timer",12,"hours")
+      elseif check_game_timer("zat_quest_spez_4_timer") then
+         xr_effects.zat_b103_merc_task_spez_2_create()
+         give_info("zat_b103_merc_task_spez_shulga_2_1_sutki_come")
+         abort_game_timer("zat_quest_spez_4_timer")
+      end
+   end
+   --/Квест:Закрытое расследование
+   if has_alife_info("zat_b106_stalker_gonta_b52_about_hunters_second_dialog_talking") and dont_has_alife_info("zat_b106_stalker_gonta_b52_about_hunters_second_dialog_sutki_come") then
+      if check_game_timer("zat_quest_homsa_1_timer")==nil then
+         start_game_timer("zat_quest_homsa_1_timer",1,"days")
+      elseif check_game_timer("zat_quest_homsa_1_timer") then
+         give_info("zat_b106_stalker_gonta_b52_about_hunters_second_dialog_sutki_come")
+         abort_game_timer("zat_quest_homsa_1_timer")
+      end
+   end
+   --/Квест: Протокол Юпитер
+   if has_alife_info("jup_a6_azot_quest_mech_begin") and has_several_info("jup_a6_azot_quest_mech_killer_","_dead",1,5) and dont_has_alife_info("jup_a6_azot_quest_mech_killer_all_dead") then
+      give_info("jup_a6_azot_quest_mech_killer_all_dead")
+   end
+   if has_alife_info("jup_a6_azot_quest_mech_sustriy") and dont_has_alife_info("jup_a6_azot_quest_mech_kutier_come") then
+      if check_game_timer("jup_quest_azot_1_timer")==nil then
+         start_game_timer("jup_quest_azot_1_timer",12,"hours")
+       elseif check_game_timer("jup_quest_azot_1_timer") then
+	 create("jup_a6_azat_quest_mechanik_kurier_1",-167.538,-3.277,472.960,434990,564)
+         give_info("jup_a6_azot_quest_mech_kutier_come")
+         abort_game_timer("jup_quest_azot_1_timer")
+      end
+   end
+   --/Квест: Выбор приоритетов
+   if has_alife_info("zat_a6_sultan_quest_kontra_yakut_dead") and dont_has_alife_info("zat_a6_sultan_quest_kontra_find_items") and db.actor:object("zat_sultan_contra_info_1") and db.actor:object("zat_sultan_contra_info_2") and db.actor:object("zat_sultan_contra_info_3") then
+      give_info("zat_a6_sultan_quest_kontra_find_items")
+   end
+   if has_alife_info("zat_a6_sultan_quest_kontra_sultan_kill") and dont_has_alife_info("zat_a6_sultan_quest_kontra_lucian_come_jupiter") then
+      if check_game_timer("zat_quest_sultan_1_timer")==nil then
+         start_game_timer("zat_quest_sultan_1_timer",12,"hours")
+      elseif check_game_timer("zat_quest_sultan_1_timer") then
+	 xr_effects.zat_a6_sultan_quest_kontra_create_enemy()
+         give_info("zat_a6_sultan_quest_kontra_lucian_come_jupiter")
+         abort_game_timer("zat_quest_sultan_1_timer")
+      end
+   end
+   if dont_has_alife_info("zat_a6_sultan_quest_kontra_all_lucian_member_dead") and has_alife_info("zat_a6_sultan_quest_kontra_lucian_dead") and has_several_info("zat_a6_sultan_quest_kontra_lucian_member_","_dead",1,3) then 
+      give_info("zat_a6_sultan_quest_kontra_all_lucian_member_dead")
+   end
+   --/Квест:Приоритеты клана
+   if has_alife_info("jup_b206_rasvet_prior_quest_ready_to_wait") and has_alife_info("jup_b206_rasvet_prior_quest_ready_to_wait_1") and dont_has_alife_info("jup_b206_rasvet_prior_quest_sutki_come") then
+      if check_game_timer("jup_quest_prior_1_timer")==nil then
+         start_game_timer("jup_quest_prior_1_timer",1,"days")
+      elseif check_game_timer("jup_quest_prior_1_timer") then
+         give_info("jup_b206_rasvet_prior_quest_sutki_come")
+         abort_game_timer("jup_quest_prior_1_timer")
+      end
+   end
+   if has_alife_info("jup_b206_rasvet_prior_quest_ready_to_wait") and has_alife_info("jup_b206_rasvet_prior_quest_ready_to_wait_2") and dont_has_alife_info("jup_b206_rasvet_prior_quest_sutki_come") then
+      if check_game_timer("jup_quest_prior_2_timer")==nil then
+         start_game_timer("jup_quest_prior_2_timer",6,"hours")
+      elseif check_game_timer("jup_quest_prior_2_timer") then
+         give_info("jup_b206_rasvet_prior_quest_sutki_come")
+         abort_game_timer("jup_quest_prior_2_timer")
+      end
+   end
+   if has_alife_info("jup_b206_rasvet_prior_quest_ready_to_wait") and has_alife_info("jup_b206_rasvet_prior_quest_ready_to_wait_3") and dont_has_alife_info("jup_b206_rasvet_prior_quest_sutki_come") then
+      if check_game_timer("jup_quest_prior_3_timer")==nil then
+         start_game_timer("jup_quest_prior_3_timer",12,"hours")
+      elseif check_game_timer("jup_quest_prior_3_timer") then
+         give_info("jup_b206_rasvet_prior_quest_sutki_come")
+         abort_game_timer("jup_quest_prior_3_timer")
+      end
+   end
+   --/Квест:Перехват
+   if has_alife_info("jup_avoid_witnesses_start") and dont_has_alife_info("jup_avoid_witnesses_spawner") then
+      create("jup_witnesses_sentry_1",314.125,28.780,-137.783,1222061,535)
+      create("jup_witnesses_sentry_2",297.934,28.780,-134.500,1200413,536)
+      create("jup_witnesses_sentry_3",320.179,27.021,-125.408,1229703,535)
+      create("jup_witnesses_sentry_4",323.667,27.401,-128.527,1234712,535)
+      create("jup_witnesses_patrol_1",320.192,26.884,-122.077,1229708,535)
+      create("jup_witnesses_patrol_2",303.403,28.829,-136.923,1207254,535)
+      create("jup_witnesses_sleeper_1",297.187,28.579,-132.105,1199431,536)
+      create("jup_witnesses_sleeper_2",299.205,28.495,-131.657,1201401,536)
+      create("jup_witnesses_sleeper_3",301.425,28.419,-131.374,1205364,535)
+      create("jup_witnesses_hostguard",303.419,29.061,-139.733,1207252,535)
+      create("jup_witnesses_spectator",307.056,24.919,-96.756,1213080,535)
+      create("jup_witnesses_hostage",311.359,29.029,-141.084,1218457,535)
+      create_base_treasure("jup_witnesses_lager_treasure",311.397,28.803,-138.857,1218459,535)
+      add_task("sgm_jup_avoid_witnesses")
+      give_info("jup_avoid_witnesses_spawner")
+   end
+   --/Квест:Диверсия Альфы
+   if has_alife_info("zat_alfa_sabotage_start") and dont_has_alife_info("zat_alfa_sabotage_spawner") then
+      write_mod_param("zat_alfa_sabotage_charge_innocuous",0)
+      create("zat_alfa_sabotage_meeting_place_spot",-426.75793457031,39.997203826904,-393.04330444336,138099,306)
+      create("zat_alfa_sabotage_inhabitants_spot",127.98847961426,-7.3394284248352,179.65113830566,1186437,297)
+      create("zat_alfa_sabotage_commander",-426.6237487793,39.999652862549,-394.59558105469,138097,306)
+      create("zat_alfa_sabotage_soldier_1",-422.87396240234,39.998458862305,-392.38302612305,143994,306)
+      create("zat_alfa_sabotage_soldier_2",-424.63446044922,39.998828887939,-390.79513549805,141029,306)
+      create("zat_alfa_sabotage_soldier_3",-429.48751831055,39.999019622803,-390.79263305664,134353,306)
+      add_task("sgm_zat_alfa_sabotage")
+      give_info("zat_alfa_sabotage_spawner")
+   end
+   if has_alife_info("zat_alfa_sabotage_order_begin") and dont_has_alife_info("zat_alfa_sabotage_order_timer") then
+      give_info("zat_alfa_sabotage_order_timer")
+      start_game_timer("zat_alfa_sabotage_order_timer",6,"hours")
+   end
+   if has_alife_info("zat_alfa_sabotage_order_timer") and dont_has_alife_info("zat_alfa_sabotage_order_executed") and check_game_timer("zat_alfa_sabotage_order_timer") then
+      give_info("zat_alfa_sabotage_order_executed")
+      abort_game_timer("zat_alfa_sabotage_order_timer")
+   end
+   if has_alife_info("zat_alfa_sabotage_scaner_available") and dont_has_alife_info("zat_alfa_sabotage_charge_all_innocuous") then
+      if read_mod_param("zat_alfa_sabotage_charge_innocuous")~=nil and read_mod_param("zat_alfa_sabotage_charge_innocuous")>=5 then
+         give_info("zat_alfa_sabotage_charge_all_innocuous")
+         clear_mod_param("zat_alfa_sabotage_charge_innocuous")
+      end
+   end
+   --/Квест:Ночная встреча
+   if has_alife_info("jup_avoid_witnesses_safety") and dont_has_alife_info("jup_night_agent_meeting_talk") then
+      if present_night() then
+         if dont_has_alife_info("jup_night_agent_meeting_start") then
+            give_info("jup_night_agent_meeting_start")
+            if dont_has_alife_info("jup_night_agent_meeting_only") then
+               create("jup_authorities_agent",-111.468,27.083,-499.825,533451,344)
+               give_info("jup_night_agent_meeting_only")
+            end
+            if has_alife_info("jup_night_agent_meeting_offline") then
+               create("jup_authorities_agent",-111.468,27.083,-499.825,533451,344)
+               disable_info("jup_night_agent_meeting_offline")
+            end
+            add_task("sgm_jup_night_agent_meeting")
+         end
+      else
+         if has_alife_info("jup_night_agent_meeting_start") and dont_has_alife_info("jup_night_agent_meeting_hello") then
+            disable_info("jup_night_agent_meeting_start")
+         end
+      end
+   end
+   --/Квест:Неизвестная порода
+   if has_alife_info("pri_a28_actor_in_zone_stay") and dont_has_alife_info("jup_search_anomal_prototype_tip") then
+      if check_game_timer("jup_search_anomal_prototype_tip")==nil then
+         start_game_timer("jup_search_anomal_prototype_tip",2,"hours")
+      elseif check_game_timer("jup_search_anomal_prototype_tip") then
+         give_info("jup_search_anomal_prototype_tip")
+         news_manager.send_tip(db.actor,game.translate_string("jup_german_about_anomal_prototype_text"),0,"portrait_German",14000,nil,"jup_german_title")
+         abort_game_timer("jup_search_anomal_prototype_tip")
+      end
+   end
+   if has_alife_info("jup_search_anomal_prototype_transform_start") and dont_has_alife_info("jup_search_anomal_prototype_transform_end") then
+      if dont_has_alife_info("jup_search_anomal_prototype_transform_begin") then
+         if check_game_timer("jup_search_anomal_prototype_begin")==nil then
+            start_game_timer("jup_search_anomal_prototype_begin",1,"hours")
+         elseif check_game_timer("jup_search_anomal_prototype_begin") then
+            give_info("jup_search_anomal_prototype_transform_begin")
+            abort_game_timer("jup_search_anomal_prototype_begin")
+         end
+      end
+      if check_game_timer("jup_search_anomal_prototype_transform")==nil then
+         start_game_timer("jup_search_anomal_prototype_transform",6,"hours")
+      elseif check_game_timer("jup_search_anomal_prototype_transform") then
+         give_info("jup_search_anomal_prototype_transform_end")
+         news_manager.send_tip(db.actor,game.translate_string("jup_german_about_transform_end_text"),0,"portrait_German",12000,nil,"jup_german_title")
+         abort_game_timer("jup_search_anomal_prototype_transform")
+      end
+   end
+   if has_alife_info("jup_search_anomal_prototype_start") and (dont_has_alife_info("jup_search_anomal_prototype_reward") or dont_has_alife_info("jup_search_anomal_prototype_fail")) then
+      if db.actor:object("af_prodigy_1_danger") or db.actor:object("af_prodigy_2_danger") or db.actor:object("af_prodigy_3_danger") or db.actor:object("af_prodigy_4_danger") or db.actor:object("af_prodigy_5_danger") or db.actor:object("af_prodigy_6_danger") then
+         give_info("jup_search_anomal_prototype_prodigy_finded")
+         if dont_has_alife_info("jup_search_anomal_prototype_prodigy_gross") and check_item_count("af_prodigy",2,true) then
+            give_info("jup_search_anomal_prototype_prodigy_gross")
+         end
+      end
+   end
+   --/Квест:Всплеск пси-излучения
+   if has_alife_info("pri_a28_cutscenes_end") and dont_has_alife_info("pri_zone_cleaning_voices") then
+      give_info("pri_zone_cleaning_voices")
+      play_snd_at_actor([[anomaly\psy_voices_1_l]])
+   end
+   if has_alife_info("pri_a28_actor_in_zone_stay") and dont_has_alife_info("pri_zone_cleaning_preparate") then
+      if dont_has_alife_info("pri_zone_cleaning_blackday") then
+         give_info("pri_zone_cleaning_blackday")
+         blackday_activate()
+      end
+      if dont_has_alife_info("pri_zone_cleaning_robbery") then
+         give_info("pri_zone_cleaning_robbery")
+         if r_mod_params("bool","freeplay_robbery_actor",false)==true then
+            write_mod_param("bankir_deposit_cash",100)
+            freeplay_inventory_clean(db.actor)
+            db.actor:give_money(-db.actor:money())
+            game_stats.money_quest_update(-db.actor:money())
+            give_object_to_actor("medkit",6)
+            give_object_to_actor("bandage",10)
+            give_object_to_actor("medkit_elite")
+            give_object_to_actor("antirad",3)
+            give_object_to_actor("scientific_outfit")
+            give_object_to_actor("grenade_f1_double",2)
+            give_object_to_actor("wpn_pb")
+            give_object_to_actor("wpn_mp5")
+            give_object_to_actor("ammo_9x19_pbp",2)
+            give_object_to_actor("ammo_9x18_pmm",2)
+            transfer_artefacts_with_belt_to_inv()
+         end
+      end
+      give_info("pri_zone_cleaning_preparate")
+   end
+   if has_alife_info("pri_a28_cutscenes_end") and dont_has_alife_info("pri_zone_cleaning_allow") then
+       local psy_wave_timer=read_mod_param("pri_psy_wave_timer")
+       if psy_wave_timer==nil then
+          write_mod_param("pri_psy_wave_timer",0)
+       end
+       if psy_wave_timer~=nil then
+          if sgm_flags.pri_freeplay_psy_wave_timer==0 then
+             start_flague_timer("pri_freeplay_psy_wave_timer",8000)
+          end
+          if check_flague_timer("pri_freeplay_psy_wave_timer") then
+             sgm_flags.pri_freeplay_psy_wave_timer=0
+             inc_mod_param("pri_psy_wave_timer")
+          end
+          if dont_has_alife_info("pri_zone_cleaning_boom_first") and psy_wave_timer>=2 then
+             give_info("pri_zone_cleaning_boom_first")
+             play_snd_at_actor([[ambient\blowout_begin]])
+             level.add_cam_effector("camera_effects\\shell_shock.anm",118711,false,"")
+	     level.add_cam_effector("camera_effects\\earthquake_00.anm",118712,false,"")
+	     level.add_pp_effector("snd_shock.ppe",118713,false)
+             level.add_pp_effector("shock_hit.ppe",118990,false)
+             level.set_pp_effector_factor(118990,20)
+	     level.set_pp_effector_factor(118713,0.5)
+          elseif dont_has_alife_info("pri_zone_cleaning_boom_second") and psy_wave_timer>=4 then
+             give_info("pri_zone_cleaning_boom_second")
+             play_snd_at_actor([[ambient\blowout_begin]])
+             level.add_cam_effector("camera_effects\\shell_shock.anm",118711,false,"")
+	     level.add_cam_effector("camera_effects\\earthquake_00.anm",118712,false,"")
+	     level.add_pp_effector("snd_shock.ppe",118713,false)
+             level.add_pp_effector("shock_hit.ppe",118990,false)
+             level.set_pp_effector_factor(118990,20)
+	     level.set_pp_effector_factor(118713,0.5)
+          elseif psy_wave_timer>=6 then
+             play_snd_at_actor([[ambient\blowout_begin]])
+	     level.add_cam_effector("camera_effects\\pripyat_horror1.anm",118714,false,"")
+	     level.add_pp_effector("deimos1.ppe",118715,false)
+             level.add_pp_effector("shock_hit.ppe",118990,false)
+             level.set_pp_effector_factor(118990,20)
+             give_info("pri_zone_cleaning_allow")
+             clear_mod_param("pri_psy_wave_timer")
+          end
+       end
+   end
+   if has_alife_info("pri_zone_cleaning_allow") and dont_has_alife_info("pri_zone_cleaning_start") then
+      give_info("pri_zone_cleaning_start")
+      write_mod_param("zone_cleaning_value",400)
+      add_task("sgm_pri_zone_cleaning")
+   end
+   if has_alife_info("pri_zone_cleaning_start") and dont_has_alife_info("pri_zone_cleaning_interrupted") and read_mod_param("zone_cleaning_value")~=nil and read_mod_param("zone_cleaning_value")<=0 then
+      give_info("pri_zone_cleaning_interrupted")
+      clear_mod_param("zone_cleaning_value")
+      game_autosave_assign("save_pri_zone_cleaning_end")
+   end
+   --/Квест:Пространственная аномалия
+   if has_alife_info("actor_come_to_labx8") and dont_has_alife_info("jup_darkvalley_travel_bubble_timer") and level_name~="labx8" then
+      give_info("jup_darkvalley_travel_bubble_timer")
+      start_game_timer("jup_darkvalley_travel_bubble",2,"hours")
+   end
+   if has_alife_info("jup_darkvalley_travel_bubble_timer") and dont_has_alife_info("jup_darkvalley_travel_bubble_start") then
+      if check_game_timer("jup_darkvalley_travel_bubble") then
+         news_manager.send_tip(db.actor,game.translate_string("jup_general_staff_about_darkvalley_travel_bubble_text"),0,"top_secret",40000,nil,"jup_general_staff_title")
+         give_info("jup_darkvalley_travel_bubble_start")
+         abort_game_timer("jup_darkvalley_travel_bubble")
+         add_task("sgm_jup_darkvalley_travel_bubble")
+         game_autosave_assign("save_jup_darkvalley_travel_bubble")
+      end
+   end
+   ----------------------------------------------------------------
+   ----------------------------'Затон'-----------------------------
+   ----------------------------------------------------------------
+   if level_name=="zaton" then
+        --/Квест:Новая тропа
+        if has_alife_info("agr_find_underground_way_start") and dont_has_alife_info("agr_find_underground_way_zaton") then
+           give_info("agr_find_underground_way_zaton")
+        end
+        --/Квест:Волна мутантов
+        if has_alife_info("zat_monsters_wave_start") and dont_has_alife_info("zat_monsters_wave_complete") and dont_has_alife_info("zat_monsters_wave_fail") then
+           if dont_has_alife_info("zat_monsters_wave_has_weapon") and has_alife_info("zat_monsters_wave_noah_talked") and xr_conditions.actor_has_sniper_weapon() then
+              give_info("zat_monsters_wave_has_weapon")
+           end
+           if dont_has_alife_info("zat_monsters_wave_1st_wave_begin") and has_alife_info("zat_monsters_wave_on_firepos") then
+              give_info("zat_monsters_wave_1st_wave_begin")
+           end
+           if dont_has_alife_info("zat_monsters_wave_appeared_1_controller") and has_alife_info("zat_monsters_wave_1st_wave_end") then
+              give_info("zat_monsters_wave_appeared_1_controller")
+              xr_effects.zat_monsters_wave_1_controller_appeared()
+           end
+           if dont_has_alife_info("zat_monsters_wave_2nd_wave_begin") and has_alife_info("zat_monsters_wave_1_controller_destroyed") then
+              give_info("zat_monsters_wave_2nd_wave_begin")
+           end
+           if dont_has_alife_info("zat_monsters_wave_appeared_2_controller") and has_alife_info("zat_monsters_wave_2nd_wave_end") then
+              give_info("zat_monsters_wave_appeared_2_controller")
+              xr_effects.zat_monsters_wave_2_controller_appeared()
+           end
+           if dont_has_alife_info("zat_monsters_wave_3rd_wave_begin") and has_alife_info("zat_monsters_wave_2_controller_destroyed") then
+              give_info("zat_monsters_wave_3rd_wave_begin")
+           end
+           if dont_has_alife_info("zat_monsters_wave_appeared_3_controller") and has_alife_info("zat_monsters_wave_3rd_wave_end") then
+              give_info("zat_monsters_wave_appeared_3_controller")
+              xr_effects.zat_monsters_wave_3_controller_appeared()
+           end
+           if dont_has_alife_info("zat_monsters_wave_1st_wave_end") and has_alife_info("zat_monsters_wave_1st_wave_begin") then
+              if read_mod_param("zat_monster_w1_spawned")==nil then
+                 write_mod_param("zat_monster_w1_spawned",1)
+              elseif read_mod_param("zat_monster_w1_spawned")<=6 then
+                 if zat_monsters_wave_spawner==true then
+                    if read_mod_param("zat_monster_w1_spawned")==1 then
+                       for k,v in pairs(zat_monsters_wave_table["wave_1"].pos_1) do
+                          create_objects(zat_monsters_wave_table["wave_1"].mut_1,v[1]+math.random(-5,5),v[2],v[3]+math.random(-5,5),v[4],v[5])
+                       end
+                    elseif read_mod_param("zat_monster_w1_spawned")==2 then
+                       for k,v in pairs(zat_monsters_wave_table["wave_1"].pos_2) do
+                          create_objects(zat_monsters_wave_table["wave_1"].mut_2,v[1]+math.random(-5,5),v[2],v[3]+math.random(-5,5),v[4],v[5])
+                       end
+                    elseif read_mod_param("zat_monster_w1_spawned")==3 then
+                       for k,v in pairs(zat_monsters_wave_table["wave_1"].pos_3) do
+                          create_objects(zat_monsters_wave_table["wave_1"].mut_3,v[1]+math.random(-5,5),v[2],v[3]+math.random(-5,5),v[4],v[5])
+                       end
+                    elseif read_mod_param("zat_monster_w1_spawned")==4 then
+                       for k,v in pairs(zat_monsters_wave_table["wave_1"].pos_4) do
+                          create_objects(zat_monsters_wave_table["wave_1"].mut_4,v[1]+math.random(-5,5),v[2],v[3]+math.random(-5,5),v[4],v[5])
+                       end
+                    elseif read_mod_param("zat_monster_w1_spawned")>=5 then
+                       for k,v in pairs(zat_monsters_wave_table["wave_1"].pos_5) do
+                          create_objects(zat_monsters_wave_table["wave_1"].mut_5,v[1]+math.random(-5,5),v[2],v[3]+math.random(-5,5),v[4],v[5])
+                       end
+                    end
+                    inc_mod_param("zat_monster_w1_spawned")
+                    zat_monsters_wave_spawner=false
+                 end
+              end
+           end
+           if dont_has_alife_info("zat_monsters_wave_2nd_wave_end") and has_alife_info("zat_monsters_wave_2nd_wave_begin") then
+              if read_mod_param("zat_monster_w2_spawned")==nil then
+                 write_mod_param("zat_monster_w2_spawned",1)
+              elseif read_mod_param("zat_monster_w2_spawned")<=7 then
+                 if zat_monsters_wave_spawner==true then
+                    if read_mod_param("zat_monster_w2_spawned")==1 then
+                       for k,v in pairs(zat_monsters_wave_table["wave_2"].pos_1) do
+                          create_objects(zat_monsters_wave_table["wave_2"].mut_1,v[1]+math.random(-5,5),v[2],v[3]+math.random(-5,5),v[4],v[5])
+                       end
+                    elseif read_mod_param("zat_monster_w2_spawned")==2 then
+                       for k,v in pairs(zat_monsters_wave_table["wave_2"].pos_2) do
+                          create_objects(zat_monsters_wave_table["wave_2"].mut_2,v[1]+math.random(-5,5),v[2],v[3]+math.random(-5,5),v[4],v[5])
+                       end
+                    elseif read_mod_param("zat_monster_w2_spawned")==3 then
+                       for k,v in pairs(zat_monsters_wave_table["wave_2"].pos_3) do
+                          create_objects(zat_monsters_wave_table["wave_2"].mut_3,v[1]+math.random(-5,5),v[2],v[3]+math.random(-5,5),v[4],v[5])
+                       end
+                    elseif read_mod_param("zat_monster_w2_spawned")==4 then
+                       for k,v in pairs(zat_monsters_wave_table["wave_2"].pos_4) do
+                          create_objects(zat_monsters_wave_table["wave_2"].mut_4,v[1]+math.random(-5,5),v[2],v[3]+math.random(-5,5),v[4],v[5])
+                       end
+                    elseif read_mod_param("zat_monster_w2_spawned")==5 then
+                       for k,v in pairs(zat_monsters_wave_table["wave_2"].pos_5) do
+                          create_objects(zat_monsters_wave_table["wave_2"].mut_5,v[1]+math.random(-5,5),v[2],v[3]+math.random(-5,5),v[4],v[5])
+                       end
+                    elseif read_mod_param("zat_monster_w2_spawned")>=6 then
+                       for k,v in pairs(zat_monsters_wave_table["wave_2"].pos_6) do
+                          create_objects(zat_monsters_wave_table["wave_2"].mut_6,v[1]+math.random(-5,5),v[2],v[3]+math.random(-5,5),v[4],v[5])
+                       end
+                    end
+                    inc_mod_param("zat_monster_w2_spawned")
+                    zat_monsters_wave_spawner=false
+                 end
+              end
+           end
+           if dont_has_alife_info("zat_monsters_wave_3rd_wave_end") and has_alife_info("zat_monsters_wave_3rd_wave_begin") then
+              if read_mod_param("zat_monster_w3_spawned")==nil then
+                 write_mod_param("zat_monster_w3_spawned",1)
+              elseif read_mod_param("zat_monster_w3_spawned")<=8 then
+                 if zat_monsters_wave_spawner==true then
+                    if read_mod_param("zat_monster_w3_spawned")==1 then
+                       for k,v in pairs(zat_monsters_wave_table["wave_3"].pos_1) do
+                          create_objects(zat_monsters_wave_table["wave_3"].mut_1,v[1]+math.random(-5,5),v[2],v[3]+math.random(-5,5),v[4],v[5])
+                       end
+                    elseif read_mod_param("zat_monster_w3_spawned")==2 then
+                       for k,v in pairs(zat_monsters_wave_table["wave_3"].pos_2) do
+                          create_objects(zat_monsters_wave_table["wave_3"].mut_2,v[1]+math.random(-5,5),v[2],v[3]+math.random(-5,5),v[4],v[5])
+                       end
+                    elseif read_mod_param("zat_monster_w3_spawned")==3 then
+                       for k,v in pairs(zat_monsters_wave_table["wave_3"].pos_3) do
+                          create_objects(zat_monsters_wave_table["wave_3"].mut_3,v[1]+math.random(-5,5),v[2],v[3]+math.random(-5,5),v[4],v[5])
+                       end
+                    elseif read_mod_param("zat_monster_w3_spawned")==4 then
+                       for k,v in pairs(zat_monsters_wave_table["wave_3"].pos_4) do
+                          create_objects(zat_monsters_wave_table["wave_3"].mut_4,v[1]+math.random(-5,5),v[2],v[3]+math.random(-5,5),v[4],v[5])
+                       end
+                    elseif read_mod_param("zat_monster_w3_spawned")==5 then
+                       for k,v in pairs(zat_monsters_wave_table["wave_3"].pos_5) do
+                          create_objects(zat_monsters_wave_table["wave_3"].mut_5,v[1]+math.random(-5,5),v[2],v[3]+math.random(-5,5),v[4],v[5])
+                       end
+                    elseif read_mod_param("zat_monster_w3_spawned")==6 then
+                       for k,v in pairs(zat_monsters_wave_table["wave_3"].pos_6) do
+                          create_objects(zat_monsters_wave_table["wave_3"].mut_6,v[1]+math.random(-5,5),v[2],v[3]+math.random(-5,5),v[4],v[5])
+                       end
+                    elseif read_mod_param("zat_monster_w3_spawned")>=7 then
+                       for k,v in pairs(zat_monsters_wave_table["wave_3"].pos_7) do
+                          create_objects(zat_monsters_wave_table["wave_3"].mut_7,v[1]+math.random(-5,5),v[2],v[3]+math.random(-5,5),v[4],v[5])
+                       end
+                    end
+                    inc_mod_param("zat_monster_w3_spawned")
+                    zat_monsters_wave_spawner=false
+                 end
+              end
+           end
+           if dont_has_alife_info("zat_monsters_wave_1_controller_s") and has_alife_info("zat_monsters_wave_appeared_1_controller") and dont_has_alife_info("zat_monsters_wave_fail") then
+              create("zat_monsters_wave_1_controller",230.133,6.466,-43.876,1357927,55)
+              give_info("zat_monsters_wave_1_controller_s")
+           elseif dont_has_alife_info("zat_monsters_wave_2_controller_s") and has_alife_info("zat_monsters_wave_appeared_2_controller") and dont_has_alife_info("zat_monsters_wave_fail") then
+              create("zat_monsters_wave_2_controller",59.533,-6.063,10.577,1064031,157)
+              give_info("zat_monsters_wave_2_controller_s")
+           elseif dont_has_alife_info("zat_monsters_wave_3_controller_s") and has_alife_info("zat_monsters_wave_appeared_3_controller") and dont_has_alife_info("zat_monsters_wave_fail") then
+              create("zat_monsters_wave_3_controller",173.508,4.821,-182.837,1262890,149)
+              create("zat_monsters_wave_3_burer",174.000,4.821,-182.837,1262890,149)
+              give_info("zat_monsters_wave_3_controller_s")
+           end
+           if has_alife_info("zat_monsters_wave_noah_talked") and dont_has_alife_info("zat_monsters_wave_on_firepos") then
+              local zat_noah_barge_firepos=actor_pos:distance_to_sqr(vector():set(132.904,-3.658,-135.626),1196686,150)<3
+              if zat_noah_barge_firepos then
+                 give_info("zat_monsters_wave_on_firepos")
+              end
+           end
+        end
+        --/Квест:Поиск информации
+        if dont_has_alife_info("zat_refer_parcel_intro_tip_1") and dont_has_alife_info("zat_refer_parcel_intro_tip_2") then
+           if check_game_timer("zat_refer_parcel") then
+              news_manager.send_tip(db.actor,"zat_general_staff_about_refer_parcel_intro_tip_1_text",0,"top_secret",22000,nil,"jup_general_staff_title")
+              give_info("zat_refer_parcel_intro_tip_1")
+              abort_game_timer("zat_refer_parcel")
+           elseif check_game_timer("zat_refer_parcel2") then
+              news_manager.send_tip(db.actor,"zat_general_staff_about_refer_parcel_intro_tip_2_text",0,"top_secret",25000,nil,"jup_general_staff_title")
+              give_info("zat_refer_parcel_intro_tip_2")
+              abort_game_timer("zat_refer_parcel2")
+              add_task("sgm_zat_refer_parcel2")
+           end
+        end
+        --/Квест:Поход
+        if has_alife_info("zat_accompany_to_boat_start") and dont_has_alife_info("zat_accompany_to_boat_complete") then
+           local zat_complete_accompany_quest=actor_pos:distance_to(vector():set(144.097,-7.341,183.857),1212743,186)<20
+           if zat_complete_accompany_quest then
+              give_info("zat_accompany_to_boat_complete")
+           end
+        end
+        --/Квест:Пилот
+        if has_alife_info("jup_arrive_on_bunker_complete") and dont_has_alife_info("jup_return_zaton_complete") then
+           give_info("jup_return_zaton_complete")
+           create("zat_postman_from_agent",121.986,-7.251,183.602,1175703,316)
+           game_autosave_assign("save_jup_return_zaton_travel")
+        end
+        --/Квест:Мудрость
+        if has_alife_info("zat_wisdom_books_start") and dont_has_alife_info("zat_wisdom_books_book_done_founded") and has_alife_info("zat_wisdom_books_book_1_taked") and has_alife_info("zat_wisdom_books_book_2_taked") and has_alife_info("zat_wisdom_books_book_3_taked") then
+           give_info("zat_wisdom_books_book_done_founded")
+           game_autosave_assign("save_zat_wisdom_books_is_founded")
+        end
+        --/Квест:Сделка
+        if has_alife_info("zat_b5_task_start") and dont_has_alife_info("zat_b5_actor_with_bandit_relation") and has_alife_info("zat_b5_actor_with_bandits") and has_alife_info("zat_b5_bandits_cutscene_end") then
+           set_faction_to_faction_relation("bandit_alies","stalker","enemy",true)
+           give_info("zat_b5_actor_with_bandit_relation")
+        end
+        --/Квест:Рейд
+        if has_alife_info("zat_assault_bandit_base_start") and dont_has_alife_info("zat_assault_bandit_base_complete") and dont_has_alife_info("zat_assault_bandit_base_fail") then
+           if dont_has_alife_info("zat_stalker_elbrus_spawn") then
+              create("zat_stalker_elbrus",227.858,7.090,-21.037,1354156,55)
+              create("zat_stalker_elbrus_friend1",225.776,6.984,-24.473,1350426,55)
+              create("zat_stalker_elbrus_friend2",228.531,7.084,-29.287,1354144,55)
+              create("zat_stalker_elbrus_friend3",232.482,6.759,-27.211,1361617,55)
+              give_info("zat_stalker_elbrus_spawn")
+           elseif dont_has_alife_info("zat_stalker_elbrus_reinf_spawn") and has_alife_info("zat_assault_bandit_base_choose") then
+              create("zat_stalker_elbrus_friend4",438.500,35.213,-100.181,1685205,73)
+              create("zat_stalker_elbrus_friend5",455.290,34.167,-98.683,1710879,73)
+              create("zat_stalker_elbrus_friend6",446.076,34.854,-99.650,1697449,73)
+              give_info("zat_stalker_elbrus_reinf_spawn")
+           elseif dont_has_alife_info("zat_assault_bandit_base_eminence_spot") and has_alife_info("zat_assault_bandit_base_next_spot") then
+              create("zat_assault_bandit_base_eminence_spot",338.760,30.504,63.947,1531223,178)
+              give_info("zat_assault_bandit_base_eminence_spot")
+           end
+           if dont_has_alife_info("zat_assault_bandit_base_bandits_lost") then
+              if has_several_info("zat_bandit_base_bodyguard_","_death",1,4) and has_alife_info("zat_bandit_base_leader_death") then
+                 give_info("zat_assault_bandit_base_bandits_lost")
+                 game_autosave_assign("save_zat_assault_bandit_base_destroyed")
+              end
+           end
+           if has_alife_info("zat_assault_bandit_base_choose") and dont_has_alife_info("zat_hero_say_command") then
+              news_manager.send_tip(db.actor,"zat_hero_say_command_text",0,"diagterev",3500,nil,"zat_hero_title")
+              give_info("zat_hero_say_command")
+           end
+           if has_alife_info("zat_assault_bandit_base_elbrus") and dont_has_alife_info("zat_assault_bandit_base_on_pos") then
+              local zat_assault_bandit_base_eminence=actor_pos:distance_to_sqr(vector():set(338.760,30.504,63.947),1531223,178)<10
+              if zat_assault_bandit_base_eminence then
+                 give_info("zat_assault_bandit_base_actor_pos,zat_bandit_base_offline")
+              end
+           end
+        end
+        --/Квест:Искупление Грехов
+        if has_alife_info("pri_expiation_sin_2_start") and dont_has_alife_info("pri_expiation_sin_2_fail") and dont_has_alife_info("pri_expiation_sin_2_taynik_vse_zalogeni") then
+           if has_several_info("pri_expiation_sin_2_taynik_","_zalogen",1,9) and dont_has_alife_info("pri_expiation_sin_2_taynik_vse_zalogeni") then
+              give_info("pri_expiation_sin_2_taynik_vse_zalogeni")
+              game_autosave_assign("save_pri_expiation_sin_2_places_installed")
+           end
+        end
+        if has_alife_info("pri_expiation_sin_2_reload") then
+           disable_info("pri_expiation_sin_2_reward,pri_expiation_sin_2_reload")
+           add_task("sgm_pri_expiation_sin_2")
+        end
+	--/Квест:Закрытое расследование
+        if has_alife_info("zat_b106_stalker_gonta_b52_about_hunters_sich_dialog_done") and has_alife_info("zat_b106_stalker_gonta_b52_about_hunters_lotcman_dialog_done") and has_alife_info("zat_b106_stalker_gonta_b52_about_hunters_shustryi_dialog_done") and dont_has_alife_info("zat_homsa_find_quest_all_members_talking") then
+           add_task("geonezis_zat_homsa_find_quest_1")
+	   add_task("geonezis_zat_homsa_find_quest_2")
+	   add_task("geonezis_zat_homsa_find_quest_3")
+	   give_info("zat_homsa_find_quest_all_members_talking")
+        end
+        if has_alife_info("zat_homsa_find_quest_all_members_talking") and dont_has_alife_info("zat_homsa_find_quest_1_complete") then
+           local homsa_spot_point_1_eminence=actor_pos:distance_to(vector():set(173.753,11.555,-265.232),1262838,23)<5
+           if homsa_spot_point_1_eminence then              		   
+	      give_info("zat_homsa_find_quest_1_complete")              			  
+           end
+        end   
+        if has_alife_info("zat_homsa_find_quest_all_members_talking") and dont_has_alife_info("zat_homsa_find_quest_2_complete") then
+           local homsa_spot_point_2_eminence=actor_pos:distance_to(vector():set(-340.747,39.510,-283.422),271287,303)<5
+           if homsa_spot_point_2_eminence then              		   
+	      give_info("zat_homsa_find_quest_2_complete")              			  
+           end
+        end
+        if has_alife_info("zat_homsa_find_quest_all_members_talking") and db.actor:object("zat_homsa_quests_special_info") and dont_has_alife_info("zat_homsa_find_quest_3_complete") then
+           give_info("zat_homsa_find_quest_3_complete")
+        end   
+        if dont_has_alife_info("zat_homsa_find_quest_all_points_search") and has_several_info("zat_homsa_find_quest_","_complete",1,3) then 
+           give_info("zat_homsa_find_quest_all_points_search")
+        end
+        if has_alife_info("zat_b106_stalker_gonta_b52_about_hunters_rasvet_dialog_talking") and dont_has_alife_info("zat_rassvet_homsa_ready_to_attack") then
+           local homsa_spot_point_3_eminence=actor_pos:distance_to(vector():set(-528.163,8.848,45.216),20343,232)<5
+           if homsa_spot_point_3_eminence then              		   
+	      give_info("zat_rassvet_homsa_ready_to_attack")              			  
+           end
+        end
+        if has_alife_info("zat_rassvet_homsa_ready_to_attack") and dont_has_alife_info("zat_homsa_from_monsters_wave_1_spawn") then        			  
+           create("zat_homsa_attacked_w1_bloodsucker_1",-515.805,4.670,111.096,34560,98)
+           create("zat_homsa_attacked_w1_bloodsucker_2",-515.805,4.670,111.096,34560,98)
+           create("zat_homsa_attacked_w1_bloodsucker_3",-540.991,9.263,13.015,11198,37)
+           give_info("zat_homsa_from_monsters_wave_1_spawn")
+        end
+        if has_alife_info("zat_homsa_from_monsters_wave_1_spawn") and has_alife_info("zat_homsa_from_monsters_wave_1") and dont_has_alife_info("zat_homsa_from_monsters_wave_2_spawn") then
+           create("zat_homsa_attacked_w2_bloodsucker_1",-515.805,4.670,111.096,34560,98)
+           create("zat_homsa_attacked_w2_bloodsucker_2",-515.805,4.670,111.096,34560,98)
+           create("zat_homsa_attacked_w2_bloodsucker_3",-540.991,9.263,13.015,11198,37)
+           give_info("zat_homsa_from_monsters_wave_2_spawn")                
+        end	 
+        if has_alife_info("zat_homsa_from_monsters_wave_2_spawn") and has_alife_info("zat_homsa_from_monsters_wave_2") and dont_has_alife_info("zat_homsa_from_monsters_wave_3_spawn") then
+           create("zat_homsa_attacked_w3_bloodsucker_1",-515.805,4.670,111.096,34560,98)
+           create("zat_homsa_attacked_w3_bloodsucker_2",-515.805,4.670,111.096,34560,98)
+           give_info("zat_homsa_from_monsters_wave_3_spawn")             
+        end
+        if has_alife_info("zat_homsa_from_monsters_wave_1") and has_alife_info("zat_homsa_from_monsters_wave_2") and has_alife_info("zat_homsa_from_monsters_wave_3") and dont_has_alife_info("zat_homsa_from_monsters_safely") then
+           create("zat_stalker_quest_homsa",-427.671,13.413,-179.156,137429,39)
+           give_info("zat_homsa_from_monsters_safely")
+        end
+        --/Квест:Тайное противостояние
+	if dont_has_alife_info("zat_quest_the_spez_freedom_all_dead") and has_several_info("zat_quest_the_spez_freedom_1_","_dead",1,5) then 
+           create("zat_quest_the_spez_1_killer_wounded",220.079,21.617,-278.790,1338690,308)
+           news_manager.send_tip(db.actor,game.translate_string("jup_duty_shulga_about_spez_1_text"),0,"ui_icon_news_all",14000,nil,"jup_duty_shulga_title")
+           give_info("zat_quest_the_spez_freedom_all_dead")
+        end
+	if has_alife_info("zat_b103_merc_fight") and has_alife_info("zat_b103_merc_task_spez_operation_begin") and dont_has_alife_info("zat_b103_merc_task_spez_killer_1_was_killed") then
+           give_info("zat_b103_merc_task_spez_killer_1_was_killed")
+        end
+	if dont_has_alife_info("zat_quest_the_spez_all_ecodolg_killed") and has_several_info("zat_quest_the_spez_dolg_2_","_dead",1,4) and has_several_info("zat_quest_the_spez_ecolog_2_","_dead",1,3) then 
+           give_info("zat_quest_the_spez_all_ecodolg_killed")
+        end
+	if has_alife_info("zat_b103_lost_merc_leader_spez_freedom_kom_talking") and dont_has_alife_info("zat_b103_lost_merc_leader_spez_2_actor_point") then
+           local zat_merc_spez_spot_point_1=actor_pos:distance_to_sqr(vector():set(523.335,-7.074,-168.535),1803082,83)<5
+           if zat_merc_spez_spot_point_1 then
+              xr_effects.zat_b103_merc_task_spez_3_create()
+              news_manager.send_tip(db.actor,game.translate_string("zat_killer_osman_about_spez_2_text"),0,"ui_icon_news_all",14000,nil,"zat_killer_osman_title")			
+              give_info("zat_b103_lost_merc_leader_spez_2_actor_point")              			  
+           end
+        end
+	if has_alife_info("zat_quest_the_spez_freedom_2_leader_dead") and dont_has_alife_info("zat_b103_lost_merc_spez_actor_come_to_osman") then
+           local zat_merc_spez_spot_point_2=actor_pos:distance_to_sqr(vector():set(434.788,33.471,-231.101),1672074,73)<15
+           if zat_merc_spez_spot_point_2 then			     
+              give_info("zat_b103_lost_merc_spez_actor_come_to_osman")              			  
+           end
+        end
+        --/Квест:Сканеры аномалий
+        if has_alife_info("jup_novikov_quest_zaton_scanner_start") and dont_has_alife_info("jup_novikov_quest_zaton_scanner_have_1") and db.actor:object("zat_spec_anomaly_scanner_1") then     
+           give_info("jup_novikov_quest_zaton_scanner_have_1")        	  
+        end
+        if has_alife_info("jup_novikov_quest_zaton_scanner_have_1") and dont_has_alife_info("jup_novikov_quest_zaton_scanner_create_2") then     
+           create("zat_spec_anomaly_scanner_2",-304.058,12.450,-159.233,339472,21)
+           give_info("jup_novikov_quest_zaton_scanner_create_2")        	  
+        end
+        if has_alife_info("jup_novikov_quest_zaton_scanner_create_2") and dont_has_alife_info("jup_novikov_quest_zaton_scanner_have_2") and db.actor:object("zat_spec_anomaly_scanner_2") then     
+           give_info("jup_novikov_quest_zaton_scanner_have_2")        	  
+        end
+        if has_alife_info("jup_novikov_quest_zaton_scanner_have_2") and dont_has_alife_info("jup_novikov_quest_zaton_scanner_create_3") then     
+           create("zat_spec_anomaly_scanner_3",-68.024,1.398,-164.391,807200,235)
+           give_info("jup_novikov_quest_zaton_scanner_create_3")        	  
+        end
+        if has_alife_info("jup_novikov_quest_zaton_scanner_create_3") and dont_has_alife_info("jup_novikov_quest_zaton_scanner_have_3") and db.actor:object("zat_spec_anomaly_scanner_3") then     
+           give_info("jup_novikov_quest_zaton_scanner_have_3")        	  
+        end
+        if has_alife_info("jup_novikov_quest_zaton_scanner_have_3") and dont_has_alife_info("jup_novikov_quest_zaton_scanner_create_4") then     
+           create("zat_spec_anomaly_scanner_4",10.842,8.966,-394.252,964903,8)
+           give_info("jup_novikov_quest_zaton_scanner_create_4")        	  
+        end
+        if has_alife_info("jup_novikov_quest_zaton_scanner_create_4") and dont_has_alife_info("jup_novikov_quest_zaton_scanner_have_4") and db.actor:object("zat_spec_anomaly_scanner_4") then     
+           give_info("jup_novikov_quest_zaton_scanner_have_4")        	  
+        end 
+        if has_alife_info("jup_novikov_quest_zaton_scanner_have_4") and dont_has_alife_info("jup_novikov_quest_zaton_scanner_create_5") then     
+           create("zat_spec_anomaly_scanner_5",272.490,11.985,-289.525,1431789,43)
+           give_info("jup_novikov_quest_zaton_scanner_create_5")        	  
+        end
+        if has_alife_info("jup_novikov_quest_zaton_scanner_create_5") and dont_has_alife_info("jup_novikov_quest_zaton_scanner_have_5") and db.actor:object("zat_spec_anomaly_scanner_5") then     
+           give_info("jup_novikov_quest_zaton_scanner_have_5")        	  
+        end
+        if has_alife_info("jup_novikov_quest_zaton_scanner_have_5") and dont_has_alife_info("jup_novikov_quest_zaton_scanner_create_6") then     
+           create("zat_spec_anomaly_scanner_6",400.209,-0.202,439.740,1630730,242)
+           give_info("jup_novikov_quest_zaton_scanner_create_6")        	  
+        end
+        if has_alife_info("jup_novikov_quest_zaton_scanner_create_6") and dont_has_alife_info("jup_novikov_quest_zaton_scanner_have_6") and db.actor:object("zat_spec_anomaly_scanner_6") then     
+           give_info("jup_novikov_quest_zaton_scanner_have_6")        	  
+        end
+        if has_alife_info("jup_novikov_quest_zaton_scanner_have_6") and dont_has_alife_info("jup_novikov_quest_zaton_scanner_create_7") then     
+           create("zat_spec_anomaly_scanner_7",-347.855,40.160,-383.796,259035,29)
+           give_info("jup_novikov_quest_zaton_scanner_create_7")        	  
+        end
+        if has_alife_info("jup_novikov_quest_zaton_scanner_create_7") and dont_has_alife_info("jup_novikov_quest_zaton_scanner_have_7") and db.actor:object("zat_spec_anomaly_scanner_7") then     
+           give_info("jup_novikov_quest_zaton_scanner_have_7")        	  
+        end
+   end
+   ----------------------------------------------------------------
+   ----------------------------'Юпитер'----------------------------
+   ----------------------------------------------------------------
+   if level_name=="jupiter" then
+        --/Квест:Защита туннеля
+        if dont_has_alife_info("jup_beat_from_monsters_complete") and dont_has_alife_info("jup_beat_from_monsters_fail") then
+           if has_alife_info("jup_b1_task_done") and dont_has_alife_info("jup_beat_from_monsters_start") and (not sid_thinks_that_actor_is_enemy("jup_rasvet_base_leader")) then
+              local jup_beat_from_monsters_zone_0=actor_pos:distance_to_sqr(vector():set(-302.003,3.566,410.399),205380,433)<10
+              local jup_beat_from_monsters_zone_1=actor_pos:distance_to_sqr(vector():set(-304.882,3.568,404.222),199360,433)<10
+              local jup_beat_from_monsters_zone_2=actor_pos:distance_to_sqr(vector():set(-302.340,3.784,407.430),204156,433)<10
+              local jup_beat_from_monsters_zone=jup_beat_from_monsters_zone_0 or jup_beat_from_monsters_zone_1 or jup_beat_from_monsters_zone_2
+              if jup_beat_from_monsters_zone then
+                 add_task("sgm_jup_beat_from_monsters")
+                 create("jup_rasvet_base_rpg_sniper",-302.370,12.806,395.054,204130,433)
+                 create("jup_rasvet_attacked_w1_boar_1",-163.367,3.050,410.084,442667,565)
+                 create("jup_rasvet_attacked_w1_boar_2",-178.371,-1.679,434.234,415018,565)
+                 create("jup_rasvet_attacked_w1_boar_3",-163.367,3.050,410.084,442667,565)
+                 create("jup_rasvet_attacked_w1_boar_4",-213.876,4.165,392.182,354700,427)
+                 create("jup_rasvet_attacked_w1_flesh_1",-178.371,-1.679,434.234,415018,565)
+                 create("jup_rasvet_attacked_w1_flesh_2",-163.367,3.050,410.084,442667,565)
+                 create("jup_rasvet_attacked_w1_flesh_3",-213.876,4.165,392.182,354700,427)
+                 give_info("jup_beat_from_monsters_start","jup_beat_from_monsters_wave_1","jup_beat_from_monsters_wave_1_spawn")
+                 game_autosave_assign("save_jup_beat_from_monsters_need_help")
+              end
+           elseif has_alife_info("jup_beat_from_monsters_wave_2") and dont_has_alife_info("jup_beat_from_monsters_wave_2_spawn") then
+              create("jup_rasvet_attacked_w2_pseudodog_1",-178.371,-1.679,434.234,415018,565)
+              create("jup_rasvet_attacked_w2_pseudodog_2",-163.367,3.050,410.084,442667,565)
+              create("jup_rasvet_attacked_w2_pseudodog_3",-213.876,4.165,392.182,354700,427)
+              create("jup_rasvet_attacked_w2_pseudodog_4",-163.367,3.050,410.084,442667,565)
+              create("jup_rasvet_attacked_w2_dog_1",-213.876,4.165,392.182,354700,427)
+              create("jup_rasvet_attacked_w2_dog_2",-178.371,-1.679,434.234,415018,565)
+              create("jup_rasvet_attacked_w2_dog_3",-163.367,3.050,410.084,442667,565)
+              create("jup_rasvet_attacked_w2_dog_4",-178.371,-1.679,434.234,415018,565)
+              create("jup_rasvet_attacked_w2_dog_5",-213.876,4.165,392.182,354700,427)
+              give_info("jup_beat_from_monsters_wave_2_spawn")
+           elseif has_alife_info("jup_beat_from_monsters_wave_3") and dont_has_alife_info("jup_beat_from_monsters_wave_3_spawn") then
+              create("jup_rasvet_attacked_w3_gigant",-163.367,3.050,410.084,442667,565)
+              create("jup_rasvet_attacked_w3_snork_1",-178.371,-1.679,434.234,415018,565)
+              create("jup_rasvet_attacked_w3_snork_2",-213.876,4.165,392.182,354700,427)
+              give_info("jup_beat_from_monsters_wave_3_spawn")
+           end
+        end
+        --/Квест:Пропавший отряд
+        if has_alife_info("jup_mercenary_check_plant_start") and dont_has_alife_info("jup_mercenary_check_plant_complete") and dont_has_alife_info("jup_mercenary_check_plant_fail") then
+           if dont_has_alife_info("jup_mercenary_check_plant_was_chosen") and has_alife_info("jup_mercenary_check_plant_psi_atacked") then
+              local jup_plant_was_chosen_p0=actor_pos:distance_to_sqr(vector():set(344.514,26.869,-253.907),1265463,549)<10
+              local jup_plant_was_chosen_p1=actor_pos:distance_to_sqr(vector():set(343.263,27.184,-273.197),1263312,549)<6
+              local jup_plant_was_chosen_p2=actor_pos:distance_to_sqr(vector():set(344.872,27.444,-244.379),1266507,549)<6
+              local jup_plant_was_chosen_p3=actor_pos:distance_to_sqr(vector():set(254.282,27.201,-223.706),1143400,547)<10
+              local jup_plant_was_chosen_zone=jup_plant_was_chosen_p0 or jup_plant_was_chosen_p1 or jup_plant_was_chosen_p2 or jup_plant_was_chosen_p3
+              if jup_plant_was_chosen_zone then
+                 give_info("jup_mercenary_check_plant_was_chosen")
+              end
+           end
+           local jup_second_stage_zone=actor_pos:distance_to(vector():set(334.041,34.594,-231.690),1249665,549)<60.0
+           if has_alife_info("jup_mercenary_check_plant_psi_atacked") and dont_has_alife_info("jup_mercenary_check_plant_was_chosen") and jup_second_stage_zone then
+              bind_stalker.hide_weapon("no_wpn_z")
+           elseif has_alife_info("jup_mercenary_check_plant_psi_atacked") and ((not jup_second_stage_zone) or has_alife_info("jup_mercenary_check_plant_was_chosen")) and dont_has_alife_info("jup_mercenary_check_plant_restore") then
+              give_info("jup_mercenary_check_plant_restore")
+              bind_stalker.restore_weapon("no_wpn_z")
+           end
+        end
+        --/Квест:Именное оружие
+        if has_alife_info("jup_find_gromoboy_vintar_start") and dont_has_alife_info("jup_find_gromoboy_vintar_complete") and dont_has_alife_info("jup_find_gromoboy_vintar_fail") then
+           if dont_has_alife_info("jup_find_gromoboy_vintar_doshol") then
+              local jup_find_ventar_quest=actor_pos:distance_to_sqr(vector():set(-340.981,-2.862,256.453),139825,380)<10
+              if jup_find_ventar_quest then
+                 give_info("jup_find_gromoboy_vintar_doshol")
+              end
+           end
+           if has_alife_info("jup_find_gromoboy_vintar_unpack") and dont_has_alife_info("jup_find_gromoboy_vintar_nashol") then
+              if get_story_object("gromoboy_vintorez")~=nil and distance_to_object(get_story_object("gromoboy_vintorez"),">=",5,false) and get_story_object_id("gromoboy_vintorez") then
+                 remove_object_by_id(get_story_object_id("gromoboy_vintorez"))
+                 local rnd_gromoboy=math.random(1,5)
+                 if rnd_gromoboy==1 then
+                    create("wpn_vintorez_bomber",381.08807373047,6.9604020118713,311.65075683594,1319054,351)
+                 elseif rnd_gromoboy==2 then
+                    create("wpn_vintorez_bomber",362.90637207031,1.0815975666046,335.55255126953,1293265,352)
+                 elseif rnd_gromoboy==3 then
+                    create("wpn_vintorez_bomber",393.5439453125,32.886432647705,361.73297119141,1336643,350)
+                 elseif rnd_gromoboy==4 then
+                    create("wpn_vintorez_bomber",390.89743041992,4.7360033988953,331.01290893555,1331632,350)
+                 elseif rnd_gromoboy==5 then
+                    create("wpn_vintorez_bomber",365.70455932617,38.065956115723,333.98034667969,1296669,349)
+                 end
+              end
+           end
+        end
+        --/Квест:Пилот
+        if has_alife_info("jup_arrive_on_bunker_start") and dont_has_alife_info("jup_arrive_on_bunker_pribil") then
+           local jup_entry_bunker=actor_pos:distance_to(vector():set(-213.079,-3.567,70.035),356685,385)<5
+           if jup_entry_bunker then
+              give_info("jup_arrive_on_bunker_pribil")
+              game_autosave_assign("save_jup_arrive_on_bunker_meeting")
+           end
+        end
+        --/Квест:Перехват
+        if has_alife_info("jup_avoid_witnesses_init_travel") and dont_has_alife_info("jup_avoid_witnesses_end_travel") then
+           local jup_hostage_home_zone=actor_pos:distance_to(vector():set(-1.018,3.413,204.178),714145,409)<5
+           if jup_hostage_home_zone then
+              give_info("jup_avoid_witnesses_end_travel")
+           end
+        end
+        --/Квест:Путешествие
+        if has_alife_info("zat_will_leave_jupiter_start") and dont_has_alife_info("zat_will_leave_jupiter_complete") then
+           give_info("zat_will_leave_jupiter_complete")
+        end
+        --/Квест:Поручение дядьки Яра
+        if has_alife_info("jup_bring_photo_device_have") and dont_has_alife_info("jup_bring_photo_device_ambush") then
+           create("bloodsucker_normal",3.836,27.264,-340.649,720223,483)
+           create("bloodsucker_normal",-49.019,23.960,-361.159,636643,481)
+           give_info("jup_bring_photo_device_ambush")
+        end
+        --/Квест:Срочный заказ
+        if has_alife_info("zat_bring_sharpshooter_bino_start") and dont_has_alife_info("zat_bring_sharpshooter_bino_guide") then
+           give_info("zat_bring_sharpshooter_bino_guide")
+        end
+        --/Квест:Странная активность
+        if has_alife_info("jup_rasvet_eliminate_burrows_start") and dont_has_alife_info("jup_rasvet_eliminate_burrows_complete") and dont_has_alife_info("jup_rasvet_eliminate_burrows_fail") then
+           if dont_has_alife_info("jup_rasvet_eliminate_burrows_main_holes_deaths") and has_several_info("jup_rasvet_eliminate_burrows_","_hole_death",1,4) then
+              give_info("jup_rasvet_eliminate_burrows_main_holes_deaths")
+           elseif dont_has_alife_info("jup_rasvet_eliminate_burrows_all_holes_deaths") and has_several_info("jup_rasvet_eliminate_burrows_","_hole_death",1,5) then
+              give_info("jup_rasvet_eliminate_burrows_all_holes_deaths")
+           end
+           if dont_has_alife_info("jup_rasvet_eliminate_burrows_message_about_5_hole") and has_alife_info("jup_rasvet_eliminate_burrows_launch_last_hole") then
+              give_info("jup_rasvet_eliminate_burrows_message_about_5_hole")
+              xr_effects.jup_rasvet_eliminate_burrows_hole_5_launch()
+           end
+           if has_alife_info("jup_rasvet_eliminate_burrows_4_hole_death") and dont_has_alife_info("jup_rasvet_eliminate_burrows_launch_last_hole") then
+              if check_game_timer("jup_rasvet_eliminate_burrow_5_timer")==nil then
+                 start_game_timer("jup_rasvet_eliminate_burrow_5_timer",5)
+              elseif check_game_timer("jup_rasvet_eliminate_burrow_5_timer") then
+                 give_info("jup_rasvet_eliminate_burrows_launch_last_hole")
+                 abort_game_timer("jup_rasvet_eliminate_burrow_5_timer")
+              end
+           end
+        end
+	--/Квест:Опасная работа у Назара			
+        if has_alife_info("jup_rasvet_destroy_snorks_killed") and dont_has_alife_info("jup_rasvet_polter_squad_spawn") then
+           create("jup_rasvet_polter_quest_spot",-367.573,3.568,403.681,94809,435)
+           create_force("jup_rasvet_polter_squad",136.331,1.605,210.943,949477,347)
+           give_info("jup_rasvet_polter_squad_spawn")
+        end
+        if has_alife_info("jup_rasvet_polter_squad_killed") and dont_has_alife_info("jup_rasvet_polter_skauts_spawn") then
+           create("jup_rasvet_polter_quest_skaut",162.903,-4.574,394.674,994811,571)
+           create_dead_body("jup_rasvet_polter_dead_1","bio_bandage",166.699,-4.517,395.310,1000292,571)
+           create_dead_body("jup_rasvet_polter_dead_2","bio_bandage",159.860,-4.491,392.362,988840,571)
+           give_info("jup_rasvet_polter_skauts_spawn")
+        end
+        if has_alife_info("jup_rasvet_polter_skauts_talking") and dont_has_alife_info("jup_rasvet_polter_skauts_to_returned") then
+           local polter_spot_point_1_eminence=actor_pos:distance_to(vector():set(-367.573,3.568,403.681),94809,435)<5
+           if polter_spot_point_1_eminence then              		   
+              give_info("jup_rasvet_polter_skauts_to_returned")              			  
+           end
+        end
+        --/Квест:Покушение на Валета
+        if has_alife_info("jup_liquidate_valet_killed") and dont_has_alife_info("jup_liquidate_valet_start") and dont_has_alife_info("jup_liquidate_valet_reward") then
+           give_info("jup_liquidate_valet_reward")
+           give_info("jup_liquidate_valet_start")
+        end
+        --/Квест:Слабый маяк
+        if has_alife_info("jup_weak_lighthouse_start") and dont_has_alife_info("jup_weak_lighthouse_fail") and dont_has_alife_info("jup_weak_lighthouse_hiding_online") then
+           local jup_weak_lighthouse_dist=actor_pos:distance_to(vector():set(393.380,22.838,-369.368),1335828,629)<20
+           if jup_weak_lighthouse_dist then
+              give_info("jup_weak_lighthouse_hiding_online")
+           end
+        end
+        --/Квест:Щупальца для Зверобоя
+        if has_alife_info("jup_b211_swamp_bloodsuckers_not_hunt_begin") and dont_has_alife_info("jup_zveroboy_quest_bloodsucker_have_parts") then
+           local cnt = 0
+           local function jup_spez_count(npc, item)
+              if item:section() == "mutant_krovosos_booty" then
+                 cnt = cnt + 1
+              end
+           end
+           db.actor:iterate_inventory(jup_spez_count, nil)
+           if cnt > 4 then
+              give_info("jup_zveroboy_quest_bloodsucker_have_parts")
+           end	    	   
+        end
+	--/Квест:Цветы Дьявола 
+        if has_alife_info("jup_a6_rasvet_medik_quest_gavaetc") and has_alife_info("jup_a6_rasvet_medik_quest_shulga") and has_alife_info("jup_a6_rasvet_medik_quest_loki") and has_alife_info("jup_a6_rasvet_medik_quest_sveroboy") and has_alife_info("jup_a6_rasvet_medik_quest_kostoprav") and dont_has_alife_info("jup_a6_rasvet_medik_quest_all_talking") then
+           give_info("jup_a6_rasvet_medik_quest_all_talking")
+        end
+        --/Квест:Приоритеты клана
+        if has_alife_info("jup_b206_rasvet_prior_quest_ready_to_past") and dont_has_alife_info("jup_b206_rasvet_prior_quest_podquest_start") then
+           add_task("geonezis_jup_rasvet_prior_tainik_1")
+           add_task("geonezis_jup_rasvet_prior_tainik_2")
+           add_task("geonezis_jup_rasvet_prior_tainik_3")
+           add_task("geonezis_jup_rasvet_prior_tainik_4")
+           add_task("geonezis_jup_rasvet_prior_tainik_5")
+           create("jup_rasvet_gudvin_pda",-408.522,-2.768,176.998,32566,644)
+           give_info("jup_b206_rasvet_prior_quest_podquest_start")
+        end
+        if has_alife_info("jup_b206_rasvet_prior_quest_podquest_start") and has_several_info("jup_rasvet_spez_taynik_","_zalogen",1,5) and dont_has_alife_info("jup_b206_rasvet_all_tainiki_zalogeny") then
+           xr_effects.jup_rasvet_prior_create_dead_body()
+           give_info("jup_b206_rasvet_all_tainiki_zalogeny")
+        end
+        if has_alife_info("jup_b206_rasvet_all_tainiki_zalogeny") and db.actor:object("jup_rasvet_gudvin_pda") and dont_has_alife_info("jup_rasvet_prior_quest_spot_1_come") then
+           local prior_spot_point_1_eminence=actor_pos:distance_to(vector():set(-435.352,9.615,-2.013),5287,376)<5
+           if prior_spot_point_1_eminence then
+              xr_effects.jup_rasvet_prior_create_enemy_himera()			
+              give_info("jup_rasvet_prior_quest_spot_1_come")              			  
+           end
+        end
+        if has_alife_info("jup_b206_rasvet_all_tainiki_zalogeny") and db.actor:object("jup_rasvet_gudvin_letter") and dont_has_alife_info("jup_rasvet_prior_quest_spot_2_come") then
+           local prior_spot_point_2_eminence=actor_pos:distance_to(vector():set(-200.808,3.491,-439.198),376193,480)<5
+           if prior_spot_point_2_eminence then
+              xr_effects.jup_rasvet_prior_create_enemy_angel()			
+	      give_info("jup_rasvet_prior_quest_spot_2_come")              			  
+           end
+        end
+        --/Квест:Охота на кровососов у Зверобоя
+        if has_alife_info("jup_b211_swamp_bloodsuckers_hunt_started") and has_alife_info("jup_b6_all_hunters_are_dead") and dont_has_alife_info("jup_zveroboy_quest_bloadsucker_1_spawn") then
+           create_force("jup_zveroboy_quest_bloadsucker_1",388.620,3.456,337.038,1329529,350)
+           give_info("jup_zveroboy_quest_bloadsucker_1_spawn")
+        end 
+        if has_alife_info("jup_zveroboy_quest_bloadsucker_1_killed") and dont_has_alife_info("jup_zveroboy_quest_bloadsucker_2_spawn") then
+           create("jup_zveroboy_quest_bloodsucker",473.254,-6.448,399.003,1464286,521)
+           give_info("jup_zveroboy_quest_bloadsucker_2_spawn")
+        end
+        --/Квест:Охота на снорков у Зверобоя        	
+        if has_alife_info("jup_b220_trapper_snorks_squad_1_killed") and dont_has_alife_info("jup_b220_trapper_snorks_squad_2_spawn") then
+           create_force("jup_b220_trapper_snorks_squad_2",303.398,1.098,228.819,1207671,584)
+           give_info("jup_b220_trapper_snorks_squad_2_spawn")
+        end        
+        if has_alife_info("jup_b220_trapper_snorks_squad_2_killed") and dont_has_alife_info("jup_b220_trapper_snorks_squad_3_spawn") then
+           create_force("jup_b220_trapper_snorks_squad_3",23.643,29.209,-465.732,752951,320)
+           give_info("jup_b220_trapper_snorks_squad_3_spawn")
+        end        
+        if has_alife_info("jup_b220_trapper_snorks_squad_3_killed") and dont_has_alife_info("jup_b220_trapper_snorks_squad_4_spawn") then
+           create_force("jup_b220_trapper_snorks_squad_4",412.511,-4.831,464.644,1367694,563)
+           give_info("jup_b220_trapper_snorks_squad_4_spawn")
+        end
+        --/Квест:Психо
+        if has_alife_info("cop_storyline_restored") and dont_has_alife_info("red_psyho_trapper_timer") then
+           start_game_timer("red_psyho_trapper_call_timer",15)
+           give_info("red_psyho_trapper_timer")
+        end
+        if has_alife_info("red_psyho_trapper_timer") and dont_has_alife_info("red_psyho_trapper_call") and check_game_timer("red_psyho_trapper_call_timer") then
+           give_info("red_psyho_trapper_call")
+           news_manager.send_tip(db.actor,"red_psyho_trapper_call_text",0,"portrait_Zveroboy",9000,nil,"jup_b220_trapper_title")
+           abort_game_timer("red_psyho_trapper_call_timer")
+        end
+        if has_alife_info("red_psyho_talk") and dont_has_alife_info("red_psyho_preparation") and (not db.actor:is_talking()) then
+           if have_item_count("psy_complex",10) then
+              give_info("red_psyho_preparation")
+              give_info("jup_way_to_red_forest_open")
+           else
+              disable_info("jup_way_to_red_forest_open")
+           end
+        end
+        if has_alife_info("red_psyho_brainstorming") and dont_has_alife_info("red_psyho_back_to_jup") then
+           give_info("red_psyho_back_to_jup")
+        end
+   end
+   ----------------------------------------------------------------
+   -------------------'Путепровод «Припять-1»'---------------------
+   ----------------------------------------------------------------
+   if level_name=="jupiter_underground" then
+        --/Квест:Пропавший проводник
+        if has_alife_info("pri_rescue_underground_guide_start") and dont_has_alife_info("pri_rescue_underground_guide_complete") and dont_has_alife_info("pri_rescue_underground_guide_fail") then
+           if dont_has_alife_info("pri_rescue_underground_guide_came_down") then
+              give_info("pri_rescue_underground_guide_came_down")
+           end
+           if has_alife_info("pri_rescue_underground_guide_approached_to_miller") and dont_has_alife_info("pri_rescue_underground_guide_autosave") then
+              give_info("pri_rescue_underground_guide_autosave")
+              game_autosave_assign("save_pri_rescue_guide_approached_to_miller")
+           end
+        end
+   end
+   ----------------------------------------------------------------
+   ----------------------------'Припять'---------------------------
+   ----------------------------------------------------------------
+   if level_name=="pripyat" then
+        --/Квест:Пропавшая разведгруппа
+        if has_alife_info("pri_a20_once_task_give") and dont_has_alife_info("pri_a20_recon_squad_info") and dont_has_alife_info("pri_a20_talk_with_colonel_complete") then
+           if story_id_not_found("pri_a15_military_recon_leader") then
+              give_info("pri_a20_recon_squad_info")
+           end
+        end
+------------------------------------makdm/Квест Радиопомехи:найти пропавший отряд
+        if has_alife_info("pri_a22_yarmoshuk_body_search_start") and dont_has_alife_info("pri_a22_yarmoshuk_body_search") then
+           if story_id_not_found("pri_a22_military_yarmoshuk") then
+			disable_info("pri_a22_skelja_spawned")
+			disable_info("pri_a22_merkulov_spawned")
+		   	give_info("respawn_pri_a22_skelja")
+		   	give_info("respawn_pri_a22_yarmoshuk")
+		   	give_info("respawn_pri_a22_merkulov")
+           end
+        end
+----------------------------------------------------------------------------------				
+        --/Квест:Научный доклад
+        if has_alife_info("pri_find_science_briefing_start") and dont_has_alife_info("pri_find_science_briefing_dospawn") then
+           if db.actor:object("important_science_docks") then
+              create("jup_authorities_agent2",-111.468,27.083,-499.825,533451,344)
+              give_info("pri_find_science_briefing_dospawn")
+           end
+        end
+        --/Квест:Операция Вулкан
+        if has_alife_info("pri_assault_monolith_base_start") and dont_has_alife_info("pri_assault_monolith_base_complete") and dont_has_alife_info("pri_assault_monolith_base_fail") then
+           if dont_has_alife_info("pri_assault_monolith_base_enemy_destroyed") and xr_conditions.pri_monolit_base_defeat() and has_alife_info("pri_monolit_base_leader_death") then
+              give_info("pri_assault_monolith_base_enemy_destroyed")
+              game_autosave_assign("save_pri_assault_monolith_base_destroyed")
+           end
+           if has_alife_info("pri_assault_monolith_base_on_firepos") and sgm_flags.pri_assault_monolith_base_timer==0 and dont_has_alife_info("pri_assault_monolith_base_we_begin") then
+              start_flague_timer("pri_assault_monolith_base_timer",5000)
+           end
+           if check_flague_timer("pri_assault_monolith_base_timer") and has_alife_info("pri_assault_monolith_base_on_firepos") and dont_has_alife_info("pri_assault_monolith_base_we_begin") then
+              sgm_flags.pri_assault_monolith_base_timer=0
+              game_autosave_assign("save_pri_assault_monolith_base_on_position")
+              give_info("pri_assault_monolith_base_we_begin")
+           end
+           if has_alife_info("pri_assault_monolith_base_sneak_move") and dont_has_alife_info("pri_assault_monolith_base_on_firepos") then
+              local pri_kbo_firepos_zone=actor_pos:distance_to(vector():set(9.466,4.493,287.466),210359,712)<2.5
+              if pri_kbo_firepos_zone then
+                 give_info("pri_assault_monolith_base_on_firepos")
+              end
+           end
+        end
+        --/Квест:Вакцина для кровососа
+        if dont_has_alife_info("pri_bloodsucker_half_human_spawn") and (dont_has_alife_info("pri_b35_task_running") or (has_alife_info("pri_b35_task_running") and (has_alife_info("pri_b35_reward_given") or has_alife_info("pri_b35_task_end") or has_alife_info("pri_a28_update_task_cover_strelok")))) then
+           local pri_bloodsucker_spawn_zone=actor_pos:distance_to(vector():set(49.305,16.588,-140.701),263324,698)<50
+           if pri_bloodsucker_spawn_zone then
+              give_info("pri_bloodsucker_half_human_spawn")
+              create("pri_bloodsucker_half_human_1",47.139,16.540,-138.432,260827,698)
+           end
+        end
+        if has_alife_info("pri_bloodsucker_half_human_spawn") and dont_has_alife_info("pri_bloodsucker_vaccine_complete") and dont_has_alife_info("pri_bloodsucker_vaccine_fail") then
+           if dont_has_alife_info("pri_bloodsucker_vaccine_1st_sleep") and (dont_has_alife_info("pri_b35_task_running") or (has_alife_info("pri_b35_task_running") and (has_alife_info("pri_b35_reward_given") or has_alife_info("pri_b35_task_end") or has_alife_info("pri_a28_update_task_cover_strelok")))) then
+              local pri_bloodsucker_sleep_zone=actor_pos:distance_to_sqr(vector():set(49.305,16.588,-140.701),263324,698)<3
+              if pri_bloodsucker_sleep_zone then
+                 play_snd_at_actor([[monsters\bloodsucker\distant_growl_1]])
+                 give_info("pri_bloodsucker_vaccine_1st_sleep")
+                 start_flague_timer("pri_bloodsucker_sleep1_timer",1300)
+              end
+           elseif dont_has_alife_info("pri_bloodsucker_vaccine_2nd_sleep") and has_alife_info("pri_bloodsucker_vaccine_start") and has_alife_info("pri_bloodsucker_vaccine_has_got") then
+              local pri_bloodsucker_sleep_zone=actor_pos:distance_to_sqr(vector():set(49.305,16.588,-140.701),263324,698)<3
+              if pri_bloodsucker_sleep_zone then
+                 play_snd_at_actor([[monsters\bloodsucker\attack_0]])
+                 give_info("pri_bloodsucker_vaccine_2nd_sleep")
+                 start_flague_timer("pri_bloodsucker_sleep2_timer",1300)
+              end
+           end
+           if has_alife_info("pri_bloodsucker_vaccine_1st_sleep") and dont_has_alife_info("pri_bloodsucker_vaccine_1st_sleep_end") then
+              if check_flague_timer("pri_bloodsucker_sleep1_timer") then
+                 sgm_flags.pri_bloodsucker_sleep1_timer=0
+                 xr_effects.pri_quest_bloodsucker_sleep1_activate()
+              end
+           elseif has_alife_info("pri_bloodsucker_vaccine_2nd_sleep") and dont_has_alife_info("pri_bloodsucker_vaccine_2nd_sleep_end") then
+              if check_flague_timer("pri_bloodsucker_sleep2_timer") then
+                 sgm_flags.pri_bloodsucker_sleep2_timer=0
+                 xr_effects.pri_quest_bloodsucker_sleep2_activate()
+              end
+           end
+        end
+        --/Квест:Искупление Грехов
+        if has_alife_info("pri_expiation_sin_3_start") and dont_has_alife_info("pri_expiation_sin_3_complete") and dont_has_alife_info("pri_expiation_sin_3_fail") then
+           if dont_has_alife_info("pri_expiation_sin_3_spawn_longshoremen") and has_alife_info("pri_expiation_sin_3_enemy_destroyed") then
+              create("pri_monolith_longshoremen",-145.999,-0.475,-354.397,56421,800)
+              give_info("pri_expiation_sin_3_spawn_longshoremen")
+           end
+           if dont_has_alife_info("pri_expiation_sin_3_back_to_temple") and has_alife_info("pri_expiation_sin_3_repair_completed") then
+              local pri_monolith_temple_zone=actor_pos:distance_to(vector():set(-173.870,0.615,-345.086),38576,806)<30
+              if pri_monolith_temple_zone then
+                 if dont_has_alife_info("pri_expiation_sin_3_use_idol") and actor_in_restrictor("pri_a18_use_idol_restrictor") then
+                    give_info("pri_expiation_sin_3_use_idol")
+                    game.start_tutorial("pri_monolith_use_temple")
+                 elseif has_alife_info("pri_expiation_sin_3_use_idol") and not actor_in_restrictor("pri_a18_use_idol_restrictor") then
+                    disable_info("pri_expiation_sin_3_use_idol")
+                    game.stop_tutorial()
+                 end
+              end
+           end
+           if has_alife_info("pri_expiation_sin_3_repair_completed") and dont_has_alife_info("pri_expiation_sin_3_monolith_voice") then
+              local pri_monolith_voice_zone=actor_pos:distance_to(vector():set(-184.795,0.699,-364.489),31547,800)<4
+              if pri_monolith_voice_zone then
+                 play_snd_at_actor([[sound_effects\monolith_voice1]])
+                 give_info("pri_expiation_sin_3_monolith_voice")
+              end
+           end
+        end
+        --/Квест:Новая территория
+        if has_alife_info("val_issue_secret_data_was_sent") and dont_has_alife_info("mil_come_to_military_timer") then
+           start_game_timer("mil_come_to_military_timer",5)
+           give_info("mil_come_to_military_timer")
+        end
+        if has_alife_info("mil_come_to_military_timer") and dont_has_alife_info("mil_come_to_military_start") and check_game_timer("mil_come_to_military_timer") then
+           give_info("mil_come_to_military_start")
+           add_task("mil_come_to_military")
+           abort_game_timer("mil_come_to_military_timer")
+        end
+   end
+   ----------------------------------------------------------------
+   -----------------------'Темная Долина'--------------------------
+   ----------------------------------------------------------------
+   if level_name=="darkvalley" then
+        if (has_alife_info("val_b2_base_alarm") or has_alife_info("val_b11_outpost_alarm") or has_alife_info("val_b12_outpost_alarm")) and dont_has_alife_info("val_alt_storyline_commenced") then
+           give_info("val_alt_storyline_commenced")
+        end
+        if has_alife_info("val_b11_outpost_alarm") and dont_has_alife_info("val_b12_outpost_alarm") then
+           give_info("val_b12_outpost_alarm","val_b14_outpost_alarm","val_b2_base_alarm")
+        elseif has_alife_info("val_b12_outpost_alarm") and dont_has_alife_info("val_b11_outpost_alarm") then
+           give_info("val_b11_outpost_alarm","val_b14_outpost_alarm","val_b2_base_alarm")
+        elseif has_alife_info("val_b2_base_alarm") and dont_has_alife_info("val_b11_outpost_alarm") then
+           give_info("val_b11_outpost_alarm","val_b12_outpost_alarm","val_b14_outpost_alarm","val_b2_base_alarm")
+        elseif has_alife_info("val_b14_outpost_alarm") and dont_has_alife_info("val_b11_outpost_alarm") then
+           give_info("val_b11_outpost_alarm","val_b12_outpost_alarm","val_b2_base_alarm")
+        end
+        --/Квест:Бездна
+        if has_alife_info("x18_abyss_dock_done_founded") and dont_has_alife_info("x18_abyss_chosen_on_surface") then
+           give_info("x18_abyss_chosen_on_surface")
+           create("pri_authorities_agent",-59.550987243652,-0.2952963411808,-58.367599487305,130130,734)
+           add_task("val_issue_secret_data")
+           clear_mod_param("x18_secret_docks_founded")
+           give_info("val_issue_secret_data_start")
+        end
+        --/Квест:Инкассаторы
+        if has_alife_info("mil_boarding_money_case_founded") and dont_has_alife_info("mil_b7_night_stalker_spawn") then
+           create_force("mil_b7_night_stalker_1_squad","mil_smart_terrain_7")
+           create_force("mil_b7_night_stalker_2_squad","mil_smart_terrain_7")
+           create_force("mil_b7_night_stalker_3_squad","mil_smart_terrain_7")
+           give_info("mil_b7_night_stalker_spawn")
+        end
+        --/Квест:Тень времени
+        if dont_has_alife_info("val_access_card_spawn") then
+           give_item_to_sid("val_access_card_x18","val_b3_safe")
+           give_info("val_access_card_spawn")
+        end
+        if has_alife_info("val_shade_of_time_card_in_safe") and dont_has_alife_info("val_key_from_safe_start") then
+           create_force("val_b6_renegade_squad","val_smart_terrain_6")
+           create_force("val_b7_renegade_squad","val_smart_terrain_7")
+           create_force("val_b13_night_stalker_squad","val_smart_terrain_13")
+           create("val_b3_base_guard_rpg_1",-44.691612243652,9.6529159545898,-6.0226225852966,120269,985)
+           create("val_b3_base_guard_rpg_2",47.035453796387,11.354395866394,45.024784088135,210377,1001)
+           create_force("val_b3_renegade_chief_squad",11.244326591492,0.13570445775986,31.568523406982,177001,1036)
+           add_task("val_key_from_safe")
+           give_info("val_key_from_safe_start")
+           game_autosave_assign("save_val_shade_of_time_need_key")
+        end
+        --/Квест:Перехват
+        if (has_alife_info("val_assault_factory_pda_brought") or has_alife_info("val_alt_storyline_commenced")) and dont_has_alife_info("val_shade_of_time_start") and (has_alife_info("val_alt_storyline_commenced") or check_game_timer("val_shade_of_time")) then
+           create("val_b4_base_guard_rpg",105.47113037109,4.2215843200684,-15.48123550415,274481,1014)
+           create("val_b4_baltazar",97.170776367188,4.2202553749084,-10.931589126587,265375,1014)
+           create("val_b1_x18_door_spot",123.1806640625,-2.8387684822083,-262.11514282227,292451,988)
+           create("val_b3_area_spot",3.49517965316772, -0.0495785176753998, 2.67399930953979,169650,1045)
+           create("val_b4_baltazar_path_spot",110.71418762207,0.041290909051895,-22.120105743408,279615,936)
+           give_info("val_shade_of_time_start")
+           abort_game_timer("val_shade_of_time")
+           add_task("val_shade_of_time")
+        end
+        if has_alife_info("val_assault_factory_squad_passed_bridge") and dont_has_alife_info("val_assault_factory_bridge_is_passed_save") then
+           give_info("val_assault_factory_bridge_is_passed_save")
+           game_autosave_assign("save_val_assault_factory_bridge_is_passed")
+        end
+        if has_alife_info("val_assault_factory_garrison_destroyed") and dont_has_alife_info("val_assault_factory_pda_brought") then
+           if has_alife_info("val_assault_factory_get_corpse_pda") then
+              if not (db.actor:object("device_pda_b1_commander") and db.actor:object("device_pda_b1_renegade_1") and db.actor:object("device_pda_b1_renegade_2") and db.actor:object("device_pda_b1_renegade_3")) then
+                 disable_info("val_assault_factory_get_corpse_pda")
+              end
+           else
+              if db.actor:object("device_pda_b1_commander") and db.actor:object("device_pda_b1_renegade_1") and db.actor:object("device_pda_b1_renegade_2") and db.actor:object("device_pda_b1_renegade_3") then
+                 give_info("val_assault_factory_get_corpse_pda")
+              end
+           end
+        end
+        --/Квест:Прибытие
+        if has_alife_info("val_first_coming_valley_came_to_farm") and dont_has_alife_info("val_first_coming_on_valley_on_base_save") then
+           give_info("val_first_coming_on_valley_on_base_save")
+           game_autosave_assign("save_val_first_coming_on_valley_on_base")
+        end
+        --/Квест:Загадка Прошлого 
+        if has_alife_info("val_lucas_talking_antenna") and has_several_info("val_lucas_antenna_","_done",1,3) and dont_has_alife_info("val_lucas_all_antenna_done") then     
+           give_info("val_lucas_all_antenna_done")                          
+        end
+        if dont_has_alife_info("val_freedom_spez_agent_lucas_talking_all_dolg_dead") and has_several_info("val_dolg_spez_quad_","_dead",1,4) then     
+           news_manager.send_tip(db.actor,game.translate_string("val_lucas_about_quest_text_1"),0,"portrait_Freedom_3",14000,nil,"all_lucas_title")
+           give_info("val_freedom_spez_agent_lucas_talking_all_dolg_dead")			  
+        end
+        if has_alife_info("val_freedom_spez_agent_lucas_talking_all_dolg_dead") and dont_has_alife_info("val_lucas_quests_tainiki_create") then
+           local rnd_quest_items_val_1=math.random(1,5)
+           if rnd_quest_items_val_1==1 then
+              alife():create("val_lucas_quests_info_1",vector():set(21.391,1.949,-43.189),186786,1040)
+              alife():create("val_lucas_quests_info_2",vector():set(-15.267,-2.240,33.387),151947,1036)
+              alife():create("val_lucas_quests_info_3",vector():set(17.515,0.133,-2.407),182834,1002)
+              give_info("val_lucas_quests_tainiki_create")
+           elseif rnd_quest_items_val_1==2 then
+              alife():create("val_lucas_quests_info_1",vector():set(-10.404,1.235,-32.927),162095,987)
+              alife():create("val_lucas_quests_info_2",vector():set(-5.532,-2.240,30.555),162831,1036)
+              alife():create("val_lucas_quests_info_3",vector():set(35.007,-2.918,-18.442),197919,1002)
+              give_info("val_lucas_quests_tainiki_create")
+           elseif rnd_quest_items_val_1==3 then
+              alife():create("val_lucas_quests_info_1",vector():set(-4.506,1.236,-25.395),162759,1000)
+              alife():create("val_lucas_quests_info_2",vector():set(-9.909,0.087,26.058),158266,1036)
+              alife():create("val_lucas_quests_info_3",vector():set(36.316,-2.922,-5.774),200404,1002)
+              give_info("val_lucas_quests_tainiki_create")
+           elseif rnd_quest_items_val_1==4 then
+              alife():create("val_lucas_quests_info_1",vector():set(10.095,-2.920,-8.451),175686,1046)
+              alife():create("val_lucas_quests_info_2",vector():set(23.571,5.121,26.902),188869,986)
+              alife():create("val_lucas_quests_info_3",vector():set(49.169,11.218,4.999),212408,1044)
+              give_info("val_lucas_quests_tainiki_create")
+           elseif rnd_quest_items_val_1==5 then
+              alife():create("val_lucas_quests_info_1",vector():set(27.223,0.112,-22.033),189499,1002)
+              alife():create("val_lucas_quests_info_2",vector():set(-33.939,-6.434,-19.945),144173,1046)
+              alife():create("val_lucas_quests_info_3",vector():set(45.772,0.061,-16.491),209626,935)
+              give_info("val_lucas_quests_tainiki_create")
+           end	
+	end
+        if has_alife_info("val_lucas_quests_tainiki_create") and db.actor:object("val_lucas_quests_info_1") and db.actor:object("val_lucas_quests_info_2") and db.actor:object("val_lucas_quests_info_3") and dont_has_alife_info("val_lucas_quests_tainiki_find") then     
+	   create("val_lucas_quest_second_spot",13.637,0.070,18.517,178948,978)
+	   news_manager.send_tip(db.actor,game.translate_string("val_lucas_about_quest_text_2"),0,"portrait_Freedom_3",14000,nil,"all_lucas_title")
+	   give_info("val_lucas_quests_tainiki_find")			  
+        end	
+        if has_alife_info("val_lucas_quests_tainiki_find") and dont_has_alife_info("all_greh_quest_1_point_1_checked") then
+           local val_spot_point_1_eminence=actor_pos:distance_to_sqr(vector():set(13.637,0.070,18.517),178948,978)<5
+           if val_spot_point_1_eminence then              		   
+	      give_info("val_lucas_quests_point_1_checked")              			  
+           end
+        end        
+        if has_alife_info("val_lucas_quests_point_1_checked") and dont_has_alife_info("val_beat_from_monsters_wave_1_spawn") then        			  
+           create("val_lucas_attacked_w1_polt_1",78.221,-0.919,40.140,243856,1042)
+           create("val_lucas_attacked_w1_polt_2",66.726,0.141,-37.642,230108,935)
+           create("val_lucas_attacked_w1_polt_3",112.775,0.046,-32.478,281917,936)
+           create("val_lucas_attacked_w1_polt_4",123.927,0.131,-14.753,293495,936)
+           create("val_lucas_attacked_w1_bloodsucker_1",-68.065,-2.167,-4.501,93162,1047)
+           create("val_lucas_attacked_w1_bloodsucker_2",-63.720,-0.561,8.645,98089,1057)
+           create("val_lucas_attacked_w1_bloodsucker_3",-67.740,-3.051,-14.118,94794,1047)
+	   news_manager.send_tip(db.actor,game.translate_string("val_lucas_about_quest_text_3"),0,"portrait_Freedom_3",14000,nil,"all_lucas_title")
+           give_info("val_beat_from_monsters_wave_1_spawn")
+        end
+        if has_alife_info("val_beat_from_monsters_wave_1_spawn") and has_alife_info("val_beat_from_monsters_wave_1") and dont_has_alife_info("val_beat_from_monsters_wave_2_spawn") then
+           create("val_lucas_attacked_w2_pseudodog_1",78.221,-0.919,40.140,243856,1042)
+           create("val_lucas_attacked_w2_pseudodog_2",66.726,0.141,-37.642,230108,935)
+           create("val_lucas_attacked_w2_pseudodog_3",112.775,0.046,-32.478,281917,936)
+           create("val_lucas_attacked_w2_pseudodog_4",123.927,0.131,-14.753,293495,936)
+           create("val_lucas_attacked_w2_snork_1",66.726,0.141,-37.642,230108,935)
+           create("val_lucas_attacked_w2_snork_2",123.927,0.131,-14.753,293495,936)
+           create("val_lucas_attacked_w2_snork_3",-68.065,-2.167,-4.501,93162,1047)
+           create("val_lucas_attacked_w2_snork_4",-63.720,-0.561,8.645,98089,1057)
+           create("val_lucas_attacked_w2_snork_5",-67.740,-3.051,-14.118,94794,1047)
+           give_info("val_beat_from_monsters_wave_2_spawn")                
+	end	 
+        if has_alife_info("val_beat_from_monsters_wave_2_spawn") and has_alife_info("val_beat_from_monsters_wave_2") and dont_has_alife_info("val_beat_from_monsters_wave_3_spawn") then
+           create("val_lucas_attacked_w3_gigant",-68.065,-2.167,-4.501,93162,1047)
+           create("val_lucas_attacked_w3_chimera_1",-63.720,-0.561,8.645,98089,1057)
+           create("val_lucas_attacked_w3_chimera_2",-67.740,-3.051,-14.118,94794,1047)
+           give_info("val_beat_from_monsters_wave_3_spawn")             
+	end
+        if has_alife_info("val_beat_from_monsters_wave_1") and has_alife_info("val_beat_from_monsters_wave_2") and has_alife_info("val_beat_from_monsters_wave_3") and dont_has_alife_info("val_beat_from_monsters_safely") then
+           create("val_freedom_spez_agent_lucas_2",37.941,-0.585,-112.114,201612,1128)
+	   give_info("val_beat_from_monsters_safely")
+	end
+        if has_alife_info("val_freedom_spez_agent_lucas_talking_go") and dont_has_alife_info("all_greh_quest_1_point_2_checked") then
+           local val_spot_point_2_eminence=actor_pos:distance_to_sqr(vector():set(-43.064,0.436,-494.944),121383,997)<5
+           if val_spot_point_2_eminence then              		   
+              give_info("val_lucas_quests_point_2_checked")              			  
+           end
+        end
+   end
+   ----------------------------------------------------------------
+   ---------------------'Лаборатория Х18'--------------------------
+   ----------------------------------------------------------------
+   if level_name=="l04u_labx18" then
+        --/Квест:Бездна
+        if has_alife_info("val_shade_of_time_card_received") and dont_has_alife_info("val_shade_of_time_come_down") then
+           give_info("val_shade_of_time_come_down")
+        end
+        if dont_has_alife_info("x18_abyss_start") then
+           add_task("x18_abyss")
+           give_info("x18_abyss_start")
+        end
+        if has_alife_info("x18_abyss_start") and dont_has_alife_info("x18_abyss_dock_done_founded") and has_alife_info("x18_abyss_dock_1_founded") and has_alife_info("x18_abyss_dock_2_founded") and has_alife_info("x18_abyss_dock_3_founded") then
+           give_info("x18_abyss_dock_done_founded")
+           give_info("val_storyline_done")
+           create("bibliotekar_nightmare_hunter",10.895393371582,-16.3443775177,70.485809326172,4489,1228)
+           create("bibliotekar_nightmare_hunter",0.88046753406525,4.188286781311,-0.79598593711853,2897,1188)
+           create("burer_nightmare",-6.9364891052246,9.3127737045288,-5.6514310836792,1883,1174)
+           game_autosave_assign("save_x18_abyss_docks_is_founded")
+        end
+        --/Квест:Секретная разработка
+        if has_alife_info("val_secret_development_start") and dont_has_alife_info("val_secret_development_is_x18") then
+           give_info("val_secret_development_is_x18")
+        end
+   end
+   ----------------------------------------------------------------
+   ----------------------'Военные Склады'--------------------------
+   ----------------------------------------------------------------
+   if level_name=="military" then
+        if (has_alife_info("mil_b7_base_alarm")) and dont_has_alife_info("mil_alt_storyline_commenced") then
+           give_info("mil_alt_storyline_commenced")
+           give_info("mil_storyline_done")
+        end
+        --/Квест:Новая тропа
+        if has_alife_info("mil_bolted_influence_reward") and dont_has_alife_info("agr_find_underground_way_news") then
+           start_game_timer("agr_find_underground_way_news",10)
+           give_info("agr_find_underground_way_news")
+        end
+        if has_alife_info("agr_find_underground_way_news") and dont_has_alife_info("agr_find_underground_way_timer") and check_game_timer("agr_find_underground_way_news") then
+           news_manager.send_tip(db.actor,game.translate_string("agr_general_staff_about_underground_way_text"),0,"top_secret",15000,nil,"jup_general_staff_title")
+           abort_game_timer("agr_find_underground_way_news")
+           start_game_timer("agr_find_underground_way_timer",2)
+           give_info("agr_find_underground_way_timer")
+        end
+        if has_alife_info("agr_find_underground_way_timer") and dont_has_alife_info("agr_find_underground_way_start") and check_game_timer("agr_find_underground_way_timer") then
+           give_info("agr_find_underground_way_start")
+           add_task("agr_find_underground_way")
+           abort_game_timer("agr_find_underground_way_timer")
+        end
+        --/Квест:Опустошение
+        if has_alife_info("mil_dislodge_invaders_start") and has_alife_info("mil_dislodge_invaders_b1_captured") and has_alife_info("mil_dislodge_invaders_b2_captured") and has_alife_info("mil_dislodge_invaders_b3_captured") and has_alife_info("mil_dislodge_invaders_b4_captured") and has_alife_info("mil_dislodge_invaders_b5_captured") and has_alife_info("mil_dislodge_invaders_b6_captured") and dont_has_alife_info("mil_dislodge_invaders_all_captured") then
+           give_info("mil_dislodge_invaders_all_captured")
+        end
+        if has_alife_info("mil_bolted_influence_start") and has_alife_info("mil_bolted_influence_b1_captured") and has_alife_info("mil_bolted_influence_b2_captured") and has_alife_info("mil_bolted_influence_b3_captured") and has_alife_info("mil_bolted_influence_b4_captured") and has_alife_info("mil_bolted_influence_b5_captured") and has_alife_info("mil_bolted_influence_b6_captured") and dont_has_alife_info("mil_bolted_influence_all_captured") then
+           give_info("mil_bolted_influence_all_captured")
+        end
+        if has_alife_info("mil_dislodge_invaders_start") and dont_has_alife_info("mil_dislodge_invaders_all_captured") and dont_has_alife_info("mil_alt_storyline_commenced") then
+           if dont_has_alife_info("mil_smart_terrain_1_renegade_respawn") then
+              if sgm_functions.is_smart_empty("mil_smart_terrain_1") then
+                 create_force("mil_b1_renegade_squad","mil_smart_terrain_1")
+              end
+              give_info("mil_smart_terrain_1_renegade_respawn")
+           elseif has_alife_info("mil_dislodge_invaders_b1_captured") and dont_has_alife_info("mil_smart_terrain_2_renegade_respawn") then
+              if sgm_functions.is_smart_empty("mil_smart_terrain_2") then
+                 create_force("mil_b2_renegade_squad","mil_smart_terrain_2")
+              end
+              give_info("mil_smart_terrain_2_renegade_respawn")
+           elseif has_alife_info("mil_dislodge_invaders_b2_captured") and dont_has_alife_info("mil_smart_terrain_3_renegade_respawn") then
+              if sgm_functions.is_smart_empty("mil_smart_terrain_3") then
+                 create_force("mil_b3_renegade_squad","mil_smart_terrain_3")
+              end
+              give_info("mil_smart_terrain_3_renegade_respawn")
+           elseif has_alife_info("mil_dislodge_invaders_b3_captured") and dont_has_alife_info("mil_smart_terrain_4_renegade_respawn") then
+              if sgm_functions.is_smart_empty("mil_smart_terrain_4") then
+                 create_force("mil_b4_renegade_squad","mil_smart_terrain_4")
+              end
+              give_info("mil_smart_terrain_4_renegade_respawn")
+           elseif has_alife_info("mil_dislodge_invaders_b4_captured") and dont_has_alife_info("mil_smart_terrain_5_renegade_respawn") then
+              if sgm_functions.is_smart_empty("mil_smart_terrain_5") then
+                 create_force("mil_b5_renegade_squad","mil_smart_terrain_5")
+              end
+              give_info("mil_smart_terrain_5_renegade_respawn")
+           elseif has_alife_info("mil_dislodge_invaders_b5_captured") and dont_has_alife_info("mil_smart_terrain_6_renegade_respawn") then
+              if sgm_functions.is_smart_empty("mil_smart_terrain_6") then
+                 create_force("mil_b6_renegade_squad","mil_smart_terrain_6")
+              end
+              give_info("mil_smart_terrain_6_renegade_respawn")
+           end
+        end
+        if has_alife_info("mil_dislodge_invaders_start") and dont_has_alife_info("mil_alt_storyline_commenced") and dont_has_alife_info("mil_b1_rasvet_invaders_squad_spawn") then
+           create_force("mil_b1_rasvet_invaders_squad","mil_smart_terrain_7")
+           give_info("mil_b1_rasvet_invaders_squad_spawn")
+        elseif has_alife_info("mil_b1_rasvet_invaders_squad_death") and dont_has_alife_info("mil_alt_storyline_commenced") and dont_has_alife_info("mil_dislodge_invaders_b1_captured") then
+           disable_info("mil_b1_rasvet_invaders_squad_death")
+           create_force("mil_b1_rasvet_invaders_squad","mil_smart_terrain_7")
+        end
+        if has_alife_info("mil_dislodge_invaders_b1_captured") and dont_has_alife_info("mil_alt_storyline_commenced") and dont_has_alife_info("mil_b2_rasvet_invaders_squad_spawn") then
+           create_force("mil_b2_rasvet_invaders_squad","mil_smart_terrain_7")
+           give_info("mil_b2_rasvet_invaders_squad_spawn")
+        elseif has_alife_info("mil_b2_rasvet_invaders_squad_death") and dont_has_alife_info("mil_alt_storyline_commenced") and dont_has_alife_info("mil_dislodge_invaders_b2_captured") then
+           disable_info("mil_b2_rasvet_invaders_squad_death")
+           create_force("mil_b2_rasvet_invaders_squad","mil_smart_terrain_7")
+        end
+        if has_alife_info("mil_dislodge_invaders_b2_captured") and dont_has_alife_info("mil_alt_storyline_commenced") and dont_has_alife_info("mil_b3_rasvet_invaders_squad_spawn") then
+           create_force("mil_b3_rasvet_invaders_squad","mil_smart_terrain_7")
+           give_info("mil_b3_rasvet_invaders_squad_spawn")
+        elseif has_alife_info("mil_b3_rasvet_invaders_squad_death") and dont_has_alife_info("mil_alt_storyline_commenced") and dont_has_alife_info("mil_dislodge_invaders_b3_captured") then
+           disable_info("mil_b3_rasvet_invaders_squad_death")
+           create_force("mil_b3_rasvet_invaders_squad","mil_smart_terrain_7")
+        end
+        if has_alife_info("mil_dislodge_invaders_b3_captured") and dont_has_alife_info("mil_alt_storyline_commenced") and dont_has_alife_info("mil_b4_rasvet_invaders_squad_spawn") then
+           create_force("mil_b4_rasvet_invaders_squad","mil_smart_terrain_7")
+           give_info("mil_b4_rasvet_invaders_squad_spawn")
+        elseif has_alife_info("mil_b4_rasvet_invaders_squad_death") and dont_has_alife_info("mil_alt_storyline_commenced") and dont_has_alife_info("mil_dislodge_invaders_b4_captured") then
+           disable_info("mil_b4_rasvet_invaders_squad_death")
+           create_force("mil_b4_rasvet_invaders_squad","mil_smart_terrain_7")
+        end
+        if has_alife_info("mil_dislodge_invaders_b4_captured") and dont_has_alife_info("mil_alt_storyline_commenced") and dont_has_alife_info("mil_b5_rasvet_invaders_squad_spawn") then
+           create_force("mil_b5_rasvet_invaders_squad","mil_smart_terrain_7")
+           give_info("mil_b5_rasvet_invaders_squad_spawn")
+        elseif has_alife_info("mil_b5_rasvet_invaders_squad_death") and dont_has_alife_info("mil_alt_storyline_commenced") and dont_has_alife_info("mil_dislodge_invaders_b5_captured") then
+           disable_info("mil_b5_rasvet_invaders_squad_death")
+           create_force("mil_b5_rasvet_invaders_squad","mil_smart_terrain_7")
+        end
+        if has_alife_info("mil_dislodge_invaders_b5_captured") and dont_has_alife_info("mil_alt_storyline_commenced") and dont_has_alife_info("mil_b6_rasvet_invaders_squad_spawn") then
+           create_force("mil_b6_rasvet_invaders_squad","mil_smart_terrain_7")
+           give_info("mil_b6_rasvet_invaders_squad_spawn")
+        elseif has_alife_info("mil_b6_rasvet_invaders_squad_death") and dont_has_alife_info("mil_alt_storyline_commenced") and dont_has_alife_info("mil_dislodge_invaders_b6_captured") then
+           disable_info("mil_b6_rasvet_invaders_squad_death")
+           create_force("mil_b6_rasvet_invaders_squad","mil_smart_terrain_7")
+        end
+        if has_alife_info("mil_dislodge_invaders_start") and dont_has_alife_info("mil_dislodge_invaders_all_captured") and dont_has_alife_info("mil_alt_storyline_commenced") then
+           if dont_has_alife_info("mil_dislodge_invaders_b1_captured") and sgm_functions.smart_community_is("mil_smart_terrain_1","rasvet",true) then
+              give_info("mil_dislodge_invaders_b1_captured")
+              create_force("mil_b1_rasvet_squad","mil_smart_terrain_1")
+              game_autosave_assign("save_mil_dislodge_invaders_b1_captured")
+              news_manager.send_tip(db.actor,"mil_dislodge_invaders_target_b1_captured_text",0,"portrait_Nebo_Exo",8000,nil,"mil_b7_base_leader_title")
+           elseif has_alife_info("mil_dislodge_invaders_b1_captured") and dont_has_alife_info("mil_dislodge_invaders_b2_captured") and sgm_functions.smart_community_is("mil_smart_terrain_2","rasvet",true) then
+              give_info("mil_dislodge_invaders_b2_captured")
+              create_force("mil_b2_rasvet_squad","mil_smart_terrain_2")
+              game_autosave_assign("save_mil_dislodge_invaders_b2_captured")
+              news_manager.send_tip(db.actor,"mil_dislodge_invaders_target_b2_captured_text",0,"portrait_Nebo_Exo",8000,nil,"mil_b7_base_leader_title")
+           elseif has_alife_info("mil_dislodge_invaders_b2_captured") and dont_has_alife_info("mil_dislodge_invaders_b3_captured") and sgm_functions.smart_community_is("mil_smart_terrain_3","rasvet",true) then
+              give_info("mil_dislodge_invaders_b3_captured")
+              create_force("mil_b3_rasvet_squad","mil_smart_terrain_3")
+              game_autosave_assign("save_mil_dislodge_invaders_b3_captured")
+              news_manager.send_tip(db.actor,"mil_dislodge_invaders_target_b3_captured_text",0,"portrait_Nebo_Exo",8000,nil,"mil_b7_base_leader_title")
+           elseif has_alife_info("mil_dislodge_invaders_b3_captured") and dont_has_alife_info("mil_dislodge_invaders_b4_captured") and sgm_functions.smart_community_is("mil_smart_terrain_4","rasvet",true) then
+              give_info("mil_dislodge_invaders_b4_captured")
+              create_force("mil_b4_rasvet_squad","mil_smart_terrain_4")
+              game_autosave_assign("save_mil_dislodge_invaders_b4_captured")
+              news_manager.send_tip(db.actor,"mil_dislodge_invaders_target_b4_captured_text",0,"portrait_Nebo_Exo",8000,nil,"mil_b7_base_leader_title")
+           elseif has_alife_info("mil_dislodge_invaders_b4_captured") and dont_has_alife_info("mil_dislodge_invaders_b5_captured") and sgm_functions.smart_community_is("mil_smart_terrain_5","rasvet",true) then
+              give_info("mil_dislodge_invaders_b5_captured")
+              create_force("mil_b5_rasvet_squad","mil_smart_terrain_5")
+              game_autosave_assign("save_mil_dislodge_invaders_b5_captured")
+              news_manager.send_tip(db.actor,"mil_dislodge_invaders_target_b5_captured_text",0,"portrait_Nebo_Exo",8000,nil,"mil_b7_base_leader_title")
+           elseif has_alife_info("mil_dislodge_invaders_b5_captured") and dont_has_alife_info("mil_dislodge_invaders_b6_captured") and sgm_functions.smart_community_is("mil_smart_terrain_6","rasvet",true) then
+              give_info("mil_dislodge_invaders_b6_captured")
+              create_force("mil_b6_rasvet_squad","mil_smart_terrain_6")
+              game_autosave_assign("save_mil_dislodge_invaders_b6_captured")
+              news_manager.send_tip(db.actor,"mil_dislodge_invaders_target_b6_captured_text",0,"portrait_Nebo_Exo",8000,nil,"mil_b7_base_leader_title")
+           end
+        end
+        --/Квест:Тотальный контроль
+        if has_alife_info("mil_bolted_influence_start") and dont_has_alife_info("mil_alt_storyline_commenced") and dont_has_alife_info("mil_b1_night_stalker_invaders_squad_spawn") then
+           create_force("mil_b1_night_stalker_invaders_squad","mil_smart_terrain_7")
+           give_info("mil_b1_night_stalker_invaders_squad_spawn")
+        elseif has_alife_info("mil_b1_night_stalker_invaders_squad_death") and dont_has_alife_info("mil_alt_storyline_commenced") and dont_has_alife_info("mil_bolted_influence_b1_captured") then
+           disable_info("mil_b1_night_stalker_invaders_squad_death")
+           create_force("mil_b1_night_stalker_invaders_squad","mil_smart_terrain_7")
+        end
+        if has_alife_info("mil_bolted_influence_b1_captured") and dont_has_alife_info("mil_alt_storyline_commenced") and dont_has_alife_info("mil_b2_night_stalker_invaders_squad_spawn") then
+           create_force("mil_b2_night_stalker_invaders_squad","mil_smart_terrain_7")
+           give_info("mil_b2_night_stalker_invaders_squad_spawn")
+        elseif has_alife_info("mil_b2_night_stalker_invaders_squad_death") and dont_has_alife_info("mil_alt_storyline_commenced") and dont_has_alife_info("mil_bolted_influence_b2_captured") then
+           disable_info("mil_b2_night_stalker_invaders_squad_death")
+           create_force("mil_b2_night_stalker_invaders_squad","mil_smart_terrain_7")
+        end
+        if has_alife_info("mil_bolted_influence_b2_captured") and dont_has_alife_info("mil_alt_storyline_commenced") and dont_has_alife_info("mil_b3_night_stalker_invaders_squad_spawn") then
+           create_force("mil_b3_night_stalker_invaders_squad","mil_smart_terrain_7")
+           give_info("mil_b3_night_stalker_invaders_squad_spawn")
+        elseif has_alife_info("mil_b3_night_stalker_invaders_squad_death") and dont_has_alife_info("mil_alt_storyline_commenced") and dont_has_alife_info("mil_bolted_influence_b3_captured") then
+           disable_info("mil_b3_night_stalker_invaders_squad_death")
+           create_force("mil_b3_night_stalker_invaders_squad","mil_smart_terrain_7")
+        end
+        if has_alife_info("mil_bolted_influence_b3_captured") and dont_has_alife_info("mil_alt_storyline_commenced") and dont_has_alife_info("mil_b4_night_stalker_invaders_squad_spawn") then
+           create_force("mil_b4_night_stalker_invaders_squad","mil_smart_terrain_7")
+           give_info("mil_b4_night_stalker_invaders_squad_spawn")
+        elseif has_alife_info("mil_b4_night_stalker_invaders_squad_death") and dont_has_alife_info("mil_alt_storyline_commenced") and dont_has_alife_info("mil_bolted_influence_b4_captured") then
+           disable_info("mil_b4_night_stalker_invaders_squad_death")
+           create_force("mil_b4_night_stalker_invaders_squad","mil_smart_terrain_7")
+        end
+        if has_alife_info("mil_bolted_influence_b4_captured") and dont_has_alife_info("mil_alt_storyline_commenced") and dont_has_alife_info("mil_b5_night_stalker_invaders_squad_spawn") then
+           create_force("mil_b5_night_stalker_invaders_squad","mil_smart_terrain_7")
+           give_info("mil_b5_night_stalker_invaders_squad_spawn")
+        elseif has_alife_info("mil_b5_night_stalker_invaders_squad_death") and dont_has_alife_info("mil_alt_storyline_commenced") and dont_has_alife_info("mil_bolted_influence_b5_captured") then
+           disable_info("mil_b5_night_stalker_invaders_squad_death")
+           create_force("mil_b5_night_stalker_invaders_squad","mil_smart_terrain_7")
+        end
+        if has_alife_info("mil_bolted_influence_b5_captured") and dont_has_alife_info("mil_alt_storyline_commenced") and dont_has_alife_info("mil_b6_night_stalker_invaders_squad_spawn") then
+           create_force("mil_b6_night_stalker_invaders_squad","mil_smart_terrain_7")
+           give_info("mil_b6_night_stalker_invaders_squad_spawn")
+        elseif has_alife_info("mil_b6_night_stalker_invaders_squad_death") and dont_has_alife_info("mil_alt_storyline_commenced") and dont_has_alife_info("mil_bolted_influence_b6_captured") then
+           disable_info("mil_b6_night_stalker_invaders_squad_death")
+           create_force("mil_b6_night_stalker_invaders_squad","mil_smart_terrain_7")
+        end
+        if has_alife_info("mil_bolted_influence_start") and dont_has_alife_info("mil_bolted_influence_all_captured") and dont_has_alife_info("mil_alt_storyline_commenced") then
+           if dont_has_alife_info("mil_bolted_influence_b1_captured") and sgm_functions.smart_community_is("mil_smart_terrain_1","night_stalker",true) then
+              give_info("mil_bolted_influence_b1_captured")
+              create_force("mil_b1_night_stalker_squad","mil_smart_terrain_1")
+              game_autosave_assign("save_mil_bolted_influence_b1_captured")
+              news_manager.send_tip(db.actor,"mil_bolted_influence_target_b1_captured_text",0,"portrait_neutral_4",8000,nil,"mil_b7_night_stalker_leader_title")
+           elseif has_alife_info("mil_bolted_influence_b1_captured") and dont_has_alife_info("mil_bolted_influence_b2_captured") and sgm_functions.smart_community_is("mil_smart_terrain_2","night_stalker",true) then
+              give_info("mil_bolted_influence_b2_captured")
+              create_force("mil_b2_night_stalker_squad","mil_smart_terrain_2")
+              game_autosave_assign("save_mil_bolted_influence_b2_captured")
+              news_manager.send_tip(db.actor,"mil_bolted_influence_target_b2_captured_text",0,"portrait_neutral_4",8000,nil,"mil_b7_night_stalker_leader_title")
+           elseif has_alife_info("mil_bolted_influence_b2_captured") and dont_has_alife_info("mil_bolted_influence_b3_captured") and sgm_functions.smart_community_is("mil_smart_terrain_3","night_stalker",true) then
+              give_info("mil_bolted_influence_b3_captured")
+              create_force("mil_b3_night_stalker_squad","mil_smart_terrain_3")
+              game_autosave_assign("save_mil_bolted_influence_b3_captured")
+              news_manager.send_tip(db.actor,"mil_bolted_influence_target_b3_captured_text",0,"portrait_neutral_4",8000,nil,"mil_b7_night_stalker_leader_title")
+           elseif has_alife_info("mil_bolted_influence_b3_captured") and dont_has_alife_info("mil_bolted_influence_b4_captured") and sgm_functions.smart_community_is("mil_smart_terrain_4","night_stalker",true) then
+              give_info("mil_bolted_influence_b4_captured")
+              create_force("mil_b4_night_stalker_squad","mil_smart_terrain_4")
+              game_autosave_assign("save_mil_bolted_influence_b4_captured")
+              news_manager.send_tip(db.actor,"mil_bolted_influence_target_b4_captured_text",0,"portrait_neutral_4",8000,nil,"mil_b7_night_stalker_leader_title")
+           elseif has_alife_info("mil_bolted_influence_b4_captured") and dont_has_alife_info("mil_bolted_influence_b5_captured") and sgm_functions.smart_community_is("mil_smart_terrain_5","night_stalker",true) then
+              give_info("mil_bolted_influence_b5_captured")
+              create_force("mil_b5_night_stalker_squad","mil_smart_terrain_5")
+              game_autosave_assign("save_mil_bolted_influence_b5_captured")
+              news_manager.send_tip(db.actor,"mil_bolted_influence_target_b5_captured_text",0,"portrait_neutral_4",8000,nil,"mil_b7_night_stalker_leader_title")
+           elseif has_alife_info("mil_bolted_influence_b5_captured") and dont_has_alife_info("mil_bolted_influence_b6_captured") and sgm_functions.smart_community_is("mil_smart_terrain_6","night_stalker",true) then
+              give_info("mil_bolted_influence_b6_captured")
+              create_force("mil_b6_night_stalker_squad","mil_smart_terrain_6")
+              game_autosave_assign("save_mil_bolted_influence_b6_captured")
+              news_manager.send_tip(db.actor,"mil_bolted_influence_target_b6_captured_text",0,"portrait_neutral_4",8000,nil,"mil_b7_night_stalker_leader_title")
+           end
+        end
+        --/Квест:Оскал зверя
+        if has_alife_info("mil_defence_b6_allow") and dont_has_alife_info("mil_alt_storyline_commenced") and dont_has_alife_info("mil_defence_b6_blackday") then
+           give_info("mil_defence_b6_blackday")
+           blackday_activate()
+        end
+        if has_alife_info("mil_defence_b1_start") and dont_has_alife_info("mil_defence_b7_complete") and dont_has_alife_info("mil_alt_storyline_commenced") then
+           if dont_has_alife_info("mil_defence_b1_complete") then
+              if has_alife_info("mil_defence_b1_monsters_is_dead") and dont_has_alife_info("mil_b1_rasvet_squad_death") then
+                 give_info("mil_defence_b1_done")
+                 game_autosave_assign("save_mil_defence_b1_done")
+              elseif dont_has_alife_info("mil_defence_b1_monsters_is_dead") and has_alife_info("mil_b1_rasvet_squad_death") then
+                 give_info("mil_defence_b1_fail")
+              end
+           elseif dont_has_alife_info("mil_defence_b2_complete") then
+              if has_alife_info("mil_defence_b2_monsters_is_dead") and dont_has_alife_info("mil_b2_rasvet_squad_death") then
+                 give_info("mil_defence_b2_done")
+                 game_autosave_assign("save_mil_defence_b2_done")
+              elseif dont_has_alife_info("mil_defence_b2_monsters_is_dead") and has_alife_info("mil_b2_rasvet_squad_death") then
+                 give_info("mil_defence_b2_fail")
+              end
+           elseif dont_has_alife_info("mil_defence_b3_complete") then
+              if has_alife_info("mil_defence_b3_monsters_is_dead") and dont_has_alife_info("mil_b3_rasvet_squad_death") then
+                 give_info("mil_defence_b3_done")
+                 game_autosave_assign("save_mil_defence_b3_done")
+              elseif dont_has_alife_info("mil_defence_b3_monsters_is_dead") and has_alife_info("mil_b3_rasvet_squad_death") then
+                 give_info("mil_defence_b3_fail")
+              end
+           elseif dont_has_alife_info("mil_defence_b4_complete") then
+              if has_alife_info("mil_defence_b4_monsters_is_dead") and dont_has_alife_info("mil_b4_rasvet_squad_death") then
+                 give_info("mil_defence_b4_done")
+                 game_autosave_assign("save_mil_defence_b4_done")
+              elseif dont_has_alife_info("mil_defence_b4_monsters_is_dead") and has_alife_info("mil_b4_rasvet_squad_death") then
+                 give_info("mil_defence_b4_fail")
+              end
+           elseif dont_has_alife_info("mil_defence_b5_complete") then
+              if has_alife_info("mil_defence_b5_monsters_is_dead") and dont_has_alife_info("mil_b5_rasvet_squad_death") then
+                 give_info("mil_defence_b5_done")
+                 game_autosave_assign("save_mil_defence_b5_done")
+              elseif dont_has_alife_info("mil_defence_b5_monsters_is_dead") and has_alife_info("mil_b5_rasvet_squad_death") then
+                 give_info("mil_defence_b5_fail")
+              end
+           elseif dont_has_alife_info("mil_defence_b6_complete") then
+              if dont_has_alife_info("mil_defence_b6_monsters_is_dead") and has_alife_info("mil_b6_rasvet_squad_death") then
+                 give_info("mil_defence_b6_fail")
+                 game_autosave_assign("save_mil_defence_b6_fail")
+              end
+           elseif dont_has_alife_info("mil_defence_b7_complete") then
+              if dont_has_alife_info("mil_defence_b7_monsters_is_dead") and has_alife_info("mil_b7_rasvet_1_squad_death") and has_alife_info("mil_b7_rasvet_2_squad_death") and has_alife_info("mil_b7_rasvet_3_squad_death") and has_alife_info("mil_b7_rasvet_4_squad_death") and has_alife_info("mil_b7_rasvet_5_squad_death") then
+                 give_info("mil_defence_b7_fail")
+                 game_autosave_assign("save_mil_defence_b7_fail")
+              end
+           end
+        end
+        if has_alife_info("mil_defence_b5_complete") and dont_has_alife_info("mil_alt_storyline_commenced") and dont_has_alife_info("mil_b4_hole_monsters_squad_spawn") then
+           create_force("mil_b4_hole_monsters_squad","mil_monster_burrow_14")
+           give_info("mil_b4_hole_monsters_squad_spawn")
+        end
+        if has_alife_info("mil_defence_b1_start") and has_alife_info("mil_b1_monster_1_squad_death") and has_alife_info("mil_b1_monster_2_squad_death") and has_alife_info("mil_b1_monster_3_squad_death") and dont_has_alife_info("mil_defence_b1_monsters_is_dead") then
+           give_info("mil_defence_b1_monsters_is_dead")
+        end
+        if has_alife_info("mil_defence_b2_start") and has_alife_info("mil_b2_monster_1_squad_death") and has_alife_info("mil_b2_monster_2_squad_death") and has_alife_info("mil_b2_monster_3_squad_death") and dont_has_alife_info("mil_defence_b2_monsters_is_dead") then
+           give_info("mil_defence_b2_monsters_is_dead")
+        end
+        if has_alife_info("mil_defence_b3_start") and has_alife_info("mil_b3_monster_1_squad_death") and has_alife_info("mil_b3_monster_2_squad_death") and has_alife_info("mil_b3_monster_3_squad_death") and dont_has_alife_info("mil_defence_b3_monsters_is_dead") then
+           give_info("mil_defence_b3_monsters_is_dead")
+        end
+        if has_alife_info("mil_defence_b4_start") and has_alife_info("mil_b4_monster_1_squad_death") and has_alife_info("mil_b4_monster_2_squad_death") and has_alife_info("mil_b4_monster_3_squad_death") and dont_has_alife_info("mil_defence_b4_monsters_is_dead") then
+           give_info("mil_defence_b4_monsters_is_dead")
+        end
+        if has_alife_info("mil_defence_b5_start") and has_alife_info("mil_b5_monster_1_squad_death") and has_alife_info("mil_b5_monster_2_squad_death") and has_alife_info("mil_b5_monster_3_squad_death") and dont_has_alife_info("mil_defence_b5_monsters_is_dead") then
+           give_info("mil_defence_b5_monsters_is_dead")
+        end
+        if has_alife_info("mil_defence_b6_start") and has_alife_info("mil_b6_monster_1_1_squad_death") and has_alife_info("mil_b6_monster_1_2_squad_death") and has_alife_info("mil_b6_monster_1_3_squad_death") and has_alife_info("mil_b6_monster_1_4_squad_death") and has_alife_info("mil_b6_monster_2_1_squad_death") and has_alife_info("mil_b6_monster_2_2_squad_death") and has_alife_info("mil_b6_monster_2_3_squad_death") and has_alife_info("mil_b6_monster_2_4_squad_death") and has_alife_info("mil_b6_monster_3_1_squad_death") and has_alife_info("mil_b6_monster_3_2_squad_death") and has_alife_info("mil_b6_monster_3_3_squad_death") and has_alife_info("mil_b6_monster_3_4_squad_death") and dont_has_alife_info("mil_defence_b6_monsters_is_dead") then
+           give_info("mil_defence_b6_monsters_is_dead")
+        end
+        if has_alife_info("mil_defence_b7_start") and has_alife_info("mil_b7_monster_1_1_squad_death") and has_alife_info("mil_b7_monster_1_2_squad_death") and has_alife_info("mil_b7_monster_1_3_squad_death") and has_alife_info("mil_b7_monster_1_4_squad_death") and has_alife_info("mil_b7_monster_2_1_squad_death") and has_alife_info("mil_b7_monster_2_2_squad_death") and has_alife_info("mil_b7_monster_2_3_squad_death") and has_alife_info("mil_b7_monster_2_4_squad_death") and has_alife_info("mil_b7_monster_3_1_squad_death") and has_alife_info("mil_b7_monster_3_2_squad_death") and has_alife_info("mil_b7_monster_3_3_squad_death") and has_alife_info("mil_b7_monster_3_4_squad_death") and dont_has_alife_info("mil_defence_b7_monsters_is_dead") then
+           give_info("mil_defence_b7_monsters_is_dead")
+        end
+        if has_alife_info("mil_defence_b1_start") and has_alife_info("mil_defence_b1_allow") and dont_has_alife_info("mil_alt_storyline_commenced") and dont_has_alife_info("mil_defence_b1_s3") then
+           if dont_has_alife_info("mil_defence_b1_s1") then
+              start_game_timer("mil_defence_b1_spawn",5)
+              create_force("mil_b1_monster_1_squad",-265.5771484375,-16.736305236816,-17.875598907471,67717,1282)
+              give_info("mil_defence_b1_s1")
+           elseif dont_has_alife_info("mil_defence_b1_s2") and check_game_timer("mil_defence_b1_spawn") then
+              start_game_timer("mil_defence_b1_spawn",5)
+              create_force("mil_b1_monster_2_squad",-145.51467895508,-3.1505608558655,30.919124603271,162921,1283)
+              give_info("mil_defence_b1_s2")
+           elseif dont_has_alife_info("mil_defence_b1_s3") and check_game_timer("mil_defence_b1_spawn") then
+              abort_game_timer("mil_defence_b1_spawn")
+              create_force("mil_b1_monster_3_squad",-289.13241577148,-6.3895344734192,126.08106994629,49707,1417)
+              give_info("mil_defence_b1_s3")
+           end
+        elseif has_alife_info("mil_defence_b2_start") and has_alife_info("mil_defence_b2_allow") and dont_has_alife_info("mil_alt_storyline_commenced") and dont_has_alife_info("mil_defence_b2_s3") then
+           if dont_has_alife_info("mil_defence_b2_s1") then
+              start_game_timer("mil_defence_b2_spawn",5)
+              create_force("mil_b2_monster_1_squad",-191.78604125977,-11.790300369263,256.17407226563,124011,1261)
+              give_info("mil_defence_b2_s1")
+           elseif dont_has_alife_info("mil_defence_b2_s2") and check_game_timer("mil_defence_b2_spawn") then
+              start_game_timer("mil_defence_b2_spawn",5)
+              create_force("mil_b2_monster_2_squad",-296.98626708984,-14.978174209595,320.79739379883,43929,1404)
+              give_info("mil_defence_b2_s2")
+           elseif dont_has_alife_info("mil_defence_b2_s3") and check_game_timer("mil_defence_b2_spawn") then
+              abort_game_timer("mil_defence_b2_spawn")
+              create_force("mil_b2_monster_3_squad",-345.67150878906,-13.285115242004,171.59674072266,10163,1412)
+              give_info("mil_defence_b2_s3")
+           end
+        elseif has_alife_info("mil_defence_b3_start") and has_alife_info("mil_defence_b3_allow") and dont_has_alife_info("mil_alt_storyline_commenced") and dont_has_alife_info("mil_defence_b3_s3") then
+           if dont_has_alife_info("mil_defence_b3_s1") then
+              start_game_timer("mil_defence_b3_spawn",5)
+              create_force("mil_b3_monster_1_squad",-270.43542480469,-7.5619378089905,403.20883178711,64645,1386)
+              give_info("mil_defence_b3_s1")
+           elseif dont_has_alife_info("mil_defence_b3_s2") and check_game_timer("mil_defence_b3_spawn") then
+              start_game_timer("mil_defence_b3_spawn",5)
+              create_force("mil_b3_monster_2_squad",-302.03961181641,-13.52307510376,325.08654785156,40334,1404)
+              give_info("mil_defence_b3_s2")
+           elseif dont_has_alife_info("mil_defence_b3_s3") and check_game_timer("mil_defence_b3_spawn") then
+              abort_game_timer("mil_defence_b3_spawn")
+              create_force("mil_b3_monster_3_squad",-246.86123657227,-14.323375701904,376.75689697266,81852,1384)
+              give_info("mil_defence_b3_s3")
+           end
+        elseif has_alife_info("mil_defence_b4_start") and has_alife_info("mil_defence_b4_allow") and dont_has_alife_info("mil_alt_storyline_commenced") and dont_has_alife_info("mil_defence_b4_s3") then
+           if dont_has_alife_info("mil_defence_b4_s1") then
+              start_game_timer("mil_defence_b4_spawn",5)
+              create_force("mil_b4_monster_1_squad",-241.01593017578,-15.509099960327,370.9013671875,86538,1262)
+              give_info("mil_defence_b4_s1")
+           elseif dont_has_alife_info("mil_defence_b4_s2") and check_game_timer("mil_defence_b4_spawn") then
+              start_game_timer("mil_defence_b4_spawn",5)
+              create_force("mil_b4_monster_2_squad",-104.54344177246,-17.986875534058,372.98922729492,199362,1299)
+              give_info("mil_defence_b4_s2")
+           elseif dont_has_alife_info("mil_defence_b4_s3") and check_game_timer("mil_defence_b4_spawn") then
+              abort_game_timer("mil_defence_b4_spawn")
+              create_force("mil_b4_monster_3_squad",-201.98222351074,-1.4216885566711,426.57788085938,116063,1385)
+              give_info("mil_defence_b4_s3")
+           end
+        elseif has_alife_info("mil_defence_b5_start") and has_alife_info("mil_defence_b5_allow") and dont_has_alife_info("mil_alt_storyline_commenced") and dont_has_alife_info("mil_defence_b5_s3") then
+           if dont_has_alife_info("mil_defence_b5_s1") then
+              start_game_timer("mil_defence_b5_spawn",5)
+              create_force("mil_b5_monster_1_squad",-23.3343334198,-22.128900527954,236.13064575195,268487,1246)
+              give_info("mil_defence_b5_s1")
+           elseif dont_has_alife_info("mil_defence_b5_s2") and check_game_timer("mil_defence_b5_spawn") then
+              start_game_timer("mil_defence_b5_spawn",5)
+              create_force("mil_b5_monster_2_squad",-138.84400939941,-15.506790161133,166.12881469727,169217,1272)
+              give_info("mil_defence_b5_s2")
+           elseif dont_has_alife_info("mil_defence_b5_s3") and check_game_timer("mil_defence_b5_spawn") then
+              abort_game_timer("mil_defence_b5_spawn")
+              create_force("mil_b5_monster_3_squad",-165.89956665039,-6.997594833374,274.90390014648,145162,1261)
+              give_info("mil_defence_b5_s3")
+           end
+        elseif has_alife_info("mil_defence_b6_start") and has_alife_info("mil_defence_b6_allow") and dont_has_alife_info("mil_alt_storyline_commenced") and dont_has_alife_info("mil_defence_b6_complete") then
+           if dont_has_alife_info("mil_defence_b6_s1_1") then
+              start_game_timer("mil_defence_b6_spawn",5)
+              create_force("mil_b6_monster_1_1_squad",99.480834960938,-13.413173675537,424.06475830078,366807,1398)
+              xr_effects.mil_b6_wave_counter_inc(db.actor,nil)
+              give_info("mil_defence_b6_s1_1")
+           elseif dont_has_alife_info("mil_defence_b6_s1_2") and check_game_timer("mil_defence_b6_spawn") then
+              start_game_timer("mil_defence_b6_spawn",5)
+              create_force("mil_b6_monster_1_2_squad",-9.3376874923706,-14.482172966003,360.31167602539,281610,1303)
+              xr_effects.mil_b6_wave_counter_inc(db.actor,nil)
+              give_info("mil_defence_b6_s1_2")
+           elseif dont_has_alife_info("mil_defence_b6_s1_3") and check_game_timer("mil_defence_b6_spawn") then
+              start_game_timer("mil_defence_b6_spawn",5)
+              create_force("mil_b6_monster_1_3_squad",80.377258300781,-10.583157539368,221.33985900879,353554,1288)
+              xr_effects.mil_b6_wave_counter_inc(db.actor,nil)
+              give_info("mil_defence_b6_s1_3")
+           elseif dont_has_alife_info("mil_defence_b6_s1_4") and check_game_timer("mil_defence_b6_spawn") then
+              start_game_timer("mil_defence_b6_spawn",5)
+              create_force("mil_b6_monster_1_4_squad",99.480834960938,-13.413173675537,424.06475830078,366807,1398)
+              xr_effects.mil_b6_wave_counter_inc(db.actor,nil)
+              give_info("mil_defence_b6_s1_4")
+           elseif dont_has_alife_info("mil_defence_b6_s2_1") and read_mod_param("mil_b6_wave_counter")<4 and check_game_timer("mil_defence_b6_spawn") then
+              start_game_timer("mil_defence_b6_spawn",3)
+              create_force("mil_b6_monster_2_1_squad",-9.3376874923706,-14.482172966003,360.31167602539,281610,1303)
+              xr_effects.mil_b6_wave_counter_inc(db.actor,nil)
+              give_info("mil_defence_b6_s2_1")
+           elseif dont_has_alife_info("mil_defence_b6_s2_2") and read_mod_param("mil_b6_wave_counter")<4 and check_game_timer("mil_defence_b6_spawn") then
+              start_game_timer("mil_defence_b6_spawn",3)
+              create_force("mil_b6_monster_2_2_squad",80.377258300781,-10.583157539368,221.33985900879,353554,1288)
+              xr_effects.mil_b6_wave_counter_inc(db.actor,nil)
+              give_info("mil_defence_b6_s2_2")
+           elseif dont_has_alife_info("mil_defence_b6_s2_3") and read_mod_param("mil_b6_wave_counter")<4 and check_game_timer("mil_defence_b6_spawn") then
+              start_game_timer("mil_defence_b6_spawn",3)
+              create_force("mil_b6_monster_2_3_squad",99.480834960938,-13.413173675537,424.06475830078,366807,1398)
+              xr_effects.mil_b6_wave_counter_inc(db.actor,nil)
+              give_info("mil_defence_b6_s2_3")
+           elseif dont_has_alife_info("mil_defence_b6_s2_4") and read_mod_param("mil_b6_wave_counter")<4 and check_game_timer("mil_defence_b6_spawn") then
+              start_game_timer("mil_defence_b6_spawn",2)
+              create_force("mil_b6_monster_2_4_squad",-9.3376874923706,-14.482172966003,360.31167602539,281610,1303)
+              xr_effects.mil_b6_wave_counter_inc(db.actor,nil)
+              give_info("mil_defence_b6_s2_4")
+           elseif dont_has_alife_info("mil_defence_b6_s3_1") and read_mod_param("mil_b6_wave_counter")<4 and check_game_timer("mil_defence_b6_spawn") then
+              start_game_timer("mil_defence_b6_spawn",2)
+              create_force("mil_b6_monster_3_1_squad",80.377258300781,-10.583157539368,221.33985900879,353554,1288)
+              xr_effects.mil_b6_wave_counter_inc(db.actor,nil)
+              give_info("mil_defence_b6_s3_1")
+           elseif dont_has_alife_info("mil_defence_b6_s3_2") and read_mod_param("mil_b6_wave_counter")<4 and check_game_timer("mil_defence_b6_spawn") then
+              start_game_timer("mil_defence_b6_spawn",2)
+              create_force("mil_b6_monster_3_2_squad",99.480834960938,-13.413173675537,424.06475830078,366807,1398)
+              xr_effects.mil_b6_wave_counter_inc(db.actor,nil)
+              give_info("mil_defence_b6_s3_2")
+           elseif dont_has_alife_info("mil_defence_b6_s3_3") and read_mod_param("mil_b6_wave_counter")<4 and check_game_timer("mil_defence_b6_spawn") then
+              start_game_timer("mil_defence_b6_spawn",2)
+              create_force("mil_b6_monster_3_3_squad",-9.3376874923706,-14.482172966003,360.31167602539,281610,1303)
+              xr_effects.mil_b6_wave_counter_inc(db.actor,nil)
+              give_info("mil_defence_b6_s3_3")
+           elseif dont_has_alife_info("mil_defence_b6_s3_4") and read_mod_param("mil_b6_wave_counter")<4 and check_game_timer("mil_defence_b6_spawn") then
+              start_game_timer("mil_defence_b6_spawn",2)
+              create_force("mil_b6_monster_3_4_squad",-9.3376874923706,-14.482172966003,360.31167602539,281610,1303)
+              xr_effects.mil_b6_wave_counter_inc(db.actor,nil)
+              give_info("mil_defence_b6_s3_4")
+              disable_info("mil_defence_b6_s3_1")
+              disable_info("mil_defence_b6_s3_2")
+              disable_info("mil_defence_b6_s3_3")
+              disable_info("mil_defence_b6_s3_4")
+           end
+        elseif has_alife_info("mil_defence_b7_start") and has_alife_info("mil_defence_b7_allow") and dont_has_alife_info("mil_alt_storyline_commenced") and dont_has_alife_info("mil_defence_b7_complete") then
+           if dont_has_alife_info("mil_defence_b7_s1_1") then
+              start_game_timer("mil_defence_b7_spawn",5)
+              create_force("mil_b7_monster_1_1_squad",43.816783905029,-6.2895078659058,105.77521514893,326021,1286)
+              xr_effects.mil_b7_wave_counter_inc(db.actor,nil)
+              give_info("mil_defence_b7_s1_1")
+           elseif dont_has_alife_info("mil_defence_b7_s1_2") and check_game_timer("mil_defence_b7_spawn") then
+              start_game_timer("mil_defence_b7_spawn",5)
+              create_force("mil_b7_monster_1_2_squad",-11.752632141113,-17.214389801025,160.5245513916,278748,1252)
+              xr_effects.mil_b7_wave_counter_inc(db.actor,nil)
+              give_info("mil_defence_b7_s1_2")
+           elseif dont_has_alife_info("mil_defence_b7_s1_3") and check_game_timer("mil_defence_b7_spawn") then
+              start_game_timer("mil_defence_b7_spawn",5)
+              create_force("mil_b7_monster_1_3_squad",-49.0671043396,-14.581699371338,134.64549255371,246124,1379)
+              xr_effects.mil_b7_wave_counter_inc(db.actor,nil)
+              give_info("mil_defence_b7_s1_3")
+           elseif dont_has_alife_info("mil_defence_b7_s1_4") and check_game_timer("mil_defence_b7_spawn") then
+              start_game_timer("mil_defence_b7_spawn",5)
+              create_force("mil_b7_monster_1_4_squad",43.816783905029,-6.2895078659058,105.77521514893,326021,1286)
+              xr_effects.mil_b7_wave_counter_inc(db.actor,nil)
+              give_info("mil_defence_b7_s1_4")
+           elseif dont_has_alife_info("mil_defence_b7_s2_1") and check_game_timer("mil_defence_b7_spawn") then
+              start_game_timer("mil_defence_b7_spawn",3)
+              create_force("mil_b7_monster_2_1_squad",-11.752632141113,-17.214389801025,160.5245513916,278748,1252)
+              xr_effects.mil_b7_wave_counter_inc(db.actor,nil)
+              give_info("mil_defence_b7_s2_1")
+           elseif dont_has_alife_info("mil_defence_b7_s2_2") and check_game_timer("mil_defence_b7_spawn") then
+              start_game_timer("mil_defence_b7_spawn",3)
+              create_force("mil_b7_monster_2_2_squad",-49.0671043396,-14.581699371338,134.64549255371,246124,1379)
+              xr_effects.mil_b7_wave_counter_inc(db.actor,nil)
+              give_info("mil_defence_b7_s2_2")
+           elseif dont_has_alife_info("mil_defence_b7_s2_3") and read_mod_param("mil_b7_wave_counter")<6 and check_game_timer("mil_defence_b7_spawn") then
+              start_game_timer("mil_defence_b7_spawn",3)
+              create_force("mil_b7_monster_2_3_squad",83.490676879883,-10.593253135681,72.842163085938,355626,1313)
+              xr_effects.mil_b7_wave_counter_inc(db.actor,nil)
+              give_info("mil_defence_b7_s2_3")
+           elseif dont_has_alife_info("mil_defence_b7_s2_4") and read_mod_param("mil_b7_wave_counter")<6 and check_game_timer("mil_defence_b7_spawn") then
+              start_game_timer("mil_defence_b7_spawn",2)
+              create_force("mil_b7_monster_2_4_squad",100.88254547119,-7.0102977752686,26.270305633545,367446,1429)
+              xr_effects.mil_b7_wave_counter_inc(db.actor,nil)
+              give_info("mil_defence_b7_s2_4")
+           elseif dont_has_alife_info("mil_defence_b7_s3_1") and read_mod_param("mil_b7_wave_counter")<6 and check_game_timer("mil_defence_b7_spawn") then
+              start_game_timer("mil_defence_b7_spawn",3)
+              create_force("mil_b7_monster_3_1_squad",43.816783905029,-6.2895078659058,105.77521514893,326021,1286)
+              xr_effects.mil_b7_wave_counter_inc(db.actor,nil)
+              give_info("mil_defence_b7_s3_1")
+           elseif dont_has_alife_info("mil_defence_b7_s3_2") and read_mod_param("mil_b7_wave_counter")<6 and check_game_timer("mil_defence_b7_spawn") then
+              start_game_timer("mil_defence_b7_spawn",3)
+              create_force("mil_b7_monster_3_2_squad",83.490676879883,-10.593253135681,72.842163085938,355626,1313)
+              xr_effects.mil_b7_wave_counter_inc(db.actor,nil)
+              give_info("mil_defence_b7_s3_2")
+           elseif dont_has_alife_info("mil_defence_b7_s3_3") and read_mod_param("mil_b7_wave_counter")<6 and check_game_timer("mil_defence_b7_spawn") then
+              start_game_timer("mil_defence_b7_spawn",3)
+              create_force("mil_b7_monster_3_3_squad",-99.884765625,-12.418152809143,-36.953197479248,202531,1420)
+              xr_effects.mil_b7_wave_counter_inc(db.actor,nil)
+              give_info("mil_defence_b7_s3_3")
+           elseif dont_has_alife_info("mil_defence_b7_s3_4") and read_mod_param("mil_b7_wave_counter")<6 and check_game_timer("mil_defence_b7_spawn") then
+              start_game_timer("mil_defence_b7_spawn",5)
+              create_force("mil_b7_monster_3_4_squad",-49.191467285156,-12.976804733276,45.146057128906,246011,1318)
+              xr_effects.mil_b7_wave_counter_inc(db.actor,nil)
+              give_info("mil_defence_b7_s3_4")
+              disable_info("mil_defence_b7_s3_1")
+              disable_info("mil_defence_b7_s3_2")
+              disable_info("mil_defence_b7_s3_3")
+              disable_info("mil_defence_b7_s3_4")
+           end
+        end
+        if has_alife_info("mil_defence_b7_start") and dont_has_alife_info("mil_defence_b7_refresh") then
+           set_squad_removed("mil_b7_rasvet_3_squad")
+           set_squad_removed("mil_b7_rasvet_4_squad")
+           set_squad_removed("mil_b7_rasvet_5_squad")
+           give_info("mil_b7_rasvet_3_squad_death")
+           give_info("mil_b7_rasvet_4_squad_death")
+           give_info("mil_b7_rasvet_5_squad_death")
+           give_info("mil_defence_b7_refresh")
+        end
+        if has_alife_info("mil_defence_b7_complete") and dont_has_alife_info("mil_defence_b7_clear_counters") then
+           give_info("mil_defence_b7_clear_counters")
+           clear_mod_param("mil_b6_wave_counter")
+           clear_mod_param("mil_b7_wave_counter")
+           set_squad_removed("mil_b1_rasvet_squad")
+           set_squad_removed("mil_b1_rasvet_invaders_squad")
+           set_squad_removed("mil_b1_renegade_squad")
+           set_squad_removed("mil_b2_rasvet_squad")
+           set_squad_removed("mil_b2_rasvet_invaders_squad")
+           set_squad_removed("mil_b2_renegade_squad")
+           set_squad_removed("mil_b3_rasvet_squad")
+           set_squad_removed("mil_b3_rasvet_invaders_squad")
+           set_squad_removed("mil_b3_renegade_squad")
+           set_squad_removed("mil_b4_rasvet_squad")
+           set_squad_removed("mil_b4_rasvet_invaders_squad")
+           set_squad_removed("mil_b4_renegade_squad")
+           set_squad_removed("mil_b5_rasvet_squad")
+           set_squad_removed("mil_b5_rasvet_invaders_squad")
+           set_squad_removed("mil_b5_renegade_squad")
+           set_squad_removed("mil_b6_rasvet_squad")
+           set_squad_removed("mil_b6_rasvet_invaders_squad")
+           set_squad_removed("mil_b6_renegade_squad")
+           set_squad_removed("mil_b6_monster_2_1_squad")
+           set_squad_removed("mil_b6_monster_2_2_squad")
+           set_squad_removed("mil_b6_monster_2_3_squad")
+           set_squad_removed("mil_b6_monster_2_4_squad")
+           set_squad_removed("mil_b6_monster_3_1_squad")
+           set_squad_removed("mil_b6_monster_3_2_squad")
+           set_squad_removed("mil_b6_monster_3_3_squad")
+           set_squad_removed("mil_b6_monster_3_4_squad")
+           set_squad_removed("mil_b7_monster_2_1_squad")
+           set_squad_removed("mil_b7_monster_2_2_squad")
+           set_squad_removed("mil_b7_monster_2_3_squad")
+           set_squad_removed("mil_b7_monster_2_4_squad")
+           set_squad_removed("mil_b7_monster_3_1_squad")
+           set_squad_removed("mil_b7_monster_3_2_squad")
+           set_squad_removed("mil_b7_monster_3_3_squad")
+           set_squad_removed("mil_b7_monster_3_4_squad")
+        end
+        if has_alife_info("mil_defence_b7_start") and has_alife_info("mil_defence_b7_allow") and dont_has_alife_info("mil_alt_storyline_commenced") and (dont_has_alife_info("mil_defence_b7_tower_attack_1") or dont_has_alife_info("mil_defence_b7_tower_attack_2")) then
+           if has_alife_info("mil_defence_b7_s2_4") and dont_has_alife_info("mil_defence_b7_tower_attack_1") then
+              create("bloodsucker_cruel",-71.42756652832,8.3659324645996,-30.280963897705,227556,1366)
+              create("snork_cruel",-71.42756652832,8.3659324645996,-30.280963897705,227556,1366)
+              create("bloodsucker_cruel",-105.21154785156,10.739253044128,36.672004699707,198327,1317)
+              create("snork_cruel",-105.21154785156,10.739253044128,36.672004699707,198327,1317)
+              create("bloodsucker_cruel",-14.526255607605,7.7814612388611,31.864957809448,275950,1355)
+              create("snork_cruel",-14.526255607605,7.7814612388611,31.864957809448,275950,1355)
+              create("bloodsucker_cruel",-17.645244598389,8.934154510498,71.019592285156,273405,1375)
+              create("snork_cruel",-17.645244598389,8.934154510498,71.019592285156,273405,1375)
+              create("bloodsucker_cruel",82.810432434082,5.2144269943237,14.135262489319,355029,1429)
+              create("snork_cruel",82.810432434082,5.2144269943237,14.135262489319,355029,1429)
+              create("bloodsucker_cruel",3.3065688610077,5.9768266677856,-62.248291015625,292864,1368)
+              create("snork_cruel",3.3065688610077,5.9768266677856,-62.248291015625,292864,1368)
+              create("bloodsucker_cruel",67.043754577637,-8.8720779418945,-46.159236907959,342835,1324)
+              create("snork_cruel",67.043754577637,-8.8720779418945,-46.159236907959,342835,1324)
+              give_info("mil_defence_b7_tower_attack_1")
+           elseif has_alife_info("mil_defence_b7_s3_4") and dont_has_alife_info("mil_defence_b7_tower_attack_2") then
+              create("bloodsucker_cruel",-71.42756652832,8.3659324645996,-30.280963897705,227556,1366)
+              create("snork_cruel",-71.42756652832,8.3659324645996,-30.280963897705,227556,1366)
+              create("bloodsucker_cruel",-105.21154785156,10.739253044128,36.672004699707,198327,1317)
+              create("snork_cruel",-105.21154785156,10.739253044128,36.672004699707,198327,1317)
+              create("bloodsucker_cruel",-14.526255607605,7.7814612388611,31.864957809448,275950,1355)
+              create("snork_cruel",-14.526255607605,7.7814612388611,31.864957809448,275950,1355)
+              create("bloodsucker_cruel",-17.645244598389,8.934154510498,71.019592285156,273405,1375)
+              create("snork_cruel",-17.645244598389,8.934154510498,71.019592285156,273405,1375)
+              create("bloodsucker_cruel",82.810432434082,5.2144269943237,14.135262489319,355029,1429)
+              create("snork_cruel",82.810432434082,5.2144269943237,14.135262489319,355029,1429)
+              create("bloodsucker_cruel",3.3065688610077,5.9768266677856,-62.248291015625,292864,1368)
+              create("snork_cruel",3.3065688610077,5.9768266677856,-62.248291015625,292864,1368)
+              create("bloodsucker_cruel",67.043754577637,-8.8720779418945,-46.159236907959,342835,1324)
+              create("snork_cruel",67.043754577637,-8.8720779418945,-46.159236907959,342835,1324)
+              give_info("mil_defence_b7_tower_attack_2")
+           end
+        end
+   end
+   ----------------------------------------------------------------
+   ---------------------------'Агропром'---------------------------
+   ----------------------------------------------------------------
+   if level_name=="agroprom" then
+        --/Квест:Новая тропа
+        if has_alife_info("agr_find_underground_way_start") and dont_has_alife_info("agr_find_underground_way_agroprom") then
+           give_info("agr_find_underground_way_agroprom")
+        end
+        --/Квест:Поиск документов
+        if has_alife_info("agru_underground_cave_dock_done_founded") and dont_has_alife_info("agru_underground_cave_chosen_on_surface") then
+           give_info("agru_underground_cave_chosen_on_surface")
+           create("agr_authorities_agent",20.944639205933,23.021730422974,209.76583862305,170390,1456)
+           create_force("simulation_snork","agr_monster_burrow_10")
+           add_task("agr_deliver_secret_docks")
+           clear_mod_param("agru_secret_docks_founded")
+           give_info("agr_deliver_secret_docks_start")
+        end
+   end
+   ----------------------------------------------------------------
+   ----------------------'Подземелья Агропрома'--------------------
+   ----------------------------------------------------------------
+   if level_name=="agroprom_underground" then
+        --/Квест:Поиск документов
+        if dont_has_alife_info("agru_underground_cave_start") then
+           add_task("agru_underground_cave")
+           give_info("agru_underground_cave_start")
+        end
+        if has_alife_info("agru_underground_cave_start") and dont_has_alife_info("agru_underground_cave_dock_done_founded") and has_alife_info("agru_underground_cave_dock_1_founded") and has_alife_info("agru_underground_cave_dock_2_founded") then
+           give_info("agru_underground_cave_dock_done_founded")
+           create_force("simulation_bibliotekar_nightmare","agru_monster_burrow_5")
+           create_force("simulation_bloodsucker_nightmare","agru_monster_burrow_4")
+           create_force("simulation_burer","agru_monster_burrow_3")
+           create_force("simulation_snork","agru_monster_burrow_2")
+           create_force("simulation_gigant","agru_monster_burrow_1")
+        end
+        --/Квест:Дверь
+        if has_alife_info("agru_search_door_key_start") and dont_has_alife_info("agru_search_door_key_spawn") then
+           give_info("agru_search_door_key_spawn")
+           local rnd_ecologs=math.random(1,3)
+           if rnd_ecologs==1 then
+              create("agru_dead_ecolog",98.943916320801,-9.2205476760864,-31.003540039063,2717,1587)
+              create_dead_body("ecolog_dead_body_2",nil,122.90145874023,-7.8816556930542,-37.568447113037,4729,1587)
+              create_dead_body("ecolog_dead_body_3",nil,94.454917907715,-7.7611527442932,-53.365688323975,2183,1587)
+           elseif rnd_ecologs==2 then
+              create("agru_dead_ecolog",122.90145874023,-7.8816556930542,-37.568447113037,4729,1587)
+              create_dead_body("ecolog_dead_body_2",nil,98.943916320801,-9.2205476760864,-31.003540039063,2717,1587)
+              create_dead_body("ecolog_dead_body_3",nil,94.454917907715,-7.7611527442932,-53.365688323975,2183,1587)
+           else
+              create("agru_dead_ecolog",94.454917907715,-7.7611527442932,-53.365688323975,2183,1587)
+              create_dead_body("ecolog_dead_body_2",nil,122.90145874023,-7.8816556930542,-37.568447113037,4729,1587)
+              create_dead_body("ecolog_dead_body_3",nil,98.943916320801,-9.2205476760864,-31.003540039063,2717,1587)
+           end
+           create("agru_secret_docks_1",69.037391662598,-5.6635899543762,99.37718963623,1222,1589)
+           create("agru_secret_docks_2",102.40983581543,-19.464685440063,12.431848526001,2570,1587)
+        end
+   end
+   ----------------------------------------------------------------
+   -------------------------'Кордон'-------------------------------
+   ----------------------------------------------------------------
+   if level_name=="escape" then
+        if has_alife_info("esc_alt_storyline_commenced") and dont_has_alife_info("esc_storyline_done") then
+           give_info("esc_storyline_done")
+        end
+        --/Квест:Встреча с разведчиком
+        if has_alife_info("esc_spy_meeting_start") and dont_has_alife_info("esc_spy_meeting_spawn") then
+           local esc_spy_meeting_dist=actor_pos:distance_to(vector():set(332.04925537109,15.744373321533,-14.692591667175),609649,2061)<6
+           if esc_spy_meeting_dist then
+              create("pseudodog_normal_hunter",355.3039855957,14.956430435181,-30.596298217773,620400,1851)
+              create("boar_strong_hunter",271.76272583008,12.78001499176,8.7004537582397,571945,2056)
+              create("esc_stalker_scout",291.1760559082,15.577419281006,50.491561889648,584941,2087)
+              give_info("esc_spy_meeting_spawn")
+              game_autosave_assign("save_esc_spy_meeting")
+           end
+        end
+        --/Квест:Развязка
+        if has_alife_info("esc_uncoupling_talk") and has_alife_info("esc_army_halt_1_explored") and has_alife_info("esc_army_halt_2_explored") and has_alife_info("esc_army_halt_3_explored") and dont_has_alife_info("esc_uncoupling_halt_searched") then
+           give_info("esc_uncoupling_halt_searched")
+        end
+        if has_alife_info("esc_uncoupling_talk") and dont_has_alife_info("esc_army_halt_1_explored") then
+           local esc_army_halt_1_dist=actor_pos:distance_to(vector():set(131.40768432617,-0.71342599391937,328.90283203125),464662,2028)<5
+           if esc_army_halt_1_dist then
+              give_info("esc_army_halt_1_explored")
+           end
+        end
+        if has_alife_info("esc_uncoupling_halt_searched") and dont_has_alife_info("esc_uncoupling_key_spawn") then
+           give_item_to_sid("esc_key_from_gate","esc_inventory_box_16")
+           give_info("esc_uncoupling_key_spawn")
+        end
+        if has_alife_info("esc_uncoupling_talk") and dont_has_alife_info("esc_uncoupling_halt_searched") and dont_has_alife_info("esc_uncoupling_stalker_spawn") then
+           give_info("esc_uncoupling_stalker_spawn")
+           create_force("esc_b6_stalker_invaders_squad","esc_smart_terrain_3")
+        elseif has_alife_info("esc_b6_stalker_invaders_squad_death") and dont_has_alife_info("esc_uncoupling_halt_searched") then
+           disable_info("esc_b6_stalker_invaders_squad_death")
+           create_force("esc_b6_stalker_invaders_squad","esc_smart_terrain_3")
+        end
+        if has_alife_info("esc_army_halt_2_explored_get") and dont_has_alife_info("esc_army_halt_2_explored") and dont_has_alife_info("inventory_wnd_opened") then
+           give_info("esc_army_halt_2_explored")
+        elseif has_alife_info("esc_army_halt_3_explored_get") and dont_has_alife_info("esc_army_halt_3_explored") and dont_has_alife_info("inventory_wnd_opened") then
+           give_info("esc_army_halt_3_explored")
+        end
+        if has_alife_info("esc_army_halt_2_start") and dont_has_alife_info("esc_army_halt_2_complete") then
+           if get_story_object_id("esc_army_halt_1")==nil then
+              create("esc_army_halt_1",-12.365184783936,0.86760592460632,260.91003417969,286075,1928)
+           end
+        end
+        if has_alife_info("esc_army_halt_3_start") and dont_has_alife_info("esc_army_halt_3_complete") then
+           if get_story_object_id("esc_army_halt_2")==nil then
+              create("esc_army_halt_2",25.660511016846,16.518115997314,685.83953857422,336405,1850)
+           end
+        end
+        --/Квест:Блокада
+        if has_alife_info("esc_atp_annex_safe_is_founded") and dont_has_alife_info("esc_atp_annex_safe_key_spawn") then
+           create_inventory_item("esc_b3_safe_key","esc_b3_safe_key_rukzak",114.79872131348,-2.9812939167023,-24.87607383728,445928,1931)
+           give_info("esc_atp_annex_safe_key_spawn")
+        end
+        if has_alife_info("esc_atp_annex_selfpos") and dont_has_alife_info("esc_atp_annex_captured") and sgm_functions.smart_community_is("esc_smart_terrain_3","stalker",true) then
+           give_info("esc_atp_annex_captured")
+           create_force("esc_b3_stalker_squad","esc_smart_terrain_28")
+           game_autosave_assign("save_esc_atp_annex_b3_captured")
+        end
+        if has_alife_info("esc_atp_annex_attack_choked") and dont_has_alife_info("esc_atp_annex_captured") and dont_has_alife_info("esc_atp_annex_respawn") then
+           give_info("esc_atp_annex_respawn")
+           create_force("esc_b3_stalker_invaders_squad","esc_smart_terrain_28")
+        elseif has_alife_info("esc_b3_stalker_invaders_squad_death") and dont_has_alife_info("esc_alt_storyline_commenced") and dont_has_alife_info("esc_atp_annex_captured") then
+           disable_info("esc_b3_stalker_invaders_squad_death")
+           create_force("esc_b3_stalker_invaders_squad","esc_smart_terrain_28")
+        end
+        if has_alife_info("esc_atp_annex_assault_timer") and dont_has_alife_info("esc_atp_annex_assault_launch") then
+           give_info("esc_atp_annex_assault_launch")
+           create("esc_b3_signal_charge_1",106.16342163086,-6.2748441696167,-17.306570053101,435363,1931)
+           create("esc_b3_signal_charge_2",142.15689086914,-7.231201171875,-45.093395233154,474318,2058)
+           start_game_timer("esc_atp_annex_assault_timer",2)
+        end
+        if has_alife_info("esc_atp_annex_assault_launch") and dont_has_alife_info("esc_atp_annex_assault") and check_game_timer("esc_atp_annex_assault_timer") then
+           give_info("esc_atp_annex_signal_launch")
+           abort_game_timer("esc_atp_annex_assault_timer")
+        end
+        --/Квест:Решительные меры
+        if has_alife_info("esc_village_annex_start") and dont_has_alife_info("esc_village_annex_captured") and sgm_functions.smart_community_is("esc_smart_terrain_2","stalker",true) then
+           create_force("esc_b2_bandit_retreat_squad",-187.07876586914,-10.857082366943,-91.459686279297,63710,2069)
+           give_info("esc_village_annex_captured")
+           create_force("esc_b2_stalker_squad","esc_smart_terrain_1")
+           game_autosave_assign("save_esc_village_annex_b2_captured")
+        end
+        if has_alife_info("esc_village_annex_detonated_c4") and dont_has_alife_info("esc_village_annex_cellar_explored") then
+           if get_story_object_id("esc_b2_tamerlan")==nil then
+              create("esc_b2_tamerlan",-246.2395324707,-24.808156967163,-135.27490234375,14372,1859)
+           end
+        end
+        if has_alife_info("esc_village_annex_defence_start") and has_alife_info("esc_a2_monster_wave_1_squad_death") and has_alife_info("esc_a2_monster_wave_2_squad_death") and has_alife_info("esc_a2_monster_wave_3_squad_death") and dont_has_alife_info("esc_village_annex_defence_end") then
+           give_info("esc_village_annex_defence_end")
+        end
+        if has_alife_info("esc_village_annex_cellar_explored") and dont_has_alife_info("esc_village_annex_defence_timer") then
+           start_game_timer("esc_village_annex_defence_timer",4)
+           give_info("esc_village_annex_defence_timer")
+        end
+        if has_alife_info("esc_village_annex_defence_timer") and dont_has_alife_info("esc_village_annex_defence_w1") and check_game_timer("esc_village_annex_defence_timer") then
+           give_info("esc_village_annex_defence_start")
+           give_info("esc_village_annex_defence_w1")
+           create_force("esc_a2_monster_wave_1_squad",-256.12887573242,-8.804349899292,-66.180244445801,9517,1993)
+           start_game_timer("esc_village_annex_defence_timer",3)
+        end
+        if has_alife_info("esc_village_annex_defence_w1") and dont_has_alife_info("esc_village_annex_defence_w2") and check_game_timer("esc_village_annex_defence_timer") then
+           give_info("esc_village_annex_defence_w2")
+           create_force("esc_a2_monster_wave_2_squad",-120.77253723145,-3.7988245487213,-90.480163574219,136489,2050)
+           start_game_timer("esc_village_annex_defence_timer",3)
+        end
+        if has_alife_info("esc_village_annex_defence_w2") and dont_has_alife_info("esc_village_annex_defence_w3") and check_game_timer("esc_village_annex_defence_timer") then
+           give_info("esc_village_annex_defence_w3")
+           create_force("esc_a2_monster_wave_3_squad",-191.66888427734,-17.048210144043,-197.23458862305,59234,1996)
+           abort_game_timer("esc_village_annex_defence_timer")
+        end
+        if has_alife_info("esc_b2_stalker_invaders_squad_death") and dont_has_alife_info("esc_alt_storyline_commenced") and dont_has_alife_info("esc_village_annex_captured") then
+           disable_info("esc_b2_stalker_invaders_squad_death")
+           create_force("esc_b2_stalker_invaders_squad","esc_smart_terrain_31")
+        end
+        --/Квест:Охота на мутантов
+        if has_alife_info("esc_lull_before_borax_talk") and dont_has_alife_info("esc_atp_annex_selfpos") then
+           if dont_has_alife_info("esc_atp_annex_is_night") and present_night() then
+              give_info("esc_atp_annex_is_night")
+              create("esc_b3_attack_commander",28.623512268066,0.030813008546829,-73.909469604492,339062,2044)
+              create("esc_b3_attack_soldier_1",32.122451782227,0.055036842823029,-69.312881469727,343512,2030)
+              create("esc_b3_attack_soldier_2",25.045038223267,-0.82709991931915,-63.237438201904,334716,2030)
+              create("esc_b3_attack_soldier_3",26.330827713013,0.23373785614967,-69.87328338623,336455,2044)
+              create("esc_b3_attack_soldier_4",28.361015319824,0.30440667271614,-70.605018615723,339067,2044)
+           end
+        end
+        --/Квест:Миноискатель
+        if has_alife_info("mar_mine_detector_device_developed") and dont_has_alife_info("mar_mine_detector_timer") then
+           give_info("mar_mine_detector_timer")
+           start_game_timer("mar_mine_detector_timer",65)
+        end
+        if has_alife_info("mar_mine_detector_timer") and dont_has_alife_info("mar_mine_detector_device_done") and check_game_timer("mar_mine_detector_timer") then
+           give_info("mar_mine_detector_device_done")
+           abort_game_timer("mar_mine_detector_timer")
+        end
+        --/Квест:Оборона блокпоста
+        if has_alife_info("mar_mine_detector_talk") and dont_has_alife_info("esc_blockpost_protection_launch") and dont_has_alife_info("esc_b1_commander_dead") and (not db.actor:is_talking()) then
+           give_info("esc_blockpost_protection_launch")
+           start_game_timer("esc_blockpost_protection_timer",2)
+        end
+        if has_alife_info("esc_blockpost_protection_launch") and dont_has_alife_info("esc_blockpost_protection_start") and check_game_timer("esc_blockpost_protection_timer") then
+           give_info("esc_blockpost_protection_start")
+           news_manager.send_tip(db.actor,game.translate_string("esc_blockpost_protection_began_text"),0,"portrait_neutral_nauch",12000,nil,"esc_b1_base_commander_title")
+           abort_game_timer("esc_blockpost_protection")
+           give_info("esc_blockpost_protection_w1")
+           create_force("esc_a1_monster_wave_1_squad",-199.44058227539,-36.945888519287,-289.68209838867,52376,2063)
+           start_game_timer("esc_blockpost_protection_defence_timer",5)
+           add_task("esc_blockpost_protection")
+        end
+        if has_alife_info("esc_blockpost_protection_w1") and dont_has_alife_info("esc_blockpost_protection_w2") and check_game_timer("esc_blockpost_protection_defence_timer") then
+           give_info("esc_blockpost_protection_w2")
+           create_force("esc_a1_monster_wave_2_squad",-101.28200531006,-30.709276199341,-280.1965637207,161228,1862)
+           start_game_timer("esc_blockpost_protection_defence_timer",7)
+        end
+        if has_alife_info("esc_blockpost_protection_w2") and dont_has_alife_info("esc_blockpost_protection_w3") and check_game_timer("esc_blockpost_protection_defence_timer") then
+           give_info("esc_blockpost_protection_w3")
+           create_force("esc_a1_monster_wave_3_squad",-88.246910095215,-33.566860198975,-321.18255615234,180393,2064)
+           abort_game_timer("esc_blockpost_protection_defence_timer")
+        end
+        if has_alife_info("esc_blockpost_protection_done") and dont_has_alife_info("esc_blockpost_protection_news_final") then
+           give_info("esc_blockpost_protection_news_final")
+           if dont_has_alife_info("esc_b1_commander_dead") then
+              if read_mod_param("esc_blockpost_protection_bonus")~=nil and read_mod_param("esc_blockpost_protection_bonus")>=4 and read_mod_param("esc_blockpost_protection_bonus")<9 then
+                 news_manager.send_tip(db.actor,game.translate_string("esc_blockpost_protection_done_2_text"),0,"portrait_neutral_nauch",10000,nil,"esc_b1_base_commander_title")
+                 give_item_to_sid("af_mincer_meat,detector_battery_2,antirad,2,psy_complex,bandage,5,medkit_army,2,drug_booster,ammo_5.45x39_ap,3,ammo_vog-25,3,money_meshochek_1000_5000","esc_inventory_box_20")
+              elseif read_mod_param("esc_blockpost_protection_bonus")~=nil and read_mod_param("esc_blockpost_protection_bonus")>=9 then
+                 news_manager.send_tip(db.actor,game.translate_string("esc_blockpost_protection_done_3_text"),0,"portrait_neutral_nauch",10000,nil,"esc_b1_base_commander_title")
+                 give_item_to_sid("af_medusa,wpn_abakan_m1,antirad,2,psy_complex,bandage,5,medkit_army,2,drug_booster,ammo_5.45x39_ap,3,ammo_vog-25,3,money_meshochek_4000_5000","esc_inventory_box_20")
+              else
+                 news_manager.send_tip(db.actor,game.translate_string("esc_blockpost_protection_done_1_text"),0,"portrait_neutral_nauch",10000,nil,"esc_b1_base_commander_title")
+                 give_item_to_sid("money_meshochek_1000_5000","esc_inventory_box_20")
+              end
+              clear_mod_param("esc_blockpost_protection_bonus")
+           end
+        end
+        if has_alife_info("esc_a1_monster_wave_1_squad_death") and has_alife_info("esc_a1_monster_wave_2_squad_death") and has_alife_info("esc_a1_monster_wave_3_squad_death") and dont_has_alife_info("esc_blockpost_protection_done") then
+           give_info("esc_blockpost_protection_done")
+        end
+   end
+   ----------------------------------------------------------------
+   -------------------------'Болота'-------------------------------
+   ----------------------------------------------------------------
+   if level_name=="marsh" then
+        if has_alife_info("mar_alt_storyline_commenced") and dont_has_alife_info("mar_storyline_done") then
+           give_info("mar_storyline_done")
+        end
+        --/Квест:Миноискатель
+        if has_alife_info("mar_mine_detector_sensor_founded") and dont_has_alife_info("mar_mine_detector_ambush") then
+           create("bloodsucker_1_nightmare_hunter",-34.146659851074,1.1603603363037,427.89645385742,122870,1714)
+           create("bloodsucker_2_nightmare_hunter",9.2246465682983,0.44096675515175,435.05938720703,143161,1813)
+           give_info("mar_mine_detector_ambush")
+        end
+        --/Квест:Поддержка союзников
+        if has_alife_info("mar_capture_church_start") and dont_has_alife_info("mar_capture_church_captured") and dont_has_alife_info("mar_capture_church_spawn") then
+           if has_alife_info("mar_capture_church_b2") then
+              create_force("mar_b3_stalker_invaders_2_squad","mar_smart_terrain_2")
+           else
+              create_force("mar_b3_stalker_invaders_squad","mar_smart_terrain_1")
+           end
+           give_info("mar_capture_church_spawn")
+        elseif has_alife_info("mar_b3_stalker_invaders_squad_death") and dont_has_alife_info("mar_alt_storyline_commenced") and dont_has_alife_info("mar_capture_church_captured") then
+           disable_info("mar_b3_stalker_invaders_squad_death")
+           create_force("mar_b3_stalker_invaders_squad","mar_smart_terrain_1")
+        end
+        if has_alife_info("mar_capture_church_start") and dont_has_alife_info("mar_capture_church_captured") and sgm_functions.smart_community_is("mar_smart_terrain_3","stalker",true) then
+           give_info("mar_capture_church_captured")
+           create_force("mar_b3_stalker_squad","mar_smart_terrain_1")
+           create_force("mar_b16_bandit_squad","mar_smart_terrain_16")
+        end
+        --/Квест:Армейская поклажа
+        if has_alife_info("mar_army_cargo_talk_mechanic") and dont_has_alife_info("mar_army_cargo_georadar_timer") then
+           give_info("mar_army_cargo_georadar_timer")
+           start_game_timer("mar_georadar_timer",50)
+           create_force("mar_b2_bandit_invaders_1_squad","mar_smart_terrain_11")
+           create_force("mar_b2_bandit_invaders_2_squad","mar_smart_terrain_14")
+        end
+        if has_alife_info("mar_army_cargo_georadar_timer") and dont_has_alife_info("mar_army_cargo_order_performed") and check_game_timer("mar_georadar_timer") then
+           give_info("mar_army_cargo_order_performed")
+           abort_game_timer("mar_georadar_timer")
+        end
+        if has_alife_info("mar_army_cargo_georadar_received") and dont_has_alife_info("mar_army_cargo_online_cargo") then
+           local mar_army_cargo_dist=actor_pos:distance_to(vector():set(170.30877685547,11.944862365723,530.21343994141),235352,1827)<=30
+           if mar_army_cargo_dist then
+              give_info("mar_army_cargo_online_cargo")
+              create("mar_authorities_agent",-270.86050415039,0.82911324501038,95.521255493164,9609,1712)
+           end
+        end
+        if has_alife_info("mar_army_cargo_b4_cleared") and has_alife_info("mar_army_cargo_found_1") and has_alife_info("mar_army_cargo_found_2") and has_alife_info("mar_army_cargo_found_3") and has_alife_info("mar_army_cargo_found_4") and has_alife_info("mar_army_cargo_found_5") and has_alife_info("mar_army_cargo_found_6") and dont_has_alife_info("mar_army_cargo_nothing_found") then
+           give_info("mar_army_cargo_nothing_found")
+        end
+        if has_alife_info("mar_mine_detector_talk") and dont_has_alife_info("mar_army_cargo_captivity_deads") then
+           local mar_army_cargo_captivity_deads_dist=actor_pos:distance_to(vector():set(421.1591796875,3.1753149032593,253.80709838867),418287,1696)<=140
+           if mar_army_cargo_captivity_deads_dist then
+              create("mar_b4_army_captivity_dead_1",433.32962036133,3.7645025253296,267.97625732422,425762,1723)
+              create("mar_b4_army_captivity_dead_2",439.86068725586,4.1829571723938,247.14189147949,432153,1724)
+              create("mar_b4_army_captivity_dead_3",445.70727539063,0.67951214313507,231.1208190918,434983,1724)
+              create("mar_b4_army_captivity_dead_4",415.44946289063,3.4199674129486,231.13027954102,413839,1696)
+              create("mar_b4_army_captivity_dead_5",382.69555664063,3.2011709213257,265.13708496094,390022,1696)
+              create("mar_b4_army_captivity_dead_6",425.40270996094,3.3886528015137,260.27502441406,420325,1723)
+              give_info("mar_army_cargo_captivity_deads")
+           end
+        end
+        if has_alife_info("mar_army_cargo_captivity_deads") and dont_has_alife_info("mar_army_cargo_nothing_found") then
+           if get_story_object_id("mar_b4_army_captivity_dead_1")==nil then
+              create("mar_b4_army_captivity_dead_1",433.32962036133,3.7645025253296,267.97625732422,425762,1723)
+           end
+           if get_story_object_id("mar_b4_army_captivity_dead_2")==nil then
+              create("mar_b4_army_captivity_dead_2",439.86068725586,4.1829571723938,247.14189147949,432153,1724)
+           end
+           if get_story_object_id("mar_b4_army_captivity_dead_3")==nil then
+              create("mar_b4_army_captivity_dead_3",445.70727539063,0.67951214313507,231.1208190918,434983,1724)
+           end
+           if get_story_object_id("mar_b4_army_captivity_dead_4")==nil then
+              create("mar_b4_army_captivity_dead_4",415.44946289063,3.4199674129486,231.13027954102,413839,1696)
+           end
+           if get_story_object_id("mar_b4_army_captivity_dead_5")==nil then
+              create("mar_b4_army_captivity_dead_5",382.69555664063,3.2011709213257,265.13708496094,390022,1696)
+           end
+           if get_story_object_id("mar_b4_army_captivity_dead_6")==nil then
+              create("mar_b4_army_captivity_dead_6",425.40270996094,3.3886528015137,260.27502441406,420325,1723)
+           end
+        end
+        if has_alife_info("mar_army_cargo_captivity_deads") and dont_has_alife_info("mar_army_cargo_b4_cleared") and dont_has_alife_info("mar_army_cargo_b4_spawn") then
+           create_force("mar_b4_stalker_invaders_squad","mar_smart_terrain_1")
+           give_info("mar_army_cargo_b4_spawn")
+        elseif has_alife_info("mar_b4_stalker_invaders_squad_death") and dont_has_alife_info("mar_alt_storyline_commenced") and dont_has_alife_info("mar_army_cargo_b4_cleared") then
+           disable_info("mar_b4_stalker_invaders_squad_death")
+           create_force("mar_b4_stalker_invaders_squad","mar_smart_terrain_1")
+        end
+        if has_alife_info("mar_army_cargo_b4_cleared") and dont_has_alife_info("mar_army_cargo_b4_captured") then
+           give_info("mar_army_cargo_b4_captured")
+           create_force("mar_b4_stalker_squad","mar_smart_terrain_1")
+        end
+   end
+   ----------------------------------------------------------------
+   ---------------------------'Рыжий Лес'---------------------------
+   ----------------------------------------------------------------
+   if level_name=="red_forest" then
+        --/Квест:Психо
+        if has_alife_info("red_psyho_start") and db.actor:object("red_psyho_killer_pda_1") and db.actor:object("red_psyho_killer_pda_2") and dont_has_alife_info("red_psyho_place_experiment") then
+           create_force("red_simulation_bloodsucker_nightmare","red_monster_burrow_7")
+-------------------------------------makdm
+           create_force("red_1_simulation_snork,red_2_simulation_snork","red_monster_burrow_6")
+           create_force("red_3_simulation_snork,red_4_simulation_snork","red_monster_burrow_4")
+------------------------------------------
+           give_info("red_psyho_place_experiment")
+        end
+        if has_alife_info("red_psyho_halt_1_ecolog_1_checked") and has_alife_info("red_psyho_halt_1_ecolog_2_checked") and dont_has_alife_info("red_psyho_halt_1_founded") then
+           create("red_psyho_halt_place_2_spot",246.77301025391,-1.4834853410721,-307.67807006836,149687,2120)
+           create("red_psyho_halt_2_ecolog_1",250.83258056641,-1.4034984111786,-306.46548461914,151073,2120)
+           create("red_psyho_halt_2_ecolog_2",248.55703735352,-1.0181611776352,-317.28308105469,150207,2120)
+           create("red_psyho_halt_2_security_3",254.52673339844,-1.2366925477982,-302.38906860352,152769,2120)
+           create("red_psyho_halt_2_security_4",239.6227722168,-0.62608277797699,-317.50561523438,146481,2120)
+           create("red_psyho_halt_2_security_5",237.47479248047,-1.1334191560745,-311.05358886719,145654,2176)
+-----------------------------------makdm
+           create_force("red_5_simulation_snork,red_6_simulation_snork","red_monster_burrow_1")
+---------------------------------------
+           give_info("red_psyho_halt_1_founded")
+        end
+        if has_alife_info("red_psyho_halt_2_ecolog_1_checked") and has_alife_info("red_psyho_halt_2_ecolog_2_checked") and dont_has_alife_info("red_psyho_halt_2_founded") then
+           create("red_psyho_halt_place_3_spot",-50.955047607422,1.8360635042191,-70.969390869141,27326,2182)
+           create("red_psyho_halt_3_ecolog_1",-54.97526550293,2.4320166110992,-69.545440673828,24652,2182)
+           create("red_psyho_halt_3_ecolog_2",-47.305229187012,1.6374434232712,-60.94437789917,29505,2190)
+           create("red_psyho_halt_3_security_3",-60.544086456299,2.2724299430847,-63.10124206543,21690,2190)
+           create("red_psyho_halt_3_security_4",-57.042938232422,1.643904209137,-54.721397399902,23760,2190)
+           create("red_psyho_halt_3_security_5",-49.180477142334,1.5204486846924,-56.029304504395,28630,2190)
+------------------------------------makdm
+           create_force("red_7_simulation_snork,red_8_simulation_snork","red_monster_burrow_8")
+-----------------------------------------
+           blackday_activate()
+           give_info("red_psyho_halt_2_founded")
+        end
+        if has_alife_info("red_psyho_halt_3_ecolog_1_checked") and has_alife_info("red_psyho_halt_3_ecolog_2_checked") and db.actor:object("red_psyho_ecolog_pda") and dont_has_alife_info("red_psyho_halt_3_delay_founded") then
+           create("red_psyho_controller",-87.81169128418,2.3018217086792,-55.969261169434,12641,2190)
+           create_force("simulation_chimera","red_monster_burrow_5")
+           give_info("red_psyho_halt_3_delay_founded")
+           start_game_timer("red_psyho_halt_3_delay_timer",2)
+        end
+        if has_alife_info("red_psyho_halt_3_delay_founded") and dont_has_alife_info("red_psyho_halt_3_founded") and check_game_timer("red_psyho_halt_3_delay_timer") then
+           give_info("red_psyho_halt_3_founded")
+           abort_game_timer("red_psyho_halt_3_delay_timer")
+        end
+        if has_alife_info("red_psyho_controller_dead") and dont_has_alife_info("red_psyho_controller_destroyed") then
+           create("red_psyho_controller_cave_spot",-151.53652954102,2.330126285553,-47.818077087402,5713,2146)
+           create("red_psyho_ecolog_corpse_1",-150.4808807373,2.9884412288666,-27.932949066162,5825,2146)
+           create("red_psyho_ecolog_corpse_2",-147.78788757324,2.1786284446716,-22.206604003906,6023,2146)
+           create("red_psyho_ecolog_corpse_3",-158.13241577148,3.0719847679138,-25.280239105225,4964,2146)
+           give_info("red_psyho_controller_destroyed")
+        end
+        if has_alife_info("red_psyho_preparation") and dont_has_alife_info("red_psyho_back_to_forest") then
+           sgm_packet.create_anomaly("sgm_red_psyho_zone_2",40,117951,2175)
+           sgm_packet.create_anomaly("sgm_red_psyho_zone_2",18,15270,2196)
+           sgm_packet.create_anomaly("sgm_red_psyho_zone_2",59,94934,2151)
+           sgm_packet.create_anomaly("sgm_red_psyho_zone_2",16,56827,2197)
+           sgm_packet.create_anomaly("sgm_red_psyho_zone_2",12,39480,2197)
+           sgm_packet.create_anomaly("sgm_red_psyho_zone_2",14,56161,2197)
+           sgm_packet.create_anomaly("sgm_red_psyho_zone_2",12,71202,2135)
+           sgm_packet.create_anomaly("sgm_red_psyho_zone_2",10,70036,2135)
+           give_info("red_psyho_back_to_forest")
+        end
+        if has_alife_info("red_psyho_controller_destroyed") and db.actor:object("red_psyho_development_1") and db.actor:object("red_psyho_development_2") and dont_has_alife_info("red_psyho_cave_examined") then
+           give_info("red_psyho_cave_examined")
+           give_info("red_storyline_done")
+        end
+        if has_alife_info("red_psyho_place_experiment") and dont_has_alife_info("red_psyho_brainstorming") then
+           if db.actor.psy_health<=0.80 then
+              give_info("red_psyho_brainstorming")
+           end
+        end
+   end
+end
+
+---------------------------------//Copyright GeJorge//-----------------------------------------------
+

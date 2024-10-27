@@ -1,0 +1,619 @@
+---==================================================================================================---
+--------------------------------------------------------------------------------------------------------
+-------------------------------------(Функции для диалогов)---------------------------------------------
+--------------------------------------------------------------------------------------------------------
+---==================================================================================================---
+-------------------------------------------------------------------
+--                      Диалоги селекционеров                    --
+-------------------------------------------------------------------
+-- Чтобы добавить в список "селекционируемых" новый артефакт необходимо изменить в этом файле значение параметра currert_af_count и дополнить sgm_dialogs.script соответствующими функциями.
+currert_af_count = 27 --/ Количество артефактов зарегистрированных в sgm_functions
+function include_breeding_main_phrases(dlg,phr_table,phr_prefix)
+   phr_table.main0=dlg:AddPhrase(phr_prefix.."6",tostring(0),"",-10000)
+   phr_table.main900=dlg:AddPhrase(phr_prefix.."7",tostring(900),tostring(0),-10000)
+   phr_table.main901=dlg:AddPhrase(phr_prefix.."8",tostring(901),tostring(900),-10000)
+   phr_table.main902=dlg:AddPhrase(phr_prefix.."9",tostring(902),tostring(901),-10000)
+   phr_table.main903=dlg:AddPhrase(phr_prefix.."10",tostring(903),tostring(902),-10000)
+   phr_table.main904=dlg:AddPhrase(phr_prefix.."11",tostring(904),tostring(903),-10000)
+   phr_table.main904:GetPhraseScript():AddAction("dialogs.break_dialog")
+   phr_table.main800=dlg:AddPhrase(phr_prefix.."12",tostring(800),tostring(0),-10000)
+   phr_table.main801=dlg:AddPhrase(phr_prefix.."13",tostring(801),tostring(800),-10000)
+end
+function include_breeding_load_afs(dlg,phr_table,phr_prefix,breeding_type)
+   for i=1,currert_af_count do
+      if breeding_type==-1 or sgm_functions.ReadBreedingType(sgm_dialogs["breeder_section_"..i]())==breeding_type then
+         include_breeding_af_phrases(dlg,phr_table,phr_prefix,i)
+      end
+   end
+end
+function include_breeding_cancel_phrases(dlg,phr_table,phr_prefix,breeding_type)
+   phr_table.cancel99999=dlg:AddPhrase(phr_prefix.."1",tostring(99999),tostring(0),-10000)
+   phr_table.cancel99999:GetPhraseScript():AddAction("dialogs.break_dialog")
+   phr_table.cancel99998=dlg:AddPhrase(phr_prefix.."2",tostring(99998),tostring(901),-10000)
+   phr_table.cancel99998:GetPhraseScript():AddAction("dialogs.break_dialog")
+   phr_table.cancel99997=dlg:AddPhrase(phr_prefix.."3",tostring(99997),tostring(801),-10000)
+   if breeding_type==1 then
+      phr_table.cancel99997:GetPhraseScript():AddPrecondition("sgm_dialogs.founded_af_type_1")
+   elseif breeding_type==2 then
+      phr_table.cancel99997:GetPhraseScript():AddPrecondition("sgm_dialogs.founded_af_type_2")
+   elseif breeding_type==3 then
+      phr_table.cancel99997:GetPhraseScript():AddPrecondition("sgm_dialogs.founded_af_type_3")
+   elseif breeding_type==-1 then
+      phr_table.cancel99997:GetPhraseScript():AddPrecondition("sgm_dialogs.founded_af_type_all")
+   end
+   phr_table.cancel99997:GetPhraseScript():AddAction("dialogs.break_dialog")
+   phr_table.cancel99996=dlg:AddPhrase(phr_prefix.."3_5",tostring(99996),tostring(801),-10000)
+   if breeding_type==1 then
+      phr_table.cancel99996:GetPhraseScript():AddPrecondition("sgm_dialogs.dont_founded_af_type_1")
+   elseif breeding_type==2 then
+      phr_table.cancel99996:GetPhraseScript():AddPrecondition("sgm_dialogs.dont_founded_af_type_2")
+   elseif breeding_type==3 then
+      phr_table.cancel99996:GetPhraseScript():AddPrecondition("sgm_dialogs.dont_founded_af_type_3")
+   elseif breeding_type==-1 then
+      phr_table.cancel99996:GetPhraseScript():AddPrecondition("sgm_dialogs.dont_founded_af_type_all")
+   end
+   phr_table.cancel99996:GetPhraseScript():AddAction("dialogs.break_dialog")
+end
+function include_breeding_af_phrases(dlg,phr_table,phr_prefix,af_with_func)
+   phr_table["breeding"..af_with_func.."100"]=dlg:AddPhrase(game.translate_string(sgm_functions.ReadCaption(sgm_dialogs["breeder_section_"..af_with_func]())),tostring(af_with_func..100),tostring(801),-10000)
+   phr_table["breeding"..af_with_func.."100"]:GetPhraseScript():AddPrecondition("sgm_dialogs.breeder_has_"..af_with_func)
+   phr_table["breeding"..af_with_func.."101"]=dlg:AddPhrase(phr_prefix.."15",tostring(af_with_func..101),tostring(af_with_func..100),-10000)
+   phr_table["breeding"..af_with_func.."110"]=dlg:AddPhrase(phr_prefix.."16",tostring(af_with_func..110),tostring(af_with_func..101),-10000)
+   phr_table["breeding"..af_with_func.."110"]:GetPhraseScript():AddPrecondition("sgm_dialogs.breed_radiation_has_money")
+   phr_table["breeding"..af_with_func.."111"]=dlg:AddPhrase(phr_prefix.."17",tostring(af_with_func..111),tostring(af_with_func..110),-10000)
+   phr_table["breeding"..af_with_func.."112"]=dlg:AddPhrase(phr_prefix.."18",tostring(af_with_func..112),tostring(af_with_func..111),-10000)
+   phr_table["breeding"..af_with_func.."112"]:GetPhraseScript():AddPrecondition("sgm_dialogs.breed_radiation_has_money")
+   phr_table["breeding"..af_with_func.."112"]:GetPhraseScript():AddAction("sgm_dialogs.breeder_lost_"..af_with_func)
+   phr_table["breeding"..af_with_func.."112"]:GetPhraseScript():AddAction("sgm_dialogs.breed_radiation_give_money")
+   phr_table["breeding"..af_with_func.."113"]=dlg:AddPhrase(phr_prefix.."19",tostring(af_with_func..113),tostring(af_with_func..112),-10000)
+   phr_table["breeding"..af_with_func.."114"]=dlg:AddPhrase(phr_prefix.."20",tostring(af_with_func..114),tostring(af_with_func..113),-10000)
+   phr_table["breeding"..af_with_func.."115"]=dlg:AddPhrase(phr_prefix.."21",tostring(af_with_func..115),tostring(af_with_func..114),-10000)
+   phr_table["breeding"..af_with_func.."116"]=dlg:AddPhrase(phr_prefix.."22",tostring(af_with_func..116),tostring(af_with_func..115),-10000)
+   phr_table["breeding"..af_with_func.."116"]:GetPhraseScript():AddAction("sgm_dialogs.breeder_recover_"..af_with_func.."_b1")
+   phr_table["breeding"..af_with_func.."117"]=dlg:AddPhrase(phr_prefix.."23",tostring(af_with_func..117),tostring(af_with_func..116),-10000)
+   phr_table["breeding"..af_with_func.."118"]=dlg:AddPhrase(phr_prefix.."24",tostring(af_with_func..118),tostring(af_with_func..117),-10000)
+   phr_table["breeding"..af_with_func.."118"]:GetPhraseScript():AddAction("dialogs.break_dialog")
+   phr_table["breeding"..af_with_func.."120"]=dlg:AddPhrase(phr_prefix.."25",tostring(af_with_func..120),tostring(af_with_func..101),-10000)
+   phr_table["breeding"..af_with_func.."120"]:GetPhraseScript():AddPrecondition("sgm_dialogs.breed_tonnage_has_money")
+   phr_table["breeding"..af_with_func.."121"]=dlg:AddPhrase(phr_prefix.."26",tostring(af_with_func..121),tostring(af_with_func..120),-10000)
+   phr_table["breeding"..af_with_func.."122"]=dlg:AddPhrase(phr_prefix.."18",tostring(af_with_func..122),tostring(af_with_func..121),-10000)
+   phr_table["breeding"..af_with_func.."122"]:GetPhraseScript():AddPrecondition("sgm_dialogs.breed_tonnage_has_money")
+   phr_table["breeding"..af_with_func.."122"]:GetPhraseScript():AddAction("sgm_dialogs.breeder_lost_"..af_with_func)
+   phr_table["breeding"..af_with_func.."122"]:GetPhraseScript():AddAction("sgm_dialogs.breed_tonnage_give_money")
+   phr_table["breeding"..af_with_func.."123"]=dlg:AddPhrase(phr_prefix.."19",tostring(af_with_func..123),tostring(af_with_func..122),-10000)
+   phr_table["breeding"..af_with_func.."124"]=dlg:AddPhrase(phr_prefix.."20",tostring(af_with_func..124),tostring(af_with_func..123),-10000)
+   phr_table["breeding"..af_with_func.."125"]=dlg:AddPhrase(phr_prefix.."21",tostring(af_with_func..125),tostring(af_with_func..124),-10000)
+   phr_table["breeding"..af_with_func.."126"]=dlg:AddPhrase(phr_prefix.."22",tostring(af_with_func..126),tostring(af_with_func..125),-10000)
+   phr_table["breeding"..af_with_func.."126"]:GetPhraseScript():AddAction("sgm_dialogs.breeder_recover_"..af_with_func.."_b2")
+   phr_table["breeding"..af_with_func.."127"]=dlg:AddPhrase(phr_prefix.."23",tostring(af_with_func..127),tostring(af_with_func..126),-10000)
+   phr_table["breeding"..af_with_func.."128"]=dlg:AddPhrase(phr_prefix.."24",tostring(af_with_func..128),tostring(af_with_func..127),-10000)
+   phr_table["breeding"..af_with_func.."128"]:GetPhraseScript():AddAction("dialogs.break_dialog")
+   phr_table["breeding"..af_with_func.."130"]=dlg:AddPhrase(phr_prefix.."27",tostring(af_with_func..130),tostring(af_with_func..101),-10000)
+   phr_table["breeding"..af_with_func.."130"]:GetPhraseScript():AddPrecondition("sgm_dialogs.breed_regeneration_has_money")
+   phr_table["breeding"..af_with_func.."131"]=dlg:AddPhrase(phr_prefix.."28",tostring(af_with_func..131),tostring(af_with_func..130),-10000)
+   phr_table["breeding"..af_with_func.."132"]=dlg:AddPhrase(phr_prefix.."18",tostring(af_with_func..132),tostring(af_with_func..131),-10000)
+   phr_table["breeding"..af_with_func.."132"]:GetPhraseScript():AddPrecondition("sgm_dialogs.breed_regeneration_has_money")
+   phr_table["breeding"..af_with_func.."132"]:GetPhraseScript():AddAction("sgm_dialogs.breeder_lost_"..af_with_func)
+   phr_table["breeding"..af_with_func.."132"]:GetPhraseScript():AddAction("sgm_dialogs.breed_regeneration_give_money")
+   phr_table["breeding"..af_with_func.."133"]=dlg:AddPhrase(phr_prefix.."19",tostring(af_with_func..133),tostring(af_with_func..132),-10000)
+   phr_table["breeding"..af_with_func.."134"]=dlg:AddPhrase(phr_prefix.."20",tostring(af_with_func..134),tostring(af_with_func..133),-10000)
+   phr_table["breeding"..af_with_func.."135"]=dlg:AddPhrase(phr_prefix.."21",tostring(af_with_func..135),tostring(af_with_func..134),-10000)
+   phr_table["breeding"..af_with_func.."136"]=dlg:AddPhrase(phr_prefix.."22",tostring(af_with_func..136),tostring(af_with_func..135),-10000)
+   phr_table["breeding"..af_with_func.."136"]:GetPhraseScript():AddAction("sgm_dialogs.breeder_recover_"..af_with_func.."_b3")
+   phr_table["breeding"..af_with_func.."137"]=dlg:AddPhrase(phr_prefix.."23",tostring(af_with_func..137),tostring(af_with_func..136),-10000)
+   phr_table["breeding"..af_with_func.."138"]=dlg:AddPhrase(phr_prefix.."24",tostring(af_with_func..138),tostring(af_with_func..137),-10000)
+   phr_table["breeding"..af_with_func.."138"]:GetPhraseScript():AddAction("dialogs.break_dialog")
+   phr_table["cancel"..af_with_func.."900"]=dlg:AddPhrase(phr_prefix.."4",tostring(af_with_func..900),tostring(af_with_func..101),-10000)
+   phr_table["cancel"..af_with_func.."900"]:GetPhraseScript():AddAction("dialogs.break_dialog")
+   phr_table["cancel"..af_with_func.."901"]=dlg:AddPhrase(phr_prefix.."5",tostring(af_with_func..901),tostring(af_with_func..111),-10000)
+   phr_table["cancel"..af_with_func.."901"]:GetPhraseScript():AddAction("dialogs.break_dialog")
+   phr_table["cancel"..af_with_func.."902"]=dlg:AddPhrase(phr_prefix.."5",tostring(af_with_func..902),tostring(af_with_func..121),-10000)
+   phr_table["cancel"..af_with_func.."902"]:GetPhraseScript():AddAction("dialogs.break_dialog")
+   phr_table["cancel"..af_with_func.."903"]=dlg:AddPhrase(phr_prefix.."5",tostring(af_with_func..903),tostring(af_with_func..131),-10000)
+   phr_table["cancel"..af_with_func.."903"]:GetPhraseScript():AddAction("dialogs.break_dialog")
+end
+--/Доктор Маковецкий: 1 тип аномальности.
+function zat_stalker_breeder_dialog(dlg)
+   local phr_table={}
+   local phr_prefix="zat_stalker_breeder_work_dialog_"
+   local breeding_type=1
+   include_breeding_main_phrases(dlg,phr_table,phr_prefix)
+   include_breeding_load_afs(dlg,phr_table,phr_prefix,breeding_type)
+   include_breeding_cancel_phrases(dlg,phr_table,phr_prefix,breeding_type)
+end
+--/Доктор Брунько: 2 тип аномальности.
+function jup_stalker_breeder_dialog(dlg)
+   local phr_table={}
+   local phr_prefix="jup_stalker_breeder_work_dialog_"
+   local breeding_type=2
+   include_breeding_main_phrases(dlg,phr_table,phr_prefix)
+   include_breeding_load_afs(dlg,phr_table,phr_prefix,breeding_type)
+   include_breeding_cancel_phrases(dlg,phr_table,phr_prefix,breeding_type)
+end
+--/Професcор Божевский: 3 тип аномальности.
+function jup_ecolog_breeder_dialog(dlg)
+   local phr_table={}
+   local phr_prefix="jup_ecolog_breeder_work_dialog_"
+   local breeding_type=3
+   include_breeding_main_phrases(dlg,phr_table,phr_prefix)
+   include_breeding_load_afs(dlg,phr_table,phr_prefix,breeding_type)
+   include_breeding_cancel_phrases(dlg,phr_table,phr_prefix,breeding_type)
+end
+--/Доктор Кравченко: 1,2,3 типы аномальности.
+function pri_army_breeder_dialog(dlg)
+   local phr_table={}
+   local phr_prefix="pri_army_breeder_work_dialog_"
+   local breeding_type=-1
+   include_breeding_main_phrases(dlg,phr_table,phr_prefix)
+   include_breeding_load_afs(dlg,phr_table,phr_prefix,breeding_type)
+   include_breeding_cancel_phrases(dlg,phr_table,phr_prefix,breeding_type)
+end
+-------------------------------------------------------------------
+--                     Диалоги телохранителей                    --
+-------------------------------------------------------------------
+function include_bodyguard_yes_phrase(dlg,phr_table,phr_prefix)
+   phr_table.yes0=dlg:AddPhrase(phr_prefix.."_dialog_3",tostring(0),"",-10000)
+   phr_table.yes0:GetPhraseScript():AddGiveInfo(phr_prefix.."_pursue")
+   phr_table.yes0:GetPhraseScript():AddAction("sgm_dialogs."..phr_prefix.."_give_money")
+   phr_table.yes0:GetPhraseScript():AddAction("dialogs.break_dialog")
+end
+function include_bodyguard_no_phrase(dlg,phr_table,phr_prefix)
+   phr_table.no0=dlg:AddPhrase(phr_prefix.."_dialog_4",tostring(0),"",-10000)
+   phr_table.no0:GetPhraseScript():AddAction("dialogs.break_dialog")
+end
+function include_bodyguard_command_1_phrase(dlg,phr_table,phr_prefix)
+   phr_table.command0=dlg:AddPhrase(phr_prefix.."_dialog_6",tostring(0),"",-10000)
+   phr_table.command0:GetPhraseScript():AddDisableInfo(phr_prefix.."_stand_and_fire")
+   phr_table.command0:GetPhraseScript():AddDisableInfo(phr_prefix.."_nofire")
+   phr_table.command0:GetPhraseScript():AddDisableInfo(phr_prefix.."_stop")
+   phr_table.command0:GetPhraseScript():AddAction("dialogs.break_dialog")
+end
+function include_bodyguard_command_2_phrase(dlg,phr_table,phr_prefix)
+   phr_table.command0=dlg:AddPhrase(phr_prefix.."_dialog_2",tostring(0),"",-10000)
+   phr_table.command0:GetPhraseScript():AddGiveInfo(phr_prefix.."_stand_and_fire")
+   phr_table.command0:GetPhraseScript():AddDisableInfo(phr_prefix.."_nofire")
+   phr_table.command0:GetPhraseScript():AddDisableInfo(phr_prefix.."_stop")
+   phr_table.command0:GetPhraseScript():AddAction("dialogs.break_dialog")
+end
+function include_bodyguard_command_3_phrase(dlg,phr_table,phr_prefix)
+   phr_table.command0=dlg:AddPhrase(phr_prefix.."_dialog_8",tostring(0),"",-10000)
+   phr_table.command0:GetPhraseScript():AddDisableInfo(phr_prefix.."_stand_and_fire")
+   phr_table.command0:GetPhraseScript():AddGiveInfo(phr_prefix.."_nofire")
+   phr_table.command0:GetPhraseScript():AddDisableInfo(phr_prefix.."_stop")
+   phr_table.command0:GetPhraseScript():AddAction("dialogs.break_dialog")
+end
+function include_bodyguard_command_4_phrase(dlg,phr_table,phr_prefix)
+   phr_table.command0=dlg:AddPhrase(phr_prefix.."_dialog_9",tostring(0),"",-10000)
+   phr_table.command0:GetPhraseScript():AddDisableInfo(phr_prefix.."_stand_and_fire")
+   phr_table.command0:GetPhraseScript():AddDisableInfo(phr_prefix.."_nofire")
+   phr_table.command0:GetPhraseScript():AddGiveInfo(phr_prefix.."_stop")
+   phr_table.command0:GetPhraseScript():AddAction("dialogs.break_dialog")
+end
+function include_bodyguard_release_phrase(dlg,phr_table,phr_prefix)
+   phr_table.release0=dlg:AddPhrase(phr_prefix.."_dialog_10",tostring(0),"",-10000)
+   phr_table.release1=dlg:AddPhrase("bodyguard_release_dialog_1",tostring(1),tostring(0),-10000)
+   phr_table.release2=dlg:AddPhrase("bodyguard_release_dialog_2",tostring(2),tostring(1),-10000)
+   phr_table.release2:GetPhraseScript():AddAction("dialogs.break_dialog")
+   phr_table.release2:GetPhraseScript():AddAction("sgm_dialogs.bodyguard_set_release")
+   phr_table.release3=dlg:AddPhrase("bodyguard_release_dialog_3",tostring(3),tostring(1),-10000)
+   phr_table.release3:GetPhraseScript():AddAction("dialogs.break_dialog")
+end
+function include_bodyguard_equipment_phrase(dlg,phr_table,phr_prefix)
+   phr_table.equipment0=dlg:AddPhrase("bodyguard_equipment_dialog_1",tostring(0),"",-10000)
+   phr_table.equipment501=dlg:AddPhrase("bodyguard_equipment_dialog_4",tostring(501),tostring(0),-10000)
+   phr_table.equipment501:GetPhraseScript():AddAction("sgm_dialogs.bodyguard_available_equipment")
+   phr_table.equipment505=dlg:AddPhrase("bodyguard_equipment_dialog_2",tostring(505),tostring(501),-10000)
+   phr_table.equipment510=dlg:AddPhrase("bodyguard_equipment_dialog_5",tostring(510),tostring(501),-10000)
+   phr_table.equipment510:GetPhraseScript():AddPrecondition("sgm_dialogs.has_available_medkit")
+   phr_table.equipment5100=dlg:AddPhrase("bodyguard_equipment_dialog_10",tostring(5100),tostring(510),-10000)
+   local medkit_ids=1
+   for k,v in pairs(sgm_dialogs.issued_medkits_list) do
+      local selected_medkit=v[1]
+      local medkit_caption=sgm_functions.ReadCaption(selected_medkit)
+      phr_table["equipment51"..medkit_ids.."0"]=dlg:AddPhrase(medkit_caption,tostring("51"..medkit_ids.."0"),tostring(5100),-10000)
+      phr_table["equipment51"..medkit_ids.."0"]:GetPhraseScript():AddPrecondition("sgm_dialogs.actor_have_"..selected_medkit)
+      phr_table["equipment51"..medkit_ids.."0"]:GetPhraseScript():AddAction("sgm_dialogs.actor_give_"..selected_medkit)
+      phr_table["equipment51"..medkit_ids.."1"]=dlg:AddPhrase("bodyguard_equipment_dialog_3",tostring("51"..medkit_ids.."1"),tostring("51"..medkit_ids.."0"),-10000)
+      phr_table["equipment51"..medkit_ids.."1"]:GetPhraseScript():AddAction("dialogs.break_dialog")
+      medkit_ids=medkit_ids+1
+   end
+   phr_table.equipment51995=dlg:AddPhrase("bodyguard_equipment_dialog_11",tostring(51995),tostring(5100),-10000)
+   phr_table.equipment51995:GetPhraseScript():AddAction("dialogs.break_dialog")
+   phr_table.equipment520=dlg:AddPhrase("bodyguard_equipment_dialog_6",tostring(520),tostring(501),-10000)
+   phr_table.equipment520:GetPhraseScript():AddPrecondition("sgm_dialogs.has_available_pistol")
+   phr_table.equipment5200=dlg:AddPhrase("bodyguard_equipment_dialog_8",tostring(5200),tostring(520),-10000)
+   local pistol_ids=1
+   for k,v in pairs(sgm_dialogs.issued_pistols_list) do
+      local selected_pistol=string.sub(v[1],5)
+      local pistol_caption=sgm_functions.ReadCaption(v[1])
+      phr_table["equipment52"..pistol_ids.."0"]=dlg:AddPhrase(pistol_caption,tostring("52"..pistol_ids.."0"),tostring(5200),-10000)
+      phr_table["equipment52"..pistol_ids.."0"]:GetPhraseScript():AddPrecondition("sgm_dialogs.actor_have_"..selected_pistol)
+      phr_table["equipment52"..pistol_ids.."0"]:GetPhraseScript():AddAction("sgm_dialogs.actor_give_"..selected_pistol)
+      phr_table["equipment52"..pistol_ids.."1"]=dlg:AddPhrase("bodyguard_equipment_dialog_3",tostring("52"..pistol_ids.."1"),tostring("52"..pistol_ids.."0"),-10000)
+      phr_table["equipment52"..pistol_ids.."1"]:GetPhraseScript():AddAction("dialogs.break_dialog")
+      pistol_ids=pistol_ids+1
+   end
+   phr_table.equipment52995=dlg:AddPhrase("bodyguard_equipment_dialog_9",tostring(52995),tostring(5200),-10000)
+   phr_table.equipment52995:GetPhraseScript():AddAction("dialogs.break_dialog")
+   phr_table.equipment530=dlg:AddPhrase("bodyguard_equipment_dialog_7",tostring(530),tostring(501),-10000)
+   phr_table.equipment530:GetPhraseScript():AddPrecondition("sgm_dialogs.has_available_rifle")
+   phr_table.equipment5300=dlg:AddPhrase("bodyguard_equipment_dialog_8",tostring(5300),tostring(530),-10000)
+   local rifle_ids=1
+   for k,v in pairs(sgm_dialogs.issued_rifles_list) do
+      local selected_rifle=string.sub(v[1],5)
+      local rifle_caption=sgm_functions.ReadCaption(v[1])
+      if v[1]=="wpn_rg-6" then
+         selected_rifle="rg_6"
+      end
+      phr_table["equipment53"..rifle_ids.."0"]=dlg:AddPhrase(rifle_caption,tostring("53"..rifle_ids.."0"),tostring(5300),-10000)
+      phr_table["equipment53"..rifle_ids.."0"]:GetPhraseScript():AddPrecondition("sgm_dialogs.actor_have_"..selected_rifle)
+      phr_table["equipment53"..rifle_ids.."0"]:GetPhraseScript():AddAction("sgm_dialogs.actor_give_"..selected_rifle)
+      phr_table["equipment53"..rifle_ids.."1"]=dlg:AddPhrase("bodyguard_equipment_dialog_3",tostring("53"..rifle_ids.."1"),tostring("53"..rifle_ids.."0"),-10000)
+      phr_table["equipment53"..rifle_ids.."1"]:GetPhraseScript():AddAction("dialogs.break_dialog")
+      rifle_ids=rifle_ids+1
+   end
+   phr_table.equipment53995=dlg:AddPhrase("bodyguard_equipment_dialog_9",tostring(53995),tostring(5300),-10000)
+   phr_table.equipment53995:GetPhraseScript():AddAction("dialogs.break_dialog")
+end
+--/Фрегат
+function zat_stalker_bodyguard_yes_dialog(dlg)
+   local phr_table={}
+   local phr_prefix="zat_stalker_bodyguard"
+   include_bodyguard_yes_phrase(dlg,phr_table,phr_prefix)
+end
+function zat_stalker_bodyguard_no_dialog(dlg)
+   local phr_table={}
+   local phr_prefix="zat_stalker_bodyguard"
+   include_bodyguard_no_phrase(dlg,phr_table,phr_prefix)
+end
+function zat_stalker_bodyguard_command_1_dialog(dlg)
+   local phr_table={}
+   local phr_prefix="zat_stalker_bodyguard"
+   include_bodyguard_command_1_phrase(dlg,phr_table,phr_prefix)
+end
+function zat_stalker_bodyguard_command_2_dialog(dlg)
+   local phr_table={}
+   local phr_prefix="zat_stalker_bodyguard"
+   include_bodyguard_command_2_phrase(dlg,phr_table,phr_prefix)
+end
+function zat_stalker_bodyguard_command_3_dialog(dlg)
+   local phr_table={}
+   local phr_prefix="zat_stalker_bodyguard"
+   include_bodyguard_command_3_phrase(dlg,phr_table,phr_prefix)
+end
+function zat_stalker_bodyguard_command_4_dialog(dlg)
+   local phr_table={}
+   local phr_prefix="zat_stalker_bodyguard"
+   include_bodyguard_command_4_phrase(dlg,phr_table,phr_prefix)
+end
+function zat_stalker_bodyguard_release_dialog(dlg)
+   local phr_table={}
+   local phr_prefix="zat_stalker_bodyguard"
+   include_bodyguard_release_phrase(dlg,phr_table,phr_prefix)
+end
+function zat_stalker_bodyguard_equipment_dialog(dlg)
+   local phr_table={}
+   local phr_prefix="zat_stalker_bodyguard"
+   include_bodyguard_equipment_phrase(dlg,phr_table,phr_prefix)
+end
+--/Хан
+function zat_bandit_bodyguard_yes_dialog(dlg)
+   local phr_table={}
+   local phr_prefix="zat_bandit_bodyguard"
+   include_bodyguard_yes_phrase(dlg,phr_table,phr_prefix)
+end
+function zat_bandit_bodyguard_no_dialog(dlg)
+   local phr_table={}
+   local phr_prefix="zat_bandit_bodyguard"
+   include_bodyguard_no_phrase(dlg,phr_table,phr_prefix)
+end
+function zat_bandit_bodyguard_command_1_dialog(dlg)
+   local phr_table={}
+   local phr_prefix="zat_bandit_bodyguard"
+   include_bodyguard_command_1_phrase(dlg,phr_table,phr_prefix)
+end
+function zat_bandit_bodyguard_command_2_dialog(dlg)
+   local phr_table={}
+   local phr_prefix="zat_bandit_bodyguard"
+   include_bodyguard_command_2_phrase(dlg,phr_table,phr_prefix)
+end
+function zat_bandit_bodyguard_command_3_dialog(dlg)
+   local phr_table={}
+   local phr_prefix="zat_bandit_bodyguard"
+   include_bodyguard_command_3_phrase(dlg,phr_table,phr_prefix)
+end
+function zat_bandit_bodyguard_command_4_dialog(dlg)
+   local phr_table={}
+   local phr_prefix="zat_bandit_bodyguard"
+   include_bodyguard_command_4_phrase(dlg,phr_table,phr_prefix)
+end
+function zat_bandit_bodyguard_release_dialog(dlg)
+   local phr_table={}
+   local phr_prefix="zat_bandit_bodyguard"
+   include_bodyguard_release_phrase(dlg,phr_table,phr_prefix)
+end
+function zat_bandit_bodyguard_equipment_dialog(dlg)
+   local phr_table={}
+   local phr_prefix="zat_bandit_bodyguard"
+   include_bodyguard_equipment_phrase(dlg,phr_table,phr_prefix)
+end
+--/Наполеон
+function jup_freedom_bodyguard_yes_dialog(dlg)
+   local phr_table={}
+   local phr_prefix="jup_freedom_bodyguard"
+   include_bodyguard_yes_phrase(dlg,phr_table,phr_prefix)
+end
+function jup_freedom_bodyguard_no_dialog(dlg)
+   local phr_table={}
+   local phr_prefix="jup_freedom_bodyguard"
+   include_bodyguard_no_phrase(dlg,phr_table,phr_prefix)
+end
+function jup_freedom_bodyguard_command_1_dialog(dlg)
+   local phr_table={}
+   local phr_prefix="jup_freedom_bodyguard"
+   include_bodyguard_command_1_phrase(dlg,phr_table,phr_prefix)
+end
+function jup_freedom_bodyguard_command_2_dialog(dlg)
+   local phr_table={}
+   local phr_prefix="jup_freedom_bodyguard"
+   include_bodyguard_command_2_phrase(dlg,phr_table,phr_prefix)
+end
+function jup_freedom_bodyguard_command_3_dialog(dlg)
+   local phr_table={}
+   local phr_prefix="jup_freedom_bodyguard"
+   include_bodyguard_command_3_phrase(dlg,phr_table,phr_prefix)
+end
+function jup_freedom_bodyguard_command_4_dialog(dlg)
+   local phr_table={}
+   local phr_prefix="jup_freedom_bodyguard"
+   include_bodyguard_command_4_phrase(dlg,phr_table,phr_prefix)
+end
+function jup_freedom_bodyguard_release_dialog(dlg)
+   local phr_table={}
+   local phr_prefix="jup_freedom_bodyguard"
+   include_bodyguard_release_phrase(dlg,phr_table,phr_prefix)
+end
+function jup_freedom_bodyguard_equipment_dialog(dlg)
+   local phr_table={}
+   local phr_prefix="jup_freedom_bodyguard"
+   include_bodyguard_equipment_phrase(dlg,phr_table,phr_prefix)
+end
+--/Верещягин
+function jup_army_bodyguard_yes_dialog(dlg)
+   local phr_table={}
+   local phr_prefix="jup_army_bodyguard"
+   include_bodyguard_yes_phrase(dlg,phr_table,phr_prefix)
+end
+function jup_army_bodyguard_no_dialog(dlg)
+   local phr_table={}
+   local phr_prefix="jup_army_bodyguard"
+   include_bodyguard_no_phrase(dlg,phr_table,phr_prefix)
+end
+function jup_army_bodyguard_command_1_dialog(dlg)
+   local phr_table={}
+   local phr_prefix="jup_army_bodyguard"
+   include_bodyguard_command_1_phrase(dlg,phr_table,phr_prefix)
+end
+function jup_army_bodyguard_command_2_dialog(dlg)
+   local phr_table={}
+   local phr_prefix="jup_army_bodyguard"
+   include_bodyguard_command_2_phrase(dlg,phr_table,phr_prefix)
+end
+function jup_army_bodyguard_command_3_dialog(dlg)
+   local phr_table={}
+   local phr_prefix="jup_army_bodyguard"
+   include_bodyguard_command_3_phrase(dlg,phr_table,phr_prefix)
+end
+function jup_army_bodyguard_command_4_dialog(dlg)
+   local phr_table={}
+   local phr_prefix="jup_army_bodyguard"
+   include_bodyguard_command_4_phrase(dlg,phr_table,phr_prefix)
+end
+function jup_army_bodyguard_release_dialog(dlg)
+   local phr_table={}
+   local phr_prefix="jup_army_bodyguard"
+   include_bodyguard_release_phrase(dlg,phr_table,phr_prefix)
+end
+function jup_army_bodyguard_equipment_dialog(dlg)
+   local phr_table={}
+   local phr_prefix="jup_army_bodyguard"
+   include_bodyguard_equipment_phrase(dlg,phr_table,phr_prefix)
+end
+--/Наган
+function jup_killer_bodyguard_yes_dialog(dlg)
+   local phr_table={}
+   local phr_prefix="jup_killer_bodyguard"
+   include_bodyguard_yes_phrase(dlg,phr_table,phr_prefix)
+end
+function jup_killer_bodyguard_no_dialog(dlg)
+   local phr_table={}
+   local phr_prefix="jup_killer_bodyguard"
+   include_bodyguard_no_phrase(dlg,phr_table,phr_prefix)
+end
+function jup_killer_bodyguard_command_1_dialog(dlg)
+   local phr_table={}
+   local phr_prefix="jup_killer_bodyguard"
+   include_bodyguard_command_1_phrase(dlg,phr_table,phr_prefix)
+end
+function jup_killer_bodyguard_command_2_dialog(dlg)
+   local phr_table={}
+   local phr_prefix="jup_killer_bodyguard"
+   include_bodyguard_command_2_phrase(dlg,phr_table,phr_prefix)
+end
+function jup_killer_bodyguard_command_3_dialog(dlg)
+   local phr_table={}
+   local phr_prefix="jup_killer_bodyguard"
+   include_bodyguard_command_3_phrase(dlg,phr_table,phr_prefix)
+end
+function jup_killer_bodyguard_command_4_dialog(dlg)
+   local phr_table={}
+   local phr_prefix="jup_killer_bodyguard"
+   include_bodyguard_command_4_phrase(dlg,phr_table,phr_prefix)
+end
+function jup_killer_bodyguard_release_dialog(dlg)
+   local phr_table={}
+   local phr_prefix="jup_killer_bodyguard"
+   include_bodyguard_release_phrase(dlg,phr_table,phr_prefix)
+end
+function jup_killer_bodyguard_equipment_dialog(dlg)
+   local phr_table={}
+   local phr_prefix="jup_killer_bodyguard"
+   include_bodyguard_equipment_phrase(dlg,phr_table,phr_prefix)
+end
+--/Легионер
+function pri_army_bodyguard_yes_dialog(dlg)
+   local phr_table={}
+   local phr_prefix="pri_army_bodyguard"
+   include_bodyguard_yes_phrase(dlg,phr_table,phr_prefix)
+end
+function pri_army_bodyguard_no_dialog(dlg)
+   local phr_table={}
+   local phr_prefix="pri_army_bodyguard"
+   include_bodyguard_no_phrase(dlg,phr_table,phr_prefix)
+end
+function pri_army_bodyguard_command_1_dialog(dlg)
+   local phr_table={}
+   local phr_prefix="pri_army_bodyguard"
+   include_bodyguard_command_1_phrase(dlg,phr_table,phr_prefix)
+end
+function pri_army_bodyguard_command_2_dialog(dlg)
+   local phr_table={}
+   local phr_prefix="pri_army_bodyguard"
+   include_bodyguard_command_2_phrase(dlg,phr_table,phr_prefix)
+end
+function pri_army_bodyguard_command_3_dialog(dlg)
+   local phr_table={}
+   local phr_prefix="pri_army_bodyguard"
+   include_bodyguard_command_3_phrase(dlg,phr_table,phr_prefix)
+end
+function pri_army_bodyguard_command_4_dialog(dlg)
+   local phr_table={}
+   local phr_prefix="pri_army_bodyguard"
+   include_bodyguard_command_4_phrase(dlg,phr_table,phr_prefix)
+end
+function pri_army_bodyguard_release_dialog(dlg)
+   local phr_table={}
+   local phr_prefix="pri_army_bodyguard"
+   include_bodyguard_release_phrase(dlg,phr_table,phr_prefix)
+end
+function pri_army_bodyguard_equipment_dialog(dlg)
+   local phr_table={}
+   local phr_prefix="pri_army_bodyguard"
+   include_bodyguard_equipment_phrase(dlg,phr_table,phr_prefix)
+end
+--/Архей
+function pri_monolith_bodyguard_yes_dialog(dlg)
+   local phr_table={}
+   local phr_prefix="pri_monolith_bodyguard"
+   include_bodyguard_yes_phrase(dlg,phr_table,phr_prefix)
+end
+function pri_monolith_bodyguard_no_dialog(dlg)
+   local phr_table={}
+   local phr_prefix="pri_monolith_bodyguard"
+   include_bodyguard_no_phrase(dlg,phr_table,phr_prefix)
+end
+function pri_monolith_bodyguard_command_1_dialog(dlg)
+   local phr_table={}
+   local phr_prefix="pri_monolith_bodyguard"
+   include_bodyguard_command_1_phrase(dlg,phr_table,phr_prefix)
+end
+function pri_monolith_bodyguard_command_2_dialog(dlg)
+   local phr_table={}
+   local phr_prefix="pri_monolith_bodyguard"
+   include_bodyguard_command_2_phrase(dlg,phr_table,phr_prefix)
+end
+function pri_monolith_bodyguard_command_3_dialog(dlg)
+   local phr_table={}
+   local phr_prefix="pri_monolith_bodyguard"
+   include_bodyguard_command_3_phrase(dlg,phr_table,phr_prefix)
+end
+function pri_monolith_bodyguard_command_4_dialog(dlg)
+   local phr_table={}
+   local phr_prefix="pri_monolith_bodyguard"
+   include_bodyguard_command_4_phrase(dlg,phr_table,phr_prefix)
+end
+function pri_monolith_bodyguard_release_dialog(dlg)
+   local phr_table={}
+   local phr_prefix="pri_monolith_bodyguard"
+   include_bodyguard_release_phrase(dlg,phr_table,phr_prefix)
+end
+function pri_monolith_bodyguard_equipment_dialog(dlg)
+   local phr_table={}
+   local phr_prefix="pri_monolith_bodyguard"
+   include_bodyguard_equipment_phrase(dlg,phr_table,phr_prefix)
+end
+-------------------------------------------------------------------
+--                Сбыт квестовых предметов Сычу                  --
+-------------------------------------------------------------------
+local quest_items_on_sale={
+zat_shakal_weapon = 2500,
+zat_alfa_customer_pda = 2000,
+zat_alfa_performer_bandit_pda = 3000,
+}
+function sale_quest_items_in_presence(actor,npc)
+   local founded=false
+   for k,v in pairs(quest_items_on_sale) do
+      if k~=nil and db.actor:object(k) then
+         founded=true
+      end
+   end
+   return founded
+end
+function zat_b30_owl_stalker_trader_sale_dialog(dlg)
+   local phr_table={}
+   phr_table.main0=dlg:AddPhrase("zat_b30_owl_stalker_trader_sell_items_0",tostring(0),"",-10000)
+   phr_table.main1=dlg:AddPhrase("zat_b30_owl_stalker_trader_sell_items_1",tostring(1),tostring(0),-10000)
+   local quest_items_counter=1
+   for k,v in pairs(quest_items_on_sale) do
+      if k~=nil then
+         local item_caption=sgm_functions.ReadCaption(k)
+         local item_cost=v
+         phr_table["main2"..quest_items_counter.."0"]=dlg:AddPhrase(item_caption,tostring("2"..quest_items_counter.."0"),tostring(1),-10000)
+         phr_table["main2"..quest_items_counter.."0"]:GetPhraseScript():AddPrecondition("sgm_phrases.".."precond_"..k)
+         phr_table["main2"..quest_items_counter.."1"]=dlg:AddPhrase(game.translate_string("zat_b30_owl_stalker_trader_sell_items_8081").." ".."-".." "..item_cost..".",tostring("2"..quest_items_counter.."1"),tostring("2"..quest_items_counter.."0"),-10000)
+         phr_table["main2"..quest_items_counter.."21"]=dlg:AddPhrase("zat_b30_owl_stalker_trader_sell_items_1111",tostring("2"..quest_items_counter.."21"),tostring("2"..quest_items_counter.."1"),-10000)
+         phr_table["main2"..quest_items_counter.."21"]:GetPhraseScript():AddAction("sgm_phrases.".."issue_"..k)
+         phr_table["main2"..quest_items_counter.."211"]=dlg:AddPhrase("zat_b30_owl_stalker_trader_sell_items_8082",tostring("2"..quest_items_counter.."211"),tostring("2"..quest_items_counter.."21"),-10000)
+         phr_table["main2"..quest_items_counter.."211"]:GetPhraseScript():AddAction("sgm_phrases.".."reward_"..k)
+         phr_table["main2"..quest_items_counter.."212"]=dlg:AddPhrase("zat_b30_owl_stalker_trader_sell_items_8083",tostring("2"..quest_items_counter.."212"),tostring("2"..quest_items_counter.."211"),-10000)
+         phr_table["main2"..quest_items_counter.."212"]:GetPhraseScript():AddAction("dialogs.break_dialog")
+         phr_table["main2"..quest_items_counter.."22"]=dlg:AddPhrase("zat_b30_owl_stalker_trader_sell_items_1112",tostring("2"..quest_items_counter.."22"),tostring("2"..quest_items_counter.."1"),-10000)
+         phr_table["main2"..quest_items_counter.."22"]:GetPhraseScript():AddAction("dialogs.break_dialog")
+         quest_items_counter=quest_items_counter+1
+      end
+   end
+end
+function precond_zat_shakal_weapon(actor,npc)
+   return db.actor:object("zat_shakal_weapon")
+end
+function issue_zat_shakal_weapon(actor,npc)
+   dialogs.relocate_item_section(npc,"zat_shakal_weapon","out")
+end
+function reward_zat_shakal_weapon(actor,npc)
+   dialogs.relocate_money(db.actor,quest_items_on_sale.zat_shakal_weapon,"in")
+end
+function precond_zat_alfa_customer_pda(actor,npc)
+   return db.actor:object("zat_alfa_customer_pda")
+end
+function issue_zat_alfa_customer_pda(actor,npc)
+   dialogs.relocate_item_section(npc,"zat_alfa_customer_pda","out")
+end
+function reward_zat_alfa_customer_pda(actor,npc)
+   dialogs.relocate_money(db.actor,quest_items_on_sale.zat_alfa_customer_pda,"in")
+end
+function precond_zat_alfa_performer_bandit_pda(actor,npc)
+   return db.actor:object("zat_alfa_performer_bandit_pda")
+end
+function issue_zat_alfa_performer_bandit_pda(actor,npc)
+   dialogs.relocate_item_section(npc,"zat_alfa_performer_bandit_pda","out")
+end
+function reward_zat_alfa_performer_bandit_pda(actor,npc)
+   dialogs.relocate_money(db.actor,quest_items_on_sale.zat_alfa_performer_bandit_pda,"in")
+end
+
+
+
+
+
+---------------------------------//Copyright GeJorge//-----------------------------------------------
+

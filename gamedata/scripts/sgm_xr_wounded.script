@@ -1,0 +1,23 @@
+local old_init_wounded = xr_wounded.init_wounded
+function init_wounded(npc, ini, section, st, scheme)
+	--/ SGM in
+	if scheme ~= nil and sgm_functions.ReadCanBeWounded(npc:section()) == false then
+		local state           = wounded_by_state[math.mod(npc:id(), 3)]
+		def.hp_state          = "0|" .. state .. "@help_heavy"
+		def.hp_state_see      = "0|" .. state .. "@help_heavy"
+		def.psy_state         =
+		"0|{=best_pistol}psy_armed,psy_pain@wounded_psy|20|{=best_pistol}psy_shoot,psy_pain@{=best_pistol}wounded_psy_shoot,wounded_psy"
+		def.hp_victim         = "0|nil"
+		def.hp_cover          = "0|false"
+		def.hp_fight          = "0|false"
+		def.syndata           = ""
+		def.help_dialog       = nil
+		def.help_start_dialog = nil
+		def.use_medkit        = false
+		def.enable_talk       = true
+		def.not_for_help      = true
+		--/ SGM out
+	end
+	old_init_wounded(npc, ini, section, st, scheme)
+end
+xr_wounded.init_wounded = init_wounded

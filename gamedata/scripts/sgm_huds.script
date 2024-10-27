@@ -1,0 +1,582 @@
+---==================================================================================================---
+--------------------------------------------------------------------------------------------------------
+---------------------------------------(Загрузчик HUDa)-------------------------------------------------
+--------------------------------------------------------------------------------------------------------
+---==================================================================================================---
+local hud_manager=nil
+class "CHudManager"
+function CHudManager:__init()
+end
+function CHudManager:initialize()
+end
+function CHudManager:update()
+   local hud_elements_precond=precond_hud(1)
+   local hud_carrying_precond=precond_hud(2)
+   self:hud_carrying(hud_carrying_precond)
+   if hud_elements_precond then
+      self:hud_weapons()
+      self:hud_indikators()
+      self:hud_utils()
+   else
+      self:hud_release()
+   end
+end
+function CHudManager:hud_carrying(cond)
+   local active_item=db.actor:active_item()
+   local outfit_in_slot=db.actor:item_in_slot(7)
+   local helm_in_slot=db.actor:item_in_slot(12)
+   if cond then
+      if outfit_in_slot then
+         if sgm_flags.value_outfit_flg==1 and outfit_in_slot:section()~=sgm_flags.string_outfit_carrying then
+            if sgm_flags.string_hud_carrying~="nil" then
+               release_hud(sgm_flags.string_hud_carrying)
+               sgm_flags.string_hud_carrying="nil"
+            end
+            sgm_flags.value_outfit_flg=0
+            start_flague_timer("timer_carrying_dressed_delay",2000)
+         elseif sgm_flags.string_hud_carrying~="nil" and (dont_has_alife_info("opt_activate_carrying_hud")) then
+            release_hud(sgm_flags.string_hud_carrying)
+            sgm_flags.string_hud_carrying="nil"
+         end
+         if sgm_functions.ReadHudCarryingOutfit(outfit_in_slot:section())~=nil and sgm_functions.ReadHudCarryingOutfit(outfit_in_slot:section())~="none" then
+           self:setup_carrying_hud(outfit_in_slot,1,true)
+           if sgm_flags.value_outfit_flg==0 then
+              sgm_flags.string_outfit_carrying=outfit_in_slot:section()
+              sgm_flags.value_outfit_flg=1
+           end
+         else
+           if sgm_flags.string_hud_carrying~="nil" then
+              release_hud(sgm_flags.string_hud_carrying)
+              sgm_flags.string_hud_carrying="nil"
+              if has_alife_info("opt_activate_carrying_hud") then
+                 play_snd_at_actor([[sound_effects\use_gas_mask]])
+              end
+           end
+         end
+      else
+         if sgm_flags.string_hud_carrying~="nil" then
+            release_hud(sgm_flags.string_hud_carrying)
+            sgm_flags.string_hud_carrying="nil"
+            if has_alife_info("opt_activate_carrying_hud") then
+               play_snd_at_actor([[sound_effects\use_gas_mask]])
+            end
+            start_flague_timer("timer_carrying_dressed_delay",10000)
+         end
+      end
+      if helm_in_slot then
+         if sgm_flags.value_helm_flg==1 and helm_in_slot:section()~=sgm_flags.string_outfit_carrying then
+            if sgm_flags.string_hud2_carrying~="nil" then
+               release_hud(sgm_flags.string_hud2_carrying)
+               sgm_flags.string_hud2_carrying="nil"
+            end
+            sgm_flags.value_helm_flg=0
+            start_flague_timer("timer_carrying_dressed_delay",2000)
+         elseif sgm_flags.string_hud2_carrying~="nil" and (dont_has_alife_info("opt_activate_carrying_hud")) then
+            release_hud(sgm_flags.string_hud2_carrying)
+            sgm_flags.string_hud2_carrying="nil"
+         end
+         if sgm_functions.ReadHudCarryingOutfit(helm_in_slot:section())~=nil and sgm_functions.ReadHudCarryingOutfit(helm_in_slot:section())~="none" then
+           self:setup_carrying_hud(helm_in_slot,2,true)
+           if sgm_flags.value_helm_flg==0 then
+              sgm_flags.string_outfit_carrying=helm_in_slot:section()
+              sgm_flags.value_helm_flg=1
+           end
+         else
+           if sgm_flags.string_hud2_carrying~="nil" then
+              release_hud(sgm_flags.string_hud2_carrying)
+              sgm_flags.string_hud2_carrying="nil"
+              if has_alife_info("opt_activate_carrying_hud") then
+                 play_snd_at_actor([[sound_effects\use_gas_mask]])
+              end
+           end
+         end
+      else
+         if sgm_flags.string_hud2_carrying~="nil" then
+            release_hud(sgm_flags.string_hud2_carrying)
+            sgm_flags.string_hud2_carrying="nil"
+            if has_alife_info("opt_activate_carrying_hud") then
+               play_snd_at_actor([[sound_effects\use_gas_mask]])
+            end
+            start_flague_timer("timer_carrying_dressed_delay",10000)
+         end
+      end
+  else
+      if sgm_flags.string_hud_carrying~="nil" then
+         release_hud(sgm_flags.string_hud_carrying)
+         sgm_flags.string_hud_carrying="nil"
+      end
+      if sgm_flags.string_hud2_carrying~="nil" then
+         release_hud(sgm_flags.string_hud2_carrying)
+         sgm_flags.string_hud2_carrying="nil"
+      end
+      change_flag_value("bool_carrying_snd_end",false)
+  end
+end
+function CHudManager:hud_weapons()
+   local active_item=db.actor:active_item()
+   local pistol_in_slot=db.actor:item_in_slot(2)
+   local rifle_in_slot=db.actor:item_in_slot(3)
+   if pistol_in_slot~=nil then
+      change_flag_value("value_wpn1_state_bar",string.format(math.floor(pistol_in_slot:condition()*100)))
+   else
+      change_flag_value("value_wpn1_state_bar",0)
+   end
+   if rifle_in_slot~=nil then
+      change_flag_value("value_wpn2_state_bar",string.format(math.floor(rifle_in_slot:condition()*100)))
+   else
+      change_flag_value("value_wpn2_state_bar",0)
+   end
+   if dont_has_alife_info("opt_disable_hud_wpn") then
+      if active_item~=nil and pistol_in_slot~=nil and active_item:section()==pistol_in_slot:section() then
+         local params_damage=self:ReadDamage(active_item:section(),active_item)
+         local params_distance=self:ReadDistance(active_item:section(),active_item)
+         local params_txt=game.translate_string("st_weapon_damage").."["..params_damage.."]"
+         local params_txt_2=game.translate_string("st_weapon_distance").."["..params_distance..game.translate_string("st_def_meters").."]"
+         local param_info=sgm_functions.GetSkillInfo(active_item:section())
+         local param_point=sgm_functions.GetSkillPoint(active_item:section())
+         if param_info~=nil and param_point~=nil and has_alife_info(param_info) then
+            add_hud("hud_wpn_studied1")
+         elseif param_info~=nil and param_point~=nil and dont_has_alife_info(param_info) then
+            release_hud("hud_wpn_studied1")
+         end
+         add_hud("hud_wpn_params_1",params_txt)
+         add_hud("hud_wpn_params_1_1",params_txt_2)
+         show_pistol_state_bar("hud_wpn_state_bar1","ui_mod_progress_bars.xml","weapon_state_bar_slot1",sgm_flags.value_wpn1_state_bar)
+      end
+      if (active_item==nil or (pistol_in_slot~=nil and active_item:section()~=pistol_in_slot:section())) then
+         release_hud("hud_wpn_params_1")
+         release_hud("hud_wpn_params_1_1")
+         release_hud("hud_wpn_studied1")
+         release_hud("hud_wpn_state_bar1")
+      end
+      if active_item~=nil and rifle_in_slot~=nil and active_item:section()==rifle_in_slot:section() then
+         local params_damage=self:ReadDamage(active_item:section(),active_item)
+         local params_distance=self:ReadDistance(active_item:section(),active_item)
+         local params_txt=game.translate_string("st_weapon_damage").."["..params_damage.."]"
+         local params_txt_2=game.translate_string("st_weapon_distance").."["..params_distance..game.translate_string("st_def_meters").."]"
+         local param_info=sgm_functions.GetSkillInfo(active_item:section())
+         local param_point=sgm_functions.GetSkillPoint(active_item:section())
+         if param_info~=nil and param_point~=nil and has_alife_info(param_info) then
+            add_hud("hud_wpn_studied2")
+         elseif param_info~=nil and param_point~=nil and dont_has_alife_info(param_info) then
+            release_hud("hud_wpn_studied2")
+         end
+         add_hud("hud_wpn_params_2",params_txt)
+         add_hud("hud_wpn_params_2_2",params_txt_2)
+         show_rifle_state_bar("hud_wpn_state_bar2","ui_mod_progress_bars.xml","weapon_state_bar_slot2",sgm_flags.value_wpn2_state_bar)
+      end
+      if (active_item==nil or (rifle_in_slot~=nil and active_item:section()~=rifle_in_slot:section())) then
+         release_hud("hud_wpn_params_2_2")
+         release_hud("hud_wpn_params_2")
+         release_hud("hud_wpn_studied2")
+         release_hud("hud_wpn_state_bar2")
+      end
+      if active_item~=nil and sgm_functions.GetItemSlot(active_item:section())==3 then
+         if active_item:section()~="grenade_gd-05" and active_item:section()~="grenade_gd-05_double" and active_item:section()~="grenade_gd-05_lighting" then
+            local params_explosion=self:ReadExplosion(active_item:section())
+            local params_splinter=self:ReadSplinter(active_item:section())
+            local params_txt=game.translate_string("st_detonation_radius").."["..params_explosion..game.translate_string("st_def_meters").."]"
+            local params_txt_2=game.translate_string("st_detonation_scraps").."["..params_splinter..game.translate_string("st_def_meters").."]"
+            add_hud("hud_wpn_params_3",params_txt)
+            add_hud("hud_wpn_params_3_3",params_txt_2)
+         else
+            local params_smoke=self:ReadExplodeDuration(active_item:section())
+            local params_txt=game.translate_string("st_detonation_time").."["..params_smoke..game.translate_string("st_def_second").."]"
+            add_hud("hud_wpn_params_3",params_txt)
+	    release_hud("hud_wpn_params_3_3")
+         end
+      end
+      if active_item==nil or sgm_functions.GetItemSlot(active_item:section())~=3 then
+         release_hud("hud_wpn_params_3_3")
+         release_hud("hud_wpn_params_3")
+      end
+   else
+      release_hud("hud_wpn_studied1")
+      release_hud("hud_wpn_studied2")
+      release_hud("hud_wpn_params_1_1")
+      release_hud("hud_wpn_params_1")
+      release_hud("hud_wpn_params_2_2")
+      release_hud("hud_wpn_params_2")
+      release_hud("hud_wpn_params_3_3")
+      release_hud("hud_wpn_params_3")
+      release_hud("hud_wpn_state_bar1")
+      release_hud("hud_wpn_state_bar2")
+   end
+end
+function CHudManager:ReadDamage(section,object)
+   local ltx = system_ini()
+   local s_status = ltx:r_float(section,"silencer_status")
+   local default_value = ltx:r_float(section,"hit_power")
+   local addon_value = 0
+   local param_info=sgm_functions.GetSkillInfo(section)
+   local param_point=sgm_functions.GetSkillPoint(section)
+   if ltx:line_exist(section,"silencer_hit_power") then
+      addon_value = ltx:r_float(section,"silencer_hit_power")
+   else
+      addon_value = default_value
+   end
+   if has_alife_info(param_info) and dont_has_alife_info("sgm_achievements_sniper") then
+      if s_status~=1 and get_installed_addon(object,"silencer")==false then
+         return math.floor(string.format(math.floor(default_value*100))+string.format(math.floor(param_point*100)))
+      elseif s_status~=1 and get_installed_addon(object,"silencer")==true then
+         return math.floor(string.format(math.floor(addon_value*100))+string.format(math.floor(param_point*100)))
+      elseif s_status==1 then
+         return math.floor(string.format(math.floor(addon_value*100))+string.format(math.floor(param_point*100)))
+      end
+   elseif dont_has_alife_info(param_info) and dont_has_alife_info("sgm_achievements_sniper") then
+      if s_status~=1 and get_installed_addon(object,"silencer")==false then
+         return math.floor(string.format(math.floor(default_value*100)))
+      elseif s_status~=1 and get_installed_addon(object,"silencer")==true then
+         return math.floor(string.format(math.floor(addon_value*100)))
+      elseif s_status==1 then
+         return math.floor(string.format(math.floor(addon_value*100)))
+      end
+   elseif has_alife_info(param_info) and has_alife_info("sgm_achievements_sniper") then
+      local achievements_bonus=string.format(math.floor((sgm_functions.ReadDamage2(section)*100)*r_mod_params("number","achievements_sniper_bonus",0.20)))
+      if s_status~=1 and get_installed_addon(object,"silencer")==false then
+         return math.floor(string.format(math.floor(default_value*100))+string.format(math.floor(param_point*100))+achievements_bonus)
+      elseif s_status~=1 and get_installed_addon(object,"silencer")==true then
+         return math.floor(string.format(math.floor(addon_value*100))+string.format(math.floor(param_point*100))+achievements_bonus)
+      elseif s_status==1 then
+         return math.floor(string.format(math.floor(addon_value*100))+string.format(math.floor(param_point*100))+achievements_bonus)
+      end
+   elseif dont_has_alife_info(param_info) and has_alife_info("sgm_achievements_sniper") then
+      local achievements_bonus=string.format(math.floor((sgm_functions.ReadDamage2(section)*100)*r_mod_params("number","achievements_sniper_bonus",0.20)))
+      if s_status~=1 and get_installed_addon(object,"silencer")==false then
+         return math.floor(string.format(math.floor(default_value*100))+achievements_bonus)
+      elseif s_status~=1 and get_installed_addon(object,"silencer")==true then
+         return math.floor(string.format(math.floor(addon_value*100))+achievements_bonus)
+      elseif s_status==1 then
+         return math.floor(string.format(math.floor(addon_value*100))+achievements_bonus)
+      end
+   end
+   return 0
+end
+function CHudManager:ReadDistance(section,object)
+   local ltx = system_ini()
+   local s_status = ltx:r_float(section,"silencer_status")
+   local default_value = ltx:r_float(section,"fire_distance")
+   local addon_value = 0
+   if ltx:line_exist(section,"silencer_fire_distance") then
+      addon_value = ltx:r_float(section,"silencer_fire_distance")
+   else
+      addon_value = default_value
+   end
+   if s_status~=1 and get_installed_addon(object,"silencer")==false then
+      return default_value
+   elseif s_status~=1 and get_installed_addon(object,"silencer")==true then
+      return addon_value
+   elseif s_status==1 then
+      return addon_value
+   end
+   return 0
+end
+function CHudManager:ReadExplosion(section)
+   local ltx = system_ini()
+   local value = ltx:r_float(section,"blast_r")
+   return value
+end
+function CHudManager:ReadSplinter(section)
+   local ltx = system_ini()
+   local value = ltx:r_float(section,"frags_r")
+   return value
+end
+function CHudManager:ReadExplodeDuration(section)
+   local ltx = system_ini()
+   local value = ltx:r_float(section,"explode_duration")
+   return value
+end
+function CHudManager:setup_carrying_hud(item,type,sound)
+    local item_section=item:section()
+    local item_cond=item:condition()
+    local item_hud=sgm_functions.ReadHudCarryingOutfit(item_section)
+    local item_hud_prefix
+    if item_cond>=0.60 then
+       release_hud(item_hud.."_scratched")
+       release_hud(item_hud.."_damaged")
+       item_hud_prefix="_unharmed"
+    elseif item_cond>=0.30 then
+       release_hud(item_hud.."_unharmed")
+       release_hud(item_hud.."_damaged")
+       item_hud_prefix="_scratched"
+    else
+       release_hud(item_hud.."_unharmed")
+       release_hud(item_hud.."_scratched")
+       item_hud_prefix="_damaged"
+    end
+    if type==1 then
+       change_flag_value("string_hud_carrying",item_hud..item_hud_prefix)
+    else
+       change_flag_value("string_hud2_carrying",item_hud..item_hud_prefix)
+    end
+    if has_alife_info("opt_activate_carrying_hud") then
+      if get_hud():GetCustomStatic(item_hud..item_hud_prefix)==nil then
+         add_hud(item_hud..item_hud_prefix)
+         if sound==true then
+            play_snd_at_actor([[sound_effects\use_gas_mask]])
+            sgm_flags.bool_carrying_snd_end=true
+            start_flague_timer("timer_after_carrying_delay",2000)
+         end
+         self:check_broken_snd(item_hud_prefix)
+      end
+    else
+       change_flag_value("bool_carrying_snd_end",true)
+       if sgm_flags.timer_after_carrying_delay==0 then
+          start_flague_timer("timer_after_carrying_delay",2000)
+       end
+    end
+    if sgm_functions.ReadHasAntigas(item_section)==true and has_alife_info("opt_activate_carrying_breathing") then
+        if sgm_flags.bool_carrying_snd_end==true and time_global()>=sgm_flags.timer_after_carrying_delay and sgm_flags.timer_carrying_idle_snd==0 then
+           start_flague_timer("timer_carrying_idle_snd",math.random(3500,5000))
+        elseif sgm_flags.bool_carrying_snd_end==true and time_global()>=sgm_flags.timer_after_carrying_delay and sgm_flags.timer_carrying_idle_snd~=0 then
+           if time_global()>=sgm_flags.timer_carrying_idle_snd then
+              sgm_flags.timer_carrying_idle_snd=0
+              play_snd_at_actor([[sound_effects\gas_mask_idle]])
+           end
+       end
+    end
+end
+function CHudManager:check_broken_snd(state)
+   local pre_1=sgm_flags.string_carrying_last_state=="_damaged" and (state=="_scratched" or state=="_unharmed")
+   local pre_2=sgm_flags.string_carrying_last_state=="_scratched" and state=="_unharmed"
+   local pre_all=pre_1 and pre_2
+   if sgm_flags.timer_carrying_dressed_delay==0 and (state=="_scratched" or state=="_damaged") and (not pre_all) then
+      if get_rnd(1,2)==1 then
+         play_snd_at_actor([[material\bullet\collide\glass01hl]])
+      else
+         play_snd_at_actor([[material\bullet\collide\glass02hl]])
+      end
+   end
+   sgm_flags.string_carrying_last_state=state
+end
+function CHudManager:hud_indikators()
+   if r_mod_params("bool","need_actor_dream",true) and check_seconds(2) and read_mod_param("sleep_factor")~=nil then
+      local sleep_factor=read_mod_param("sleep_factor")
+      local max_time=r_mod_params("number","max_no_dream_time",18)*60
+      if sleep_factor>=(max_time-180) and sleep_factor<(max_time-125) then    
+         release_hud("hud_sleep_yellow")
+         release_hud("hud_sleep_orange")
+         release_hud("hud_sleep_red")
+         add_hud("hud_sleep_green")
+         change_flag_value("string_approach_sleep_color","green")
+      elseif sleep_factor>=(max_time-125) and sleep_factor<(max_time-80) then
+         release_hud("hud_sleep_green")
+         release_hud("hud_sleep_orange")
+         release_hud("hud_sleep_red")
+         add_hud("hud_sleep_yellow")
+         change_flag_value("string_approach_sleep_color","yellow")
+      elseif sleep_factor>=(max_time-80) and sleep_factor<(max_time-35) then
+         release_hud("hud_sleep_green")
+         release_hud("hud_sleep_yellow")
+         release_hud("hud_sleep_red")
+         add_hud("hud_sleep_orange")
+         change_flag_value("string_approach_sleep_color","orange")
+      elseif sleep_factor>=(max_time-35) and sleep_factor<max_time then
+         release_hud("hud_sleep_green")
+         release_hud("hud_sleep_yellow")
+         release_hud("hud_sleep_orange")
+         add_hud("hud_sleep_red")
+         change_flag_value("string_approach_sleep_color","red")
+      elseif sleep_factor>=max_time then
+         release_hud("hud_sleep_green")
+         release_hud("hud_sleep_yellow")
+         release_hud("hud_sleep_orange")
+         add_hud("hud_sleep_red")
+         change_flag_value("string_approach_sleep_color","critical")
+      elseif sleep_factor<(max_time-180) then
+         release_hud("hud_sleep_green")
+         release_hud("hud_sleep_yellow")
+         release_hud("hud_sleep_orange")
+         release_hud("hud_sleep_red")
+         change_flag_value("string_approach_sleep_color","normal")
+      end
+   end
+   if check_seconds(1) and read_mod_param("aura_inactivity_factor")~=nil then
+      local aura_factor=read_mod_param("aura_inactivity_factor")
+      if aura_factor<5 then    
+         release_hud("hud_aura_inactivity_green")
+         release_hud("hud_aura_inactivity_yellow")    
+         release_hud("hud_aura_inactivity_orange")
+         release_hud("hud_aura_inactivity_red")
+         change_flag_value("bool_aura_inactivity_action",false)
+      end
+      if aura_factor>=5 and aura_factor<10 then    
+         release_hud("hud_aura_inactivity_yellow")    
+         release_hud("hud_aura_inactivity_orange")
+         release_hud("hud_aura_inactivity_red")
+         add_hud("hud_aura_inactivity_green")
+         change_flag_value("bool_aura_inactivity_action",false)
+         level.remove_cam_effector(7682)
+      elseif aura_factor>=10 and aura_factor<15 then    
+         release_hud("hud_aura_inactivity_green")
+         release_hud("hud_aura_inactivity_orange")
+         release_hud("hud_aura_inactivity_red")
+         add_hud("hud_aura_inactivity_yellow")
+         change_flag_value("bool_aura_inactivity_action",false)
+      elseif aura_factor>=15 and aura_factor<20 then    
+         release_hud("hud_aura_inactivity_green")
+         release_hud("hud_aura_inactivity_yellow")
+         release_hud("hud_aura_inactivity_red")
+         add_hud("hud_aura_inactivity_orange")
+      elseif aura_factor>=20 then    
+         release_hud("hud_aura_inactivity_green")
+         release_hud("hud_aura_inactivity_yellow")
+         release_hud("hud_aura_inactivity_orange")
+         add_hud("hud_aura_inactivity_red")
+         change_flag_value("bool_aura_inactivity_action",true)
+      end
+   end
+   if check_seconds(2) and read_mod_param("actor_toxicity")~=nil then
+      local toxicity_factor=read_mod_param("actor_toxicity")
+      if toxicity_factor>0.0 and toxicity_factor<0.3 then    
+         release_hud("hud_toxic_yellow")
+         release_hud("hud_toxic_orange")
+         release_hud("hud_toxic_red")
+         add_hud("hud_toxic_green")
+      elseif toxicity_factor>=0.3 and toxicity_factor<0.6 then
+         release_hud("hud_toxic_green")
+         release_hud("hud_toxic_orange")
+         release_hud("hud_toxic_red")
+         add_hud("hud_toxic_yellow")
+      elseif toxicity_factor>=0.6 and toxicity_factor<0.8 then
+         release_hud("hud_toxic_green")
+         release_hud("hud_toxic_yellow")
+         release_hud("hud_toxic_red")
+         add_hud("hud_toxic_orange")
+      elseif toxicity_factor>=0.8 then
+         release_hud("hud_toxic_green")
+         release_hud("hud_toxic_yellow")
+         release_hud("hud_toxic_orange")
+         add_hud("hud_toxic_red")
+      else
+         release_hud("hud_toxic_green")
+         release_hud("hud_toxic_yellow")
+         release_hud("hud_toxic_orange")
+         release_hud("hud_toxic_red")
+      end
+   end
+end
+function CHudManager:hud_utils()
+   if check_seconds(2) then
+      if get_flag_value("bool_cheat_mode_activate")==true then
+         add_hud("hud_cheat_mode_static")
+      else
+	 release_hud("hud_cheat_mode_static")
+      end
+   end
+   if ui_mod_elements.army_timer_active==true then
+      local data_timer=ui_mod_elements.army_timer_value
+      add_hud("hud_timer_wnd",data_timer)
+   else
+      if check_seconds(2) then
+         release_hud("hud_timer_wnd")
+      end
+   end
+   if has_alife_info("opt_show_rank_counter") then
+      local data_rank
+      if r_mod_params("bool","headshot_rank_on_display",true) then
+         data_rank=""..get_actor_rank().."("..read_mod_param("stat_headshots")..")"
+      else
+         data_rank=""..get_actor_rank()
+      end
+      add_hud("hud_actor_rank_icon")
+      add_hud("hud_actor_rank_text",data_rank)
+   elseif dont_has_alife_info("opt_show_rank_counter") and check_seconds(1) then   
+      release_hud("hud_actor_rank_text")
+      release_hud("hud_actor_rank_icon")
+   end
+   if (dont_has_alife_info("zat_bandit_base_leader_death")) and has_alife_info("zat_assault_bandit_base_choose") and has_alife_info("zat_assault_bandit_base_elbrus") then
+      if get_story_object_id("zat_bandit_base_leader")~=nil and level.object_by_id(get_story_object_id("zat_bandit_base_leader"))~=nil then
+         local bandit_base_boss=string.format(math.floor(level.object_by_id(get_story_object_id("zat_bandit_base_leader")).health*100))
+         show_boss_health_bar("hud_boss_health_bar","ui_mod_progress_bars.xml","boss_health_bar",bandit_base_boss) 
+      else
+         release_hud("hud_boss_health_bar")
+      end
+   elseif has_alife_info("zat_bandit_base_leader_death") and check_seconds(1) then
+      release_hud("hud_boss_health_bar")
+   end
+   if db.actor:object("geiger_counter") and db.actor.radiation>0.0 then
+      local currert_radiation=db.actor.radiation*100
+      show_radiation_bar("hud_geiger_bar","ui_mod_progress_bars.xml","geiger_counter_bar",currert_radiation)
+   else
+      release_hud("hud_geiger_bar")
+   end
+   if check_seconds(1) then
+      if get_hud():GetCustomStatic("game_saved")~=nil then
+         if sgm_flags.timer_looped_save_message==0 then
+            start_flague_timer("timer_looped_save_message",5000)
+         end
+         if sgm_flags.timer_looped_save_message~=0 then
+            if time_global()>=sgm_flags.timer_looped_save_message then
+               release_hud("game_saved")
+               sgm_flags.timer_looped_save_message=0
+            end
+         end
+      else
+         change_flag_value("timer_looped_save_message",0)
+      end
+      if get_hud():GetCustomStatic("item_used")~=nil then
+         if sgm_flags.timer_looped_use_item_message==0 then
+           start_flague_timer("timer_looped_use_item_message",5000)
+         end
+         if sgm_flags.timer_looped_use_item_message~=0 then
+            if time_global()>=sgm_flags.timer_looped_use_item_message then
+               release_hud("item_used")
+               sgm_flags.timer_looped_use_item_message=0
+            end
+         end
+      else
+         change_flag_value("timer_looped_use_item_message",0)
+      end
+   end
+end
+function CHudManager:hud_release()
+   release_hud("hud_monster_capture_wnd")
+   release_hud("hud_monster_capture_icon_chimera")
+   release_hud("hud_monster_capture_icon_gigant")
+   release_hud("hud_monster_capture_icon_boar")
+   release_hud("hud_monster_capture_icon_dog")
+   release_hud("hud_monster_capture_icon_flesh")
+   release_hud("hud_monster_capture_icon_tushkano")
+   release_hud("hud_monster_capture_icon_pseudodog")
+   release_hud("hud_monster_capture_icon_snork")
+   release_hud("hud_aura_inactivity_green")   
+   release_hud("hud_aura_inactivity_yellow")    
+   release_hud("hud_aura_inactivity_orange")
+   release_hud("hud_aura_inactivity_red")
+   release_hud("hud_toxic_green")   
+   release_hud("hud_toxic_yellow")    
+   release_hud("hud_toxic_orange")
+   release_hud("hud_toxic_red")
+   release_hud("hud_sleep_green")   
+   release_hud("hud_sleep_yellow")    
+   release_hud("hud_sleep_orange")
+   release_hud("hud_sleep_red")
+   release_hud("hud_actor_rank_text")    
+   release_hud("hud_actor_rank_icon")
+   release_hud("hud_wpn_studied1")
+   release_hud("hud_wpn_studied2")
+   release_hud("hud_wpn_params_1_1")
+   release_hud("hud_wpn_params_1")
+   release_hud("hud_wpn_params_2_2")
+   release_hud("hud_wpn_params_2")
+   release_hud("hud_wpn_params_3_3")
+   release_hud("hud_wpn_params_3")
+   release_hud("hud_wpn_dont")
+   release_hud("hud_wpn_state_bar1")
+   release_hud("hud_wpn_state_bar2")
+   release_hud("hud_boss_health_bar")
+   release_hud("hud_cheat_mode_static")
+   release_hud("hud_battery_power_wnd")
+   release_hud("hud_geiger_bar")
+   release_hud("hud_timer_wnd")
+end
+function get_hud_manager()
+   if hud_manager==nil then
+      hud_manager=CHudManager()
+   end
+   return hud_manager
+end
+
+
+-------------------------------------//Copyright GeJorge//-------------------------------------------------

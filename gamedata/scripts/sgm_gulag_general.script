@@ -1,0 +1,60 @@
+function kamp(ltx, smart, gname, stalker_jobs)
+	local stalker_kamp = { _prior = 15, jobs = {} }
+	it = 1
+	while level.patrol_path_exists(gname .. "_kamp_" .. it) do
+		-- Необходимо вычитать количество работ из названия точки пути.
+		local way_name = gname .. "_kamp_" .. it
+		local ptr = patrol(way_name)
+		local wp_prop = utils.parse_waypoint_data(way_name, ptr:flags(0), ptr:name(0))
+		local job_count = 3
+		if wp_prop.count ~= nil then
+			job_count = wp_prop.count
+		end
+		for i = 1, job_count do
+			-- добавляем должность
+			t = {
+				_prior = 15,
+				job_id = {
+					section = "logic@" .. way_name,
+					job_type = "path_job",
+					campfire = way_name
+				},
+				_precondition_params = {},
+				_precondition_function = function(se_obj, smart, precond_params)
+					if se_obj:community() == "zombied" then
+						return false
+					end
+					if check_default_location() then
+						return false
+					end
+					if smart.smart_alarm_time == nil then
+						return true
+					end
+					if smart.safe_restr == nil then
+						return true
+					end
+					if precond_params.is_safe_job == nil then
+						precond_params.is_safe_job = xr_gulag.job_in_restrictor(smart, smart.safe_restr, way_name)
+					end
+					return precond_params.is_safe_job ~= false
+				end
+			}
+			table.insert(stalker_kamp.jobs, t)
+		end
+		-- добавляем описание должности в лтх.
+		local job_ltx = "[logic@" .. way_name .. "]\n" ..
+			"active = kamp@" .. way_name .. "\n" ..
+			"[kamp@" .. way_name .. "]\n" ..
+			"center_point = kamp_" .. it .. "\n" ..
+			"soundgroup = " .. way_name .. "\n"
+		if smart.safe_restr ~= nil and xr_gulag.job_in_restrictor(smart, smart.safe_restr, way_name) then
+			job_ltx = job_ltx .. "invulnerable = {=npc_in_zone(smart.safe_restr)} true\n"
+		end
+		if smart.def_restr ~= nil then
+			job_ltx = job_ltx .. "out_restr = " .. smart.def_restr .. "\n"
+		end
+		ltx = ltx .. job_ltx
+		it = it + 1
+	end
+	if it > 1 then table.insert(stalker_jobs.jobs, stalker_kamp) end
+end

@@ -1,0 +1,29 @@
+---=============================================================================================---
+---------------------------------------------------------------------------------------------------
+------------------------------(Модуль дополнительной логики)---------------------------------------
+---------------------------------------------------------------------------------------------------
+---=============================================================================================---
+function on_corpse_use(npc,char_ini)
+   local on_corpse_use = "on_corpse_use"
+   if char_ini~=nil and char_ini:section_exist(on_corpse_use) and not npc:alive() then
+      if char_ini:line_exist(on_corpse_use,"start_tutorial") then
+         game_hide_menu()
+         game.start_tutorial(char_ini:r_string(on_corpse_use,"start_tutorial"))
+      elseif char_ini:line_exist(on_corpse_use,"run_action") then
+         game_hide_menu()
+         xr_effects[char_ini:r_string(on_corpse_use,"run_action")](actor,npc)
+         game_hide_menu()
+      elseif char_ini:line_exist(on_corpse_use,"give_info") then
+         game_hide_menu()
+         give_info(char_ini:r_string(on_corpse_use,"give_info"))
+      end
+   end
+end
+--[[--
+[on_corpse_use]
+start_tutorial = xxx(запуск туториала)
+run_action = xxx(запуск функции из xr_effects)
+give_info = xxx(дать инопортацию)
+]]
+
+---------------------------------//Copyright GeJorge//-----------------------------------------------
