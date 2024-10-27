@@ -146,5 +146,17 @@ function utils_update()
     if level_name=="red_forest" and dont_has_alife_info("actor_come_to_red_forest") then give_info("actor_come_to_red_forest") sgm_supply.check_and_spawn_supply() end
 end
 
-
+local old_w_CTime = utils.w_CTime
+function w_CTime(p, t)
+   if t == nil then
+		p:w_u8(-1)
+		return
+	end
+      if tonumber(t) then
+         p:w_u8(-1)
+      return
+   end
+   old_w_CTime()
+end
+utils.w_CTime = w_CTime
 -------------------------------------//Copyright GeJorge//-------------------------------------------------

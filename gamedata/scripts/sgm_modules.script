@@ -607,6 +607,25 @@ function check_range_deterioration_exception(npc)
    end
    return true
 end
-
+------------------------------------------------------------------------------
+--                            Inject Funcs                                  --
+------------------------------------------------------------------------------
+function stalker_modules_inject()
+   load_scheme("xr_move","move",stype_stalker)
+   load_scheme("xr_bodyguard","bodyguard",stype_stalker)
+   load_scheme("xr_corpse","corpse",stype_stalker)
+end
+function monster_modules_inject()
+   load_scheme("mob_move","mob_move",stype_mobile)
+end
+function physic_obj_modules_inject()
+   load_scheme("ph_universal","ph_universal",stype_item)
+end
+function helicopter_modules_inject()
+   load_scheme("heli_move","heli_move",stype_heli)
+end
+function restrictor_modules_inject()
+   load_scheme("sr_universal","sr_universal",stype_restrictor)
+end
 
 -------------------------------------//Copyright GeJorge//-------------------------------------------------
