@@ -1,13 +1,17 @@
-local DEATH_IDLE_TIME = 10*60 -- секунд
-SMART_TERRAIN_SECT = "smart_terrain"
-smart_terrains_by_name = {}
-local locations_ini			= ini_file("misc\\smart_terrain_masks.ltx")
+local DEATH_IDLE_TIME     = 10 * 60 -- секунд
+SMART_TERRAIN_SECT        = "smart_terrain"
+--/ SGM in
+local RESPAWN_IDLE        = 1200 -- секунд игрового времени (1200 - 20.0 игровых минут)
+local respawn_radius_alfa = 600
+--/ SGM out
+smart_terrains_by_name    = {}
+local locations_ini       = ini_file("misc\\smart_terrain_masks.ltx")
 
-nearest_to_actor_smart = {id = nil , dist = math.huge}
+nearest_to_actor_smart    = { id = nil, dist = math.huge }
 
-local path_fields = { "path_walk", "path_main", "path_home", "center_point" }
+local path_fields         = { "path_walk", "path_main", "path_home", "center_point" }
 
-local valid_territory = {
+local valid_territory     = {
 	default = true,
 	base = true,
 	resource = true,
@@ -50,7 +54,7 @@ local function job_iterator(jobs, npc_data, selected_job_prior, smart)
 	local current_job_prior = selected_job_prior
 	local selected_job_id = nil
 	local selected_job_link = nil
-	for k,v in pairs(jobs) do
+	for k, v in pairs(jobs) do
 		-- Если приоритет у проверяемой работы ниже, чем приоритет текущей выбранной работы НПС - завершаем выполнение
 		if current_job_prior > v._prior then
 			return selected_job_id, current_job_prior, selected_job_link
@@ -60,7 +64,8 @@ local function job_iterator(jobs, npc_data, selected_job_prior, smart)
 			-- Это работа-кластер или работа-описание.
 			if v.job_id == nil then
 				-- Вызываем рекурсивно себя для списка работ кластера
-				selected_job_id, current_job_prior, selected_job_link = job_iterator(v.jobs, npc_data, selected_job_prior, smart)
+				selected_job_id, current_job_prior, selected_job_link = job_iterator(v.jobs, npc_data, selected_job_prior,
+					smart)
 			else
 				-- Если работа пустая или ее занимаем мы сами - выбираем ее.
 				if v.npc_id == nil then
@@ -116,27 +121,29 @@ end
 -- Класс "se_smart_terrain". Обеспечивает поддержку smart terrain в ОФЛАЙНЕ.
 ----------------------------------------------------------------------------------------------------------------------
 class "se_smart_terrain" (cse_alife_smart_zone)
-function se_smart_terrain:__init(section) super(section)
-	self.initialized	= false
-	self.b_registred	= false
-	self.population		= 0
+function se_smart_terrain:__init(section)
+	super(section)
+	self.initialized        = false
+	self.b_registred        = false
+	self.population         = 0
 
-	self.npc_to_register = {}
+	self.npc_to_register    = {}
 	self.npc_by_job_section = {}
-	self.dead_time = {}
+	self.dead_time          = {}
 
 	-- Таблица для хранения зарегистренных НПС
-	self.npc_info  = {} -- Те, кто уже пришел и стал на работу
-	self.arriving_npc  = {} -- Только идущие на работу.
+	self.npc_info           = {} -- Те, кто уже пришел и стал на работу
+	self.arriving_npc       = {} -- Только идущие на работу.
 
-	self.respawn_radius = 150
-	self.respawn_time   = 1000
+	self.respawn_radius     = 150
+	self.respawn_time       = 1000
 end
+
 function se_smart_terrain:on_before_register()
 	cse_alife_smart_zone.on_before_register(self)
 	self.board = sim_board.get_sim_board()
 	self.board:register_smart(self)
-	self.smart_level	= alife():level_name(game_graph():vertex(self.m_game_vertex_id):level_id())
+	self.smart_level = alife():level_name(game_graph():vertex(self.m_game_vertex_id):level_id())
 	--printf("SMARTLEVEL %s level %s", self:name(), tostring(self.smart_level))
 end
 
@@ -152,8 +159,9 @@ function se_smart_terrain:on_register()
 		self:refresh()
 	end
 
-	printf("Returning alife task for object [%s] game_vertex [%s] level_vertex [%s] position %s", self.id, self.m_game_vertex_id, self.m_level_vertex_id, vec_to_str(self.position))
- 	self.smart_alife_task = CALifeSmartTerrainTask(self.m_game_vertex_id, self.m_level_vertex_id)
+	printf("Returning alife task for object [%s] game_vertex [%s] level_vertex [%s] position %s", self.id,
+		self.m_game_vertex_id, self.m_level_vertex_id, vec_to_str(self.position))
+	self.smart_alife_task = CALifeSmartTerrainTask(self.m_game_vertex_id, self.m_level_vertex_id)
 
 	smart_terrains_by_name[self:name()] = self
 	self.b_registred = true
@@ -172,6 +180,7 @@ function se_smart_terrain:on_register()
 
 	self.check_time = time_global()
 end
+
 -- анрегистрация объекта в симуляторе.
 -- вызывается симулятором.
 function se_smart_terrain:on_unregister()
@@ -181,36 +190,39 @@ function se_smart_terrain:on_unregister()
 	unregister_story_object_by_id(self.id)
 	simulation_objects.get_sim_obj_registry():unregister(self)
 end
+
 -- чтение custom data.
 function se_smart_terrain:read_params()
-	self.ini  = self:spawn_ini()
+	self.ini = self:spawn_ini()
 
-	if not self.ini:section_exist( SMART_TERRAIN_SECT ) then
-		abort( "[smart_terrain %s] no configuration!", self:name() )
+	if not self.ini:section_exist(SMART_TERRAIN_SECT) then
+		abort("[smart_terrain %s] no configuration!", self:name())
 		self.disabled = true
 		return
 	end
-	local filename = utils.cfg_get_string(self.ini, SMART_TERRAIN_SECT, "cfg", 				self, false, "")
+	local filename = utils.cfg_get_string(self.ini, SMART_TERRAIN_SECT, "cfg", self, false, "")
 	local fs = getFS()
 	if filename then
-		if fs:exist("$game_config$",filename) then
+		if fs:exist("$game_config$", filename) then
 			self.ini = ini_file(filename)
 		else
-			abort("There is no configuration file [%s] in smart_terrain [%s]", filename, 	self:name())
+			abort("There is no configuration file [%s] in smart_terrain [%s]", filename, self:name())
 		end
 	end
-	local ini = self.ini
-	self.sim_type		= utils.cfg_get_string(ini, SMART_TERRAIN_SECT, "sim_type", 		self, false, "", "default")
+	local ini     = self.ini
+	self.sim_type = utils.cfg_get_string(ini, SMART_TERRAIN_SECT, "sim_type", self, false, "", "default")
 
 	--' Вычитка симуляционных свойств
 	if valid_territory[self.sim_type] == nil then
 		abort("Wrong sim_type value [%s] in smart [%s]", self.sim_type, self:name())
 	end
 
-	self.squad_id		= utils.cfg_get_number(ini, SMART_TERRAIN_SECT, "squad_id", 		self, false, 0)
-	self.respawn_sector = utils.cfg_get_string(ini, SMART_TERRAIN_SECT, "respawn_sector", 	self, false, "")
-	self.respawn_radius  = utils.cfg_get_number(ini, SMART_TERRAIN_SECT, "respawn_radius", 	self, false, 150) -- радиус респауна (если актер ближе, то не спаунить)
-	self.respawn_time   = utils.cfg_get_number(ini, SMART_TERRAIN_SECT, "respawn_time", 	self, false, 1000) -- в секундах игрового времени																										   
+	self.squad_id            = utils.cfg_get_number(ini, SMART_TERRAIN_SECT, "squad_id", self, false, 0)
+	self.respawn_sector      = utils.cfg_get_string(ini, SMART_TERRAIN_SECT, "respawn_sector", self, false, "")
+	self.respawn_radius      = utils.cfg_get_number(ini, SMART_TERRAIN_SECT, "respawn_radius", self, false, 150) -- радиус респауна (если актер ближе, то не спаунить)
+	self.respawn_radius_alfa = utils.cfg_get_number(ini, SMART_TERRAIN_SECT, "respawn_radius_alfa", self, false,
+		self.respawn_radius * 4)
+	self.respawn_time        = utils.cfg_get_number(ini, SMART_TERRAIN_SECT, "respawn_time", self, false, 1000) -- в секундах игрового времени																										
 	if self.respawn_sector ~= nil then
 		if self.respawn_sector == "default" then
 			self.respawn_sector = "all"
@@ -218,34 +230,35 @@ function se_smart_terrain:read_params()
 		self.respawn_sector = xr_logic.parse_condlist(nil, SMART_TERRAIN_SECT, "respawn_sector", self.respawn_sector)
 	end
 
-	self.mutant_lair 		= utils.cfg_get_bool(ini, SMART_TERRAIN_SECT, "mutant_lair", 	self, false)
-	self.no_mutant 			= utils.cfg_get_bool(ini, SMART_TERRAIN_SECT, "no_mutant", 		self, false)
+	self.mutant_lair = utils.cfg_get_bool(ini, SMART_TERRAIN_SECT, "mutant_lair", self, false)
+	self.no_mutant   = utils.cfg_get_bool(ini, SMART_TERRAIN_SECT, "no_mutant", self, false)
 	if self.no_mutant == true then
 		printf("Found no mutant point %s", self:name())
 	end
-	self.forbidden_point	= utils.cfg_get_string(ini, SMART_TERRAIN_SECT, "forbidden_point", self, false, "")
+	self.forbidden_point        = utils.cfg_get_string(ini, SMART_TERRAIN_SECT, "forbidden_point", self, false, "")
 
 	--' Рестрикторы для симуляции
-	self.def_restr		= utils.cfg_get_string(ini, SMART_TERRAIN_SECT, "def_restr", 	self, false, "", nil)
-	self.att_restr		= utils.cfg_get_string(ini, SMART_TERRAIN_SECT, "att_restr", 	self, false, "", nil)
-	self.safe_restr		= utils.cfg_get_string(ini, SMART_TERRAIN_SECT, "safe_restr", 	self, false, "", nil)
+	self.def_restr              = utils.cfg_get_string(ini, SMART_TERRAIN_SECT, "def_restr", self, false, "", nil)
+	self.att_restr              = utils.cfg_get_string(ini, SMART_TERRAIN_SECT, "att_restr", self, false, "", nil)
+	self.safe_restr             = utils.cfg_get_string(ini, SMART_TERRAIN_SECT, "safe_restr", self, false, "", nil)
 
-	self.spawn_point	= utils.cfg_get_string(ini, SMART_TERRAIN_SECT, "spawn_point", 	self, false, "")
+	self.spawn_point            = utils.cfg_get_string(ini, SMART_TERRAIN_SECT, "spawn_point", self, false, "")
 
-	self.arrive_dist	= utils.cfg_get_number(ini, SMART_TERRAIN_SECT, "arrive_dist", 	self, false, 30)
+	self.arrive_dist            = utils.cfg_get_number(ini, SMART_TERRAIN_SECT, "arrive_dist", self, false, 30)
 
---	self.max_population = utils.cfg_get_number(ini, SMART_TERRAIN_SECT, "max_population", self, false, 0)
-	local max_population = utils.cfg_get_string(ini, SMART_TERRAIN_SECT, "max_population", self, false, "", 0)
-	local parsed_condlist = xr_logic.parse_condlist(nil, SMART_TERRAIN_SECT, "max_population", max_population)
-	self.max_population = tonumber(xr_logic.pick_section_from_condlist(get_story_object("actor"), nil, parsed_condlist))
+	--	self.max_population = utils.cfg_get_number(ini, SMART_TERRAIN_SECT, "max_population", self, false, 0)
+	local max_population        = utils.cfg_get_string(ini, SMART_TERRAIN_SECT, "max_population", self, false, "", 0)
+	local parsed_condlist       = xr_logic.parse_condlist(nil, SMART_TERRAIN_SECT, "max_population", max_population)
+	self.max_population         = tonumber(xr_logic.pick_section_from_condlist(get_story_object("actor"), nil,
+		parsed_condlist))
 
---	self.sim_avail		= utils.cfg_get_string(ini, SMART_TERRAIN_SECT, "sim_avail", 	self, false, "")
---	if self.sim_avail ~= nil then
---		self.sim_avail = xr_logic.parse_condlist(nil, SMART_TERRAIN_SECT, "sim_avail", 	self.sim_avail)
---	end
+	--	self.sim_avail		= utils.cfg_get_string(ini, SMART_TERRAIN_SECT, "sim_avail", 	self, false, "")
+	--	if self.sim_avail ~= nil then
+	--		self.sim_avail = xr_logic.parse_condlist(nil, SMART_TERRAIN_SECT, "sim_avail", 	self.sim_avail)
+	--	end
 
-	local respawn_params = utils.cfg_get_string(ini, SMART_TERRAIN_SECT, "respawn_params", 		self, false, "", nil)
-	self.respawn_only_smart = utils.cfg_get_bool(ini, SMART_TERRAIN_SECT, "respawn_only_smart", self, false, false)
+	local respawn_params        = utils.cfg_get_string(ini, SMART_TERRAIN_SECT, "respawn_params", self, false, "", nil)
+	self.respawn_only_smart     = utils.cfg_get_bool(ini, SMART_TERRAIN_SECT, "respawn_only_smart", self, false, false)
 
 	local smart_control_section = utils.cfg_get_string(ini, SMART_TERRAIN_SECT, "smart_control", self, false, "", nil)
 
@@ -269,7 +282,7 @@ function se_smart_terrain:read_params()
 	end
 
 	if not locations_ini:section_exist(self:name()) then
-		printf("! SMART_TERRAIN [%s] has no terrain_mask section in smart_terrain_masks.ltx!!!",self:name())
+		printf("! SMART_TERRAIN [%s] has no terrain_mask section in smart_terrain_masks.ltx!!!", self:name())
 	end
 end
 
@@ -282,13 +295,13 @@ function se_smart_terrain:fill_npc_info(obj)
 	local npc_info = {}
 	printf("filling npc_info for obj [%s]", tostring(obj:name()))
 
-	local is_stalker = IsStalker(obj)
-	npc_info.se_obj			= obj
-	npc_info.is_monster		= not is_stalker
-	npc_info.need_job		= "nil"	-- Специально для смены гвардов. Указывает на какую работу хочет данный чувак.
-	npc_info.job_prior		= -1
-	npc_info.job_id			= -1
-	npc_info.begin_job		= false
+	local is_stalker    = IsStalker(obj)
+	npc_info.se_obj     = obj
+	npc_info.is_monster = not is_stalker
+	npc_info.need_job   = "nil" -- Специально для смены гвардов. Указывает на какую работу хочет данный чувак.
+	npc_info.job_prior  = -1
+	npc_info.job_id     = -1
+	npc_info.begin_job  = false
 
 	if is_stalker then
 		npc_info.stype = modules.stype_stalker
@@ -324,6 +337,19 @@ function se_smart_terrain:register_npc(obj)
 	end
 
 	obj.m_smart_terrain_id = self.id
+	--/ SGM in
+	if obj ~= nil and arrived_to_smart(obj, self) then
+		self.npc_info[obj.id] = self:fill_npc_info(obj)
+
+		-- Затычка на случай если мы регистримся в смарт, из которого только что сами вынесли всех врагов.
+		self.dead_time = {}
+
+		-- тут надо найти чуваку работу
+		self:select_npc_job(self.npc_info[obj.id])
+	else
+		self.arriving_npc[obj.id] = obj
+	end
+	--/ SGM out
 	if arrived_to_smart(obj, self) then
 		self.npc_info[obj.id] = self:fill_npc_info(obj)
 
@@ -333,16 +359,18 @@ function se_smart_terrain:register_npc(obj)
 		-- тут надо найти чуваку работу
 		self:select_npc_job(self.npc_info[obj.id])
 	else
-		self.arriving_npc[obj.id]  = obj
+		self.arriving_npc[obj.id] = obj
 	end
 end
+
 -- Регистрация НПС в список отложенных. Осуществляется на загрузке или на регистрации НПС, пока не зарегистрен смарт
 function se_smart_terrain:register_delayed_npc()
-	for k,v in pairs(self.npc_to_register) do
+	for k, v in pairs(self.npc_to_register) do
 		self:register_npc(v)
 	end
 	self.npc_to_register = {}
 end
+
 -- отпустить npc
 function se_smart_terrain:unregister_npc(obj)
 	--callstack()
@@ -351,8 +379,11 @@ function se_smart_terrain:unregister_npc(obj)
 	self.population = self.population - 1
 
 	if self.npc_info[obj.id] ~= nil then
-		-- TODO: Тут надо выгнать чувака с занимаемой им работы
-		self.npc_info[obj.id].job_link.npc_id = nil
+		--/ SGM in
+		if self.npc_info[obj.id].job_link ~= nil and self.npc_info[obj.id].job_link.npc_id ~= nil then
+			self.npc_info[obj.id].job_link.npc_id = nil
+		end
+		--/ SGM out
 		self.npc_info[obj.id] = nil
 		obj:clear_smart_terrain()
 
@@ -374,12 +405,17 @@ function se_smart_terrain:unregister_npc(obj)
 
 	abort("self.npc_info[obj.id] = nil !!! obj.id=%d", obj.id)
 end
+
 -- Убрать убитого
 function se_smart_terrain:clear_dead(obj)
 	if self.npc_info[obj.id] ~= nil then
 		-- Устанавливаем таймер смерти на работе
 		self.dead_time[self.npc_info[obj.id].job_id] = game.get_game_time()
-
+		--/ SGM in
+		if self.npc_info[obj.id].job_link then
+			self.npc_info[obj.id].job_link.npc_id = nil
+		end
+		--/ SGM out
 		self.npc_info[obj.id].job_link.npc_id = nil
 		self.npc_info[obj.id] = nil
 		obj:clear_smart_terrain()
@@ -393,6 +429,7 @@ function se_smart_terrain:clear_dead(obj)
 
 	abort("self.npc_info[obj.id] = nil !!! obj.id=%d", obj.id)
 end
+
 -- выдать объекту задание.
 function se_smart_terrain:task(obj)
 	if self.arriving_npc[obj.id] ~= nil then
@@ -400,7 +437,6 @@ function se_smart_terrain:task(obj)
 	end
 	return self.job_data[self.npc_info[obj.id].job_id].alife_task
 end
-
 
 --*******************************************************
 -- Функции для работы с работами
@@ -416,18 +452,18 @@ function se_smart_terrain:load_jobs()
 	-- Сортируем всю иерархию по уменьшению приоритета
 	-- Рекурсивная функция сортировки
 	local function sort_jobs(jobs)
-		for k,v in pairs(jobs) do
+		for k, v in pairs(jobs) do
 			if v.jobs ~= nil then
 				sort_jobs(v.jobs)
 			end
 		end
-		table.sort(jobs, function(a,b) return a._prior > b._prior end )
+		table.sort(jobs, function(a, b) return a._prior > b._prior end)
 	end
 
---	if self:name() == "jup_a10_smart_terrain" then
---		printf("before sort")
---		store_table(self.jobs)
---	end
+	--	if self:name() == "jup_a10_smart_terrain" then
+	--		printf("before sort")
+	--		store_table(self.jobs)
+	--	end
 
 	sort_jobs(self.jobs)
 
@@ -443,7 +479,7 @@ function se_smart_terrain:load_jobs()
 	local id = 0
 	self.job_data = {}
 	local function get_jobs_data(jobs)
-		for k,v in pairs(jobs) do
+		for k, v in pairs(jobs) do
 			if v.jobs ~= nil then
 				get_jobs_data(v.jobs)
 			else
@@ -462,7 +498,7 @@ function se_smart_terrain:load_jobs()
 
 	get_jobs_data(self.jobs)
 	-- Пробегаемся по работам и высчитываем для каждой работы alife_task
-	for k,v in pairs(self.job_data) do
+	for k, v in pairs(self.job_data) do
 		local section = v.section
 		local ltx = v.ini_file or self.ltx
 		if not ltx:line_exist(section, "active") then
@@ -471,11 +507,11 @@ function se_smart_terrain:load_jobs()
 		local active_section = ltx:r_string(section, "active")
 
 
---		printf("job_type %s  job_section %s", tostring(v.job_type), tostring(section))
+		--		printf("job_type %s  job_section %s", tostring(v.job_type), tostring(section))
 		-- В зависимости от типа работы по разному считаем alife_path
-		if v.job_type == "path_job" then  -- работа задается патрульным путем
+		if v.job_type == "path_job" then -- работа задается патрульным путем
 			local path_field
-			for i,vv in pairs(path_fields) do
+			for i, vv in pairs(path_fields) do
 				if ltx:line_exist(active_section, vv) then
 					path_field = vv
 					break
@@ -497,22 +533,22 @@ function se_smart_terrain:load_jobs()
 			end
 
 			v.alife_task = CALifeSmartTerrainTask(path_name)
-
 		elseif v.job_type == "smartcover_job" then -- работа задается смарткавером
 			local smartcover_name = ltx:r_string(active_section, "cover_name")
 			local smartcover = se_smart_cover.registered_smartcovers[smartcover_name]
 			if smartcover == nil then
-				abort("There is an exclusive job with wrong smatrcover name [%s]    smartterrain [%s]", tostring(smartcover_name), self:name())
+				abort("There is an exclusive job with wrong smatrcover name [%s]    smartterrain [%s]",
+					tostring(smartcover_name), self:name())
 			end
-			printf("Returning alife task for object [%s] game_vertex [%s] level_vertex [%s] position %s", smartcover.id, smartcover.m_game_vertex_id, smartcover.m_level_vertex_id, vec_to_str(smartcover.position))
+			printf("Returning alife task for object [%s] game_vertex [%s] level_vertex [%s] position %s", smartcover.id,
+				smartcover.m_game_vertex_id, smartcover.m_level_vertex_id, vec_to_str(smartcover.position))
 			v.alife_task = CALifeSmartTerrainTask(smartcover.m_game_vertex_id, smartcover.m_level_vertex_id)
-
-		elseif v.job_type == "point_job" then   -- работа задается позицией
+		elseif v.job_type == "point_job" then -- работа задается позицией
 			v.alife_task = self.smart_alife_task
 		end
 
 		v.game_vertex_id = v.alife_task:game_vertex_id()
-		v.level_id		 = game_graph():vertex(v.game_vertex_id):level_id()
+		v.level_id       = game_graph():vertex(v.game_vertex_id):level_id()
 		v.position       = v.alife_task:position()
 	end
 end
@@ -524,26 +560,26 @@ function se_smart_terrain:update_jobs()
 	--printf("UPDATE JOBS %s", self:name())
 
 	-- Проверяем, дошел ли кто-то до смарта
-	for k,v in pairs(self.arriving_npc) do
-		if arrived_to_smart(v, self) then
+	for k, v in pairs(self.arriving_npc) do
+		--/ SGM in
+		if v ~= nil and arrived_to_smart(v, self) then
 			self.npc_info[v.id] = self:fill_npc_info(v)
-
 			-- Затычка на случай если мы регистримся в смарт, из которого только что сами вынесли всех врагов.
 			self.dead_time = {}
-
 			-- тут надо найти чуваку работу
 			self:select_npc_job(self.npc_info[v.id])
-
 			self.arriving_npc[k] = nil
 		end
+		--/ SGM out
 	end
 
 	-- Сортируем НПС по увеличению приоритета занимаемой работы
-	table.sort(self.npc_info, function(a,b) return a.job_prior < b.job_prior end )
-	for k,v in pairs(self.npc_info) do
+	table.sort(self.npc_info, function(a, b) return a.job_prior < b.job_prior end)
+	for k, v in pairs(self.npc_info) do
 		self:select_npc_job(v)
 	end
 end
+
 -- Выбор работы для персонажа
 function se_smart_terrain:select_npc_job(npc_info)
 	-- Выбираем работу
@@ -581,9 +617,11 @@ function se_smart_terrain:select_npc_job(npc_info)
 
 	if npc_info.begin_job ~= true then
 		-- Проверяем, дошел ли персонаж до работы (то есть может ли он начать ее выполнение)
+		-- todo исправить ошибку
 		local job_data = self.job_data[npc_info.job_id]
 		-- Начинаем выполнять работу
-		printf("[smart_terrain %s] gulag: beginJob: obj=%s job= %s", self:name(), npc_info.se_obj:name(), job_data.section)
+		printf("[smart_terrain %s] gulag: beginJob: obj=%s job= %s", self:name(), npc_info.se_obj:name(),
+			job_data.section)
 		-- Смена работы, очищаем память для оффлайнового обьекта.
 		db.offline_objects[npc_info.se_obj.id] = {}
 		npc_info.begin_job = true
@@ -594,10 +632,11 @@ function se_smart_terrain:select_npc_job(npc_info)
 		end
 	end
 end
+
 -- настроить логику для объекта, который в онлайне.
 function se_smart_terrain:setup_logic(obj)
 	--printf("setup npc logic %s", obj:name())
---	callstack()
+	--	callstack()
 	local npc_data = self.npc_info[obj:id()]
 	local job = self.job_data[npc_data.job_id]
 	local ltx = job.ini_file or self.ltx
@@ -612,14 +651,17 @@ function se_smart_terrain:setup_logic(obj)
 
 	xr_logic.activate_by_section(obj, ltx, sect, job.prefix_name or self:name(), false)
 end
+
 -- получить работу, которую занимает объект
 function se_smart_terrain:getJob(obj_id)
 	return self.npc_info[obj_id] and self.job_data[self.npc_info[obj_id].job_id]
 end
+
 -- Получение персонажа, который занимает указанную работу.
 function se_smart_terrain:idNPCOnJob(job_name)
 	return self.npc_by_job_section[job_name]
 end
+
 function se_smart_terrain:switch_to_desired_job(npc)
 	-- Берем текущую работу НПС
 	local npc_id = npc:id()
@@ -687,7 +729,6 @@ function se_smart_terrain:switch_to_desired_job(npc)
 	self:select_npc_job(self.npc_info[changing_npc_id])
 end
 
-
 --*******************************************************
 -- СЕЙВ/ЛОАД
 --*******************************************************
@@ -699,23 +740,23 @@ function se_smart_terrain:STATE_Write(packet)
 
 	-- Информацию о НПС, идущих в смарт
 	local n = 0
-	for k,v in pairs(self.arriving_npc) do
+	for k, v in pairs(self.arriving_npc) do
 		n = n + 1
 	end
 	packet:w_u8(n)
-	for k,v in pairs(self.arriving_npc) do
+	for k, v in pairs(self.arriving_npc) do
 		packet:w_u16(k)
 	end
 
 
 	-- Информацию о НПС в смарте
 	n = 0
-	for k,v in pairs(self.npc_info) do
+	for k, v in pairs(self.npc_info) do
 		n = n + 1
 	end
 
 	packet:w_u8(n)
-	for k,v in pairs(self.npc_info) do
+	for k, v in pairs(self.npc_info) do
 		packet:w_u16(k)
 		packet:w_u8(v.job_prior)
 		packet:w_u8(v.job_id)
@@ -724,11 +765,11 @@ function se_smart_terrain:STATE_Write(packet)
 	end
 
 	n = 0
-	for k,v in pairs(self.dead_time) do
+	for k, v in pairs(self.dead_time) do
 		n = n + 1
 	end
 	packet:w_u8(n)
-	for k,v in pairs(self.dead_time) do
+	for k, v in pairs(self.dead_time) do
 		packet:w_u8(k)
 		utils.w_CTime(packet, v)
 	end
@@ -743,11 +784,11 @@ function se_smart_terrain:STATE_Write(packet)
 	if self.respawn_point then
 		packet:w_bool(true)
 		local n = 0
-		for k,v in pairs(self.already_spawned) do
+		for k, v in pairs(self.already_spawned) do
 			n = n + 1
 		end
 		packet:w_u8(n)
-		for k,v in pairs(self.already_spawned) do
+		for k, v in pairs(self.already_spawned) do
 			packet:w_stringZ(k)
 			packet:w_u8(v.num)
 		end
@@ -785,7 +826,7 @@ function se_smart_terrain:STATE_Read(packet, size)
 	-- Информацию о НПС, идущих в смарт
 	local n = packet:r_u8()
 	self.arriving_npc = {}
-	for i = 1,n do
+	for i = 1, n do
 		local id = packet:r_u16()
 		self.arriving_npc[id] = false
 	end
@@ -794,7 +835,7 @@ function se_smart_terrain:STATE_Read(packet, size)
 	n = packet:r_u8()
 	--printf("load %s npc", tostring(n))
 	self.npc_info = {}
-	for i = 1,n do
+	for i = 1, n do
 		local id = packet:r_u16()
 		--printf("__ id %s", tostring(id))
 		self.npc_info[id] = {}
@@ -817,7 +858,7 @@ function se_smart_terrain:STATE_Read(packet, size)
 	n = packet:r_u8()
 	self.dead_time = {}
 	--printf("load %s dead_time", tostring(n))
-	for i =1,n do
+	for i = 1, n do
 		local job_id = packet:r_u8()
 		--printf("__ job_id %s", tostring(job_id))
 		local dead_time = utils.r_CTime(packet)
@@ -857,10 +898,11 @@ function se_smart_terrain:STATE_Read(packet, size)
 
 	set_save_marker(packet, "load", true, "se_smart_terrain")
 end
+
 -- Инициализация НПС после загрузки.
 function se_smart_terrain:init_npc_after_load()
 	local function find_job(jobs, npc_info)
-		for k,v in pairs(jobs) do
+		for k, v in pairs(jobs) do
 			if v.jobs ~= nil then
 				find_job(v.jobs, npc_info)
 			else
@@ -876,7 +918,7 @@ function se_smart_terrain:init_npc_after_load()
 
 	local sim = alife()
 	--printf("[%s] init_npc_after_load", self:name())
-	for k,v in pairs(self.arriving_npc) do
+	for k, v in pairs(self.arriving_npc) do
 		local sobj = sim:object(k)
 		if sobj ~= nil then
 			self.arriving_npc[k] = sobj
@@ -885,7 +927,7 @@ function se_smart_terrain:init_npc_after_load()
 		end
 	end
 
-	for k,v in pairs(self.npc_info) do
+	for k, v in pairs(self.npc_info) do
 		local sobj = sim:object(k)
 		if sobj ~= nil then
 			local npc_info = self:fill_npc_info(sobj)
@@ -908,40 +950,44 @@ function se_smart_terrain:init_npc_after_load()
 	end
 end
 
-
 --' Возвращает отформатированную строку свойств смарта
 function se_smart_terrain:get_smart_props()
 	local props = smart_names.get_smart_terrain_name(self)
-	if(props==nil) or (_G.dev_debug) then
-		props = self:name().."  ["..self.id.."]\\n"..
-					self.sim_type.."\\n"..
-					"squad_id = "..tostring(self.id).."\\n"..
-					"capacity = "..tostring(self.max_population).." ("..sim_board.get_sim_board():get_smart_population(self)..")\\n"
+	if (props == nil) or (_G.dev_debug) then
+		props = self:name() .. "  [" .. self.id .. "]\\n" ..
+			self.sim_type .. "\\n" ..
+			"squad_id = " .. tostring(self.id) .. "\\n" ..
+			"capacity = " ..
+			tostring(self.max_population) .. " (" .. sim_board.get_sim_board():get_smart_population(self) .. ")\\n"
 
-			if self.respawn_point ~= nil and self.already_spawned ~= nil then
-					props = props.."\\nalready_spawned :\n"
-					for k,v in pairs(self.already_spawned) do
-						props = props.."["..k.."] = "..v.num.."("..xr_logic.pick_section_from_condlist(db.actor, nil,self.respawn_params[k].num)..")\\n"
-					end
-					if self.last_respawn_update then
-						props = props.."\\ntime_to_spawn:"..tostring(self.respawn_time - game.get_game_time():diffSec(self.last_respawn_update)).."\\n"
-					end
+		if self.respawn_point ~= nil and self.already_spawned ~= nil then
+			props = props .. "\\nalready_spawned :\n"
+			for k, v in pairs(self.already_spawned) do
+				props = props ..
+				"[" ..
+				k ..
+				"] = " ..
+				v.num .. "(" .. xr_logic.pick_section_from_condlist(db.actor, nil, self.respawn_params[k].num) .. ")\\n"
 			end
+			if self.last_respawn_update then
+				props = props ..
+				"\\ntime_to_spawn:" ..
+				tostring(self.respawn_time - game.get_game_time():diffSec(self.last_respawn_update)) .. "\\n"
+			end
+		end
 
-			--' Добавляем информацию о находящихся в смарте отрядах
-			for k,v in pairs(sim_board.get_sim_board().smarts[self.id].squads) do
-					props = props .. tostring(v.id) .. "\\n"
-			end
+		--' Добавляем информацию о находящихся в смарте отрядах
+		for k, v in pairs(sim_board.get_sim_board().smarts[self.id].squads) do
+			props = props .. tostring(v.id) .. "\\n"
+		end
 	end
 	return props
 end
 
-
-
 --' Отрисовка смарта на игровом поле
 function se_smart_terrain:show()
 	local time = time_global()
-	if(self.showtime~=nil) and (self.showtime+200>=time) then
+	if (self.showtime ~= nil) and (self.showtime + 200 >= time) then
 		return
 	end
 	self.showtime = time
@@ -956,42 +1002,44 @@ function se_smart_terrain:show()
 	end
 
 
-	if(self.smrt_showed_spot==spot) then
-		level.map_change_spot_hint(self.id, "alife_presentation_smart_"..self.sim_type.."_"..self.smrt_showed_spot, self:get_smart_props())
+	if (self.smrt_showed_spot == spot) then
+		level.map_change_spot_hint(self.id, "alife_presentation_smart_" .. self.sim_type .. "_" .. self.smrt_showed_spot,
+			self:get_smart_props())
 		return
 	end
 
-	if(_G.dev_debug) then
-		if(self.smrt_showed_spot~=nil) then
-			level.map_remove_object_spot(self.id, "alife_presentation_smart_"..self.sim_type.."_"..self.smrt_showed_spot)
+	if (_G.dev_debug) then
+		if (self.smrt_showed_spot ~= nil) then
+			level.map_remove_object_spot(self.id, "alife_presentation_smart_" ..
+			self.sim_type .. "_" .. self.smrt_showed_spot)
 		end
-		level.map_add_object_spot(self.id, "alife_presentation_smart_"..self.sim_type.."_"..spot, self:get_smart_props())
+		level.map_add_object_spot(self.id, "alife_presentation_smart_" .. self.sim_type .. "_" .. spot,
+			self:get_smart_props())
 		self.smrt_showed_spot = spot
 	else
-
-	if(self.smrt_showed_spot~=nil) and
-		(level.map_has_object_spot(self.id, "alife_presentation_smart_"..self.sim_type.."_"..self.smrt_showed_spot)~=0)
-	then
-		level.map_remove_object_spot(self.id, "alife_presentation_smart_base_"..self.smrt_showed_spot)
-	end
-
+		if (self.smrt_showed_spot ~= nil) and
+			(level.map_has_object_spot(self.id, "alife_presentation_smart_" .. self.sim_type .. "_" .. self.smrt_showed_spot) ~= 0)
+		then
+			level.map_remove_object_spot(self.id, "alife_presentation_smart_base_" .. self.smrt_showed_spot)
+		end
 	end
 end
+
 --' Обновление информации о смарте на игровом поле
 function se_smart_terrain:refresh()
 	self:show()
 end
+
 --' Убирание отрисовки смарта на игровом поле
 function se_smart_terrain:hide()
 	if self.smrt_showed_spot == nil then
 		return
 	end
-	level.map_remove_object_spot(self.id, "alife_presentation_smart_"..self.sim_type.."_"..self.smrt_showed_spot)
+	level.map_remove_object_spot(self.id, "alife_presentation_smart_" .. self.sim_type .. "_" .. self.smrt_showed_spot)
 end
 
-
 local function is_only_monsters_on_jobs(npc_info)
-	for k,v in pairs (npc_info) do
+	for k, v in pairs(npc_info) do
 		if v.is_monster == false then
 			return false
 		end
@@ -1003,7 +1051,7 @@ end
 -- В онлайне вызывается через binder.
 -- Также может вызваться принудительно из xr_effects
 function se_smart_terrain:update()
-	cse_alife_smart_zone.update( self )
+	cse_alife_smart_zone.update(self)
 	if dev_debug then
 		self:refresh() -- Не забыть потом заремить
 	end
@@ -1012,7 +1060,8 @@ function se_smart_terrain:update()
 
 	if simulation_objects.is_on_the_same_level(self, alife():actor()) then
 		local dist_to_actor = self.position:distance_to(alife():actor().position)
-		local old_dist_to_actor = (nearest_to_actor_smart.id == nil and nearest_to_actor_smart.dist) or alife():object(nearest_to_actor_smart.id).position:distance_to(alife():actor().position)
+		local old_dist_to_actor = (nearest_to_actor_smart.id == nil and nearest_to_actor_smart.dist) or
+		alife():object(nearest_to_actor_smart.id).position:distance_to(alife():actor().position)
 		if dist_to_actor < old_dist_to_actor then
 			nearest_to_actor_smart.id = self.id
 			nearest_to_actor_smart.dist = dist_to_actor
@@ -1024,7 +1073,7 @@ function se_smart_terrain:update()
 		self:try_respawn()
 	end
 
-	if self.check_time~=nil and current_time < self.check_time then
+	if self.check_time ~= nil and current_time < self.check_time then
 		return
 	end
 
@@ -1048,7 +1097,7 @@ function se_smart_terrain:update()
 
 	-- Проверяем, не истек ли запрет на занимание работы, на которой убили НПС
 	local current_time = game.get_game_time()
-	for k,v in pairs(self.dead_time) do
+	for k, v in pairs(self.dead_time) do
 		if current_time:diffSec(v) >= DEATH_IDLE_TIME then
 			self.dead_time[k] = nil
 		end
@@ -1064,10 +1113,12 @@ function se_smart_terrain:update()
 	-- Апдейт доступности для симуляции.
 	simulation_objects.get_sim_obj_registry():update_avaliability(self)
 end
+
 -- Переведение смарта в напряженное состояние
 function se_smart_terrain:set_alarm()
 	self.smart_alarm_time = game.get_game_time()
 end
+
 -- Проверяет. а не прошел ли аларм в смарте
 function se_smart_terrain:check_alarm()
 	if self.smart_alarm_time == nil then
@@ -1078,7 +1129,6 @@ function se_smart_terrain:check_alarm()
 	end
 end
 
-
 -- установить логику и сообщить смарту, что объект перешёл в онлайн.
 -- вызывается из net_spawn() объектов
 function setup_gulag_and_logic_on_spawn(obj, st, sobject, stype, loaded)
@@ -1086,11 +1136,13 @@ function setup_gulag_and_logic_on_spawn(obj, st, sobject, stype, loaded)
 	local sobject = alife():object(obj:id())
 	if sim ~= nil and sobject then
 		local strn_id = sobject.m_smart_terrain_id
-		printf( "setup_gulag_and_logic_on_spawn obj=%s, strn_id=%s, loaded=%s", obj:name(), tostring(strn_id), tostring(loaded))
+		printf("setup_gulag_and_logic_on_spawn obj=%s, strn_id=%s, loaded=%s", obj:name(), tostring(strn_id),
+			tostring(loaded))
 
 		if strn_id ~= nil and strn_id ~= 65535 then
-			local strn                   = sim:object(strn_id)
-			local need_setup_logic       = (not loaded) and (strn.npc_info[obj:id()] and strn.npc_info[obj:id()].begin_job == true)
+			local strn             = sim:object(strn_id)
+			local need_setup_logic = (not loaded) and
+			(strn.npc_info[obj:id()] and strn.npc_info[obj:id()].begin_job == true)
 
 			if need_setup_logic then
 				strn:setup_logic(obj)
@@ -1119,7 +1171,6 @@ function on_death(obj)
 	end
 end
 
-
 --***********************************************************************************************
 --*										SIMULATION_TARGET_SMART									*
 --***********************************************************************************************
@@ -1138,7 +1189,7 @@ function se_smart_terrain:am_i_reached(squad)
 	if IsMonster(alife():object(squad:commander_id())) and squad:get_script_target() == nil then
 		return squad_pos:distance_to_sqr(target_pos) <= 25
 	end
-	return squad.always_arrived or squad_pos:distance_to_sqr(target_pos) <= self.arrive_dist^2
+	return squad.always_arrived or squad_pos:distance_to_sqr(target_pos) <= self.arrive_dist ^ 2
 end
 
 -- Вызывается 1 раз после достижения меня отрядом выбравшим меня как цель.
@@ -1152,8 +1203,8 @@ end
 
 -- Вызывается 1 раз в момент выбора меня как цели.
 function se_smart_terrain:on_reach_target(squad)
---	squad.sound_manager:set_storyteller(squad:commander_id())
---	squad.sound_manager:set_story("squad_begin_attack")
+	--	squad.sound_manager:set_storyteller(squad:commander_id())
+	--	squad.sound_manager:set_story("squad_begin_attack")
 	squad:set_location_types(self:name())
 	self.board:assign_squad_to_smart(squad, self.id)
 	for k in squad:squad_members() do
@@ -1161,7 +1212,7 @@ function se_smart_terrain:on_reach_target(squad)
 			db.offline_objects[k.id] = {}
 		end
 	end
---	self.board:exit_smart(squad, squad.smart_id)
+	--	self.board:exit_smart(squad, squad.smart_id)
 end
 
 -- Возвращает CALifeSmartTerrainTask на меня, вызывается из smart_terrain:task()
@@ -1171,7 +1222,7 @@ end
 
 function smart_terrain_squad_count(board_smart_squads)
 	local count = 0
-	for k,v in pairs(board_smart_squads) do
+	for k, v in pairs(board_smart_squads) do
 		if v:get_script_target() == nil then
 			count = count + 1
 		end
@@ -1198,16 +1249,16 @@ local is_squad_monster =
 function surge_stats()
 	local sim_obj_registry = simulation_objects.get_sim_obj_registry().objects
 	local sim_squads = {
-						["zaton"] = {},
-						["jupiter"] = {},
-						["pripyat"] = {}
-		}
+		["zaton"] = {},
+		["jupiter"] = {},
+		["pripyat"] = {}
+	}
 	local sim_smarts = {
-						["zaton"] = {},
-						["jupiter"] = {},
-						["pripyat"] = {}		
-		}
-	for k,v in pairs(sim_obj_registry) do
+		["zaton"] = {},
+		["jupiter"] = {},
+		["pripyat"] = {}
+	}
+	for k, v in pairs(sim_obj_registry) do
 		if v:clsid() == clsid.smart_terrain and tonumber(v.props["surge"]) > 0 then
 			local level_name = alife():level_name(game_graph():vertex(v.m_game_vertex_id):level_id())
 			if sim_smarts[level_name] ~= nil then
@@ -1234,14 +1285,15 @@ function surge_stats()
 			local smart = sim_smarts[level_name][i]
 			max_capacity_total = max_capacity_total + smart.max_population
 			local squad_count = smart_terrain_squad_count(sim_board.get_sim_board().smarts[smart.id].squads)
-			printf("smart: [%s] max_population [%d] squad_count [%d]", smart:name(),smart.max_population, squad_count)
+			printf("smart: [%s] max_population [%d] squad_count [%d]", smart:name(), smart.max_population, squad_count)
 		end
-		printf("TOTAL: capacity total : [%d] squads total [%d]" , max_capacity_total, #sim_squads[level_name])
+		printf("TOTAL: capacity total : [%d] squads total [%d]", max_capacity_total, #sim_squads[level_name])
 	end
 	print_smarts_and_squads_by_level("zaton")
 	print_smarts_and_squads_by_level("jupiter")
 	print_smarts_and_squads_by_level("pripyat")
 end
+
 -- Мой прекондишн.
 function se_smart_terrain:target_precondition(squad, need_to_dec_population)
 	if self.respawn_only_smart == true then
@@ -1254,9 +1306,9 @@ function se_smart_terrain:target_precondition(squad, need_to_dec_population)
 	end
 	if squad_count ~= nil and (self.max_population <= squad_count) then
 		--printf("smart terrain [%s] precondition returns false for squad [%s]", self:name(), squad:name())
---		if tonumber(self.props["surge"]) > 0 and xr_conditions.surge_started() then
---			printf("SURGE_SMART_STATS : smart [%s]\n max_population = %d \ squad_count = %d", self:name(), self.max_population, squad_count)
---		end
+		--		if tonumber(self.props["surge"]) > 0 and xr_conditions.surge_started() then
+		--			printf("SURGE_SMART_STATS : smart [%s]\n max_population = %d \ squad_count = %d", self:name(), self.max_population, squad_count)
+		--		end
 		return false
 	end
 
@@ -1266,31 +1318,31 @@ function se_smart_terrain:target_precondition(squad, need_to_dec_population)
 		return false
 	end
 
-	if tonumber(self.props["resource"] )> 0 then
+	if tonumber(self.props["resource"]) > 0 then
 		local smart_params = squad_params.smart.resource
 		if smart_params ~= nil and smart_params.prec(squad, self) then
 			return true
 		end
 	end
-	if tonumber(self.props["base"] )> 0 then
+	if tonumber(self.props["base"]) > 0 then
 		local smart_params = squad_params.smart.base
 		if smart_params ~= nil and smart_params.prec(squad, self) then
 			return true
 		end
 	end
-	if tonumber(self.props["lair"] )> 0 then
+	if tonumber(self.props["lair"]) > 0 then
 		local smart_params = squad_params.smart.lair
 		if smart_params ~= nil and smart_params.prec(squad, self) then
 			return true
 		end
 	end
-	if tonumber(self.props["territory"] )> 0 then
+	if tonumber(self.props["territory"]) > 0 then
 		local smart_params = squad_params.smart.territory
 		if smart_params ~= nil and smart_params.prec(squad, self) then
 			return true
 		end
 	end
-	if tonumber(self.props["surge"] )> 0 then
+	if tonumber(self.props["surge"]) > 0 then
 		local smart_params = squad_params.smart.surge
 		if smart_params ~= nil and smart_params.prec(squad, self) then
 			return true
@@ -1300,7 +1352,7 @@ function se_smart_terrain:target_precondition(squad, need_to_dec_population)
 	return false
 
 
---[[
+	--[[
 	local squad_count = smart_terrain_squad_count(self.board.smarts[self.id].squads)
 	if squad_count ~= nil and (self.max_population <= squad_count) then return false end
 
@@ -1338,9 +1390,9 @@ end
 
 function se_smart_terrain:check_respawn_params(respawn_params)
 	--printf("CHECK RESPAWN PARAMS %s", self:name())
-	self.respawn_params 	= {}
-	self.already_spawned	= {}
-	self.respawn_point		= true
+	self.respawn_params  = {}
+	self.already_spawned = {}
+	self.respawn_point   = true
 	if not self.ini:section_exist(respawn_params) then
 		abort("Wrong smatr_terrain respawn_params section [%s](there is no section)", respawn_params)
 	end
@@ -1348,48 +1400,61 @@ function se_smart_terrain:check_respawn_params(respawn_params)
 	if n == 0 then
 		abort("Wrong smatr_terrain respawn_params section [%s](empty params)", respawn_params)
 	end
-	for j=0,n-1 do
-		local result, prop_name, prop_condlist = self.ini:r_line(respawn_params,j,"","")
+	for j = 0, n - 1 do
+		local result, prop_name, prop_condlist = self.ini:r_line(respawn_params, j, "", "")
 		if not self.ini:section_exist(prop_name) then
-			abort("Wrong smatr_terrain respawn_params section [%s] prop [%s](there is no section)", respawn_params, prop_name)
+			abort("Wrong smatr_terrain respawn_params section [%s] prop [%s](there is no section)", respawn_params,
+				prop_name)
 		end
-		local spawn_squads = utils.cfg_get_string(self.ini, prop_name, "spawn_squads", 	self, false, "", nil)
-		local spawn_num  	= utils.cfg_get_string(self.ini, prop_name, "spawn_num", 	self, false, "", nil)
+		local spawn_squads = utils.cfg_get_string(self.ini, prop_name, "spawn_squads", self, false, "", nil)
+		local spawn_num    = utils.cfg_get_string(self.ini, prop_name, "spawn_num", self, false, "", nil)
 		if spawn_squads == nil then
-			abort("Wrong smatr_terrain respawn_params section [%s] prop [%s] line [spawn_squads](there is no line)", respawn_params, prop_name)
+			abort("Wrong smatr_terrain respawn_params section [%s] prop [%s] line [spawn_squads](there is no line)",
+				respawn_params, prop_name)
 		elseif spawn_num == nil then
-			abort("Wrong smatr_terrain respawn_params section [%s] prop [%s] line [spawn_num](there is no line)", respawn_params, prop_name)
+			abort("Wrong smatr_terrain respawn_params section [%s] prop [%s] line [spawn_num](there is no line)",
+				respawn_params, prop_name)
 		end
-		spawn_squads = utils.parse_names(spawn_squads)
-		spawn_num = xr_logic.parse_condlist(nil, prop_name, "spawn_num", spawn_num)
-		self.respawn_params[prop_name] 			= {}
-		self.already_spawned[prop_name]			= {}
-		self.respawn_params[prop_name].squads	= spawn_squads
-		self.respawn_params[prop_name].num		= spawn_num
-		self.already_spawned[prop_name].num		= 0
+		spawn_squads                          = utils.parse_names(spawn_squads)
+		spawn_num                             = xr_logic.parse_condlist(nil, prop_name, "spawn_num", spawn_num)
+		self.respawn_params[prop_name]        = {}
+		self.already_spawned[prop_name]       = {}
+		self.respawn_params[prop_name].squads = spawn_squads
+		self.respawn_params[prop_name].num    = spawn_num
+		self.already_spawned[prop_name].num   = 0
 	end
 end
 
 function se_smart_terrain:call_respawn()
 	local available_sects = {}
 	printf("respawn called from smart_terrain [%s]", self:name())
-	for k,v in pairs(self.respawn_params) do
-		if tonumber(xr_logic.pick_section_from_condlist(db.actor, nil,v.num)) > self.already_spawned[k].num then
-			table.insert(available_sects,k)
+	for k, v in pairs(self.respawn_params) do
+		if tonumber(xr_logic.pick_section_from_condlist(db.actor, nil, v.num)) > self.already_spawned[k].num then
+			table.insert(available_sects, k)
 		end
 	end
 	if #available_sects > 0 then
-		local sect_to_spawn = available_sects[math.random(1,#available_sects)]
+		local sect_to_spawn = available_sects[math.random(1, #available_sects)]
 		local sect_to_spawn_params = self.respawn_params[sect_to_spawn]
-		local squad = sect_to_spawn_params.squads[math.random(1,#sect_to_spawn_params.squads)]
-		squad = self.board:create_squad(self, squad)
-		squad.respawn_point_id = self.id
-		squad.respawn_point_prop_section = sect_to_spawn
-		self.board:enter_smart(squad, self.id)
-		for m in squad:squad_members() do
-			self.board:setup_squad_and_group(m.object)
+		local squad = sect_to_spawn_params.squads[math.random(1, #sect_to_spawn_params.squads)]
+		--/ SGM in
+		local dist_to_actor = alife():actor().position:distance_to_sqr(self.position)
+		if sgm_g.find_out_string(squad, "alfa") or (sgm_g.find_in_string(squad, "alfa") and dist_to_actor ~= nil and dist_to_actor >= self.respawn_radius_alfa ^ 2) then
+			if sgm_g.squad_outside_of_limiter(squad, sgm_g.get_level_by_game_vertex(self.m_game_vertex_id)) then
+				local squad_name = squad
+				squad = self.board:create_squad(self, squad)
+				squad.respawn_point_id = self.id
+				squad.respawn_point_prop_section = sect_to_spawn
+				self.board:enter_smart(squad, self.id)
+				for m in squad:squad_members() do
+					self.board:setup_squad_and_group(m.object)
+				end
+				sgm_callbacks.on_squad_respawn(squad_name, squad.id,
+					sgm_g.get_level_by_game_vertex(self.m_game_vertex_id))
+				self.already_spawned[sect_to_spawn].num = self.already_spawned[sect_to_spawn].num + 1
+			end
 		end
-		self.already_spawned[sect_to_spawn].num = self.already_spawned[sect_to_spawn].num + 1
+		--/ SGM out
 	end
 end
 
@@ -1402,10 +1467,16 @@ function se_smart_terrain:try_respawn()
 		if self.sim_avail ~= nil and xr_logic.pick_section_from_condlist(db.actor or alife():actor(), self, self.sim_avail) ~= "true" then return end
 
 		local squad_count = smart_terrain_squad_count(self.board.smarts[self.id].squads)
-		if self.max_population <= squad_count then printf("%s cannot respawn due to squad_count %s of %s", self:name(), self.max_population, squad_count) return end
+		if self.max_population <= squad_count then
+			printf("%s cannot respawn due to squad_count %s of %s", self:name(), self.max_population, squad_count)
+			return
+		end
 
 		local dist_to_actor = alife():actor().position:distance_to_sqr(self.position)
-		if dist_to_actor < self.respawn_radius^2 then printf("%s cannot respawn due to distance", self:name()) return end
+		if dist_to_actor < self.respawn_radius ^ 2 then
+			printf("%s cannot respawn due to distance", self:name())
+			return
+		end
 
 		self:call_respawn()
 	end

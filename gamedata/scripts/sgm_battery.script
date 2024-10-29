@@ -3,18 +3,20 @@
 -----------------------------(Аккумулятор для детектора)------------------------------------------------
 --------------------------------------------------------------------------------------------------------
 ---==================================================================================================---
-local battery_manager=nil
+local battery_manager = nil
 class "CBatteryManager"
 function CBatteryManager:__init()
 end
+
 function CBatteryManager:initialize()
-   self.active_battery_id=0
-   self.active_battery_type=0
-   self.active_battery_power=0
-   self.send_tip_pause=0
+   self.active_battery_id = 0
+   self.active_battery_type = 0
+   self.active_battery_power = 0
+   self.send_tip_pause = 0
 end
+
 function CBatteryManager:update()
-   if device().precache_frame>0 or sgm_flags.bool_is_ui_disabled==true then return end
+   if device().precache_frame > 0 or sgm_flags.bool_is_ui_disabled == true then return end
    if db.actor:active_detector() then
       self:detector_used(db.actor:item_in_slot(9))
    else
@@ -22,109 +24,124 @@ function CBatteryManager:update()
    end
    self:restart_timers()
 end
+
 function CBatteryManager:detector_used(detector)
-   local d_section=detector:section()
-   local d_id=detector:id()
-   if get_item_count("detector_battery",true)==0 and get_item_count("detector_accum",true)==0 then
+   local d_section = detector:section()
+   local d_id = detector:id()
+   if get_item_count("detector_battery", true) == 0 and get_item_count("detector_accum", true) == 0 then
       self:detector_throw()
    else
       self:battery_check()
       self:battery_spend()
    end
 end
+
 function CBatteryManager:detector_not_used()
    self:battery_power_bar_clear()
 end
+
 function CBatteryManager:detector_throw()
    throw_item_from_slot(9)
-   if level.object_by_id(self.active_battery_id)==nil then
-      self.active_battery_id=0
-      self.active_battery_type=0
-      self.active_battery_power=0
+   if level.object_by_id(self.active_battery_id) == nil then
+      self.active_battery_id = 0
+      self.active_battery_type = 0
+      self.active_battery_power = 0
    end
-   if self.send_tip_pause==0 then
+   if self.send_tip_pause == 0 then
       self:send_tip("st_detector_battery_discharged")
    end
 end
+
 function CBatteryManager:battery_select()
    if db.actor:object("detector_battery_1") then
-      self.active_battery_type=1
-      self.active_battery_id=db.actor:object("detector_battery_1"):id()
-      self.active_battery_power=sgm_functions.ReadBatteryPower("detector_battery_1")
+      self.active_battery_type = 1
+      self.active_battery_id = db.actor:object("detector_battery_1"):id()
+      self.active_battery_power = sgm_functions.ReadBatteryPower("detector_battery_1")
    elseif db.actor:object("detector_battery_2") then
-      self.active_battery_type=2
-      self.active_battery_id=db.actor:object("detector_battery_2"):id()
-      self.active_battery_power=sgm_functions.ReadBatteryPower("detector_battery_2")
+      self.active_battery_type = 2
+      self.active_battery_id = db.actor:object("detector_battery_2"):id()
+      self.active_battery_power = sgm_functions.ReadBatteryPower("detector_battery_2")
    elseif db.actor:object("detector_battery_3") then
-      self.active_battery_type=3
-      self.active_battery_id=db.actor:object("detector_battery_3"):id()
-      self.active_battery_power=sgm_functions.ReadBatteryPower("detector_battery_3")
+      self.active_battery_type = 3
+      self.active_battery_id = db.actor:object("detector_battery_3"):id()
+      self.active_battery_power = sgm_functions.ReadBatteryPower("detector_battery_3")
    end
-   give_object_to_actor("detector_accum_"..self.active_battery_type.."_activated")
+   give_object_to_actor("detector_accum_" .. self.active_battery_type .. "_activated")
 end
+
 function CBatteryManager:battery_choose(value)
-   if db.actor:object("detector_accum_"..value.."_activated") and db.actor:object("detector_battery_"..value) then
-      if self.active_battery_id~=db.actor:object("detector_accum_"..value.."_activated"):id() then
+   if db.actor:object("detector_accum_" .. value .. "_activated") and db.actor:object("detector_battery_" .. value) then
+      if self.active_battery_id ~= db.actor:object("detector_accum_" .. value .. "_activated"):id() then
          remove_object_by_id(self.active_battery_id)
-         self.active_battery_id=db.actor:object("detector_accum_"..value.."_activated"):id()
+         self.active_battery_id = db.actor:object("detector_accum_" .. value .. "_activated"):id()
       end
    end
 end
+
 function CBatteryManager:battery_check()
-   if self.active_battery_id==0 then
+   if self.active_battery_id == 0 then
       self:battery_select()
    end
-   local obj_battery=level.object_by_id(self.active_battery_id)
-   if obj_battery:parent()==nil or obj_battery:parent():id()~=db.actor:id() then
+   local obj_battery = level.object_by_id(self.active_battery_id)
+   if obj_battery:parent() == nil or obj_battery:parent():id() ~= db.actor:id() then
       remove_object_by_id(self.active_battery_id)
       self:battery_select()
    end
 end
+
 function CBatteryManager:battery_spend()
-   if check_seconds(1) then
-      self.active_battery_power=self.active_battery_power-1
+   if sgm_g.check_seconds(1) then
+      self.active_battery_power = self.active_battery_power - 1
    end
    self:battery_choose(self.active_battery_type)
-   if self.active_battery_power<=0 then
+   if self.active_battery_power <= 0 then
       remove_object_by_id(self.active_battery_id)
-      self.active_battery_id=0
-      self.active_battery_type=0
-      self.active_battery_power=0
+      self.active_battery_id = 0
+      self.active_battery_type = 0
+      self.active_battery_power = 0
       self:send_tip("st_detector_battery_replaced")
    end
    self:battery_power_bar_setup()
 end
+
 function CBatteryManager:battery_power_bar_setup()
-   if self.active_battery_type~=0 then
-      show_battery_power_bar("hud_battery_power_wnd","ui_mod_progress_bars.xml","battery_power_"..self.active_battery_type.."_bar",self.active_battery_power)
+   if self.active_battery_type ~= 0 then
+      show_battery_power_bar("hud_battery_power_wnd", "ui_mod_progress_bars.xml",
+         "battery_power_" .. self.active_battery_type .. "_bar", self.active_battery_power)
    else
       self:battery_power_bar_clear()
    end
 end
+
 function CBatteryManager:battery_power_bar_clear()
    release_hud("hud_battery_power_wnd")
 end
+
 function CBatteryManager:send_tip(text)
-   news_manager.send_tip(db.actor,text,0,"detector_battery",3000,nil,"st_add_info_title")
-   self.send_tip_pause=time_global()+6000
+   news_manager.send_tip(db.actor, text, 0, "detector_battery", 3000, nil, "st_add_info_title")
+   self.send_tip_pause = time_global() + 6000
 end
+
 function CBatteryManager:restart_timers()
-   if self.send_tip_pause~=0 then if time_global()>=self.send_tip_pause then self.send_tip_pause=0 end end
+   if self.send_tip_pause ~= 0 then if time_global() >= self.send_tip_pause then self.send_tip_pause = 0 end end
 end
+
 function CBatteryManager:save(packet)
    packet:w_u32(self.active_battery_id)
    packet:w_u32(self.active_battery_type)
    packet:w_u32(self.active_battery_power)
 end
+
 function CBatteryManager:load(packet)
    self:initialize()
-   self.active_battery_id=packet:r_u32()
-   self.active_battery_type=packet:r_u32()
-   self.active_battery_power=packet:r_u32()
+   self.active_battery_id = packet:r_u32()
+   self.active_battery_type = packet:r_u32()
+   self.active_battery_power = packet:r_u32()
 end
+
 function get_battery_manager()
-   if battery_manager==nil then
-      battery_manager=CBatteryManager()
+   if battery_manager == nil then
+      battery_manager = CBatteryManager()
    end
    return battery_manager
 end

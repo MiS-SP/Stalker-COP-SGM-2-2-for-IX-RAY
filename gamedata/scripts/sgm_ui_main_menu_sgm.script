@@ -37,7 +37,7 @@ end
 function main_menu:OnKeyboard(dik, keyboard_action) --virtual function
 	CUIScriptWnd.OnKeyboard(self, dik, keyboard_action)
 	if keyboard_action == ui_events.WINDOW_KEY_PRESSED then
-		if find_in_string(command_line(), "-test") then
+		if sgm_g.find_in_string(command_line(), "-test") then
 			if dik == DIK_keys.DIK_F1 then
 				self:mod_modes()
 			elseif dik == DIK_keys.DIK_N then --/Отображать смарты на КПК.
@@ -159,19 +159,19 @@ end
 
 function main_menu:OnButton_coord_pos_clicked()
 	text = "Позиция:\\nX= " ..
-	db.actor:position().x ..
-	"\\nY= " ..
-	db.actor:position().y ..
-	"\\nZ= " ..
-	db.actor:position().z ..
-	"\\nlevel_vertex= " ..
-	db.actor:level_vertex_id() ..
-	"\\ngame_vertex_id= " .. db.actor:game_vertex_id() .. "\\ndirection= " .. db.actor:direction():getH()
+		db.actor:position().x ..
+		"\\nY= " ..
+		db.actor:position().y ..
+		"\\nZ= " ..
+		db.actor:position().z ..
+		"\\nlevel_vertex= " ..
+		db.actor:level_vertex_id() ..
+		"\\ngame_vertex_id= " .. db.actor:game_vertex_id() .. "\\ndirection= " .. db.actor:direction():getH()
 	news_manager.send_tip(db.actor, text, 0, mutant_hunter, 10000, nil, "Координата")
 	fill_log(db.actor:position().x ..
-	"," ..
-	db.actor:position().y .. "," ..
-	db.actor:position().z .. "," .. db.actor:level_vertex_id() .. "," .. db.actor:game_vertex_id())
+		"," ..
+		db.actor:position().y .. "," ..
+		db.actor:position().z .. "," .. db.actor:level_vertex_id() .. "," .. db.actor:game_vertex_id())
 	--/debug_to_file("points.txt",db.actor:level_vertex_id()..","..db.actor:game_vertex_id())
 	debug_to_file("points.txt",
 		db.actor:position().x ..

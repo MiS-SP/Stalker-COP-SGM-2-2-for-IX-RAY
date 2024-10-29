@@ -3,77 +3,77 @@
 --------------------------------(Загрузчик файлов Sigerous MOD)-----------------------------------------
 --------------------------------------------------------------------------------------------------------
 ---==================================================================================================---
-local save_manager=sgm_save.get_save_manager()
-local hud_manager=sgm_huds.get_hud_manager()
-local battery_manager=sgm_battery.get_battery_manager()
-local blackday_manager=sgm_blackday.get_black_day()
+local save_manager = sgm_save.get_save_manager()
+local hud_manager = sgm_huds.get_hud_manager()
+local battery_manager = sgm_battery.get_battery_manager()
+local blackday_manager = sgm_blackday.get_black_day()
 function sigerous_mod_main()
    sigerous_mod_loader()
 end
+
 function sigerous_mod_loader()
    save_manager:update()
    battery_manager:update()
-   if check_seconds(3) then
+   if sgm_g.check_seconds(3) then
       blackday_manager:initialize()
       blackday_manager:update()
    end
    sgm_container.container_main()
-   if check_seconds(3) then
+   if sgm_g.check_seconds(3) then
       sgm_cleaners.cleaners_main()
    end
-   if check_seconds(1) then
+   if sgm_g.check_seconds(1) then
       sgm_distance.distance_main()
    end
    sgm_effects.effects_main()
-   if check_seconds(2) then
+   if sgm_g.check_seconds(2) then
       sgm_reward.reward_main()
    end
    hud_manager:update()
-   if check_seconds(4) then
+   if sgm_g.check_seconds(4) then
       sgm_utils.utils_main_1()
    end
-   if check_seconds(1) then
+   if sgm_g.check_seconds(1) then
       sgm_utils.utils_main_2()
    end
    sgm_inventory.inventory_main()
    sgm_options.options_main()
-   if check_seconds(1) then
+   if sgm_g.check_seconds(1) then
       sgm_message.message_main()
    end
    sgm_queue.queue_main()
-   if check_seconds(1) then
+   if sgm_g.check_seconds(1) then
       sgm_tasks.task_main()
    end
-   if check_seconds(3) then
+   if sgm_g.check_seconds(3) then
       sgm_offline.offline_main()
    end
    sgm_variables.variables_main()
-   if check_seconds(5) then
+   if sgm_g.check_seconds(5) then
       sgm_spawner.spawner_main()
    end
-   if check_seconds(30) then
+   if sgm_g.check_seconds(30) then
       sgm_utilizator.utilizator_main()
    end
-   if check_seconds(3) then
+   if sgm_g.check_seconds(3) then
       sgm_respawn.respawn_main()
    end
    sgm_modules.module_actor(db.actor)
-   if check_seconds(30) then
+   if sgm_g.check_seconds(30) then
       sgm_mechanics.mechanics_main()
    end
    sgm_update.update_main()
    sgm_timers.timers_main()
 end
+
 function save(packet)
    save_manager:save(packet)
    battery_manager:save(packet)
 end
+
 function load(reader)
    save_manager:load(reader)
    battery_manager:load(reader)
 end
 
-
-
-
-----------------------                                                                                     
+----------------------

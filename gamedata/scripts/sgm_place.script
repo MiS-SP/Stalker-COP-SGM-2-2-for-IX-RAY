@@ -1,376 +1,401 @@
 ---==================================================================================================---
 --------------------------------------------------------------------------------------------------------
----------------------------(Размещение тайников, мин и GPS-проводников)---------------------------------
+---------------------------(пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅ GPS-пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ)---------------------------------
 --------------------------------------------------------------------------------------------------------
 ---==================================================================================================---
-set_device_boxs={"repair_outfit_box","repair_arms_box","conventer_grenade_box"}
-set_detectors_1={"detector_simple","detector_advanced"}
-set_detectors_2={"detector_advanced","detector_elite"}
-set_detectors_3={"detector_elite","detector_scientific"}
-set_detectors_4={"detector_scientific","detector_omega"}
-set_outfits_1={"novice_outfit","stalker_outfit","svoboda_light_outfit","bandit_prikid_outfit"}
-set_outfits_2={"dolg_outfit","scientific_outfit","svoboda_heavy_outfit"}
-set_outfits_3={"dolg_heavy_outfit","military_outfit","specops_outfit"}
-set_outfits_4={"csky_exo_outfit","freedom_exo_outfit","dolg_exo_outfit","monolit_exo_outfit","bandit_exo_outfit","army_exo_outfit","killer_exo_outfit","exo_outfit"}
-set_helms_1={"helm_respirator","helm_protective"}
-set_helms_2={"helm_protective","helm_hardhat"}
-set_helms_3={"helm_tactic","helm_battle"}
-set_artefacts_1={"af_cristall","af_medusa","af_vyvert","af_blood","af_electra_sparkler"}
-set_artefacts_2={"af_fireball","af_cristall_flower","af_gravi","af_mincer_meat","af_electra_flash"}
-set_artefacts_3={"af_dummy_glassbeads","af_dummy_battery","af_night_star","af_gold_fish","af_soul","af_fuzz_kolobok","af_electra_moonlight"}
-set_artefacts_4={"af_dummy_dummy","af_baloon","af_glass","af_eye","af_fire"}
-set_artefacts_5={"af_ice","af_monolit","af_geliy","af_vaselisk","af_dragon_eye"}
-set_booty_1={"mutant_snork_booty","mutant_psevdodog_booty","mutant_krovosos_booty","mutant_boar_booty","mutant_dog_booty","mutant_flesh_booty"}
-set_booty_2={"mutant_giant_booty","mutant_chimera_booty","mutant_controler_booty","mutant_burer_booty"}
-set_medicaments_1_1={"medkit","medkit_army"}
-set_medicaments_1_2={"medkit_army","medkit_scientic"}
-set_medicaments_1_3={"medkit_scientic","medkit_elite"}
-set_medicaments_2={"psy_complex","antirad"}
-set_medicaments_3={"bandage","bio_bandage"}
-set_drugs_1={"drug_booster","drug_coagulant","drug_psy_blockade","drug_antidot"}
-set_drugs_2={"drug_radioprotector","drug_antidot"}
-set_meals_1={"energy_drink","wild_drink","vodka","beer"}
-set_meals_2={"bread","kolbasa","conserva"}
-set_moneys_1={"money_meshochek_100_500","money_meshochek_100_3000","money_meshochek_500_1000","money_meshochek_1000_1500","money_meshochek_1500_2000","money_meshochek_2000_3000"}
-set_moneys_2={"money_meshochek_1000_5000","money_meshochek_4000_5000","money_meshochek_5000_10000","money_meshochek_10000_15000","money_meshochek_15000_20000"}
-set_ammo_1={"ammo_9x18_fmj","ammo_9x18_pmm","ammo_9x19_pbp","ammo_9x19_fmj","ammo_11.43x23_fmj","ammo_12x70_buck","ammo_12x76_zhekan"}
-set_ammo_2={"ammo_9x18_pmm","ammo_9x19_pbp","ammo_12x76_zhekan","ammo_11.43x23_hydro"}
-set_ammo_3={"ammo_5.45x39_ap","ammo_5.45x39_fmj","ammo_9x39_ap","ammo_5.56x45_ss190","ammo_5.56x45_ap"}
-set_ammo_4={"ammo_7.62x54_7h1","ammo_5.45x39_ap","ammo_5.56x45_ap","ammo_9x39_ap"}
-set_ammo_5={"grenade_f1","grenade_rgd5","grenade_gd-05","grenade_gd-05_lighting"}
-set_ammo_6={"ammo_og-7b","ammo_vog-25"}
-set_ammo_7={"ammo_dumdum","ammo_dumdum"}
-set_ammo_8={"ammo_box_10_vog","ammo_box_10_m209"}
-set_addons_1={"wpn_addon_scope","wpn_addon_scope_susat","wpn_addon_silencer"}
-set_addons_2={"wpn_addon_scope_x2.7","wpn_addon_scope_susat_x1.6","wpn_addon_silencer_9x19","wpn_addon_silencer_11.43x23"}
-set_addons_3={"wpn_addon_scope_detector","wpn_addon_scope_night","wpn_addon_scope_susat_custom","wpn_addon_scope_susat_dusk","wpn_addon_scope_susat_night","wpn_addon_silencer_5.56x45","wpn_addon_silencer_5.45x39"}
-set_addons_4={"wpn_addon_silencer_9x39","wpn_addon_scope_night","wpn_addon_scope_susat_night"}
-set_addons_5={"wpn_addon_grenade_launcher","wpn_addon_grenade_launcher_m203"}
-table_filling_secrets={}
+set_device_boxs = { "repair_outfit_box", "repair_arms_box", "conventer_grenade_box" }
+set_detectors_1 = { "detector_simple", "detector_advanced" }
+set_detectors_2 = { "detector_advanced", "detector_elite" }
+set_detectors_3 = { "detector_elite", "detector_scientific" }
+set_detectors_4 = { "detector_scientific", "detector_omega" }
+set_outfits_1 = { "novice_outfit", "stalker_outfit", "svoboda_light_outfit", "bandit_prikid_outfit" }
+set_outfits_2 = { "dolg_outfit", "scientific_outfit", "svoboda_heavy_outfit" }
+set_outfits_3 = { "dolg_heavy_outfit", "military_outfit", "specops_outfit" }
+set_outfits_4 = { "csky_exo_outfit", "freedom_exo_outfit", "dolg_exo_outfit", "monolit_exo_outfit", "bandit_exo_outfit",
+   "army_exo_outfit", "killer_exo_outfit", "exo_outfit" }
+set_helms_1 = { "helm_respirator", "helm_protective" }
+set_helms_2 = { "helm_protective", "helm_hardhat" }
+set_helms_3 = { "helm_tactic", "helm_battle" }
+set_artefacts_1 = { "af_cristall", "af_medusa", "af_vyvert", "af_blood", "af_electra_sparkler" }
+set_artefacts_2 = { "af_fireball", "af_cristall_flower", "af_gravi", "af_mincer_meat", "af_electra_flash" }
+set_artefacts_3 = { "af_dummy_glassbeads", "af_dummy_battery", "af_night_star", "af_gold_fish", "af_soul",
+   "af_fuzz_kolobok", "af_electra_moonlight" }
+set_artefacts_4 = { "af_dummy_dummy", "af_baloon", "af_glass", "af_eye", "af_fire" }
+set_artefacts_5 = { "af_ice", "af_monolit", "af_geliy", "af_vaselisk", "af_dragon_eye" }
+set_booty_1 = { "mutant_snork_booty", "mutant_psevdodog_booty", "mutant_krovosos_booty", "mutant_boar_booty",
+   "mutant_dog_booty", "mutant_flesh_booty" }
+set_booty_2 = { "mutant_giant_booty", "mutant_chimera_booty", "mutant_controler_booty", "mutant_burer_booty" }
+set_medicaments_1_1 = { "medkit", "medkit_army" }
+set_medicaments_1_2 = { "medkit_army", "medkit_scientic" }
+set_medicaments_1_3 = { "medkit_scientic", "medkit_elite" }
+set_medicaments_2 = { "psy_complex", "antirad" }
+set_medicaments_3 = { "bandage", "bio_bandage" }
+set_drugs_1 = { "drug_booster", "drug_coagulant", "drug_psy_blockade", "drug_antidot" }
+set_drugs_2 = { "drug_radioprotector", "drug_antidot" }
+set_meals_1 = { "energy_drink", "wild_drink", "vodka", "beer" }
+set_meals_2 = { "bread", "kolbasa", "conserva" }
+set_moneys_1 = { "money_meshochek_100_500", "money_meshochek_100_3000", "money_meshochek_500_1000",
+   "money_meshochek_1000_1500", "money_meshochek_1500_2000", "money_meshochek_2000_3000" }
+set_moneys_2 = { "money_meshochek_1000_5000", "money_meshochek_4000_5000", "money_meshochek_5000_10000",
+   "money_meshochek_10000_15000", "money_meshochek_15000_20000" }
+set_ammo_1 = { "ammo_9x18_fmj", "ammo_9x18_pmm", "ammo_9x19_pbp", "ammo_9x19_fmj", "ammo_11.43x23_fmj", "ammo_12x70_buck",
+   "ammo_12x76_zhekan" }
+set_ammo_2 = { "ammo_9x18_pmm", "ammo_9x19_pbp", "ammo_12x76_zhekan", "ammo_11.43x23_hydro" }
+set_ammo_3 = { "ammo_5.45x39_ap", "ammo_5.45x39_fmj", "ammo_9x39_ap", "ammo_5.56x45_ss190", "ammo_5.56x45_ap" }
+set_ammo_4 = { "ammo_7.62x54_7h1", "ammo_5.45x39_ap", "ammo_5.56x45_ap", "ammo_9x39_ap" }
+set_ammo_5 = { "grenade_f1", "grenade_rgd5", "grenade_gd-05", "grenade_gd-05_lighting" }
+set_ammo_6 = { "ammo_og-7b", "ammo_vog-25" }
+set_ammo_7 = { "ammo_dumdum", "ammo_dumdum" }
+set_ammo_8 = { "ammo_box_10_vog", "ammo_box_10_m209" }
+set_addons_1 = { "wpn_addon_scope", "wpn_addon_scope_susat", "wpn_addon_silencer" }
+set_addons_2 = { "wpn_addon_scope_x2.7", "wpn_addon_scope_susat_x1.6", "wpn_addon_silencer_9x19",
+   "wpn_addon_silencer_11.43x23" }
+set_addons_3 = { "wpn_addon_scope_detector", "wpn_addon_scope_night", "wpn_addon_scope_susat_custom",
+   "wpn_addon_scope_susat_dusk", "wpn_addon_scope_susat_night", "wpn_addon_silencer_5.56x45",
+   "wpn_addon_silencer_5.45x39" }
+set_addons_4 = { "wpn_addon_silencer_9x39", "wpn_addon_scope_night", "wpn_addon_scope_susat_night" }
+set_addons_5 = { "wpn_addon_grenade_launcher", "wpn_addon_grenade_launcher_m203" }
+table_filling_secrets = {}
 function place_gps_guides()
    local selected_point
-   local par_point_num=1
-   par_points={}
+   local par_point_num = 1
+   par_points = {}
    local ini = ini_file("misc\\config_gps_guides.ltx")
    local n = ini:line_count("gps_guide")
-   for i=0,n-1 do
-      local result, id, value = ini:r_line("gps_guide",i,"","")
+   for i = 0, n - 1 do
+      local result, id, value = ini:r_line("gps_guide", i, "", "")
       if ini:section_exist(id) then
          local items_count = ini:line_count(id)
          local item_section = ""
-         for i=0,items_count-1 do
-            result, item_section, str = ini:r_line(id,i,"","")
-            if item_section=="point_num" then
-               par_point_num=str
+         for i = 0, items_count - 1 do
+            result, item_section, str = ini:r_line(id, i, "", "")
+            if item_section == "point_num" then
+               par_point_num = str
             end
          end
-         for i=0,items_count-1 do
-            result, item_section, str = ini:r_line(id,i,"","")
-            for s=1,par_point_num do
-               if item_section=="point_"..s then
-                  par_points["point_"..s]=str
+         for i = 0, items_count - 1 do
+            result, item_section, str = ini:r_line(id, i, "", "")
+            for s = 1, par_point_num do
+               if item_section == "point_" .. s then
+                  par_points["point_" .. s] = str
                end
             end
          end
-         selected_point=math.random(1,par_point_num)
-         for k,v in pairs(par_points) do
-            if k~=nil and k=="point_"..selected_point then
-               local r_param=sgm_functions.check_section_comma(ini,id,k,nil,5)
-               if r_param~=nil then
-                  create_gps_guide(tonumber(r_param[1]),tonumber(r_param[2]),tonumber(r_param[3]),tonumber(r_param[4]),tonumber(r_param[5]))
+         selected_point = math.random(1, par_point_num)
+         for k, v in pairs(par_points) do
+            if k ~= nil and k == "point_" .. selected_point then
+               local r_param = sgm_functions.check_section_comma(ini, id, k, nil, 5)
+               if r_param ~= nil then
+                  sgm_g.create_gps_guide(tonumber(r_param[1]), tonumber(r_param[2]), tonumber(r_param[3]),
+                     tonumber(r_param[4]),
+                     tonumber(r_param[5]))
                end
             end
          end
-         par_points={}
+         par_points = {}
       end
    end
 end
+
 function place_secrets()
    local selected_point
-   local par_point_num=1
-   par_points={}
+   local par_point_num = 1
+   par_points = {}
    local ini = ini_file("misc\\config_secrets.ltx")
    local n = ini:line_count("secret")
-   for i=0,n-1 do
-      local result, id, value = ini:r_line("secret",i,"","")
+   for i = 0, n - 1 do
+      local result, id, value = ini:r_line("secret", i, "", "")
       if ini:section_exist(id) then
          local items_count = ini:line_count(id)
          local item_section = ""
-         local par_items=nil
-         local par_rank=nil
-         for i=0,items_count-1 do
-            result, item_section, str = ini:r_line(id,i,"","")
-            if item_section=="point_num" then
-               par_point_num=str
-            elseif item_section=="items" then
-               par_items=str
-            elseif item_section=="rank" then
-               par_rank=str
+         local par_items = nil
+         local par_rank = nil
+         for i = 0, items_count - 1 do
+            result, item_section, str = ini:r_line(id, i, "", "")
+            if item_section == "point_num" then
+               par_point_num = str
+            elseif item_section == "items" then
+               par_items = str
+            elseif item_section == "rank" then
+               par_rank = str
             end
          end
-         for i=0,items_count-1 do
-            result, item_section, str = ini:r_line(id,i,"","")
-            for s=1,par_point_num do
-               if item_section=="point_"..s then
-                  par_points["point_"..s]=str
+         for i = 0, items_count - 1 do
+            result, item_section, str = ini:r_line(id, i, "", "")
+            for s = 1, par_point_num do
+               if item_section == "point_" .. s then
+                  par_points["point_" .. s] = str
                end
             end
          end
-         selected_point=math.random(1,par_point_num)
-         for k,v in pairs(par_points) do
-            if k~=nil and k=="point_"..selected_point then
-               local r_param=sgm_functions.check_section_comma(ini,id,k,nil,5)
-               if r_param~=nil then
-                  local model_prefix="_"..get_random_line("a,b,c")
-                  create_id=create_inventory_item(par_items,id..model_prefix,tonumber(r_param[1]),tonumber(r_param[2]),tonumber(r_param[3]),tonumber(r_param[4]),tonumber(r_param[5]))
-                  if par_rank~=nil then
-                     if par_rank=="rank_1" then
+         selected_point = math.random(1, par_point_num)
+         for k, v in pairs(par_points) do
+            if k ~= nil and k == "point_" .. selected_point then
+               local r_param = sgm_functions.check_section_comma(ini, id, k, nil, 5)
+               if r_param ~= nil then
+                  local model_prefix = "_" .. get_random_line("a,b,c")
+                  create_id = sgm_g.create_inventory_item(par_items, id .. model_prefix, tonumber(r_param[1]),
+                     tonumber(r_param[2]), tonumber(r_param[3]), tonumber(r_param[4]), tonumber(r_param[5]))
+                  if par_rank ~= nil then
+                     if par_rank == "rank_1" then
                         bonus_rank_1_items(create_id)
-                     elseif par_rank=="rank_2" then
+                     elseif par_rank == "rank_2" then
                         bonus_rank_2_items(create_id)
                      else
                         bonus_rank_3_items(create_id)
                      end
                   end
-                  if par_items==nil then
+                  if par_items == nil then
                      check_secret_filling(create_id)
                   end
                end
             end
          end
-         par_points={}
+         par_points = {}
       end
    end
 end
+
 function place_unique_treasures()
    local selected_place
-   local par_place_num=1
-   par_places={}
+   local par_place_num = 1
+   par_places = {}
    local ini = ini_file("misc\\config_treasures.ltx")
    local n = ini:line_count("unique_treasure")
-   for i=0,n-1 do
-      local result, id, value = ini:r_line("unique_treasure",i,"","")
+   for i = 0, n - 1 do
+      local result, id, value = ini:r_line("unique_treasure", i, "", "")
       if ini:section_exist(id) then
          local items_count = ini:line_count(id)
          local item_section = ""
-         local par_treasure_section=""
-         for i=0,items_count-1 do
-            result, item_section, str = ini:r_line(id,i,"","")
-            if item_section=="place_num" then
-               par_place_num=str
-            elseif item_section=="treasure_section" then
-               par_treasure_section=str
+         local par_treasure_section = ""
+         for i = 0, items_count - 1 do
+            result, item_section, str = ini:r_line(id, i, "", "")
+            if item_section == "place_num" then
+               par_place_num = str
+            elseif item_section == "treasure_section" then
+               par_treasure_section = str
             end
          end
-         for i=0,items_count-1 do
-            result, item_section, str = ini:r_line(id,i,"","")
-            for s=1,par_place_num do
-               if item_section=="place_"..s then
-                  par_places["place_"..s]=str
+         for i = 0, items_count - 1 do
+            result, item_section, str = ini:r_line(id, i, "", "")
+            for s = 1, par_place_num do
+               if item_section == "place_" .. s then
+                  par_places["place_" .. s] = str
                end
             end
          end
-         selected_place=math.random(1,par_place_num)
-         for k,v in pairs(par_places) do
-            if k~=nil and k=="place_"..selected_place then
-               local r_param=sgm_functions.check_section_comma(ini,id,k,nil,5)
-               if r_param~=nil then
-                  create(par_treasure_section,tonumber(r_param[1]),tonumber(r_param[2]),tonumber(r_param[3]),tonumber(r_param[4]),tonumber(r_param[5]))
+         selected_place = math.random(1, par_place_num)
+         for k, v in pairs(par_places) do
+            if k ~= nil and k == "place_" .. selected_place then
+               local r_param = sgm_functions.check_section_comma(ini, id, k, nil, 5)
+               if r_param ~= nil then
+                  sgm_g.create(par_treasure_section, tonumber(r_param[1]), tonumber(r_param[2]), tonumber(r_param[3]),
+                     tonumber(r_param[4]), tonumber(r_param[5]))
                end
             end
          end
-         par_places={}
+         par_places = {}
       end
    end
    local selected_place
-   local par_place_num=1
-   par_places={}
+   local par_place_num = 1
+   par_places = {}
    local ini = ini_file("misc\\config_treasures.ltx")
    local n = ini:line_count("unique_treasure_card")
-   for i=0,n-1 do
-      local result, id, value = ini:r_line("unique_treasure_card",i,"","")
+   for i = 0, n - 1 do
+      local result, id, value = ini:r_line("unique_treasure_card", i, "", "")
       if ini:section_exist(id) then
          local items_count = ini:line_count(id)
          local item_section = ""
-         local par_card_section=""
-         for i=0,items_count-1 do
-            result, item_section, str = ini:r_line(id,i,"","")
-            if item_section=="place_num" then
-               par_place_num=str
-            elseif item_section=="card_section" then
-               par_card_section=str
+         local par_card_section = ""
+         for i = 0, items_count - 1 do
+            result, item_section, str = ini:r_line(id, i, "", "")
+            if item_section == "place_num" then
+               par_place_num = str
+            elseif item_section == "card_section" then
+               par_card_section = str
             end
          end
-         for i=0,items_count-1 do
-            result, item_section, str = ini:r_line(id,i,"","")
-            for s=1,par_place_num do
-               if item_section=="place_"..s then
-                  par_places["place_"..s]=str
+         for i = 0, items_count - 1 do
+            result, item_section, str = ini:r_line(id, i, "", "")
+            for s = 1, par_place_num do
+               if item_section == "place_" .. s then
+                  par_places["place_" .. s] = str
                end
             end
          end
-         selected_place=math.random(1,par_place_num)
-         for k,v in pairs(par_places) do
-            if k~=nil and k=="place_"..selected_place then
-               local r_param=sgm_functions.check_section_comma(ini,id,k,nil,5)
-               if r_param~=nil then
-                  create(par_card_section,tonumber(r_param[1]),tonumber(r_param[2]),tonumber(r_param[3]),tonumber(r_param[4]),tonumber(r_param[5]))
+         selected_place = math.random(1, par_place_num)
+         for k, v in pairs(par_places) do
+            if k ~= nil and k == "place_" .. selected_place then
+               local r_param = sgm_functions.check_section_comma(ini, id, k, nil, 5)
+               if r_param ~= nil then
+                  sgm_g.create(par_card_section, tonumber(r_param[1]), tonumber(r_param[2]), tonumber(r_param[3]),
+                     tonumber(r_param[4]), tonumber(r_param[5]))
                end
             end
          end
-         par_places={}
+         par_places = {}
       end
    end
 end
+
 function place_unique_items()
    local selected_point
-   local par_point_num=1
-   par_points={}
+   local par_point_num = 1
+   par_points = {}
    local ini = ini_file("misc\\config_unique_places.ltx")
    local n = ini:line_count("unique_table")
-   for i=0,n-1 do
-      local result, id, value = ini:r_line("unique_table",i,"","")
+   for i = 0, n - 1 do
+      local result, id, value = ini:r_line("unique_table", i, "", "")
       if ini:section_exist(id) then
          local items_count = ini:line_count(id)
          local item_section = ""
-         local par_items="medkit"
-         local par_choose="false"
-         for i=0,items_count-1 do
-            result, item_section, str = ini:r_line(id,i,"","")
-            if item_section=="point_num" then
-               par_point_num=str
-            elseif item_section=="items" then
-               par_items=str
-            elseif item_section=="items_choose" then
-               par_choose=str
+         local par_items = "medkit"
+         local par_choose = "false"
+         for i = 0, items_count - 1 do
+            result, item_section, str = ini:r_line(id, i, "", "")
+            if item_section == "point_num" then
+               par_point_num = str
+            elseif item_section == "items" then
+               par_items = str
+            elseif item_section == "items_choose" then
+               par_choose = str
             end
          end
-         for i=0,items_count-1 do
-            result, item_section, str = ini:r_line(id,i,"","")
-            for s=1,par_point_num do
-               if item_section=="point_"..s then
-                  par_points["point_"..s]=str
+         for i = 0, items_count - 1 do
+            result, item_section, str = ini:r_line(id, i, "", "")
+            for s = 1, par_point_num do
+               if item_section == "point_" .. s then
+                  par_points["point_" .. s] = str
                end
             end
          end
-         selected_point=math.random(1,par_point_num)
-         for k,v in pairs(par_points) do
-            if k~=nil and k=="point_"..selected_point then
-               local r_param=sgm_functions.check_section_comma(ini,id,k,nil,5)
-               if r_param~=nil then
-                  local g_count=sgm_functions.check_section_comma(ini,id,"count","1,1",2)
-                  local g_selected_count=math.random(tonumber(g_count[1]),tonumber(g_count[2]))
-                  local g_probability=to_number(sgm_functions.check_section_condlist(ini,id,"spawn_prob",1.0))
-                  local g_selected_probability=g_probability*100
-                  for p=1,g_selected_count do
-                     if math.random(100)<=g_selected_probability then
-                        if par_choose=="false" then
-                           create_objects(par_items,tonumber(r_param[1]),tonumber(r_param[2]),tonumber(r_param[3]),tonumber(r_param[4]),tonumber(r_param[5]))
+         selected_point = math.random(1, par_point_num)
+         for k, v in pairs(par_points) do
+            if k ~= nil and k == "point_" .. selected_point then
+               local r_param = sgm_functions.check_section_comma(ini, id, k, nil, 5)
+               if r_param ~= nil then
+                  local g_count = sgm_functions.check_section_comma(ini, id, "count", "1,1", 2)
+                  local g_selected_count = math.random(tonumber(g_count[1]), tonumber(g_count[2]))
+                  local g_probability = sgm_g.to_number(sgm_functions.check_section_condlist(ini, id, "spawn_prob", 1.0))
+                  local g_selected_probability = g_probability * 100
+                  for p = 1, g_selected_count do
+                     if math.random(100) <= g_selected_probability then
+                        if par_choose == "false" then
+                           sgm_g.create_objects(par_items, tonumber(r_param[1]), tonumber(r_param[2]),
+                           tonumber(r_param[3]),
+                              tonumber(r_param[4]), tonumber(r_param[5]))
                         else
-                           create(par_items,tonumber(r_param[1]),tonumber(r_param[2]),tonumber(r_param[3]),tonumber(r_param[4]),tonumber(r_param[5]))
+                           sgm_g.create(par_items, tonumber(r_param[1]), tonumber(r_param[2]), tonumber(r_param[3]),
+                              tonumber(r_param[4]), tonumber(r_param[5]))
                         end
                      end
                   end
                end
             end
          end
-         par_points={}
+         par_points = {}
       end
    end
 end
+
 function place_minetraps()
    local selected_point
-   local par_point_num=1
-   par_points={}
+   local par_point_num = 1
+   par_points = {}
    local ini = ini_file("misc\\config_minetraps.ltx")
    local n = ini:line_count("minetrap")
-   for i=0,n-1 do
-      local result, id, value = ini:r_line("minetrap",i,"","")
+   for i = 0, n - 1 do
+      local result, id, value = ini:r_line("minetrap", i, "", "")
       if ini:section_exist(id) then
          local items_count = ini:line_count(id)
          local item_section = ""
-         local par_minetrap_section=""
-         for i=0,items_count-1 do
-            result, item_section, str = ini:r_line(id,i,"","")
-            if item_section=="point_num" then
-               par_point_num=str
-            elseif item_section=="minetrap_section" then
-               par_minetrap_section=str
+         local par_minetrap_section = ""
+         for i = 0, items_count - 1 do
+            result, item_section, str = ini:r_line(id, i, "", "")
+            if item_section == "point_num" then
+               par_point_num = str
+            elseif item_section == "minetrap_section" then
+               par_minetrap_section = str
             end
          end
-         for i=0,items_count-1 do
-            result, item_section, str = ini:r_line(id,i,"","")
-            for s=1,par_point_num do
-               if item_section=="point_"..s then
-                  par_points["point_"..s]=str
+         for i = 0, items_count - 1 do
+            result, item_section, str = ini:r_line(id, i, "", "")
+            for s = 1, par_point_num do
+               if item_section == "point_" .. s then
+                  par_points["point_" .. s] = str
                end
             end
          end
-         selected_point=math.random(1,par_point_num)
-         for k,v in pairs(par_points) do
-            if k~=nil and k=="point_"..selected_point then
-               local r_param=sgm_functions.check_section_comma(ini,id,k,nil,5)
-               if r_param~=nil then
-                  create(par_minetrap_section,tonumber(r_param[1]),tonumber(r_param[2]),tonumber(r_param[3]),tonumber(r_param[4]),tonumber(r_param[5]))
+         selected_point = math.random(1, par_point_num)
+         for k, v in pairs(par_points) do
+            if k ~= nil and k == "point_" .. selected_point then
+               local r_param = sgm_functions.check_section_comma(ini, id, k, nil, 5)
+               if r_param ~= nil then
+                  sgm_g.create(par_minetrap_section, tonumber(r_param[1]), tonumber(r_param[2]), tonumber(r_param[3]),
+                     tonumber(r_param[4]), tonumber(r_param[5]))
                end
             end
          end
-         par_points={}
+         par_points = {}
       end
    end
 end
+
 function secret_items_check_and_spawn()
    local selected_point
-   local par_place_num=1
-   local secret_section="secret_items_"..level.name()
-   local par_places={}
+   local par_place_num = 1
+   local secret_section = "secret_items_" .. level.name()
+   local par_places = {}
    local ini = ini_file("misc\\config_secrets.ltx")
    if ini:section_exist(secret_section) then
       local n = ini:line_count(secret_section)
-      for i=0,n-1 do
-         local result, id, value = ini:r_line(secret_section,i,"","")
+      for i = 0, n - 1 do
+         local result, id, value = ini:r_line(secret_section, i, "", "")
          if ini:section_exist(id) then
             local items_count = ini:line_count(id)
             local item_section = ""
-            local par_secret_items=""
-            local par_random_item="false"
-            local par_cond="true"
-            for i=0,items_count-1 do
-               result, item_section, str = ini:r_line(id,i,"","")
-               if item_section=="place_num" then
-                  par_place_num=str
-               elseif item_section=="secret_items" then
-                  par_secret_items=str
-               elseif item_section=="random_item" then
-                  par_random_item=str
-               elseif item_section=="cond" then
-                  par_cond=str
+            local par_secret_items = ""
+            local par_random_item = "false"
+            local par_cond = "true"
+            for i = 0, items_count - 1 do
+               result, item_section, str = ini:r_line(id, i, "", "")
+               if item_section == "place_num" then
+                  par_place_num = str
+               elseif item_section == "secret_items" then
+                  par_secret_items = str
+               elseif item_section == "random_item" then
+                  par_random_item = str
+               elseif item_section == "cond" then
+                  par_cond = str
                end
             end
-            for i=0,items_count-1 do
-               result, item_section, str = ini:r_line(id,i,"","")
-               for s=1,par_place_num do
-                  if item_section=="place_"..s then
-                     par_places["place_"..s]=str
+            for i = 0, items_count - 1 do
+               result, item_section, str = ini:r_line(id, i, "", "")
+               for s = 1, par_place_num do
+                  if item_section == "place_" .. s then
+                     par_places["place_" .. s] = str
                   end
                end
             end
-            selected_point=math.random(1,par_place_num)
-            for k,v in pairs(par_places) do
-               if k~=nil and k=="place_"..selected_point then
-                  local r_cond=to_string(sgm_functions.check_section_condlist(ini,id,"cond","true"))
-                  local r_param=sgm_functions.check_section_comma(ini,id,k,nil,5)
-                  if r_param~=nil and r_cond=="true" and dont_has_alife_info(id) then
-                     local g_count=sgm_functions.check_section_comma(ini,id,"entering_count","1,1",2)
-                     local g_selected_count=math.random(tonumber(g_count[1]),tonumber(g_count[2]))
-                     local g_probability=to_number(sgm_functions.check_section_condlist(ini,id,"prob",1.0))
-                     local g_selected_probability=g_probability*100
-                     for p=1,g_selected_count do
-                        if math.random(100)<=g_selected_probability then
-                           if par_random_item=="false" then
-                              create_objects(par_secret_items,tonumber(r_param[1]),tonumber(r_param[2]),tonumber(r_param[3]),tonumber(r_param[4]),tonumber(r_param[5]))
+            selected_point = math.random(1, par_place_num)
+            for k, v in pairs(par_places) do
+               if k ~= nil and k == "place_" .. selected_point then
+                  local r_cond = sgm_g.to_string(sgm_functions.check_section_condlist(ini, id, "cond", "true"))
+                  local r_param = sgm_functions.check_section_comma(ini, id, k, nil, 5)
+                  if r_param ~= nil and r_cond == "true" and sgm_g.dont_has_alife_info(id) then
+                     local g_count = sgm_functions.check_section_comma(ini, id, "entering_count", "1,1", 2)
+                     local g_selected_count = math.random(tonumber(g_count[1]), tonumber(g_count[2]))
+                     local g_probability = sgm_g.to_number(sgm_functions.check_section_condlist(ini, id, "prob", 1.0))
+                     local g_selected_probability = g_probability * 100
+                     for p = 1, g_selected_count do
+                        if math.random(100) <= g_selected_probability then
+                           if par_random_item == "false" then
+                              sgm_g.create_objects(par_secret_items, tonumber(r_param[1]), tonumber(r_param[2]),
+                                 tonumber(r_param[3]), tonumber(r_param[4]), tonumber(r_param[5]))
                            else
-                              create(par_secret_items,tonumber(r_param[1]),tonumber(r_param[2]),tonumber(r_param[3]),tonumber(r_param[4]),tonumber(r_param[5]))
+                              sgm_g.create(par_secret_items, tonumber(r_param[1]), tonumber(r_param[2]), tonumber(r_param[3]),
+                                 tonumber(r_param[4]), tonumber(r_param[5]))
                            end
                         end
                      end
@@ -378,259 +403,267 @@ function secret_items_check_and_spawn()
                   end
                end
             end
-            par_places={}
+            par_places = {}
          end
       end
    end
 end
+
 function check_secret_filling(parent_id)
-   if table_filling_secrets[parent_id]==nil then
-      local selected_item=get_random_line("bandage,antirad,medkit,drug_booster,energy_drink")
-      alife():create(selected_item,vector(),0,0,parent_id)
+   if table_filling_secrets[parent_id] == nil then
+      local selected_item = get_random_line("bandage,antirad,medkit,drug_booster,energy_drink")
+      alife():create(selected_item, vector(), 0, 0, parent_id)
    end
 end
+
 function bonus_rank_1_items(parent_id)
-   fill_random_item(0.09,set_booty_1,parent_id)
-   fill_random_item(0.02,set_booty_2,parent_id)
-   fill_random_item(0.14,set_medicaments_1_1,parent_id)
-   fill_random_item(0.10,set_medicaments_1_2,parent_id)
-   fill_random_item(0.05,set_medicaments_1_3,parent_id)
-   fill_random_item(0.16,set_medicaments_2,parent_id)
-   fill_random_item(0.28,set_medicaments_3,parent_id)
-   fill_random_item(0.08,set_drugs_1,parent_id)
-   fill_random_item(0.03,set_drugs_2,parent_id)
-   fill_random_item(0.15,set_meals_1,parent_id)
-   fill_random_item(0.10,set_meals_2,parent_id)
-   fill_random_item(0.04,set_moneys_1,parent_id)
-   fill_random_item(0.01,set_moneys_2,parent_id)
-   fill_random_item(0.25,set_ammo_1,parent_id)
-   fill_random_item(0.15,set_ammo_2,parent_id)
-   fill_random_item(0.09,set_ammo_3,parent_id)
-   fill_random_item(0.07,set_ammo_4,parent_id)
-   fill_random_item(0.06,set_ammo_5,parent_id)
-   fill_random_item(0.05,set_ammo_6,parent_id)
-   fill_random_item(0.04,set_ammo_7,parent_id)
-   fill_random_item(0.02,set_ammo_8,parent_id)
+   fill_random_item(0.09, set_booty_1, parent_id)
+   fill_random_item(0.02, set_booty_2, parent_id)
+   fill_random_item(0.14, set_medicaments_1_1, parent_id)
+   fill_random_item(0.10, set_medicaments_1_2, parent_id)
+   fill_random_item(0.05, set_medicaments_1_3, parent_id)
+   fill_random_item(0.16, set_medicaments_2, parent_id)
+   fill_random_item(0.28, set_medicaments_3, parent_id)
+   fill_random_item(0.08, set_drugs_1, parent_id)
+   fill_random_item(0.03, set_drugs_2, parent_id)
+   fill_random_item(0.15, set_meals_1, parent_id)
+   fill_random_item(0.10, set_meals_2, parent_id)
+   fill_random_item(0.04, set_moneys_1, parent_id)
+   fill_random_item(0.01, set_moneys_2, parent_id)
+   fill_random_item(0.25, set_ammo_1, parent_id)
+   fill_random_item(0.15, set_ammo_2, parent_id)
+   fill_random_item(0.09, set_ammo_3, parent_id)
+   fill_random_item(0.07, set_ammo_4, parent_id)
+   fill_random_item(0.06, set_ammo_5, parent_id)
+   fill_random_item(0.05, set_ammo_6, parent_id)
+   fill_random_item(0.04, set_ammo_7, parent_id)
+   fill_random_item(0.02, set_ammo_8, parent_id)
 end
+
 function bonus_rank_2_items(parent_id)
-   fill_random_item(0.04,set_device_boxs,parent_id)
-   fill_random_item(0.05,set_detectors_1,parent_id)
-   fill_random_item(0.02,set_detectors_2,parent_id)
-   fill_random_item(0.01,set_detectors_3,parent_id)
-   fill_random_item(0.05,set_outfits_1,parent_id)
-   fill_random_item(0.03,set_outfits_2,parent_id)
-   fill_random_item(0.01,set_outfits_3,parent_id)
-   fill_random_item(0.01,set_outfits_4,parent_id)
-   fill_random_item(0.05,set_helms_1,parent_id)
-   fill_random_item(0.03,set_helms_2,parent_id)
-   fill_random_item(0.01,set_helms_3,parent_id)
-   fill_random_item(0.03,set_artefacts_1,parent_id)
-   fill_random_item(0.02,set_artefacts_2,parent_id)
-   fill_random_item(0.01,set_artefacts_3,parent_id)
-   fill_random_item(0.01,set_artefacts_4,parent_id)
-   fill_random_item(0.05,set_addons_1,parent_id)
-   fill_random_item(0.03,set_addons_2,parent_id)
-   fill_random_item(0.02,set_addons_3,parent_id)
-   fill_random_item(0.01,set_addons_4,parent_id)
-   fill_random_item(0.01,set_addons_5,parent_id)
-   fill_random_item(0.09,set_booty_1,parent_id)
-   fill_random_item(0.02,set_booty_2,parent_id)
-   fill_random_item(0.18,set_medicaments_1_1,parent_id)
-   fill_random_item(0.14,set_medicaments_1_2,parent_id)
-   fill_random_item(0.09,set_medicaments_1_3,parent_id)
-   fill_random_item(0.16,set_medicaments_2,parent_id)
-   fill_random_item(0.28,set_medicaments_3,parent_id)
-   fill_random_item(0.08,set_drugs_1,parent_id)
-   fill_random_item(0.03,set_drugs_2,parent_id)
-   fill_random_item(0.15,set_meals_1,parent_id)
-   fill_random_item(0.10,set_meals_2,parent_id)
-   fill_random_item(0.04,set_moneys_1,parent_id)
-   fill_random_item(0.01,set_moneys_2,parent_id)
-   fill_random_item(0.25,set_ammo_1,parent_id)
-   fill_random_item(0.15,set_ammo_2,parent_id)
-   fill_random_item(0.09,set_ammo_3,parent_id)
-   fill_random_item(0.07,set_ammo_4,parent_id)
-   fill_random_item(0.06,set_ammo_5,parent_id)
-   fill_random_item(0.05,set_ammo_6,parent_id)
-   fill_random_item(0.04,set_ammo_7,parent_id)
-   fill_random_item(0.02,set_ammo_8,parent_id)
+   fill_random_item(0.04, set_device_boxs, parent_id)
+   fill_random_item(0.05, set_detectors_1, parent_id)
+   fill_random_item(0.02, set_detectors_2, parent_id)
+   fill_random_item(0.01, set_detectors_3, parent_id)
+   fill_random_item(0.05, set_outfits_1, parent_id)
+   fill_random_item(0.03, set_outfits_2, parent_id)
+   fill_random_item(0.01, set_outfits_3, parent_id)
+   fill_random_item(0.01, set_outfits_4, parent_id)
+   fill_random_item(0.05, set_helms_1, parent_id)
+   fill_random_item(0.03, set_helms_2, parent_id)
+   fill_random_item(0.01, set_helms_3, parent_id)
+   fill_random_item(0.03, set_artefacts_1, parent_id)
+   fill_random_item(0.02, set_artefacts_2, parent_id)
+   fill_random_item(0.01, set_artefacts_3, parent_id)
+   fill_random_item(0.01, set_artefacts_4, parent_id)
+   fill_random_item(0.05, set_addons_1, parent_id)
+   fill_random_item(0.03, set_addons_2, parent_id)
+   fill_random_item(0.02, set_addons_3, parent_id)
+   fill_random_item(0.01, set_addons_4, parent_id)
+   fill_random_item(0.01, set_addons_5, parent_id)
+   fill_random_item(0.09, set_booty_1, parent_id)
+   fill_random_item(0.02, set_booty_2, parent_id)
+   fill_random_item(0.18, set_medicaments_1_1, parent_id)
+   fill_random_item(0.14, set_medicaments_1_2, parent_id)
+   fill_random_item(0.09, set_medicaments_1_3, parent_id)
+   fill_random_item(0.16, set_medicaments_2, parent_id)
+   fill_random_item(0.28, set_medicaments_3, parent_id)
+   fill_random_item(0.08, set_drugs_1, parent_id)
+   fill_random_item(0.03, set_drugs_2, parent_id)
+   fill_random_item(0.15, set_meals_1, parent_id)
+   fill_random_item(0.10, set_meals_2, parent_id)
+   fill_random_item(0.04, set_moneys_1, parent_id)
+   fill_random_item(0.01, set_moneys_2, parent_id)
+   fill_random_item(0.25, set_ammo_1, parent_id)
+   fill_random_item(0.15, set_ammo_2, parent_id)
+   fill_random_item(0.09, set_ammo_3, parent_id)
+   fill_random_item(0.07, set_ammo_4, parent_id)
+   fill_random_item(0.06, set_ammo_5, parent_id)
+   fill_random_item(0.05, set_ammo_6, parent_id)
+   fill_random_item(0.04, set_ammo_7, parent_id)
+   fill_random_item(0.02, set_ammo_8, parent_id)
 end
+
 function bonus_rank_3_items(parent_id)
-   fill_random_item(0.08,set_device_boxs,parent_id)
-   fill_random_item(0.05,set_detectors_1,parent_id)
-   fill_random_item(0.02,set_detectors_2,parent_id)
-   fill_random_item(0.01,set_detectors_3,parent_id)
-   fill_random_item(0.01,set_detectors_4,parent_id)
-   fill_random_item(0.09,set_outfits_1,parent_id)
-   fill_random_item(0.05,set_outfits_2,parent_id)
-   fill_random_item(0.02,set_outfits_3,parent_id)
-   fill_random_item(0.08,set_helms_1,parent_id)
-   fill_random_item(0.04,set_helms_2,parent_id)
-   fill_random_item(0.01,set_helms_3,parent_id)
-   fill_random_item(0.05,set_artefacts_1,parent_id)
-   fill_random_item(0.04,set_artefacts_2,parent_id)
-   fill_random_item(0.03,set_artefacts_3,parent_id)
-   fill_random_item(0.02,set_artefacts_4,parent_id)
-   fill_random_item(0.01,set_artefacts_5,parent_id)
-   fill_random_item(0.05,set_addons_1,parent_id)
-   fill_random_item(0.03,set_addons_2,parent_id)
-   fill_random_item(0.02,set_addons_3,parent_id)
-   fill_random_item(0.01,set_addons_4,parent_id)
-   fill_random_item(0.01,set_addons_5,parent_id)
-   fill_random_item(0.09,set_booty_1,parent_id)
-   fill_random_item(0.02,set_booty_2,parent_id)
-   fill_random_item(0.25,set_medicaments_1_1,parent_id)
-   fill_random_item(0.20,set_medicaments_1_2,parent_id)
-   fill_random_item(0.15,set_medicaments_1_3,parent_id)
-   fill_random_item(0.19,set_medicaments_2,parent_id)
-   fill_random_item(0.31,set_medicaments_3,parent_id)
-   fill_random_item(0.09,set_drugs_1,parent_id)
-   fill_random_item(0.03,set_drugs_2,parent_id)
-   fill_random_item(0.12,set_meals_1,parent_id)
-   fill_random_item(0.10,set_meals_2,parent_id)
-   fill_random_item(0.06,set_moneys_1,parent_id)
-   fill_random_item(0.01,set_moneys_2,parent_id)
-   fill_random_item(0.25,set_ammo_1,parent_id)
-   fill_random_item(0.19,set_ammo_2,parent_id)
-   fill_random_item(0.11,set_ammo_3,parent_id)
-   fill_random_item(0.09,set_ammo_4,parent_id)
-   fill_random_item(0.07,set_ammo_5,parent_id)
-   fill_random_item(0.06,set_ammo_6,parent_id)
-   fill_random_item(0.05,set_ammo_7,parent_id)
-   fill_random_item(0.04,set_ammo_8,parent_id)
+   fill_random_item(0.08, set_device_boxs, parent_id)
+   fill_random_item(0.05, set_detectors_1, parent_id)
+   fill_random_item(0.02, set_detectors_2, parent_id)
+   fill_random_item(0.01, set_detectors_3, parent_id)
+   fill_random_item(0.01, set_detectors_4, parent_id)
+   fill_random_item(0.09, set_outfits_1, parent_id)
+   fill_random_item(0.05, set_outfits_2, parent_id)
+   fill_random_item(0.02, set_outfits_3, parent_id)
+   fill_random_item(0.08, set_helms_1, parent_id)
+   fill_random_item(0.04, set_helms_2, parent_id)
+   fill_random_item(0.01, set_helms_3, parent_id)
+   fill_random_item(0.05, set_artefacts_1, parent_id)
+   fill_random_item(0.04, set_artefacts_2, parent_id)
+   fill_random_item(0.03, set_artefacts_3, parent_id)
+   fill_random_item(0.02, set_artefacts_4, parent_id)
+   fill_random_item(0.01, set_artefacts_5, parent_id)
+   fill_random_item(0.05, set_addons_1, parent_id)
+   fill_random_item(0.03, set_addons_2, parent_id)
+   fill_random_item(0.02, set_addons_3, parent_id)
+   fill_random_item(0.01, set_addons_4, parent_id)
+   fill_random_item(0.01, set_addons_5, parent_id)
+   fill_random_item(0.09, set_booty_1, parent_id)
+   fill_random_item(0.02, set_booty_2, parent_id)
+   fill_random_item(0.25, set_medicaments_1_1, parent_id)
+   fill_random_item(0.20, set_medicaments_1_2, parent_id)
+   fill_random_item(0.15, set_medicaments_1_3, parent_id)
+   fill_random_item(0.19, set_medicaments_2, parent_id)
+   fill_random_item(0.31, set_medicaments_3, parent_id)
+   fill_random_item(0.09, set_drugs_1, parent_id)
+   fill_random_item(0.03, set_drugs_2, parent_id)
+   fill_random_item(0.12, set_meals_1, parent_id)
+   fill_random_item(0.10, set_meals_2, parent_id)
+   fill_random_item(0.06, set_moneys_1, parent_id)
+   fill_random_item(0.01, set_moneys_2, parent_id)
+   fill_random_item(0.25, set_ammo_1, parent_id)
+   fill_random_item(0.19, set_ammo_2, parent_id)
+   fill_random_item(0.11, set_ammo_3, parent_id)
+   fill_random_item(0.09, set_ammo_4, parent_id)
+   fill_random_item(0.07, set_ammo_5, parent_id)
+   fill_random_item(0.06, set_ammo_6, parent_id)
+   fill_random_item(0.05, set_ammo_7, parent_id)
+   fill_random_item(0.04, set_ammo_8, parent_id)
 end
+
 function flip_secret_items(parent_id)
-   fill_random_item(0.04,set_device_boxs,parent_id)
-   fill_random_item(0.05,set_detectors_1,parent_id)
-   fill_random_item(0.02,set_detectors_2,parent_id)
-   fill_random_item(0.01,set_detectors_3,parent_id)
-   fill_random_item(0.05,set_outfits_1,parent_id)
-   fill_random_item(0.03,set_outfits_2,parent_id)
-   fill_random_item(0.01,set_outfits_3,parent_id)
-   fill_random_item(0.05,set_helms_1,parent_id)
-   fill_random_item(0.03,set_helms_2,parent_id)
-   fill_random_item(0.01,set_helms_3,parent_id)
-   fill_random_item(0.03,set_artefacts_1,parent_id)
-   fill_random_item(0.02,set_artefacts_2,parent_id)
-   fill_random_item(0.01,set_artefacts_3,parent_id)
-   fill_random_item(0.01,set_artefacts_4,parent_id)
-   fill_random_item(0.09,set_booty_1,parent_id)
-   fill_random_item(0.02,set_booty_2,parent_id)
-   fill_random_item(0.20,set_medicaments_1_1,parent_id)
-   fill_random_item(0.12,set_medicaments_1_2,parent_id)
-   fill_random_item(0.04,set_medicaments_1_3,parent_id)
-   fill_random_item(0.15,set_medicaments_2,parent_id)
-   fill_random_item(0.28,set_medicaments_3,parent_id)
-   fill_random_item(0.08,set_drugs_1,parent_id)
-   fill_random_item(0.03,set_drugs_2,parent_id)
-   fill_random_item(0.45,set_meals_1,parent_id)
-   fill_random_item(0.40,set_meals_2,parent_id)
-   fill_random_item(0.04,set_moneys_1,parent_id)
-   fill_random_item(0.01,set_moneys_2,parent_id)
-   fill_random_item(0.25,set_ammo_1,parent_id)
-   fill_random_item(0.15,set_ammo_2,parent_id)
-   fill_random_item(0.08,set_ammo_3,parent_id)
-   fill_random_item(0.06,set_ammo_4,parent_id)
-   fill_random_item(0.05,set_ammo_5,parent_id)
-   fill_random_item(0.04,set_ammo_6,parent_id)
-   fill_random_item(0.03,set_ammo_7,parent_id)
-   fill_random_item(0.03,set_ammo_8,parent_id)
-   fill_random_item(0.05,set_addons_1,parent_id)
-   fill_random_item(0.03,set_addons_2,parent_id)
-   fill_random_item(0.02,set_addons_3,parent_id)
-   fill_random_item(0.01,set_addons_4,parent_id)
-   fill_random_item(0.01,set_addons_5,parent_id)
+   fill_random_item(0.04, set_device_boxs, parent_id)
+   fill_random_item(0.05, set_detectors_1, parent_id)
+   fill_random_item(0.02, set_detectors_2, parent_id)
+   fill_random_item(0.01, set_detectors_3, parent_id)
+   fill_random_item(0.05, set_outfits_1, parent_id)
+   fill_random_item(0.03, set_outfits_2, parent_id)
+   fill_random_item(0.01, set_outfits_3, parent_id)
+   fill_random_item(0.05, set_helms_1, parent_id)
+   fill_random_item(0.03, set_helms_2, parent_id)
+   fill_random_item(0.01, set_helms_3, parent_id)
+   fill_random_item(0.03, set_artefacts_1, parent_id)
+   fill_random_item(0.02, set_artefacts_2, parent_id)
+   fill_random_item(0.01, set_artefacts_3, parent_id)
+   fill_random_item(0.01, set_artefacts_4, parent_id)
+   fill_random_item(0.09, set_booty_1, parent_id)
+   fill_random_item(0.02, set_booty_2, parent_id)
+   fill_random_item(0.20, set_medicaments_1_1, parent_id)
+   fill_random_item(0.12, set_medicaments_1_2, parent_id)
+   fill_random_item(0.04, set_medicaments_1_3, parent_id)
+   fill_random_item(0.15, set_medicaments_2, parent_id)
+   fill_random_item(0.28, set_medicaments_3, parent_id)
+   fill_random_item(0.08, set_drugs_1, parent_id)
+   fill_random_item(0.03, set_drugs_2, parent_id)
+   fill_random_item(0.45, set_meals_1, parent_id)
+   fill_random_item(0.40, set_meals_2, parent_id)
+   fill_random_item(0.04, set_moneys_1, parent_id)
+   fill_random_item(0.01, set_moneys_2, parent_id)
+   fill_random_item(0.25, set_ammo_1, parent_id)
+   fill_random_item(0.15, set_ammo_2, parent_id)
+   fill_random_item(0.08, set_ammo_3, parent_id)
+   fill_random_item(0.06, set_ammo_4, parent_id)
+   fill_random_item(0.05, set_ammo_5, parent_id)
+   fill_random_item(0.04, set_ammo_6, parent_id)
+   fill_random_item(0.03, set_ammo_7, parent_id)
+   fill_random_item(0.03, set_ammo_8, parent_id)
+   fill_random_item(0.05, set_addons_1, parent_id)
+   fill_random_item(0.03, set_addons_2, parent_id)
+   fill_random_item(0.02, set_addons_3, parent_id)
+   fill_random_item(0.01, set_addons_4, parent_id)
+   fill_random_item(0.01, set_addons_5, parent_id)
 end
-function flip_supply_items(parent_id,variable)
-   if variable==nil then variable=1 end
-   if variable==1 then
+
+function flip_supply_items(parent_id, variable)
+   if variable == nil then variable = 1 end
+   if variable == 1 then
       flip_supply_variable_1(parent_id)
-   elseif variable==2 then
+   elseif variable == 2 then
       flip_supply_variable_2(parent_id)
    end
 end
+
 function flip_supply_variable_1(parent_id)
-   local rnd_medicaments=math.random(1,2)
-   local rnd_drugs=math.random(1,2)
-   local rnd_ammo=math.random(1,6)
-   local rnd_addons=math.random(1,3)
-   fill_random_item(0.20,set_medicaments_2,parent_id)
-   fill_random_item(0.20,set_medicaments_3,parent_id)
-   if rnd_medicaments==1 then
-      fill_random_item(0.25,set_medicaments_1_1,parent_id)
+   local rnd_medicaments = math.random(1, 2)
+   local rnd_drugs = math.random(1, 2)
+   local rnd_ammo = math.random(1, 6)
+   local rnd_addons = math.random(1, 3)
+   fill_random_item(0.20, set_medicaments_2, parent_id)
+   fill_random_item(0.20, set_medicaments_3, parent_id)
+   if rnd_medicaments == 1 then
+      fill_random_item(0.25, set_medicaments_1_1, parent_id)
    else
-      fill_random_item(0.16,set_medicaments_1_2,parent_id)
+      fill_random_item(0.16, set_medicaments_1_2, parent_id)
    end
-   if rnd_drugs==1 then
-      fill_random_item(0.06,set_drugs_1,parent_id)
+   if rnd_drugs == 1 then
+      fill_random_item(0.06, set_drugs_1, parent_id)
    else
-      fill_random_item(0.03,set_drugs_2,parent_id)
+      fill_random_item(0.03, set_drugs_2, parent_id)
    end
-   if rnd_ammo==1 then
-      fill_random_item(0.40,set_ammo_1,parent_id)
-   elseif rnd_ammo==2 then
-      fill_random_item(0.35,set_ammo_2,parent_id)
-   elseif rnd_ammo==3 then
-      fill_random_item(0.30,set_ammo_3,parent_id)
-   elseif rnd_ammo==4 then
-      fill_random_item(0.25,set_ammo_4,parent_id)
-   elseif rnd_ammo==5 then
-      fill_random_item(0.45,set_ammo_5,parent_id)
+   if rnd_ammo == 1 then
+      fill_random_item(0.40, set_ammo_1, parent_id)
+   elseif rnd_ammo == 2 then
+      fill_random_item(0.35, set_ammo_2, parent_id)
+   elseif rnd_ammo == 3 then
+      fill_random_item(0.30, set_ammo_3, parent_id)
+   elseif rnd_ammo == 4 then
+      fill_random_item(0.25, set_ammo_4, parent_id)
+   elseif rnd_ammo == 5 then
+      fill_random_item(0.45, set_ammo_5, parent_id)
    else
-      fill_random_item(0.35,set_ammo_6,parent_id)
+      fill_random_item(0.35, set_ammo_6, parent_id)
    end
-   if rnd_addons==1 then
-      fill_random_item(0.07,set_addons_1,parent_id)
-   elseif rnd_addons==2 then
-      fill_random_item(0.07,set_addons_5,parent_id)
+   if rnd_addons == 1 then
+      fill_random_item(0.07, set_addons_1, parent_id)
+   elseif rnd_addons == 2 then
+      fill_random_item(0.07, set_addons_5, parent_id)
    else
-      fill_random_item(0.07,set_addons_2,parent_id)
+      fill_random_item(0.07, set_addons_2, parent_id)
    end
 end
+
 function flip_supply_variable_2(parent_id)
-   local rnd_medicaments=math.random(1,2)
-   local rnd_drugs=math.random(1,2)
-   local rnd_ammo=math.random(1,6)
-   local rnd_addons=math.random(1,3)
-   fill_random_item(0.45,set_medicaments_2,parent_id)
-   fill_random_item(0.45,set_medicaments_3,parent_id)
-   if rnd_medicaments==1 then
-      fill_random_item(0.50,set_medicaments_1_1,parent_id)
+   local rnd_medicaments = math.random(1, 2)
+   local rnd_drugs = math.random(1, 2)
+   local rnd_ammo = math.random(1, 6)
+   local rnd_addons = math.random(1, 3)
+   fill_random_item(0.45, set_medicaments_2, parent_id)
+   fill_random_item(0.45, set_medicaments_3, parent_id)
+   if rnd_medicaments == 1 then
+      fill_random_item(0.50, set_medicaments_1_1, parent_id)
    else
-      fill_random_item(0.35,set_medicaments_1_2,parent_id)
+      fill_random_item(0.35, set_medicaments_1_2, parent_id)
    end
-   if rnd_drugs==1 then
-      fill_random_item(0.10,set_drugs_1,parent_id)
+   if rnd_drugs == 1 then
+      fill_random_item(0.10, set_drugs_1, parent_id)
    else
-      fill_random_item(0.05,set_drugs_2,parent_id)
+      fill_random_item(0.05, set_drugs_2, parent_id)
    end
-   if rnd_ammo==1 then
-      fill_random_item(0.80,set_ammo_1,parent_id)
-   elseif rnd_ammo==2 then
-      fill_random_item(0.70,set_ammo_2,parent_id)
-   elseif rnd_ammo==3 then
-      fill_random_item(0.60,set_ammo_3,parent_id)
-   elseif rnd_ammo==4 then
-      fill_random_item(0.50,set_ammo_4,parent_id)
-   elseif rnd_ammo==5 then
-      fill_random_item(0.90,set_ammo_5,parent_id)
+   if rnd_ammo == 1 then
+      fill_random_item(0.80, set_ammo_1, parent_id)
+   elseif rnd_ammo == 2 then
+      fill_random_item(0.70, set_ammo_2, parent_id)
+   elseif rnd_ammo == 3 then
+      fill_random_item(0.60, set_ammo_3, parent_id)
+   elseif rnd_ammo == 4 then
+      fill_random_item(0.50, set_ammo_4, parent_id)
+   elseif rnd_ammo == 5 then
+      fill_random_item(0.90, set_ammo_5, parent_id)
    else
-      fill_random_item(0.70,set_ammo_6,parent_id)
+      fill_random_item(0.70, set_ammo_6, parent_id)
    end
-   if rnd_addons==1 then
-      fill_random_item(0.15,set_addons_1,parent_id)
-   elseif rnd_addons==2 then
-      fill_random_item(0.13,set_addons_5,parent_id)
+   if rnd_addons == 1 then
+      fill_random_item(0.15, set_addons_1, parent_id)
+   elseif rnd_addons == 2 then
+      fill_random_item(0.13, set_addons_5, parent_id)
    else
-      fill_random_item(0.14,set_addons_2,parent_id)
+      fill_random_item(0.14, set_addons_2, parent_id)
    end
 end
-function fill_random_item(prob,tbl_name,parent_id)
-   if math.random(100)<=prob*100 then
-      alife():create(tbl_name[math.random(table.getn(tbl_name))],vector(),0,0,parent_id)
-      table_filling_secrets[parent_id]=true
+
+function fill_random_item(prob, tbl_name, parent_id)
+   if math.random(100) <= prob * 100 then
+      alife():create(tbl_name[math.random(table.getn(tbl_name))], vector(), 0, 0, parent_id)
+      table_filling_secrets[parent_id] = true
    end
 end
 
 -------------------------------------//Copyright GeJorge//-------------------------------------------------
-

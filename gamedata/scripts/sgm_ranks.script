@@ -3,152 +3,165 @@
 ---------------------------(Система начисления очков ранга и статистики ГГ)-----------------------------
 --------------------------------------------------------------------------------------------------------
 ---==================================================================================================---
-local monster_rank_adding_list={
-{"boar",0.9},{"burer",2.9},{"bloodsucker",2.5},{"controller",4.0},{"chimera",3.0},
-{"dog",0.6},{"flesh",0.8},{"pseudodog",0.9},{"pseudo_gigant",5.0},{"tushkano",0.4},
-{"snork",1.5},{"poltergeist",3.0},{"fracture",2.0},{"cat",1.0},{"zombie",1.0}
+local monster_rank_adding_list = {
+   { "boar", 0.9 }, { "burer", 2.9 }, { "bloodsucker", 2.5 }, { "controller", 4.0 }, { "chimera", 3.0 },
+   { "dog",  0.6 }, { "flesh", 0.8 }, { "pseudodog", 0.9 }, { "pseudo_gigant", 5.0 }, { "tushkano", 0.4 },
+   { "snork", 1.5 }, { "poltergeist", 3.0 }, { "fracture", 2.0 }, { "cat", 1.0 }, { "zombie", 1.0 }
 }
-local stalker_rank_adding_list={
-{"novice",1.0},{"experienced",2.0},
-{"veteran",3.0},{"master",4.0}
+local stalker_rank_adding_list = {
+   { "novice",  1.0 }, { "experienced", 2.0 },
+   { "veteran", 3.0 }, { "master", 4.0 }
 }
-function read_stalker_death(victim,killer,type)
-   for k,v in pairs(stalker_rank_adding_list) do
-      if type=="default_death" then
-         local victim_rank=ranks.get_obj_rank_name(victim)
+function read_stalker_death(victim, killer, type)
+   for k, v in pairs(stalker_rank_adding_list) do
+      if type == "default_death" then
+         local victim_rank = ranks.get_obj_rank_name(victim)
          -- 'От взрыва заряда РС-15.
-         if killer~=nil and killer:section()~=nil and killer:section()=="remote_charge" and victim_rank~=nil and victim_rank==v[1] then
-            if (r_mod_params("bool","grows_rank_for_neutral",true) or (r_mod_params("bool","grows_rank_for_neutral",true)==false and check_relation_between(victim,db.actor)=="enemy")) then
-               local result=r_rank_params("number",v[1].."_point",v[2])*game_multiplier()
-               write_mod_param("actor_rank",read_mod_param("actor_rank")+result)
-               congratulate_with_rank_event("add",3500,result)
-               if has_alife_info("pri_zone_cleaning_start") and dont_has_alife_info("pri_zone_cleaning_interrupted") and find_in_string(victim:profile_name(),"zombied") then
+         if killer ~= nil and killer:section() ~= nil and killer:section() == "remote_charge" and victim_rank ~= nil and victim_rank == v[1] then
+            if (sgm_g.r_mod_params("bool", "grows_rank_for_neutral", true) or (sgm_g.r_mod_params("bool", "grows_rank_for_neutral", true) == false and check_relation_between(victim, db.actor) == "enemy")) then
+               local result = r_rank_params("number", v[1] .. "_point", v[2]) * game_multiplier()
+               write_mod_param("actor_rank", sgm_g.read_mod_param("actor_rank") + result)
+               congratulate_with_rank_event("add", 3500, result)
+               if has_alife_info("pri_zone_cleaning_start") and sgm_g.dont_has_alife_info("pri_zone_cleaning_interrupted") and sgm_g.find_in_string(victim:profile_name(), "zombied") then
                   dec_mod_param("zone_cleaning_value")
                end
             end
-            change_statistic_killed(type,victim)
+            change_statistic_killed(type, victim)
          end
          -- 'От выстрела ГГ.
-         if victim_rank~=nil and victim_rank==v[1] and killer:id()==db.actor:id() then
-            if (r_mod_params("bool","grows_rank_for_neutral",true) or (r_mod_params("bool","grows_rank_for_neutral",true)==false and check_relation_between(victim,db.actor)=="enemy")) then
-               local result=r_rank_params("number",v[1].."_point",v[2])*game_multiplier()
-               write_mod_param("actor_rank",read_mod_param("actor_rank")+result)
-               congratulate_with_rank_event("add",3500,result)
-               if has_alife_info("pri_zone_cleaning_start") and dont_has_alife_info("pri_zone_cleaning_interrupted") and find_in_string(victim:profile_name(),"zombied") then
+         if victim_rank ~= nil and victim_rank == v[1] and killer:id() == db.actor:id() then
+            if (sgm_g.r_mod_params("bool", "grows_rank_for_neutral", true) or (sgm_g.r_mod_params("bool", "grows_rank_for_neutral", true) == false and check_relation_between(victim, db.actor) == "enemy")) then
+               local result = r_rank_params("number", v[1] .. "_point", v[2]) * game_multiplier()
+               write_mod_param("actor_rank", sgm_g.read_mod_param("actor_rank") + result)
+               congratulate_with_rank_event("add", 3500, result)
+               if has_alife_info("pri_zone_cleaning_start") and sgm_g.dont_has_alife_info("pri_zone_cleaning_interrupted") and sgm_g.find_in_string(victim:profile_name(), "zombied") then
                   dec_mod_param("zone_cleaning_value")
                end
             end
-            change_statistic_killed(type,victim)
-         -- 'От выстрела телохранителя.
-         elseif victim_rank~=nil and victim_rank==v[1] and find_in_string(killer:profile_name(),"_bodyguard") and has_alife_info(killer:profile_name().."_pursue") then
-            local result=r_rank_params("number",v[1].."_point",v[2])*game_multiplier()
-            write_mod_param("actor_rank",read_mod_param("actor_rank")+result)
-            congratulate_with_rank_event("add",3500,result,false,"(T)")
-            if has_alife_info("pri_zone_cleaning_start") and dont_has_alife_info("pri_zone_cleaning_interrupted") and find_in_string(victim:profile_name(),"zombied") then
+            change_statistic_killed(type, victim)
+            -- 'От выстрела телохранителя.
+         elseif victim_rank ~= nil and victim_rank == v[1] and sgm_g.find_in_string(killer:profile_name(), "_bodyguard") and has_alife_info(killer:profile_name() .. "_pursue") then
+            local result = r_rank_params("number", v[1] .. "_point", v[2]) * game_multiplier()
+            write_mod_param("actor_rank", sgm_g.read_mod_param("actor_rank") + result)
+            congratulate_with_rank_event("add", 3500, result, false, "(T)")
+            if has_alife_info("pri_zone_cleaning_start") and sgm_g.dont_has_alife_info("pri_zone_cleaning_interrupted") and sgm_g.find_in_string(victim:profile_name(), "zombied") then
                dec_mod_param("zone_cleaning_value")
             end
-         -- 'От укуса прирученного мутанта.
-         elseif victim_rank~=nil and victim_rank==v[1] and find_in_string(killer:section(),"captured_") and (sgm_flags.table_m_capture_hits[killer:id()]==nil or sgm_flags.table_m_capture_hits[killer:id()]==false) then
-            local result=r_rank_params("number",v[1].."_point",v[2])*game_multiplier()
-            write_mod_param("actor_rank",read_mod_param("actor_rank")+result)
-            congratulate_with_rank_event("add",3500,result,false,"(M)")
-            if has_alife_info("pri_zone_cleaning_start") and dont_has_alife_info("pri_zone_cleaning_interrupted") and find_in_string(victim:profile_name(),"zombied") then
+            -- 'От укуса прирученного мутанта.
+         elseif victim_rank ~= nil and victim_rank == v[1] and sgm_g.find_in_string(killer:section(), "captured_") and (sgm_flags.table_m_capture_hits[killer:id()] == nil or sgm_flags.table_m_capture_hits[killer:id()] == false) then
+            local result = r_rank_params("number", v[1] .. "_point", v[2]) * game_multiplier()
+            write_mod_param("actor_rank", sgm_g.read_mod_param("actor_rank") + result)
+            congratulate_with_rank_event("add", 3500, result, false, "(M)")
+            if has_alife_info("pri_zone_cleaning_start") and sgm_g.dont_has_alife_info("pri_zone_cleaning_interrupted") and sgm_g.find_in_string(victim:profile_name(), "zombied") then
                dec_mod_param("zone_cleaning_value")
             end
          end
-      elseif type=="skill_death" then
-         local victim_rank=ranks.get_obj_rank_name(victim)
+      elseif type == "skill_death" then
+         local victim_rank = ranks.get_obj_rank_name(victim)
          -- 'От выстрела ГГ, с учетом изученной тактики ВБ.
-         if victim_rank~=nil and victim_rank==v[1] then
-            if (r_mod_params("bool","grows_rank_for_neutral",true)==true or (r_mod_params("bool","grows_rank_for_neutral",true)==false and check_relation_between(victim,killer)=="enemy")) then
-               local result=r_rank_params("number",v[1].."_point",v[2])*game_multiplier()
-               write_mod_param("actor_rank",read_mod_param("actor_rank")+result)
-               congratulate_with_rank_event("add",3500,result)
-               sgm_flags.table_s_skill_hits[victim:name()]=false
-               if has_alife_info("pri_zone_cleaning_start") and dont_has_alife_info("pri_zone_cleaning_interrupted") and find_in_string(victim:profile_name(),"zombied") then
+         if victim_rank ~= nil and victim_rank == v[1] then
+            if (sgm_g.r_mod_params("bool", "grows_rank_for_neutral", true) == true or (sgm_g.r_mod_params("bool", "grows_rank_for_neutral", true) == false and check_relation_between(victim, killer) == "enemy")) then
+               local result = r_rank_params("number", v[1] .. "_point", v[2]) * game_multiplier()
+               write_mod_param("actor_rank", sgm_g.read_mod_param("actor_rank") + result)
+               congratulate_with_rank_event("add", 3500, result)
+               sgm_flags.table_s_skill_hits[victim:name()] = false
+               if has_alife_info("pri_zone_cleaning_start") and sgm_g.dont_has_alife_info("pri_zone_cleaning_interrupted") and sgm_g.find_in_string(victim:profile_name(), "zombied") then
                   dec_mod_param("zone_cleaning_value")
                end
             end
-            change_statistic_killed(type,victim)
+            change_statistic_killed(type, victim)
          end
       end
    end
 end
-function read_monster_death(victim,killer,type)
-   local get_community=sgm_functions.ReadCommunity(victim:section())
-   for k,v in pairs(monster_rank_adding_list) do
-      if type=="default_death" then 
+
+function read_monster_death(victim, killer, type)
+   local get_community = sgm_functions.ReadCommunity(victim:section())
+   for k, v in pairs(monster_rank_adding_list) do
+      if type == "default_death" then
          -- 'От взрыва заряда РС-15.
-         if killer~=nil and killer:section()~=nil and killer:section()=="remote_charge" and get_community~=nil and get_community==v[1] then
-            local result=r_rank_params("number",v[1].."_point",v[2])*game_multiplier()
-            write_mod_param("actor_rank",read_mod_param("actor_rank")+result)
-            congratulate_with_rank_event("add",3500,result)
-            change_statistic_killed(type,victim)
+         if killer ~= nil and killer:section() ~= nil and killer:section() == "remote_charge" and get_community ~= nil and get_community == v[1] then
+            local result = r_rank_params("number", v[1] .. "_point", v[2]) * game_multiplier()
+            write_mod_param("actor_rank", sgm_g.read_mod_param("actor_rank") + result)
+            congratulate_with_rank_event("add", 3500, result)
+            change_statistic_killed(type, victim)
          end
          -- 'От выстрела ГГ.
-         if get_community~=nil and get_community==v[1] and killer:id()==db.actor:id() then
-            local result=r_rank_params("number",v[1].."_point",v[2])*game_multiplier()
-            write_mod_param("actor_rank",read_mod_param("actor_rank")+result)
-            congratulate_with_rank_event("add",3500,result)
-            change_statistic_killed(type,victim)
-         -- 'От выстрела телохранителя.
-         elseif get_community~=nil and get_community==v[1] and find_in_string(killer:profile_name(),"_bodyguard") and has_alife_info(killer:profile_name().."_pursue") then
-            local result=r_rank_params("number",v[1].."_point",v[2])*game_multiplier()
-            write_mod_param("actor_rank",read_mod_param("actor_rank")+result)
-            congratulate_with_rank_event("add",3500,result,false,"(T)")
-         -- 'От укуса прирученного мутанта.
-         elseif get_community~=nil and get_community==v[1] and find_in_string(killer:section(),"captured_") and (sgm_flags.table_m_capture_hits[killer:id()]==nil or sgm_flags.table_m_capture_hits[killer:id()]==false) then
-            local result=r_rank_params("number",v[1].."_point",v[2])*game_multiplier()
-            write_mod_param("actor_rank",read_mod_param("actor_rank")+result)
-            congratulate_with_rank_event("add",3500,result,false,"(M)")
+         if get_community ~= nil and get_community == v[1] and killer:id() == db.actor:id() then
+            local result = r_rank_params("number", v[1] .. "_point", v[2]) * game_multiplier()
+            write_mod_param("actor_rank", sgm_g.read_mod_param("actor_rank") + result)
+            congratulate_with_rank_event("add", 3500, result)
+            change_statistic_killed(type, victim)
+            -- 'От выстрела телохранителя.
+         elseif get_community ~= nil and get_community == v[1] and sgm_g.find_in_string(killer:profile_name(), "_bodyguard") and has_alife_info(killer:profile_name() .. "_pursue") then
+            local result = r_rank_params("number", v[1] .. "_point", v[2]) * game_multiplier()
+            write_mod_param("actor_rank", sgm_g.read_mod_param("actor_rank") + result)
+            congratulate_with_rank_event("add", 3500, result, false, "(T)")
+            -- 'От укуса прирученного мутанта.
+         elseif get_community ~= nil and get_community == v[1] and sgm_g.find_in_string(killer:section(), "captured_") and (sgm_flags.table_m_capture_hits[killer:id()] == nil or sgm_flags.table_m_capture_hits[killer:id()] == false) then
+            local result = r_rank_params("number", v[1] .. "_point", v[2]) * game_multiplier()
+            write_mod_param("actor_rank", sgm_g.read_mod_param("actor_rank") + result)
+            congratulate_with_rank_event("add", 3500, result, false, "(M)")
          end
-      elseif type=="skill_death" then
+      elseif type == "skill_death" then
          -- 'От выстрела ГГ, с учетом изученной тактики ВБ.
-         if get_community~=nil and get_community==v[1] then
-            local result=r_rank_params("number",v[1].."_point",v[2])*game_multiplier()
-            write_mod_param("actor_rank",read_mod_param("actor_rank")+result)
-            congratulate_with_rank_event("add",3500,result)
-            sgm_flags.table_m_skill_hits[victim:name()]=false
-            change_statistic_killed(type,victim)
+         if get_community ~= nil and get_community == v[1] then
+            local result = r_rank_params("number", v[1] .. "_point", v[2]) * game_multiplier()
+            write_mod_param("actor_rank", sgm_g.read_mod_param("actor_rank") + result)
+            congratulate_with_rank_event("add", 3500, result)
+            sgm_flags.table_m_skill_hits[victim:name()] = false
+            change_statistic_killed(type, victim)
          end
       end
    end
 end
-function change_statistic_killed(type,victim)
-   local get_community=sgm_functions.ReadCommunity(victim:section())
+
+function change_statistic_killed(type, victim)
+   local get_community = sgm_functions.ReadCommunity(victim:section())
    local victim_type
    if IsStalker(victim) then
-      victim_type="k_s"
+      victim_type = "k_s"
    else
-      victim_type="k_m"
+      victim_type = "k_m"
    end
-   if get_community=="alfa_force" then get_community="alfa"
-   elseif get_community=="army_alies" then get_community="army"
-   elseif get_community=="bandit_alies" then get_community="bandit"
-   elseif get_community=="bandit_enemy" then get_community="bandit"
-   elseif get_community=="killer_enemy" then get_community="killer"
-   elseif get_community=="killer_alies" then get_community="killer"
-   elseif get_community=="mercenary" then get_community="killer"
-   elseif get_community=="stalker_alies" then get_community="stalker"
-   elseif get_community=="monolith_alies" then get_community="monolith"
-   elseif get_community=="pseudo_gigant" then get_community="gigant"
+   if get_community == "alfa_force" then
+      get_community = "alfa"
+   elseif get_community == "army_alies" then
+      get_community = "army"
+   elseif get_community == "bandit_alies" then
+      get_community = "bandit"
+   elseif get_community == "bandit_enemy" then
+      get_community = "bandit"
+   elseif get_community == "killer_enemy" then
+      get_community = "killer"
+   elseif get_community == "killer_alies" then
+      get_community = "killer"
+   elseif get_community == "mercenary" then
+      get_community = "killer"
+   elseif get_community == "stalker_alies" then
+      get_community = "stalker"
+   elseif get_community == "monolith_alies" then
+      get_community = "monolith"
+   elseif get_community == "pseudo_gigant" then
+      get_community = "gigant"
    end
-   if get_community==nil or get_statistic_counter(victim_type,get_community)==nil then return end
-   if type=="default_death" then
-      edit_statistic_counter(victim_type,get_community,1,"+")
-   elseif type=="skill_death" then
-      edit_statistic_counter(victim_type,get_community,1,"+")
+   if get_community == nil or get_statistic_counter(victim_type, get_community) == nil then return end
+   if type == "default_death" then
+      edit_statistic_counter(victim_type, get_community, 1, "+")
+   elseif type == "skill_death" then
+      edit_statistic_counter(victim_type, get_community, 1, "+")
    end
 end
+
 function game_multiplier()
-   if level.get_game_difficulty()==0 then
-      return r_rank_params("number","novice_multiplier",1.40)
-   elseif level.get_game_difficulty()==1 then
-      return r_rank_params("number","stalker_multiplier",1.20)
-   elseif level.get_game_difficulty()==2 then
-      return r_rank_params("number","veteran_multiplier",1.00)
-   elseif level.get_game_difficulty()==3 then
-      return r_rank_params("number","master_multiplier",0.80)
+   if level.get_game_difficulty() == 0 then
+      return r_rank_params("number", "novice_multiplier", 1.40)
+   elseif level.get_game_difficulty() == 1 then
+      return r_rank_params("number", "stalker_multiplier", 1.20)
+   elseif level.get_game_difficulty() == 2 then
+      return r_rank_params("number", "veteran_multiplier", 1.00)
+   elseif level.get_game_difficulty() == 3 then
+      return r_rank_params("number", "master_multiplier", 0.80)
    end
    return 1.00
 end

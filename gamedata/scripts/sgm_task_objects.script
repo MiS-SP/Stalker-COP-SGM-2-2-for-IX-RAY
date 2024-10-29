@@ -2,25 +2,25 @@
 --' Дескриптор обычного задания
 --'*************************************************************************************
 local guiders_by_level = {
-							["zaton"]={["jupiter"]="zat_b215_stalker_guide_zaton", ["pripyat"]="zat_b215_stalker_guide_zaton"},
-							["jupiter"]={["zaton"]="zat_b215_stalker_guide_jupiter", ["pripyat"]="jup_b43_stalker_assistant"},
-							["pripyat"]={["zaton"]="jup_b43_stalker_assistant_pri", ["jupiter"]="jup_b43_stalker_assistant_pri"},
-						 }
+	["zaton"] = { ["jupiter"] = "zat_b215_stalker_guide_zaton", ["pripyat"] = "zat_b215_stalker_guide_zaton" },
+	["jupiter"] = { ["zaton"] = "zat_b215_stalker_guide_jupiter", ["pripyat"] = "jup_b43_stalker_assistant" },
+	["pripyat"] = { ["zaton"] = "jup_b43_stalker_assistant_pri", ["jupiter"] = "jup_b43_stalker_assistant_pri" },
+}
 function get_guider(target_level)
 	local ln = level.name()
-	if(guiders_by_level[ln] and guiders_by_level[ln][target_level]) then
+	if (guiders_by_level[ln] and guiders_by_level[ln][target_level]) then
 		return get_story_object_id(guiders_by_level[ln][target_level])
 	end
 	return nil
 end
 
 local valid_values = {
-	complete 	= true,
-	fail 		= true,
-	reversed 	= true,
---/ SGM in
-	expired 	= true,
---/ SGM out
+	complete = true,
+	fail     = true,
+	reversed = true,
+	--/ SGM in
+	expired  = true,
+	--/ SGM out
 }
 
 --[[
@@ -41,70 +41,80 @@ local status_by_id = {
 	[2] = "completed",
 	[3] = "fail",
 	[4] = "reversed",
---/ SGM in
+	--/ SGM in
 	[5] = "expired",
---/ SGM out
+	--/ SGM out
 }
 
 local id_by_status = {
-	normal 		= 0,
-	selected	= 1,
-	completed	= 2,
-	fail		= 3,
-	reversed	= 4,
---/ SGM in
-	expired	        = 5,
---/ SGM out
+	normal    = 0,
+	selected  = 1,
+	completed = 2,
+	fail      = 3,
+	reversed  = 4,
+	--/ SGM in
+	expired   = 5,
+	--/ SGM out
 }
 
 class "CGeneralTask"
 function CGeneralTask:__init(task_ini, id)
-	self.task_ini = task_ini
+	self.task_ini       = task_ini
 
-	self.id				= id
-        --/ SGM in
-        self.execution_time	= utils.cfg_get_string(task_ini, id, "execution_time", nil, false, "", "nil")
-        self.descr_end		= utils.cfg_get_string(task_ini, id, "descr_end", nil, false, "", "nil")
-        self.title_end		= utils.cfg_get_string(task_ini, id, "title_end", nil, false, "", "nil")
-        --/ SGM out
-	self.title			= utils.cfg_get_string(task_ini, id, "title", nil, false, "", "TITLE_DOESNT_EXIST")
-	self.title_functor	= utils.cfg_get_string(task_ini, id, "title_functor", nil, false, "", "condlist")
-	self.current_title = nil
+	self.id             = id
+	--/ SGM in
+	self.execution_time = utils.cfg_get_string(task_ini, id, "execution_time", nil, false, "", "nil")
+	self.descr_end      = utils.cfg_get_string(task_ini, id, "descr_end", nil, false, "", "nil")
+	self.title_end      = utils.cfg_get_string(task_ini, id, "title_end", nil, false, "", "nil")
+	--/ SGM out
+	self.title          = utils.cfg_get_string(task_ini, id, "title", nil, false, "", "TITLE_DOESNT_EXIST")
+	self.title_functor  = utils.cfg_get_string(task_ini, id, "title_functor", nil, false, "", "condlist")
+	self.current_title  = nil
 
-	self.descr			= utils.cfg_get_string(task_ini, id, "descr", nil, false, "", "DESCR_DOESNT_EXIST")
-	self.descr_functor	= utils.cfg_get_string(task_ini, id, "descr_functor", nil, false, "", "condlist")
-	self.current_descr = nil
+	self.descr          = utils.cfg_get_string(task_ini, id, "descr", nil, false, "", "DESCR_DOESNT_EXIST")
+	self.descr_functor  = utils.cfg_get_string(task_ini, id, "descr_functor", nil, false, "", "condlist")
+	self.current_descr  = nil
 
-	self.target			= utils.cfg_get_string(task_ini, id, "target", nil, false, "", "DESCR_DOESNT_EXIST")
-	self.target_functor	= utils.cfg_get_string(task_ini, id, "target_functor", nil, false, "", "target_condlist")
+	self.target         = utils.cfg_get_string(task_ini, id, "target", nil, false, "", "DESCR_DOESNT_EXIST")
+	self.target_functor = utils.cfg_get_string(task_ini, id, "target_functor", nil, false, "", "target_condlist")
 	self.current_target = nil
 
-	self.icon			= utils.cfg_get_string(task_ini, id, "icon", nil, false, "", "ui_pda2_mtask_overlay")
-	self.prior			= utils.cfg_get_number(task_ini, id, "prior", nil, false, 0)
-	self.storyline		= utils.cfg_get_bool(task_ini, id, "storyline", nil, false, true)
+	self.icon           = utils.cfg_get_string(task_ini, id, "icon", nil, false, "", "ui_pda2_mtask_overlay")
+	self.prior          = utils.cfg_get_number(task_ini, id, "prior", nil, false, 0)
+	self.storyline      = utils.cfg_get_bool(task_ini, id, "storyline", nil, false, true)
 
 	--' Условия выполнения и провала квеста
-	local i = 0
-	self.condlist = {}
-	while task_ini:line_exist(id, "condlist_"..i) do
-		self.condlist[i] = xr_logic.parse_condlist(nil, "task_manager", "condlist", task_ini:r_string(id, "condlist_"..i))
+	local i             = 0
+	self.condlist       = {}
+	while task_ini:line_exist(id, "condlist_" .. i) do
+		self.condlist[i] = xr_logic.parse_condlist(nil, "task_manager", "condlist", task_ini:r_string(id, "condlist_" ..
+			i))
 		i = i + 1
 	end
 
 	--' Кондлисты на статусы квеста
-	self.on_init = xr_logic.parse_condlist(nil, "task_manager", "condlist", utils.cfg_get_string(task_ini, id, "on_init", nil, false, "", ""))
-	self.on_complete = xr_logic.parse_condlist(nil, "task_manager", "condlist", utils.cfg_get_string(task_ini, id, "on_complete", nil, false, "", ""))
-	self.on_reversed = xr_logic.parse_condlist(nil, "task_manager", "condlist", utils.cfg_get_string(task_ini, id, "on_reversed", nil, false, "", ""))
-        --/ SGM in
-	self.on_expired = xr_logic.parse_condlist(nil, "task_manager", "condlist", utils.cfg_get_string(task_ini, id, "on_expired", nil, false, "", ""))
-	self.on_fail = xr_logic.parse_condlist(nil, "task_manager", "condlist", utils.cfg_get_string(task_ini, id, "on_fail", nil, false, "", ""))
-        --/ SGM out
+	self.on_init = xr_logic.parse_condlist(nil, "task_manager", "condlist",
+		utils.cfg_get_string(task_ini, id, "on_init", nil, false, "", ""))
+	self.on_complete = xr_logic.parse_condlist(nil, "task_manager", "condlist",
+		utils.cfg_get_string(task_ini, id, "on_complete", nil, false, "", ""))
+	self.on_reversed = xr_logic.parse_condlist(nil, "task_manager", "condlist",
+		utils.cfg_get_string(task_ini, id, "on_reversed", nil, false, "", ""))
+	--/ SGM in
+	self.on_expired = xr_logic.parse_condlist(nil, "task_manager", "condlist",
+		utils.cfg_get_string(task_ini, id, "on_expired", nil, false, "", ""))
+	self.on_fail = xr_logic.parse_condlist(nil, "task_manager", "condlist",
+		utils.cfg_get_string(task_ini, id, "on_fail", nil, false, "", ""))
+	--/ SGM out
 	--' Награды за квест
-	self.reward_money = xr_logic.parse_condlist(nil, "task_manager", "condlist", utils.cfg_get_string(task_ini, id, "reward_money", nil, false, "", ""))
-	self.reward_item = xr_logic.parse_condlist(nil, "task_manager", "condlist", utils.cfg_get_string(task_ini, id, "reward_item", nil, false, "", ""))
+	self.reward_money = xr_logic.parse_condlist(nil, "task_manager", "condlist",
+		utils.cfg_get_string(task_ini, id, "reward_money", nil, false, "", ""))
+	self.reward_item = xr_logic.parse_condlist(nil, "task_manager", "condlist",
+		utils.cfg_get_string(task_ini, id, "reward_item", nil, false, "", ""))
 
-	self.community_relation_delta_fail = utils.cfg_get_number(task_ini, id, "community_relation_delta_fail", nil, false, 0)
-	self.community_relation_delta_complete = utils.cfg_get_number(task_ini, id, "community_relation_delta_complete", nil, false, 0)
+	self.community_relation_delta_fail = utils.cfg_get_number(task_ini, id, "community_relation_delta_fail", nil, false,
+		0)
+	self.community_relation_delta_complete = utils.cfg_get_number(task_ini, id, "community_relation_delta_complete", nil,
+		false, 0)
 
 	--' Статус квеста, может быть: "normal", "selected", "completed", "fail", "reversed"
 	self.status = "normal"
@@ -114,101 +124,138 @@ function CGeneralTask:__init(task_ini, id)
 
 	local time = 0
 	if self.wait_time ~= nil then
-		time = self.wait_time  -- Тут время задано в игровых секундах
+		time = self.wait_time -- Тут время задано в игровых секундах
 	end
-	if(self.storyline) then
-			if time == 0 then
-					self.spot = "storyline_task_location"
+	if (self.storyline) then
+		if time == 0 then
+			self.spot = "storyline_task_location"
 		else
-					self.spot = "storyline_task_location_complex_timer"
+			self.spot = "storyline_task_location_complex_timer"
 		end
 	else
-			if time == 0 then
-					self.spot = "secondary_task_location"
-			else
-					self.spot = "secondary_task_location_complex_timer"
-			end
+		if time == 0 then
+			self.spot = "secondary_task_location"
+		else
+			self.spot = "secondary_task_location_complex_timer"
+		end
 	end
 	self.current_target = task_functor[self.target_functor](self.id, "target", self.target)
 	self.dont_send_update_news = utils.cfg_get_bool(task_ini, id, "dont_send_update_news", nil, false, false)
 end
+
 --/ SGM in
 --' Определение цели квеста для работодателя
 function CGeneralTask:get_employer_kill_stalker()
-   local t_community=sgm_functions.ReadCommunity(read_mod_param("employer_currert_target"))
-   local t_ret="st_get_employer_kill_stalker"
-   if t_community=="bandit" or t_community=="bandit_enemy" then
-      t_ret="st_get_employer_kill_bandit"
-   elseif t_community=="killer" or t_community=="mercenary" or t_community=="killer_enemy" then
-      t_ret="st_get_employer_kill_merc"
-   elseif t_community=="army" then
-      t_ret="st_get_employer_kill_army"
-   elseif t_community=="monolith" then
-      t_ret="st_get_employer_kill_monolith"
-   elseif t_community=="dolg" then
-      t_ret="st_get_employer_kill_dolg"
-   elseif t_community=="freedom" then
-      t_ret="st_get_employer_kill_freedom"
-   elseif t_community=="renegade" then
-      t_ret="st_get_employer_kill_renegade"
-   end
-   return game.translate_string(t_ret)
+	local t_community = sgm_functions.ReadCommunity(sgm_g.read_mod_param("employer_currert_target"))
+	local t_ret = "st_get_employer_kill_stalker"
+	if t_community == "bandit" or t_community == "bandit_enemy" then
+		t_ret = "st_get_employer_kill_bandit"
+	elseif t_community == "killer" or t_community == "mercenary" or t_community == "killer_enemy" then
+		t_ret = "st_get_employer_kill_merc"
+	elseif t_community == "army" then
+		t_ret = "st_get_employer_kill_army"
+	elseif t_community == "monolith" then
+		t_ret = "st_get_employer_kill_monolith"
+	elseif t_community == "dolg" then
+		t_ret = "st_get_employer_kill_dolg"
+	elseif t_community == "freedom" then
+		t_ret = "st_get_employer_kill_freedom"
+	elseif t_community == "renegade" then
+		t_ret = "st_get_employer_kill_renegade"
+	end
+	return game.translate_string(t_ret)
 end
+
 --/ SGM out
 --' Выдача квеста
 function CGeneralTask:give_task(community)
 	local t = CGameTask()
 	t:set_id(tostring(self.id))
-	if(self.storyline) then
+	if (self.storyline) then
 		t:set_type(task.storyline)
 	else
 		t:set_type(task.additional)
 	end
-        --/ SGM in
-	if self.title_end==nil or self.title_end=="nil" then
-                if find_in_string(self.id,"employer_find_item") then
-                   local employer_find_item_name=game.translate_string(sgm_functions.ReadCaption(read_mod_param("employer_currert_target")))
-	           t:set_title(game.translate_string(self.current_title).." "..employer_find_item_name)
-                elseif find_in_string(self.id,"employer_kill_stalker") and find_in_string(self.current_title,"title0") then
-                   local employer_kill_stalker_name=self:get_employer_kill_stalker()
-	           t:set_title(game.translate_string(self.current_title).." "..employer_kill_stalker_name)
-                else
-	           t:set_title(self.current_title)
-                end
+	--/ SGM in
+	if self.title_end == nil or self.title_end == "nil" then
+		if sgm_g.find_in_string(self.id, "employer_find_item") then
+			local employer_find_item_name = game.translate_string(sgm_functions.ReadCaption(sgm_g.read_mod_param(
+				"employer_currert_target")))
+			t:set_title(game.translate_string(self.current_title) .. " " .. employer_find_item_name)
+		elseif sgm_g.find_in_string(self.id, "employer_kill_stalker") and sgm_g.find_in_string(self.current_title, "title0") then
+			local employer_kill_stalker_name = self:get_employer_kill_stalker()
+			t:set_title(game.translate_string(self.current_title) .. " " .. employer_kill_stalker_name)
+		else
+			t:set_title(self.current_title)
+		end
 	else
-		t:set_title(game.translate_string(self.current_title).." "..task_functor[self.title_end]())
+		t:set_title(game.translate_string(self.current_title) .. " " .. task_functor[self.title_end]())
 	end
-	if self.descr_end==nil or self.descr_end=="nil" then
-             if exists(self.execution_time) then
-                start_game_timer("timer_quest_"..self.id,tonumber(self.execution_time))
-                if exists(utils.cfg_get_string(self.task_ini,self.id,"on_expired",nil,false,"","nil")) then
-                   if find_in_string(self.id,"employer_find_item") and find_in_string(self.current_descr,"text0") then
-                      local employer_find_item_name=game.translate_string(sgm_functions.ReadCaption(read_mod_param("employer_currert_target")))
-	              t:set_description(self.current_descr.." "..employer_find_item_name..". "..game.translate_string("st_task_execution_time_add1").." "..tonumber(self.execution_time).." "..game.translate_string("st_task_execution_time_add2"))
-                   elseif find_in_string(self.id,"employer_kill_stalker") and find_in_string(self.current_descr,"text0") then
-                      local employer_kill_stalker_name=self:get_employer_kill_stalker()
-	              t:set_description(self.current_descr.." "..employer_kill_stalker_name..". "..game.translate_string("st_task_execution_time_add1").." "..tonumber(self.execution_time).." "..game.translate_string("st_task_execution_time_add2"))
-                   else
-	              t:set_description(self.current_descr.." "..game.translate_string("st_task_execution_time_add1").." "..tonumber(self.execution_time).." "..game.translate_string("st_task_execution_time_add2"))
-                   end
-                else
-                   if find_in_string(self.id,"employer_find_item") and find_in_string(self.current_descr,"text0") then
-                      local employer_find_item_name=game.translate_string(sgm_functions.ReadCaption(read_mod_param("employer_currert_target")))
-	              t:set_description(self.current_descr.." "..employer_find_item_name..". "..game.translate_string("st_task_execution_time_add1").." "..tonumber(self.execution_time).." "..game.translate_string("st_task_execution_time_add3"))
-                   elseif find_in_string(self.id,"employer_kill_stalker") and find_in_string(self.current_descr,"text0") then
-                      local employer_kill_stalker_name=self:get_employer_kill_stalker()
-	              t:set_description(self.current_descr.." "..employer_kill_stalker_name..". "..game.translate_string("st_task_execution_time_add1").." "..tonumber(self.execution_time).." "..game.translate_string("st_task_execution_time_add3"))
-                   else
-	              t:set_description(self.current_descr.." "..game.translate_string("st_task_execution_time_add1").." "..tonumber(self.execution_time).." "..game.translate_string("st_task_execution_time_add3"))
-                   end
-                end
-             else
-		t:set_description(self.current_descr)
-             end
+	if self.descr_end == nil or self.descr_end == "nil" then
+		if exists(self.execution_time) then
+			start_game_timer("timer_quest_" .. self.id, tonumber(self.execution_time))
+			if exists(utils.cfg_get_string(self.task_ini, self.id, "on_expired", nil, false, "", "nil")) then
+				if sgm_g.find_in_string(self.id, "employer_find_item") and sgm_g.find_in_string(self.current_descr, "text0") then
+					local employer_find_item_name = game.translate_string(sgm_functions.ReadCaption(sgm_g.read_mod_param(
+						"employer_currert_target")))
+					t:set_description(self.current_descr ..
+						" " ..
+						employer_find_item_name ..
+						". " ..
+						game.translate_string("st_task_execution_time_add1") ..
+						" " ..
+						tonumber(self.execution_time) .. " " .. game.translate_string("st_task_execution_time_add2"))
+				elseif sgm_g.find_in_string(self.id, "employer_kill_stalker") and sgm_g.find_in_string(self.current_descr, "text0") then
+					local employer_kill_stalker_name = self:get_employer_kill_stalker()
+					t:set_description(self.current_descr ..
+						" " ..
+						employer_kill_stalker_name ..
+						". " ..
+						game.translate_string("st_task_execution_time_add1") ..
+						" " ..
+						tonumber(self.execution_time) .. " " .. game.translate_string("st_task_execution_time_add2"))
+				else
+					t:set_description(self.current_descr ..
+						" " ..
+						game.translate_string("st_task_execution_time_add1") ..
+						" " ..
+						tonumber(self.execution_time) .. " " .. game.translate_string("st_task_execution_time_add2"))
+				end
+			else
+				if sgm_g.find_in_string(self.id, "employer_find_item") and sgm_g.find_in_string(self.current_descr, "text0") then
+					local employer_find_item_name = game.translate_string(sgm_functions.ReadCaption(sgm_g.read_mod_param(
+						"employer_currert_target")))
+					t:set_description(self.current_descr ..
+						" " ..
+						employer_find_item_name ..
+						". " ..
+						game.translate_string("st_task_execution_time_add1") ..
+						" " ..
+						tonumber(self.execution_time) .. " " .. game.translate_string("st_task_execution_time_add3"))
+				elseif sgm_g.find_in_string(self.id, "employer_kill_stalker") and sgm_g.find_in_string(self.current_descr, "text0") then
+					local employer_kill_stalker_name = self:get_employer_kill_stalker()
+					t:set_description(self.current_descr ..
+						" " ..
+						employer_kill_stalker_name ..
+						". " ..
+						game.translate_string("st_task_execution_time_add1") ..
+						" " ..
+						tonumber(self.execution_time) .. " " .. game.translate_string("st_task_execution_time_add3"))
+				else
+					t:set_description(self.current_descr ..
+						" " ..
+						game.translate_string("st_task_execution_time_add1") ..
+						" " ..
+						tonumber(self.execution_time) .. " " .. game.translate_string("st_task_execution_time_add3"))
+				end
+			end
+		else
+			t:set_description(self.current_descr)
+		end
 	else
-		t:set_description(game.translate_string(self.current_descr).." "..task_functor[self.descr_end]())
+		t:set_description(game.translate_string(self.current_descr) .. " " .. task_functor[self.descr_end]())
 	end
-        --/ SGM out
+	--/ SGM out
 	t:set_priority(self.prior)
 	t:set_icon_name(self.icon)
 	t:add_complete_func("task_manager.task_complete")
@@ -219,30 +266,31 @@ function CGeneralTask:give_task(community)
 	if self.current_target ~= nil then
 		t:set_map_location(self.spot)
 		t:set_map_object_id(self.current_target)
-		   if(self.storyline) then
+		if (self.storyline) then
 			level.map_add_object_spot(self.current_target, "ui_storyline_task_blink", "")
-		   else
+		else
 			level.map_add_object_spot(self.current_target, "ui_secondary_task_blink", "")
-		   end
+		end
 	end
 	local time = 0
 	if self.wait_time ~= nil then
-		time = self.wait_time  -- Тут время задано в игровых секундах
+		time = self.wait_time -- Тут время задано в игровых секундах
 	end
 	--' Заносим в task_info
 	self.status = "selected"
 	self.inited_time = game.get_game_time()
 
-	db.actor:give_task(t, time*10, false, time)
+	db.actor:give_task(t, time * 10, false, time)
 	self.t = t
 end
+
 --' Проверка текущего выполнения квеста
 function CGeneralTask:check_task(tm)
 	local global_time = time_global()
 	local task_updated = false
 	if self.check_time ~= nil and
-		 self.last_check_task ~= nil and
-		 global_time - self.check_time <= 50
+		self.last_check_task ~= nil and
+		global_time - self.check_time <= 50
 	then
 		--' Возвращаем результат прошлой проверки (для оптимизации)
 		return
@@ -252,92 +300,127 @@ function CGeneralTask:check_task(tm)
 		return
 	end
 	self.check_time = global_time
-        --/ SGM in
-        if self.title_end==nil or self.title_end=="nil" then
-	   local t_tile = task_functor[self.title_functor](self.id, "title", self.title)
-	   if self.current_title ~= t_tile then
-		printf("task [%s] updated due to title change from [%s] to [%s]", tostring(self.id), tostring(self.current_title), tostring(t_tile))
-		task_updated = true
+	--/ SGM in
+	if self.title_end == nil or self.title_end == "nil" then
+		local t_tile = task_functor[self.title_functor](self.id, "title", self.title)
+		if self.current_title ~= t_tile then
+			printf("task [%s] updated due to title change from [%s] to [%s]", tostring(self.id),
+				tostring(self.current_title), tostring(t_tile))
+			task_updated = true
+			self.current_title = t_tile
+			if sgm_g.find_in_string(self.id, "employer_find_item") then
+				local employer_find_item_name = game.translate_string(sgm_functions.ReadCaption(sgm_g.read_mod_param(
+					"employer_currert_target")))
+				self.t:set_title(game.translate_string(t_tile) .. " " .. employer_find_item_name)
+			elseif sgm_g.find_in_string(self.id, "employer_kill_stalker") and sgm_g.find_in_string(self.current_title, "title0") then
+				local employer_kill_stalker_name = self:get_employer_kill_stalker()
+				self.t:set_title(game.translate_string(t_tile) .. " " .. employer_kill_stalker_name)
+			else
+				self.t:set_title(game.translate_string(t_tile))
+			end
+		end
+	else
+		local t_tile = task_functor[self.title_functor](self.id, "title", self.title)
 		self.current_title = t_tile
-                if find_in_string(self.id,"employer_find_item") then
-                   local employer_find_item_name=game.translate_string(sgm_functions.ReadCaption(read_mod_param("employer_currert_target")))
-		   self.t:set_title(game.translate_string(t_tile).." "..employer_find_item_name)
-                elseif find_in_string(self.id,"employer_kill_stalker") and find_in_string(self.current_title,"title0") then
-                   local employer_kill_stalker_name=self:get_employer_kill_stalker()
-		   self.t:set_title(game.translate_string(t_tile).." "..employer_kill_stalker_name)
-                else
-		   self.t:set_title(game.translate_string(t_tile))
-                end
-	   end
-        else
-	   local t_tile = task_functor[self.title_functor](self.id, "title", self.title)
-           self.current_title = t_tile
-	   self.t:set_title(game.translate_string(t_tile).." "..task_functor[self.title_end]())
-        end
-        if self.descr_end==nil or self.descr_end=="nil" then
-	   local t_descr = task_functor[self.descr_functor](self.id, "descr", self.descr)
-           if exists(self.execution_time) then
-	      self.current_descr = t_descr
-              local currert_execution_time=check_game_timer("timer_quest_"..self.id,true)-get_general_game_time()
-              if currert_execution_time<=0 then
-                 if find_in_string(self.id,"employer_find_item") and find_in_string(self.current_descr,"text0") then
-                    local employer_find_item_name=game.translate_string(sgm_functions.ReadCaption(read_mod_param("employer_currert_target")))
-	            self.t:set_description(game.translate_string(t_descr).." "..employer_find_item_name..".")
-                 elseif find_in_string(self.id,"employer_kill_stalker") and find_in_string(self.current_descr,"text0") then
-                    local employer_kill_stalker_name=self:get_employer_kill_stalker()
-	            self.t:set_description(game.translate_string(t_descr).." "..employer_kill_stalker_name..".")
-                 else
-	            self.t:set_description(game.translate_string(t_descr))
-                 end
-                 if exists(utils.cfg_get_string(self.task_ini,self.id,"on_expired",nil,false,"","nil")) then
-                    self.last_check_task="expired"
-		    return
-                 end
-              else
-                 if exists(utils.cfg_get_string(self.task_ini,self.id,"on_expired",nil,false,"","nil")) then
-                    if find_in_string(self.id,"employer_find_item") and find_in_string(self.current_descr,"text0") then
-                       local employer_find_item_name=game.translate_string(sgm_functions.ReadCaption(read_mod_param("employer_currert_target")))
-	               self.t:set_description(game.translate_string(t_descr).." "..employer_find_item_name..". "..game.translate_string("st_task_execution_time_add1").." "..currert_execution_time.." "..game.translate_string("st_task_execution_time_add2"))
-                    elseif find_in_string(self.id,"employer_kill_stalker") and find_in_string(self.current_descr,"text0") then
-                       local employer_kill_stalker_name=self:get_employer_kill_stalker()
-	               self.t:set_description(game.translate_string(t_descr).." "..employer_kill_stalker_name..". "..game.translate_string("st_task_execution_time_add1").." "..currert_execution_time.." "..game.translate_string("st_task_execution_time_add2"))
-                    else
-	               self.t:set_description(game.translate_string(t_descr).." "..game.translate_string("st_task_execution_time_add1").." "..currert_execution_time.." "..game.translate_string("st_task_execution_time_add2"))
-                    end
-                 else
-                    if find_in_string(self.id,"employer_find_item") and find_in_string(self.current_descr,"text0") then
-                       local employer_find_item_name=game.translate_string(sgm_functions.ReadCaption(read_mod_param("employer_currert_target")))
-	               self.t:set_description(game.translate_string(t_descr).." "..employer_find_item_name..". "..game.translate_string("st_task_execution_time_add1").." "..currert_execution_time.." "..game.translate_string("st_task_execution_time_add3"))
-                    elseif find_in_string(self.id,"employer_kill_stalker") and find_in_string(self.current_descr,"text0") then
-                       local employer_kill_stalker_name=self:get_employer_kill_stalker()
-	               self.t:set_description(game.translate_string(t_descr).." "..employer_kill_stalker_name..". "..game.translate_string("st_task_execution_time_add1").." "..currert_execution_time.." "..game.translate_string("st_task_execution_time_add3"))
-                    else
-	               self.t:set_description(game.translate_string(t_descr).." "..game.translate_string("st_task_execution_time_add1").." "..currert_execution_time.." "..game.translate_string("st_task_execution_time_add3"))
-                    end
-                 end
-              end
-           else
-	      if self.current_descr ~= t_descr then
-		 printf("task [%s] updated due to description change from [%s] to [%s]", tostring(self.id), tostring(self.current_descr), tostring(t_descr))
-		 task_updated = true
-		 self.current_descr = t_descr
-		 self.t:set_description(game.translate_string(t_descr))
-	      end
-           end
-        else
-	   local t_descr = task_functor[self.descr_functor](self.id, "descr", self.descr)
-           self.current_descr = t_descr
-	   self.t:set_description(game.translate_string(t_descr).." "..task_functor[self.descr_end]())
-        end
-        --/ SGM out
+		self.t:set_title(game.translate_string(t_tile) .. " " .. task_functor[self.title_end]())
+	end
+	if self.descr_end == nil or self.descr_end == "nil" then
+		local t_descr = task_functor[self.descr_functor](self.id, "descr", self.descr)
+		if exists(self.execution_time) then
+			self.current_descr = t_descr
+			local currert_execution_time = check_game_timer("timer_quest_" .. self.id, true) - get_general_game_time()
+			if currert_execution_time <= 0 then
+				if sgm_g.find_in_string(self.id, "employer_find_item") and sgm_g.find_in_string(self.current_descr, "text0") then
+					local employer_find_item_name = game.translate_string(sgm_functions.ReadCaption(sgm_g.read_mod_param(
+						"employer_currert_target")))
+					self.t:set_description(game.translate_string(t_descr) .. " " .. employer_find_item_name .. ".")
+				elseif sgm_g.find_in_string(self.id, "employer_kill_stalker") and sgm_g.find_in_string(self.current_descr, "text0") then
+					local employer_kill_stalker_name = self:get_employer_kill_stalker()
+					self.t:set_description(game.translate_string(t_descr) .. " " .. employer_kill_stalker_name .. ".")
+				else
+					self.t:set_description(game.translate_string(t_descr))
+				end
+				if exists(utils.cfg_get_string(self.task_ini, self.id, "on_expired", nil, false, "", "nil")) then
+					self.last_check_task = "expired"
+					return
+				end
+			else
+				if exists(utils.cfg_get_string(self.task_ini, self.id, "on_expired", nil, false, "", "nil")) then
+					if sgm_g.find_in_string(self.id, "employer_find_item") and sgm_g.find_in_string(self.current_descr, "text0") then
+						local employer_find_item_name = game.translate_string(sgm_functions.ReadCaption(sgm_g
+						.read_mod_param(
+							"employer_currert_target")))
+						self.t:set_description(game.translate_string(t_descr) ..
+							" " ..
+							employer_find_item_name ..
+							". " ..
+							game.translate_string("st_task_execution_time_add1") ..
+							" " .. currert_execution_time .. " " .. game.translate_string("st_task_execution_time_add2"))
+					elseif sgm_g.find_in_string(self.id, "employer_kill_stalker") and sgm_g.find_in_string(self.current_descr, "text0") then
+						local employer_kill_stalker_name = self:get_employer_kill_stalker()
+						self.t:set_description(game.translate_string(t_descr) ..
+							" " ..
+							employer_kill_stalker_name ..
+							". " ..
+							game.translate_string("st_task_execution_time_add1") ..
+							" " .. currert_execution_time .. " " .. game.translate_string("st_task_execution_time_add2"))
+					else
+						self.t:set_description(game.translate_string(t_descr) ..
+							" " ..
+							game.translate_string("st_task_execution_time_add1") ..
+							" " .. currert_execution_time .. " " .. game.translate_string("st_task_execution_time_add2"))
+					end
+				else
+					if sgm_g.find_in_string(self.id, "employer_find_item") and sgm_g.find_in_string(self.current_descr, "text0") then
+						local employer_find_item_name = game.translate_string(sgm_functions.ReadCaption(sgm_g
+						.read_mod_param(
+							"employer_currert_target")))
+						self.t:set_description(game.translate_string(t_descr) ..
+							" " ..
+							employer_find_item_name ..
+							". " ..
+							game.translate_string("st_task_execution_time_add1") ..
+							" " .. currert_execution_time .. " " .. game.translate_string("st_task_execution_time_add3"))
+					elseif sgm_g.find_in_string(self.id, "employer_kill_stalker") and sgm_g.find_in_string(self.current_descr, "text0") then
+						local employer_kill_stalker_name = self:get_employer_kill_stalker()
+						self.t:set_description(game.translate_string(t_descr) ..
+							" " ..
+							employer_kill_stalker_name ..
+							". " ..
+							game.translate_string("st_task_execution_time_add1") ..
+							" " .. currert_execution_time .. " " .. game.translate_string("st_task_execution_time_add3"))
+					else
+						self.t:set_description(game.translate_string(t_descr) ..
+							" " ..
+							game.translate_string("st_task_execution_time_add1") ..
+							" " .. currert_execution_time .. " " .. game.translate_string("st_task_execution_time_add3"))
+					end
+				end
+			end
+		else
+			if self.current_descr ~= t_descr then
+				printf("task [%s] updated due to description change from [%s] to [%s]", tostring(self.id),
+					tostring(self.current_descr), tostring(t_descr))
+				task_updated = true
+				self.current_descr = t_descr
+				self.t:set_description(game.translate_string(t_descr))
+			end
+		end
+	else
+		local t_descr = task_functor[self.descr_functor](self.id, "descr", self.descr)
+		self.current_descr = t_descr
+		self.t:set_description(game.translate_string(t_descr) .. " " .. task_functor[self.descr_end]())
+	end
+	--/ SGM out
 	local t_target = task_functor[self.target_functor](self.id, "target", self.target)
 	self:check_level(t_target)
 	if self.current_target ~= t_target then
-		printf("task [%s] updated due to target change from [%s] to [%s]", tostring(self.id), tostring(self.current_target), tostring(t_target))
+		printf("task [%s] updated due to target change from [%s] to [%s]", tostring(self.id),
+			tostring(self.current_target), tostring(t_target))
 		if self.current_target == nil then
 			task_updated = true
 			self.t:change_map_location(self.spot, t_target)
-			if(self.storyline) then
+			if (self.storyline) then
 				level.map_add_object_spot(t_target, "ui_storyline_task_blink", "")
 			else
 				level.map_add_object_spot(t_target, "ui_secondary_task_blink", "")
@@ -347,7 +430,7 @@ function CGeneralTask:check_task(tm)
 				self.t:remove_map_locations(false)
 				task_updated = true
 			else
-				if(self.storyline) then
+				if (self.storyline) then
 					level.map_add_object_spot(t_target, "ui_storyline_task_blink", "")
 				else
 					level.map_add_object_spot(t_target, "ui_secondary_task_blink", "")
@@ -358,10 +441,10 @@ function CGeneralTask:check_task(tm)
 		end
 		self.current_target = t_target
 	end
-	if task_updated and not(self.dont_send_update_news) then
+	if task_updated and not (self.dont_send_update_news) then
 		news_manager.send_task(db.actor, "updated", self.t)
 	end
-	for k,v in pairs(self.condlist) do
+	for k, v in pairs(self.condlist) do
 		local t = xr_logic.pick_section_from_condlist(db.actor, db.actor, v)
 		if t ~= nil then
 			--' Проверка на валидность
@@ -373,10 +456,12 @@ function CGeneralTask:check_task(tm)
 		end
 	end
 end
+
 --/ SGM in
 function CGeneralTask:get_task_name()
-   return self.id
+	return self.id
 end
+
 --/ SGM out
 --' Инициализация награды
 function CGeneralTask:give_reward()
@@ -395,74 +480,76 @@ function CGeneralTask:give_reward()
 
 	if items ~= nil then
 		local ancillary_item_table = {}
-		for k,v in pairs(utils.parse_names(items)) do
+		for k, v in pairs(utils.parse_names(items)) do
 			if ancillary_item_table[v] == nil then
 				ancillary_item_table[v] = 1
 			else
 				ancillary_item_table[v] = ancillary_item_table[v] + 1
 			end
 		end
-		for k,v in pairs(ancillary_item_table) do
+		for k, v in pairs(ancillary_item_table) do
 			dialogs.relocate_item_section(npc, k, "in", v)
 		end
 	end
-
 end
+
 function CGeneralTask:reverse_task()
 	self.last_check_task = "reversed"
 end
+
 --' Деактивация квеста
 function CGeneralTask:deactivate_task(task)
 	printf("deactivate task %s", self.id)
 
 	self.check_time = nil
 	if self.last_check_task == "fail" then
-                --/ SGM in
-                xr_logic.pick_section_from_condlist(db.actor, db.actor, self.on_fail)
-                --/ SGM out
+		--/ SGM in
+		xr_logic.pick_section_from_condlist(db.actor, db.actor, self.on_fail)
+		--/ SGM out
 		news_manager.send_task(db.actor, "fail", task)
 	elseif self.last_check_task == "reversed" then
 		xr_logic.pick_section_from_condlist(db.actor, db.actor, self.on_reversed)
 		news_manager.send_task(db.actor, "reversed", task)
-        --/ SGM in
+		--/ SGM in
 	elseif self.last_check_task == "expired" then
-                xr_logic.pick_section_from_condlist(db.actor, db.actor, self.on_expired)
+		xr_logic.pick_section_from_condlist(db.actor, db.actor, self.on_expired)
 		news_manager.send_task(db.actor, "expired", task)
-        --/ SGM out
+		--/ SGM out
 	end
 	self.last_check_task = nil
 
 	self.status = "normal"
 end
+
 function CGeneralTask:check_level(target)
-	if not(db.actor:is_active_task(self.t)) or not(target) then
+	if not (db.actor:is_active_task(self.t)) or not (target) then
 		return
 	end
-	if not(level) then
+	if not (level) then
 		return
 	end
 	local s_obj = alife():object(target)
-	if(s_obj) then
+	if (s_obj) then
 		local target_level = alife():level_name(game_graph():vertex(s_obj.m_game_vertex_id):level_id())
 		local level_name = level.name()
-		if(level_name~=target_level) then
+		if (level_name ~= target_level) then
 			local guider_id = get_guider(target_level)
-			if not(guider_id) then
+			if not (guider_id) then
 				return
 			end
 			local guider_spot = ""
 			local guider_spot2 = ""
-			if(self.storyline) then
+			if (self.storyline) then
 				guider_spot = "storyline_task_on_guider"
 				guider_spot2 = "secondary_task_on_guider"
 			else
 				guider_spot = "secondary_task_on_guider"
 				guider_spot2 = "storyline_task_on_guider"
 			end
-			if(level.map_has_object_spot(guider_id, guider_spot2)~=0) then
+			if (level.map_has_object_spot(guider_id, guider_spot2) ~= 0) then
 				level.map_remove_object_spot(guider_id, guider_spot2)
 			end
-			if(guider_id and level.map_has_object_spot(guider_id, guider_spot)==0) then
+			if (guider_id and level.map_has_object_spot(guider_id, guider_spot) == 0) then
 				level.map_add_object_spot(guider_id, guider_spot, "")
 			end
 		else
@@ -470,22 +557,24 @@ function CGeneralTask:check_level(target)
 		end
 	end
 end
+
 function CGeneralTask:remove_guider_spot(target)
-	if not(guiders_by_level[level.name()]) then
+	if not (guiders_by_level[level.name()]) then
 		return
 	end
-	for k,v in pairs(guiders_by_level[level.name()]) do
+	for k, v in pairs(guiders_by_level[level.name()]) do
 		local guider_id = get_story_object_id(v)
-		if(guider_id) then
-			if(level.map_has_object_spot(guider_id, "storyline_task_on_guider")~=0) then
+		if (guider_id) then
+			if (level.map_has_object_spot(guider_id, "storyline_task_on_guider") ~= 0) then
 				level.map_remove_object_spot(guider_id, "storyline_task_on_guider")
 			end
-			if(level.map_has_object_spot(guider_id, "secondary_task_on_guider")~=0) then
+			if (level.map_has_object_spot(guider_id, "secondary_task_on_guider") ~= 0) then
 				level.map_remove_object_spot(guider_id, "secondary_task_on_guider")
 			end
 		end
 	end
 end
+
 -- Save quest
 function CGeneralTask:save(packet)
 	set_save_marker(packet, "save", false, "CGeneralTask")
@@ -496,6 +585,7 @@ function CGeneralTask:save(packet)
 	packet:w_stringZ(tostring(self.current_target))
 	set_save_marker(packet, "save", true, "CGeneralTask")
 end
+
 -- Load quest
 function CGeneralTask:load(packet)
 	set_save_marker(packet, "load", false, "CGeneralTask")

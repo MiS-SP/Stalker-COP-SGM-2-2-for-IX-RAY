@@ -4,31 +4,36 @@
 ---------------------------------------------------------------------------------------------------
 ---=============================================================================================---
 bodyguards_config = {
-zat_bandit_bodyguard = {avail_teleport = true},
-zat_stalker_bodyguard = {avail_teleport = true},
-jup_freedom_bodyguard = {avail_teleport = true},
-jup_army_bodyguard = {avail_teleport = true},
-jup_killer_bodyguard = {avail_teleport = true},
-pri_army_bodyguard = {avail_teleport = true},
-pri_monolith_bodyguard = {avail_teleport = true}
+   zat_bandit_bodyguard = { avail_teleport = true },
+   zat_stalker_bodyguard = { avail_teleport = true },
+   jup_freedom_bodyguard = { avail_teleport = true },
+   jup_army_bodyguard = { avail_teleport = true },
+   jup_killer_bodyguard = { avail_teleport = true },
+   pri_army_bodyguard = { avail_teleport = true },
+   pri_monolith_bodyguard = { avail_teleport = true }
 }
 ------------------------------------
 --            Условие             --
 ------------------------------------
 class "evaluator_bodyguard" (property_evaluator)
-function evaluator_bodyguard:__init(storage, name) super(nil, name)
+function evaluator_bodyguard:__init(storage, name)
+   super(nil, name)
    self.st = storage
 end
+
 function evaluator_bodyguard:evaluate()
-   return xr_logic.is_active(self.object,self.st)
+   return xr_logic.is_active(self.object, self.st)
 end
+
 ------------------------------------
 --           Действие             --
 ------------------------------------
 class "action_bodyguard" (action_base)
-function action_bodyguard:__init (npc, action_name, storage) super(nil, action_name)
+function action_bodyguard:__init(npc, action_name, storage)
+   super(nil, action_name)
    self.st = storage
 end
+
 function action_bodyguard:initialize()
    action_base.initialize(self)
    self.object:set_desired_position()
@@ -42,183 +47,195 @@ function action_bodyguard:initialize()
    self.object:set_sight(look.danger, nil, 0)
    self.object:remove_all_restrictions()
 end
-function action_bodyguard:activate_scheme(loading,npc)
+
+function action_bodyguard:activate_scheme(loading, npc)
    self.st.signals = {}
-   sgm_flags.table_mod_schemes[self.object:id()]={}
-   sgm_flags.table_mod_schemes[self.object:id()].pos_stand_and_fire=0
-   sgm_flags.table_mod_schemes[self.object:id()].bodyguard_vector=vector():set(math.random()*6-3,0,math.random()*6-3)
+   sgm_flags.table_mod_schemes[self.object:id()] = {}
+   sgm_flags.table_mod_schemes[self.object:id()].pos_stand_and_fire = 0
+   sgm_flags.table_mod_schemes[self.object:id()].bodyguard_vector = vector():set(math.random() * 6 - 3, 0,
+      math.random() * 6 - 3)
    sgm_flags.table_mod_schemes[self.object:id()].bodyguard_vector:normalize()
-   sgm_flags.table_mod_schemes[self.object:id().."bodyguard_vector_timer"]=0
+   sgm_flags.table_mod_schemes[self.object:id() .. "bodyguard_vector_timer"] = 0
 end
+
 function action_bodyguard:get_bodyguard_target()
-   local look_tbl={}
-   if sgm_flags.table_mod_schemes[self.object:id()].bodyguard_look~=nil then
-      look_tbl.look_position=level.vertex_position(sgm_flags.table_mod_schemes[self.object:id()].bodyguard_look)
+   local look_tbl = {}
+   if sgm_flags.table_mod_schemes[self.object:id()].bodyguard_look ~= nil then
+      look_tbl.look_position = level.vertex_position(sgm_flags.table_mod_schemes[self.object:id()].bodyguard_look)
    end
    return look_tbl
 end
+
 function action_bodyguard:execute()
    action_base.execute(self)
-   if xr_logic.try_switch_to_another_section(self.object,self.st,db.actor) then
+   if xr_logic.try_switch_to_another_section(self.object, self.st, db.actor) then
       return
    end
-   if sgm_flags.table_mod_schemes[self.object:id()].update==nil then
-      self:check_logic_condlists(self.object,self.st.saved_ini,self.st.saved_section)
-      sgm_flags.table_mod_schemes[self.object:id()].update=time_global()+4000
+   if sgm_flags.table_mod_schemes[self.object:id()].update == nil then
+      self:check_logic_condlists(self.object, self.st.saved_ini, self.st.saved_section)
+      sgm_flags.table_mod_schemes[self.object:id()].update = time_global() + 4000
    end
-   if sgm_flags.table_mod_schemes[self.object:id()].update~=nil then
-      if time_global()>=sgm_flags.table_mod_schemes[self.object:id()].update then
-         sgm_flags.table_mod_schemes[self.object:id()].update=nil
+   if sgm_flags.table_mod_schemes[self.object:id()].update ~= nil then
+      if time_global() >= sgm_flags.table_mod_schemes[self.object:id()].update then
+         sgm_flags.table_mod_schemes[self.object:id()].update = nil
       end
    end
-   local npc=self.object
-   local npc_id=npc:id()
-   local npc_name=npc:name()
-   local npc_pos=npc:level_vertex_id()
-   local actor_pos=db.actor:position()
-   local bodyguard_look=self:get_bodyguard_target()
-   local scheme_param=sgm_flags.table_mod_schemes[npc_id]
-   local best_danger=npc:best_danger()
-   local danger_precond=best_danger and (best_danger:type()==danger_object.grenade or best_danger:type()==danger_object.entity_attacked)
-   local npc_found_enemy=npc:best_enemy()~=nil or danger_precond
-   local npc_without_enemy=npc:best_enemy()==nil and not danger_precond
-   if read_obj_mod_param(npc,"issued_rifle_weapon")~=nil and not npc:object(read_obj_mod_param(npc,"issued_rifle_weapon")) then
-      give_object_to_npc(read_obj_mod_param(npc,"issued_rifle_weapon"),npc)
-   elseif read_obj_mod_param(npc,"issued_pistol_weapon")~=nil and not npc:object(read_obj_mod_param(npc,"issued_pistol_weapon")) then
-      give_object_to_npc(read_obj_mod_param(npc,"issued_pistol_weapon"),npc)
+   local npc = self.object
+   local npc_id = npc:id()
+   local npc_name = npc:name()
+   local npc_pos = npc:level_vertex_id()
+   local actor_pos = db.actor:position()
+   local bodyguard_look = self:get_bodyguard_target()
+   local scheme_param = sgm_flags.table_mod_schemes[npc_id]
+   local best_danger = npc:best_danger()
+   local danger_precond = best_danger and
+   (best_danger:type() == danger_object.grenade or best_danger:type() == danger_object.entity_attacked)
+   local npc_found_enemy = npc:best_enemy() ~= nil or danger_precond
+   local npc_without_enemy = npc:best_enemy() == nil and not danger_precond
+   if read_obj_mod_param(npc, "issued_rifle_weapon") ~= nil and not npc:object(read_obj_mod_param(npc, "issued_rifle_weapon")) then
+      give_object_to_npc(read_obj_mod_param(npc, "issued_rifle_weapon"), npc)
+   elseif read_obj_mod_param(npc, "issued_pistol_weapon") ~= nil and not npc:object(read_obj_mod_param(npc, "issued_pistol_weapon")) then
+      give_object_to_npc(read_obj_mod_param(npc, "issued_pistol_weapon"), npc)
    end
-   if read_obj_mod_param(npc,"issued_medkit")~=nil and npc.health<r_mod_params("number","bodyguard_medkit_threshold",0.35) and npc:object(read_obj_mod_param(npc,"issued_medkit"))~=nil then
-      npc:eat(npc:object(read_obj_mod_param(npc,"issued_medkit")))
-      if read_obj_mod_param(npc,"issued_medkit")=="medkit" then
-         npc.health=0.60
-      elseif read_obj_mod_param(npc,"issued_medkit")=="medkit_army" then
-         npc.health=0.70
-      elseif read_obj_mod_param(npc,"issued_medkit")=="medkit_scientic" then
-         npc.health=0.85
-      elseif read_obj_mod_param(npc,"issued_medkit")=="medkit_elite" then
-         npc.health=1.00
+   if read_obj_mod_param(npc, "issued_medkit") ~= nil and npc.health < sgm_g.r_mod_params("number", "bodyguard_medkit_threshold", 0.35) and npc:object(read_obj_mod_param(npc, "issued_medkit")) ~= nil then
+      npc:eat(npc:object(read_obj_mod_param(npc, "issued_medkit")))
+      if read_obj_mod_param(npc, "issued_medkit") == "medkit" then
+         npc.health = 0.60
+      elseif read_obj_mod_param(npc, "issued_medkit") == "medkit_army" then
+         npc.health = 0.70
+      elseif read_obj_mod_param(npc, "issued_medkit") == "medkit_scientic" then
+         npc.health = 0.85
+      elseif read_obj_mod_param(npc, "issued_medkit") == "medkit_elite" then
+         npc.health = 1.00
       end
-      clear_obj_mod_param(npc,"issued_medkit")
+      clear_obj_mod_param(npc, "issued_medkit")
    end
-   if sgm_flags.table_mod_schemes[npc_id.."bodyguard_vector_timer"]~=0 then
-      if time_global()>=sgm_flags.table_mod_schemes[npc_id.."bodyguard_vector_timer"] then
-         sgm_flags.table_mod_schemes[npc_id.."bodyguard_vector_timer"]=0
+   if sgm_flags.table_mod_schemes[npc_id .. "bodyguard_vector_timer"] ~= 0 then
+      if time_global() >= sgm_flags.table_mod_schemes[npc_id .. "bodyguard_vector_timer"] then
+         sgm_flags.table_mod_schemes[npc_id .. "bodyguard_vector_timer"] = 0
       end
    end
-   if scheme_param.use_command=="wait_job" and npc_without_enemy then
-      sgm_functions.send_npc_to(npc,scheme_param.bodyguard_pos)
-      if npc_pos~=scheme_param.bodyguard_pos then
-         sgm_functions.set_state(npc,"walk")
-         sgm_functions.set_npc_teleport_to_home_position(npc,scheme_param.bodyguard_pos,scheme_param.home_teleport)
-      elseif npc_pos==scheme_param.bodyguard_pos then
-         sgm_functions.set_state_with_look(npc,scheme_param.bodyguard_state,bodyguard_look)
+   if scheme_param.use_command == "wait_job" and npc_without_enemy then
+      sgm_functions.send_npc_to(npc, scheme_param.bodyguard_pos)
+      if npc_pos ~= scheme_param.bodyguard_pos then
+         sgm_functions.set_state(npc, "walk")
+         sgm_functions.set_npc_teleport_to_home_position(npc, scheme_param.bodyguard_pos, scheme_param.home_teleport)
+      elseif npc_pos == scheme_param.bodyguard_pos then
+         sgm_functions.set_state_with_look(npc, scheme_param.bodyguard_state, bodyguard_look)
       end
-   elseif scheme_param.use_command=="guard" and npc_without_enemy then
-      sgm_functions.send_npc_to(npc,db.actor:level_vertex_id(),scheme_param.bodyguard_vector)
-      if distance_between_safe(db.actor,npc)>r_mod_params("number","bodyguard_running_dist",35) then
-         if sgm_flags.table_mod_schemes[npc_id.."bodyguard_vector_timer"]==0 then
-            sgm_functions.set_state(npc,"sprint",true)
-            sgm_flags.table_mod_schemes[npc_id.."bodyguard_vector_timer"]=time_global()+math.random(300,400)
+   elseif scheme_param.use_command == "guard" and npc_without_enemy then
+      sgm_functions.send_npc_to(npc, db.actor:level_vertex_id(), scheme_param.bodyguard_vector)
+      if distance_between_safe(db.actor, npc) > sgm_g.r_mod_params("number", "bodyguard_running_dist", 35) then
+         if sgm_flags.table_mod_schemes[npc_id .. "bodyguard_vector_timer"] == 0 then
+            sgm_functions.set_state(npc, "sprint", true)
+            sgm_flags.table_mod_schemes[npc_id .. "bodyguard_vector_timer"] = time_global() + math.random(300, 400)
          end
-      elseif distance_between_safe(db.actor,npc)>=9 and distance_between_safe(db.actor,npc)<=r_mod_params("number","bodyguard_running_dist",35) then
-         if sgm_flags.table_mod_schemes[npc_id.."bodyguard_vector_timer"]==0 then
-            sgm_functions.set_state(npc,"assault",true)
-            sgm_flags.table_mod_schemes[npc_id.."bodyguard_vector_timer"]=time_global()+math.random(300,400)
+      elseif distance_between_safe(db.actor, npc) >= 9 and distance_between_safe(db.actor, npc) <= sgm_g.r_mod_params("number", "bodyguard_running_dist", 35) then
+         if sgm_flags.table_mod_schemes[npc_id .. "bodyguard_vector_timer"] == 0 then
+            sgm_functions.set_state(npc, "assault", true)
+            sgm_flags.table_mod_schemes[npc_id .. "bodyguard_vector_timer"] = time_global() + math.random(300, 400)
          end
-      elseif distance_between_safe(db.actor,npc)<9 then
-         if sgm_flags.table_mod_schemes[npc_id.."bodyguard_vector_timer"]==0 then
-            sgm_functions.set_state(npc,"hide",true)
-            sgm_flags.table_mod_schemes[npc_id.."bodyguard_vector_timer"]=time_global()+math.random(300,400)
+      elseif distance_between_safe(db.actor, npc) < 9 then
+         if sgm_flags.table_mod_schemes[npc_id .. "bodyguard_vector_timer"] == 0 then
+            sgm_functions.set_state(npc, "hide", true)
+            sgm_flags.table_mod_schemes[npc_id .. "bodyguard_vector_timer"] = time_global() + math.random(300, 400)
          end
       end
       sgm_functions.set_npc_teleport_to_actor(npc)
-   elseif scheme_param.use_command=="stand_and_fire" then
-      if scheme_param.pos_stand_and_fire==0 then
-         scheme_param.pos_stand_and_fire=npc_pos
+   elseif scheme_param.use_command == "stand_and_fire" then
+      if scheme_param.pos_stand_and_fire == 0 then
+         scheme_param.pos_stand_and_fire = npc_pos
       end
-      if scheme_param.pos_stand_and_fire~=0 and npc_pos~=scheme_param.pos_stand_and_fire then
-         sgm_functions.set_state(npc,"sneak",true)
-         sgm_functions.send_npc_to(npc,scheme_param.pos_stand_and_fire)
-      elseif scheme_param.pos_stand_and_fire==0 or npc_pos==scheme_param.pos_stand_and_fire then
-         if npc:best_enemy()~=nil and npc:see(npc:best_enemy()) then
-            sgm_functions.set_state_look_to_obj(npc,"hide_fire",npc:best_enemy())
-         elseif npc:best_enemy()~=nil and not npc:see(npc:best_enemy()) then
-            sgm_functions.set_state_look_to_obj(npc,"hide",npc:best_enemy())
-         elseif npc:best_enemy()==nil then
-            sgm_functions.set_state(npc,"hide",true)
+      if scheme_param.pos_stand_and_fire ~= 0 and npc_pos ~= scheme_param.pos_stand_and_fire then
+         sgm_functions.set_state(npc, "sneak", true)
+         sgm_functions.send_npc_to(npc, scheme_param.pos_stand_and_fire)
+      elseif scheme_param.pos_stand_and_fire == 0 or npc_pos == scheme_param.pos_stand_and_fire then
+         if npc:best_enemy() ~= nil and npc:see(npc:best_enemy()) then
+            sgm_functions.set_state_look_to_obj(npc, "hide_fire", npc:best_enemy())
+         elseif npc:best_enemy() ~= nil and not npc:see(npc:best_enemy()) then
+            sgm_functions.set_state_look_to_obj(npc, "hide", npc:best_enemy())
+         elseif npc:best_enemy() == nil then
+            sgm_functions.set_state(npc, "hide", true)
          end
       end
-   elseif scheme_param.use_command=="nofire" then
-      sgm_functions.send_npc_to(npc,db.actor:level_vertex_id(),scheme_param.bodyguard_vector)
-      if distance_between_safe(db.actor,npc)>r_mod_params("number","bodyguard_running_dist",35) then
-         if sgm_flags.table_mod_schemes[npc_id.."bodyguard_vector_timer"]==0 then
-            sgm_functions.set_state(npc,"sprint",true)
-            sgm_flags.table_mod_schemes[npc_id.."bodyguard_vector_timer"]=time_global()+math.random(300,400)
+   elseif scheme_param.use_command == "nofire" then
+      sgm_functions.send_npc_to(npc, db.actor:level_vertex_id(), scheme_param.bodyguard_vector)
+      if distance_between_safe(db.actor, npc) > sgm_g.r_mod_params("number", "bodyguard_running_dist", 35) then
+         if sgm_flags.table_mod_schemes[npc_id .. "bodyguard_vector_timer"] == 0 then
+            sgm_functions.set_state(npc, "sprint", true)
+            sgm_flags.table_mod_schemes[npc_id .. "bodyguard_vector_timer"] = time_global() + math.random(300, 400)
          end
-      elseif distance_between_safe(db.actor,npc)>=9 and distance_between_safe(db.actor,npc)<=r_mod_params("number","bodyguard_running_dist",35) then
-         if sgm_flags.table_mod_schemes[npc_id.."bodyguard_vector_timer"]==0 then
-            sgm_functions.set_state(npc,"assault",true)
-            sgm_flags.table_mod_schemes[npc_id.."bodyguard_vector_timer"]=time_global()+math.random(300,400)
+      elseif distance_between_safe(db.actor, npc) >= 9 and distance_between_safe(db.actor, npc) <= sgm_g.r_mod_params("number", "bodyguard_running_dist", 35) then
+         if sgm_flags.table_mod_schemes[npc_id .. "bodyguard_vector_timer"] == 0 then
+            sgm_functions.set_state(npc, "assault", true)
+            sgm_flags.table_mod_schemes[npc_id .. "bodyguard_vector_timer"] = time_global() + math.random(300, 400)
          end
-      elseif distance_between_safe(db.actor,npc)<9 then
-         if sgm_flags.table_mod_schemes[npc_id.."bodyguard_vector_timer"]==0 then
-            sgm_functions.set_state(npc,"hide",true)
-            sgm_flags.table_mod_schemes[npc_id.."bodyguard_vector_timer"]=time_global()+math.random(300,400)
+      elseif distance_between_safe(db.actor, npc) < 9 then
+         if sgm_flags.table_mod_schemes[npc_id .. "bodyguard_vector_timer"] == 0 then
+            sgm_functions.set_state(npc, "hide", true)
+            sgm_flags.table_mod_schemes[npc_id .. "bodyguard_vector_timer"] = time_global() + math.random(300, 400)
          end
       end
       sgm_functions.set_npc_teleport_to_actor(npc)
-   elseif scheme_param.use_command=="wait_job" and npc_found_enemy then
-      sgm_functions.set_state(npc,"idle",true)
-   elseif scheme_param.use_command=="guard" and npc_found_enemy then
-      sgm_functions.set_state(npc,"idle",true)
+   elseif scheme_param.use_command == "wait_job" and npc_found_enemy then
+      sgm_functions.set_state(npc, "idle", true)
+   elseif scheme_param.use_command == "guard" and npc_found_enemy then
+      sgm_functions.set_state(npc, "idle", true)
       sgm_functions.set_npc_teleport_to_actor(npc)
-   elseif scheme_param.use_command=="stop" then
-      sgm_functions.set_state(npc,"hide")
-   end 
+   elseif scheme_param.use_command == "stop" then
+      sgm_functions.set_state(npc, "hide")
+   end
 end
-function action_bodyguard:check_logic_condlists(npc,ini,section)
-   local scheme_param=sgm_flags.table_mod_schemes[npc:id()]
---/if scheme_param.section==nil or (scheme_param.section~=nil and scheme_param.section~=self.st.saved_section) then --/Без постоянного обновления.
---/   scheme_param.section = self.st.saved_section
-      scheme_param.bodyguard_pos   = to_number(sgm_functions.check_section_condlist(ini,section,"bodyguard_pos",0))                                      --'Позиция телохранителя до найма.
-      scheme_param.bodyguard_look  = to_number(sgm_functions.check_section_condlist(ini,section,"bodyguard_look",0))                                     --'Направление взгляда телохранителя до найма.
-      scheme_param.bodyguard_state = to_string(sgm_functions.check_section_condlist(ini,section,"bodyguard_state","ward"))                               --'Анимация тела телохранителя до найма.
-      scheme_param.home_teleport   = to_string(sgm_functions.check_section_condlist(ini,section,"home_teleport","false"))                                --'Телепортация на рабочую позицию, при отходе от неё.
-      scheme_param.use_command     = to_string(sgm_functions.check_section_condlist(ini,section,"use_command",nil))                                      --'Команда, которую выполняет телохранитель.
---/end
+
+function action_bodyguard:check_logic_condlists(npc, ini, section)
+   local scheme_param           = sgm_flags.table_mod_schemes[npc:id()]
+   --/if scheme_param.section==nil or (scheme_param.section~=nil and scheme_param.section~=self.st.saved_section) then --/Без постоянного обновления.
+   --/   scheme_param.section = self.st.saved_section
+   scheme_param.bodyguard_pos   = to_number(sgm_functions.check_section_condlist(ini, section, "bodyguard_pos", 0))        --'Позиция телохранителя до найма.
+   scheme_param.bodyguard_look  = to_number(sgm_functions.check_section_condlist(ini, section, "bodyguard_look", 0))       --'Направление взгляда телохранителя до найма.
+   scheme_param.bodyguard_state = to_string(sgm_functions.check_section_condlist(ini, section, "bodyguard_state", "ward")) --'Анимация тела телохранителя до найма.
+   scheme_param.home_teleport   = to_string(sgm_functions.check_section_condlist(ini, section, "home_teleport", "false"))  --'Телепортация на рабочую позицию, при отходе от неё.
+   scheme_param.use_command     = to_string(sgm_functions.check_section_condlist(ini, section, "use_command", nil))        --'Команда, которую выполняет телохранитель.
+   --/end
 end
-function action_bodyguard:hit_callback(victim,amount,local_direction,killer,bone_index)
-   local is_scheme_victim,is_scheme_killer=self.object:id()==victim:id(),self.object:id()==killer:id()
+
+function action_bodyguard:hit_callback(victim, amount, local_direction, killer, bone_index)
+   local is_scheme_victim, is_scheme_killer = self.object:id() == victim:id(), self.object:id() == killer:id()
 end
-function action_bodyguard:death_callback(victim,killer)
-   local is_scheme_victim,is_scheme_killer=self.object:id()==victim:id(),self.object:id()==killer:id()
+
+function action_bodyguard:death_callback(victim, killer)
+   local is_scheme_victim, is_scheme_killer = self.object:id() == victim:id(), self.object:id() == killer:id()
 end
-function action_bodyguard:use_callback(use_target,use_source)
-   local is_scheme_use_target,is_scheme_use_source=self.object:id()==use_target:id(),self.object:id()==use_source:id()
+
+function action_bodyguard:use_callback(use_target, use_source)
+   local is_scheme_use_target, is_scheme_use_source = self.object:id() == use_target:id(),
+       self.object:id() == use_source:id()
 end
+
 function action_bodyguard:finalize()
    action_base.finalize(self)
 end
+
 ------------------------------------
 --           Планировка           --
 ------------------------------------
-bodyguard_action = xr_actions_id.zmey_actions+720
-bodyguard_evaluator = stalker_ids.property_script+4590
+bodyguard_action = xr_actions_id.zmey_actions + 720
+bodyguard_evaluator = stalker_ids.property_script + 4590
 function add_to_binder(npc, ini, scheme, section, storage)
    printf("DEBUG: add_to_binder [%s]: scheme='%s', section='%s'", npc:name(), scheme, section)
-   local operators={}
-   local properties={}
-   local manager=npc:motivation_action_manager()
-   properties["event"]=xr_evaluators_id.reaction
-   properties["need_bodyguard"]=bodyguard_evaluator+1
-   properties["state_mgr_logic_active"]=xr_evaluators_id.state_mgr+4
-   operators["action_bodyguard"]=bodyguard_action+1
-   manager:add_evaluator(properties["need_bodyguard"],this.evaluator_bodyguard(storage,"bodyguard_need_bodyguard"))
-   local new_action=this.action_bodyguard(npc,"action_bodyguard_activity", storage)
+   local operators = {}
+   local properties = {}
+   local manager = npc:motivation_action_manager()
+   properties["event"] = xr_evaluators_id.reaction
+   properties["need_bodyguard"] = bodyguard_evaluator + 1
+   properties["state_mgr_logic_active"] = xr_evaluators_id.state_mgr + 4
+   operators["action_bodyguard"] = bodyguard_action + 1
+   manager:add_evaluator(properties["need_bodyguard"], this.evaluator_bodyguard(storage, "bodyguard_need_bodyguard"))
+   local new_action = this.action_bodyguard(npc, "action_bodyguard_activity", storage)
    new_action:add_precondition(world_property(stalker_ids.property_alive, true))
-   new_action:add_precondition(world_property(stalker_ids.property_danger,false))
+   new_action:add_precondition(world_property(stalker_ids.property_danger, false))
    new_action:add_precondition(world_property(stalker_ids.property_enemy, false))
-   new_action:add_precondition(world_property(stalker_ids.property_anomaly,false))
+   new_action:add_precondition(world_property(stalker_ids.property_anomaly, false))
    new_action:add_precondition(world_property(properties["need_bodyguard"], true))
    xr_motivator.addCommonPrecondition(new_action)
    new_action:add_effect(world_property(properties["need_bodyguard"], false))
@@ -228,12 +245,13 @@ function add_to_binder(npc, ini, scheme, section, storage)
    new_action = manager:action(xr_actions_id.alife)
    new_action:add_precondition(world_property(properties["need_bodyguard"], false))
 end
-function set_scheme(npc,ini,scheme,section,gulag_name)
+
+function set_scheme(npc, ini, scheme, section, gulag_name)
    printf("DEBUG: set_scheme: scheme='%s', section='%s'", scheme, section)
    local st = xr_logic.assign_storage_and_bind(npc, ini, scheme, section)
    printf("DEBUG: set_scheme: storage assigned")
-   st.logic     = xr_logic.cfg_get_switch_conditions(ini, section, npc)
-   st.saved_ini   = ini
+   st.logic         = xr_logic.cfg_get_switch_conditions(ini, section, npc)
+   st.saved_ini     = ini
    st.saved_section = section
 end
 

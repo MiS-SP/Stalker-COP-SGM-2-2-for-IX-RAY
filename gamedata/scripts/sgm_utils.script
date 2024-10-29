@@ -6,157 +6,200 @@
 function utils_main_1()
    utils_update()
 end
+
 function utils_main_2()
    check_actor_item_to_add("personal_pda")
    check_actor_item_to_add("sleeping_bag")
    check_actor_item_to_remove("use_personal_rukzak")
 end
+
 function utils_update()
-    local level_name=level.name()
-    --//Функция, которая вызывается при первом старте игры//-->
-    if dont_has_alife_info("start_game_poratation") then
-       give_info("start_game_poratation")
-       sgm_callbacks.on_new_game_load()
-    end
-    --//Респаун инструментов для механиков//-->
-    if dont_has_alife_info("toolkit_rehide") then
-       if dont_has_alife_info("toolkit_reload") then
-          release_objects_by_section("toolkit")
-          give_info("toolkit_reload")
-       end
-       local rnd_simply_toolkits=math.random(1,3)
-       local rnd_signaller_toolkits=math.random(1,4)
-       if rnd_simply_toolkits==1 then
-          create("toolkit_1",327.605,44.370,-399.850,1513907,1)
-          create("toolkit_2",-169.014,-1.367,-250.869,429022,558)
-          create("toolkit_3",292.121,-0.093,251.465,475273,682)
-          create("toolkit_1",-322.218,7.844,24.794,170652,625)
-          create("toolkit_2",-420.992,40.600,-399.736,147944,306)
-          create("toolkit_3",-178.490,-4.120,-198.838,35783,753)
-          give_info("toolkits_places_variable_1")
-       elseif rnd_simply_toolkits==2 then
-          create("toolkit_1",-181.985,9.411,79.730,578901,145)
-          create("toolkit_1",456.818,35.020,61.825,1714113,293)
-          create("toolkit_2",397.407,28.391,-374.821,1343031,629)
-          create("toolkit_3",439.866,-4.640,414.025,1413633,521)
-          create("toolkit_3",158.593,0.547,25.450,388618,667)
-          create("toolkit_2",52.383,5.358,170.714,268070,761)
-          give_info("toolkits_places_variable_2")
-       else
-          create("toolkit_1",396.569,-5.609,223.732,1618523,7)
-          create("toolkit_3",-445.980,12.899,6.569,115931,214)
-          create("toolkit_2",398.255,22.557,-366.182,1343042,629)
-          create("toolkit_3",-419.195,14.750,343.627,19409,422)
-          create("toolkit_1",34.532,0.328,-249.951,242926,702)
-          create("toolkit_2",-145.483,0.162,-376.079,55952,716)
-          give_info("toolkits_places_variable_3")
-       end
-       if rnd_signaller_toolkits==1 then
-          create("signaller_toolkit_1",190.753,1.623,74.102,421762,668)
-          create("signaller_toolkit_2",-184.516,-0.577,30.443,32345,777)
-       elseif rnd_signaller_toolkits==2 then
-          create("signaller_toolkit_1",-59.120,-0.027,-61.666,130125,734)
-          create("signaller_toolkit_2",164.128,-0.181,342.862,394121,807)
-       elseif rnd_signaller_toolkits==3 then
-          create("signaller_toolkit_1",190.753,1.623,74.102,421762,668)
-          create("signaller_toolkit_2",-59.120,-0.027,-61.666,130125,734)
-       else
-          create("signaller_toolkit_1",-184.516,-0.577,30.443,32345,777)
-          create("signaller_toolkit_2",164.128,-0.181,342.862,394121,807)
-       end
-       give_info("toolkit_rehide")
-    end
-    --//Возврат стандартных отношений ГГ к НПС//-->
-    if has_alife_info("actor_noted_bandits") and has_alife_info("zat_bandit_base_leader_death") and db.actor:character_community()=="actor_bandit" then
-       write_mod_param("stat_community","no_community")
-       db.actor:set_character_community("actor",0,0)
-       decrease_faction_goodwill("bandit",1000)
-       decrease_faction_goodwill("bandit_alies",2000)
-       disable_info("actor_entry_in_bandit")
-       news_manager.send_tip(db.actor,"st_default_faction_b_event",0,"diagterev",8500,nil,"st_tip")
-    end
-    if has_alife_info("actor_noted_killers") and has_alife_info("jup_killer_base_leader_death") and db.actor:character_community()=="actor_killer" then
-       write_mod_param("stat_community","no_community")
-       db.actor:set_character_community("actor",0,0)
-       decrease_faction_goodwill("killer_alies",2000)
-       disable_info("actor_entry_in_killer")
-       news_manager.send_tip(db.actor,"st_default_faction_k_event",0,"diagterev",8500,nil,"st_tip")
-    end
-    if has_alife_info("actor_noted_rasvets") and has_alife_info("jup_rasvet_base_leader_death") and db.actor:character_community()=="actor_rasvet" then
-       write_mod_param("stat_community","no_community")
-       db.actor:set_character_community("actor",0,0)
-       decrease_faction_goodwill("rasvet",1000)
-       disable_info("actor_entry_in_rasvet")
-       news_manager.send_tip(db.actor,"st_default_faction_r_event",0,"diagterev",8500,nil,"st_tip")
-    end
-    if has_alife_info("actor_noted_monoliths") and has_alife_info("pri_monolit_base_leader_death") and db.actor:character_community()=="actor_monolit" then
-       write_mod_param("stat_community","no_community")
-       db.actor:set_character_community("actor",0,0)
-       decrease_faction_goodwill("monolith",1000)
-       decrease_faction_goodwill("monolith_alies",1000)
-       disable_info("actor_entry_in_monolith")
-       news_manager.send_tip(db.actor,"st_default_faction_m_event",0,"diagterev",8500,nil,"st_tip")
-    end
-    --//Активатор достижения «Помощник техника»//-->
-    if has_alife_info("sgm_achievements_assistant") then
-      if dont_has_alife_info("sgm_reached_zaton_assistant") and read_mod_param("zat_mechanic_stripping")>=80 then
-         give_info("sgm_reached_zaton_assistant")
-         news_manager.send_tip(db.actor,"st_reached_assistant_news_z",0,"portrait_Kardan",10000,nil,"st_add_info_title")
-      elseif dont_has_alife_info("sgm_reached_jupiter_assistant") and read_mod_param("jup_mechanic_stripping")>=80 then
-         give_info("sgm_reached_jupiter_assistant")
-         news_manager.send_tip(db.actor,"st_reached_assistant_news_j",0,"portrait_Azot",10000,nil,"st_add_info_title")
-      elseif dont_has_alife_info("sgm_reached_prypiat_assistant") and read_mod_param("pri_mechanic_stripping")>=80 then
-         give_info("sgm_reached_prypiat_assistant")
-         news_manager.send_tip(db.actor,"st_reached_assistant_news_p",0,"portrait_Soldier_2",10000,nil,"st_add_info_title")
+   local level_name = level.name()
+   --//Функция, которая вызывается при первом старте игры//-->
+   if sgm_g.dont_has_alife_info("start_game_poratation") then
+      give_info("start_game_poratation")
+      sgm_callbacks.on_new_game_load()
+   end
+   --//Респаун инструментов для механиков//-->
+   if sgm_g.dont_has_alife_info("toolkit_rehide") then
+      if sgm_g.dont_has_alife_info("toolkit_reload") then
+         release_objects_by_section("toolkit")
+         give_info("toolkit_reload")
       end
-    end
-    --//Регистрация в Sigerous Top//-->
-    if has_alife_info("sigerous_top_register") then
-       if check_game_timer("sigerous_top_register")==nil and device().precache_frame==0 then
-          start_game_timer("sigerous_top_register",1)
-       elseif check_game_timer("sigerous_top_register") then
-          give_info("sigerous_top_register")
-          abort_game_timer("sigerous_top_register")
-          local register_precond=check_item_count("exo_,af_,cev_plastin,scientific_outfit,heavy_outfit,military_outfit,army_outfit,detector_omega,guidebook_,repair_,medkit_elite,drug_engine,protecta,gauss,sig550,groza,vintorez,wpn_sv,wpn_rg,rpg7,g36,fn2000,pkm,_nimble,dv_,skill_book,money_meshochek,capture_meal",1,true)==false and get_flag_value("bool_cheat_mode_activate")==false -- and find_out_string(command_line(),"-test")
-          if register_precond then --find_out_string(command_line(),"-test")
-             run_dynamic_element(ui_mod_elements.sigerous_top(),false,true)
-          end
-       end
-    end
-    --//Фиксация автосохранения//-->
-    if sgm_functions.read_variable("currert_level")~=nil then
-       if sgm_functions.read_variable("currert_level")~=level.name() then
-          sgm_functions.write_variable("currert_level",level.name())
-          sgm_flags.string_savegame_type="autosave"
-          data_param_save_game(user_name().."-".."autosave")
-       end
-    end
-    --//Передача информации о посещенных локациях//-->
-    if level_name=="zaton" and dont_has_alife_info("actor_come_to_zaton") then give_info("actor_come_to_zaton") db.actor:set_actor_direction(3.826) end
-    if level_name=="jupiter" and dont_has_alife_info("actor_come_to_jupiter") then give_info("actor_come_to_jupiter") end
-    if level_name=="pripyat" and dont_has_alife_info("actor_come_to_pripyat") then give_info("actor_come_to_pripyat") end
-    if level_name=="darkvalley" and dont_has_alife_info("actor_come_to_darkvalley") then give_info("actor_come_to_darkvalley") sgm_supply.check_and_spawn_supply() end
-    if level_name=="labx8" and dont_has_alife_info("actor_come_to_labx8") then give_info("actor_come_to_labx8") end
-    if level_name=="l04u_labx18" and dont_has_alife_info("actor_come_to_x18") then give_info("actor_come_to_x18") sgm_supply.check_and_spawn_supply() end
-    if level_name=="military" and dont_has_alife_info("actor_come_to_military") then give_info("actor_come_to_military") sgm_supply.check_and_spawn_supply() end
-    if level_name=="agroprom" and dont_has_alife_info("actor_come_to_agroprom") then give_info("actor_come_to_agroprom") sgm_supply.check_and_spawn_supply() end
-    if level_name=="agroprom_underground" and dont_has_alife_info("actor_come_to_agroprom_underground") then give_info("actor_come_to_agroprom_underground") sgm_supply.check_and_spawn_supply() end
-    if level_name=="escape" and dont_has_alife_info("actor_come_to_escape") then give_info("actor_come_to_escape") sgm_supply.check_and_spawn_supply() end
-    if level_name=="marsh" and dont_has_alife_info("actor_come_to_marsh") then give_info("actor_come_to_marsh") sgm_supply.check_and_spawn_supply() end
-    if level_name=="red_forest" and dont_has_alife_info("actor_come_to_red_forest") then give_info("actor_come_to_red_forest") sgm_supply.check_and_spawn_supply() end
+      local rnd_simply_toolkits = math.random(1, 3)
+      local rnd_signaller_toolkits = math.random(1, 4)
+      if rnd_simply_toolkits == 1 then
+         create("toolkit_1", 327.605, 44.370, -399.850, 1513907, 1)
+         create("toolkit_2", -169.014, -1.367, -250.869, 429022, 558)
+         create("toolkit_3", 292.121, -0.093, 251.465, 475273, 682)
+         create("toolkit_1", -322.218, 7.844, 24.794, 170652, 625)
+         create("toolkit_2", -420.992, 40.600, -399.736, 147944, 306)
+         create("toolkit_3", -178.490, -4.120, -198.838, 35783, 753)
+         give_info("toolkits_places_variable_1")
+      elseif rnd_simply_toolkits == 2 then
+         create("toolkit_1", -181.985, 9.411, 79.730, 578901, 145)
+         create("toolkit_1", 456.818, 35.020, 61.825, 1714113, 293)
+         create("toolkit_2", 397.407, 28.391, -374.821, 1343031, 629)
+         create("toolkit_3", 439.866, -4.640, 414.025, 1413633, 521)
+         create("toolkit_3", 158.593, 0.547, 25.450, 388618, 667)
+         create("toolkit_2", 52.383, 5.358, 170.714, 268070, 761)
+         give_info("toolkits_places_variable_2")
+      else
+         create("toolkit_1", 396.569, -5.609, 223.732, 1618523, 7)
+         create("toolkit_3", -445.980, 12.899, 6.569, 115931, 214)
+         create("toolkit_2", 398.255, 22.557, -366.182, 1343042, 629)
+         create("toolkit_3", -419.195, 14.750, 343.627, 19409, 422)
+         create("toolkit_1", 34.532, 0.328, -249.951, 242926, 702)
+         create("toolkit_2", -145.483, 0.162, -376.079, 55952, 716)
+         give_info("toolkits_places_variable_3")
+      end
+      if rnd_signaller_toolkits == 1 then
+         create("signaller_toolkit_1", 190.753, 1.623, 74.102, 421762, 668)
+         create("signaller_toolkit_2", -184.516, -0.577, 30.443, 32345, 777)
+      elseif rnd_signaller_toolkits == 2 then
+         create("signaller_toolkit_1", -59.120, -0.027, -61.666, 130125, 734)
+         create("signaller_toolkit_2", 164.128, -0.181, 342.862, 394121, 807)
+      elseif rnd_signaller_toolkits == 3 then
+         create("signaller_toolkit_1", 190.753, 1.623, 74.102, 421762, 668)
+         create("signaller_toolkit_2", -59.120, -0.027, -61.666, 130125, 734)
+      else
+         create("signaller_toolkit_1", -184.516, -0.577, 30.443, 32345, 777)
+         create("signaller_toolkit_2", 164.128, -0.181, 342.862, 394121, 807)
+      end
+      give_info("toolkit_rehide")
+   end
+   --//Возврат стандартных отношений ГГ к НПС//-->
+   if has_alife_info("actor_noted_bandits") and has_alife_info("zat_bandit_base_leader_death") and db.actor:character_community() == "actor_bandit" then
+      write_mod_param("stat_community", "no_community")
+      db.actor:set_character_community("actor", 0, 0)
+      decrease_faction_goodwill("bandit", 1000)
+      decrease_faction_goodwill("bandit_alies", 2000)
+      disable_info("actor_entry_in_bandit")
+      news_manager.send_tip(db.actor, "st_default_faction_b_event", 0, "diagterev", 8500, nil, "st_tip")
+   end
+   if has_alife_info("actor_noted_killers") and has_alife_info("jup_killer_base_leader_death") and db.actor:character_community() == "actor_killer" then
+      write_mod_param("stat_community", "no_community")
+      db.actor:set_character_community("actor", 0, 0)
+      decrease_faction_goodwill("killer_alies", 2000)
+      disable_info("actor_entry_in_killer")
+      news_manager.send_tip(db.actor, "st_default_faction_k_event", 0, "diagterev", 8500, nil, "st_tip")
+   end
+   if has_alife_info("actor_noted_rasvets") and has_alife_info("jup_rasvet_base_leader_death") and db.actor:character_community() == "actor_rasvet" then
+      write_mod_param("stat_community", "no_community")
+      db.actor:set_character_community("actor", 0, 0)
+      decrease_faction_goodwill("rasvet", 1000)
+      disable_info("actor_entry_in_rasvet")
+      news_manager.send_tip(db.actor, "st_default_faction_r_event", 0, "diagterev", 8500, nil, "st_tip")
+   end
+   if has_alife_info("actor_noted_monoliths") and has_alife_info("pri_monolit_base_leader_death") and db.actor:character_community() == "actor_monolit" then
+      write_mod_param("stat_community", "no_community")
+      db.actor:set_character_community("actor", 0, 0)
+      decrease_faction_goodwill("monolith", 1000)
+      decrease_faction_goodwill("monolith_alies", 1000)
+      disable_info("actor_entry_in_monolith")
+      news_manager.send_tip(db.actor, "st_default_faction_m_event", 0, "diagterev", 8500, nil, "st_tip")
+   end
+   --//Активатор достижения «Помощник техника»//-->
+   if has_alife_info("sgm_achievements_assistant") then
+      if sgm_g.dont_has_alife_info("sgm_reached_zaton_assistant") and sgm_g.read_mod_param("zat_mechanic_stripping") >= 80 then
+         give_info("sgm_reached_zaton_assistant")
+         news_manager.send_tip(db.actor, "st_reached_assistant_news_z", 0, "portrait_Kardan", 10000, nil,
+            "st_add_info_title")
+      elseif sgm_g.dont_has_alife_info("sgm_reached_jupiter_assistant") and sgm_g.read_mod_param("jup_mechanic_stripping") >= 80 then
+         give_info("sgm_reached_jupiter_assistant")
+         news_manager.send_tip(db.actor, "st_reached_assistant_news_j", 0, "portrait_Azot", 10000, nil,
+            "st_add_info_title")
+      elseif sgm_g.dont_has_alife_info("sgm_reached_prypiat_assistant") and sgm_g.read_mod_param("pri_mechanic_stripping") >= 80 then
+         give_info("sgm_reached_prypiat_assistant")
+         news_manager.send_tip(db.actor, "st_reached_assistant_news_p", 0, "portrait_Soldier_2", 10000, nil,
+            "st_add_info_title")
+      end
+   end
+   --//Регистрация в Sigerous Top//-->
+   if has_alife_info("sigerous_top_register") then
+      if check_game_timer("sigerous_top_register") == nil and device().precache_frame == 0 then
+         start_game_timer("sigerous_top_register", 1)
+      elseif check_game_timer("sigerous_top_register") then
+         give_info("sigerous_top_register")
+         abort_game_timer("sigerous_top_register")
+         local register_precond = check_item_count(
+                "exo_,af_,cev_plastin,scientific_outfit,heavy_outfit,military_outfit,army_outfit,detector_omega,guidebook_,repair_,medkit_elite,drug_engine,protecta,gauss,sig550,groza,vintorez,wpn_sv,wpn_rg,rpg7,g36,fn2000,pkm,_nimble,dv_,skill_book,money_meshochek,capture_meal",
+                1, true) == false and
+             get_flag_value("bool_cheat_mode_activate") ==
+             false                -- and find_out_string(command_line(),"-test")
+         if register_precond then --find_out_string(command_line(),"-test")
+            run_dynamic_element(ui_mod_elements.sigerous_top(), false, true)
+         end
+      end
+   end
+   --//Фиксация автосохранения//-->
+   if sgm_functions.read_variable("currert_level") ~= nil then
+      if sgm_functions.read_variable("currert_level") ~= level.name() then
+         sgm_functions.write_variable("currert_level", level.name())
+         sgm_flags.string_savegame_type = "autosave"
+         sgm_g.data_param_save_game(user_name() .. "-" .. "autosave")
+      end
+   end
+   --//Передача информации о посещенных локациях//-->
+   if level_name == "zaton" and sgm_g.dont_has_alife_info("actor_come_to_zaton") then
+      give_info("actor_come_to_zaton")
+      db.actor:set_actor_direction(3.826)
+   end
+   if level_name == "jupiter" and sgm_g.dont_has_alife_info("actor_come_to_jupiter") then
+      give_info(
+         "actor_come_to_jupiter")
+   end
+   if level_name == "pripyat" and sgm_g.dont_has_alife_info("actor_come_to_pripyat") then
+      give_info(
+         "actor_come_to_pripyat")
+   end
+   if level_name == "darkvalley" and sgm_g.dont_has_alife_info("actor_come_to_darkvalley") then
+      give_info("actor_come_to_darkvalley")
+      sgm_supply.check_and_spawn_supply()
+   end
+   if level_name == "labx8" and sgm_g.dont_has_alife_info("actor_come_to_labx8") then give_info("actor_come_to_labx8") end
+   if level_name == "l04u_labx18" and sgm_g.dont_has_alife_info("actor_come_to_x18") then
+      give_info("actor_come_to_x18")
+      sgm_supply.check_and_spawn_supply()
+   end
+   if level_name == "military" and sgm_g.dont_has_alife_info("actor_come_to_military") then
+      give_info("actor_come_to_military")
+      sgm_supply.check_and_spawn_supply()
+   end
+   if level_name == "agroprom" and sgm_g.dont_has_alife_info("actor_come_to_agroprom") then
+      give_info("actor_come_to_agroprom")
+      sgm_supply.check_and_spawn_supply()
+   end
+   if level_name == "agroprom_underground" and sgm_g.dont_has_alife_info("actor_come_to_agroprom_underground") then
+      give_info("actor_come_to_agroprom_underground")
+      sgm_supply.check_and_spawn_supply()
+   end
+   if level_name == "escape" and sgm_g.dont_has_alife_info("actor_come_to_escape") then
+      give_info("actor_come_to_escape")
+      sgm_supply.check_and_spawn_supply()
+   end
+   if level_name == "marsh" and sgm_g.dont_has_alife_info("actor_come_to_marsh") then
+      give_info("actor_come_to_marsh")
+      sgm_supply.check_and_spawn_supply()
+   end
+   if level_name == "red_forest" and sgm_g.dont_has_alife_info("actor_come_to_red_forest") then
+      give_info("actor_come_to_red_forest")
+      sgm_supply.check_and_spawn_supply()
+   end
 end
 
 local old_w_CTime = utils.w_CTime
 function w_CTime(p, t)
    if t == nil then
-		p:w_u8(-1)
-		return
-	end
-      if tonumber(t) then
-         p:w_u8(-1)
+      p:w_u8(-1)
+      return
+   end
+   if tonumber(t) then
+      p:w_u8(-1)
       return
    end
    old_w_CTime()
 end
+
 utils.w_CTime = w_CTime
 -------------------------------------//Copyright GeJorge//-------------------------------------------------

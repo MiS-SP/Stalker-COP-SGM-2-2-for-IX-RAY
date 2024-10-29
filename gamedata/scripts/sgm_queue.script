@@ -6,39 +6,39 @@
 function queue_main()
    queue_update()
 end
+
 function queue_update()
-   if check_seconds(3) then
-      if autosave_precond() and get_table_lines(sgm_flags.table_mod_autosaves)>0 then
-         for k,v in pairs(sgm_flags.table_mod_autosaves) do
-            if k~=nil and v then
-               if find_in_string(k,"st_") then
-                  game_autosave(k,2)
-                  sgm_flags.table_mod_autosaves[k]=nil
+   if sgm_g.check_seconds(3) then
+      if sgm_g.autosave_precond() and get_table_lines(sgm_flags.table_mod_autosaves) > 0 then
+         for k, v in pairs(sgm_flags.table_mod_autosaves) do
+            if k ~= nil and v then
+               if sgm_g.find_in_string(k, "st_") then
+                  game_autosave(k, 2)
+                  sgm_flags.table_mod_autosaves[k] = nil
                else
-                  game_autosave(k,1)
-                  sgm_flags.table_mod_autosaves[k]=nil
+                  game_autosave(k, 1)
+                  sgm_flags.table_mod_autosaves[k] = nil
                end
             end
          end
       end
    end
-   if check_seconds(2) then
-      if sgm_flags.value_throw_item_id~=-1 and level.object_by_id(sgm_flags.value_throw_item_id)~=nil then
+   if sgm_g.check_seconds(2) then
+      if sgm_flags.value_throw_item_id ~= -1 and level.object_by_id(sgm_flags.value_throw_item_id) ~= nil then
          level.object_by_id(sgm_flags.value_throw_item_id):set_condition(sgm_flags.value_throw_item_cond)
-         sgm_flags.value_throw_item_id=-1
-         sgm_flags.value_throw_item_cond=1.0
+         sgm_flags.value_throw_item_id = -1
+         sgm_flags.value_throw_item_cond = 1.0
       end
    end
-   if get_table_lines(sgm_flags.table_mod_teleports)>0 then
-      for k,v in pairs(sgm_flags.table_mod_teleports) do
-         if k~=nil and get_story_object(k)~=nil and (sgm_flags.table_mod_teleports[k].x~=nil and sgm_flags.table_mod_teleports[k].y~=nil and sgm_flags.table_mod_teleports[k].z~=nil) then
-            get_story_object(k):set_npc_position(vector():set(sgm_flags.table_mod_teleports[k].x,sgm_flags.table_mod_teleports[k].y,sgm_flags.table_mod_teleports[k].z))
-            sgm_flags.table_mod_teleports[k]=nil
+   if get_table_lines(sgm_flags.table_mod_teleports) > 0 then
+      for k, v in pairs(sgm_flags.table_mod_teleports) do
+         if k ~= nil and get_story_object(k) ~= nil and (sgm_flags.table_mod_teleports[k].x ~= nil and sgm_flags.table_mod_teleports[k].y ~= nil and sgm_flags.table_mod_teleports[k].z ~= nil) then
+            get_story_object(k):set_npc_position(vector():set(sgm_flags.table_mod_teleports[k].x,
+               sgm_flags.table_mod_teleports[k].y, sgm_flags.table_mod_teleports[k].z))
+            sgm_flags.table_mod_teleports[k] = nil
          end
       end
    end
 end
 
-
 ---------------------------------//Copyright GeJorge//-----------------------------------------------
-

@@ -7,28 +7,28 @@ function cleaners_main()
    monsters_cleaner_update()
    anomaly_cleaner_update()
 end
+
 function monsters_cleaner_update()
-   if r_mod_params("number","monsters_cleaner_interval",0)>0 then
-      if check_game_timer("m_cleaner_timer")==nil then
-         start_game_timer("m_cleaner_timer",r_mod_params("number","monsters_cleaner_interval",0))
+   if sgm_g.r_mod_params("number", "monsters_cleaner_interval", 0) > 0 then
+      if check_game_timer("m_cleaner_timer") == nil then
+         start_game_timer("m_cleaner_timer", sgm_g.r_mod_params("number", "monsters_cleaner_interval", 0))
       end
    else
       abort_game_timer("m_cleaner_timer")
    end
    if check_game_timer("m_cleaner_timer") then
-      clear_all_objects("monster",15)
-      start_game_timer("m_cleaner_timer",r_mod_params("number","monsters_cleaner_interval",0))
+      clear_all_objects("monster", 15)
+      start_game_timer("m_cleaner_timer", sgm_g.r_mod_params("number", "monsters_cleaner_interval", 0))
    end
 end
+
 function anomaly_cleaner_update()
-   if r_mod_params("bool","create_anomaly_permition",true)==false and dont_has_alife_info("anomaly_permition_activate") then
+   if sgm_g.r_mod_params("bool", "create_anomaly_permition", true) == false and sgm_g.dont_has_alife_info("anomaly_permition_activate") then
       clear_all_objects("anomaly")
       give_info("anomaly_permition_activate")
-   elseif r_mod_params("bool","create_anomaly_permition",true)==true and has_alife_info("anomaly_permition_activate") then
+   elseif sgm_g.r_mod_params("bool", "create_anomaly_permition", true) == true and has_alife_info("anomaly_permition_activate") then
       disable_info("anomaly_permition_activate")
    end
 end
-
-
 
 -------------------------------------//Copyright GeJorge//-------------------------------------------------

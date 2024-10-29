@@ -1,13 +1,16 @@
 --[[------------------------------------------------------------------------------------------------------------------
 Smart terrain binder
-Нужен для того, чтобы серверный объект smart terrain получал обновления.
-Чугай Александр
+РќСѓР¶РµРЅ РґР»СЏ С‚РѕРіРѕ, С‡С‚РѕР±С‹ СЃРµСЂРІРµСЂРЅС‹Р№ РѕР±СЉРµРєС‚ smart terrain РїРѕР»СѓС‡Р°Р» РѕР±РЅРѕРІР»РµРЅРёСЏ.
+Р§СѓРіР°Р№ РђР»РµРєСЃР°РЅРґСЂ
 --------------------------------------------------------------------------------------------------------------------]]
+
 function bind( obj )
 	local ini = obj:spawn_ini()
+
 	if not ini then
 		return
 	end
+
 	if ini:section_exist( "gulag1" ) or ini:section_exist( "smart_terrain" ) then
 		if obj:clsid() == clsid.smart_terrain then
 			if alife() then
@@ -20,37 +23,50 @@ function bind( obj )
 		end
 	end
 end
+
 ----------------------------------------------------------------------------------------------------------------------
+
 class "smart_terrain_binder" ( object_binder )
+
 function smart_terrain_binder:__init( obj ) super( obj )
 end
+
 function smart_terrain_binder:net_spawn( server_object )
 	if not object_binder.net_spawn( self, server_object ) then
 		return false
 	end
-	-- получить ссылку на настоящий серверный объект
+
+	-- РїРѕР»СѓС‡РёС‚СЊ СЃСЃС‹Р»РєСѓ РЅР° РЅР°СЃС‚РѕСЏС‰РёР№ СЃРµСЂРІРµСЂРЅС‹Р№ РѕР±СЉРµРєС‚
 	self.se_smart_terrain = alife():object( server_object.id )
+
 	db.add_zone( self.object )
 	db.add_smart_terrain( self.se_smart_terrain )
+
 	return true
 end
+
 function smart_terrain_binder:net_destroy()
 	xr_sound.stop_sounds_by_id(self.object:id())
+	
 	db.del_zone( self.object )
 	db.del_smart_terrain( self.se_smart_terrain )
+
 	object_binder.net_destroy( self )
 end
+
 function smart_terrain_binder:net_Relcase( obj )
 --	printf( "smart_terrain_binder.net_Relcase: self.object=%s obj=%s", self.object:name(), obj:name() )
+
 	if self.se_smart_terrain.npc_info[obj:id()] then
 		--self.se_smart_terrain.gulag:object_setup_offline( obj:id(), true )
-		-- TODO: Заменить на аналог
+		-- TODO: Р—Р°РјРµРЅРёС‚СЊ РЅР° Р°РЅР°Р»РѕРі
 	end
 end
+
 function smart_terrain_binder:update( delta )
 	object_binder.update( self, delta )
-        --/ SGM in
-	sgm_modules.module_smart_terrain(self.object)
-        --/ SGM out
+    --/ SGM in
+    sgm_modules.module_smart_terrain(self.object)
+    --/ SGM out
 	self.se_smart_terrain:update()
 end

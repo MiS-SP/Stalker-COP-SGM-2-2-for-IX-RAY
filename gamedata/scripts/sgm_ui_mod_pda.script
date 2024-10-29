@@ -3,302 +3,346 @@
 --------------------------------------(КПК Дегтярёва)----------------------------------------------
 ---------------------------------------------------------------------------------------------------
 ---=============================================================================================---
-local achievements_names={[1]="sniper",[2]="client",[3]="pathfinder",[4]="guidebook",[5]="marauder",[6]="magnate",[7]="assistant",[8]="lifeguard"}
-local diplomatia_names={[1]="stalkers",[2]="bandits",[3]="dolgs",[4]="freedoms",[5]="killers",[6]="rasvets"}
-local equipments_config = {{item_slot=2,flg=0},{item_slot=3,flg=0},{item_slot=7,flg=0},{item_slot=12,flg=0}}
-local relation_stalkers_cost=25000
-local relation_bandits_cost=28000
-local relation_dolgs_cost=30000
-local relation_freedoms_cost=30000
-local relation_killers_cost=35000
-local relation_rasvets_cost=10000
+local achievements_names = {
+   [1] = "sniper",
+   [2] = "client",
+   [3] = "pathfinder",
+   [4] = "guidebook",
+   [5] = "marauder",
+   [6] =
+   "magnate",
+   [7] = "assistant",
+   [8] = "lifeguard"
+}
+local diplomatia_names = {
+   [1] = "stalkers",
+   [2] = "bandits",
+   [3] = "dolgs",
+   [4] = "freedoms",
+   [5] = "killers",
+   [6] =
+   "rasvets"
+}
+local equipments_config = { { item_slot = 2, flg = 0 }, { item_slot = 3, flg = 0 }, { item_slot = 7, flg = 0 }, { item_slot = 12, flg = 0 } }
+local relation_stalkers_cost = 25000
+local relation_bandits_cost = 28000
+local relation_dolgs_cost = 30000
+local relation_freedoms_cost = 30000
+local relation_killers_cost = 35000
+local relation_rasvets_cost = 10000
 class "equipments_source" (CUIListBoxItem)
-function equipments_source:__init(height) super(height)
-   self.title=self:GetTextItem()
-   self:SetTextColor(GetARGB(255,210,210,210))
+function equipments_source:__init(height)
+   super(height)
+   self.title = self:GetTextItem()
+   self:SetTextColor(GetARGB(255, 210, 210, 210))
    self.title:SetFont(GetFontLetterica18Russian())
-   self.title:SetWndSize(vector2():set(278,height))
+   self.title:SetWndSize(vector2():set(278, height))
    self.title:SetEllipsis(true)
 end
+
 class "personal_pda" (CUIScriptWnd)
-function personal_pda:__init(owner) super()
+function personal_pda:__init(owner)
+   super()
    self.owner = owner
    self:InitControls()
    self:InitCallBacks()
 end
+
 function personal_pda:__finalize()
 end
+
 function personal_pda:InitControls()
-   self:SetWndRect(Frect():set(0,0,1024,768))
+   self:SetWndRect(Frect():set(0, 0, 1024, 768))
    local xml = CScriptXmlInit()
    xml:ParseFile("ui_mod_elements.xml")
-   self.personal_pda_form=xml:InitStatic("personal_pda_form",self)
+   self.personal_pda_form = xml:InitStatic("personal_pda_form", self)
    ----------------
    -- Переменные --
    ----------------
    self.equipments_section = {}
    self:set_pda_section(0)
-   for i=1,get_table_lines(achievements_names) do
-      self["achievements_"..achievements_names[i].."_status"] = "not_to_know"
+   for i = 1, get_table_lines(achievements_names) do
+      self["achievements_" .. achievements_names[i] .. "_status"] = "not_to_know"
    end
    ------------------------
    -- Основное наложение --
    ------------------------
-   self:start_button(xml,"btn_off_pda")
-   self:register_element(xml,"pda_top_frame")
-   self:register_element(xml,"pda_game_time")
-   self:register_element(xml,"pda_welcome_screen")
+   self:start_button(xml, "btn_off_pda")
+   self:register_element(xml, "pda_top_frame")
+   self:register_element(xml, "pda_game_time")
+   self:register_element(xml, "pda_welcome_screen")
    ----------------------
    -- Панель навигации --
    ----------------------
-   self:start_button(xml,"tab_statistic")
-   self:start_button(xml,"tab_advices")
-   if r_mod_params("bool","disable_sgm_achievements",false)==false then
-      self:start_button(xml,"tab_achievements")
+   self:start_button(xml, "tab_statistic")
+   self:start_button(xml, "tab_advices")
+   if sgm_g.r_mod_params("bool", "disable_sgm_achievements", false) == false then
+      self:start_button(xml, "tab_achievements")
    end
-   self:start_button(xml,"tab_library")
+   self:start_button(xml, "tab_library")
    if has_alife_info("pri_a28_actor_in_zone_stay") then
-      self:start_button(xml,"tab_diplomatia")
+      self:start_button(xml, "tab_diplomatia")
    end
---/self:start_button(xml,"tab_equipments")
+   --/self:start_button(xml,"tab_equipments")
    --------------
    -- Переходы --
    --------------
-   self:register_button(xml,"achievements_next_page")
-   self:register_button(xml,"achievements_back_page")
-   self:register_button(xml,"library_next_page")
-   self:register_button(xml,"library_back_page")
-   self:register_button(xml,"statistic_killed_page")
-   self:register_button(xml,"statistic_home_page")
-   self:register_button(xml,"statistic_killed_page2")
-   self:register_button(xml,"statistic_previous_page")
+   self:register_button(xml, "achievements_next_page")
+   self:register_button(xml, "achievements_back_page")
+   self:register_button(xml, "library_next_page")
+   self:register_button(xml, "library_back_page")
+   self:register_button(xml, "statistic_killed_page")
+   self:register_button(xml, "statistic_home_page")
+   self:register_button(xml, "statistic_killed_page2")
+   self:register_button(xml, "statistic_previous_page")
    -----------------------
    -- Строки статистики --
    -----------------------
-   self:register_element(xml,"statistic_setka")
-   for i=1,26 do
-      self:register_element(xml,"statistic_line_"..i.."_title")
-      self:register_element(xml,"statistic_line_"..i.."_value")
+   self:register_element(xml, "statistic_setka")
+   for i = 1, 26 do
+      self:register_element(xml, "statistic_line_" .. i .. "_title")
+      self:register_element(xml, "statistic_line_" .. i .. "_value")
    end
    --------------------
    -- Строки советов --
    --------------------
-   self:register_element(xml,"advices_field")
+   self:register_element(xml, "advices_field")
    -----------------------
    -- Строки достижений --
    -----------------------
-   self:register_element(xml,"achievements_field")
-   for i=1,get_table_lines(achievements_names) do
-      self:register_element(xml,"achievements_table_"..achievements_names[i])
-      self:register_element(xml,"achievements_icon_"..achievements_names[i])
-      self:register_element(xml,"achievements_name_"..achievements_names[i])
-      self:register_element(xml,"achievements_status_"..achievements_names[i].."_a")
-      self:register_element(xml,"achievements_status_"..achievements_names[i].."_b")
-      self:register_element(xml,"achievements_need_title_"..achievements_names[i])
-      self:register_element(xml,"achievements_bonus_title_"..achievements_names[i])
-      self:register_element(xml,"achievements_need_box_"..achievements_names[i])
-      self:register_element(xml,"achievements_bonus_box_"..achievements_names[i])
+   self:register_element(xml, "achievements_field")
+   for i = 1, get_table_lines(achievements_names) do
+      self:register_element(xml, "achievements_table_" .. achievements_names[i])
+      self:register_element(xml, "achievements_icon_" .. achievements_names[i])
+      self:register_element(xml, "achievements_name_" .. achievements_names[i])
+      self:register_element(xml, "achievements_status_" .. achievements_names[i] .. "_a")
+      self:register_element(xml, "achievements_status_" .. achievements_names[i] .. "_b")
+      self:register_element(xml, "achievements_need_title_" .. achievements_names[i])
+      self:register_element(xml, "achievements_bonus_title_" .. achievements_names[i])
+      self:register_element(xml, "achievements_need_box_" .. achievements_names[i])
+      self:register_element(xml, "achievements_bonus_box_" .. achievements_names[i])
    end
    -----------------------
    -- Строки библиотеки --
    -----------------------
-   self:register_element(xml,"library_background")
-   for i=1,42 do
-      self:register_element(xml,"library_table_"..i.."_main")
-      self:register_element(xml,"library_table_"..i.."_title")
-      self:register_element(xml,"library_table_"..i.."_status")
+   self:register_element(xml, "library_background")
+   for i = 1, 42 do
+      self:register_element(xml, "library_table_" .. i .. "_main")
+      self:register_element(xml, "library_table_" .. i .. "_title")
+      self:register_element(xml, "library_table_" .. i .. "_status")
    end
    -----------------------
    -- Строки дипломатии --
    -----------------------
-   self:register_check(xml,"diplomatia_agreement_check_friend",sgm_functions.info_get_boolean("agreement_check_friend"))
-   self:register_check(xml,"diplomatia_agreement_check_enemy",sgm_functions.info_get_boolean("agreement_check_enemy"))
-   self:register_element(xml,"diplomatia_check_area")
-   self:register_element(xml,"diplomatia_field")
-   for i=1,get_table_lines(diplomatia_names) do
-      self:register_button(xml,"diplomatia_button_t_"..diplomatia_names[i])
-      self:register_element(xml,"diplomatia_table_"..diplomatia_names[i])
-      self:register_element(xml,"diplomatia_logo_"..diplomatia_names[i])
-      self:register_element(xml,"diplomatia_title_"..diplomatia_names[i])
-      self:register_element(xml,"diplomatia_need_title_"..diplomatia_names[i])
-      self:register_element(xml,"diplomatia_need_box_"..diplomatia_names[i])
-      self:register_element(xml,"diplomatia_button_b_"..diplomatia_names[i])
+   self:register_check(xml, "diplomatia_agreement_check_friend", sgm_functions.info_get_boolean("agreement_check_friend"))
+   self:register_check(xml, "diplomatia_agreement_check_enemy", sgm_functions.info_get_boolean("agreement_check_enemy"))
+   self:register_element(xml, "diplomatia_check_area")
+   self:register_element(xml, "diplomatia_field")
+   for i = 1, get_table_lines(diplomatia_names) do
+      self:register_button(xml, "diplomatia_button_t_" .. diplomatia_names[i])
+      self:register_element(xml, "diplomatia_table_" .. diplomatia_names[i])
+      self:register_element(xml, "diplomatia_logo_" .. diplomatia_names[i])
+      self:register_element(xml, "diplomatia_title_" .. diplomatia_names[i])
+      self:register_element(xml, "diplomatia_need_title_" .. diplomatia_names[i])
+      self:register_element(xml, "diplomatia_need_box_" .. diplomatia_names[i])
+      self:register_element(xml, "diplomatia_button_b_" .. diplomatia_names[i])
    end
    -------------------------
    -- Строки оборудований --
    -------------------------
-   self.equipments_list=xml:InitListBox("personal_pda_form:equipments_list",self)
+   self.equipments_list = xml:InitListBox("personal_pda_form:equipments_list", self)
    self.equipments_list:ShowSelectedItem(true)
-   self:Register(self.equipments_list,"equipments_list_window")
-   self:register_element(xml,"equipments_background")
-   self:register_element(xml,"equipments_icon_field")
-   self:register_element(xml,"equipments_title_field")
-   self:register_element(xml,"equipments_descr_field")
+   self:Register(self.equipments_list, "equipments_list_window")
+   self:register_element(xml, "equipments_background")
+   self:register_element(xml, "equipments_icon_field")
+   self:register_element(xml, "equipments_title_field")
+   self:register_element(xml, "equipments_descr_field")
    ------------------
    -- Общие списки --
    ------------------
-   self.library_table={}
-   self.library_bools={}
-   self.statistic_table={}
-   self.diplomatia_table={}
-   self.diplomatia_bools={}
-   self.equipments_table={}
-   self.equipments_bools={}
-   self.achievements_table_1={}
-   self.achievements_table_2={}
-   self.achievements_bools_1={}
-   self.achievements_bools_2={}
-   for i=1,26 do
-      table.insert(self.statistic_table,self["statistic_line_"..i.."_title"])
-      table.insert(self.statistic_table,self["statistic_line_"..i.."_value"])
+   self.library_table = {}
+   self.library_bools = {}
+   self.statistic_table = {}
+   self.diplomatia_table = {}
+   self.diplomatia_bools = {}
+   self.equipments_table = {}
+   self.equipments_bools = {}
+   self.achievements_table_1 = {}
+   self.achievements_table_2 = {}
+   self.achievements_bools_1 = {}
+   self.achievements_bools_2 = {}
+   for i = 1, 26 do
+      table.insert(self.statistic_table, self["statistic_line_" .. i .. "_title"])
+      table.insert(self.statistic_table, self["statistic_line_" .. i .. "_value"])
    end
-   for i=1,42 do
-      table.insert(self.library_table,self["library_table_"..i.."_title"])
-      table.insert(self.library_table,self["library_table_"..i.."_status"])
-      table.insert(self.library_bools,self["library_table_"..i.."_main"])
+   for i = 1, 42 do
+      table.insert(self.library_table, self["library_table_" .. i .. "_title"])
+      table.insert(self.library_table, self["library_table_" .. i .. "_status"])
+      table.insert(self.library_bools, self["library_table_" .. i .. "_main"])
    end
-   for i=1,4 do
-      table.insert(self.achievements_table_1,self["achievements_name_"..achievements_names[i]])
-      table.insert(self.achievements_table_1,self["achievements_status_"..achievements_names[i].."_a"])
-      table.insert(self.achievements_table_1,self["achievements_status_"..achievements_names[i].."_b"])
-      table.insert(self.achievements_table_1,self["achievements_need_title_"..achievements_names[i]])
-      table.insert(self.achievements_table_1,self["achievements_bonus_title_"..achievements_names[i]])
-      table.insert(self.achievements_table_1,self["achievements_need_box_"..achievements_names[i]])
-      table.insert(self.achievements_table_1,self["achievements_bonus_box_"..achievements_names[i]])
-      table.insert(self.achievements_bools_1,self["achievements_table_"..achievements_names[i]])
-      table.insert(self.achievements_bools_1,self["achievements_icon_"..achievements_names[i]])
+   for i = 1, 4 do
+      table.insert(self.achievements_table_1, self["achievements_name_" .. achievements_names[i]])
+      table.insert(self.achievements_table_1, self["achievements_status_" .. achievements_names[i] .. "_a"])
+      table.insert(self.achievements_table_1, self["achievements_status_" .. achievements_names[i] .. "_b"])
+      table.insert(self.achievements_table_1, self["achievements_need_title_" .. achievements_names[i]])
+      table.insert(self.achievements_table_1, self["achievements_bonus_title_" .. achievements_names[i]])
+      table.insert(self.achievements_table_1, self["achievements_need_box_" .. achievements_names[i]])
+      table.insert(self.achievements_table_1, self["achievements_bonus_box_" .. achievements_names[i]])
+      table.insert(self.achievements_bools_1, self["achievements_table_" .. achievements_names[i]])
+      table.insert(self.achievements_bools_1, self["achievements_icon_" .. achievements_names[i]])
    end
-   for i=5,8 do
-      table.insert(self.achievements_table_2,self["achievements_name_"..achievements_names[i]])
-      table.insert(self.achievements_table_2,self["achievements_status_"..achievements_names[i].."_a"])
-      table.insert(self.achievements_table_2,self["achievements_status_"..achievements_names[i].."_b"])
-      table.insert(self.achievements_table_2,self["achievements_need_title_"..achievements_names[i]])
-      table.insert(self.achievements_table_2,self["achievements_bonus_title_"..achievements_names[i]])
-      table.insert(self.achievements_table_2,self["achievements_need_box_"..achievements_names[i]])
-      table.insert(self.achievements_table_2,self["achievements_bonus_box_"..achievements_names[i]])
-      table.insert(self.achievements_bools_2,self["achievements_table_"..achievements_names[i]])
-      table.insert(self.achievements_bools_2,self["achievements_icon_"..achievements_names[i]])
+   for i = 5, 8 do
+      table.insert(self.achievements_table_2, self["achievements_name_" .. achievements_names[i]])
+      table.insert(self.achievements_table_2, self["achievements_status_" .. achievements_names[i] .. "_a"])
+      table.insert(self.achievements_table_2, self["achievements_status_" .. achievements_names[i] .. "_b"])
+      table.insert(self.achievements_table_2, self["achievements_need_title_" .. achievements_names[i]])
+      table.insert(self.achievements_table_2, self["achievements_bonus_title_" .. achievements_names[i]])
+      table.insert(self.achievements_table_2, self["achievements_need_box_" .. achievements_names[i]])
+      table.insert(self.achievements_table_2, self["achievements_bonus_box_" .. achievements_names[i]])
+      table.insert(self.achievements_bools_2, self["achievements_table_" .. achievements_names[i]])
+      table.insert(self.achievements_bools_2, self["achievements_icon_" .. achievements_names[i]])
    end
-   for i=1,get_table_lines(diplomatia_names) do
-      table.insert(self.diplomatia_table,self["diplomatia_title_"..diplomatia_names[i]])
-      table.insert(self.diplomatia_table,self["diplomatia_need_title_"..diplomatia_names[i]])
-      table.insert(self.diplomatia_table,self["diplomatia_need_box_"..diplomatia_names[i]])
-      table.insert(self.diplomatia_table,self["diplomatia_button_t_"..diplomatia_names[i]])
-      table.insert(self.diplomatia_bools,self["diplomatia_table_"..diplomatia_names[i]])
-      table.insert(self.diplomatia_bools,self["diplomatia_logo_"..diplomatia_names[i]])
-      table.insert(self.diplomatia_bools,self["diplomatia_button_b_"..diplomatia_names[i]])
+   for i = 1, get_table_lines(diplomatia_names) do
+      table.insert(self.diplomatia_table, self["diplomatia_title_" .. diplomatia_names[i]])
+      table.insert(self.diplomatia_table, self["diplomatia_need_title_" .. diplomatia_names[i]])
+      table.insert(self.diplomatia_table, self["diplomatia_need_box_" .. diplomatia_names[i]])
+      table.insert(self.diplomatia_table, self["diplomatia_button_t_" .. diplomatia_names[i]])
+      table.insert(self.diplomatia_bools, self["diplomatia_table_" .. diplomatia_names[i]])
+      table.insert(self.diplomatia_bools, self["diplomatia_logo_" .. diplomatia_names[i]])
+      table.insert(self.diplomatia_bools, self["diplomatia_button_b_" .. diplomatia_names[i]])
    end
-   table.insert(self.library_bools,self.library_background)
-   table.insert(self.achievements_bools_1,self.achievements_field)
-   table.insert(self.diplomatia_bools,self.diplomatia_field)
-   table.insert(self.diplomatia_bools,self.diplomatia_check_area)
-   table.insert(self.diplomatia_bools,self.diplomatia_agreement_check_enemy)
-   table.insert(self.diplomatia_bools,self.diplomatia_agreement_check_friend)
-   table.insert(self.equipments_table,self.equipments_title_field)
-   table.insert(self.equipments_table,self.equipments_descr_field)
-   table.insert(self.equipments_bools,self.equipments_background)
-   table.insert(self.equipments_bools,self.equipments_icon_field)
-   table.insert(self.equipments_bools,self.equipments_list)
+   table.insert(self.library_bools, self.library_background)
+   table.insert(self.achievements_bools_1, self.achievements_field)
+   table.insert(self.diplomatia_bools, self.diplomatia_field)
+   table.insert(self.diplomatia_bools, self.diplomatia_check_area)
+   table.insert(self.diplomatia_bools, self.diplomatia_agreement_check_enemy)
+   table.insert(self.diplomatia_bools, self.diplomatia_agreement_check_friend)
+   table.insert(self.equipments_table, self.equipments_title_field)
+   table.insert(self.equipments_table, self.equipments_descr_field)
+   table.insert(self.equipments_bools, self.equipments_background)
+   table.insert(self.equipments_bools, self.equipments_icon_field)
+   table.insert(self.equipments_bools, self.equipments_list)
    --------------------------
    -- Инициализация блоков --
    --------------------------
    self:register_message_box("help_box")
    self:register_message_box("diplomatia_box_fail")
    self:register_message_box("diplomatia_box_no_location")
-   for i=1,get_table_lines(diplomatia_names) do
-      self:register_message_box("diplomatia_box_"..diplomatia_names[i])
-      self:register_message_box("diplomatia_box_"..diplomatia_names[i].."_final")
+   for i = 1, get_table_lines(diplomatia_names) do
+      self:register_message_box("diplomatia_box_" .. diplomatia_names[i])
+      self:register_message_box("diplomatia_box_" .. diplomatia_names[i] .. "_final")
    end
 end
+
 function personal_pda:InitCallBacks()
-   self:AddCallback("btn_off_pda",ui_events.BUTTON_CLICKED,self.btn_off_pda,self)
-   self:AddCallback("tab_statistic",ui_events.BUTTON_CLICKED,self.tab_statistic,self)
-   self:AddCallback("tab_advices",ui_events.BUTTON_CLICKED,self.tab_advices,self)
-   self:AddCallback("tab_achievements",ui_events.BUTTON_CLICKED,self.tab_achievements,self)
-   self:AddCallback("tab_library",ui_events.BUTTON_CLICKED,self.tab_library,self)
-   self:AddCallback("tab_diplomatia",ui_events.BUTTON_CLICKED,self.tab_diplomatia,self)
-   self:AddCallback("tab_equipments",ui_events.BUTTON_CLICKED,self.tab_equipments,self)
-   self:AddCallback("achievements_next_page",ui_events.BUTTON_CLICKED,self.tab_achievements_next_page,self)
-   self:AddCallback("achievements_back_page",ui_events.BUTTON_CLICKED,self.tab_achievements_back_page,self)
-   self:AddCallback("statistic_killed_page",ui_events.BUTTON_CLICKED,self.tab_statistic_killed_page,self)
-   self:AddCallback("statistic_home_page",ui_events.BUTTON_CLICKED,self.tab_statistic_home_page,self)
-   self:AddCallback("statistic_killed_page2",ui_events.BUTTON_CLICKED,self.tab_statistic_killed_page2,self)
-   self:AddCallback("statistic_previous_page",ui_events.BUTTON_CLICKED,self.tab_statistic_previous_page,self)
-   self:AddCallback("library_next_page",ui_events.BUTTON_CLICKED,self.tab_library_next_page,self)
-   self:AddCallback("library_back_page",ui_events.BUTTON_CLICKED,self.tab_library_back_page,self)
-   self:AddCallback("equipments_list_window",ui_events.WINDOW_LBUTTON_DB_CLICK,self.select_equipments,self)
-   self:AddCallback("help_box",ui_events.MESSAGE_BOX_YES_CLICKED,self.help_box_ok,self)
-   self:AddCallback("help_box",ui_events.MESSAGE_BOX_OK_CLICKED,self.help_box_ok,self)
-   self:AddCallback("diplomatia_box_fail",ui_events.MESSAGE_BOX_OK_CLICKED,self.diplomatia_box_fail_ok,self)
-   self:AddCallback("diplomatia_box_no_location",ui_events.MESSAGE_BOX_OK_CLICKED,self.diplomatia_box_no_location_ok,self)
-   for i=1,get_table_lines(diplomatia_names) do
-      self:AddCallback("diplomatia_button_t_"..diplomatia_names[i],ui_events.BUTTON_CLICKED,self["button_t_"..diplomatia_names[i]],self)
-      self:AddCallback("diplomatia_box_"..diplomatia_names[i],ui_events.MESSAGE_BOX_YES_CLICKED,self["diplomatia_box_"..diplomatia_names[i].."_yes"],self)
-      self:AddCallback("diplomatia_box_"..diplomatia_names[i],ui_events.MESSAGE_BOX_NO_CLICKED,self["diplomatia_box_"..diplomatia_names[i].."_no"],self)
-      self:AddCallback("diplomatia_box_"..diplomatia_names[i].."_final",ui_events.MESSAGE_BOX_OK_CLICKED,self["diplomatia_box_"..diplomatia_names[i].."_final_ok"],self)
+   self:AddCallback("btn_off_pda", ui_events.BUTTON_CLICKED, self.btn_off_pda, self)
+   self:AddCallback("tab_statistic", ui_events.BUTTON_CLICKED, self.tab_statistic, self)
+   self:AddCallback("tab_advices", ui_events.BUTTON_CLICKED, self.tab_advices, self)
+   self:AddCallback("tab_achievements", ui_events.BUTTON_CLICKED, self.tab_achievements, self)
+   self:AddCallback("tab_library", ui_events.BUTTON_CLICKED, self.tab_library, self)
+   self:AddCallback("tab_diplomatia", ui_events.BUTTON_CLICKED, self.tab_diplomatia, self)
+   self:AddCallback("tab_equipments", ui_events.BUTTON_CLICKED, self.tab_equipments, self)
+   self:AddCallback("achievements_next_page", ui_events.BUTTON_CLICKED, self.tab_achievements_next_page, self)
+   self:AddCallback("achievements_back_page", ui_events.BUTTON_CLICKED, self.tab_achievements_back_page, self)
+   self:AddCallback("statistic_killed_page", ui_events.BUTTON_CLICKED, self.tab_statistic_killed_page, self)
+   self:AddCallback("statistic_home_page", ui_events.BUTTON_CLICKED, self.tab_statistic_home_page, self)
+   self:AddCallback("statistic_killed_page2", ui_events.BUTTON_CLICKED, self.tab_statistic_killed_page2, self)
+   self:AddCallback("statistic_previous_page", ui_events.BUTTON_CLICKED, self.tab_statistic_previous_page, self)
+   self:AddCallback("library_next_page", ui_events.BUTTON_CLICKED, self.tab_library_next_page, self)
+   self:AddCallback("library_back_page", ui_events.BUTTON_CLICKED, self.tab_library_back_page, self)
+   self:AddCallback("equipments_list_window", ui_events.WINDOW_LBUTTON_DB_CLICK, self.select_equipments, self)
+   self:AddCallback("help_box", ui_events.MESSAGE_BOX_YES_CLICKED, self.help_box_ok, self)
+   self:AddCallback("help_box", ui_events.MESSAGE_BOX_OK_CLICKED, self.help_box_ok, self)
+   self:AddCallback("diplomatia_box_fail", ui_events.MESSAGE_BOX_OK_CLICKED, self.diplomatia_box_fail_ok, self)
+   self:AddCallback("diplomatia_box_no_location", ui_events.MESSAGE_BOX_OK_CLICKED, self.diplomatia_box_no_location_ok,
+      self)
+   for i = 1, get_table_lines(diplomatia_names) do
+      self:AddCallback("diplomatia_button_t_" .. diplomatia_names[i], ui_events.BUTTON_CLICKED,
+         self["button_t_" .. diplomatia_names[i]], self)
+      self:AddCallback("diplomatia_box_" .. diplomatia_names[i], ui_events.MESSAGE_BOX_YES_CLICKED,
+         self["diplomatia_box_" .. diplomatia_names[i] .. "_yes"], self)
+      self:AddCallback("diplomatia_box_" .. diplomatia_names[i], ui_events.MESSAGE_BOX_NO_CLICKED,
+         self["diplomatia_box_" .. diplomatia_names[i] .. "_no"], self)
+      self:AddCallback("diplomatia_box_" .. diplomatia_names[i] .. "_final", ui_events.MESSAGE_BOX_OK_CLICKED,
+         self["diplomatia_box_" .. diplomatia_names[i] .. "_final_ok"], self)
    end
 end
+
 ------------------------------------------------------------------------------
 --                                 Навигация                                --
 ------------------------------------------------------------------------------
 function personal_pda:tab_statistic()
    self:set_pda_section(1)
 end
+
 function personal_pda:tab_statistic_killed_page()
-   if self:get_pda_section()==1 then
+   if self:get_pda_section() == 1 then
       self:set_pda_section(1.5)
    end
 end
+
 function personal_pda:tab_statistic_home_page()
-   if self:get_pda_section()==1.5 then
+   if self:get_pda_section() == 1.5 then
       self:set_pda_section(1)
    end
 end
+
 function personal_pda:tab_statistic_killed_page2()
-   if self:get_pda_section()==1.5 then
+   if self:get_pda_section() == 1.5 then
       self:set_pda_section(1.8)
    end
 end
+
 function personal_pda:tab_statistic_previous_page()
-   if self:get_pda_section()==1.8 then
+   if self:get_pda_section() == 1.8 then
       self:set_pda_section(1.5)
    end
 end
+
 function personal_pda:tab_advices()
-   self.pda_section=2
+   self.pda_section = 2
 end
+
 function personal_pda:tab_achievements()
-   self.pda_section=3
+   self.pda_section = 3
 end
+
 function personal_pda:tab_achievements_next_page()
-   if self:get_pda_section()==3 then
+   if self:get_pda_section() == 3 then
       self:set_pda_section(3.5)
    end
 end
+
 function personal_pda:tab_achievements_back_page()
-   if self:get_pda_section()==3.5 then
+   if self:get_pda_section() == 3.5 then
       self:set_pda_section(3)
    end
 end
+
 function personal_pda:tab_diplomatia()
-   self.pda_section=4
+   self.pda_section = 4
 end
+
 function personal_pda:tab_library()
-   self.pda_section=5
+   self.pda_section = 5
 end
+
 function personal_pda:tab_library_next_page()
-   if self:get_pda_section()==5 then
+   if self:get_pda_section() == 5 then
       self:set_pda_section(5.5)
    end
 end
+
 function personal_pda:tab_library_back_page()
-   if self:get_pda_section()==5.5 then
+   if self:get_pda_section() == 5.5 then
       self:set_pda_section(5)
    end
 end
+
 function personal_pda:tab_equipments()
-   self.pda_section=6
+   self.pda_section = 6
 end
+
 ------------------------------------------------------------------------------
 --                                 Обновление                               --
 ------------------------------------------------------------------------------
@@ -307,58 +351,65 @@ function personal_pda:Update()
    if not object_alive(db.actor) then
       self:btn_close()
    end
-   for k,v in pairs(equipments_config) do
-      if v.flg==0 and db.actor:item_in_slot(v.item_slot)~=nil and db.actor:item_in_slot(v.item_slot):section()~=nil then
-         table.insert(self.equipments_section,db.actor:item_in_slot(v.item_slot):section()) v.flg=1
+   for k, v in pairs(equipments_config) do
+      if v.flg == 0 and db.actor:item_in_slot(v.item_slot) ~= nil and db.actor:item_in_slot(v.item_slot):section() ~= nil then
+         table.insert(self.equipments_section, db.actor:item_in_slot(v.item_slot):section())
+         v.flg = 1
       end
    end
    self.pda_game_time:TextControl():SetText(get_parsed_time())
-   if self:get_pda_section()==0 then
+   if self:get_pda_section() == 0 then
       self:exclude_unnecessary_for(0)
-   elseif self:get_pda_section()==1 then
+   elseif self:get_pda_section() == 1 then
       self:exclude_unnecessary_for(1)
       self.statistic_line_1_title:TextControl():SetText(game.translate_string("st_statistic_gruppirovka"))
-      self.statistic_line_1_value:TextControl():SetText(game.translate_string(read_mod_param("stat_community")))
+      self.statistic_line_1_value:TextControl():SetText(game.translate_string(sgm_g.read_mod_param("stat_community")))
       self.statistic_line_2_title:TextControl():SetText(game.translate_string("st_statistic_actor_health"))
-      self.statistic_line_2_value:TextControl():SetText(string.format(math.floor(db.actor.health*100)) .."%")
+      self.statistic_line_2_value:TextControl():SetText(string.format(math.floor(db.actor.health * 100)) .. "%")
       self.statistic_line_3_title:TextControl():SetText(game.translate_string("st_statistic_actor_psi"))
-      self.statistic_line_3_value:TextControl():SetText(string.format(math.floor(db.actor.psy_health*100)) .."%")
+      self.statistic_line_3_value:TextControl():SetText(string.format(math.floor(db.actor.psy_health * 100)) .. "%")
       self.statistic_line_4_title:TextControl():SetText(game.translate_string("st_statistic_actor_toxicity"))
-      self.statistic_line_4_value:TextControl():SetText(string.format(math.floor(get_actor_state("toxicity_percent"))) .."%")
+      self.statistic_line_4_value:TextControl():SetText(string.format(math.floor(get_actor_state("toxicity_percent"))) ..
+         "%")
       self.statistic_line_5_title:TextControl():SetText(game.translate_string("st_statistic_zarabotano_web_money"))
       self.statistic_line_5_value:TextControl():SetText(math.floor(get_web_money()))
       self.statistic_line_6_title:TextControl():SetText(game.translate_string("st_statistic_actor_rank"))
       self.statistic_line_6_value:TextControl():SetText(get_actor_rank())
       self.statistic_line_7_title:TextControl():SetText(game.translate_string("st_statistic_weapon_shots"))
-      self.statistic_line_7_value:TextControl():SetText(read_mod_param("stat_weapon_shots"))
+      self.statistic_line_7_value:TextControl():SetText(sgm_g.read_mod_param("stat_weapon_shots"))
       self.statistic_line_8_title:TextControl():SetText(game.translate_string("st_statistic_head_shots"))
-      self.statistic_line_8_value:TextControl():SetText(read_mod_param("stat_headshots"))
+      self.statistic_line_8_value:TextControl():SetText(sgm_g.read_mod_param("stat_headshots"))
       self.statistic_line_9_title:TextControl():SetText(game.translate_string("st_statistic_knig_viucheno"))
-      self.statistic_line_9_value:TextControl():SetText(read_mod_param("stat_books").." "..game.translate_string("/").." ".."34")
+      self.statistic_line_9_value:TextControl():SetText(sgm_g.read_mod_param("stat_books") ..
+         " " .. game.translate_string("/") .. " " .. "34")
       self.statistic_line_10_title:TextControl():SetText(game.translate_string("st_statistic_vipolneno_kvestov"))
-      self.statistic_line_10_value:TextControl():SetText(read_mod_param("stat_kvestov"))
+      self.statistic_line_10_value:TextControl():SetText(sgm_g.read_mod_param("stat_kvestov"))
       self.statistic_line_11_title:TextControl():SetText(game.translate_string("st_statistic_naydeno_taynikov"))
-      self.statistic_line_11_value:TextControl():SetText(read_mod_param("stat_taynikov").." "..game.translate_string("/").." ".."72")
+      self.statistic_line_11_value:TextControl():SetText(sgm_g.read_mod_param("stat_taynikov") ..
+         " " .. game.translate_string("/") .. " " .. "72")
       self.statistic_line_12_title:TextControl():SetText(game.translate_string("st_statistic_habara_naydeno"))
-      self.statistic_line_12_value:TextControl():SetText(read_mod_param("stat_deserves"))
+      self.statistic_line_12_value:TextControl():SetText(sgm_g.read_mod_param("stat_deserves"))
       self.statistic_line_13_title:TextControl():SetText(game.translate_string("st_statistic_polucheno_dostigeniy"))
-      self.statistic_line_13_value:TextControl():SetText(read_mod_param("stat_dostigeniy").." "..game.translate_string("/").." ".."8")
+      self.statistic_line_13_value:TextControl():SetText(sgm_g.read_mod_param("stat_dostigeniy") ..
+         " " .. game.translate_string("/") .. " " .. "8")
       self.statistic_line_14_title:TextControl():SetText(game.translate_string("st_statistic_polucheno_medaley"))
-      self.statistic_line_14_value:TextControl():SetText(read_mod_param("stat_medaley").." "..game.translate_string("/").." ".."10")
+      self.statistic_line_14_value:TextControl():SetText(sgm_g.read_mod_param("stat_medaley") ..
+         " " .. game.translate_string("/") .. " " .. "10")
       self.statistic_line_15_title:TextControl():SetText(game.translate_string("st_statistic_ubito_bossov"))
-      self.statistic_line_15_value:TextControl():SetText(read_mod_param("stat_ubil_bosov"))
+      self.statistic_line_15_value:TextControl():SetText(sgm_g.read_mod_param("stat_ubil_bosov"))
       self.statistic_line_16_title:TextControl():SetText(game.translate_string("st_statistic_sobral_s_trupov"))
-      self.statistic_line_16_value:TextControl():SetText(read_mod_param("stat_s_trupov"))
+      self.statistic_line_16_value:TextControl():SetText(sgm_g.read_mod_param("stat_s_trupov"))
       self.statistic_line_17_title:TextControl():SetText(game.translate_string("st_statistic_ispolzoval_gps_provodnikov"))
-      self.statistic_line_17_value:TextControl():SetText(read_mod_param("stat_guidebook").." "..game.translate_string("/").." ".."18")
+      self.statistic_line_17_value:TextControl():SetText(sgm_g.read_mod_param("stat_guidebook") ..
+         " " .. game.translate_string("/") .. " " .. "18")
       self.statistic_line_18_title:TextControl():SetText(game.translate_string("st_statistic_dengi_na_deposite"))
-      self.statistic_line_18_value:TextControl():SetText(read_mod_param("bankir_deposit_cash"))
+      self.statistic_line_18_value:TextControl():SetText(sgm_g.read_mod_param("bankir_deposit_cash"))
       self.statistic_line_19_title:TextControl():SetText(game.translate_string("st_statistic_okazano_pomosch_ranenim"))
-      self.statistic_line_19_value:TextControl():SetText(read_mod_param("stat_help_wounded"))
+      self.statistic_line_19_value:TextControl():SetText(sgm_g.read_mod_param("stat_help_wounded"))
       self.statistic_line_20_title:TextControl():SetText(game.translate_string("st_statistic_oformleno_zakazov"))
-      self.statistic_line_20_value:TextControl():SetText(read_mod_param("stat_executed_orders"))
+      self.statistic_line_20_value:TextControl():SetText(sgm_g.read_mod_param("stat_executed_orders"))
       self.statistic_line_21_title:TextControl():SetText(game.translate_string("st_statistic_naydeno_pda_alfa"))
-      self.statistic_line_21_value:TextControl():SetText(read_mod_param("alfa_pda_collected"))
+      self.statistic_line_21_value:TextControl():SetText(sgm_g.read_mod_param("alfa_pda_collected"))
       self.statistic_line_22_title:TextControl():SetText("")
       self.statistic_line_22_value:TextControl():SetText("")
       self.statistic_line_23_title:TextControl():SetText("")
@@ -369,74 +420,102 @@ function personal_pda:Update()
       self.statistic_line_25_value:TextControl():SetText("")
       self.statistic_line_26_title:TextControl():SetText("")
       self.statistic_line_26_value:TextControl():SetText("")
-   elseif self:get_pda_section()==1.5 then
+   elseif self:get_pda_section() == 1.5 then
       self:exclude_unnecessary_for(1.5)
       self.statistic_line_1_title:TextControl():SetText(game.translate_string("st_statistic_killed_s_title"))
       self.statistic_line_1_value:TextControl():SetText("")
       self.statistic_line_2_title:TextControl():SetText(game.translate_string("st_statistic_killed_s_1_name"))
-      self.statistic_line_2_value:TextControl():SetText(self:get_statistic_killed("s","alfa").." "..game.translate_string("st_statistic_killed_s_count"))
+      self.statistic_line_2_value:TextControl():SetText(self:get_statistic_killed("s", "alfa") ..
+         " " .. game.translate_string("st_statistic_killed_s_count"))
       self.statistic_line_3_title:TextControl():SetText(game.translate_string("st_statistic_killed_s_2_name"))
-      self.statistic_line_3_value:TextControl():SetText(self:get_statistic_killed("s","army").." "..game.translate_string("st_statistic_killed_s_count"))
+      self.statistic_line_3_value:TextControl():SetText(self:get_statistic_killed("s", "army") ..
+         " " .. game.translate_string("st_statistic_killed_s_count"))
       self.statistic_line_4_title:TextControl():SetText(game.translate_string("st_statistic_killed_s_3_name"))
-      self.statistic_line_4_value:TextControl():SetText(self:get_statistic_killed("s","bandit").." "..game.translate_string("st_statistic_killed_s_count"))
+      self.statistic_line_4_value:TextControl():SetText(self:get_statistic_killed("s", "bandit") ..
+         " " .. game.translate_string("st_statistic_killed_s_count"))
       self.statistic_line_5_title:TextControl():SetText(game.translate_string("st_statistic_killed_s_4_name"))
-      self.statistic_line_5_value:TextControl():SetText(self:get_statistic_killed("s","dolg").." "..game.translate_string("st_statistic_killed_s_count"))
+      self.statistic_line_5_value:TextControl():SetText(self:get_statistic_killed("s", "dolg") ..
+         " " .. game.translate_string("st_statistic_killed_s_count"))
       self.statistic_line_6_title:TextControl():SetText(game.translate_string("st_statistic_killed_s_5_name"))
-      self.statistic_line_6_value:TextControl():SetText(self:get_statistic_killed("s","ecolog").." "..game.translate_string("st_statistic_killed_s_count"))
+      self.statistic_line_6_value:TextControl():SetText(self:get_statistic_killed("s", "ecolog") ..
+         " " .. game.translate_string("st_statistic_killed_s_count"))
       self.statistic_line_7_title:TextControl():SetText(game.translate_string("st_statistic_killed_s_6_name"))
-      self.statistic_line_7_value:TextControl():SetText(self:get_statistic_killed("s","freedom").." "..game.translate_string("st_statistic_killed_s_count"))
+      self.statistic_line_7_value:TextControl():SetText(self:get_statistic_killed("s", "freedom") ..
+         " " .. game.translate_string("st_statistic_killed_s_count"))
       self.statistic_line_8_title:TextControl():SetText(game.translate_string("st_statistic_killed_s_7_name"))
-      self.statistic_line_8_value:TextControl():SetText(self:get_statistic_killed("s","killer").." "..game.translate_string("st_statistic_killed_s_count"))
+      self.statistic_line_8_value:TextControl():SetText(self:get_statistic_killed("s", "killer") ..
+         " " .. game.translate_string("st_statistic_killed_s_count"))
       self.statistic_line_9_title:TextControl():SetText(game.translate_string("st_statistic_killed_s_8_name"))
-      self.statistic_line_9_value:TextControl():SetText(self:get_statistic_killed("s","monolith").." "..game.translate_string("st_statistic_killed_s_count"))
+      self.statistic_line_9_value:TextControl():SetText(self:get_statistic_killed("s", "monolith") ..
+         " " .. game.translate_string("st_statistic_killed_s_count"))
       self.statistic_line_10_title:TextControl():SetText(game.translate_string("st_statistic_killed_s_9_name"))
-      self.statistic_line_10_value:TextControl():SetText(self:get_statistic_killed("s","stalker").." "..game.translate_string("st_statistic_killed_s_count"))
+      self.statistic_line_10_value:TextControl():SetText(self:get_statistic_killed("s", "stalker") ..
+         " " .. game.translate_string("st_statistic_killed_s_count"))
       self.statistic_line_11_title:TextControl():SetText(game.translate_string("st_statistic_killed_s_10_name"))
-      self.statistic_line_11_value:TextControl():SetText(self:get_statistic_killed("s","rasvet").." "..game.translate_string("st_statistic_killed_s_count"))
+      self.statistic_line_11_value:TextControl():SetText(self:get_statistic_killed("s", "rasvet") ..
+         " " .. game.translate_string("st_statistic_killed_s_count"))
       self.statistic_line_12_title:TextControl():SetText(game.translate_string("st_statistic_killed_s_11_name"))
-      self.statistic_line_12_value:TextControl():SetText(self:get_statistic_killed("s","renegade").." "..game.translate_string("st_statistic_killed_s_count"))
+      self.statistic_line_12_value:TextControl():SetText(self:get_statistic_killed("s", "renegade") ..
+         " " .. game.translate_string("st_statistic_killed_s_count"))
       self.statistic_line_13_title:TextControl():SetText(game.translate_string("st_statistic_killed_s_12_name"))
-      self.statistic_line_13_value:TextControl():SetText(self:get_statistic_killed("s","zombied").." "..game.translate_string("st_statistic_killed_s_count"))
+      self.statistic_line_13_value:TextControl():SetText(self:get_statistic_killed("s", "zombied") ..
+         " " .. game.translate_string("st_statistic_killed_s_count"))
       self.statistic_line_14_title:TextControl():SetText(game.translate_string("st_statistic_killed_m_title"))
       self.statistic_line_14_value:TextControl():SetText("")
       self.statistic_line_15_title:TextControl():SetText(game.translate_string("st_statistic_killed_m_1_name"))
-      self.statistic_line_15_value:TextControl():SetText(self:get_statistic_killed("m","bloodsucker").." "..game.translate_string("st_statistic_killed_m_count"))
+      self.statistic_line_15_value:TextControl():SetText(self:get_statistic_killed("m", "bloodsucker") ..
+         " " .. game.translate_string("st_statistic_killed_m_count"))
       self.statistic_line_16_title:TextControl():SetText(game.translate_string("st_statistic_killed_m_2_name"))
-      self.statistic_line_16_value:TextControl():SetText(self:get_statistic_killed("m","boar").." "..game.translate_string("st_statistic_killed_m_count"))
+      self.statistic_line_16_value:TextControl():SetText(self:get_statistic_killed("m", "boar") ..
+         " " .. game.translate_string("st_statistic_killed_m_count"))
       self.statistic_line_17_title:TextControl():SetText(game.translate_string("st_statistic_killed_m_3_name"))
-      self.statistic_line_17_value:TextControl():SetText(self:get_statistic_killed("m","burer").." "..game.translate_string("st_statistic_killed_m_count"))
+      self.statistic_line_17_value:TextControl():SetText(self:get_statistic_killed("m", "burer") ..
+         " " .. game.translate_string("st_statistic_killed_m_count"))
       self.statistic_line_18_title:TextControl():SetText(game.translate_string("st_statistic_killed_m_4_name"))
-      self.statistic_line_18_value:TextControl():SetText(self:get_statistic_killed("m","chimera").." "..game.translate_string("st_statistic_killed_m_count"))
+      self.statistic_line_18_value:TextControl():SetText(self:get_statistic_killed("m", "chimera") ..
+         " " .. game.translate_string("st_statistic_killed_m_count"))
       self.statistic_line_19_title:TextControl():SetText(game.translate_string("st_statistic_killed_m_5_name"))
-      self.statistic_line_19_value:TextControl():SetText(self:get_statistic_killed("m","controller").." "..game.translate_string("st_statistic_killed_m_count"))
+      self.statistic_line_19_value:TextControl():SetText(self:get_statistic_killed("m", "controller") ..
+         " " .. game.translate_string("st_statistic_killed_m_count"))
       self.statistic_line_20_title:TextControl():SetText(game.translate_string("st_statistic_killed_m_6_name"))
-      self.statistic_line_20_value:TextControl():SetText(self:get_statistic_killed("m","dog").." "..game.translate_string("st_statistic_killed_m_count"))
+      self.statistic_line_20_value:TextControl():SetText(self:get_statistic_killed("m", "dog") ..
+         " " .. game.translate_string("st_statistic_killed_m_count"))
       self.statistic_line_21_title:TextControl():SetText(game.translate_string("st_statistic_killed_m_7_name"))
-      self.statistic_line_21_value:TextControl():SetText(self:get_statistic_killed("m","flesh").." "..game.translate_string("st_statistic_killed_m_count"))
+      self.statistic_line_21_value:TextControl():SetText(self:get_statistic_killed("m", "flesh") ..
+         " " .. game.translate_string("st_statistic_killed_m_count"))
       self.statistic_line_22_title:TextControl():SetText(game.translate_string("st_statistic_killed_m_8_name"))
-      self.statistic_line_22_value:TextControl():SetText(self:get_statistic_killed("m","gigant").." "..game.translate_string("st_statistic_killed_m_count"))
+      self.statistic_line_22_value:TextControl():SetText(self:get_statistic_killed("m", "gigant") ..
+         " " .. game.translate_string("st_statistic_killed_m_count"))
       self.statistic_line_23_title:TextControl():SetText(game.translate_string("st_statistic_killed_m_9_name"))
-      self.statistic_line_23_value:TextControl():SetText(self:get_statistic_killed("m","poltergeist").." "..game.translate_string("st_statistic_killed_m_count"))
+      self.statistic_line_23_value:TextControl():SetText(self:get_statistic_killed("m", "poltergeist") ..
+         " " .. game.translate_string("st_statistic_killed_m_count"))
       self.statistic_line_24_title:TextControl():SetText(game.translate_string("st_statistic_killed_m_10_name"))
-      self.statistic_line_24_value:TextControl():SetText(self:get_statistic_killed("m","pseudodog").." "..game.translate_string("st_statistic_killed_m_count"))
+      self.statistic_line_24_value:TextControl():SetText(self:get_statistic_killed("m", "pseudodog") ..
+         " " .. game.translate_string("st_statistic_killed_m_count"))
       self.statistic_line_25_title:TextControl():SetText(game.translate_string("st_statistic_killed_m_11_name"))
-      self.statistic_line_25_value:TextControl():SetText(self:get_statistic_killed("m","snork").." "..game.translate_string("st_statistic_killed_m_count"))
+      self.statistic_line_25_value:TextControl():SetText(self:get_statistic_killed("m", "snork") ..
+         " " .. game.translate_string("st_statistic_killed_m_count"))
       self.statistic_line_26_title:TextControl():SetText(game.translate_string("st_statistic_killed_m_12_name"))
-      self.statistic_line_26_value:TextControl():SetText(self:get_statistic_killed("m","tushkano").." "..game.translate_string("st_statistic_killed_m_count"))
-   elseif self:get_pda_section()==1.8 then
+      self.statistic_line_26_value:TextControl():SetText(self:get_statistic_killed("m", "tushkano") ..
+         " " .. game.translate_string("st_statistic_killed_m_count"))
+   elseif self:get_pda_section() == 1.8 then
       self:exclude_unnecessary_for(1.8)
       self.statistic_line_1_title:TextControl():SetText(game.translate_string("st_statistic_killed_s_title"))
       self.statistic_line_1_value:TextControl():SetText("")
       self.statistic_line_2_title:TextControl():SetText(game.translate_string("st_statistic_killed_s_13_name"))
-      self.statistic_line_2_value:TextControl():SetText(self:get_statistic_killed("s","night_stalker").." "..game.translate_string("st_statistic_killed_s_count"))
+      self.statistic_line_2_value:TextControl():SetText(self:get_statistic_killed("s", "night_stalker") ..
+         " " .. game.translate_string("st_statistic_killed_s_count"))
       self.statistic_line_3_title:TextControl():SetText(game.translate_string("st_statistic_killed_m_title"))
       self.statistic_line_3_value:TextControl():SetText("")
       self.statistic_line_4_title:TextControl():SetText(game.translate_string("st_statistic_killed_m_13_name"))
-      self.statistic_line_4_value:TextControl():SetText(self:get_statistic_killed("m","fracture").." "..game.translate_string("st_statistic_killed_m_count"))
+      self.statistic_line_4_value:TextControl():SetText(self:get_statistic_killed("m", "fracture") ..
+         " " .. game.translate_string("st_statistic_killed_m_count"))
       self.statistic_line_5_title:TextControl():SetText(game.translate_string("st_statistic_killed_m_14_name"))
-      self.statistic_line_5_value:TextControl():SetText(self:get_statistic_killed("m","cat").." "..game.translate_string("st_statistic_killed_m_count"))
+      self.statistic_line_5_value:TextControl():SetText(self:get_statistic_killed("m", "cat") ..
+         " " .. game.translate_string("st_statistic_killed_m_count"))
       self.statistic_line_6_title:TextControl():SetText(game.translate_string("st_statistic_killed_m_15_name"))
-      self.statistic_line_6_value:TextControl():SetText(self:get_statistic_killed("m","zombie").." "..game.translate_string("st_statistic_killed_m_count"))
+      self.statistic_line_6_value:TextControl():SetText(self:get_statistic_killed("m", "zombie") ..
+         " " .. game.translate_string("st_statistic_killed_m_count"))
       self.statistic_line_7_title:TextControl():SetText("")
       self.statistic_line_7_value:TextControl():SetText("")
       self.statistic_line_8_title:TextControl():SetText("")
@@ -477,90 +556,108 @@ function personal_pda:Update()
       self.statistic_line_25_value:TextControl():SetText("")
       self.statistic_line_26_title:TextControl():SetText("")
       self.statistic_line_26_value:TextControl():SetText("")
-   elseif self:get_pda_section()==2 then
+   elseif self:get_pda_section() == 2 then
       self:exclude_unnecessary_for(2)
       self.advices_field:TextControl():SetText(game.translate_string("st_advices_text"))
-   elseif self:get_pda_section()==3 then
+   elseif self:get_pda_section() == 3 then
       self:exclude_unnecessary_for(3)
-      for i=1,4 do
-         self["achievements_table_"..achievements_names[i]]:Show(true)
-         self["achievements_icon_"..achievements_names[i]]:Show(true)
-         self["achievements_name_"..achievements_names[i]]:TextControl():SetText(game.translate_string("st_achievements_name_"..achievements_names[i]))
-         self["achievements_status_"..achievements_names[i].."_a"]:TextControl():SetText(game.translate_string("st_achievements_status_a"))
-         self["achievements_status_"..achievements_names[i].."_b"]:TextControl():SetText(game.translate_string(self["achievements_"..achievements_names[i].."_status"]))
-         self["achievements_need_title_"..achievements_names[i]]:TextControl():SetText(game.translate_string("st_achievements_need_title"))
-         self["achievements_bonus_title_"..achievements_names[i]]:TextControl():SetText(game.translate_string("st_achievements_bonus_title"))
-         self["achievements_need_box_"..achievements_names[i]]:TextControl():SetText(game.translate_string("st_achievements_need_"..achievements_names[i]))
-         self["achievements_bonus_box_"..achievements_names[i]]:TextControl():SetText(game.translate_string("st_achievements_bonus_"..achievements_names[i]))
+      for i = 1, 4 do
+         self["achievements_table_" .. achievements_names[i]]:Show(true)
+         self["achievements_icon_" .. achievements_names[i]]:Show(true)
+         self["achievements_name_" .. achievements_names[i]]:TextControl():SetText(game.translate_string(
+            "st_achievements_name_" .. achievements_names[i]))
+         self["achievements_status_" .. achievements_names[i] .. "_a"]:TextControl():SetText(game.translate_string(
+            "st_achievements_status_a"))
+         self["achievements_status_" .. achievements_names[i] .. "_b"]:TextControl():SetText(game.translate_string(self
+            ["achievements_" .. achievements_names[i] .. "_status"]))
+         self["achievements_need_title_" .. achievements_names[i]]:TextControl():SetText(game.translate_string(
+            "st_achievements_need_title"))
+         self["achievements_bonus_title_" .. achievements_names[i]]:TextControl():SetText(game.translate_string(
+            "st_achievements_bonus_title"))
+         self["achievements_need_box_" .. achievements_names[i]]:TextControl():SetText(game.translate_string(
+            "st_achievements_need_" .. achievements_names[i]))
+         self["achievements_bonus_box_" .. achievements_names[i]]:TextControl():SetText(game.translate_string(
+            "st_achievements_bonus_" .. achievements_names[i]))
       end
-   elseif self:get_pda_section()==3.5 then
+   elseif self:get_pda_section() == 3.5 then
       self:exclude_unnecessary_for(3.5)
-      for i=5,8 do
-         self["achievements_table_"..achievements_names[i]]:Show(true)
-         self["achievements_icon_"..achievements_names[i]]:Show(true)
-         self["achievements_name_"..achievements_names[i]]:TextControl():SetText(game.translate_string("st_achievements_name_"..achievements_names[i]))
-         self["achievements_status_"..achievements_names[i].."_a"]:TextControl():SetText(game.translate_string("st_achievements_status_a"))
-         self["achievements_status_"..achievements_names[i].."_b"]:TextControl():SetText(game.translate_string(self["achievements_"..achievements_names[i].."_status"]))
-         self["achievements_need_title_"..achievements_names[i]]:TextControl():SetText(game.translate_string("st_achievements_need_title"))
-         self["achievements_bonus_title_"..achievements_names[i]]:TextControl():SetText(game.translate_string("st_achievements_bonus_title"))
-         self["achievements_need_box_"..achievements_names[i]]:TextControl():SetText(game.translate_string("st_achievements_need_"..achievements_names[i]))
-         self["achievements_bonus_box_"..achievements_names[i]]:TextControl():SetText(game.translate_string("st_achievements_bonus_"..achievements_names[i]))
+      for i = 5, 8 do
+         self["achievements_table_" .. achievements_names[i]]:Show(true)
+         self["achievements_icon_" .. achievements_names[i]]:Show(true)
+         self["achievements_name_" .. achievements_names[i]]:TextControl():SetText(game.translate_string(
+            "st_achievements_name_" .. achievements_names[i]))
+         self["achievements_status_" .. achievements_names[i] .. "_a"]:TextControl():SetText(game.translate_string(
+            "st_achievements_status_a"))
+         self["achievements_status_" .. achievements_names[i] .. "_b"]:TextControl():SetText(game.translate_string(self
+            ["achievements_" .. achievements_names[i] .. "_status"]))
+         self["achievements_need_title_" .. achievements_names[i]]:TextControl():SetText(game.translate_string(
+            "st_achievements_need_title"))
+         self["achievements_bonus_title_" .. achievements_names[i]]:TextControl():SetText(game.translate_string(
+            "st_achievements_bonus_title"))
+         self["achievements_need_box_" .. achievements_names[i]]:TextControl():SetText(game.translate_string(
+            "st_achievements_need_" .. achievements_names[i]))
+         self["achievements_bonus_box_" .. achievements_names[i]]:TextControl():SetText(game.translate_string(
+            "st_achievements_bonus_" .. achievements_names[i]))
       end
-   elseif self:get_pda_section()==4 then
+   elseif self:get_pda_section() == 4 then
       self:exclude_unnecessary_for(4)
-      for i=1,get_table_lines(diplomatia_names) do
-         self["diplomatia_table_"..diplomatia_names[i]]:Show(true)
-         self["diplomatia_logo_"..diplomatia_names[i]]:Show(true)
-         self["diplomatia_title_"..diplomatia_names[i]]:TextControl():SetText(game.translate_string("st_diplomatia_community_"..diplomatia_names[i]))
-         self["diplomatia_need_title_"..diplomatia_names[i]]:TextControl():SetText(game.translate_string("st_diplomatia_need_title"))
-         self["diplomatia_need_box_"..diplomatia_names[i]]:TextControl():SetText(game.translate_string("st_diplomatia_need_"..diplomatia_names[i]))
-         self["diplomatia_button_b_"..diplomatia_names[i]]:Show(true)
+      for i = 1, get_table_lines(diplomatia_names) do
+         self["diplomatia_table_" .. diplomatia_names[i]]:Show(true)
+         self["diplomatia_logo_" .. diplomatia_names[i]]:Show(true)
+         self["diplomatia_title_" .. diplomatia_names[i]]:TextControl():SetText(game.translate_string(
+            "st_diplomatia_community_" .. diplomatia_names[i]))
+         self["diplomatia_need_title_" .. diplomatia_names[i]]:TextControl():SetText(game.translate_string(
+            "st_diplomatia_need_title"))
+         self["diplomatia_need_box_" .. diplomatia_names[i]]:TextControl():SetText(game.translate_string(
+            "st_diplomatia_need_" .. diplomatia_names[i]))
+         self["diplomatia_button_b_" .. diplomatia_names[i]]:Show(true)
       end
-   elseif self:get_pda_section()==5 then
+   elseif self:get_pda_section() == 5 then
       self:exclude_unnecessary_for(5)
-      self:fill_library_slot(1,"knife")
-      self:fill_library_slot(2,"ak74u")
-      self:fill_library_slot(3,"ak74")
-      self:fill_library_slot(4,"wincheaster1300")
-      self:fill_library_slot(5,"abakan")
-      self:fill_library_slot(6,"beretta")
-      self:fill_library_slot(7,"bm16")
-      self:fill_library_slot(8,"colt1911")
-      self:fill_library_slot(9,"desert_eagle")
-      self:fill_library_slot(10,"fn2000")
-      self:fill_library_slot(11,"fort")
-      self:fill_library_slot(12,"g36")
-      self:fill_library_slot(13,"gauss")
-      self:fill_library_slot(14,"groza")
-      self:fill_library_slot(15,"hpsa")
-      self:fill_library_slot(16,"l85")
-      self:fill_library_slot(17,"lr300")
-      self:fill_library_slot(18,"mp5")
-      self:fill_library_slot(19,"pb")
-      self:fill_library_slot(20,"pm")
-      self:fill_library_slot(21,"rg-6")
-      self:fill_library_slot(22,"rpg7")
-      self:fill_library_slot(23,"sig220")
-      self:fill_library_slot(24,"sig550")
-      self:fill_library_slot(25,"spas12")
-      self:fill_library_slot(26,"protecta")
-      self:fill_library_slot(27,"pkm")
-      self:fill_library_slot(28,"svd")
-      self:fill_library_slot(29,"svu")
-      self:fill_library_slot(30,"toz34")
-      self:fill_library_slot(31,"usp")
-      self:fill_library_slot(32,"val")
-      self:fill_library_slot(33,"vintorez")
-      self:fill_library_slot(34,"walther")
-   elseif self:get_pda_section()==5.5 then
+      self:fill_library_slot(1, "knife")
+      self:fill_library_slot(2, "ak74u")
+      self:fill_library_slot(3, "ak74")
+      self:fill_library_slot(4, "wincheaster1300")
+      self:fill_library_slot(5, "abakan")
+      self:fill_library_slot(6, "beretta")
+      self:fill_library_slot(7, "bm16")
+      self:fill_library_slot(8, "colt1911")
+      self:fill_library_slot(9, "desert_eagle")
+      self:fill_library_slot(10, "fn2000")
+      self:fill_library_slot(11, "fort")
+      self:fill_library_slot(12, "g36")
+      self:fill_library_slot(13, "gauss")
+      self:fill_library_slot(14, "groza")
+      self:fill_library_slot(15, "hpsa")
+      self:fill_library_slot(16, "l85")
+      self:fill_library_slot(17, "lr300")
+      self:fill_library_slot(18, "mp5")
+      self:fill_library_slot(19, "pb")
+      self:fill_library_slot(20, "pm")
+      self:fill_library_slot(21, "rg-6")
+      self:fill_library_slot(22, "rpg7")
+      self:fill_library_slot(23, "sig220")
+      self:fill_library_slot(24, "sig550")
+      self:fill_library_slot(25, "spas12")
+      self:fill_library_slot(26, "protecta")
+      self:fill_library_slot(27, "pkm")
+      self:fill_library_slot(28, "svd")
+      self:fill_library_slot(29, "svu")
+      self:fill_library_slot(30, "toz34")
+      self:fill_library_slot(31, "usp")
+      self:fill_library_slot(32, "val")
+      self:fill_library_slot(33, "vintorez")
+      self:fill_library_slot(34, "walther")
+   elseif self:get_pda_section() == 5.5 then
       self:exclude_unnecessary_for(5.5)
-   elseif self:get_pda_section()==6 then
+   elseif self:get_pda_section() == 6 then
       self:exclude_unnecessary_for(6)
    end
-   for i=1,get_table_lines(achievements_names) do
+   for i = 1, get_table_lines(achievements_names) do
       self:change_achievement_status(achievements_names[i])
    end
 end
+
 function pda_update()
    mod_param_set_safe("stat_taynikov")
    mod_param_set_safe("stat_kvestov")
@@ -575,11 +672,12 @@ function pda_update()
    mod_param_set_safe("stat_guidebook")
    mod_param_set_safe("stat_help_wounded")
    mod_param_set_safe("stat_executed_orders")
-   mod_param_set_safe("stat_community","no_community")
-   if r_mod_params("bool","disable_sgm_achievements",false)==false then
+   mod_param_set_safe("stat_community", "no_community")
+   if sgm_g.r_mod_params("bool", "disable_sgm_achievements", false) == false then
       achievements_update()
    end
 end
+
 ------------------------------------------------------------------------------
 --                              Дипломатия                                  --
 ------------------------------------------------------------------------------
@@ -587,159 +685,189 @@ function personal_pda:help_box_ok()
    self.help_box:ShowDialog(false)
    self.help_box:HideDialog()
 end
+
 function personal_pda:diplomatia_box_fail_ok()
    self.diplomatia_box_fail:ShowDialog(false)
    self.diplomatia_box_fail:HideDialog()
 end
+
 function personal_pda:diplomatia_box_no_location_ok()
    self.diplomatia_box_no_location:ShowDialog(false)
    self.diplomatia_box_no_location:HideDialog()
 end
+
 function personal_pda:button_t_stalkers()
-   if self:get_pda_section()==4 then
-      if level.name()=="darkvalley" then
-         self:diplomatia_conclude("stalker",nil)
-      elseif db.actor:money()<relation_stalkers_cost then
-         self:diplomatia_conclude("stalker",false)
-      elseif db.actor:money()>=relation_stalkers_cost then
-         self:diplomatia_conclude("stalker",true)
+   if self:get_pda_section() == 4 then
+      if level.name() == "darkvalley" then
+         self:diplomatia_conclude("stalker", nil)
+      elseif db.actor:money() < relation_stalkers_cost then
+         self:diplomatia_conclude("stalker", false)
+      elseif db.actor:money() >= relation_stalkers_cost then
+         self:diplomatia_conclude("stalker", true)
       end
    end
 end
+
 function personal_pda:diplomatia_box_stalkers_yes()
-   self:change_diplomatia_relation("stalker",relation_stalkers_cost)
+   self:change_diplomatia_relation("stalker", relation_stalkers_cost)
    self:diplomatia_signing("stalker")
 end
+
 function personal_pda:diplomatia_box_stalkers_no()
    self:diplomatia_choose_no("stalker")
 end
+
 function personal_pda:diplomatia_box_stalkers_final_ok()
    self:diplomatia_choose_ok("stalker")
 end
+
 function personal_pda:button_t_bandits()
-   if self:get_pda_section()==4 then
-      if db.actor:money()<relation_bandits_cost then
-         self:diplomatia_conclude("bandit",false)
-      elseif db.actor:money()>=relation_bandits_cost then
-         self:diplomatia_conclude("bandit",true)
+   if self:get_pda_section() == 4 then
+      if db.actor:money() < relation_bandits_cost then
+         self:diplomatia_conclude("bandit", false)
+      elseif db.actor:money() >= relation_bandits_cost then
+         self:diplomatia_conclude("bandit", true)
       end
    end
 end
+
 function personal_pda:diplomatia_box_bandits_yes()
-   self:change_diplomatia_relation("bandit,bandit_alies",relation_bandits_cost)
+   self:change_diplomatia_relation("bandit,bandit_alies", relation_bandits_cost)
    self:diplomatia_signing("bandit")
 end
+
 function personal_pda:diplomatia_box_bandits_no()
    self:diplomatia_choose_no("bandit")
 end
+
 function personal_pda:diplomatia_box_bandits_final_ok()
    self:diplomatia_choose_ok("bandit")
 end
+
 function personal_pda:button_t_dolgs()
-   if self:get_pda_section()==4 then
-      if db.actor:money()<relation_dolgs_cost then
-         self:diplomatia_conclude("dolg",false)
-      elseif db.actor:money()>=relation_dolgs_cost then
-         self:diplomatia_conclude("dolg",true)
+   if self:get_pda_section() == 4 then
+      if db.actor:money() < relation_dolgs_cost then
+         self:diplomatia_conclude("dolg", false)
+      elseif db.actor:money() >= relation_dolgs_cost then
+         self:diplomatia_conclude("dolg", true)
       end
    end
 end
+
 function personal_pda:diplomatia_box_dolgs_yes()
-   self:change_diplomatia_relation("dolg",relation_dolgs_cost)
+   self:change_diplomatia_relation("dolg", relation_dolgs_cost)
    self:diplomatia_signing("dolg")
 end
+
 function personal_pda:diplomatia_box_dolgs_no()
    self:diplomatia_choose_no("dolg")
 end
+
 function personal_pda:diplomatia_box_dolgs_final_ok()
    self:diplomatia_choose_ok("dolg")
 end
+
 function personal_pda:button_t_freedoms()
-   if self:get_pda_section()==4 then
-      if db.actor:money()<relation_freedoms_cost then
-         self:diplomatia_conclude("freedom",false)
-      elseif db.actor:money()>=relation_freedoms_cost then
-         self:diplomatia_conclude("freedom",true)
+   if self:get_pda_section() == 4 then
+      if db.actor:money() < relation_freedoms_cost then
+         self:diplomatia_conclude("freedom", false)
+      elseif db.actor:money() >= relation_freedoms_cost then
+         self:diplomatia_conclude("freedom", true)
       end
    end
 end
+
 function personal_pda:diplomatia_box_freedoms_yes()
-   self:change_diplomatia_relation("freedom",relation_freedoms_cost)
+   self:change_diplomatia_relation("freedom", relation_freedoms_cost)
    self:diplomatia_signing("freedom")
 end
+
 function personal_pda:diplomatia_box_freedoms_no()
    self:diplomatia_choose_no("freedom")
 end
+
 function personal_pda:diplomatia_box_freedoms_final_ok()
    self:diplomatia_choose_ok("freedom")
 end
+
 function personal_pda:button_t_killers()
-   if self:get_pda_section()==4 then
-      if db.actor:money()<relation_killers_cost then
-         self:diplomatia_conclude("killer",false)
-      elseif db.actor:money()>=relation_killers_cost then
-         self:diplomatia_conclude("killer",true)
+   if self:get_pda_section() == 4 then
+      if db.actor:money() < relation_killers_cost then
+         self:diplomatia_conclude("killer", false)
+      elseif db.actor:money() >= relation_killers_cost then
+         self:diplomatia_conclude("killer", true)
       end
    end
 end
+
 function personal_pda:diplomatia_box_killers_yes()
-   self:change_diplomatia_relation("killer,killer_alies",relation_killers_cost)
+   self:change_diplomatia_relation("killer,killer_alies", relation_killers_cost)
    self:diplomatia_signing("killer")
 end
+
 function personal_pda:diplomatia_box_killers_no()
    self:diplomatia_choose_no("freedom")
 end
+
 function personal_pda:diplomatia_box_killers_final_ok()
    self:diplomatia_choose_ok("killer")
 end
+
 function personal_pda:button_t_rasvets()
-   if self:get_pda_section()==4 then
-      if db.actor:money()<relation_rasvets_cost then
-         self:diplomatia_conclude("rasvet",false)
-      elseif db.actor:money()>=relation_rasvets_cost then
-         self:diplomatia_conclude("rasvet",true)
+   if self:get_pda_section() == 4 then
+      if db.actor:money() < relation_rasvets_cost then
+         self:diplomatia_conclude("rasvet", false)
+      elseif db.actor:money() >= relation_rasvets_cost then
+         self:diplomatia_conclude("rasvet", true)
       end
    end
 end
+
 function personal_pda:diplomatia_box_rasvets_yes()
-   self:change_diplomatia_relation("rasvet",relation_rasvets_cost)
+   self:change_diplomatia_relation("rasvet", relation_rasvets_cost)
    self:diplomatia_signing("rasvet")
 end
+
 function personal_pda:diplomatia_box_rasvets_no()
    self:diplomatia_choose_no("freedom")
 end
+
 function personal_pda:diplomatia_box_rasvets_final_ok()
    self:diplomatia_choose_ok("rasvet")
 end
+
 ------------------------------------------------------------------------------
 --                               Оборудование                               --
 ------------------------------------------------------------------------------
 function personal_pda:FillListE(tbl)
    self.equipments_list:Clear()
-   for i=1,#tbl do
+   for i = 1, #tbl do
       self:AddItemToListE(tbl[i])
    end
 end
+
 function personal_pda:AddItemToListE(item_section)
-   local item_title=game.translate_string(sgm_functions.ReadCaption(item_section))
-   local source=equipments_source(22)
+   local item_title = game.translate_string(sgm_functions.ReadCaption(item_section))
+   local source = equipments_source(22)
    source.title:SetText(item_title)
    self.equipments_list:AddExistingItem(source)
-   source.section=source:AddTextField(item_section,0)
+   source.section = source:AddTextField(item_section, 0)
 end
+
 function personal_pda:select_equipments()
-   if self.equipments_list:GetSize()==0 then
+   if self.equipments_list:GetSize() == 0 then
       return
    end
-   local item=self.equipments_list:GetSelectedItem()
+   local item = self.equipments_list:GetSelectedItem()
    if not item then return end
-   local selected_item=item.section:GetText()
-   local item_title=sgm_functions.ReadCaption(selected_item)
-   local item_descr=sgm_functions.ReadDescription(selected_item)
+   local selected_item = item.section:GetText()
+   local item_title = sgm_functions.ReadCaption(selected_item)
+   local item_descr = sgm_functions.ReadDescription(selected_item)
    self.equipments_title_field:TextControl():SetText(game.translate_string(item_title))
    self.equipments_descr_field:TextControl():SetText(game.translate_string(item_descr))
-   CUI_show_item_icon(self.equipments_icon_field,selected_item)
+   CUI_show_item_icon(self.equipments_icon_field, selected_item)
 end
+
 ------------------------------------------------------------------------------
 --                              SGM достижения                              --
 ------------------------------------------------------------------------------
@@ -753,187 +881,222 @@ function achievements_update()
    achievements_assistant_update()
    achievements_lifeguard_update()
 end
+
 function achievements_sniper_update()
-   local pre1=read_mod_param("stat_headshots")
-   local pre2=read_mod_param("stat_ubil_bosov")
-   if pre1~=nil and pre1>=300 and pre2~=nil and pre2>=1 and dont_has_alife_info("sgm_achievements_sniper") then
+   local pre1 = sgm_g.read_mod_param("stat_headshots")
+   local pre2 = sgm_g.read_mod_param("stat_ubil_bosov")
+   if pre1 ~= nil and pre1 >= 300 and pre2 ~= nil and pre2 >= 1 and sgm_g.dont_has_alife_info("sgm_achievements_sniper") then
       give_info("sgm_achievements_sniper")
-      inc_mod_param("stat_dostigeniy",1)
-      news_manager.send_tip(db.actor,"st_achievement_sniper_text",0,"sgm_achievement_sniper",10000,nil,"st_achievement_tip_title")
+      inc_mod_param("stat_dostigeniy", 1)
+      news_manager.send_tip(db.actor, "st_achievement_sniper_text", 0, "sgm_achievement_sniper", 10000, nil,
+         "st_achievement_tip_title")
    end
 end
+
 function achievements_client_update()
-   local pre1=read_mod_param("stat_executed_orders")
-   local pre2=get_actor_rank()
-   if pre1~=nil and pre1>=10 and pre2>=50 and dont_has_alife_info("sgm_achievements_client") then
+   local pre1 = sgm_g.read_mod_param("stat_executed_orders")
+   local pre2 = get_actor_rank()
+   if pre1 ~= nil and pre1 >= 10 and pre2 >= 50 and sgm_g.dont_has_alife_info("sgm_achievements_client") then
       give_info("sgm_achievements_client")
-      inc_mod_param("stat_dostigeniy",1)
-      news_manager.send_tip(db.actor,"st_achievement_client_text",0,"sgm_achievement_client",10000,nil,"st_achievement_tip_title")
+      inc_mod_param("stat_dostigeniy", 1)
+      news_manager.send_tip(db.actor, "st_achievement_client_text", 0, "sgm_achievement_client", 10000, nil,
+         "st_achievement_tip_title")
    end
 end
+
 function achievements_pathfinder_update()
-   local pre=read_mod_param("stat_taynikov")
-   if pre~=nil and pre>=60 and dont_has_alife_info("sgm_achievements_pathfinder") then
+   local pre = sgm_g.read_mod_param("stat_taynikov")
+   if pre ~= nil and pre >= 60 and sgm_g.dont_has_alife_info("sgm_achievements_pathfinder") then
       give_info("sgm_achievements_pathfinder")
-      inc_mod_param("stat_dostigeniy",1)
-      news_manager.send_tip(db.actor,"st_achievement_pathfinder_text",0,"sgm_achievement_pathfinder",10000,nil,"st_achievement_tip_title")
+      inc_mod_param("stat_dostigeniy", 1)
+      news_manager.send_tip(db.actor, "st_achievement_pathfinder_text", 0, "sgm_achievement_pathfinder", 10000, nil,
+         "st_achievement_tip_title")
    end
 end
+
 function achievements_guidebook_update()
-   local pre=read_mod_param("stat_guidebook")
-   if pre~=nil and pre>=12 and dont_has_alife_info("sgm_achievements_guidebook") then
+   local pre = sgm_g.read_mod_param("stat_guidebook")
+   if pre ~= nil and pre >= 12 and sgm_g.dont_has_alife_info("sgm_achievements_guidebook") then
       give_info("sgm_achievements_guidebook")
-      inc_mod_param("stat_dostigeniy",1)
-      news_manager.send_tip(db.actor,"st_achievement_guidebook_text",0,"sgm_achievement_guidebook",10000,nil,"st_achievement_tip_title")
+      inc_mod_param("stat_dostigeniy", 1)
+      news_manager.send_tip(db.actor, "st_achievement_guidebook_text", 0, "sgm_achievement_guidebook", 10000, nil,
+         "st_achievement_tip_title")
    end
    if has_alife_info("sgm_achievements_guidebook") then
       check_actor_item_to_add("guidebook_alternal")
    end
 end
+
 function achievements_marauder_update()
-   local pre=read_mod_param("stat_s_trupov")
-   if pre~=nil and pre>=18000 and dont_has_alife_info("sgm_achievements_marauder") then
+   local pre = sgm_g.read_mod_param("stat_s_trupov")
+   if pre ~= nil and pre >= 18000 and sgm_g.dont_has_alife_info("sgm_achievements_marauder") then
       give_info("sgm_achievements_marauder")
-      inc_mod_param("stat_dostigeniy",1)
-      news_manager.send_tip(db.actor,"st_achievement_marauder_text",0,"sgm_achievement_marauder",10000,nil,"st_achievement_tip_title")
+      inc_mod_param("stat_dostigeniy", 1)
+      news_manager.send_tip(db.actor, "st_achievement_marauder_text", 0, "sgm_achievement_marauder", 10000, nil,
+         "st_achievement_tip_title")
    end
 end
+
 function achievements_magnate_update()
-   local pre=get_web_money()
-   if pre~=nil and pre>=20000 and dont_has_alife_info("sgm_achievements_magnate") then
+   local pre = get_web_money()
+   if pre ~= nil and pre >= 20000 and sgm_g.dont_has_alife_info("sgm_achievements_magnate") then
       give_info("sgm_achievements_magnate")
-      inc_mod_param("stat_dostigeniy",1)
-      news_manager.send_tip(db.actor,"st_achievement_magnate_text",0,"sgm_achievement_magnate",10000,nil,"st_achievement_tip_title")
-      write_mod_param("web_money_course",125/100)
+      inc_mod_param("stat_dostigeniy", 1)
+      news_manager.send_tip(db.actor, "st_achievement_magnate_text", 0, "sgm_achievement_magnate", 10000, nil,
+         "st_achievement_tip_title")
+      write_mod_param("web_money_course", 125 / 100)
    end
 end
+
 function achievements_assistant_update()
-   local value=80
-   local pre=read_mod_param("zat_mechanic_stripping")~=nil and read_mod_param("jup_mechanic_stripping")~=nil and read_mod_param("pri_mechanic_stripping")~=nil
-   if pre and (read_mod_param("zat_mechanic_stripping")>=value or read_mod_param("jup_mechanic_stripping")>=value or read_mod_param("pri_mechanic_stripping")>=value) and dont_has_alife_info("sgm_achievements_assistant") then
+   local value = 80
+   local pre = sgm_g.read_mod_param("zat_mechanic_stripping") ~= nil and
+   sgm_g.read_mod_param("jup_mechanic_stripping") ~= nil and
+       sgm_g.read_mod_param("pri_mechanic_stripping") ~= nil
+   if pre and (sgm_g.read_mod_param("zat_mechanic_stripping") >= value or sgm_g.read_mod_param("jup_mechanic_stripping") >= value or sgm_g.read_mod_param("pri_mechanic_stripping") >= value) and sgm_g.dont_has_alife_info("sgm_achievements_assistant") then
       give_info("sgm_achievements_assistant")
-      inc_mod_param("stat_dostigeniy",1)
-      news_manager.send_tip(db.actor,"st_achievement_assistant_text",0,"sgm_achievement_assistant",10000,nil,"st_achievement_tip_title")
+      inc_mod_param("stat_dostigeniy", 1)
+      news_manager.send_tip(db.actor, "st_achievement_assistant_text", 0, "sgm_achievement_assistant", 10000, nil,
+         "st_achievement_tip_title")
    end
 end
+
 function achievements_lifeguard_update()
-   local pre=read_mod_param("stat_help_wounded")
-   if pre~=nil and pre>=8 and dont_has_alife_info("sgm_achievements_lifeguard") then
+   local pre = sgm_g.read_mod_param("stat_help_wounded")
+   if pre ~= nil and pre >= 8 and sgm_g.dont_has_alife_info("sgm_achievements_lifeguard") then
       give_info("sgm_achievements_lifeguard")
-      inc_mod_param("stat_dostigeniy",1)
-      news_manager.send_tip(db.actor,"st_achievement_lifeguard_text",0,"sgm_achievement_lifeguard",10000,nil,"st_achievement_tip_title")
+      inc_mod_param("stat_dostigeniy", 1)
+      news_manager.send_tip(db.actor, "st_achievement_lifeguard_text", 0, "sgm_achievement_lifeguard", 10000, nil,
+         "st_achievement_tip_title")
    end
 end
+
 ------------------------------------------------------------------------------
 --                            Служебные функции                             --
 ------------------------------------------------------------------------------
 function personal_pda:get_pda_section()
    return self.pda_section
 end
+
 function personal_pda:set_pda_section(val)
-   self.pda_section=val
-   if val~=0 then
+   self.pda_section = val
+   if val ~= 0 then
       self.equipments_list:Clear()
    end
 end
-function personal_pda:change_progress_bar(bar_name,value)
+
+function personal_pda:change_progress_bar(bar_name, value)
    self[bar_name]:SetProgressPos(value)
 end
-function personal_pda:start_button(xml,button_name)
-   self["get_"..button_name]=xml:Init3tButton("personal_pda_form:"..button_name,self.personal_pda_form)
-   self:Register(self["get_"..button_name],button_name)
+
+function personal_pda:start_button(xml, button_name)
+   self["get_" .. button_name] = xml:Init3tButton("personal_pda_form:" .. button_name, self.personal_pda_form)
+   self:Register(self["get_" .. button_name], button_name)
 end
-function personal_pda:register_button(xml,button_name)
-   self[button_name]=xml:Init3tButton("personal_pda_form:"..button_name,self.personal_pda_form)
-   self:Register(self[button_name],button_name)
+
+function personal_pda:register_button(xml, button_name)
+   self[button_name] = xml:Init3tButton("personal_pda_form:" .. button_name, self.personal_pda_form)
+   self:Register(self[button_name], button_name)
 end
-function personal_pda:register_element(xml,element_name)
-   self[element_name]=xml:InitStatic("personal_pda_form:"..element_name,self.personal_pda_form)
+
+function personal_pda:register_element(xml, element_name)
+   self[element_name] = xml:InitStatic("personal_pda_form:" .. element_name, self.personal_pda_form)
 end
+
 function personal_pda:register_message_box(message_name)
-   self[message_name]=CUIMessageBoxEx()
-   self:Register(self[message_name],message_name)
+   self[message_name] = CUIMessageBoxEx()
+   self:Register(self[message_name], message_name)
 end
-function personal_pda:register_check(xml,check_name,value)
-   self[check_name]=xml:InitCheck("personal_pda_form:"..check_name,self.personal_pda_form)
-   if value~=nil then
+
+function personal_pda:register_check(xml, check_name, value)
+   self[check_name] = xml:InitCheck("personal_pda_form:" .. check_name, self.personal_pda_form)
+   if value ~= nil then
       self[check_name]:SetCheck(value)
    end
 end
-function personal_pda:change_check(a_check,d_check)
+
+function personal_pda:change_check(a_check, d_check)
    if self[a_check]:GetCheck() then
       self[d_check]:SetCheck(false)
    else
       self[d_check]:SetCheck(true)
    end
 end
+
 function personal_pda:change_achievement_status(a_name)
-   if has_alife_info("sgm_achievements_"..a_name) then
-      if self["achievements_"..a_name.."_status"]~="st_achievements_status_b_true" then
-         self["achievements_"..a_name.."_status"]="st_achievements_status_b_true"
+   if has_alife_info("sgm_achievements_" .. a_name) then
+      if self["achievements_" .. a_name .. "_status"] ~= "st_achievements_status_b_true" then
+         self["achievements_" .. a_name .. "_status"] = "st_achievements_status_b_true"
       end
    else
-      if self["achievements_"..a_name.."_status"]~="st_achievements_status_b_false" then
-         self["achievements_"..a_name.."_status"]="st_achievements_status_b_false"
+      if self["achievements_" .. a_name .. "_status"] ~= "st_achievements_status_b_false" then
+         self["achievements_" .. a_name .. "_status"] = "st_achievements_status_b_false"
       end
    end
 end
-function personal_pda:get_statistic_killed(type,stat_name)
-   if type=="m" then
+
+function personal_pda:get_statistic_killed(type, stat_name)
+   if type == "m" then
       return sgm_save.statistic_killed_monsters[stat_name]
-   elseif type=="s" then
+   elseif type == "s" then
       return sgm_save.statistic_killed_stalkers[stat_name]
    end
 end
+
 function personal_pda:parse_book_title(item_name)
-   book_target=sgm_functions.GetSkillTarget(item_name)
-   if book_target~=nil and sgm_functions.ReadCaption(book_target)~=nil then
+   book_target = sgm_functions.GetSkillTarget(item_name)
+   if book_target ~= nil and sgm_functions.ReadCaption(book_target) ~= nil then
       return game.translate_string(sgm_functions.ReadCaption(book_target))
    end
    return game.translate_string("st_achievements_status_b_false")
 end
+
 function personal_pda:parse_book_status(item_name)
-   book_target=sgm_functions.GetSkillTarget(item_name)
-   if book_target~=nil and sgm_functions.GetSkillInfo(book_target)~=nil and has_alife_info(sgm_functions.GetSkillInfo(book_target)) then
+   book_target = sgm_functions.GetSkillTarget(item_name)
+   if book_target ~= nil and sgm_functions.GetSkillInfo(book_target) ~= nil and has_alife_info(sgm_functions.GetSkillInfo(book_target)) then
       return game.translate_string("st_library_yes_studies")
    end
    return game.translate_string("st_library_no_studies")
 end
+
 function personal_pda:parse_book_bonus(item_name)
-   book_target=sgm_functions.GetSkillTarget(item_name)
-   if book_target~=nil and sgm_functions.GetSkillInfo(book_target)~=nil and has_alife_info(sgm_functions.GetSkillInfo(book_target)) then
-      local damage_bonus=sgm_functions.GetSkillPoint(book_target)*100
-      return "+"..damage_bonus.." "..game.translate_string("st_add_damage")
+   book_target = sgm_functions.GetSkillTarget(item_name)
+   if book_target ~= nil and sgm_functions.GetSkillInfo(book_target) ~= nil and has_alife_info(sgm_functions.GetSkillInfo(book_target)) then
+      local damage_bonus = sgm_functions.GetSkillPoint(book_target) * 100
+      return "+" .. damage_bonus .. " " .. game.translate_string("st_add_damage")
    end
    return game.translate_string("...")
 end
-function personal_pda:fill_library_slot(slot,weapon)
-   self["library_table_"..slot.."_main"]:Show(true)
-   self["library_table_"..slot.."_title"]:TextControl():SetText(self:parse_book_title("skill_book_"..weapon))
-   self["library_table_"..slot.."_status"]:TextControl():SetText(self:parse_book_status("skill_book_"..weapon))
+
+function personal_pda:fill_library_slot(slot, weapon)
+   self["library_table_" .. slot .. "_main"]:Show(true)
+   self["library_table_" .. slot .. "_title"]:TextControl():SetText(self:parse_book_title("skill_book_" .. weapon))
+   self["library_table_" .. slot .. "_status"]:TextControl():SetText(self:parse_book_status("skill_book_" .. weapon))
 end
-function personal_pda:change_diplomatia_relation(to_community,cost)
+
+function personal_pda:change_diplomatia_relation(to_community, cost)
    db.actor:give_money(-tonumber(cost))
    game_stats.money_quest_update(-tonumber(cost))
-   news_manager.relocate_money(db.actor,"out",tonumber(cost))
-   community_table=utils.parse_spawns(to_community)
-   for k,v in pairs(community_table) do
-      for i=1,v.prob do
+   news_manager.relocate_money(db.actor, "out", tonumber(cost))
+   community_table = utils.parse_spawns(to_community)
+   for k, v in pairs(community_table) do
+      for i = 1, v.prob do
          if has_alife_info("agreement_check_friend") then
-            increase_faction_goodwill(v.section,5000)
-            set_faction_to_faction_relation(db.actor:character_community(),v.section,"friend",true)
+            increase_faction_goodwill(v.section, 5000)
+            set_faction_to_faction_relation(db.actor:character_community(), v.section, "friend", true)
          elseif has_alife_info("agreement_check_enemy") then
-            decrease_faction_goodwill(v.section,5000)
-            set_faction_to_faction_relation(db.actor:character_community(),v.section,"enemy",true)
+            decrease_faction_goodwill(v.section, 5000)
+            set_faction_to_faction_relation(db.actor:character_community(), v.section, "enemy", true)
          end
       end
    end
 end
-function personal_pda:diplomatia_conclude(faction,successfully)
-   if successfully==true then
-      self["diplomatia_box_"..faction.."s"]:InitMessageBox("mb_diplomatia_conclude_"..faction.."s")
-      self["diplomatia_box_"..faction.."s"]:ShowDialog(true)
-   elseif successfully==false then
+
+function personal_pda:diplomatia_conclude(faction, successfully)
+   if successfully == true then
+      self["diplomatia_box_" .. faction .. "s"]:InitMessageBox("mb_diplomatia_conclude_" .. faction .. "s")
+      self["diplomatia_box_" .. faction .. "s"]:ShowDialog(true)
+   elseif successfully == false then
       self.diplomatia_box_fail:InitMessageBox("mb_diplomatia_conclude_failure")
       self.diplomatia_box_fail:ShowDialog(true)
    else
@@ -941,47 +1104,56 @@ function personal_pda:diplomatia_conclude(faction,successfully)
       self.diplomatia_box_fail:ShowDialog(true)
    end
 end
+
 function personal_pda:diplomatia_signing(faction)
-   self["diplomatia_box_"..faction.."s"]:ShowDialog(false)
-   self["diplomatia_box_"..faction.."s"]:HideDialog()
-   self["diplomatia_box_"..faction.."s_final"]:InitMessageBox("mb_diplomatia_conclude_final")
-   self["diplomatia_box_"..faction.."s_final"]:ShowDialog(true)
+   self["diplomatia_box_" .. faction .. "s"]:ShowDialog(false)
+   self["diplomatia_box_" .. faction .. "s"]:HideDialog()
+   self["diplomatia_box_" .. faction .. "s_final"]:InitMessageBox("mb_diplomatia_conclude_final")
+   self["diplomatia_box_" .. faction .. "s_final"]:ShowDialog(true)
 end
+
 function personal_pda:diplomatia_choose_no(faction)
-   self["diplomatia_box_"..faction.."s"]:ShowDialog(false)
-   self["diplomatia_box_"..faction.."s"]:HideDialog()
+   self["diplomatia_box_" .. faction .. "s"]:ShowDialog(false)
+   self["diplomatia_box_" .. faction .. "s"]:HideDialog()
 end
+
 function personal_pda:diplomatia_choose_ok(faction)
-   self["diplomatia_box_"..faction.."s_final"]:ShowDialog(false)
-   self["diplomatia_box_"..faction.."s_final"]:HideDialog()
+   self["diplomatia_box_" .. faction .. "s_final"]:ShowDialog(false)
+   self["diplomatia_box_" .. faction .. "s_final"]:HideDialog()
 end
+
 function personal_pda:init_hide_texts(table_name)
-   for k,v in pairs(table_name) do
+   for k, v in pairs(table_name) do
       v:TextControl():SetText("")
    end
 end
+
 function personal_pda:init_hide_objects(table_name)
-   for k,v in pairs(table_name) do
+   for k, v in pairs(table_name) do
       v:Show(false)
    end
 end
+
 function personal_pda:init_show_objects(table_name)
-   for k,v in pairs(table_name) do
+   for k, v in pairs(table_name) do
       v:Show(true)
    end
 end
+
 function personal_pda:disable_buttons(table_name)
-   for k,v in pairs(table_name) do
+   for k, v in pairs(table_name) do
       v:Enable(false)
    end
 end
+
 function personal_pda:enable_buttons(table_name)
-   for k,v in pairs(table_name) do
+   for k, v in pairs(table_name) do
       v:Enable(true)
    end
 end
+
 function personal_pda:exclude_unnecessary_for(phrase)
-   if phrase==0 then
+   if phrase == 0 then
       self:init_hide_texts(self.statistic_table)
       self:init_hide_objects(self.achievements_bools_1)
       self:init_hide_texts(self.achievements_table_1)
@@ -1011,11 +1183,11 @@ function personal_pda:exclude_unnecessary_for(phrase)
       self.library_back_page:Show(false)
       self.pda_welcome_screen:Show(true)
       self.statistic_setka:Show(false)
-   elseif phrase==1 then
+   elseif phrase == 1 then
       self.get_tab_statistic:Enable(false)
       self.get_tab_advices:Enable(true)
       self.get_tab_library:Enable(true)
-      if r_mod_params("bool","disable_sgm_achievements",false)==false then
+      if sgm_g.r_mod_params("bool", "disable_sgm_achievements", false) == false then
          self.get_tab_achievements:Enable(true)
       end
       if has_alife_info("pri_a28_actor_in_zone_stay") then
@@ -1050,11 +1222,11 @@ function personal_pda:exclude_unnecessary_for(phrase)
       self.statistic_setka:Show(true)
       self.pda_welcome_screen:Show(false)
       self.advices_field:TextControl():SetText("")
-  elseif phrase==1.5 then
+   elseif phrase == 1.5 then
       self.get_tab_statistic:Enable(false)
       self.get_tab_advices:Enable(true)
       self.get_tab_library:Enable(true)
-      if r_mod_params("bool","disable_sgm_achievements",false)==false then
+      if sgm_g.r_mod_params("bool", "disable_sgm_achievements", false) == false then
          self.get_tab_achievements:Enable(true)
       end
       if has_alife_info("pri_a28_actor_in_zone_stay") then
@@ -1089,11 +1261,11 @@ function personal_pda:exclude_unnecessary_for(phrase)
       self.statistic_setka:Show(true)
       self.pda_welcome_screen:Show(false)
       self.advices_field:TextControl():SetText("")
-  elseif phrase==1.8 then
+   elseif phrase == 1.8 then
       self.get_tab_statistic:Enable(false)
       self.get_tab_advices:Enable(true)
       self.get_tab_library:Enable(true)
-      if r_mod_params("bool","disable_sgm_achievements",false)==false then
+      if sgm_g.r_mod_params("bool", "disable_sgm_achievements", false) == false then
          self.get_tab_achievements:Enable(true)
       end
       if has_alife_info("pri_a28_actor_in_zone_stay") then
@@ -1129,11 +1301,11 @@ function personal_pda:exclude_unnecessary_for(phrase)
       self.pda_welcome_screen:Show(false)
       self.statistic_setka:Show(true)
       self.advices_field:TextControl():SetText("")
-   elseif phrase==2 then
+   elseif phrase == 2 then
       self.get_tab_statistic:Enable(true)
       self.get_tab_advices:Enable(false)
       self.get_tab_library:Enable(true)
-      if r_mod_params("bool","disable_sgm_achievements",false)==false then
+      if sgm_g.r_mod_params("bool", "disable_sgm_achievements", false) == false then
          self.get_tab_achievements:Enable(true)
       end
       if has_alife_info("pri_a28_actor_in_zone_stay") then
@@ -1168,11 +1340,11 @@ function personal_pda:exclude_unnecessary_for(phrase)
       self.library_back_page:Show(false)
       self.pda_welcome_screen:Show(false)
       self.statistic_setka:Show(false)
-   elseif phrase==3 then
+   elseif phrase == 3 then
       self.get_tab_statistic:Enable(true)
       self.get_tab_advices:Enable(true)
       self.get_tab_library:Enable(true)
-      if r_mod_params("bool","disable_sgm_achievements",false)==false then
+      if sgm_g.r_mod_params("bool", "disable_sgm_achievements", false) == false then
          self.get_tab_achievements:Enable(false)
       end
       if has_alife_info("pri_a28_actor_in_zone_stay") then
@@ -1207,11 +1379,11 @@ function personal_pda:exclude_unnecessary_for(phrase)
       self.pda_welcome_screen:Show(false)
       self.statistic_setka:Show(false)
       self.advices_field:TextControl():SetText("")
-   elseif phrase==3.5 then
+   elseif phrase == 3.5 then
       self.get_tab_statistic:Enable(true)
       self.get_tab_advices:Enable(true)
       self.get_tab_library:Enable(true)
-      if r_mod_params("bool","disable_sgm_achievements",false)==false then
+      if sgm_g.r_mod_params("bool", "disable_sgm_achievements", false) == false then
          self.get_tab_achievements:Enable(false)
       end
       if has_alife_info("pri_a28_actor_in_zone_stay") then
@@ -1246,11 +1418,11 @@ function personal_pda:exclude_unnecessary_for(phrase)
       self.pda_welcome_screen:Show(false)
       self.statistic_setka:Show(false)
       self.advices_field:TextControl():SetText("")
-   elseif phrase==4 then
+   elseif phrase == 4 then
       self.get_tab_statistic:Enable(true)
       self.get_tab_advices:Enable(true)
       self.get_tab_library:Enable(true)
-      if r_mod_params("bool","disable_sgm_achievements",false)==false then
+      if sgm_g.r_mod_params("bool", "disable_sgm_achievements", false) == false then
          self.get_tab_achievements:Enable(true)
       end
       if has_alife_info("pri_a28_actor_in_zone_stay") then
@@ -1291,15 +1463,15 @@ function personal_pda:exclude_unnecessary_for(phrase)
       self.pda_welcome_screen:Show(false)
       self.statistic_setka:Show(false)
       self.advices_field:TextControl():SetText("")
-      self:change_check("diplomatia_agreement_check_friend","diplomatia_agreement_check_enemy")
-      self:change_check("diplomatia_agreement_check_enemy","diplomatia_agreement_check_friend")
-      sgm_functions.info_give_on_boolean(self.diplomatia_agreement_check_friend:GetCheck(),"agreement_check_friend")
-      sgm_functions.info_give_on_boolean(self.diplomatia_agreement_check_enemy:GetCheck(),"agreement_check_enemy")
-   elseif phrase==5 then
+      self:change_check("diplomatia_agreement_check_friend", "diplomatia_agreement_check_enemy")
+      self:change_check("diplomatia_agreement_check_enemy", "diplomatia_agreement_check_friend")
+      sgm_functions.info_give_on_boolean(self.diplomatia_agreement_check_friend:GetCheck(), "agreement_check_friend")
+      sgm_functions.info_give_on_boolean(self.diplomatia_agreement_check_enemy:GetCheck(), "agreement_check_enemy")
+   elseif phrase == 5 then
       self.get_tab_statistic:Enable(true)
       self.get_tab_advices:Enable(true)
       self.get_tab_library:Enable(false)
-      if r_mod_params("bool","disable_sgm_achievements",false)==false then
+      if sgm_g.r_mod_params("bool", "disable_sgm_achievements", false) == false then
          self.get_tab_achievements:Enable(true)
       end
       if has_alife_info("pri_a28_actor_in_zone_stay") then
@@ -1334,11 +1506,11 @@ function personal_pda:exclude_unnecessary_for(phrase)
       self.pda_welcome_screen:Show(false)
       self.statistic_setka:Show(false)
       self.advices_field:TextControl():SetText("")
-   elseif phrase==5.5 then
+   elseif phrase == 5.5 then
       self.get_tab_statistic:Enable(true)
       self.get_tab_advices:Enable(true)
       self.get_tab_library:Enable(false)
-      if r_mod_params("bool","disable_sgm_achievements",false)==false then
+      if sgm_g.r_mod_params("bool", "disable_sgm_achievements", false) == false then
          self.get_tab_achievements:Enable(true)
       end
       if has_alife_info("pri_a28_actor_in_zone_stay") then
@@ -1370,19 +1542,19 @@ function personal_pda:exclude_unnecessary_for(phrase)
       self.library_next_page:Show(false)
       self.library_back_page:Enable(true)
       self.library_back_page:Show(true)
-      for i=1,42 do
-         self["library_table_"..i.."_main"]:Show(false)
-         self["library_table_"..i.."_title"]:TextControl():SetText("")
-         self["library_table_"..i.."_status"]:TextControl():SetText("")
+      for i = 1, 42 do
+         self["library_table_" .. i .. "_main"]:Show(false)
+         self["library_table_" .. i .. "_title"]:TextControl():SetText("")
+         self["library_table_" .. i .. "_status"]:TextControl():SetText("")
       end
       self.pda_welcome_screen:Show(false)
       self.statistic_setka:Show(false)
       self.advices_field:TextControl():SetText("")
-   elseif phrase==6 then
+   elseif phrase == 6 then
       self.get_tab_statistic:Enable(true)
       self.get_tab_advices:Enable(true)
       self.get_tab_library:Enable(true)
-      if r_mod_params("bool","disable_sgm_achievements",false)==false then
+      if sgm_g.r_mod_params("bool", "disable_sgm_achievements", false) == false then
          self.get_tab_achievements:Enable(true)
       end
       if has_alife_info("pri_a28_actor_in_zone_stay") then
@@ -1420,25 +1592,25 @@ function personal_pda:exclude_unnecessary_for(phrase)
       self.equipments_list:Show(true)
    end
 end
+
 function personal_pda:btn_off_pda()
    self:btn_close()
 end
+
 function personal_pda:btn_close()
    self:HideDialog()
    set_ui_worked()
    level.show_weapon(true)
 end
-function personal_pda:OnKeyboard(dik,keyboard_action)
-   CUIScriptWnd.OnKeyboard(self,dik,keyboard_action)
+
+function personal_pda:OnKeyboard(dik, keyboard_action)
+   CUIScriptWnd.OnKeyboard(self, dik, keyboard_action)
    if keyboard_action == ui_events.WINDOW_KEY_PRESSED then
-      if dik==DIK_keys.DIK_ESCAPE then
+      if dik == DIK_keys.DIK_ESCAPE then
          self:btn_close()
       end
    end
    return true
 end
-
-
-
 
 ---------------------------------//Copyright GeJorge//-----------------------------------------------

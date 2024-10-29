@@ -236,9 +236,11 @@ function anomaly_zone_binder:spawn_artefact_randomly()
 		rnd_artefact = self.start_artefacts_table[layer][#self.start_artefacts_table[layer]]
 		self.forced_spawn = false
 	else
-		if math.random(1,100) > 17 then
+		--/ SGM in
+		if math.random(1,100)>sgm_g.r_mod_params("number","artefacts_spawn_chance",17) then
 			return
 		end
+		--/ SGM out
 
 		local coeff_total = 0
 		for k, v in pairs(self.artefacts_coeff_table[layer]) do
@@ -357,6 +359,9 @@ function anomaly_zone_binder:update(delta)
 	if not(self.disabled) then
 		self:disable_anomaly_fields()
 	end
+	--/ SGM in
+	sgm_modules.module_anomaly_zone(self.object)
+	--/ SGM out
 end
 
 function anomaly_zone_binder:turn_off()
@@ -408,7 +413,9 @@ end
 function anomaly_zone_binder:save(thread)
 	set_save_marker(thread, "save", false, "anomaly_zone_binder")
 	object_binder.save(self, thread)
-
+	--/ SGM in
+	sgm_modules.module_anomaly_field(self.object)
+	--/ SGM out
 	local count = 0
 	for k,v in pairs(self.artefact_ways_by_id) do
 		count = count + 1

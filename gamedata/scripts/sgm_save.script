@@ -4,68 +4,112 @@
 --------------------------------------------------------------------------------------------------------
 ---==================================================================================================---
 statistic_killed_monsters = {
-bloodsucker = 0, boar        = 0, burer       = 0, chimera     = 0, controller  = 0, dog         = 0,
-flesh       = 0, gigant      = 0, poltergeist = 0, pseudodog   = 0, snork       = 0, tushkano    = 0,
-fracture    = 0, cat         = 0, zombie      = 0
+   bloodsucker = 0,
+   boar = 0,
+   burer = 0,
+   chimera = 0,
+   controller = 0,
+   dog = 0,
+   flesh = 0,
+   gigant = 0,
+   poltergeist = 0,
+   pseudodog = 0,
+   snork = 0,
+   tushkano = 0,
+   fracture = 0,
+   cat = 0,
+   zombie = 0
 }
 statistic_killed_stalkers = {
-alfa     = 0, army     = 0, bandit   = 0, dolg     = 0, ecolog   = 0, freedom  = 0, killer   = 0, 
-monolith = 0, stalker  = 0, rasvet   = 0, renegade   = 0, zombied  = 0, night_stalker  = 0
+   alfa = 0,
+   army = 0,
+   bandit = 0,
+   dolg = 0,
+   ecolog = 0,
+   freedom = 0,
+   killer = 0,
+   monolith = 0,
+   stalker = 0,
+   rasvet = 0,
+   renegade = 0,
+   zombied = 0,
+   night_stalker = 0
 }
 trader_orders = {
-zat_stalker_trader   = "none", zat_stalker_trader_t  = 0, zat_bandit_trader    = "none", zat_bandit_trader_t   = 0,
-jup_freedom_trader   = "none", jup_freedom_trader_t  = 0, jup_rasvet_trader    = "none", jup_rasvet_trader_t   = 0,
-jup_ecolog_trader    = "none", jup_ecolog_trader_t   = 0, jup_killer_trader    = "none", jup_killer_trader_t   = 0,
-pri_army_trader      = "none", pri_army_trader_t     = 0, pri_monolith_trader  = "none", pri_monolith_trader_t = 0,
-mil_b7_trader        = "none", mil_b7_trader_t       = 0, esc_stalker_trader   = "none", esc_stalker_trader_t  = 0, 
-mar_stalker_trader   = "none", mar_stalker_trader_t  = 0, val_b2_trader        = "none", val_b2_trader_t       = 0
+   zat_stalker_trader = "none",
+   zat_stalker_trader_t = 0,
+   zat_bandit_trader = "none",
+   zat_bandit_trader_t = 0,
+   jup_freedom_trader = "none",
+   jup_freedom_trader_t = 0,
+   jup_rasvet_trader = "none",
+   jup_rasvet_trader_t = 0,
+   jup_ecolog_trader = "none",
+   jup_ecolog_trader_t = 0,
+   jup_killer_trader = "none",
+   jup_killer_trader_t = 0,
+   pri_army_trader = "none",
+   pri_army_trader_t = 0,
+   pri_monolith_trader = "none",
+   pri_monolith_trader_t = 0,
+   mil_b7_trader = "none",
+   mil_b7_trader_t = 0,
+   esc_stalker_trader = "none",
+   esc_stalker_trader_t = 0,
+   mar_stalker_trader = "none",
+   mar_stalker_trader_t = 0,
+   val_b2_trader = "none",
+   val_b2_trader_t = 0
 }
 local save_manager = nil
 class "CSaveManager"
 function CSaveManager:__init()
 end
+
 function CSaveManager:initialize()
 end
+
 function CSaveManager:update()
 end
+
 function CSaveManager:save(packet)
-   for k,v in pairs(statistic_killed_monsters) do
+   for k, v in pairs(statistic_killed_monsters) do
       packet:w_u32(statistic_killed_monsters[k])
    end
-   for k,v in pairs(statistic_killed_stalkers) do
+   for k, v in pairs(statistic_killed_stalkers) do
       packet:w_u32(statistic_killed_stalkers[k])
    end
-   for k,v in pairs(trader_orders) do
-      if find_in_string(k,"trader_t") then
+   for k, v in pairs(trader_orders) do
+      if sgm_g.find_in_string(k, "trader_t") then
          packet:w_u32(trader_orders[k])
       else
          packet:w_stringZ(trader_orders[k])
       end
    end
 end
+
 function CSaveManager:load(packet)
    self:initialize()
-   for k,v in pairs(statistic_killed_monsters) do
+   for k, v in pairs(statistic_killed_monsters) do
       statistic_killed_monsters[k] = packet:r_u32()
    end
-   for k,v in pairs(statistic_killed_stalkers) do
+   for k, v in pairs(statistic_killed_stalkers) do
       statistic_killed_stalkers[k] = packet:r_u32()
    end
-   for k,v in pairs(trader_orders) do
-      if find_in_string(k,"trader_t") then
+   for k, v in pairs(trader_orders) do
+      if sgm_g.find_in_string(k, "trader_t") then
          trader_orders[k] = packet:r_u32()
       else
          trader_orders[k] = packet:r_stringZ()
       end
    end
 end
+
 function get_save_manager()
    if save_manager == nil then
       save_manager = CSaveManager()
    end
    return save_manager
 end
-
-
 
 -------------------------------------//Copyright GeJorge//-------------------------------------------------
