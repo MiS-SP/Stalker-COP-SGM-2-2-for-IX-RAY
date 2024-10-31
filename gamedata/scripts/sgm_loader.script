@@ -3,22 +3,28 @@
 --------------------------------(Загрузчик файлов Sigerous MOD)-----------------------------------------
 --------------------------------------------------------------------------------------------------------
 ---==================================================================================================---
-local save_manager = sgm_save.get_save_manager()
-local hud_manager = sgm_huds.get_hud_manager()
-local battery_manager = sgm_battery.get_battery_manager()
-local blackday_manager = sgm_blackday.get_black_day()
-function sigerous_mod_main()
-   sigerous_mod_loader()
+
+class "SGMLoader"
+
+function SGMLoader:__init()
+   self.managers = {
+      save = sgm_save.get_save_manager(),
+      battery = sgm_battery.get_battery_manager(),
+      blackday = sgm_blackday.get_black_day(),
+      hud = sgm_huds.get_hud_manager(),
+      loot = sgm_loot_manager.SGMLootManager()
+   }
+   self:sigerous_mod_load()
 end
 
-function sigerous_mod_loader()
-   save_manager:update()
-   battery_manager:update()
+function SGMLoader:sigerous_mod_load()
+   self.managers.save:update()
+   self.managers.battery:update()
    if sgm_g.check_seconds(3) then
-      blackday_manager:initialize()
-      blackday_manager:update()
+      self.managers.blackday:initialize()
+      self.managers.blackday:update()
    end
-   sgm_container.container_main()
+   self.managers.loot.update()
    if sgm_g.check_seconds(3) then
       sgm_cleaners.cleaners_main()
    end
@@ -29,7 +35,7 @@ function sigerous_mod_loader()
    if sgm_g.check_seconds(2) then
       sgm_reward.reward_main()
    end
-   hud_manager:update()
+   self.managers.hud:update()
    if sgm_g.check_seconds(4) then
       sgm_utils.utils_main_1()
    end
@@ -67,12 +73,12 @@ function sigerous_mod_loader()
 end
 
 function save(packet)
-   save_manager:save(packet)
+   self.managers.save:save(packet)
    battery_manager:save(packet)
 end
 
 function load(reader)
-   save_manager:load(reader)
+   self.managers.save:load(reader)
    battery_manager:load(reader)
 end
 
