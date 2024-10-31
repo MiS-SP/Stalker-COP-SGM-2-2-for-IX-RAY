@@ -1013,17 +1013,18 @@ end
 --                         На загрузку игры                                 --
 ------------------------------------------------------------------------------
 function on_game_load()
-   sgm_g.data_param_connect()
-   save_and_transform_ini_table("respawn\\respawn_abandoned.ltx", "abandoned", "table_mod_respawn", "respawn_abandoned",
-      true)
-   save_and_transform_ini_table("respawn\\respawn_monster.ltx", "monster_points", "table_mod_respawn", "respawn_monster",
-      true)
-   if sgm_g.find_in_string(read_string("freeplay_config", "levels", "respawn\\respawn_freeplay.ltx"), level.name()) then
-      save_and_transform_ini_table("respawn\\respawn_freeplay.ltx", "freeplay_points_" .. level.name(),
-         "table_mod_respawn", "respawn_freeplay", true)
-   end
-   if check_game_timer("drug_cat_eye_timer") == false then
-      level.add_pp_effector("drug_cat_eye.ppe", 19811, false)
+   if sgm_g.data_param_connect() then
+      save_and_transform_ini_table("respawn\\respawn_abandoned.ltx", "abandoned", "table_mod_respawn", "respawn_abandoned",
+         true)
+      save_and_transform_ini_table("respawn\\respawn_monster.ltx", "monster_points", "table_mod_respawn", "respawn_monster",
+         true)
+      if sgm_g.find_in_string(read_string("freeplay_config", "levels", "respawn\\respawn_freeplay.ltx"), level.name()) then
+         save_and_transform_ini_table("respawn\\respawn_freeplay.ltx", "freeplay_points_" .. level.name(),
+            "table_mod_respawn", "respawn_freeplay", true)
+      end
+      if check_game_timer("drug_cat_eye_timer") == false then
+         level.add_pp_effector("drug_cat_eye.ppe", 19811, false)
+      end
    end
 end
 

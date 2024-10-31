@@ -1325,6 +1325,7 @@ function find_out_string(where, what)
 end
 
 -- 'Сохранение списка секций из .ltx в табличную переменную.
+   -- ! warning, NOT SAVE FUNCTION
 function save_and_transform_ini_table(ini_path, ini_table, script_path, script_table, need_exist)
    local ini = ini_file(ini_path)
    local list_name_1 = ini_table
@@ -2720,13 +2721,6 @@ function present_day()
    end
 end
 
--- 'Старт таймера в игровом времени. Пример:
--- '   if check_game_timer("имя таймера")==nil then
--- '      start_game_timer("имя таймера",1)
--- '   elseif check_game_timer("имя таймера") then
--- '      действие, если таймер истек
--- '      start_game_timer("имя таймера",1) --/Продолжаем таймер.
--- '   end
 function start_game_timer(name, value, format)
    if format == "d" or format == "days" then
       write_mod_param(name, get_general_game_time() + ((60 * 24) * value))
@@ -3871,14 +3865,20 @@ end
 ------------------------------------------------------------------------------
 -- 'Проверка на валидность уникального серийного номера игры.
 function check_game_unique_id(value)
-   local result = true
+   local result = false
    local file = io.open("gamedata//configs//mod_parameters//save_data//save_data.sgm", "r")
-   for line in file:lines() do
-      if find_in_string(tostring(line), "|" .. value .. "|0|") then
-         result = false
+   if file ~= nil then
+      for line in file:lines() do
+         if find_in_string(tostring(line), "|" .. value .. "|0|") then
+            result = false
+         else
+            if (find_in_string(tostring(line), "|" .. value)) then
+            result = true
+            end
+         end
       end
+      file:close()
    end
-   file:close()
    return result
 end
 
@@ -3888,17 +3888,19 @@ function data_param_connect()
       local generate_id = math.random(1, 9999)
       if check_game_unique_id(generate_id) then
          sgm_functions.write_variable("new_game_unique_id", generate_id)
+         return true
       else
-         data_param_connect()
-         return
+         return false
       end
    end
    if sgm_flags.bool_data_loaded == false then
       sgm_flags.bool_data_loaded = true
       if data_param_exist() then
          data_param_load_all()
+         return true
       end
    end
+   return false
 end
 
 -- 'Коллбек на любое сохранение игры.
@@ -3934,10 +3936,12 @@ end
 -- 'Чтение имени сохранения без пробелов.
 function data_param_get_save_name(v_name)
    local file = io.open("gamedata//configs//mod_parameters//save_data//save_utils.sgm", "w")
-   file:write("[save_utils]", "\n")
-   file:write("save_name=" .. v_name, "\n")
-   file:close()
-   return data_param_read_section_1("save_utils", "save_utils", "save_name")[1]
+   if (file ~= nil) then
+      file:write("[save_utils]", "\n")
+      file:write("save_name=" .. v_name, "\n")
+      file:close()
+      return data_param_read_section_1("save_utils", "save_utils", "save_name")[1]
+   end
 end
 
 -- 'Чтение параметра секции из файла.
@@ -3993,15 +3997,17 @@ end
 
 -- 'Проверка содержания базы переменных.
 function data_param_exist()
-   local founded = false
    local file_path = "gamedata//configs//mod_parameters//save_data//save_data.sgm"
    local file = io.open(file_path, "r")
+   if file == nil then
+      return false
+   end
    for line in file:lines() do
       if find_in_string(tostring(line), "save_data") then
-         founded = true
+         return true
       end
    end
-   return founded
+   return false
 end
 
 -- 'Проверка по номеру игры на повторяемость сохранения.
@@ -4155,6 +4161,9 @@ end
 -- 'Выгрузка всех глобальных переменных из файла в две таблицы.
 function data_param_load_all()
    local file = io.open("gamedata//configs//mod_parameters//save_data//save_data.sgm", "r")
+   if file == nil then
+      return
+   end
    for line in file:lines() do
       if tostring(line) ~= "[save_data]" then
          local r_d = sgm_functions.check_section_stick(nil, read_string_removal_r(line, "="))
@@ -4479,8 +4488,9 @@ end
 
 -- 'Уникальный ID текущей игры. Генерируется когда игрок начинает новую игру.
 function get_game_unique_id()
-   if sgm_functions.read_variable("new_game_unique_id") ~= nil then
-      return sgm_functions.read_variable("new_game_unique_id")
+   local readed = sgm_functions.read_variable("new_game_unique_id")
+   if readed ~= nil then
+      return readed
    end
    return nil
 end
