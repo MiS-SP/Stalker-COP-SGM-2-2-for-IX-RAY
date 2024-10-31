@@ -57,6 +57,9 @@ function actor_binder:net_spawn(data)
 	self.spawn_frame = device().frame
 	self.already_jumped = false
 	benchmark.main()							          --' Distemper 06.2008 --
+	--/ SGM in
+	sgm_callbacks.on_game_load()
+	--/ SGM out
 	return true
 end
 ----------------------------------------------------------------------------------------------------------------------
@@ -120,22 +123,18 @@ function actor_binder:reinit()
 end
 ----------------------------------------------------------------------------------------------------------------------
 function actor_binder:take_item_from_box(box, item)
-	local box_name = box:name()
+	sgm_bind_stalker.take_item_from_box(box, item)
 end
 
 ----------------------------------------------------------------------------------------------------------------------
 function actor_binder:info_callback(npc, info_id)
-	printf("*INFO*: npc='%s' id='%s'", npc:name(), info_id)
+	sgm_bind_stalker.info_callback(npc, info_id)
 	--' Сюжет
 	-- Отметки на карте
 end
 ----------------------------------------------------------------------------------------------------------------------
-function actor_binder:on_trade (item, sell_bye, money)
-	if sell_bye == true then
-		 game_stats.money_trade_update (money)
-	else
-		 game_stats.money_trade_update (-money)
-	end
+function actor_binder:on_trade(item, sell_bye, money)
+	sgm_bind_stalker.on_trade(item, sell_bye, money)
 end
 ----------------------------------------------------------------------------------------------------------------------
 function actor_binder:article_callback(npc, group, name)
@@ -163,9 +162,11 @@ function actor_binder:on_item_take (obj)
 ]]
 	end
 	treasure_manager.get_treasure_manager():on_item_take(obj:id())
+	sgm_bind_stalker.on_item_take(obj)
 end
 ----------------------------------------------------------------------------------------------------------------------
 function actor_binder:on_item_drop (obj)
+	sgm_bind_stalker.on_item_drop(obj)
 end
 
 function actor_binder:use_inventory_item(obj)
@@ -181,10 +182,12 @@ function actor_binder:use_inventory_item(obj)
 			get_console():execute("snd_volume_music 0")
 			get_console():execute("snd_volume_eff 0")
 		end
+		sgm_bind_stalker.use_inventory_item(obj)
 	end
 end
 
 function anabiotic_callback()
+	sgm_bind_stalker.anabiotic_callback_pre()
 	level.add_cam_effector("camera_effects\\surge_01.anm", 10, false, "bind_stalker.anabiotic_callback2")
 	local rnd = math.random(35,45)
 	local m = surge_manager.get_surge_manager()
@@ -199,11 +202,13 @@ function anabiotic_callback()
 		end
 	end
 	level.change_game_time(0,0,rnd)
+	sgm_bind_stalker.anabiotic_callback_post()
 	level_weathers.get_weather_manager():forced_weather_change()
 	printf("anabiotic_callback: time forwarded on [%d]", rnd)
 end
 
 function anabiotic_callback2()
+	sgm_callbacks.anabiotic_callback2()
 	xr_effects.enable_ui(db.actor, nil)
     get_console():execute("snd_volume_music "..tostring(_G.mus_vol))
 	get_console():execute("snd_volume_eff "..tostring(_G.amb_vol))
@@ -358,27 +363,14 @@ function actor_binder:update(delta)
 		pda.fill_primary_objects()
 		primary_objects_filled = true
 	end
+	sgm_bind_stalker.update()
 	pda.fill_sleep_zones()
 	
 	SendScriptCallback("update")
 end
 ----------------------------------------------------------------------------------------------------------------------
 function actor_binder:save(packet)
-	set_save_marker(packet, "save", false, "actor_binder")
-	object_binder.save(self, packet)
-	--' Сохраняем уровень сложности
-	packet:w_u8(level.get_game_difficulty())
-	--' Сохраняем данные об отключенном вводе
-	if self.st.disable_input_time == nil then
-		packet:w_bool(false)
-	else
-		packet:w_bool(true)
-		utils.w_CTime(packet, self.st.disable_input_time)
-	end
-	xr_logic.pstor_save_all(self.object, packet)
-	self.weather_manager:save(packet)
-	release_body_manager.get_release_body_manager():save(packet)
-	self.surge_manager:save(packet)
+	sgm_bind_stalker.save(packet)
 	sr_psy_antenna.save( packet )
 	packet:w_bool(sim_board.get_sim_board().simulation_started)
 
@@ -446,8 +438,10 @@ function actor_binder:load(reader)
 	xr_logic.pstor_load_all(self.object, reader)
 	self.weather_manager:load(reader)
 	release_body_manager.get_release_body_manager():load(reader)
+
 --	self.surge_manager:initialize()
 	self.surge_manager:load(reader)
+	sgm_bind_stalker.load(reader)
 	self.f_surge_manager_loaded = true
 	sr_psy_antenna.load(reader)
 	sim_board.get_sim_board().simulation_started = reader:r_bool()
