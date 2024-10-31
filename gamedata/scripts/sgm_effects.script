@@ -72,11 +72,11 @@ function effects_update()
          detonate_explosive_charge(sgm_g.read_mod_param("detonation_charge_id"), true)
       end
    end
-   check_remote_charge(1)
-   check_remote_charge(2)
-   check_remote_charge(3)
+   sgm_g.check_remote_charge(1)
+   sgm_g.check_remote_charge(2)
+   sgm_g.check_remote_charge(3)
    --//Сон со спальником//-->
-   if check_game_timer("sleeping_bag_timer") then
+   if sgm_g.check_game_timer("sleeping_bag_timer") then
       level.remove_pp_effector(76470)
       level.set_time_factor(DefaultTimeFactor())
       level.enable_input()
@@ -90,16 +90,16 @@ function effects_update()
    end
    --//Помутнение в глазах//-->
    if sgm_g.check_seconds(1) then
-      if object_alive(db.actor) and sgm_g.dont_has_alife_info("opt_disable_actor_vertigo") and db.actor.health < sgm_g.r_mod_params("number", "health_vertigo_threshold", 0.30) then
+      if sgm_g.object_alive(db.actor) and sgm_g.dont_has_alife_info("opt_disable_actor_vertigo") and db.actor.health < sgm_g.r_mod_params("number", "health_vertigo_threshold", 0.30) then
          level.add_pp_effector("actor_hit.ppe", 510, false)
          if sgm_flags.string_vertigo_sound and sgm_flags.string_vertigo_sound:playing() == false then
             sgm_flags.string_vertigo_sound:play(db.actor, 1, sound_object.s2d + sound_object.looped)
          end
-      elseif object_alive(db.actor) and (db.actor.health >= sgm_g.r_mod_params("number", "health_vertigo_threshold", 0.30) or has_alife_info("opt_disable_actor_vertigo")) then
+      elseif sgm_g.object_alive(db.actor) and (db.actor.health >= sgm_g.r_mod_params("number", "health_vertigo_threshold", 0.30) or has_alife_info("opt_disable_actor_vertigo")) then
          if sgm_flags.string_vertigo_sound and sgm_flags.string_vertigo_sound:playing() then
             sgm_flags.string_vertigo_sound:stop()
          end
-      elseif not object_alive(db.actor) then
+      elseif not sgm_g.object_alive(db.actor) then
          if sgm_flags.string_vertigo_sound and sgm_flags.string_vertigo_sound:playing() then
             sgm_flags.string_vertigo_sound:stop()
          end
@@ -107,15 +107,15 @@ function effects_update()
    end
    --//Звук при критическом состоянии пси-здоровья//-->
    if sgm_g.check_seconds(1) then
-      if object_alive(db.actor) and db.actor.psy_health < 0.15 then
+      if sgm_g.object_alive(db.actor) and db.actor.psy_health < 0.15 then
          if sgm_flags.string_psy_critical_sound and sgm_flags.string_psy_critical_sound:playing() == false then
             sgm_flags.string_psy_critical_sound:play(db.actor, 1, sound_object.s2d + sound_object.looped)
          end
-      elseif object_alive(db.actor) and db.actor.psy_health >= 0.15 then
+      elseif sgm_g.object_alive(db.actor) and db.actor.psy_health >= 0.15 then
          if sgm_flags.string_psy_critical_sound and sgm_flags.string_psy_critical_sound:playing() then
             sgm_flags.string_psy_critical_sound:stop()
          end
-      elseif not object_alive(db.actor) then
+      elseif not sgm_g.object_alive(db.actor) then
          if sgm_flags.string_psy_critical_sound and sgm_flags.string_psy_critical_sound:playing() then
             sgm_flags.string_psy_critical_sound:stop()
          end
@@ -127,7 +127,7 @@ function effects_update()
       start_flague_timer("timer_detector_with_bolt", 10000)
    end
    --//Авто-энергетик//-->
-   if has_alife_info("opt_activate_auto_energy") and sgm_g.check_seconds(2) and object_alive(db.actor) then
+   if has_alife_info("opt_activate_auto_energy") and sgm_g.check_seconds(2) and sgm_g.object_alive(db.actor) then
       if db.actor.power < sgm_g.r_mod_params("number", "auto_energy_threshold", 0.20) then
          if db.actor:object("energy_drink") and sgm_flags.string_auto_energy_type == "nil" then
             start_flague_timer("timer_auto_energy", 60000)
@@ -145,7 +145,7 @@ function effects_update()
       end
    end
    --//Система автоматического приема препаратов//-->
-   if has_alife_info("opt_activate_automatic_use") and sgm_g.check_seconds(2) and object_alive(db.actor) then
+   if has_alife_info("opt_activate_automatic_use") and sgm_g.check_seconds(2) and sgm_g.object_alive(db.actor) then
       --/Борьба с кровотечением.
       if db.actor.bleeding > 0.05 and sgm_flags.timer_use_bandage == 0 then
          if db.actor:object("bandage") then
@@ -261,13 +261,13 @@ function effects_update()
    end
    --//Сопровождение токсических накоплений эффектом//-->
    if sgm_g.r_mod_params("bool", "present_toxicity", true) == true then
-      setup_effector_chain(sgm_g.read_mod_param("actor_toxicity"), "ppe", 76050, 0.00, 1.00, true, 25000, false, true,
+      sgm_g.setup_effector_chain(sgm_g.read_mod_param("actor_toxicity"), "ppe", 76050, 0.00, 1.00, true, 25000, false, true,
       true,
          0.80, 3000, 0.95, "alcohol.ppe")
    end
    --//Сопровождение потери пси-здоровья PPE эффектом//-->
    if db.actor ~= nil then
-      setup_effector_chain(db.actor.psy_health, "ppe", 75057, 0.99, 0.00, false, 2500, false, true, false, nil, nil, nil,
+      sgm_g.setup_effector_chain(db.actor.psy_health, "ppe", 75057, 0.99, 0.00, false, 2500, false, true, false, nil, nil, nil,
          "psi.ppe")
    end
 end

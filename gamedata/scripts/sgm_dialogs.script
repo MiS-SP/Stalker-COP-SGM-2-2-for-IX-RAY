@@ -218,50 +218,50 @@ end
 --                            Функции условий                               --
 ------------------------------------------------------------------------------
 function zat_danger_parcel_need_rank_more(actor, npc)
-   local get_rank = get_actor_rank()
+   local get_rank = sgm_g.get_actor_rank()
    return get_rank >= r_quest_params("number", "zat_danger_parcel_need_rank", 90)
 end
 
 function zat_danger_parcel_need_rank_less(actor, npc)
-   local get_rank = get_actor_rank()
+   local get_rank = sgm_g.get_actor_rank()
    return get_rank < r_quest_params("number", "zat_danger_parcel_need_rank", 90)
 end
 
 function zat_kill_chapaev_need_rank_more(actor, npc)
-   local get_rank = get_actor_rank()
+   local get_rank = sgm_g.get_actor_rank()
    return get_rank >= r_quest_params("number", "zat_kill_chapaev_need_rank", 150)
 end
 
 function zat_kill_chapaev_need_rank_less(actor, npc)
-   local get_rank = get_actor_rank()
+   local get_rank = sgm_g.get_actor_rank()
    return get_rank < r_quest_params("number", "zat_kill_chapaev_need_rank", 150)
 end
 
 function zat_kill_shakal_need_rank_more(actor, npc)
-   local get_rank = get_actor_rank()
+   local get_rank = sgm_g.get_actor_rank()
    return get_rank >= r_quest_params("number", "zat_kill_shakal_need_rank", 125) or
        has_alife_info("zat_b7_actor_help_bandits")
 end
 
 function zat_kill_shakal_need_rank_less(actor, npc)
-   local get_rank = get_actor_rank()
+   local get_rank = sgm_g.get_actor_rank()
    return get_rank < r_quest_params("number", "zat_kill_shakal_need_rank", 125) and
        sgm_g.dont_has_alife_info("zat_b7_actor_help_bandits")
 end
 
 function zat_mechanic_not_details_pre(actor, npc)
    return sgm_g.read_mod_param("zat_mechanic_stripping") < 1 and
-   sgm_g.r_mod_params("bool", "need_mechanic_details", true)
+       sgm_g.r_mod_params("bool", "need_mechanic_details", true)
 end
 
 function jup_mechanic_not_details_pre(actor, npc)
    return sgm_g.read_mod_param("jup_mechanic_stripping") < 1 and
-   sgm_g.r_mod_params("bool", "need_mechanic_details", true)
+       sgm_g.r_mod_params("bool", "need_mechanic_details", true)
 end
 
 function pri_mechanic_not_details_pre(actor, npc)
    return sgm_g.read_mod_param("pri_mechanic_stripping") < 1 and
-   sgm_g.r_mod_params("bool", "need_mechanic_details", true)
+       sgm_g.r_mod_params("bool", "need_mechanic_details", true)
 end
 
 ------------------------------------------------------------------------------
@@ -3981,7 +3981,7 @@ local loaded_cost = 0
 local loaded_need = 0
 local loaded_item = "wpn_knife"
 function pre_custom_goods(actor, npc)
-   return get_actor_rank() >= loaded_need
+   return sgm_g.get_actor_rank() >= loaded_need
 end
 
 function write_order(cost)
@@ -4003,7 +4003,7 @@ end
 function choose_item(item_name, need_rank)
    loaded_item = item_name
    if need_rank ~= nil then
-      if get_actor_rank() >= need_rank then
+      if sgm_g.get_actor_rank() >= need_rank then
          loaded_need = 0
       else
          loaded_need = need_rank
@@ -4349,7 +4349,7 @@ function show_order_costs(first_speaker, second_speaker)
 end
 
 function order_has_money(actor, npc)
-   return get_actor_rank() >= loaded_need and db.actor:money() >= loaded_cost
+   return sgm_g.get_actor_rank() >= loaded_need and db.actor:money() >= loaded_cost
 end
 
 function order_agree_less_money(actor, npc)
@@ -4535,12 +4535,12 @@ end
 
 function there_available_tasks(actor, npc)
    return sgm_g.read_mod_param("shustriy_available_tasks") ~= nil and
-   sgm_g.read_mod_param("shustriy_available_tasks") > 0
+       sgm_g.read_mod_param("shustriy_available_tasks") > 0
 end
 
 function nothing_available_tasks(actor, npc)
    return sgm_g.read_mod_param("shustriy_available_tasks") ~= nil and
-   sgm_g.read_mod_param("shustriy_available_tasks") <= 0
+       sgm_g.read_mod_param("shustriy_available_tasks") <= 0
 end
 
 function s_actor_has_1_order(actor, npc)

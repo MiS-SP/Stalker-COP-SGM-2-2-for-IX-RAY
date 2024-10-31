@@ -374,7 +374,7 @@ function personal_pda:Update()
       self.statistic_line_5_title:TextControl():SetText(game.translate_string("st_statistic_zarabotano_web_money"))
       self.statistic_line_5_value:TextControl():SetText(math.floor(get_web_money()))
       self.statistic_line_6_title:TextControl():SetText(game.translate_string("st_statistic_actor_rank"))
-      self.statistic_line_6_value:TextControl():SetText(get_actor_rank())
+      self.statistic_line_6_value:TextControl():SetText(sgm_g.get_actor_rank())
       self.statistic_line_7_title:TextControl():SetText(game.translate_string("st_statistic_weapon_shots"))
       self.statistic_line_7_value:TextControl():SetText(sgm_g.read_mod_param("stat_weapon_shots"))
       self.statistic_line_8_title:TextControl():SetText(game.translate_string("st_statistic_head_shots"))
@@ -895,7 +895,7 @@ end
 
 function achievements_client_update()
    local pre1 = sgm_g.read_mod_param("stat_executed_orders")
-   local pre2 = get_actor_rank()
+   local pre2 = sgm_g.get_actor_rank()
    if pre1 ~= nil and pre1 >= 10 and pre2 >= 50 and sgm_g.dont_has_alife_info("sgm_achievements_client") then
       give_info("sgm_achievements_client")
       inc_mod_param("stat_dostigeniy", 1)
@@ -951,7 +951,7 @@ end
 function achievements_assistant_update()
    local value = 80
    local pre = sgm_g.read_mod_param("zat_mechanic_stripping") ~= nil and
-   sgm_g.read_mod_param("jup_mechanic_stripping") ~= nil and
+       sgm_g.read_mod_param("jup_mechanic_stripping") ~= nil and
        sgm_g.read_mod_param("pri_mechanic_stripping") ~= nil
    if pre and (sgm_g.read_mod_param("zat_mechanic_stripping") >= value or sgm_g.read_mod_param("jup_mechanic_stripping") >= value or sgm_g.read_mod_param("pri_mechanic_stripping") >= value) and sgm_g.dont_has_alife_info("sgm_achievements_assistant") then
       give_info("sgm_achievements_assistant")

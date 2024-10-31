@@ -500,9 +500,9 @@ function CHudManager:hud_utils()
    if has_alife_info("opt_show_rank_counter") then
       local data_rank
       if sgm_g.r_mod_params("bool", "headshot_rank_on_display", true) then
-         data_rank = "" .. get_actor_rank() .. "(" .. sgm_g.read_mod_param("stat_headshots") .. ")"
+         data_rank = "" .. sgm_g.get_actor_rank() .. "(" .. sgm_g.read_mod_param("stat_headshots") .. ")"
       else
-         data_rank = "" .. get_actor_rank()
+         data_rank = "" .. sgm_g.get_actor_rank()
       end
       add_hud("hud_actor_rank_icon")
       add_hud("hud_actor_rank_text", data_rank)

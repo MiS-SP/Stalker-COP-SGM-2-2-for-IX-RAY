@@ -10,15 +10,15 @@ end
 
 function monsters_cleaner_update()
    if sgm_g.r_mod_params("number", "monsters_cleaner_interval", 0) > 0 then
-      if check_game_timer("m_cleaner_timer") == nil then
-         start_game_timer("m_cleaner_timer", sgm_g.r_mod_params("number", "monsters_cleaner_interval", 0))
+      if sgm_g.check_game_timer("m_cleaner_timer") == nil then
+         sgm_g.start_game_timer("m_cleaner_timer", sgm_g.r_mod_params("number", "monsters_cleaner_interval", 0))
       end
    else
-      abort_game_timer("m_cleaner_timer")
+      sgm_g.abort_game_timer("m_cleaner_timer")
    end
-   if check_game_timer("m_cleaner_timer") then
+   if sgm_g.check_game_timer("m_cleaner_timer") then
       clear_all_objects("monster", 15)
-      start_game_timer("m_cleaner_timer", sgm_g.r_mod_params("number", "monsters_cleaner_interval", 0))
+      sgm_g.start_game_timer("m_cleaner_timer", sgm_g.r_mod_params("number", "monsters_cleaner_interval", 0))
    end
 end
 
