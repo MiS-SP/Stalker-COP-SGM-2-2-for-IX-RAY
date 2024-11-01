@@ -19,7 +19,12 @@ local death_ini = ini_file("misc\\death_generic.ltx")
 
 
 function init_drop_settings()
-	local community_list = { "stalker", "dolg", "freedom", "bandit", "army", "zombied", "ecolog", "killer", "monolith" }
+	--/ SGM in
+	community_list = {
+		"bodyguard_a", "bodyguard_b", "bodyguard_c", "bodyguard_d", "bodyguard_e", "bodyguard_f", "monolith_alies",
+		"rasvet", "agent", "trader", "bandit_alies", "killer_enemy", "killer_alies", "stalker_alies", "army_alies",
+		"alfa_force", "renegade", "night_stalker", "mercenary", "bandit_enemy" }
+	--/ SGM out
 
 		for k,v in pairs(community_list) do
 				--' Необходимо заполнить таблицу
@@ -119,7 +124,8 @@ function drop_manager:create_release_item()
 	se_obj.death_droped = true
 
 	--' Запускаем итератор на удаление предметов
-	self.npc:iterate_inventory(keep_item, self.npc)
+	-- self.npc:iterate_inventory(keep_item, self.npc)
+	sgm_death_manager.create_release_item_iterator(self.npc)
 
 	--' Проверка на отсутствие спауна лута
 	local ini = self.npc:spawn_ini()
@@ -140,18 +146,19 @@ function drop_manager:create_release_item()
 	if spawn_items == nil then
 		return
 	end
-	for k,v in pairs(spawn_items) do
-		--' По каждому объекту необходимо получить зависимости
-		if check_item_dependence(self.npc, k) == true then
-			--' По каждому объекту необходимо получить количество
-			if count_by_level[k] == nil then
-				abort("Incorrect count settings in death_manager for object[%s]", k)
-			end
-			local number = math.ceil(math.random(count_by_level[k].min, count_by_level[k].max))
-			--' Необходимо заспавнить нужное количество.
-			create_items(self.npc, k, number, v)
-		end
-	end
+	sgm_death_manager.create_release_item_post(self.npc)
+	-- for k,v in pairs(spawn_items) do
+	-- 	--' По каждому объекту необходимо получить зависимости
+	-- 	if check_item_dependence(self.npc, k) == true then
+	-- 		--' По каждому объекту необходимо получить количество
+	-- 		if count_by_level[k] == nil then
+	-- 			abort("Incorrect count settings in death_manager for object[%s]", k)
+	-- 		end
+	-- 		local number = math.ceil(math.random(count_by_level[k].min, count_by_level[k].max))
+	-- 		--' Необходимо заспавнить нужное количество.
+	-- 		create_items(self.npc, k, number, v)
+	-- 	end
+	-- end
 
 end
 
@@ -160,6 +167,8 @@ function keep_item(npc, item)
 	local section = item:section()
 
 	local ini = npc:spawn_ini()
+
+	sgm_death_manager.keep_item(npc, item)
 
 	if ini and ini:section_exist("keep_items")
 			and	section ~= "guitar_a"
@@ -183,7 +192,7 @@ function keep_item(npc, item)
 	end
 	--printf("item name [%s]", item:name())
 	if isWeapon(item) and not(get_clsid(item)==clsid.wpn_grenade_rgd5_s or get_clsid(item)==clsid.wpn_grenade_f1_s) then
-		set_weapon_drop_condition(item)
+		sgm_death_manager.set_weapon_drop_condition(item, npc)
 		return
 	end
 
@@ -222,7 +231,7 @@ end
 function set_weapon_drop_condition(item)
 	local condition  = (math.random(40)+40)/100
 	--printf("condition [%s]", tostring(condition))
-	item:set_condition(condition)	
+	item:set_condition(condition) 
 end
 
 --' Функция спавнит необходимое число предметов
