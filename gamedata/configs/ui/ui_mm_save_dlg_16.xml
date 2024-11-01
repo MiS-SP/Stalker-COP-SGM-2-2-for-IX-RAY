@@ -1,0 +1,60 @@
+<w>
+  	<background x="0" y="0" width="1024" height="768">
+		<auto_static x="500" y="130" width="345" height="160" stretch="1">
+			<texture width="432" height="160">ui\video_voroni_crop</texture>
+		</auto_static>
+		<auto_static x="432" y="353" width="460" height="416" stretch="1">
+			<texture x="0" y="0" width="576" height="416">ui\video_water_crop</texture>
+		</auto_static>
+	    <auto_static x="102" y="0" width="819" height="768" stretch="1">
+	      <texture>ui_inGame2_background</texture>
+	    </auto_static>
+	    <auto_static x="-2" y="0" width="104" height="768" stretch="1">
+		    <texture>ui_mod_left_widepanel_1</texture>
+	    </auto_static>
+	    <auto_static x="920" y="0" width="104" height="768" stretch="1">
+		    <texture>ui_mod_right_widepanel_1</texture>
+	    </auto_static>
+		<auto_static x="102" y="0" width="490" height="651" stretch="1">
+			<texture>ui_inGame2_save_load_wnd</texture>
+		</auto_static>
+	</background>
+    <file_item>
+	    <main width="392" height="18"/>
+	    <fn width="284" height="18"/>
+	    <fd width="88" height="18"/>
+    </file_item>
+    <form x="104" y="0" width="613" height="651">
+	    <caption x="100" y="190" width="304" height="30">
+		    <text font="letterica18" align="c">ui_mm_save_game</text>
+	    </caption>
+	    <auto_static x="0" y="229" width="333" height="26" stretch="1">
+	           <texture>ui_inGame2_save_table</texture>
+	    </auto_static>
+	    <edit x="15" y="231" width="256" height="23" file_name_mode="1">
+		    <texture>ui_inGame2_edit_box_1</texture>
+		    <text x="3" font="letterica18" vert_align="c"/>
+	    </edit>
+	    <list_frame x="30" y="110" width="500" height="275">
+	    </list_frame>
+	    <list x="19" y="256" width="453" height="335" item_height="18" can_select="1">
+		    <font font="letterica16"/>
+	    </list>
+	    <btn_save x="21" y="604" width="135" height="26">
+	        <texture>ui_inGame2_Mp_bigbuttone</texture>
+	        <text font="letterica18">ui_mm_save</text>
+	    </btn_save>
+	    <btn_delete x="177" y="604" width="135" height="26">
+	        <texture>ui_inGame2_Mp_bigbuttone</texture>
+	        <text font="letterica18">ui_mm_delete</text>
+	        <text_color>
+	        </text_color>
+	    </btn_delete>
+	    <btn_cancel x="333" y="604" width="135" height="26">
+	        <texture>ui_inGame2_Mp_bigbuttone</texture>
+	        <text font="letterica18">ui_mm_cancel</text>
+	        <text_color>
+	        </text_color>
+	    </btn_cancel>
+	</form>
+</w>

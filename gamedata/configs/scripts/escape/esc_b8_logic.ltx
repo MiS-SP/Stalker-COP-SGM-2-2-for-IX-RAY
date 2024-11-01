@@ -1,0 +1,104 @@
+;Логика ""
+
+[walker@def_guarder]
+use_camp = false
+gather_items_enabled = false
+help_wounded_enabled = true
+corpse_detection_enabled = false
+
+;
+
+[logic@esc_b8_guarder_1]
+active = walker@guarder_1
+suitable = {=check_npc_name(sim_default_bandit_enemy)} true, {=check_npc_name(sim_default_stalker)} true
+prior = 90
+
+[walker@guarder_1]:walker@def_guarder
+path_walk = guard_1_walk
+path_look = guard_1_look
+
+;
+
+[logic@esc_b8_guarder_2]
+active = walker@guarder_2
+suitable = {=check_npc_name(sim_default_bandit_enemy)} true, {=check_npc_name(sim_default_stalker)} true
+prior = 90
+
+[walker@guarder_2]:walker@def_guarder
+path_walk = guard_2_walk
+path_look = guard_2_look
+
+;
+
+[logic@esc_b8_guarder_3]
+active = walker@guarder_3
+suitable = {=check_npc_name(sim_default_bandit_enemy)} true, {=check_npc_name(sim_default_stalker)} true
+prior = 90
+
+[walker@guarder_3]:walker@def_guarder
+path_walk = guard_3_walk
+path_look = guard_3_look
+
+;
+
+[logic@esc_b8_guarder_4]
+active = walker@guarder_4
+suitable = {=check_npc_name(sim_default_bandit_enemy)} true, {=check_npc_name(sim_default_stalker)} true
+prior = 90
+
+[walker@guarder_4]:walker@def_guarder
+path_walk = guard_4_walk
+path_look = guard_4_look
+
+;
+
+[logic@esc_b8_guarder_5]
+active = walker@guarder_5
+suitable = {=check_npc_name(sim_default_bandit_enemy)} true, {=check_npc_name(sim_default_stalker)} true
+prior = 90
+
+[walker@guarder_5]:walker@def_guarder
+path_walk = guard_5_walk
+path_look = guard_5_look
+
+;
+
+[logic@esc_b8_guarder_6]
+active = walker@guarder_6
+suitable = {=check_npc_name(sim_default_bandit_enemy)} true, {=check_npc_name(sim_default_stalker)} true
+prior = 90
+
+[walker@guarder_6]:walker@def_guarder
+path_walk = guard_6_walk
+path_look = guard_6_look
+
+;
+
+[logic@esc_b8_guarder_7]
+active = walker@guarder_7
+suitable = {=check_npc_name(sim_default_bandit_enemy)} true, {=check_npc_name(sim_default_stalker)} true
+prior = 90
+
+[walker@guarder_7]:walker@def_guarder
+path_walk = guard_7_walk
+path_look = guard_7_look
+
+;
+
+[logic@esc_b8_guarder_8]
+active = walker@guarder_8
+suitable = {=check_npc_name(sim_default_bandit_enemy)} true, {=check_npc_name(sim_default_stalker)} true
+prior = 95
+
+[walker@guarder_8]:walker@def_guarder
+path_walk = walker_1_walk
+
+;
+
+[logic@esc_b8_guarder_9]
+active = walker@guarder_9
+suitable = {=check_npc_name(sim_default_bandit_enemy)} true, {=check_npc_name(sim_default_stalker)} true
+prior = 95
+
+[walker@guarder_9]:walker@def_guarder
+path_walk = walker_2_walk

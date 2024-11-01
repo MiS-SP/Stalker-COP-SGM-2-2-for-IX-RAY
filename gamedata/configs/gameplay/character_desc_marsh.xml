@@ -1,0 +1,361 @@
+<?xml version='1.0' encoding="windows-1251"?>
+<xml>
+<!-----------------------------------------========------------------------------------------------------->
+<!-----------------------------------------'Болота'------------------------------------------------------->
+<!-----------------------------------------========------------------------------------------------------->
+<specific_character id="mar_b1_commander" team_default = "1">
+                <name>mar_b1_commander_name</name>
+                <icon>ui_inGame2_neutral_nauchniy</icon>
+                <map_icon x="1" y="0"></map_icon>
+                <bio>Опытный сталкер. Детальная информация отсутствует.</bio>
+                <class>mar_b1_commander</class>
+                <community>stalker</community> <terrain_sect>stalker_terrain</terrain_sect>
+                <snd_config>characters_voice\human_03\stalker\</snd_config>
+                <rank>200</rank>
+	        <money min="3500" max="8500" infinitive="0"/>
+                <reputation>0</reputation>
+                <visual>actors\stalker_neutral\stalker_neutral_4_1</visual>
+                <supplies>
+                [spawn] \n
+	  	wpn_ak74 = 1 \n
+		ammo_5.45x39_ap = 1 \n
+      		wpn_beretta \n
+		ammo_9x19_pbp = 1 \n
+      		grenade_rgd5 = 2 \n
+#include "gameplay\character_items_2.xml"
+#include "gameplay\character_food.xml"
+#include "gameplay\character_drugs_2.xml"
+		</supplies>
+                <start_dialog>mar_b1_stalker_commander_start_dialog</start_dialog>
+		<actor_dialog>actor_break_dialog</actor_dialog>
+#include "gameplay\character_criticals_4.xml"
+                #include "gameplay\character_dialogs.xml"
+</specific_character>
+
+<specific_character id="mar_b2_commander" team_default = "1">
+                <name>mar_b2_commander_name</name>
+                <icon>ui_inGame2_neutral_2_mask</icon>
+                <map_icon x="1" y="0"></map_icon>
+                <bio>Опытный сталкер. Детальная информация отсутствует.</bio>
+                <class>mar_b2_commander</class>
+                <community>stalker</community> <terrain_sect>stalker_terrain</terrain_sect>
+                <snd_config>characters_voice\human_03\stalker\</snd_config>
+                <rank>200</rank>
+	        <money min="3500" max="8500" infinitive="0"/>
+                <reputation>0</reputation>
+                <visual>actors\stalker_neutral\stalker_neutral_14_mask</visual>
+                <supplies>
+                [spawn] \n
+	  	wpn_ak74 = 1 \n
+		ammo_5.45x39_ap = 1 \n
+      		wpn_beretta \n
+		ammo_9x19_pbp = 1 \n
+      		grenade_rgd5 = 2 \n
+#include "gameplay\character_items_2.xml"
+#include "gameplay\character_food.xml"
+#include "gameplay\character_drugs_2.xml"
+		</supplies>
+#include "gameplay\character_criticals_4.xml"
+#include "gameplay\character_dialogs.xml"
+</specific_character>
+
+<specific_character id="mar_b2_stalker_mechanic" team_default="1">
+		<name>mar_b2_stalker_mechanic_name</name>
+		<icon>ui_inGame2_neutral_2_mask</icon>
+		<map_icon x="1" y="0">
+		</map_icon>
+		<bio>Опытный сталкер. Детальная информация отсутствует.</bio>
+		<class>mar_b2_stalker_mechanic</class>
+		<mechanic_mode>1</mechanic_mode>
+                <community>stalker</community> <terrain_sect>stalker_terrain</terrain_sect>
+                <snd_config>characters_voice\human_03\stalker\</snd_config>
+		<rank>250</rank>
+		<reputation>0</reputation>
+		<visual>actors\stalker_neutral\stalker_neutral_6_mask</visual>
+		<supplies>
+                 [spawn] \n
+                 device_torch \n
+		 wpn_sig220 = 1 \n
+		 ammo_11.43x23_fmj = 1 \n
+#include "gameplay\character_items_nd.xml"
+#include "gameplay\character_food.xml"
+#include "gameplay\character_drugs_2.xml"
+             	</supplies>   
+#include "gameplay\character_criticals_4.xml"
+                <start_dialog>mar_b2_stalker_mechanic_start_dialog</start_dialog>
+		<actor_dialog>actor_break_dialog</actor_dialog>
+#include "gameplay\character_criticals_4.xml"
+                #include "gameplay\character_dialogs.xml"
+</specific_character>
+
+<specific_character id="mar_b3_commander" team_default = "1">
+                <name>mar_b3_commander_name</name>
+                <icon>ui_inGame2_bandit_4</icon>
+                <map_icon x="1" y="0"></map_icon>
+                <bio>Опытный сталкер. Детальная информация отсутствует.</bio>
+                <class>mar_b3_commander</class>
+                <community>bandit_enemy</community> <terrain_sect>stalker_terrain</terrain_sect>
+                <snd_config>characters_voice\human_02\bandit\</snd_config>
+                <rank>200</rank>
+                <reputation>0</reputation>
+                <visual>actors\stalker_bandit\stalker_bandit_3_2</visual>
+                <supplies>
+                [spawn] \n
+      		wpn_ak74_m2 \n
+		ammo_5.45x39_ap = 1 \n    
+      		wpn_beretta_m2 \n
+		ammo_9x18_fmj = 1 \n
+      		grenade_rgd5 = 2 \n
+      		dv_bandit_karas_case \n
+#include "gameplay\character_items_nd.xml"
+#include "gameplay\character_food.xml"
+#include "gameplay\character_drugs.xml"
+		</supplies>
+#include "gameplay\character_criticals_4.xml"
+#include "gameplay\character_dialogs.xml"
+</specific_character>
+
+<specific_character id="mar_b4_commander" team_default = "1">
+                <name>mar_b4_commander_name</name>
+                <icon>ui_inGame2_bandit_4</icon>
+                <map_icon x="1" y="0"></map_icon>
+                <bio>Опытный сталкер. Детальная информация отсутствует.</bio>
+                <class>mar_b4_commander</class>
+                <community>bandit_enemy</community> <terrain_sect>stalker_terrain</terrain_sect>
+                <snd_config>characters_voice\human_02\bandit\</snd_config>
+                <rank>200</rank>
+                <reputation>0</reputation>
+                <visual>actors\stalker_bandit\stalker_bandit_3_1</visual>
+                <supplies>
+                [spawn] \n
+      		wpn_ak74_m3 \n
+		ammo_5.45x39_ap = 1 \n    
+      		wpn_beretta_m3 \n
+		ammo_9x18_fmj = 1 \n
+      		grenade_rgd5 = 2 \n
+      		dv_bandit_kaschey_case \n
+#include "gameplay\character_items_nd.xml"
+#include "gameplay\character_food.xml"
+#include "gameplay\character_drugs.xml"
+		</supplies>
+#include "gameplay\character_criticals_4.xml"
+#include "gameplay\character_dialogs.xml"
+</specific_character>
+
+<specific_character id="mar_b4_army_captivity_dead_1" team_default = "1">
+                <name>GENERATE_NAME_private</name>
+                <icon>ui_inGame2_Soldier_2</icon>
+                <map_icon x="1" y="0"></map_icon>
+                <bio>Опытный сталкер. Детальная информация отсутствует.</bio>
+                <class>mar_b4_army_captivity_dead_1</class>
+                <community>army</community> <terrain_sect>stalker_terrain</terrain_sect>
+                <snd_config>characters_voice\human_01\military\</snd_config>
+                <rank>100</rank>
+                <reputation>0</reputation>
+                <visual>actors\stalker_soldier\stalker_soldier_2_1</visual>
+		<supplies>
+                 [spawn] \n
+#include "gameplay\character_items_nd.xml"
+#include "gameplay\character_food.xml"
+#include "gameplay\character_drugs.xml"
+             	</supplies>
+		<actor_dialog>actor_break_dialog</actor_dialog>
+#include "gameplay\character_criticals_4.xml"
+                #include "gameplay\character_dialogs.xml"
+</specific_character>
+
+<specific_character id="mar_b4_army_captivity_dead_2" team_default = "1">
+                <name>GENERATE_NAME_lieutenant</name>
+                <icon>ui_inGame2_Soldier_3</icon>
+                <map_icon x="1" y="0"></map_icon>
+                <bio>Опытный сталкер. Детальная информация отсутствует.</bio>
+                <class>mar_b4_army_captivity_dead_2</class>
+                <community>army</community> <terrain_sect>stalker_terrain</terrain_sect>
+                <snd_config>characters_voice\human_01\military\</snd_config>
+                <rank>100</rank>
+                <reputation>0</reputation>
+                <visual>actors\stalker_soldier\stalker_soldier_3_1</visual>
+		<supplies>
+                 [spawn] \n
+#include "gameplay\character_items_nd.xml"
+#include "gameplay\character_food.xml"
+#include "gameplay\character_drugs.xml"
+             	</supplies>
+		<actor_dialog>actor_break_dialog</actor_dialog>
+#include "gameplay\character_criticals_4.xml"
+                #include "gameplay\character_dialogs.xml"
+</specific_character>
+
+<specific_character id="mar_b4_army_captivity_dead_3" team_default = "1">
+                <name>GENERATE_NAME_captain</name>
+                <icon>ui_inGame2_Soldier_4</icon>
+                <map_icon x="1" y="0"></map_icon>
+                <bio>Опытный сталкер. Детальная информация отсутствует.</bio>
+                <class>mar_b4_army_captivity_dead_3</class>
+                <community>army</community> <terrain_sect>stalker_terrain</terrain_sect>
+                <snd_config>characters_voice\human_01\military\</snd_config>
+                <rank>100</rank>
+                <reputation>0</reputation>
+                <visual>actors\stalker_soldier\stalker_soldier_4</visual>
+		<supplies>
+                 [spawn] \n
+#include "gameplay\character_items_nd.xml"
+#include "gameplay\character_food.xml"
+#include "gameplay\character_drugs.xml"
+             	</supplies>
+		<actor_dialog>actor_break_dialog</actor_dialog>
+#include "gameplay\character_criticals_4.xml"
+                #include "gameplay\character_dialogs.xml"
+</specific_character>
+
+<specific_character id="mar_b4_army_captivity_dead_4" team_default = "1">
+                <name>GENERATE_NAME_sergeant</name>
+                <icon>ui_inGame2_Soldier_3</icon>
+                <map_icon x="1" y="0"></map_icon>
+                <bio>Опытный сталкер. Детальная информация отсутствует.</bio>
+                <class>mar_b4_army_captivity_dead_4</class>
+                <community>army</community> <terrain_sect>stalker_terrain</terrain_sect>
+                <snd_config>characters_voice\human_01\military\</snd_config>
+                <rank>100</rank>
+                <reputation>0</reputation>
+                <visual>actors\stalker_soldier\stalker_soldier_3_1</visual>
+		<supplies>
+                 [spawn] \n
+#include "gameplay\character_items_nd.xml"
+#include "gameplay\character_food.xml"
+#include "gameplay\character_drugs.xml"
+             	</supplies>
+		<actor_dialog>actor_break_dialog</actor_dialog>
+#include "gameplay\character_criticals_4.xml"
+                #include "gameplay\character_dialogs.xml"
+</specific_character>
+
+<specific_character id="mar_b4_army_captivity_dead_5" team_default = "1">
+                <name>GENERATE_NAME_private</name>
+                <icon>ui_inGame2_Soldier_2</icon>
+                <map_icon x="1" y="0"></map_icon>
+                <bio>Опытный сталкер. Детальная информация отсутствует.</bio>
+                <class>mar_b4_army_captivity_dead_5</class>
+                <community>army</community> <terrain_sect>stalker_terrain</terrain_sect>
+                <snd_config>characters_voice\human_01\military\</snd_config>
+                <rank>100</rank>
+                <reputation>0</reputation>
+                <visual>actors\stalker_soldier\stalker_soldier_2</visual>
+		<supplies>
+                 [spawn] \n
+#include "gameplay\character_items_nd.xml"
+#include "gameplay\character_food.xml"
+#include "gameplay\character_drugs.xml"
+             	</supplies>
+		<actor_dialog>actor_break_dialog</actor_dialog>
+#include "gameplay\character_criticals_4.xml"
+                #include "gameplay\character_dialogs.xml"
+</specific_character>
+
+<specific_character id="mar_b4_army_captivity_dead_6" team_default = "1">
+                <name>GENERATE_NAME_captain</name>
+                <icon>ui_inGame2_Soldier_4</icon>
+                <map_icon x="1" y="0"></map_icon>
+                <bio>Опытный сталкер. Детальная информация отсутствует.</bio>
+                <class>mar_b4_army_captivity_dead_6</class>
+                <community>army</community> <terrain_sect>stalker_terrain</terrain_sect>
+                <snd_config>characters_voice\human_01\military\</snd_config>
+                <rank>100</rank>
+                <reputation>0</reputation>
+                <visual>actors\stalker_soldier\stalker_soldier_4_1</visual>
+		<supplies>
+                 [spawn] \n
+#include "gameplay\character_items_nd.xml"
+#include "gameplay\character_food.xml"
+#include "gameplay\character_drugs.xml"
+             	</supplies>
+		<actor_dialog>actor_break_dialog</actor_dialog>
+#include "gameplay\character_criticals_4.xml"
+                #include "gameplay\character_dialogs.xml"
+</specific_character>
+
+<specific_character id="mar_army_wounded" team_default = "1">
+                <name>GENERATE_NAME_lieutenant</name>
+                <icon>ui_inGame2_Soldier_2</icon>
+                <map_icon x="1" y="0"></map_icon>
+                <bio>Опытный сталкер. Детальная информация отсутствует.</bio>
+                <class>mar_army_wounded</class>
+                <community>army</community> <terrain_sect>stalker_terrain</terrain_sect>
+                <snd_config>characters_voice\human_01\military\</snd_config>
+                <rank>125</rank>
+                <reputation>0</reputation>
+                <visual>actors\stalker_soldier\stalker_soldier_2_3</visual>
+		<supplies>
+                 [spawn] \n
+      		 wpn_beretta \n
+		 ammo_9x18_fmj = 1 \n
+#include "gameplay\character_items_nd.xml"
+#include "gameplay\character_food.xml"
+#include "gameplay\character_drugs.xml"
+             	</supplies>
+                <start_dialog>mar_army_wounded_start_dialog</start_dialog>
+		<actor_dialog>actor_break_dialog</actor_dialog>
+#include "gameplay\character_criticals_4.xml"
+                #include "gameplay\character_dialogs.xml"
+</specific_character>
+
+<specific_character id="mar_authorities_agent" team_default="1">
+		<name>mar_authorities_agent_name</name>
+		<icon>ui_inGame2_Soldier_2</icon>
+		<map_icon x="1" y="0">
+		</map_icon>
+		<bio>Агент СБУ.</bio>
+		<class>mar_authorities_agent</class>
+		<community>agent</community>
+		<terrain_sect>stalker_terrain</terrain_sect>
+		<snd_config>characters_voice\human_02\military\</snd_config>
+		<rank>999</rank>
+		<reputation>0</reputation>
+		<money min="480000" max="480000" infinitive="1" />
+		<visual>actors\stalker_soldier\stalker_soldier_2_4</visual>
+		<supplies>
+                 [spawn] \n
+	         device_torch \n
+     	         wpn_sig220 = 1 \n
+     	         ammo_11.43x23_fmj = 1 \n
+#include "gameplay\character_items_nd.xml"
+#include "gameplay\character_food.xml"
+#include "gameplay\character_drugs.xml"
+             	</supplies>	
+                <start_dialog>mar_authorities_agent_start_dialog</start_dialog>
+		<actor_dialog>actor_break_dialog</actor_dialog>
+#include "gameplay\character_criticals_4.xml"
+                #include "gameplay\character_dialogs.xml"
+</specific_character>
+
+<specific_character id="mar_stalker_trader" team_default = "1">
+                <name>mar_stalker_trader_name</name>
+                <icon>ui_inGame2_neutral_2_mask</icon>
+                <map_icon x="1" y="0"></map_icon>
+                <bio>Опытный сталкер. Детальная информация отсутствует.</bio>
+                <class>mar_stalker_trader</class>
+                <community>trader</community> <terrain_sect>stalker_terrain</terrain_sect>
+                <snd_config>characters_voice\human_03\stalker\</snd_config>
+                <rank>500</rank>
+	        <money min="480000" max="480000" infinitive="1" />
+                <reputation>0</reputation>
+                <visual>actors\stalker_neutral\stalker_neutral_14_mask</visual>
+                <supplies>
+                [spawn] \n
+	        device_torch \n
+	  	wpn_sig220 = 1 \n
+	  	ammo_11.43x23_hydro = 1 \n
+#include "gameplay\character_items_3.xml"
+#include "gameplay\character_food.xml"
+#include "gameplay\character_drugs_4.xml"
+#include "gameplay\character_drugs_sci.xml"
+#include "gameplay\character_sell_weapons.xml"
+		</supplies>
+#include "gameplay\character_criticals_4.xml"
+                <start_dialog>mar_stalker_trader_start_dialog</start_dialog>
+		<actor_dialog>actor_break_dialog</actor_dialog>
+#include "gameplay\character_criticals_4.xml"
+                #include "gameplay\character_dialogs.xml"
+</specific_character>
+<!-------------------------------------------------------------------------------------------------------->
+</xml>

@@ -1,0 +1,16 @@
+[logic]
+active = mob_move@1
+
+[mob_move@1]
+combat_ignore_cond = true
+invulnerable       = {!actor_enemy} true, {=actor_enemy} false
+on_timer           = 2000|mob_move@2 %=play_s3d_sound(monsters\bloodsucker\idle_2)%
+on_info            = %=set_visual_memory_enabled(0) =set_bloodsucker_state(2)%
+on_info2           = {+pri_bloodsucker_vaccine_2nd_sleep_end} nil %=stop_sound =release_object%
+
+[mob_move@2]
+combat_ignore_cond = true
+invulnerable       = {!actor_enemy} true, {=actor_enemy} false
+on_timer           = 5000|mob_move@1 %=play_s3d_sound(monsters\bloodsucker\idle_1)%
+on_info            = %=set_visual_memory_enabled(0) =set_bloodsucker_state(2)%
+on_info2           = {+pri_bloodsucker_vaccine_2nd_sleep_end} nil %=stop_sound =release_object%

@@ -1,0 +1,2301 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+<w>
+<!-----[Ремкомплект для оружия]------>
+<repair_wpn_form x="-10" y="498" width="370" height="207">
+        <texture>ui_mod_repair_w_main_wnd</texture>
+	<btn_repair x="51" y="168" width="122" height="23">
+		<texture_e>ui_mod_button_e</texture_e>
+		<texture_t>ui_mod_button_t</texture_t>
+		<texture_h>ui_mod_button_h</texture_h>
+		<text font="letterica16">st_repair_items</text>
+	</btn_repair>
+	<btn_close x="196" y="168" width="122" height="23">
+		<texture_e>ui_mod_button_e</texture_e>
+		<texture_t>ui_mod_button_t</texture_t>
+		<texture_h>ui_mod_button_h</texture_h>
+		<text font="letterica16">st_menu_close</text>
+	</btn_close>
+        <slot_a_cond x="38" y="127" width="84" height="14">
+		<text font="letterica16" a="100" r="154" g="205" b="50" align="c"></text>
+	</slot_a_cond>
+        <slot_b_cond x="251" y="126" width="84" height="14">
+		<text font="letterica16" a="100" r="154" g="205" b="50" align="c"></text>
+	</slot_b_cond>
+</repair_wpn_form>
+<!-----[Ремкомплект для бронекостюмов]------>
+<repair_outfit_form x="-10" y="498" width="370" height="207">
+        <texture>ui_mod_repair_o_main_wnd</texture>
+	<btn_repair x="51" y="168" width="122" height="23">
+		<texture_e>ui_mod_button_e</texture_e>
+		<texture_t>ui_mod_button_t</texture_t>
+		<texture_h>ui_mod_button_h</texture_h>
+		<text font="letterica16">st_repair_items</text>
+	</btn_repair>
+	<btn_close x="196" y="168" width="122" height="23">
+		<texture_e>ui_mod_button_e</texture_e>
+		<texture_t>ui_mod_button_t</texture_t>
+		<texture_h>ui_mod_button_h</texture_h>
+		<text font="letterica16">st_menu_close</text>
+	</btn_close>
+        <slot_a_cond x="38" y="127" width="84" height="14">
+		<text font="letterica16" a="100" r="154" g="205" b="50" align="c"></text>
+	</slot_a_cond>
+        <slot_b_cond x="251" y="126" width="84" height="14">
+		<text font="letterica16" a="100" r="154" g="205" b="50" align="c"></text>
+	</slot_b_cond>
+</repair_outfit_form>
+<!-----[Военный таймер]------>
+<army_timer_form x="69" y="518" width="281" height="229">
+        <texture>ui_mod_timer_main_wnd</texture>
+	<btn_start x="93" y="81" width="122" height="23">
+		<texture_e>ui_button_ordinary_e</texture_e>
+		<texture_t>ui_button_ordinary_t</texture_t>
+		<texture_h>ui_button_ordinary_h</texture_h>
+		<text font="letterica16">st_army_timer_start</text>
+	</btn_start>
+	<btn_stop x="93" y="115" width="122" height="23">
+		<texture_e>ui_button_ordinary_e</texture_e>
+		<texture_t>ui_button_ordinary_t</texture_t>
+		<texture_h>ui_button_ordinary_h</texture_h>
+		<text font="letterica16">st_army_timer_reset</text>
+	</btn_stop>
+	<btn_close x="93" y="168" width="122" height="23">
+		<texture_e>ui_button_ordinary_e</texture_e>
+		<texture_t>ui_button_ordinary_t</texture_t>
+		<texture_h>ui_button_ordinary_h</texture_h>
+		<text font="letterica16">st_menu_close</text>
+	</btn_close>
+	<timer_value x="115" y="35" width="220" height="16">
+		<text r="154" g="205" b="50" a="100" align="c" font="letterica16"></text>
+	</timer_value>
+</army_timer_form>
+<!-----[МП-3 плеер]------>
+<mp3_player_form x="235" y="166" width="563" height="478">
+        <texture>ui_mod_big_player_wnd</texture>
+        <check_repeat x="470" y="61" width="32" height="21" hint="st_repeat_track_hint">
+          <texture>ui_inGame2_checkbox</texture>
+        </check_repeat>
+        <check_queue x="505" y="61" width="32" height="21" hint="st_queue_track_hint">
+          <texture>ui_inGame2_checkbox</texture>
+        </check_queue>
+        <mp3_volume_track x="385" y="32" width="111" height="16" step="0.1">
+            <options_item entry="mp3_volume_track" group="mp3_player"/>
+        </mp3_volume_track>
+	<mp3_info x="186" y="20" width="123" height="25" light_anim="ui_slow_blinking_alpha" la_cyclic="1" la_texture="0" la_text="1">
+		<text r="240" g="217" b="182" a="155" font="letterica16" align="c" vert_align="c"></text>
+	</mp3_info>
+	<mp3_timer x="315" y="21" width="55" height="23">
+		<text r="240" g="217" b="182" a="155" font="letterica16" align="c" vert_align="c"></text>
+	</mp3_timer>
+        <mp3_red_diode x="171" y="41" width="8" height="8">
+                <texture>ui_mod_red_diode</texture>
+        </mp3_red_diode>
+        <mp3_green_diode x="171" y="41" width="8" height="8">
+                <texture>ui_mod_green_diode</texture>
+        </mp3_green_diode>
+        <btn_merry x="34" y="60" width="70" height="24">
+		<texture_e>ui_mod_button3_e</texture_e>
+		<texture_t>ui_mod_button3_t</texture_t>
+		<texture_h>ui_mod_button3_h</texture_h>
+            <text align="c" font="letterica16">st_mp3_player_merry</text>
+            <text_color><e r="210" g="210" b="210"/></text_color>
+        </btn_merry>
+        <btn_dance x="109" y="60" width="70" height="24">
+		<texture_e>ui_mod_button3_e</texture_e>
+		<texture_t>ui_mod_button3_t</texture_t>
+		<texture_h>ui_mod_button3_h</texture_h>
+            <text align="c" font="letterica16">st_mp3_player_dance</text>
+            <text_color><e r="210" g="210" b="210"/></text_color>
+        </btn_dance>
+        <btn_theme x="184" y="60" width="70" height="24">
+		<texture_e>ui_mod_button3_e</texture_e>
+		<texture_t>ui_mod_button3_t</texture_t>
+		<texture_h>ui_mod_button3_h</texture_h>
+            <text align="c" font="letterica16">st_mp3_player_themes</text>
+            <text_color><e r="210" g="210" b="210"/></text_color>
+        </btn_theme>
+        <btn_other x="259" y="60" width="70" height="24">
+		<texture_e>ui_mod_button3_e</texture_e>
+		<texture_t>ui_mod_button3_t</texture_t>
+		<texture_h>ui_mod_button3_h</texture_h>
+            <text align="c" font="letterica16">st_mp3_player_other</text>
+            <text_color><e r="210" g="210" b="210"/></text_color>
+        </btn_other>
+        <btn_bonus x="334" y="60" width="70" height="24">
+		<texture_e>ui_mod_button3_e</texture_e>
+		<texture_t>ui_mod_button3_t</texture_t>
+		<texture_h>ui_mod_button3_h</texture_h>
+            <text align="c" font="letterica16">st_mp3_player_bonuses</text>
+            <text_color><e r="210" g="210" b="210"/></text_color>
+        </btn_bonus>
+	<mp3_list x="274" y="275" width="491" height="285" item_height="22" can_select="1">
+	        <font font="letterica16" r="210" g="210" b="210"/>
+	</mp3_list>
+	<btn_play x="35" y="427" width="135" height="35">
+		<texture_e>ui_mod_button2_e</texture_e>
+		<texture_t>ui_mod_button2_t</texture_t>
+		<texture_h>ui_mod_button2_h</texture_h>
+		<text font="letterica16" align="c" vert_align="c">st_mp3_player_set_play</text>
+	</btn_play>
+	<btn_stop x="221" y="427" width="135" height="35">
+		<texture_e>ui_mod_button2_e</texture_e>
+		<texture_t>ui_mod_button2_t</texture_t>
+		<texture_h>ui_mod_button2_h</texture_h>
+		<text font="letterica16" align="c" vert_align="c">st_mp3_player_set_stop</text>
+	</btn_stop>
+	<btn_close x="401" y="427" width="135" height="35">
+		<texture_e>ui_mod_button2_e</texture_e>
+		<texture_t>ui_mod_button2_t</texture_t>
+		<texture_h>ui_mod_button2_h</texture_h>
+		<text font="letterica16" align="c" vert_align="c">st_menu_close</text>
+	</btn_close>
+	<btn_volume_minus x="406" y="57" width="31" height="28" hint="st_minus_volume_hint">
+		<texture_e>ui_mod_button_minus_a</texture_e>
+		<texture_t>ui_mod_button_minus_b</texture_t>
+		<texture_h>ui_mod_button_minus_b</texture_h>
+	</btn_volume_minus>
+	<btn_volume_plus x="438" y="57" width="31" height="28" hint="st_plus_volume_hint">
+		<texture_e>ui_mod_button_plus_a</texture_e>
+		<texture_t>ui_mod_button_plus_b</texture_t>
+		<texture_h>ui_mod_button_plus_b</texture_h>
+	</btn_volume_plus>
+	<volume_number x="414" y="24" width="220" height="16">
+		<text r="240" g="217" b="182" a="155" align="c" font="letterica16"></text>
+	</volume_number>
+</mp3_player_form>
+<!-----[Конвентер для гранат]------>
+<conventer_grenade_form x="242" y="192" width="553" height="413">
+        <texture>ui_mod_g_conventer_wnd</texture>
+	<btn_1_slot x="25" y="230" width="149" height="36">
+		<texture_e>ui_mod_button4_e</texture_e>
+		<texture_t>ui_mod_button4_t</texture_t>
+		<texture_h>ui_mod_button4_h</texture_h>
+		<text x="5" align="l" font="letterica16">st_conventer_grenade_attach_rgd5</text>
+	</btn_1_slot>
+	<btn_2_slot x="201" y="242" width="149" height="36">
+		<texture_e>ui_mod_button4_e</texture_e>
+		<texture_t>ui_mod_button4_t</texture_t>
+		<texture_h>ui_mod_button4_h</texture_h>
+		<text x="5" align="l" font="letterica16">st_conventer_grenade_attach_f1</text>
+	</btn_2_slot>
+	<btn_3_slot x="373" y="230" width="149" height="36">
+		<texture_e>ui_mod_button4_e</texture_e>
+		<texture_t>ui_mod_button4_t</texture_t>
+		<texture_h>ui_mod_button4_h</texture_h>
+		<text x="5" align="l" font="letterica16">st_conventer_grenade_attach_gd05</text>
+	</btn_3_slot>
+	<btn_1_slot_count x="90" y="40" width="149" height="36">
+		<text font="letterica16"></text>
+	</btn_1_slot_count>
+	<btn_2_slot_count x="271" y="43" width="149" height="36">
+		<text font="letterica16"></text>
+	</btn_2_slot_count>
+	<btn_3_slot_count x="444" y="43" width="149" height="36">
+		<text font="letterica16"></text>
+	</btn_3_slot_count>
+	<btn_spare_count x="273" y="223" width="149" height="36">
+		<text font="letterica16"></text>
+	</btn_spare_count>
+	<btn_close x="220" y="377" width="122" height="23">
+		<texture_e>ui_mod_button3_e</texture_e>
+		<texture_t>ui_mod_button3_t</texture_t>
+		<texture_h>ui_mod_button3_h</texture_h>
+		<text font="letterica16">st_menu_close</text>
+	</btn_close>
+	<form_title x="170" y="9" width="220" height="17">
+		<text r="240" g="217" b="182" a="255" align="c" font="letterica16"></text>
+	</form_title>
+</conventer_grenade_form>
+<!-----[Личное КПК]------>
+<personal_pda_form x="0" y="0" width="1023" height="766">
+        <!-----[Основное наложение]------>
+        <texture>ui_mod_pda_main_wnd</texture>
+	<btn_off_pda x="971" y="22" width="33" height="34" hint="st_off_pda_hint">
+		<texture_e>ui_mod_pda_button_off_e</texture_e>
+		<texture_t>ui_mod_pda_button_off_t</texture_t>
+		<texture_h>ui_mod_pda_button_off_h</texture_h>
+	</btn_off_pda>
+	<pda_welcome_screen x="22" y="74" width="717" height="643">
+		<texture>ui_mod_pda_hero_foto</texture>
+	</pda_welcome_screen>
+	<pda_top_logo x="506" y="724" width="50" height="56">
+		<texture>ui_mod_pda_army_logo</texture>
+	</pda_top_logo>
+	<pda_top_frame x="22" y="30" width="981" height="39">
+		<texture>ui_mod_pda_frame_top</texture>
+	</pda_top_frame>
+	<pda_game_time x="15" y="0" width="67" height="30" hint="st_game_time_hint">
+		<texture>ui_mod_pda_time_wnd</texture>
+		<text r="240" g="217" b="182" a="155" align="c" vert_align="c" font="letterica16"></text>
+	</pda_game_time>
+        <!-----[Панель навигации]------>
+	<tab_statistic x="749" y="86" width="249" height="26">
+		<texture_e>ui_mod_pda_tab_e</texture_e>
+		<texture_t>ui_mod_pda_tab_t</texture_t>
+		<texture_h>ui_mod_pda_tab_h</texture_h>
+		<text r="240" g="217" b="182" a="155" align="c" font="letterica16">st_mod_pda_tab_statistic</text>
+	</tab_statistic>
+	<tab_advices x="749" y="116" width="249" height="26">
+		<texture_e>ui_mod_pda_tab_e</texture_e>
+		<texture_t>ui_mod_pda_tab_t</texture_t>
+		<texture_h>ui_mod_pda_tab_h</texture_h>
+		<text r="240" g="217" b="182" a="155" align="c" font="letterica16">st_mod_pda_tab_advices</text>
+	</tab_advices>
+	<tab_achievements x="749" y="146" width="249" height="26">
+		<texture_e>ui_mod_pda_tab_e</texture_e>
+		<texture_t>ui_mod_pda_tab_t</texture_t>
+		<texture_h>ui_mod_pda_tab_h</texture_h>
+		<text r="240" g="217" b="182" a="155" align="c" font="letterica16">st_mod_pda_tab_achievements</text>
+	</tab_achievements>
+	<tab_library x="749" y="176" width="249" height="26">
+		<texture_e>ui_mod_pda_tab_e</texture_e>
+		<texture_t>ui_mod_pda_tab_t</texture_t>
+		<texture_h>ui_mod_pda_tab_h</texture_h>
+		<text r="240" g="217" b="182" a="155" align="c" font="letterica16">st_mod_pda_tab_library</text>
+	</tab_library>
+	<tab_equipments x="749" y="206" width="249" height="26">
+		<texture_e>ui_mod_pda_tab_e</texture_e>
+		<texture_t>ui_mod_pda_tab_t</texture_t>
+		<texture_h>ui_mod_pda_tab_h</texture_h>
+		<text r="240" g="217" b="182" a="155" align="c" font="letterica16">st_mod_pda_tab_equipments</text>
+	</tab_equipments>
+	<tab_diplomatia x="749" y="206" width="249" height="26">
+		<texture_e>ui_mod_pda_tab_e</texture_e>
+		<texture_t>ui_mod_pda_tab_t</texture_t>
+		<texture_h>ui_mod_pda_tab_h</texture_h>
+		<text r="240" g="217" b="182" a="155" align="c" font="letterica16">st_mod_pda_tab_diplomatia</text>
+	</tab_diplomatia>
+        <!-----[Кнопки переходов]------>
+	<achievements_next_page x="702" y="676" width="36" height="34" hint="st_next_page_pda_hint">
+		<texture_e>ui_mod_pda_button_next_e</texture_e>
+		<texture_t>ui_mod_pda_button_next_t</texture_t>
+		<texture_h>ui_mod_pda_button_next_h</texture_h>
+	</achievements_next_page>
+	<achievements_back_page x="702" y="676" width="36" height="34" hint="st_back_page_pda_hint">
+		<texture_e>ui_mod_pda_button_back_e</texture_e>
+		<texture_t>ui_mod_pda_button_back_t</texture_t>
+		<texture_h>ui_mod_pda_button_back_h</texture_h>
+	</achievements_back_page>
+	<library_next_page x="702" y="676" width="36" height="34" hint="st_next_page_pda_hint">
+		<texture_e>ui_mod_pda_button_next_e</texture_e>
+		<texture_t>ui_mod_pda_button_next_t</texture_t>
+		<texture_h>ui_mod_pda_button_next_h</texture_h>
+	</library_next_page>
+	<library_back_page x="702" y="676" width="36" height="34" hint="st_back_page_pda_hint">
+		<texture_e>ui_mod_pda_button_back_e</texture_e>
+		<texture_t>ui_mod_pda_button_back_t</texture_t>
+		<texture_h>ui_mod_pda_button_back_h</texture_h>
+	</library_back_page>
+	<statistic_killed_page x="702" y="676" width="36" height="34" hint="st_next_page_pda_hint">
+		<texture_e>ui_mod_pda_button_next_e</texture_e>
+		<texture_t>ui_mod_pda_button_next_t</texture_t>
+		<texture_h>ui_mod_pda_button_next_h</texture_h>
+	</statistic_killed_page>
+	<statistic_home_page x="659" y="676" width="36" height="34" hint="st_back_page_pda_hint">
+		<texture_e>ui_mod_pda_button_back_e</texture_e>
+		<texture_t>ui_mod_pda_button_back_t</texture_t>
+		<texture_h>ui_mod_pda_button_back_h</texture_h>
+	</statistic_home_page>
+	<statistic_killed_page2 x="702" y="676" width="36" height="34" hint="st_next_page_pda_hint">
+		<texture_e>ui_mod_pda_button_next_e</texture_e>
+		<texture_t>ui_mod_pda_button_next_t</texture_t>
+		<texture_h>ui_mod_pda_button_next_h</texture_h>
+	</statistic_killed_page2>
+	<statistic_previous_page x="702" y="676" width="36" height="34" hint="st_back_page_pda_hint">
+		<texture_e>ui_mod_pda_button_back_e</texture_e>
+		<texture_t>ui_mod_pda_button_back_t</texture_t>
+		<texture_h>ui_mod_pda_button_back_h</texture_h>
+	</statistic_previous_page>
+        <!-----[Поле: Статистика]------>
+        <statistic_setka x="25" y="77" width="707" height="610">
+                <texture>ui_mod_pda_statistic_table</texture>
+	</statistic_setka>
+	<statistic_line_1_title x="27" y="79" width="351" height="18" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+	</statistic_line_1_title>
+	<statistic_line_1_value x="379" y="79" width="351" height="18" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+	</statistic_line_1_value>
+	<statistic_line_2_title x="27" y="102" width="351" height="18" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+	</statistic_line_2_title>
+	<statistic_line_2_value x="379" y="102" width="351" height="18" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+	</statistic_line_2_value>
+	<statistic_line_3_title x="27" y="125" width="351" height="18" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+	</statistic_line_3_title>
+	<statistic_line_3_value x="379" y="125" width="351" height="18" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+	</statistic_line_3_value>
+	<statistic_line_4_title x="27" y="148" width="351" height="18" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+	</statistic_line_4_title>
+	<statistic_line_4_value x="379" y="148" width="351" height="18" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+	</statistic_line_4_value>
+	<statistic_line_5_title x="27" y="171" width="351" height="18" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+	</statistic_line_5_title>
+	<statistic_line_5_value x="379" y="171" width="351" height="18" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+	</statistic_line_5_value>
+	<statistic_line_6_title x="27" y="194" width="351" height="18" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+	</statistic_line_6_title>
+	<statistic_line_6_value x="379" y="194" width="351" height="18" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+	</statistic_line_6_value>
+	<statistic_line_7_title x="27" y="217" width="351" height="18" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+	</statistic_line_7_title>
+	<statistic_line_7_value x="379" y="217" width="351" height="18" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+	</statistic_line_7_value>
+	<statistic_line_8_title x="27" y="240" width="351" height="18" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+	</statistic_line_8_title>
+	<statistic_line_8_value x="379" y="240" width="351" height="18" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+	</statistic_line_8_value>
+	<statistic_line_9_title x="27" y="263" width="351" height="18" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+	</statistic_line_9_title>
+	<statistic_line_9_value x="379" y="263" width="351" height="18" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+	</statistic_line_9_value>
+	<statistic_line_10_title x="27" y="286" width="351" height="18" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+	</statistic_line_10_title>
+	<statistic_line_10_value x="379" y="286" width="351" height="18" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+	</statistic_line_10_value>
+	<statistic_line_11_title x="27" y="309" width="351" height="18" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+	</statistic_line_11_title>
+	<statistic_line_11_value x="379" y="309" width="351" height="18" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+	</statistic_line_11_value>
+	<statistic_line_12_title x="27" y="332" width="351" height="18" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+	</statistic_line_12_title>
+	<statistic_line_12_value x="379" y="332" width="351" height="18" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+	</statistic_line_12_value>
+	<statistic_line_13_title x="27" y="355" width="351" height="18" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+	</statistic_line_13_title>
+	<statistic_line_13_value x="379" y="355" width="351" height="18" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+	</statistic_line_13_value>
+	<statistic_line_14_title x="27" y="378" width="351" height="18" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+	</statistic_line_14_title>
+	<statistic_line_14_value x="379" y="378" width="351" height="18" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+	</statistic_line_14_value>
+	<statistic_line_15_title x="27" y="401" width="351" height="18" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+	</statistic_line_15_title>
+	<statistic_line_15_value x="379" y="401" width="351" height="18" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+	</statistic_line_15_value>
+	<statistic_line_16_title x="27" y="424" width="351" height="18" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+	</statistic_line_16_title>
+	<statistic_line_16_value x="379" y="424" width="351" height="18" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+	</statistic_line_16_value>
+	<statistic_line_17_title x="27" y="447" width="351" height="18" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+	</statistic_line_17_title>
+	<statistic_line_17_value x="379" y="447" width="351" height="18" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+	</statistic_line_17_value>
+	<statistic_line_18_title x="27" y="470" width="351" height="18" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+	</statistic_line_18_title>
+	<statistic_line_18_value x="379" y="470" width="351" height="18" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+	</statistic_line_18_value>
+	<statistic_line_19_title x="27" y="492" width="351" height="18" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+	</statistic_line_19_title>
+	<statistic_line_19_value x="379" y="492" width="351" height="18" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+	</statistic_line_19_value>
+	<statistic_line_20_title x="27" y="513" width="351" height="18" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+	</statistic_line_20_title>
+	<statistic_line_20_value x="379" y="513" width="351" height="18" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+	</statistic_line_20_value>
+	<statistic_line_21_title x="27" y="535" width="351" height="18" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+	</statistic_line_21_title>
+	<statistic_line_21_value x="379" y="535" width="351" height="18" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+	</statistic_line_21_value>
+	<statistic_line_22_title x="27" y="558" width="351" height="18" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+	</statistic_line_22_title>
+	<statistic_line_22_value x="379" y="558" width="351" height="18" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+	</statistic_line_22_value>
+	<statistic_line_23_title x="27" y="581" width="351" height="18" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+	</statistic_line_23_title>
+	<statistic_line_23_value x="379" y="581" width="351" height="18" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+	</statistic_line_23_value>
+	<statistic_line_24_title x="27" y="603" width="351" height="18" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+	</statistic_line_24_title>
+	<statistic_line_24_value x="379" y="603" width="351" height="18" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+	</statistic_line_24_value>
+	<statistic_line_25_title x="27" y="625" width="351" height="18" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+	</statistic_line_25_title>
+	<statistic_line_25_value x="379" y="625" width="351" height="18" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+	</statistic_line_25_value>
+	<statistic_line_26_title x="27" y="648" width="351" height="18" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+	</statistic_line_26_title>
+	<statistic_line_26_value x="379" y="648" width="351" height="18" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+	</statistic_line_26_value>
+        <!-----[Поле: Советы]------>
+	<advices_field x="35" y="82" width="699" height="623" complex_mode="1">
+	        <text align="l" vert_align="l" font="letterica16" r="210" g="210" b="210"></text>
+	</advices_field>
+        <!-----[Поле: Достижения]------>
+        <achievements_field x="25" y="77" width="707" height="610">
+        </achievements_field>
+        <achievements_table_sniper x="24" y="76" width="497" height="146">
+                <texture>ui_mod_pda_achievement_table</texture>
+        </achievements_table_sniper>
+        <achievements_icon_sniper x="28" y="80" width="127" height="124">
+                <texture>ui_mod_pda_achievement_sniper</texture>
+        </achievements_icon_sniper>
+        <achievements_name_sniper x="24" y="203" width="169" height="18">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+        </achievements_name_sniper>
+        <achievements_status_sniper_a x="153" y="175" width="177" height="25" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c" vert_align="c"></text>
+        </achievements_status_sniper_a>
+        <achievements_status_sniper_b x="332" y="175" width="187" height="26" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c" vert_align="c"></text>
+        </achievements_status_sniper_b>
+        <achievements_need_title_sniper x="153" y="77" width="178" height="16" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c" vert_align="c"></text>
+        </achievements_need_title_sniper>
+        <achievements_bonus_title_sniper x="333" y="77" width="187" height="16" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c" vert_align="c"></text>
+        </achievements_bonus_title_sniper>
+        <achievements_need_box_sniper x="153" y="94" width="178" height="80" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c" vert_align="c"></text>
+        </achievements_need_box_sniper>
+        <achievements_bonus_box_sniper x="333" y="94" width="188" height="80" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c" vert_align="c"></text>
+        </achievements_bonus_box_sniper>
+        <achievements_table_client x="24" y="233" width="497" height="146">
+                <texture>ui_mod_pda_achievement_table</texture>
+        </achievements_table_client>
+        <achievements_icon_client x="28" y="237" width="127" height="124">
+                <texture>ui_mod_pda_achievement_client</texture>
+        </achievements_icon_client>
+        <achievements_name_client x="24" y="360" width="169" height="18">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+        </achievements_name_client>
+        <achievements_status_client_a x="153" y="332" width="177" height="25" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c" vert_align="c"></text>
+        </achievements_status_client_a>
+        <achievements_status_client_b x="332" y="332" width="187" height="26" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c" vert_align="c"></text>
+        </achievements_status_client_b>
+        <achievements_need_title_client x="153" y="234" width="178" height="16" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c" vert_align="c"></text>
+        </achievements_need_title_client>
+        <achievements_bonus_title_client x="333" y="234" width="187" height="16" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c" vert_align="c"></text>
+        </achievements_bonus_title_client>
+        <achievements_need_box_client x="153" y="251" width="178" height="80" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c" vert_align="c"></text>
+        </achievements_need_box_client>
+        <achievements_bonus_box_client x="333" y="251" width="188" height="80" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c" vert_align="c"></text>
+        </achievements_bonus_box_client>
+        <achievements_table_pathfinder x="24" y="390" width="497" height="146">
+                <texture>ui_mod_pda_achievement_table</texture>
+        </achievements_table_pathfinder>
+        <achievements_icon_pathfinder x="28" y="394" width="127" height="124">
+                <texture>ui_mod_pda_achievement_pathfinder</texture>
+        </achievements_icon_pathfinder>
+        <achievements_name_pathfinder x="24" y="517" width="169" height="18">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+        </achievements_name_pathfinder>
+        <achievements_status_pathfinder_a x="153" y="489" width="177" height="25" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c" vert_align="c"></text>
+        </achievements_status_pathfinder_a>
+        <achievements_status_pathfinder_b x="332" y="489" width="187" height="26" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c" vert_align="c"></text>
+        </achievements_status_pathfinder_b>
+        <achievements_need_title_pathfinder x="153" y="391" width="178" height="16" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c" vert_align="c"></text>
+        </achievements_need_title_pathfinder>
+        <achievements_bonus_title_pathfinder x="333" y="391" width="187" height="16" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c" vert_align="c"></text>
+        </achievements_bonus_title_pathfinder>
+        <achievements_need_box_pathfinder x="153" y="408" width="178" height="80" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c" vert_align="c"></text>
+        </achievements_need_box_pathfinder>
+        <achievements_bonus_box_pathfinder x="333" y="408" width="188" height="80" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c" vert_align="c"></text>
+        </achievements_bonus_box_pathfinder>
+        <achievements_table_guidebook x="24" y="547" width="497" height="146">
+                <texture>ui_mod_pda_achievement_table</texture>
+        </achievements_table_guidebook>
+        <achievements_icon_guidebook x="28" y="552" width="127" height="124">
+                <texture>ui_mod_pda_achievement_guidebook</texture>
+        </achievements_icon_guidebook>
+        <achievements_name_guidebook x="24" y="674" width="169" height="18">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+        </achievements_name_guidebook>
+        <achievements_status_guidebook_a x="153" y="646" width="177" height="25" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c" vert_align="c"></text>
+        </achievements_status_guidebook_a>
+        <achievements_status_guidebook_b x="332" y="646" width="187" height="26" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c" vert_align="c"></text>
+        </achievements_status_guidebook_b>
+        <achievements_need_title_guidebook x="153" y="548" width="178" height="16" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c" vert_align="c"></text>
+        </achievements_need_title_guidebook>
+        <achievements_bonus_title_guidebook x="333" y="548" width="187" height="16" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c" vert_align="c"></text>
+        </achievements_bonus_title_guidebook>
+        <achievements_need_box_guidebook x="153" y="565" width="178" height="80" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c" vert_align="c"></text>
+        </achievements_need_box_guidebook>
+        <achievements_bonus_box_guidebook x="333" y="565" width="188" height="80" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c" vert_align="c"></text>
+        </achievements_bonus_box_guidebook>
+        <achievements_table_marauder x="24" y="76" width="497" height="146">
+                <texture>ui_mod_pda_achievement_table</texture>
+        </achievements_table_marauder>
+        <achievements_icon_marauder x="28" y="81" width="127" height="124">
+                <texture>ui_mod_pda_achievement_marauder</texture>
+        </achievements_icon_marauder>
+        <achievements_name_marauder x="24" y="203" width="169" height="18">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+        </achievements_name_marauder>
+        <achievements_status_marauder_a x="153" y="175" width="177" height="25" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c" vert_align="c"></text>
+        </achievements_status_marauder_a>
+        <achievements_status_marauder_b x="332" y="175" width="187" height="26" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c" vert_align="c"></text>
+        </achievements_status_marauder_b>
+        <achievements_need_title_marauder x="153" y="77" width="178" height="16" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c" vert_align="c"></text>
+        </achievements_need_title_marauder>
+        <achievements_bonus_title_marauder x="333" y="77" width="187" height="16" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c" vert_align="c"></text>
+        </achievements_bonus_title_marauder>
+        <achievements_need_box_marauder x="153" y="94" width="178" height="80" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c" vert_align="c"></text>
+        </achievements_need_box_marauder>
+        <achievements_bonus_box_marauder x="333" y="94" width="188" height="80" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c" vert_align="c"></text>
+        </achievements_bonus_box_marauder>
+        <achievements_table_magnate x="24" y="233" width="497" height="146">
+                <texture>ui_mod_pda_achievement_table</texture>
+        </achievements_table_magnate>
+        <achievements_icon_magnate x="28" y="238" width="127" height="124">
+                <texture>ui_mod_pda_achievement_magnate</texture>
+        </achievements_icon_magnate>
+        <achievements_name_magnate x="24" y="360" width="169" height="18">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+        </achievements_name_magnate>
+        <achievements_status_magnate_a x="153" y="332" width="177" height="25" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c" vert_align="c"></text>
+        </achievements_status_magnate_a>
+        <achievements_status_magnate_b x="332" y="332" width="187" height="26" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c" vert_align="c"></text>
+        </achievements_status_magnate_b>
+        <achievements_need_title_magnate x="153" y="234" width="178" height="16" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c" vert_align="c"></text>
+        </achievements_need_title_magnate>
+        <achievements_bonus_title_magnate x="333" y="234" width="187" height="16" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c" vert_align="c"></text>
+        </achievements_bonus_title_magnate>
+        <achievements_need_box_magnate x="153" y="251" width="178" height="80" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c" vert_align="c"></text>
+        </achievements_need_box_magnate>
+        <achievements_bonus_box_magnate x="333" y="251" width="188" height="80" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c" vert_align="c"></text>
+        </achievements_bonus_box_magnate>
+        <achievements_table_assistant x="24" y="390" width="497" height="146">
+                <texture>ui_mod_pda_achievement_table</texture>
+        </achievements_table_assistant>
+        <achievements_icon_assistant x="28" y="394" width="127" height="124">
+                <texture>ui_mod_pda_achievement_assistant</texture>
+        </achievements_icon_assistant>
+        <achievements_name_assistant x="24" y="517" width="169" height="18">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+        </achievements_name_assistant>
+        <achievements_status_assistant_a x="153" y="489" width="177" height="25" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c" vert_align="c"></text>
+        </achievements_status_assistant_a>
+        <achievements_status_assistant_b x="332" y="489" width="187" height="26" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c" vert_align="c"></text>
+        </achievements_status_assistant_b>
+        <achievements_need_title_assistant x="153" y="391" width="178" height="16" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c" vert_align="c"></text>
+        </achievements_need_title_assistant>
+        <achievements_bonus_title_assistant x="333" y="391" width="187" height="16" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c" vert_align="c"></text>
+        </achievements_bonus_title_assistant>
+        <achievements_need_box_assistant x="153" y="408" width="178" height="80" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c" vert_align="c"></text>
+        </achievements_need_box_assistant>
+        <achievements_bonus_box_assistant x="333" y="408" width="188" height="80" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c" vert_align="c"></text>
+        </achievements_bonus_box_assistant>
+        <achievements_table_lifeguard x="24" y="547" width="497" height="146">
+                <texture>ui_mod_pda_achievement_table</texture>
+        </achievements_table_lifeguard>
+        <achievements_icon_lifeguard x="28" y="552" width="127" height="124">
+                <texture>ui_mod_pda_achievement_lifeguard</texture>
+        </achievements_icon_lifeguard>
+        <achievements_name_lifeguard x="24" y="674" width="169" height="18">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+        </achievements_name_lifeguard>
+        <achievements_status_lifeguard_a x="153" y="646" width="177" height="25" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c" vert_align="c"></text>
+        </achievements_status_lifeguard_a>
+        <achievements_status_lifeguard_b x="332" y="646" width="187" height="26" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c" vert_align="c"></text>
+        </achievements_status_lifeguard_b>
+        <achievements_need_title_lifeguard x="153" y="548" width="178" height="16" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c" vert_align="c"></text>
+        </achievements_need_title_lifeguard>
+        <achievements_bonus_title_lifeguard x="333" y="548" width="187" height="16" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c" vert_align="c"></text>
+        </achievements_bonus_title_lifeguard>
+        <achievements_need_box_lifeguard x="153" y="565" width="178" height="80" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c" vert_align="c"></text>
+        </achievements_need_box_lifeguard>
+        <achievements_bonus_box_lifeguard x="333" y="565" width="188" height="80" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c" vert_align="c"></text>
+        </achievements_bonus_box_lifeguard>
+        <!-----[Поле: Библиотека]------>
+        <library_background x="25" y="77" width="707" height="610">
+        </library_background>
+        <library_table_1_main x="28" y="79" width="186" height="43">
+                <texture>ui_mod_pda_library_table</texture>
+        </library_table_1_main>
+        <library_table_1_title x="103" y="80" width="110" height="20" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+        </library_table_1_title>
+        <library_table_1_status x="103" y="101" width="110" height="20" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+        </library_table_1_status>
+        <library_table_2_main x="28" y="124" width="186" height="43">
+                <texture>ui_mod_pda_library_table</texture>
+        </library_table_2_main>
+        <library_table_2_title x="103" y="125" width="110" height="20" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+        </library_table_2_title>
+        <library_table_2_status x="103" y="146" width="110" height="20" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+        </library_table_2_status>
+        <library_table_3_main x="28" y="169" width="186" height="43">
+                <texture>ui_mod_pda_library_table</texture>
+        </library_table_3_main>
+        <library_table_3_title x="103" y="170" width="110" height="20" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+        </library_table_3_title>
+        <library_table_3_status x="103" y="191" width="110" height="20" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+        </library_table_3_status>
+        <library_table_4_main x="28" y="214" width="186" height="43">
+                <texture>ui_mod_pda_library_table</texture>
+        </library_table_4_main>
+        <library_table_4_title x="103" y="215" width="110" height="20" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+        </library_table_4_title>
+        <library_table_4_status x="103" y="236" width="110" height="20" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+        </library_table_4_status>
+        <library_table_5_main x="28" y="259" width="186" height="43">
+                <texture>ui_mod_pda_library_table</texture>
+        </library_table_5_main>
+        <library_table_5_title x="103" y="260" width="110" height="20" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+        </library_table_5_title>
+        <library_table_5_status x="103" y="281" width="110" height="20" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+        </library_table_5_status>
+        <library_table_6_main x="28" y="304" width="186" height="43">
+                <texture>ui_mod_pda_library_table</texture>
+        </library_table_6_main>
+        <library_table_6_title x="103" y="305" width="110" height="20" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+        </library_table_6_title>
+        <library_table_6_status x="103" y="326" width="110" height="20" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+        </library_table_6_status>
+        <library_table_7_main x="28" y="349" width="186" height="43">
+                <texture>ui_mod_pda_library_table</texture>
+        </library_table_7_main>
+        <library_table_7_title x="103" y="350" width="110" height="20" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+        </library_table_7_title>
+        <library_table_7_status x="103" y="371" width="110" height="20" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+        </library_table_7_status>
+        <library_table_8_main x="28" y="394" width="186" height="43">
+                <texture>ui_mod_pda_library_table</texture>
+        </library_table_8_main>
+        <library_table_8_title x="103" y="395" width="110" height="20" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+        </library_table_8_title>
+        <library_table_8_status x="103" y="416" width="110" height="20" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+        </library_table_8_status>
+        <library_table_9_main x="28" y="439" width="186" height="43">
+                <texture>ui_mod_pda_library_table</texture>
+        </library_table_9_main>
+        <library_table_9_title x="103" y="440" width="110" height="20" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+        </library_table_9_title>
+        <library_table_9_status x="103" y="461" width="110" height="20" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+        </library_table_9_status>
+        <library_table_10_main x="28" y="484" width="186" height="43">
+                <texture>ui_mod_pda_library_table</texture>
+        </library_table_10_main>
+        <library_table_10_title x="103" y="485" width="110" height="20" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+        </library_table_10_title>
+        <library_table_10_status x="103" y="506" width="110" height="20" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+        </library_table_10_status>
+        <library_table_11_main x="28" y="529" width="186" height="43">
+                <texture>ui_mod_pda_library_table</texture>
+        </library_table_11_main>
+        <library_table_11_title x="103" y="530" width="110" height="20" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+        </library_table_11_title>
+        <library_table_11_status x="103" y="551" width="110" height="20" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+        </library_table_11_status>
+        <library_table_12_main x="28" y="574" width="186" height="43">
+                <texture>ui_mod_pda_library_table</texture>
+        </library_table_12_main>
+        <library_table_12_title x="103" y="575" width="110" height="20" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+        </library_table_12_title>
+        <library_table_12_status x="103" y="596" width="110" height="20" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+        </library_table_12_status>
+        <library_table_13_main x="28" y="619" width="186" height="43">
+                <texture>ui_mod_pda_library_table</texture>
+        </library_table_13_main>
+        <library_table_13_title x="103" y="620" width="110" height="20" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+        </library_table_13_title>
+        <library_table_13_status x="103" y="641" width="110" height="20" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+        </library_table_13_status>
+        <library_table_14_main x="28" y="664" width="186" height="43">
+                <texture>ui_mod_pda_library_table</texture>
+        </library_table_14_main>
+        <library_table_14_title x="103" y="665" width="110" height="20" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+        </library_table_14_title>
+        <library_table_14_status x="103" y="686" width="110" height="20" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+        </library_table_14_status>
+        <library_table_15_main x="223" y="79" width="186" height="43">
+                <texture>ui_mod_pda_library_table</texture>
+        </library_table_15_main>
+        <library_table_15_title x="298" y="80" width="110" height="20" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+        </library_table_15_title>
+        <library_table_15_status x="298" y="101" width="110" height="20" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+        </library_table_15_status>
+        <library_table_16_main x="223" y="124" width="186" height="43">
+                <texture>ui_mod_pda_library_table</texture>
+        </library_table_16_main>
+        <library_table_16_title x="298" y="125" width="110" height="20" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+        </library_table_16_title>
+        <library_table_16_status x="298" y="146" width="110" height="20" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+        </library_table_16_status>
+        <library_table_17_main x="223" y="169" width="186" height="43">
+                <texture>ui_mod_pda_library_table</texture>
+        </library_table_17_main>
+        <library_table_17_title x="298" y="170" width="110" height="20" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+        </library_table_17_title>
+        <library_table_17_status x="298" y="191" width="110" height="20" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+        </library_table_17_status>
+        <library_table_18_main x="223" y="214" width="186" height="43">
+                <texture>ui_mod_pda_library_table</texture>
+        </library_table_18_main>
+        <library_table_18_title x="298" y="215" width="110" height="20" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+        </library_table_18_title>
+        <library_table_18_status x="298" y="236" width="110" height="20" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+        </library_table_18_status>
+        <library_table_19_main x="223" y="259" width="186" height="43">
+                <texture>ui_mod_pda_library_table</texture>
+        </library_table_19_main>
+        <library_table_19_title x="298" y="260" width="110" height="20" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+        </library_table_19_title>
+        <library_table_19_status x="298" y="281" width="110" height="20" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+        </library_table_19_status>
+        <library_table_20_main x="223" y="304" width="186" height="43">
+                <texture>ui_mod_pda_library_table</texture>
+        </library_table_20_main>
+        <library_table_20_title x="298" y="305" width="110" height="20" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+        </library_table_20_title>
+        <library_table_20_status x="298" y="326" width="110" height="20" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+        </library_table_20_status>
+        <library_table_21_main x="223" y="349" width="186" height="43">
+                <texture>ui_mod_pda_library_table</texture>
+        </library_table_21_main>
+        <library_table_21_title x="298" y="350" width="110" height="20" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+        </library_table_21_title>
+        <library_table_21_status x="298" y="371" width="110" height="20" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+        </library_table_21_status>
+        <library_table_22_main x="223" y="394" width="186" height="43">
+                <texture>ui_mod_pda_library_table</texture>
+        </library_table_22_main>
+        <library_table_22_title x="298" y="395" width="110" height="20" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+        </library_table_22_title>
+        <library_table_22_status x="298" y="416" width="110" height="20" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+        </library_table_22_status>
+        <library_table_23_main x="223" y="439" width="186" height="43">
+                <texture>ui_mod_pda_library_table</texture>
+        </library_table_23_main>
+        <library_table_23_title x="298" y="440" width="110" height="20" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+        </library_table_23_title>
+        <library_table_23_status x="298" y="461" width="110" height="20" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+        </library_table_23_status>
+        <library_table_24_main x="223" y="484" width="186" height="43">
+                <texture>ui_mod_pda_library_table</texture>
+        </library_table_24_main>
+        <library_table_24_title x="298" y="485" width="110" height="20" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+        </library_table_24_title>
+        <library_table_24_status x="298" y="506" width="110" height="20" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+        </library_table_24_status>
+        <library_table_25_main x="223" y="529" width="186" height="43">
+                <texture>ui_mod_pda_library_table</texture>
+        </library_table_25_main>
+        <library_table_25_title x="298" y="530" width="110" height="20" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+        </library_table_25_title>
+        <library_table_25_status x="298" y="551" width="110" height="20" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+        </library_table_25_status>
+        <library_table_26_main x="223" y="574" width="186" height="43">
+                <texture>ui_mod_pda_library_table</texture>
+        </library_table_26_main>
+        <library_table_26_title x="298" y="575" width="110" height="20" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+        </library_table_26_title>
+        <library_table_26_status x="298" y="596" width="110" height="20" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+        </library_table_26_status>
+        <library_table_27_main x="223" y="619" width="186" height="43">
+                <texture>ui_mod_pda_library_table</texture>
+        </library_table_27_main>
+        <library_table_27_title x="298" y="620" width="110" height="20" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+        </library_table_27_title>
+        <library_table_27_status x="298" y="641" width="110" height="20" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+        </library_table_27_status>
+        <library_table_28_main x="223" y="664" width="186" height="43">
+                <texture>ui_mod_pda_library_table</texture>
+        </library_table_28_main>
+        <library_table_28_title x="298" y="665" width="110" height="20" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+        </library_table_28_title>
+        <library_table_28_status x="298" y="686" width="110" height="20" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+        </library_table_28_status>
+        <library_table_29_main x="418" y="79" width="186" height="43">
+                <texture>ui_mod_pda_library_table</texture>
+        </library_table_29_main>
+        <library_table_29_title x="493" y="80" width="110" height="20" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+        </library_table_29_title>
+        <library_table_29_status x="493" y="101" width="110" height="20" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+        </library_table_29_status>
+        <library_table_30_main x="418" y="124" width="186" height="43">
+                <texture>ui_mod_pda_library_table</texture>
+        </library_table_30_main>
+        <library_table_30_title x="493" y="125" width="110" height="20" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+        </library_table_30_title>
+        <library_table_30_status x="493" y="146" width="110" height="20" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+        </library_table_30_status>
+        <library_table_31_main x="418" y="169" width="186" height="43">
+                <texture>ui_mod_pda_library_table</texture>
+        </library_table_31_main>
+        <library_table_31_title x="493" y="170" width="110" height="20" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+        </library_table_31_title>
+        <library_table_31_status x="493" y="191" width="110" height="20" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+        </library_table_31_status>
+        <library_table_32_main x="418" y="214" width="186" height="43">
+                <texture>ui_mod_pda_library_table</texture>
+        </library_table_32_main>
+        <library_table_32_title x="493" y="215" width="110" height="20" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+        </library_table_32_title>
+        <library_table_32_status x="493" y="236" width="110" height="20" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+        </library_table_32_status>
+        <library_table_33_main x="418" y="259" width="186" height="43">
+                <texture>ui_mod_pda_library_table</texture>
+        </library_table_33_main>
+        <library_table_33_title x="493" y="260" width="110" height="20" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+        </library_table_33_title>
+        <library_table_33_status x="493" y="281" width="110" height="20" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+        </library_table_33_status>
+        <library_table_34_main x="418" y="304" width="186" height="43">
+                <texture>ui_mod_pda_library_table</texture>
+        </library_table_34_main>
+        <library_table_34_title x="493" y="305" width="110" height="20" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+        </library_table_34_title>
+        <library_table_34_status x="493" y="326" width="110" height="20" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+        </library_table_34_status>
+        <library_table_35_main x="418" y="349" width="186" height="43">
+                <texture>ui_mod_pda_library_table</texture>
+        </library_table_35_main>
+        <library_table_35_title x="493" y="350" width="110" height="20" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+        </library_table_35_title>
+        <library_table_35_status x="493" y="371" width="110" height="20" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+        </library_table_35_status>
+        <library_table_36_main x="418" y="394" width="186" height="43">
+                <texture>ui_mod_pda_library_table</texture>
+        </library_table_36_main>
+        <library_table_36_title x="493" y="395" width="110" height="20" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+        </library_table_36_title>
+        <library_table_36_status x="493" y="416" width="110" height="20" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+        </library_table_36_status>
+        <library_table_37_main x="418" y="439" width="186" height="43">
+                <texture>ui_mod_pda_library_table</texture>
+        </library_table_37_main>
+        <library_table_37_title x="493" y="440" width="110" height="20" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+        </library_table_37_title>
+        <library_table_37_status x="493" y="461" width="110" height="20" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+        </library_table_37_status>
+        <library_table_38_main x="418" y="484" width="186" height="43">
+                <texture>ui_mod_pda_library_table</texture>
+        </library_table_38_main>
+        <library_table_38_title x="493" y="485" width="110" height="20" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+        </library_table_38_title>
+        <library_table_38_status x="493" y="506" width="110" height="20" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+        </library_table_38_status>
+        <library_table_39_main x="418" y="529" width="186" height="43">
+                <texture>ui_mod_pda_library_table</texture>
+        </library_table_39_main>
+        <library_table_39_title x="493" y="530" width="110" height="20" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+        </library_table_39_title>
+        <library_table_39_status x="493" y="551" width="110" height="20" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+        </library_table_39_status>
+        <library_table_40_main x="418" y="574" width="186" height="43">
+                <texture>ui_mod_pda_library_table</texture>
+        </library_table_40_main>
+        <library_table_40_title x="493" y="575" width="110" height="20" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+        </library_table_40_title>
+        <library_table_40_status x="493" y="596" width="110" height="20" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+        </library_table_40_status>
+        <library_table_41_main x="418" y="619" width="186" height="43">
+                <texture>ui_mod_pda_library_table</texture>
+        </library_table_41_main>
+        <library_table_41_title x="493" y="620" width="110" height="20" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+        </library_table_41_title>
+        <library_table_41_status x="493" y="641" width="110" height="20" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+        </library_table_41_status>
+        <library_table_42_main x="418" y="664" width="186" height="43">
+                <texture>ui_mod_pda_library_table</texture>
+        </library_table_42_main>
+        <library_table_42_title x="493" y="665" width="110" height="20" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+        </library_table_42_title>
+        <library_table_42_status x="493" y="686" width="110" height="20" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+        </library_table_42_status>
+        <!-----[Поле: Дипломатия]------>
+        <diplomatia_check_area x="353" y="81" width="67" height="28">
+                <texture>ui_mod_pda_check_area</texture>
+        </diplomatia_check_area>
+        <diplomatia_agreement_check_friend x="354" y="84" width="32" height="21" hint="st_agreement_check_friend_hint">
+          <texture>ui_inGame2_checkbox</texture>
+        </diplomatia_agreement_check_friend>
+        <diplomatia_agreement_check_enemy x="387" y="84" width="32" height="21" hint="st_agreement_check_enemy_hint">
+          <texture>ui_inGame2_checkbox</texture>
+        </diplomatia_agreement_check_enemy>
+        <diplomatia_field x="25" y="77" width="707" height="610">
+        </diplomatia_field>
+        <diplomatia_table_stalkers x="31" y="82" width="244" height="117">
+                <texture>ui_mod_pda_diplomatia_table</texture>
+        </diplomatia_table_stalkers>
+        <diplomatia_logo_stalkers x="34" y="86" width="96" height="94">
+                <texture>ui_mod_pda_diplomatia_logo_stalkers</texture>
+        </diplomatia_logo_stalkers>
+        <diplomatia_title_stalkers x="34" y="180" width="189" height="16">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+        </diplomatia_title_stalkers>
+        <diplomatia_need_title_stalkers x="133" y="85" width="139" height="16">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+        </diplomatia_need_title_stalkers>
+        <diplomatia_need_box_stalkers x="133" y="102" width="139" height="75" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c" vert_align="c"></text>
+        </diplomatia_need_box_stalkers>
+        <diplomatia_button_t_stalkers x="226" y="180" width="46" height="15">
+		<text r="240" g="217" b="182" a="155" align="c" font="letterica16"></text>
+	</diplomatia_button_t_stalkers>
+        <diplomatia_button_b_stalkers x="226" y="180" width="46" height="15">
+        </diplomatia_button_b_stalkers>
+        <diplomatia_table_bandits x="489" y="82" width="244" height="117">
+                <texture>ui_mod_pda_diplomatia_table</texture>
+        </diplomatia_table_bandits>
+        <diplomatia_logo_bandits x="492" y="86" width="96" height="94">
+                <texture>ui_mod_pda_diplomatia_logo_bandits</texture>
+        </diplomatia_logo_bandits>
+        <diplomatia_title_bandits x="492" y="180" width="189" height="16">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+        </diplomatia_title_bandits>
+        <diplomatia_need_title_bandits x="591" y="85" width="139" height="16">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+        </diplomatia_need_title_bandits>
+        <diplomatia_need_box_bandits x="591" y="102" width="139" height="75" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c" vert_align="c"></text>
+        </diplomatia_need_box_bandits>
+        <diplomatia_button_t_bandits x="684" y="180" width="46" height="15">
+		<text r="240" g="217" b="182" a="155" align="c" font="letterica16"></text>
+	</diplomatia_button_t_bandits>
+        <diplomatia_button_b_bandits x="684" y="180" width="46" height="15">
+        </diplomatia_button_b_bandits>
+        <diplomatia_table_dolgs x="31" y="326" width="244" height="117">
+                <texture>ui_mod_pda_diplomatia_table</texture>
+        </diplomatia_table_dolgs>
+        <diplomatia_logo_dolgs x="34" y="330" width="96" height="94">
+                <texture>ui_mod_pda_diplomatia_logo_dolgs</texture>
+        </diplomatia_logo_dolgs>
+        <diplomatia_title_dolgs x="34" y="424" width="189" height="16">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+        </diplomatia_title_dolgs>
+        <diplomatia_need_title_dolgs x="133" y="329" width="139" height="16">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+        </diplomatia_need_title_dolgs>
+        <diplomatia_need_box_dolgs x="133" y="346" width="139" height="75" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c" vert_align="c"></text>
+        </diplomatia_need_box_dolgs>
+        <diplomatia_button_t_dolgs x="226" y="424" width="46" height="15">
+		<text r="240" g="217" b="182" a="155" align="c" font="letterica16"></text>
+	</diplomatia_button_t_dolgs>
+        <diplomatia_button_b_dolgs x="226" y="424" width="46" height="15">
+        </diplomatia_button_b_dolgs>
+        <diplomatia_table_freedoms x="489" y="326" width="244" height="117">
+                <texture>ui_mod_pda_diplomatia_table</texture>
+        </diplomatia_table_freedoms>
+        <diplomatia_logo_freedoms x="492" y="330" width="96" height="94">
+                <texture>ui_mod_pda_diplomatia_logo_freedoms</texture>
+        </diplomatia_logo_freedoms>
+        <diplomatia_title_freedoms x="492" y="424" width="189" height="16">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+        </diplomatia_title_freedoms>
+        <diplomatia_need_title_freedoms x="591" y="329" width="139" height="16">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+        </diplomatia_need_title_freedoms>
+        <diplomatia_need_box_freedoms x="591" y="346" width="139" height="75" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c" vert_align="c"></text>
+        </diplomatia_need_box_freedoms>
+        <diplomatia_button_t_freedoms x="684" y="424" width="46" height="15">
+		<text r="240" g="217" b="182" a="155" align="c" font="letterica16"></text>
+	</diplomatia_button_t_freedoms>
+        <diplomatia_button_b_freedoms x="684" y="424" width="46" height="15">
+        </diplomatia_button_b_freedoms>
+        <diplomatia_table_killers x="31" y="570" width="244" height="117">
+                <texture>ui_mod_pda_diplomatia_table</texture>
+        </diplomatia_table_killers>
+        <diplomatia_logo_killers x="34" y="574" width="96" height="94">
+                <texture>ui_mod_pda_diplomatia_logo_killers</texture>
+        </diplomatia_logo_killers>
+        <diplomatia_title_killers x="34" y="668" width="189" height="16">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+        </diplomatia_title_killers>
+        <diplomatia_need_title_killers x="133" y="573" width="139" height="16">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+        </diplomatia_need_title_killers>
+        <diplomatia_need_box_killers x="133" y="590" width="139" height="75" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c" vert_align="c"></text>
+        </diplomatia_need_box_killers>
+        <diplomatia_button_t_killers x="226" y="668" width="46" height="15">
+		<text r="240" g="217" b="182" a="155" align="c" font="letterica16"></text>
+	</diplomatia_button_t_killers>
+        <diplomatia_button_b_killers x="226" y="688" width="46" height="15">
+        </diplomatia_button_b_killers>
+        <diplomatia_table_rasvets x="489" y="570" width="244" height="117">
+                <texture>ui_mod_pda_diplomatia_table</texture>
+        </diplomatia_table_rasvets>
+        <diplomatia_logo_rasvets x="492" y="574" width="96" height="94">
+                <texture>ui_mod_pda_diplomatia_logo_rasvets</texture>
+        </diplomatia_logo_rasvets>
+        <diplomatia_title_rasvets x="492" y="668" width="189" height="16">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+        </diplomatia_title_rasvets>
+        <diplomatia_need_title_rasvets x="591" y="573" width="139" height="16">
+		<text font="letterica16" r="210" g="210" b="210" align="c"></text>
+        </diplomatia_need_title_rasvets>
+        <diplomatia_need_box_rasvets x="591" y="590" width="139" height="75" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c" vert_align="c"></text>
+        </diplomatia_need_box_rasvets>
+        <diplomatia_button_t_rasvets x="684" y="668" width="46" height="15">
+		<text r="240" g="217" b="182" a="155" align="c" font="letterica16"></text>
+	</diplomatia_button_t_rasvets>
+        <diplomatia_button_b_rasvets x="684" y="688" width="46" height="15">
+        </diplomatia_button_b_rasvets>
+        <!-----[Поле: Оборудование]------>
+        <equipments_background x="23" y="74" width="718" height="643">
+                <texture>ui_mod_pda_equipments_table</texture>
+        </equipments_background>
+	<equipments_list x="27" y="77" width="226" height="636" item_height="22" can_select="1">
+	        <font font="letterica16" r="210" g="210" b="210"/>
+	</equipments_list>
+        <equipments_title_field x="255" y="75" width="484" height="29" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c" vert_align="c"></text>
+        </equipments_title_field>
+        <equipments_icon_field x="256" y="106" width="482" height="173">
+        </equipments_icon_field>
+        <equipments_descr_field x="256" y="284" width="481" height="429" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c" vert_align="c"></text>
+        </equipments_descr_field>
+</personal_pda_form>
+<!-----[GPS-проводник]------>
+<guidebook_form x="214" y="55" width="609" height="631">
+	<btn_close x="306" y="37" width="37" height="15" hint="st_guidebook_close_hint">
+		<texture_e>ui_mod_guidebook_off_e</texture_e>
+		<texture_t>ui_mod_guidebook_off_t</texture_t>
+		<texture_h>ui_mod_guidebook_off_h</texture_h>
+	</btn_close>
+        <guidebook_background x="0" y="0" width="609" height="631">
+                <texture>ui_mod_guidebook_main_wnd</texture>
+        </guidebook_background>
+        <zaton_screen x="56" y="59" width="519" height="537">
+                <texture>ui_mod_guidebook_zaton</texture>
+                <point_1 x="360" y="228" width="24" height="24" hint="st_zat_a2_name">
+		   <texture_e>ui_mod_guidebook_location_e</texture_e>
+		   <texture_t>ui_mod_guidebook_location_t</texture_t>
+		   <texture_h>ui_mod_guidebook_location_h</texture_h>
+                </point_1>
+                <point_2 x="484" y="301" width="24" height="24" hint="st_zat_b5_name">
+		   <texture_e>ui_mod_guidebook_location_e</texture_e>
+		   <texture_t>ui_mod_guidebook_location_t</texture_t>
+		   <texture_h>ui_mod_guidebook_location_h</texture_h>
+                </point_2>
+                <point_3 x="461" y="473" width="24" height="24" hint="st_zat_b40_name">
+		   <texture_e>ui_mod_guidebook_location_e</texture_e>
+		   <texture_t>ui_mod_guidebook_location_t</texture_t>
+		   <texture_h>ui_mod_guidebook_location_h</texture_h>
+                </point_3>
+                <point_4 x="249" y="485" width="24" height="24" hint="st_zat_b103_name">
+		   <texture_e>ui_mod_guidebook_location_e</texture_e>
+		   <texture_t>ui_mod_guidebook_location_t</texture_t>
+		   <texture_h>ui_mod_guidebook_location_h</texture_h>
+                </point_4>
+                <point_5 x="311" y="295" width="24" height="24" hint="st_zat_b7_name">
+		   <texture_e>ui_mod_guidebook_location_e</texture_e>
+		   <texture_t>ui_mod_guidebook_location_t</texture_t>
+		   <texture_h>ui_mod_guidebook_location_h</texture_h>
+                </point_5>
+                <point_6 x="374" y="371" width="24" height="24" hint="st_zat_b18_name">
+		   <texture_e>ui_mod_guidebook_location_e</texture_e>
+		   <texture_t>ui_mod_guidebook_location_t</texture_t>
+		   <texture_h>ui_mod_guidebook_location_h</texture_h>
+                </point_6>
+                <point_7 x="401" y="306" width="24" height="24" hint="st_zat_b52_name">
+		   <texture_e>ui_mod_guidebook_location_e</texture_e>
+		   <texture_t>ui_mod_guidebook_location_t</texture_t>
+		   <texture_h>ui_mod_guidebook_location_h</texture_h>
+                </point_7>
+                <point_8 x="284" y="159" width="24" height="24" hint="st_zat_b20_name">
+		   <texture_e>ui_mod_guidebook_location_e</texture_e>
+		   <texture_t>ui_mod_guidebook_location_t</texture_t>
+		   <texture_h>ui_mod_guidebook_location_h</texture_h>
+                </point_8>
+                <point_9 x="157" y="467" width="24" height="24" hint="st_zat_b100_name">
+		   <texture_e>ui_mod_guidebook_location_e</texture_e>
+		   <texture_t>ui_mod_guidebook_location_t</texture_t>
+		   <texture_h>ui_mod_guidebook_location_h</texture_h>
+                </point_9>
+                <point_10 x="475" y="112" width="24" height="24" hint="st_zat_b53_name">
+		   <texture_e>ui_mod_guidebook_location_e</texture_e>
+		   <texture_t>ui_mod_guidebook_location_t</texture_t>
+		   <texture_h>ui_mod_guidebook_location_h</texture_h>
+                </point_10>
+                <point_11 x="477" y="201" width="24" height="24" hint="st_zat_b14_name">
+		   <texture_e>ui_mod_guidebook_location_e</texture_e>
+		   <texture_t>ui_mod_guidebook_location_t</texture_t>
+		   <texture_h>ui_mod_guidebook_location_h</texture_h>
+                </point_11>
+                <point_12 x="231" y="264" width="24" height="24" hint="st_zat_b106_name">
+		   <texture_e>ui_mod_guidebook_location_e</texture_e>
+		   <texture_t>ui_mod_guidebook_location_t</texture_t>
+		   <texture_h>ui_mod_guidebook_location_h</texture_h>
+                </point_12>
+                <point_13 x="152" y="145" width="24" height="24" hint="st_zat_b104_name">
+		   <texture_e>ui_mod_guidebook_location_e</texture_e>
+		   <texture_t>ui_mod_guidebook_location_t</texture_t>
+		   <texture_h>ui_mod_guidebook_location_h</texture_h>
+                </point_13>
+                <point_14 x="144" y="314" width="24" height="24" hint="st_zat_b38_name">
+		   <texture_e>ui_mod_guidebook_location_e</texture_e>
+		   <texture_t>ui_mod_guidebook_location_t</texture_t>
+		   <texture_h>ui_mod_guidebook_location_h</texture_h>
+                </point_14>
+                <point_15 x="243" y="392" width="24" height="24" hint="st_zat_b33_name">
+		   <texture_e>ui_mod_guidebook_location_e</texture_e>
+		   <texture_t>ui_mod_guidebook_location_t</texture_t>
+		   <texture_h>ui_mod_guidebook_location_h</texture_h>
+                </point_15>
+        </zaton_screen>
+        <jupiter_screen x="55" y="57" width="519" height="537">
+                <texture>ui_mod_guidebook_jupiter</texture>
+                <point_1 x="281" y="226" width="24" height="24" hint="st_jup_a6_name">
+		   <texture_e>ui_mod_guidebook_location_e</texture_e>
+		   <texture_t>ui_mod_guidebook_location_t</texture_t>
+		   <texture_h>ui_mod_guidebook_location_h</texture_h>
+                </point_1>
+                <point_2 x="341" y="301" width="24" height="24" hint="st_jup_b206_name">
+		   <texture_e>ui_mod_guidebook_location_e</texture_e>
+		   <texture_t>ui_mod_guidebook_location_t</texture_t>
+		   <texture_h>ui_mod_guidebook_location_h</texture_h>
+                </point_2>
+                <point_3 x="321" y="397" width="24" height="24" hint="st_jup_a10_name">
+		   <texture_e>ui_mod_guidebook_location_e</texture_e>
+		   <texture_t>ui_mod_guidebook_location_t</texture_t>
+		   <texture_h>ui_mod_guidebook_location_h</texture_h>
+                </point_3>
+                <point_4 x="209" y="277" width="24" height="24" hint="st_jup_b6_name">
+		   <texture_e>ui_mod_guidebook_location_e</texture_e>
+		   <texture_t>ui_mod_guidebook_location_t</texture_t>
+		   <texture_h>ui_mod_guidebook_location_h</texture_h>
+                </point_4>
+                <point_5 x="475" y="343" width="24" height="24" hint="st_jup_b208_name">
+		   <texture_e>ui_mod_guidebook_location_e</texture_e>
+		   <texture_t>ui_mod_guidebook_location_t</texture_t>
+		   <texture_h>ui_mod_guidebook_location_h</texture_h>
+                </point_5>
+                <point_6 x="123" y="473" width="24" height="24" hint="st_jup_a12_name">
+		   <texture_e>ui_mod_guidebook_location_e</texture_e>
+		   <texture_t>ui_mod_guidebook_location_t</texture_t>
+		   <texture_h>ui_mod_guidebook_location_h</texture_h>
+                </point_6>
+                <point_7 x="397" y="244" width="24" height="24" hint="st_jup_b25_name">
+		   <texture_e>ui_mod_guidebook_location_e</texture_e>
+		   <texture_t>ui_mod_guidebook_location_t</texture_t>
+		   <texture_h>ui_mod_guidebook_location_h</texture_h>
+                </point_7>
+                <point_8 x="142" y="216" width="24" height="24" hint="st_jup_b19_name">
+		   <texture_e>ui_mod_guidebook_location_e</texture_e>
+		   <texture_t>ui_mod_guidebook_location_t</texture_t>
+		   <texture_h>ui_mod_guidebook_location_h</texture_h>
+                </point_8>
+                <point_9 x="144" y="315" width="24" height="24" hint="st_jup_b205_name">
+		   <texture_e>ui_mod_guidebook_location_e</texture_e>
+		   <texture_t>ui_mod_guidebook_location_t</texture_t>
+		   <texture_h>ui_mod_guidebook_location_h</texture_h>
+                </point_9>
+                <point_10 x="240" y="524" width="24" height="24" hint="st_jup_b9_name">
+		   <texture_e>ui_mod_guidebook_location_e</texture_e>
+		   <texture_t>ui_mod_guidebook_location_t</texture_t>
+		   <texture_h>ui_mod_guidebook_location_h</texture_h>
+                </point_10>
+                <point_11 x="275" y="460" width="24" height="24" hint="st_jup_b212_name">
+		   <texture_e>ui_mod_guidebook_location_e</texture_e>
+		   <texture_t>ui_mod_guidebook_location_t</texture_t>
+		   <texture_h>ui_mod_guidebook_location_h</texture_h>
+                </point_11>
+                <point_12 x="467" y="157" width="24" height="24" hint="st_jup_b200_name">
+		   <texture_e>ui_mod_guidebook_location_e</texture_e>
+		   <texture_t>ui_mod_guidebook_location_t</texture_t>
+		   <texture_h>ui_mod_guidebook_location_h</texture_h>
+                </point_12>
+                <point_13 x="331" y="159" width="24" height="24" hint="st_jup_b202_name">
+		   <texture_e>ui_mod_guidebook_location_e</texture_e>
+		   <texture_t>ui_mod_guidebook_location_t</texture_t>
+		   <texture_h>ui_mod_guidebook_location_h</texture_h>
+                </point_13>
+                <point_14 x="225" y="153" width="24" height="24" hint="st_jup_b46_name">
+		   <texture_e>ui_mod_guidebook_location_e</texture_e>
+		   <texture_t>ui_mod_guidebook_location_t</texture_t>
+		   <texture_h>ui_mod_guidebook_location_h</texture_h>
+                </point_14>
+                <point_15 x="265" y="380" width="24" height="24" hint="st_jup_b32_name">
+		   <texture_e>ui_mod_guidebook_location_e</texture_e>
+		   <texture_t>ui_mod_guidebook_location_t</texture_t>
+		   <texture_h>ui_mod_guidebook_location_h</texture_h>
+                </point_15>
+                <point_16 x="494" y="431" width="24" height="24" hint="st_jup_a9_name">
+		   <texture_e>ui_mod_guidebook_location_e</texture_e>
+		   <texture_t>ui_mod_guidebook_location_t</texture_t>
+		   <texture_h>ui_mod_guidebook_location_h</texture_h>
+                </point_16>
+        </jupiter_screen>
+        <pripyat_screen x="54" y="58" width="519" height="537">
+                <texture>ui_mod_guidebook_pripyat</texture>
+                <point_1 x="363" y="397" width="24" height="24" hint="st_pri_a16_name">
+		   <texture_e>ui_mod_guidebook_location_e</texture_e>
+		   <texture_t>ui_mod_guidebook_location_t</texture_t>
+		   <texture_h>ui_mod_guidebook_location_h</texture_h>
+                </point_1>
+                <point_2 x="249" y="441" width="24" height="24" hint="st_pri_b304_name">
+		   <texture_e>ui_mod_guidebook_location_e</texture_e>
+		   <texture_t>ui_mod_guidebook_location_t</texture_t>
+		   <texture_h>ui_mod_guidebook_location_h</texture_h>
+                </point_2>
+                <point_3 x="213" y="493" width="24" height="24" hint="st_pri_a18_name">
+		   <texture_e>ui_mod_guidebook_location_e</texture_e>
+		   <texture_t>ui_mod_guidebook_location_t</texture_t>
+		   <texture_h>ui_mod_guidebook_location_h</texture_h>
+                </point_3>
+                <point_4 x="205" y="410" width="24" height="24" hint="st_pri_a21_name">
+		   <texture_e>ui_mod_guidebook_location_e</texture_e>
+		   <texture_t>ui_mod_guidebook_location_t</texture_t>
+		   <texture_h>ui_mod_guidebook_location_h</texture_h>
+                </point_4>
+                <point_5 x="264" y="354" width="24" height="24" hint="st_pri_a25_name">
+		   <texture_e>ui_mod_guidebook_location_e</texture_e>
+		   <texture_t>ui_mod_guidebook_location_t</texture_t>
+		   <texture_h>ui_mod_guidebook_location_h</texture_h>
+                </point_5>
+                <point_6 x="269" y="266" width="24" height="24" hint="st_pri_b306_name">
+		   <texture_e>ui_mod_guidebook_location_e</texture_e>
+		   <texture_t>ui_mod_guidebook_location_t</texture_t>
+		   <texture_h>ui_mod_guidebook_location_h</texture_h>
+                </point_6>
+                <point_7 x="319" y="239" width="24" height="24" hint="st_pri_b301_name">
+		   <texture_e>ui_mod_guidebook_location_e</texture_e>
+		   <texture_t>ui_mod_guidebook_location_t</texture_t>
+		   <texture_h>ui_mod_guidebook_location_h</texture_h>
+                </point_7>
+                <point_8 x="302" y="178" width="24" height="24" hint="st_pri_b303_name">
+		   <texture_e>ui_mod_guidebook_location_e</texture_e>
+		   <texture_t>ui_mod_guidebook_location_t</texture_t>
+		   <texture_h>ui_mod_guidebook_location_h</texture_h>
+                </point_8>
+                <point_9 x="330" y="130" width="24" height="24" hint="st_pri_a28_name">
+		   <texture_e>ui_mod_guidebook_location_e</texture_e>
+		   <texture_t>ui_mod_guidebook_location_t</texture_t>
+		   <texture_h>ui_mod_guidebook_location_h</texture_h>
+                </point_9>
+                <point_10 x="433" y="179" width="24" height="24" hint="st_pri_b36_name">
+		   <texture_e>ui_mod_guidebook_location_e</texture_e>
+		   <texture_t>ui_mod_guidebook_location_t</texture_t>
+		   <texture_h>ui_mod_guidebook_location_h</texture_h>
+                </point_10>
+                <point_11 x="389" y="308" width="24" height="24" hint="st_pri_a17_name">
+		   <texture_e>ui_mod_guidebook_location_e</texture_e>
+		   <texture_t>ui_mod_guidebook_location_t</texture_t>
+		   <texture_h>ui_mod_guidebook_location_h</texture_h>
+                </point_11>
+        </pripyat_screen>
+        <darkvalley_screen x="56" y="59" width="519" height="537">
+                <texture>ui_mod_guidebook_darkvalley</texture>
+                <point_1 x="408" y="344" width="24" height="24" hint="st_val_region_1_name">
+		   <texture_e>ui_mod_guidebook_location_e</texture_e>
+		   <texture_t>ui_mod_guidebook_location_t</texture_t>
+		   <texture_h>ui_mod_guidebook_location_h</texture_h>
+                </point_1>
+                <point_2 x="261" y="348" width="24" height="24" hint="st_val_region_4_name">
+		   <texture_e>ui_mod_guidebook_location_e</texture_e>
+		   <texture_t>ui_mod_guidebook_location_t</texture_t>
+		   <texture_h>ui_mod_guidebook_location_h</texture_h>
+                </point_2>
+                <point_3 x="146" y="460" width="24" height="24" hint="st_val_region_2_name">
+		   <texture_e>ui_mod_guidebook_location_e</texture_e>
+		   <texture_t>ui_mod_guidebook_location_t</texture_t>
+		   <texture_h>ui_mod_guidebook_location_h</texture_h>
+                </point_3>
+                <point_4 x="103" y="304" width="24" height="24" hint="st_val_region_11_name">
+		   <texture_e>ui_mod_guidebook_location_e</texture_e>
+		   <texture_t>ui_mod_guidebook_location_t</texture_t>
+		   <texture_h>ui_mod_guidebook_location_h</texture_h>
+                </point_4>
+                <point_5 x="402" y="227" width="24" height="24" hint="st_val_region_5_name">
+		   <texture_e>ui_mod_guidebook_location_e</texture_e>
+		   <texture_t>ui_mod_guidebook_location_t</texture_t>
+		   <texture_h>ui_mod_guidebook_location_h</texture_h>
+                </point_5>
+        </darkvalley_screen>
+        <military_screen x="56" y="59" width="519" height="537">
+                <texture>ui_mod_guidebook_military</texture>
+                <point_1 x="209" y="431" width="24" height="24" hint="st_mil_region_1_name">
+		   <texture_e>ui_mod_guidebook_location_e</texture_e>
+		   <texture_t>ui_mod_guidebook_location_t</texture_t>
+		   <texture_h>ui_mod_guidebook_location_h</texture_h>
+                </point_1>
+                <point_2 x="163" y="289" width="24" height="24" hint="st_mil_region_2_name">
+		   <texture_e>ui_mod_guidebook_location_e</texture_e>
+		   <texture_t>ui_mod_guidebook_location_t</texture_t>
+		   <texture_h>ui_mod_guidebook_location_h</texture_h>
+                </point_2>
+                <point_3 x="111" y="145" width="24" height="24" hint="st_mil_region_3_name">
+		   <texture_e>ui_mod_guidebook_location_e</texture_e>
+		   <texture_t>ui_mod_guidebook_location_t</texture_t>
+		   <texture_h>ui_mod_guidebook_location_h</texture_h>
+                </point_3>
+                <point_4 x="245" y="169" width="24" height="24" hint="st_mil_region_4_name">
+		   <texture_e>ui_mod_guidebook_location_e</texture_e>
+		   <texture_t>ui_mod_guidebook_location_t</texture_t>
+		   <texture_h>ui_mod_guidebook_location_h</texture_h>
+                </point_4>
+                <point_5 x="323" y="275" width="24" height="24" hint="st_mil_region_5_name">
+		   <texture_e>ui_mod_guidebook_location_e</texture_e>
+		   <texture_t>ui_mod_guidebook_location_t</texture_t>
+		   <texture_h>ui_mod_guidebook_location_h</texture_h>
+                </point_5>
+                <point_6 x="469" y="192" width="24" height="24" hint="st_mil_region_6_name">
+		   <texture_e>ui_mod_guidebook_location_e</texture_e>
+		   <texture_t>ui_mod_guidebook_location_t</texture_t>
+		   <texture_h>ui_mod_guidebook_location_h</texture_h>
+                </point_6>
+                <point_7 x="400" y="461" width="24" height="24" hint="st_mil_region_7_name">
+		   <texture_e>ui_mod_guidebook_location_e</texture_e>
+		   <texture_t>ui_mod_guidebook_location_t</texture_t>
+		   <texture_h>ui_mod_guidebook_location_h</texture_h>
+                </point_7>
+        </military_screen>
+        <agroprom_screen x="56" y="59" width="519" height="537">
+                <texture>ui_mod_guidebook_agroprom</texture>
+                <point_1 x="102" y="223" width="24" height="24" hint="st_agr_region_1_name">
+		   <texture_e>ui_mod_guidebook_location_e</texture_e>
+		   <texture_t>ui_mod_guidebook_location_t</texture_t>
+		   <texture_h>ui_mod_guidebook_location_h</texture_h>
+                </point_1>
+                <point_2 x="331" y="130" width="24" height="24" hint="st_agr_region_2_name">
+		   <texture_e>ui_mod_guidebook_location_e</texture_e>
+		   <texture_t>ui_mod_guidebook_location_t</texture_t>
+		   <texture_h>ui_mod_guidebook_location_h</texture_h>
+                </point_2>
+                <point_3 x="478" y="262" width="24" height="24" hint="st_agr_region_3_name">
+		   <texture_e>ui_mod_guidebook_location_e</texture_e>
+		   <texture_t>ui_mod_guidebook_location_t</texture_t>
+		   <texture_h>ui_mod_guidebook_location_h</texture_h>
+                </point_3>
+                <point_4 x="357" y="295" width="24" height="24" hint="st_agr_region_4_name">
+		   <texture_e>ui_mod_guidebook_location_e</texture_e>
+		   <texture_t>ui_mod_guidebook_location_t</texture_t>
+		   <texture_h>ui_mod_guidebook_location_h</texture_h>
+                </point_4>
+                <point_5 x="277" y="249" width="24" height="24" hint="st_agr_region_5_name">
+		   <texture_e>ui_mod_guidebook_location_e</texture_e>
+		   <texture_t>ui_mod_guidebook_location_t</texture_t>
+		   <texture_h>ui_mod_guidebook_location_h</texture_h>
+                </point_5>
+                <point_6 x="286" y="334" width="24" height="24" hint="st_agr_region_6_name">
+		   <texture_e>ui_mod_guidebook_location_e</texture_e>
+		   <texture_t>ui_mod_guidebook_location_t</texture_t>
+		   <texture_h>ui_mod_guidebook_location_h</texture_h>
+                </point_6>
+                <point_7 x="495" y="367" width="24" height="24" hint="st_agr_region_7_name">
+		   <texture_e>ui_mod_guidebook_location_e</texture_e>
+		   <texture_t>ui_mod_guidebook_location_t</texture_t>
+		   <texture_h>ui_mod_guidebook_location_h</texture_h>
+                </point_7>
+                <point_8 x="146" y="413" width="24" height="24" hint="st_agr_region_8_name">
+		   <texture_e>ui_mod_guidebook_location_e</texture_e>
+		   <texture_t>ui_mod_guidebook_location_t</texture_t>
+		   <texture_h>ui_mod_guidebook_location_h</texture_h>
+                </point_8>
+                <point_9 x="185" y="123" width="24" height="24" hint="st_agr_region_9_name">
+		   <texture_e>ui_mod_guidebook_location_e</texture_e>
+		   <texture_t>ui_mod_guidebook_location_t</texture_t>
+		   <texture_h>ui_mod_guidebook_location_h</texture_h>
+                </point_9>
+        </agroprom_screen>
+        <escape_screen x="56" y="59" width="519" height="537">
+                <texture>ui_mod_guidebook_escape</texture>
+                <point_1 x="306" y="309" width="24" height="24" hint="st_guidebook_escape_point1">
+		   <texture_e>ui_mod_guidebook_location_e</texture_e>
+		   <texture_t>ui_mod_guidebook_location_t</texture_t>
+		   <texture_h>ui_mod_guidebook_location_h</texture_h>
+                </point_1>
+                <point_2 x="352" y="366" width="24" height="24" hint="st_guidebook_escape_point2">
+		   <texture_e>ui_mod_guidebook_location_e</texture_e>
+		   <texture_t>ui_mod_guidebook_location_t</texture_t>
+		   <texture_h>ui_mod_guidebook_location_h</texture_h>
+                </point_2>
+                <point_3 x="141" y="408" width="24" height="24" hint="st_guidebook_escape_point3">
+		   <texture_e>ui_mod_guidebook_location_e</texture_e>
+		   <texture_t>ui_mod_guidebook_location_t</texture_t>
+		   <texture_h>ui_mod_guidebook_location_h</texture_h>
+                </point_3>
+                <point_4 x="169" y="482" width="24" height="24" hint="st_guidebook_escape_point4">
+		   <texture_e>ui_mod_guidebook_location_e</texture_e>
+		   <texture_t>ui_mod_guidebook_location_t</texture_t>
+		   <texture_h>ui_mod_guidebook_location_h</texture_h>
+                </point_4>
+                <point_5 x="259" y="255" width="24" height="24" hint="st_guidebook_escape_point5">
+		   <texture_e>ui_mod_guidebook_location_e</texture_e>
+		   <texture_t>ui_mod_guidebook_location_t</texture_t>
+		   <texture_h>ui_mod_guidebook_location_h</texture_h>
+                </point_5>
+                <point_6 x="280" y="108" width="24" height="24" hint="st_guidebook_escape_point6">
+		   <texture_e>ui_mod_guidebook_location_e</texture_e>
+		   <texture_t>ui_mod_guidebook_location_t</texture_t>
+		   <texture_h>ui_mod_guidebook_location_h</texture_h>
+                </point_6>
+        </escape_screen>
+        <marsh_screen x="56" y="59" width="519" height="537">
+                <texture>ui_mod_guidebook_marsh</texture>
+                <point_1 x="260" y="257" width="24" height="24" hint="st_guidebook_marsh_point1">
+		   <texture_e>ui_mod_guidebook_location_e</texture_e>
+		   <texture_t>ui_mod_guidebook_location_t</texture_t>
+		   <texture_h>ui_mod_guidebook_location_h</texture_h>
+                </point_1>
+                <point_2 x="396" y="269" width="24" height="24" hint="st_guidebook_marsh_point2">
+		   <texture_e>ui_mod_guidebook_location_e</texture_e>
+		   <texture_t>ui_mod_guidebook_location_t</texture_t>
+		   <texture_h>ui_mod_guidebook_location_h</texture_h>
+                </point_2>
+                <point_3 x="482" y="191" width="24" height="24" hint="st_guidebook_marsh_point3">
+		   <texture_e>ui_mod_guidebook_location_e</texture_e>
+		   <texture_t>ui_mod_guidebook_location_t</texture_t>
+		   <texture_h>ui_mod_guidebook_location_h</texture_h>
+                </point_3>
+                <point_4 x="229" y="383" width="24" height="24" hint="st_guidebook_marsh_point4">
+		   <texture_e>ui_mod_guidebook_location_e</texture_e>
+		   <texture_t>ui_mod_guidebook_location_t</texture_t>
+		   <texture_h>ui_mod_guidebook_location_h</texture_h>
+                </point_4>
+                <point_5 x="251" y="490" width="24" height="24" hint="st_guidebook_marsh_point5">
+		   <texture_e>ui_mod_guidebook_location_e</texture_e>
+		   <texture_t>ui_mod_guidebook_location_t</texture_t>
+		   <texture_h>ui_mod_guidebook_location_h</texture_h>
+                </point_5>
+                <point_6 x="351" y="455" width="24" height="24" hint="st_guidebook_marsh_point6">
+		   <texture_e>ui_mod_guidebook_location_e</texture_e>
+		   <texture_t>ui_mod_guidebook_location_t</texture_t>
+		   <texture_h>ui_mod_guidebook_location_h</texture_h>
+                </point_6>
+                <point_7 x="442" y="466" width="24" height="24" hint="st_guidebook_marsh_point7">
+		   <texture_e>ui_mod_guidebook_location_e</texture_e>
+		   <texture_t>ui_mod_guidebook_location_t</texture_t>
+		   <texture_h>ui_mod_guidebook_location_h</texture_h>
+                </point_7>
+                <point_8 x="344" y="360" width="24" height="24" hint="st_guidebook_marsh_point8">
+		   <texture_e>ui_mod_guidebook_location_e</texture_e>
+		   <texture_t>ui_mod_guidebook_location_t</texture_t>
+		   <texture_h>ui_mod_guidebook_location_h</texture_h>
+                </point_8>
+        </marsh_screen>
+        <red_forest_screen x="56" y="59" width="519" height="537">
+                <texture>ui_mod_guidebook_red_forest</texture>
+                <point_1 x="170" y="402" width="24" height="24" hint="st_red_region_1_name">
+		   <texture_e>ui_mod_guidebook_location_e</texture_e>
+		   <texture_t>ui_mod_guidebook_location_t</texture_t>
+		   <texture_h>ui_mod_guidebook_location_h</texture_h>
+                </point_1>
+                <point_2 x="396" y="443" width="24" height="24" hint="st_red_region_2_name">
+		   <texture_e>ui_mod_guidebook_location_e</texture_e>
+		   <texture_t>ui_mod_guidebook_location_t</texture_t>
+		   <texture_h>ui_mod_guidebook_location_h</texture_h>
+                </point_2>
+                <point_3 x="421" y="349" width="24" height="24" hint="st_red_region_3_name">
+		   <texture_e>ui_mod_guidebook_location_e</texture_e>
+		   <texture_t>ui_mod_guidebook_location_t</texture_t>
+		   <texture_h>ui_mod_guidebook_location_h</texture_h>
+                </point_3>
+                <point_4 x="432" y="266" width="24" height="24" hint="st_red_region_4_name">
+		   <texture_e>ui_mod_guidebook_location_e</texture_e>
+		   <texture_t>ui_mod_guidebook_location_t</texture_t>
+		   <texture_h>ui_mod_guidebook_location_h</texture_h>
+                </point_4>
+                <point_5 x="205" y="254" width="24" height="24" hint="st_red_region_5_name">
+		   <texture_e>ui_mod_guidebook_location_e</texture_e>
+		   <texture_t>ui_mod_guidebook_location_t</texture_t>
+		   <texture_h>ui_mod_guidebook_location_h</texture_h>
+                </point_5>
+                <point_6 x="206" y="137" width="24" height="24" hint="st_red_region_6_name">
+		   <texture_e>ui_mod_guidebook_location_e</texture_e>
+		   <texture_t>ui_mod_guidebook_location_t</texture_t>
+		   <texture_h>ui_mod_guidebook_location_h</texture_h>
+                </point_6>
+                <point_7 x="266" y="219" width="24" height="24" hint="st_red_region_7_name">
+		   <texture_e>ui_mod_guidebook_location_e</texture_e>
+		   <texture_t>ui_mod_guidebook_location_t</texture_t>
+		   <texture_h>ui_mod_guidebook_location_h</texture_h>
+                </point_7>
+                <point_8 x="253" y="501" width="24" height="24" hint="st_red_region_8_name">
+		   <texture_e>ui_mod_guidebook_location_e</texture_e>
+		   <texture_t>ui_mod_guidebook_location_t</texture_t>
+		   <texture_h>ui_mod_guidebook_location_h</texture_h>
+                </point_8>
+                <point_9 x="168" y="360" width="24" height="24" hint="st_red_region_9_name">
+		   <texture_e>ui_mod_guidebook_location_e</texture_e>
+		   <texture_t>ui_mod_guidebook_location_t</texture_t>
+		   <texture_h>ui_mod_guidebook_location_h</texture_h>
+                </point_9>
+        </red_forest_screen>
+</guidebook_form>
+<!-----[Персональный маркер]------>
+<personal_marker_form x="50" y="531" width="243" height="207">
+        <texture>ui_mod_marker_main_wnd</texture>
+	<enter_field x="33" y="10" width="178" height="19">
+                <text font="letterica18" r="210" g="210" b="210" vert_align="c"/>
+	</enter_field>
+	<btn_setup x="65" y="48" width="116" height="22">
+		<texture_e>ui_mod_button5_e</texture_e>
+		<texture_t>ui_mod_button5_t</texture_t>
+		<texture_h>ui_mod_button5_h</texture_h>
+		<text font="letterica16">st_personal_marker_setup</text>
+	</btn_setup>
+	<btn_radius_hide x="65" y="74" width="116" height="22" hint="st_personal_marker_radius_hide_hint">
+		<texture_e>ui_mod_button5_e</texture_e>
+		<texture_t>ui_mod_button5_t</texture_t>
+		<texture_h>ui_mod_button5_h</texture_h>
+		<text font="letterica16">st_personal_marker_radius_hide</text>
+	</btn_radius_hide>
+	<btn_all_hide x="65" y="100" width="116" height="22" hint="st_personal_marker_all_hide_hint">
+		<texture_e>ui_mod_button5_e</texture_e>
+		<texture_t>ui_mod_button5_t</texture_t>
+		<texture_h>ui_mod_button5_h</texture_h>
+		<text font="letterica16">st_personal_marker_all_hide</text>
+	</btn_all_hide>
+	<btn_cancel x="65" y="167" width="116" height="22">
+		<texture_e>ui_mod_button5_e</texture_e>
+		<texture_t>ui_mod_button5_t</texture_t>
+		<texture_h>ui_mod_button5_h</texture_h>
+		<text font="letterica16">st_personal_marker_cancel</text>
+	</btn_cancel>
+</personal_marker_form>
+<!-----[Персональный рюкзак]------>
+<personal_rukzak_form x="0" y="498" width="369" height="206">
+        <texture>ui_mod_rukzak_wnd</texture>
+	<spot_name_field x="29" y="9" width="211" height="19">
+                <text font="letterica18" r="210" g="210" b="210" vert_align="c"/>
+	</spot_name_field>
+        <check_with_spot x="15" y="136" width="32" height="21">
+                <texture>ui_inGame2_checkbox</texture>
+                <text font="letterica16" r="115" g="114" b="112" vert_align="c">st_personal_rukzak_with_spot</text>
+        </check_with_spot>
+        <check_with_take x="15" y="112" width="32" height="21">
+                <texture>ui_inGame2_checkbox</texture>
+                <text font="letterica16" r="115" g="114" b="112" vert_align="c">st_personal_rukzak_with_take</text>
+        </check_with_take>
+	<btn_leave x="67" y="163" width="116" height="22">
+		<texture_e>ui_mod_button5_e</texture_e>
+		<texture_t>ui_mod_button5_t</texture_t>
+		<texture_h>ui_mod_button5_h</texture_h>
+		<text font="letterica16">st_personal_rukzak_leave</text>
+	</btn_leave>
+	<btn_radius_hide x="15" y="41" width="116" height="22" hint="st_personal_rukzak_radius_hide_hint">
+		<texture_e>ui_mod_button5_e</texture_e>
+		<texture_t>ui_mod_button5_t</texture_t>
+		<texture_h>ui_mod_button5_h</texture_h>
+		<text font="letterica16">st_personal_rukzak_radius_hide</text>
+	</btn_radius_hide>
+	<btn_all_hide x="235" y="41" width="116" height="22" hint="st_personal_rukzak_all_hide_hint">
+		<texture_e>ui_mod_button5_e</texture_e>
+		<texture_t>ui_mod_button5_t</texture_t>
+		<texture_h>ui_mod_button5_h</texture_h>
+		<text font="letterica16">st_personal_rukzak_all_hide</text>
+	</btn_all_hide>
+	<btn_cancel x="186" y="163" width="116" height="22">
+		<texture_e>ui_mod_button5_e</texture_e>
+		<texture_t>ui_mod_button5_t</texture_t>
+		<texture_h>ui_mod_button5_h</texture_h>
+		<text font="letterica16">st_personal_rukzak_cancel</text>
+	</btn_cancel>
+</personal_rukzak_form>
+<!-----[Заряд РС-15]------>
+<remote_charge_form x="50" y="531" width="243" height="207">
+        <texture>ui_mod_remote_charge_main_wnd</texture>
+	<charge_delay_field x="33" y="10" width="178" height="19">
+		<text r="240" g="217" b="182" a="120" align="c" vert_align="c" font="letterica18"></text>
+	</charge_delay_field>
+	<btn_charge_delay_dec x="85" y="44" width="31" height="28">
+		<texture_e>ui_mod_button_minus_a</texture_e>
+		<texture_t>ui_mod_button_minus_b</texture_t>
+		<texture_h>ui_mod_button_minus_b</texture_h>
+	</btn_charge_delay_dec>
+	<btn_charge_delay_inc x="127" y="44" width="31" height="28">
+		<texture_e>ui_mod_button_plus_a</texture_e>
+		<texture_t>ui_mod_button_plus_b</texture_t>
+		<texture_h>ui_mod_button_plus_b</texture_h>
+	</btn_charge_delay_inc>
+	<btn_place x="65" y="78" width="116" height="22">
+		<texture_e>ui_mod_button5_e</texture_e>
+		<texture_t>ui_mod_button5_t</texture_t>
+		<texture_h>ui_mod_button5_h</texture_h>
+		<text font="letterica16">st_remote_charge_place</text>
+	</btn_place>
+	<btn_cancel x="65" y="167" width="116" height="22">
+		<texture_e>ui_mod_button5_e</texture_e>
+		<texture_t>ui_mod_button5_t</texture_t>
+		<texture_h>ui_mod_button5_h</texture_h>
+		<text font="letterica16">st_remote_charge_cancel</text>
+	</btn_cancel>
+</remote_charge_form>
+<!-----[Карточная игра: 21 очко]------>
+<card_game_21_point_form x="239" y="136" width="545" height="496">
+        <texture>ui_mod_card_game_21_point_wnd</texture>
+	<form_title x="218" y="5" width="108" height="26">
+		<text r="240" g="217" b="182" a="255" align="c" vert_align="c" font="letterica16"></text>
+	</form_title>
+	<your_game_info x="38" y="168" width="476" height="25">
+		<text r="240" g="217" b="182" a="155" align="c" vert_align="c" font="letterica16"></text>
+	</your_game_info>
+	<enemy_game_info x="38" y="336" width="476" height="25">
+		<text r="240" g="217" b="182" a="155" align="c" vert_align="c" font="letterica16"></text>
+	</enemy_game_info>
+	<your_card_value x="31" y="367" width="87" height="31">
+		<text r="240" g="217" b="182" a="155" align="c" vert_align="c" font="letterica16"></text>
+	</your_card_value>
+	<enemy_card_value x="427" y="367" width="87" height="31">
+		<text r="240" g="217" b="182" a="155" align="c" vert_align="c" font="letterica16"></text>
+	</enemy_card_value>
+	<rate_field x="128" y="375" width="289" height="21">
+		<text r="240" g="217" b="182" a="155" align="c" vert_align="c" font="letterica16"></text>
+	</rate_field>
+        <check_save_rate x="140" y="376" width="32" height="21" hint="st_21_point_save_rate_hint">
+                <texture>ui_inGame2_checkbox</texture>
+        </check_save_rate>
+        <check_increasing x="382" y="376" width="32" height="21" hint="st_21_point_increasing_hint">
+                <texture>ui_inGame2_checkbox</texture>
+        </check_increasing>
+	<btn_rate_minus x="245" y="403" width="31" height="28">
+		<texture_e>ui_mod_button_minus_a</texture_e>
+		<texture_t>ui_mod_button_minus_b</texture_t>
+		<texture_h>ui_mod_button_minus_b</texture_h>
+	</btn_rate_minus>
+	<btn_rate_plus x="281" y="403" width="31" height="28">
+		<texture_e>ui_mod_button_plus_a</texture_e>
+		<texture_t>ui_mod_button_plus_b</texture_t>
+		<texture_h>ui_mod_button_plus_b</texture_h>
+	</btn_rate_plus>
+	<btn_take_rate x="2" y="454" width="135" height="35">
+		<texture_e>ui_mod_button2_e</texture_e>
+		<texture_t>ui_mod_button2_t</texture_t>
+		<texture_h>ui_mod_button2_h</texture_h>
+		<text font="letterica16" align="c" vert_align="c">st_21_point_take_rate</text>
+	</btn_take_rate>
+	<btn_play_game x="2" y="454" width="135" height="35">
+		<texture_e>ui_mod_button2_e</texture_e>
+		<texture_t>ui_mod_button2_t</texture_t>
+		<texture_h>ui_mod_button2_h</texture_h>
+		<text font="letterica16" align="c" vert_align="c">st_21_point_play_game</text>
+	</btn_play_game>
+	<btn_exit_game x="409" y="454" width="135" height="35">
+		<texture_e>ui_mod_button2_e</texture_e>
+		<texture_t>ui_mod_button2_t</texture_t>
+		<texture_h>ui_mod_button2_h</texture_h>
+		<text font="letterica16" align="c" vert_align="c">st_21_point_exit_game</text>
+	</btn_exit_game>
+	<btn_take_else x="134" y="403" width="135" height="35">
+		<texture_e>ui_mod_button2_e</texture_e>
+		<texture_t>ui_mod_button2_t</texture_t>
+		<texture_h>ui_mod_button2_h</texture_h>
+		<text font="letterica16" align="c" vert_align="c">st_21_point_take_else</text>
+	</btn_take_else>
+	<btn_send_move x="275" y="403" width="135" height="35">
+		<texture_e>ui_mod_button2_e</texture_e>
+		<texture_t>ui_mod_button2_t</texture_t>
+		<texture_h>ui_mod_button2_h</texture_h>
+		<text font="letterica16" align="c" vert_align="c">st_21_point_send_move</text>
+	</btn_send_move>
+	<btn_continue_game x="2" y="454" width="135" height="35">
+		<texture_e>ui_mod_button2_e</texture_e>
+		<texture_t>ui_mod_button2_t</texture_t>
+		<texture_h>ui_mod_button2_h</texture_h>
+		<text font="letterica16" align="c" vert_align="c">st_21_point_continue_game</text>
+	</btn_continue_game>
+        <self_card_1 x="40" y="41" width="80" height="104">
+                <texture>ui_mod_card_hide_side</texture>
+        </self_card_1>
+        <self_card_2 x="136" y="41" width="80" height="104">
+                <texture>ui_mod_card_hide_side</texture>
+        </self_card_2>
+        <self_card_3 x="231" y="41" width="80" height="104">
+                <texture>ui_mod_card_hide_side</texture>
+        </self_card_3>
+        <self_card_4 x="325" y="41" width="80" height="104">
+                <texture>ui_mod_card_hide_side</texture>
+        </self_card_4>
+        <self_card_5 x="419" y="41" width="80" height="104">
+                <texture>ui_mod_card_hide_side</texture>
+        </self_card_5>
+        <enemy_card_1 x="44" y="213" width="80" height="104">
+                <texture>ui_mod_card_hide_side</texture>
+        </enemy_card_1>
+        <enemy_card_2 x="141" y="213" width="80" height="104">
+                <texture>ui_mod_card_hide_side</texture>
+        </enemy_card_2>
+        <enemy_card_3 x="236" y="213" width="80" height="104">
+                <texture>ui_mod_card_hide_side</texture>
+        </enemy_card_3>
+        <enemy_card_4 x="329" y="213" width="80" height="104">
+                <texture>ui_mod_card_hide_side</texture>
+        </enemy_card_4>
+        <enemy_card_5 x="425" y="213" width="80" height="104">
+                <texture>ui_mod_card_hide_side</texture>
+        </enemy_card_5>
+        <r_green_diod x="517" y="390" width="9" height="9">
+                <texture>ui_mod_right_green_diod</texture>
+        </r_green_diod>
+        <l_green_diod x="19" y="390" width="9" height="9">
+                <texture>ui_mod_left_green_diod</texture>
+        </l_green_diod>
+        <r_yellow_diod x="517" y="390" width="9" height="9">
+                <texture>ui_mod_right_yellow_diod</texture>
+        </r_yellow_diod>
+        <l_yellow_diod x="19" y="390" width="9" height="9">
+                <texture>ui_mod_left_yellow_diod</texture>
+        </l_yellow_diod>
+        <r_red_diod x="517" y="390" width="9" height="9">
+                <texture>ui_mod_right_red_diod</texture>
+        </r_red_diod>
+        <l_red_diod x="19" y="390" width="9" height="9">
+                <texture>ui_mod_left_red_diod</texture>
+        </l_red_diod>
+</card_game_21_point_form>
+<!-----[Мини-игра: Зачем? Под кем? Во сколько?]------>
+<question_game_form x="192" y="140" width="638" height="499">
+        <texture>ui_mod_question_game_wnd</texture>
+	<form_title x="96" y="5" width="448" height="16">
+		<text r="240" g="217" b="182" a="120" align="c" vert_align="c" font="letterica16"></text>
+	</form_title>
+	<question_number_field x="301" y="17" width="36" height="16" complex_mode="1" hint="st_question_game_question_number_hint">
+		<text r="240" g="217" b="182" a="155" align="c" vert_align="c" font="letterica16"></text>
+	</question_number_field>
+	<correct_series_field x="34" y="475" width="36" height="16" complex_mode="1" hint="st_question_game_correct_series_hint">
+		<text r="240" g="217" b="182" a="170" align="c" vert_align="c" font="letterica16"></text>
+	</correct_series_field>
+	<question_field x="49" y="43" width="535" height="233" complex_mode="1" hint="st_question_game_question_field_hint">
+		<text r="50" g="200" b="0" a="155" align="c" vert_align="c" font="letterica25"></text>
+	</question_field>
+	<answer_a_field x="29" y="293" width="135" height="25" complex_mode="1" hint="st_question_game_answer_a_field_hint">
+		<text r="240" g="217" b="182" a="155" align="c" vert_align="c" font="letterica16"></text>
+	</answer_a_field>
+	<answer_b_field x="177" y="293" width="135" height="25" complex_mode="1" hint="st_question_game_answer_b_field_hint">
+		<text r="240" g="217" b="182" a="155" align="c" vert_align="c" font="letterica16"></text>
+	</answer_b_field>
+	<answer_c_field x="325" y="293" width="135" height="25" complex_mode="1" hint="st_question_game_answer_c_field_hint">
+		<text r="240" g="217" b="182" a="155" align="c" vert_align="c" font="letterica16"></text>
+	</answer_c_field>
+	<answer_d_field x="473" y="293" width="135" height="25" complex_mode="1" hint="st_question_game_answer_d_field_hint">
+		<text r="240" g="217" b="182" a="155" align="c" vert_align="c" font="letterica16"></text>
+	</answer_d_field>
+	<btn_exit_game x="470" y="453" width="135" height="35" hint="st_question_game_exit_hint">
+		<texture_e>ui_mod_button2_e</texture_e>
+		<texture_t>ui_mod_button2_t</texture_t>
+		<texture_h>ui_mod_button2_h</texture_h>
+		<text font="letterica16" align="c" vert_align="c">st_question_game_exit</text>
+	</btn_exit_game>
+	<btn_continue_game x="249" y="376" width="135" height="35" hint="st_question_game_continue_hint">
+		<texture_e>ui_mod_button2_e</texture_e>
+		<texture_t>ui_mod_button2_t</texture_t>
+		<texture_h>ui_mod_button2_h</texture_h>
+		<text font="letterica16" align="c" vert_align="c">st_question_game_continue</text>
+	</btn_continue_game>
+	<btn_start_game x="326" y="453" width="135" height="35" hint="st_question_game_start_hint">
+		<texture_e>ui_mod_button2_e</texture_e>
+		<texture_t>ui_mod_button2_t</texture_t>
+		<texture_h>ui_mod_button2_h</texture_h>
+		<text font="letterica16" align="c" vert_align="c">st_question_game_start</text>
+	</btn_start_game>
+	<btn_manual x="45" y="453" width="15" height="15" hint="st_question_game_manual_hint">
+		<texture_e>ui_mod_help_e</texture_e>
+		<texture_t>ui_mod_help_t</texture_t>
+		<texture_h>ui_mod_help_h</texture_h>
+	</btn_manual>
+	<btn_answer_a x="29" y="329" width="135" height="35">
+		<texture_e>ui_mod_button2_e</texture_e>
+		<texture_t>ui_mod_button2_t</texture_t>
+		<texture_h>ui_mod_button2_h</texture_h>
+		<text font="letterica16" align="c" vert_align="c">st_question_game_answer_a</text>
+	</btn_answer_a>
+	<btn_answer_b x="177" y="329" width="135" height="35">
+		<texture_e>ui_mod_button2_e</texture_e>
+		<texture_t>ui_mod_button2_t</texture_t>
+		<texture_h>ui_mod_button2_h</texture_h>
+		<text font="letterica16" align="c" vert_align="c">st_question_game_answer_b</text>
+	</btn_answer_b>
+	<btn_answer_c x="324" y="329" width="135" height="35">
+		<texture_e>ui_mod_button2_e</texture_e>
+		<texture_t>ui_mod_button2_t</texture_t>
+		<texture_h>ui_mod_button2_h</texture_h>
+		<text font="letterica16" align="c" vert_align="c">st_question_game_answer_c</text>
+	</btn_answer_c>
+	<btn_answer_d x="473" y="329" width="135" height="35">
+		<texture_e>ui_mod_button2_e</texture_e>
+		<texture_t>ui_mod_button2_t</texture_t>
+		<texture_h>ui_mod_button2_h</texture_h>
+		<text font="letterica16" align="c" vert_align="c">st_question_game_answer_d</text>
+	</btn_answer_d>
+</question_game_form>
+<!-----[Плеер эффектов]------>
+<effect_player_form x="235" y="166" width="563" height="478">
+        <texture>ui_mod_big_player_wnd</texture>
+        <btn_ppe_effectors x="34" y="60" width="70" height="24">
+		<texture_e>ui_mod_button3_e</texture_e>
+		<texture_t>ui_mod_button3_t</texture_t>
+		<texture_h>ui_mod_button3_h</texture_h>
+            <text align="c" font="letterica16">.PPE</text>
+            <text_color><e r="210" g="210" b="210"/></text_color>
+        </btn_ppe_effectors>
+        <btn_cam_effectors x="109" y="60" width="70" height="24">
+		<texture_e>ui_mod_button3_e</texture_e>
+		<texture_t>ui_mod_button3_t</texture_t>
+		<texture_h>ui_mod_button3_h</texture_h>
+            <text align="c" font="letterica16">.ANM</text>
+            <text_color><e r="210" g="210" b="210"/></text_color>
+        </btn_cam_effectors>
+	<effectors_list x="274" y="275" width="491" height="285" item_height="22" can_select="1">
+	        <font font="letterica16" r="210" g="210" b="210"/>
+	</effectors_list>
+	<btn_play x="35" y="427" width="135" height="35">
+		<texture_e>ui_mod_button2_e</texture_e>
+		<texture_t>ui_mod_button2_t</texture_t>
+		<texture_h>ui_mod_button2_h</texture_h>
+		<text font="letterica16" align="c" vert_align="c">st_mp3_player_set_play</text>
+	</btn_play>
+	<btn_stop x="221" y="427" width="135" height="35">
+		<texture_e>ui_mod_button2_e</texture_e>
+		<texture_t>ui_mod_button2_t</texture_t>
+		<texture_h>ui_mod_button2_h</texture_h>
+		<text font="letterica16" align="c" vert_align="c">st_mp3_player_set_stop</text>
+	</btn_stop>
+	<btn_close x="401" y="427" width="135" height="35">
+		<texture_e>ui_mod_button2_e</texture_e>
+		<texture_t>ui_mod_button2_t</texture_t>
+		<texture_h>ui_mod_button2_h</texture_h>
+		<text font="letterica16" align="c" vert_align="c">st_menu_close</text>
+	</btn_close>
+</effect_player_form>
+<!-----[Обработка файла all.spawn]------>
+<allspawn_editor_form x="235" y="166" width="563" height="478">
+        <texture>ui_mod_allspawn_editor_wnd</texture>
+	<editor_title x="187" y="20" width="184" height="25">
+		<text r="240" g="217" b="182" a="255" align="c" vert_align="c" font="letterica16"></text>
+	</editor_title>
+	<stations_list x="274" y="275" width="335" height="285" item_height="22" can_select="1">
+	        <font font="letterica16" r="210" g="210" b="210"/>
+	</stations_list>
+	<cfg_display_radius x="475" y="111" width="44" height="20" hint="st_allspawn_editor_display_radius_hint">
+		<text r="240" g="217" b="182" a="155" align="c" vert_align="c" font="letterica16"></text>
+	</cfg_display_radius>
+	<cfg_display_counter x="475" y="147" width="44" height="20" hint="st_allspawn_editor_display_counter_hint">
+		<text r="240" g="217" b="182" a="155" align="c" vert_align="c" font="letterica16"></text>
+	</cfg_display_counter>
+	<cfg_display_magazine x="475" y="336" width="44" height="20" hint="st_allspawn_editor_display_magazine_hint">
+		<text r="240" g="217" b="182" a="155" align="c" vert_align="c" font="letterica16"></text>
+	</cfg_display_magazine>
+	<cfg_name_prefix_field x="400" y="185" width="124" height="23" hint="st_allspawn_editor_prefix_field_hint">
+                <text font="letterica16" r="210" g="210" b="210" vert_align="c"/>
+	</cfg_name_prefix_field>
+	<cfg_name_suffix_field x="400" y="225" width="124" height="24" hint="st_allspawn_editor_suffix_field_hint">
+                <text font="letterica16" r="210" g="210" b="210" vert_align="c"/>
+	</cfg_name_suffix_field>
+	<cfg_name_logic_path_field x="400" y="266" width="124" height="24" hint="st_allspawn_editor_logic_path_field_hint">
+                <text font="letterica16" r="210" g="210" b="210" vert_align="c"/>
+	</cfg_name_logic_path_field>
+	<cfg_name_hiding_place_field x="400" y="373" width="124" height="23" hint="st_allspawn_editor_hiding_place_field_hint">
+                <text font="letterica16" r="210" g="210" b="210" vert_align="c"/>
+	</cfg_name_hiding_place_field>
+        <check_with_logic x="392" y="302" width="32" height="21" hint="st_allspawn_editor_check_with_logic_hint">
+                <texture>ui_inGame2_checkbox</texture>
+        </check_with_logic>
+        <check_another_mode x="425" y="302" width="32" height="21" hint="st_allspawn_editor_check_another_mode_hint">
+                <texture>ui_inGame2_checkbox</texture>
+        </check_another_mode>  
+        <check_button_spawner x="453" y="302" width="30" height="21" hint="st_allspawn_editor_check_button_spawner_hint">
+                <texture>ui_inGame2_checkbox</texture>
+        </check_button_spawner>   
+        <check_another_mode_spawn x="458" y="302" width="32" height="21" hint="st_allspawn_editor_check_another_mode_spawn_hint">
+                <texture>ui_inGame2_checkbox</texture>
+        </check_another_mode_spawn>
+        <btn_switch_panel_1 x="28" y="60" width="70" height="24">
+		<texture_e>ui_mod_button3_e</texture_e>
+		<texture_t>ui_mod_button3_t</texture_t>
+		<texture_h>ui_mod_button3_h</texture_h>
+                <text align="c" font="letterica16">st_allspawn_editor_switch_panel_1</text>
+                <text_color><e r="210" g="210" b="210"/></text_color>
+        </btn_switch_panel_1>
+        <btn_switch_panel_2 x="103" y="60" width="70" height="24">
+		<texture_e>ui_mod_button3_e</texture_e>
+		<texture_t>ui_mod_button3_t</texture_t>
+		<texture_h>ui_mod_button3_h</texture_h>
+                <text align="c" font="letterica16">st_allspawn_editor_switch_panel_2</text>
+                <text_color><e r="210" g="210" b="210"/></text_color>
+        </btn_switch_panel_2>
+        <btn_switch_panel_3 x="178" y="60" width="70" height="24">
+		<texture_e>ui_mod_button3_e</texture_e>
+		<texture_t>ui_mod_button3_t</texture_t>
+		<texture_h>ui_mod_button3_h</texture_h>
+                <text align="c" font="letterica16">st_allspawn_editor_switch_panel_3</text>
+                <text_color><e r="210" g="210" b="210"/></text_color>
+        </btn_switch_panel_3>
+        <btn_switch_panel_4 x="253" y="60" width="70" height="24">
+		<texture_e>ui_mod_button3_e</texture_e>
+		<texture_t>ui_mod_button3_t</texture_t>
+		<texture_h>ui_mod_button3_h</texture_h>
+                <text align="c" font="letterica16">st_allspawn_editor_switch_panel_4</text>
+                <text_color><e r="210" g="210" b="210"/></text_color>
+        </btn_switch_panel_4>
+        <btn_switch_panel_5 x="328" y="60" width="70" height="24">
+		<texture_e>ui_mod_button3_e</texture_e>
+		<texture_t>ui_mod_button3_t</texture_t>
+		<texture_h>ui_mod_button3_h</texture_h>
+                <text align="c" font="letterica16">st_allspawn_editor_switch_panel_5</text>
+                <text_color><e r="210" g="210" b="210"/></text_color>
+        </btn_switch_panel_5>
+        <btn_switch_panel_6 x="403" y="60" width="70" height="24">
+		<texture_e>ui_mod_button3_e</texture_e>
+		<texture_t>ui_mod_button3_t</texture_t>
+		<texture_h>ui_mod_button3_h</texture_h>
+                <text align="c" font="letterica16">st_allspawn_editor_switch_panel_6</text>
+                <text_color><e r="210" g="210" b="210"/></text_color>
+        </btn_switch_panel_6>
+        <btn_switch_panel_7 x="478" y="60" width="70" height="24">
+		<texture_e>ui_mod_button3_e</texture_e>
+		<texture_t>ui_mod_button3_t</texture_t>
+		<texture_h>ui_mod_button3_h</texture_h>
+                <text align="c" font="letterica16">st_allspawn_editor_switch_panel_7</text>
+                <text_color><e r="210" g="210" b="210"/></text_color>
+        </btn_switch_panel_7>
+	<btn_create x="35" y="427" width="135" height="35">
+		<texture_e>ui_mod_button2_e</texture_e>
+		<texture_t>ui_mod_button2_t</texture_t>
+		<texture_h>ui_mod_button2_h</texture_h>
+		<text font="letterica16" align="c" vert_align="c">st_allspawn_editor_create</text>
+	</btn_create>
+	<btn_read_example x="219" y="427" width="135" height="35">
+		<texture_e>ui_mod_button2_e</texture_e>
+		<texture_t>ui_mod_button2_t</texture_t>
+		<texture_h>ui_mod_button2_h</texture_h>
+		<text font="letterica16" align="c" vert_align="c">st_allspawn_editor_read_example</text>
+	</btn_read_example>
+	<btn_close x="401" y="427" width="135" height="35">
+		<texture_e>ui_mod_button2_e</texture_e>
+		<texture_t>ui_mod_button2_t</texture_t>
+		<texture_h>ui_mod_button2_h</texture_h>
+		<text font="letterica16" align="c" vert_align="c">st_menu_close</text>
+	</btn_close>
+	<btn_radius_minus x="391" y="108" width="31" height="28" hint="st_allspawn_editor_radius_minus_hint">
+		<texture_e>ui_mod_button_minus_a</texture_e>
+		<texture_t>ui_mod_button_minus_b</texture_t>
+		<texture_h>ui_mod_button_minus_b</texture_h>
+	</btn_radius_minus>
+	<btn_radius_plus x="423" y="108" width="31" height="28" hint="st_allspawn_editor_radius_plus_hint">
+		<texture_e>ui_mod_button_plus_a</texture_e>
+		<texture_t>ui_mod_button_plus_b</texture_t>
+		<texture_h>ui_mod_button_plus_b</texture_h>
+	</btn_radius_plus>
+	<btn_counter_minus x="391" y="144" width="31" height="28" hint="st_allspawn_editor_counter_minus_hint">
+		<texture_e>ui_mod_button_minus_a</texture_e>
+		<texture_t>ui_mod_button_minus_b</texture_t>
+		<texture_h>ui_mod_button_minus_b</texture_h>
+	</btn_counter_minus>
+	<btn_counter_plus x="423" y="144" width="31" height="28" hint="st_allspawn_editor_counter_plus_hint">
+		<texture_e>ui_mod_button_plus_a</texture_e>
+		<texture_t>ui_mod_button_plus_b</texture_t>
+		<texture_h>ui_mod_button_plus_b</texture_h>
+	</btn_counter_plus>
+	<btn_magazine_minus x="391" y="331" width="31" height="28" hint="st_allspawn_editor_magazine_minus_hint">
+		<texture_e>ui_mod_button_minus_a</texture_e>
+		<texture_t>ui_mod_button_minus_b</texture_t>
+		<texture_h>ui_mod_button_minus_b</texture_h>
+	</btn_magazine_minus>
+	<btn_magazine_plus x="423" y="331" width="31" height="28" hint="st_allspawn_editor_magazine_plus_hint">
+		<texture_e>ui_mod_button_plus_a</texture_e>
+		<texture_t>ui_mod_button_plus_b</texture_t>
+		<texture_h>ui_mod_button_plus_b</texture_h>
+	</btn_magazine_plus>
+	<btn_auto_print_activate x="476" y="302" width="61" height="22" hint="st_allspawn_auto_print_activate">
+		<texture_e>ui_mod_button7_e</texture_e>
+		<texture_t>ui_mod_button7_h</texture_t>
+		<texture_h>ui_mod_button7_t</texture_h>
+		<text font="letterica16" align="c" vert_align="c">st_allspawn_auto_print_on</text>
+	</btn_auto_print_activate>
+	<btn_auto_print_deactivate x="476" y="302" width="61" height="22" hint="st_allspawn_auto_print_deactivate">
+		<texture_e>ui_mod_button7_e</texture_e>
+		<texture_t>ui_mod_button7_h</texture_t>
+		<texture_h>ui_mod_button7_t</texture_h>
+		<text font="letterica16" align="c" vert_align="c">st_allspawn_auto_print_off</text>
+	</btn_auto_print_deactivate>
+</allspawn_editor_form>
+<!-----[Редактор точек путей]------>
+<waypoint_editor_form x="330" y="308" width="366" height="203">
+        <texture>ui_mod_waypoint_editor_wnd</texture>
+	<waypoint_name_field x="29" y="5" width="311" height="26">
+                <text font="letterica18" r="210" g="210" b="210" vert_align="c"/>
+	</waypoint_name_field>
+	<point_animation_field x="155" y="76" width="66" height="17">
+                <text font="letterica18" r="210" g="210" b="210" vert_align="c"/>
+	</point_animation_field>
+	<point_signal_field x="155" y="102" width="68" height="20">
+                <text font="letterica18" r="210" g="210" b="210" vert_align="c"/>
+	</point_signal_field>
+	<waypoint_info x="73" y="46" width="227" height="18">
+		<text r="240" g="217" b="182" a="155" align="c" vert_align="c" font="letterica16"></text>
+	</waypoint_info>
+        <check_way_closed x="321" y="49" width="32" height="21" hint="st_waypoint_editor_check_way_closed_hint">
+                <texture>ui_inGame2_checkbox</texture>
+        </check_way_closed>
+        <check_empty_flags x="321" y="74" width="32" height="21" hint="st_waypoint_editor_empty_flags_hint">
+                <texture>ui_inGame2_checkbox</texture>
+        </check_empty_flags>
+        <check_autochange x="321" y="99" width="32" height="21" hint="st_waypoint_editor_autochange_hint">
+                <texture>ui_inGame2_checkbox</texture>
+        </check_autochange>
+	<btn_show_waypoint x="28" y="42" width="27" height="28">
+		<texture_e>ui_mod_help_e</texture_e>
+		<texture_t>ui_mod_help_t</texture_t>
+		<texture_h>ui_mod_help_h</texture_h>
+	</btn_show_waypoint>
+	<btn_print_waypoint x="127" y="143" width="116" height="22">
+		<texture_e>ui_mod_button5_e</texture_e>
+		<texture_t>ui_mod_button5_t</texture_t>
+		<texture_h>ui_mod_button5_h</texture_h>
+		<text font="letterica16">st_waypoint_editor_print_waypoint</text>
+	</btn_print_waypoint>
+	<btn_mark_point x="63" y="168" width="116" height="22">
+		<texture_e>ui_mod_button5_e</texture_e>
+		<texture_t>ui_mod_button5_t</texture_t>
+		<texture_h>ui_mod_button5_h</texture_h>
+		<text font="letterica16">st_waypoint_editor_mark_point</text>
+	</btn_mark_point>
+	<btn_close x="185" y="168" width="116" height="22">
+		<texture_e>ui_mod_button5_e</texture_e>
+		<texture_t>ui_mod_button5_t</texture_t>
+		<texture_h>ui_mod_button5_h</texture_h>
+		<text font="letterica16">st_menu_close</text>
+	</btn_close>
+</waypoint_editor_form>
+<!-----[Отладка позиции ГГ с возможностью подписи]------>
+<position_printer_form x="330" y="308" width="366" height="203">
+        <texture>ui_mod_waypoint_editor_wnd</texture>
+	<position_comment_field x="29" y="5" width="311" height="26">
+                <text font="letterica18" r="210" g="210" b="210" vert_align="c"/>
+	</position_comment_field>
+	<btn_print_pos x="63" y="168" width="116" height="22">
+		<texture_e>ui_mod_button5_e</texture_e>
+		<texture_t>ui_mod_button5_t</texture_t>
+		<texture_h>ui_mod_button5_h</texture_h>
+		<text font="letterica16">st_position_printer_create</text>
+	</btn_print_pos>
+	<btn_close x="185" y="168" width="116" height="22">
+		<texture_e>ui_mod_button5_e</texture_e>
+		<texture_t>ui_mod_button5_t</texture_t>
+		<texture_h>ui_mod_button5_h</texture_h>
+		<text font="letterica16">st_menu_close</text>
+	</btn_close>
+</position_printer_form>
+<!-----[Мобильная энциклопедия]------>
+<mobile_tool_form x="337" y="16" width="610" height="725">
+        <texture>ui_mod_mobile_tool_wnd</texture>
+	<f_selected_item x="15" y="14" width="313" height="22">
+		<text r="240" g="217" b="182" a="255" align="c" vert_align="c" font="letterica16"></text>
+	</f_selected_item>
+	<available_items_list x="678" y="245" width="248" height="357" item_height="22" can_select="1">
+	        <font font="letterica16" r="210" g="210" b="210"/>
+	</available_items_list>
+        <selected_item_icon x="17" y="65" width="307" height="152" align="c" vert_align="c">
+        </selected_item_icon>
+        <params_field x="28" y="245" width="287" height="326" complex_mode="1">
+		<text font="letterica16" r="210" g="210" b="210" align="c" vert_align="c"></text>
+        </params_field>
+	<tab_1 x="3" y="598" width="135" height="35">
+		<texture_e>ui_mod_button2_e</texture_e>
+		<texture_t>ui_mod_button2_t</texture_t>
+		<texture_h>ui_mod_button2_h</texture_h>
+		<text font="letterica16" align="c" vert_align="c">Артефакты</text>
+	</tab_1>
+	<tab_2 x="135" y="598" width="135" height="35">
+		<texture_e>ui_mod_button2_e</texture_e>
+		<texture_t>ui_mod_button2_t</texture_t>
+		<texture_h>ui_mod_button2_h</texture_h>
+		<text font="letterica16" align="c" vert_align="c">Броня</text>
+	</tab_2>
+	<tab_3 x="3" y="635" width="135" height="35">
+		<texture_e>ui_mod_button2_e</texture_e>
+		<texture_t>ui_mod_button2_t</texture_t>
+		<texture_h>ui_mod_button2_h</texture_h>
+		<text font="letterica16" align="c" vert_align="c">Оружие</text>
+	</tab_3>
+	<tab_4 x="135" y="635" width="135" height="35">
+		<texture_e>ui_mod_button2_e</texture_e>
+		<texture_t>ui_mod_button2_t</texture_t>
+		<texture_h>ui_mod_button2_h</texture_h>
+		<text font="letterica16" align="c" vert_align="c">Аммуниция</text>
+	</tab_4>
+	<btn_close x="204" y="677" width="116" height="22">
+		<texture_e>ui_mod_button5_e</texture_e>
+		<texture_t>ui_mod_button5_t</texture_t>
+		<texture_h>ui_mod_button5_h</texture_h>
+		<text font="letterica16">st_menu_close</text>
+	</btn_close>
+</mobile_tool_form>
+<!-----[Регистрация в Sigerous Top]------>
+<sigerous_top_form x="344" y="291" width="368" height="138">
+        <texture>sigerous_top_wnd</texture>
+	<register_name_field x="28" y="7" width="214" height="24">
+                <text font="letterica18" r="210" g="210" b="210" vert_align="c"/>
+	</register_name_field>
+	<btn_register x="53" y="49" width="181" height="22">
+		<texture_e>ui_mod_button6_e</texture_e>
+		<texture_t>ui_mod_button6_t</texture_t>
+		<texture_h>ui_mod_button6_h</texture_h>
+		<text font="letterica16">st_sigerous_top_register</text>
+	</btn_register>
+</sigerous_top_form>
+</w>

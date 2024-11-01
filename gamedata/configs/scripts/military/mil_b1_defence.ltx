@@ -1,0 +1,9 @@
+;«она запускающа€ волну мутантов на "’уторе".
+
+[logic]
+active = sr_idle
+
+[sr_idle]
+on_info = {+mil_defence_b1_start -mil_defence_b1_allow =actor_in_zone(mil_b1_defence)} sr_idle@end %+mil_defence_b1_allow%
+
+[sr_idle@end]

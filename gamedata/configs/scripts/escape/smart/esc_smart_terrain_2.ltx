@@ -1,0 +1,50 @@
+[smart_terrain];esc_smart_terrain_2 (25 работ)
+squad_id = 2
+max_population = 8
+respawn_params = respawn@esc_smart_terrain_2
+arrive_dist = 50
+
+[respawn@esc_smart_terrain_2]
+spawn_bandit_enemy@novice
+spawn_bandit_enemy@advanced
+spawn_bandit_enemy@veteran
+
+[spawn_bandit_enemy@novice]
+spawn_squads = bandit_enemy_sim_squad_novice
+spawn_num = {+esc_storyline_done =check_actor_rank(0:50)} 1, 0
+
+[spawn_bandit_enemy@advanced]
+spawn_squads = bandit_enemy_sim_squad_advanced
+spawn_num = {+esc_storyline_done =check_actor_rank(50:100)} 1, 0
+
+[spawn_bandit_enemy@veteran]
+spawn_squads = bandit_enemy_sim_squad_veteran
+spawn_num = {+esc_storyline_done =check_actor_rank(100)} 1, 0
+
+[exclusive]
+esc_b2_commander = escape\esc_b2_logic.ltx
+esc_b2_guarder_1 = escape\esc_b2_logic.ltx
+esc_b2_guarder_2 = escape\esc_b2_logic.ltx
+esc_b2_guarder_3 = escape\esc_b2_logic.ltx
+esc_b2_guarder_4 = escape\esc_b2_logic.ltx
+esc_b2_guarder_5 = escape\esc_b2_logic.ltx
+esc_b2_guarder_6 = escape\esc_b2_logic.ltx
+esc_b2_guarder_7 = escape\esc_b2_logic.ltx
+esc_b2_guarder_8 = escape\esc_b2_logic.ltx
+esc_b2_guarder_9 = escape\esc_b2_logic.ltx
+esc_b2_guarder_10 = escape\esc_b2_logic.ltx
+esc_b2_guarder_11 = escape\esc_b2_logic.ltx
+esc_b2_guarder_12 = escape\esc_b2_logic.ltx
+esc_b2_guarder_13 = escape\esc_b2_logic.ltx
+esc_b2_guarder_14 = escape\esc_b2_logic.ltx
+esc_b2_guarder_15 = escape\esc_b2_logic.ltx
+esc_b2_guarder_16 = escape\esc_b2_logic.ltx
+esc_b2_guarder_17 = escape\esc_b2_logic.ltx
+esc_b2_guarder_18 = escape\esc_b2_logic.ltx
+esc_b2_guarder_19 = escape\esc_b2_logic.ltx
+esc_b2_guarder_20 = escape\esc_b2_logic.ltx
+esc_b2_guarder_21 = escape\esc_b2_logic.ltx
+esc_b2_guarder_22 = escape\esc_b2_logic.ltx
+esc_b2_guarder_23 = escape\esc_b2_logic.ltx
+esc_b2_guarder_24 = escape\esc_b2_logic.ltx
+esc_b2_guarder_25 = escape\esc_b2_logic.ltx

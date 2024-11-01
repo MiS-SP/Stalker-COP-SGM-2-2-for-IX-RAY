@@ -1,0 +1,201 @@
+      <string id="st_treasure_rukzak_title">
+		<text>«Персональный рюкзак»</text>
+      </string>
+      <string id="st_treasure_rukzak_descr">
+		<text>Водонепроницаемый рюкзак из прорезиненной ткани. Позволяет хранить огромное количество вещей.</text>
+      </string>
+      <string id="st_repair_arms_box_title">
+		<text>Ремкомплект для оружия</text>
+      </string>
+      <string id="st_repair_arms_box_descr">
+		<text>Ящик с инструментами. Предназначен для ремонта оружия.</text>
+      </string>
+      <string id="st_repair_outfit_box_title">
+		<text>Ремкомплект для бронекостюмов</text>
+      </string>
+      <string id="st_repair_outfit_box_descr">
+		<text>Ящик с инструментами. Предназначен для ремонта бронекостюмов.</text>
+      </string>
+      <string id="st_binocular_default">
+		<text>Бинокль «Стандартный»</text>
+      </string>
+      <string id="st_binocular_m1">
+		<text>Бинокль «Ястреб»</text>
+      </string>
+      <string id="st_binocular_m2">
+		<text>Бинокль «Оптимус»</text>
+      </string>
+      <string id="st_binocular_m3">
+		<text>Бинокль «Гепард»</text>
+      </string>
+      <string id="st_sleeping_bag_title">
+		<text>«Спальной мешок»</text>
+      </string>
+      <string id="st_sleeping_bag_descr">
+		<text>Непромокаемый спальный мешок. Обработан специальным составом, отпугивающим мутантов.</text>
+      </string>
+      <string id="st_emulator_brain_waves_title">
+		<text>Эмулятор мозговых волн «BRAIN-8»</text>
+      </string>
+      <string id="st_emulator_brain_waves_descr">
+		<text>Прибор, стабилизирующий электрическую активность мозга. В новой версии BRAIN-8 усовершенствована система защиты от телепатических излучений. Работает непосредственно из рюкзака. \n%c[255,238,153,26]• %c[default]Не позволяет пси-здоровью опускаться ниже 90%</text>
+      </string>
+      <string id="st_player">
+		<text>Плеер</text>
+      </string>
+      <string id="st_player_descr">
+		<text>Особый сталкерский плеер, с поддержкой пользовательской музыки, предназначен специально для Зоны. Работает на встроенной частице артефакта "Батарейка". Широкой популярности у сталкеров не приобрёл, но когда нет гитары, сойдёт и он.</text>
+      </string>
+      <string id="st_mp3_track_descr">
+		<text>Специальный USB носитель. Предназначен для воспроизведения звуков или музыки.</text>
+      </string>
+      <string id="st_army_timer_title">
+		<text>Армейский таймер</text>
+      </string>
+      <string id="st_army_timer_descr">
+		<text>Позволяет засекать время, за которое можно сделать что-либо или, в течение которого можно не делать ничего.</text>
+      </string>
+      <string id="st_detector_omega">
+		<text>Детектор «Омега»</text>
+      </string>
+      <string id="st_detector_omega_descr">
+		<text>Усовершенствованый детектор-сканер нового поколения. Позволяет обнаруживать артефакты на расстоянии до 50 метров и передавать их расположение на КПК. Добавлена программа распознавания статичных зон аномальной активности, которые имеются в базе данных; при этом сохранена возможность обнаружения артефактов. Расположение аномальных зон и артефактов относительно детектора отображаются на специальном экране. Программа поиска артефактов усовершенствована; теоретически это позволяет обнаружить пока не известные науке аномальные образования.</text>
+      </string>
+      <string id="st_repair_arms_box_used_title">
+		<text>Ремкомплект для оружия (использ.)</text>
+      </string>
+      <string id="st_repair_arms_box_used_descr">
+		<text>Однажды уже использованный ящик с инструментами. Предназначен для ремонта оружия, однако тех деталей, что в нем есть, недостаточно для полноценного ремонта. Применяется лишь для ремонта оружия с помощью оружия-донора.</text>
+      </string>
+      <string id="st_repair_outfit_box_used_title">
+		<text>Ремкомплект для бронекостюмов (использ.)</text>
+      </string>
+      <string id="st_repair_outfit_box_used_descr">
+		<text>Однажды уже использованный ящик с инструментами. Предназначен для ремонта бронекостюмов, однако тех деталей, что в нем есть, не достаточно для полноценного ремонта. Применяется лишь для ремонта бронекостюмов с помощью брони-донора.</text>
+      </string>
+      <string id="st_conventer_grenade_box_title">
+		<text>Конвертер для гранат</text>
+      </string>
+      <string id="st_conventer_grenade_box_descr">
+		<text>Ящик с инструментами, предназначенными для работы с начинкой гранат. В комплекте - моток особо-прочной проволоки и кусачки.</text>
+      </string>
+      <string id="st_personal_pda_title">
+		<text>КПК Дегтярёва</text>
+      </string>
+      <string id="st_personal_pda_descr">
+		<text>Нетбук "Искра-226" нового поколения. Содержит личные ячейки информации.</text>
+      </string>
+      <string id="st_guidebook_mono_title">
+		<text>GPS-проводник</text>
+      </string>
+      <string id="st_guidebook_mono_descr">
+		<text>Самый мистический и неизученный артефакт-девайс. Главная ценность заключается в его свойствах перемещения, благодаря которым легко и просто можно телепортироваться куда угодно.</text>
+      </string>
+      <string id="st_guidebook_alternal_title">
+		<text>GPS-проводник Alternal</text>
+      </string>
+      <string id="st_guidebook_alternal_descr">
+		<text>Совершенная версия GPS-проводника. Выведен неизвестными учеными, в некой секретной лаборатории.</text>
+      </string>
+      <string id="st_disk_breaking_title">
+		<text>Хакерский софт</text>
+      </string>
+      <string id="st_disk_breaking_descr">
+		<text>Содержит утилиты для взлома всех типов КПК. Для установки утилит необходимо запустить кейген.</text>
+      </string>
+      <string id="st_remote_explosive_charge_title">
+		<text>Заряд РС-15 с блок-детонатором</text>
+      </string>
+      <string id="st_remote_explosive_charge_descr">
+		<text>Подрывной заряд. Идет в комплекте с пультом управления. Для установки - необходимо использовать.</text>
+      </string>
+      <string id="st_remote_charge_control_title">
+		<text>Пульт управления зарядом РС-15</text>
+      </string>
+      <string id="st_remote_charge_control_descr">
+		<text>Для детонации удаленного заряда РС-15 - необходимо использовать.</text>
+      </string>
+      <string id="st_minetrap_detector_title">
+		<text>Сканер растяжек УПК-1</text>
+      </string>
+      <string id="st_minetrap_detector_descr">
+		<text>Служит для обнаружения мин-растяжек. Весит 2.25 кг. Эффективная дальность обнаружения - 50 метров. Работает непосредственно из рюкзака.</text>
+      </string>
+      <string id="st_minetrap_elite_detector_title">
+		<text>Сканер растяжек УПК-2</text>
+      </string>
+      <string id="st_minetrap_elite_detector_descr">
+		<text>Модернизированная версия. Служит для обнаружения мин-растяжек. Весит 1.12 кг. Эффективная дальность обнаружения - 145 метров. Работает непосредственно из рюкзака.</text>
+      </string>
+      <string id="st_money_meshochek_title">
+		<text>Мешочек с деньгами</text>
+      </string>
+      <string id="st_money_meshochek_descr">
+		<text>Для преобразования в капитал - необходимо использовать.</text>
+      </string>
+      <string id="st_detector_omega_up">
+		<text>Детектор «Омега» (Усоверш.)</text>
+      </string>
+      <string id="st_detector_omega_up_descr">
+		<text>Усовершенствованный детектор-сканер нового поколения. Позволяет обнаруживать артефакты на расстоянии до 100 метров, и сразу передавать их расположение на КПК. Добавлена программа распознавания статичных зон аномальной активности, которые имеются в базе данных; при этом сохранена возможность обнаружения артефактов. Расположение аномальных зон и артефактов относительно детектора отображаются на специальном экране. Программа поиска артефактов, включаемая при поднятии индикатора-табло на лицевой стороне прибора, усовершенствована; теоретически это позволяет обнаружить пока не известные науке аномальные образования.</text>
+      </string>
+      <string id="st_detector1_up">
+		<text>Детектор «Отклик» (Усоверш.)</text>
+      </string>
+      <string id="st_detector2_up">
+		<text>Детектор «Медведь» (Усоверш.)</text>
+      </string>
+      <string id="st_detector3_up">
+		<text>Детектор «Велес» (Усоверш.)</text>
+      </string>
+      <string id="st_detector4_up">
+		<text>Детектор «Сварог» (Усоверш.)</text>
+      </string>
+      <string id="st_geiger_counter_title">
+		<text>Счетчик Гейгера</text>
+      </string>
+      <string id="st_geiger_counter_descr">
+		<text>Регистрирует присутствие ионизирующих частиц в воздухе. Светодиодный индикатор информирует о количестве полученной дозы облучения.\nРаботает непосредственно из рюкзака.</text>
+      </string>
+      <string id="st_personal_marker_title">
+		<text>Персональный маяк</text>
+      </string>
+      <string id="st_personal_marker_descr">
+		<text>Используется для установки меток на карте.</text>
+      </string>
+      <string id="st_detector_battery_1_title">
+		<text>Аккумулятор для детектора</text>
+      </string>
+      <string id="st_detector_battery_1_descr">
+		<text>Источник электричества для автономного питания детекторов. Рабочее напряжение: 1.5V. \nПродолжительность работы: 120 секунд.</text>
+      </string>
+      <string id="st_detector_battery_2_title">
+		<text>Аккумулятор для детектора</text>
+      </string>
+      <string id="st_detector_battery_2_descr">
+		<text>Источник электричества для автономного питания детекторов. Рабочее напряжение: 1.5V. \nПродолжительность работы: 240 секунд.</text>
+      </string>
+      <string id="st_detector_battery_3_title">
+		<text>Аккумулятор для детектора</text>
+      </string>
+      <string id="st_detector_battery_3_descr">
+		<text>Источник электричества для автономного питания детекторов. Рабочее напряжение: 1.5V. \nПродолжительность работы: 480 секунд.</text>
+      </string>
+      <string id="st_ammo_container_title">
+		<text>Ящик с боеприпасами</text>
+      </string>
+      <string id="st_ammo_container_descr">
+		<text>Чтобы заглянуть внутрь - необходимо использовать.</text>
+      </string>
+      <string id="st_mobile_tool_title">
+		<text>Портативная энциклопедия</text>
+      </string>
+      <string id="st_mobile_tool_descr">
+		<text>Содержит в себе базу данных со всеми предметами, которые можно встретить в зоне. Чтобы войти в базу данных - необходимо использовать.</text>
+      </string>
+      <string id="st_chicken_rabua_egg_title">
+		<text>Курочкино яйко</text>
+      </string>
+      <string id="st_chicken_rabua_egg_descr">
+		<text>Такое яйцо есть только в зоне и у Майкла Джексона. Используется лишь для продажи.</text>
+      </string>

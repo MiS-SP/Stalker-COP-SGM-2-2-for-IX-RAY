@@ -1,0 +1,172 @@
+	<string id="st_sigerous_top_1_text">
+		<text>Вас приветствует система рейтинга - Sigerous Top. Необходимо зарегистрироваться. Введите ваше имя пользователя. Писать на латинице либо кириллице. Из символов допускается только точка. Лимит: 10 знаков.</text>
+	</string>
+	<string id="st_sigerous_top_2_text">
+		<text>Имя пользователя принято. Теперь введите название города, в котором вы находитесь. Писать на латинице либо кириллице. Лимит: 12 знаков.</text>
+	</string>
+	<string id="st_sigerous_top_3_text">
+		<text>Ваши данные успешно зарегистрированы в рейтинге Sigerous Top. Приятной игры!</text>
+	</string>
+	<string id="st_sigerous_top_4_text">
+		<text>Вы исключены из Sigerous Top. За использование читов. Чтобы вернуть статус-кво - необходимо загрузить предыдущее сохранение.</text>
+	</string>
+	<string id="st_sigerous_top_5_text">
+		<text>Вы временно исключены из Sigerous Top. Уровень сложности, выбранный вами при начале новой игры не соответствует вашему тещему уровню сложности. Войдите в опции игры и восстановите прежнюю сложность.</text>
+	</string>
+	<string id="st_question_game_manual_text">
+		<text>При серии правильных ответов равной 5 и более очков: вы получаете наводку на схрон, а также дополнительное количество денег.</text>
+	</string>
+	<string id="st_question_game_less_available_text">
+		<text>Вопросы исчерпаны. Продолжение игры невозможно.</text>
+	</string>
+	<string id="st_question_game_correct_answer_1_text">
+		<text>Это правильный ответ!</text>
+	</string>
+	<string id="st_question_game_correct_answer_2_text">
+		<text>Вы правильно ответили!</text>
+	</string>
+	<string id="st_question_game_correct_answer_3_text">
+		<text>Ответ правильный!</text>
+	</string>
+	<string id="st_question_game_correct_answer_4_text">
+		<text>Правильный ответ!</text>
+	</string>
+	<string id="st_question_game_wrong_answer_1_text">
+		<text>Это неправильный ответ!</text>
+	</string>
+	<string id="st_question_game_wrong_answer_2_text">
+		<text>Вы неправильно ответили!</text>
+	</string>
+	<string id="st_question_game_wrong_answer_3_text">
+		<text>Ответ неправильный!</text>
+	</string>
+	<string id="st_question_game_wrong_answer_4_text">
+		<text>Неправильный ответ!</text>
+	</string>
+	<string id="st_21_point_dont_money_to_rate">
+		<text>Повышение ставки невозможно: не хватает денег.</text>
+	</string>
+	<string id="st_21_point_dont_take_rate">
+		<text>Продолжение игры невозможно: ставки не сделаны.</text>
+	</string>
+	<string id="st_disk_breaking_loaded_text">
+		<text>Утилиты успешно установлены: получена возможность распоряжаться капиталом на любом найденном и взломанном КПК.</text>
+	</string>
+	<string id="st_choose_weapon_repair_text">
+		<text>Как произвести ремонт: Отремонтировать оружие в слоте, использовав детали оружия такого же типа? Отремонтировать оружие, используя только ремкомплект?</text>
+	</string>
+	<string id="st_only_weapon_donor_repair_text">
+		<text>Данный ремкомплект может ремонтировать лишь с помощью деталей оружия-донора, если таковое у вас есть. Что вы хотите сделать?</text>
+	</string>
+	<string id="st_choose_weapon_repair_button1">
+		<text>Используя детали.</text>
+	</string>
+	<string id="st_choose_weapon_repair_button2">
+		<text>Только ремкомплект.</text>
+	</string>
+	<string id="st_only_weapon_donor_repair_button1">
+		<text>Использовать донора.</text>
+	</string>
+	<string id="st_only_weapon_donor_repair_button2">
+		<text>Не ремонтировать.</text>
+	</string>
+	<string id="st_only_outfit_donor_repair_text">
+		<text>Данный ремкомплект может ремонтировать лишь с помощью бронекостюма-донора, если таковой у вас есть. Что вы хотите сделать?</text>
+	</string>
+	<string id="st_choose_outfit_repair_text">
+		<text>Как произвести ремонт: Отремонтировать надетую броню, использовав детали брони такого же типа? Использовать только ремкомплект?</text>
+	</string>
+	<string id="st_choose_outfit_repair_button1">
+		<text>Используя детали.</text>
+	</string>
+	<string id="st_choose_outfit_repair_button2">
+		<text>Только ремкомплект.</text>
+	</string>
+	<string id="st_only_outfit_donor_repair_button1">
+		<text>Использовать донора.</text>
+	</string>
+	<string id="st_only_outfit_donor_repair_button2">
+		<text>Не ремонтировать.</text>
+	</string>
+	<string id="st_need_rgd5_box_text">
+		<text>Для соединения гранат - необходимы 2 гранаты РГД-5.</text>
+	</string>
+	<string id="st_need_f1_box_text">
+		<text>Для соединения гранат - необходимы 2 гранаты Ф-1.</text>
+	</string>
+	<string id="st_need_gd-05_box_text">
+		<text>Для соединения гранат - необходимы 2 гранаты ГД-05.</text>
+	</string>
+	<string id="st_diplomatia_conclude_stalkers_text">
+		<text>Согласны ли вы заключить договор с группировкой «Вольные сталкеры» за 25000 рублей?</text>
+	</string>
+	<string id="st_diplomatia_conclude_bandits_text">
+		<text>Согласны ли вы заключить договор с группировкой «Бандиты» за 28000 рублей?</text>
+	</string>
+	<string id="st_diplomatia_conclude_dolgs_text">
+		<text>Согласны ли вы заключить договор с группировкой «Долг» за 30000 рублей?</text>
+	</string>
+	<string id="st_diplomatia_conclude_freedoms_text">
+		<text>Согласны ли вы заключить договор с группировкой «Свобода» за 30000 рублей?</text>
+	</string>
+	<string id="st_diplomatia_conclude_killers_text">
+		<text>Согласны ли вы заключить договор с группировкой «Наёмники» за 35000 рублей?</text>
+	</string>
+	<string id="st_diplomatia_conclude_rasvets_text">
+		<text>Согласны ли вы заключить договор с группировкой «Рассвет» за 10000 рублей?</text>
+	</string>
+	<string id="st_diplomatia_conclude_final_text">
+		<text>Договор был успешно подписан. Отношения пересмотрены.</text>
+	</string>
+	<string id="st_diplomatia_conclude_no_location_text">
+		<text>Договор не состоялся по неизвестным причинам.</text>
+	</string>
+	<string id="st_diplomatia_conclude_failure_text">
+		<text>У вас недостаточно денег для заключения договора.</text>
+	</string>
+	<string id="st_diplomatia_choose_button1">
+		<text>Согласиться.</text>
+	</string>
+	<string id="st_diplomatia_choose_button2">
+		<text>Отказаться.</text>
+	</string>
+        <string id="st_mod_options_return_default">
+		<text>Все измененные настройки будут сброшены. Вы уверены?</text>
+	</string>
+        <string id="st_mod_options_main_apply_text">
+		<text>Настройки мода были успешно изменены.</text>
+	</string>
+        <string id="st_mod_options_hud_apply_text">
+		<text>Настройки HUD были успешно изменены.</text>
+	</string>
+        <string id="st_mod_options_modes_apply_text">
+		<text>Чит-настройки мода были успешно изменены.</text>
+	</string>
+        <string id="st_mod_options_optimization_apply_text">
+		<text>Настройки оптимизации были успешно изменены.</text>
+	</string>
+        <string id="st_options_clean_anomaly">
+		<text>Все добавочные SGM аномалии на локациях Затон, Юпитер и Припять - успешно удалены.</text>
+	</string>
+        <string id="st_options_clean_mines">
+		<text>Все SGM мины успешно удалены.</text>
+	</string>
+        <string id="st_options_clean_monsters">
+		<text>Все мертвые зверушки успешно удалены.</text>
+	</string>
+	<string id="st_level_change_zone_yes_no_text">
+		<text>Перейти на другую локацию?</text>
+	</string>
+	<string id="st_level_change_zone_ok_text">
+		<text>Вы не можете здесь пройти.</text>
+	</string>
+	<string id="st_level_change_zone_ok_need_acces_card_text">
+		<text>Вы не можете здесь пройти. Необходима карта доступа.</text>
+	</string>
+	<string id="st_level_change_zone_ok_need_key_text">
+		<text>Вы не можете здесь пройти. Необходим ключ.</text>
+	</string>
+	<string id="st_warning_sleep_limited_text">
+		<text>Вы не можете спать, так как менее часа назад уже спали.</text>
+	</string>
+

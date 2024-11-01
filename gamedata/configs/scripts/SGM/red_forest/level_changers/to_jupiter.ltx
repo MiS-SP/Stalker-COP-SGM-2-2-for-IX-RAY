@@ -1,0 +1,14 @@
+[logic]
+active = sr_universal
+
+[sr_universal]
+scheme_type = level_change_zone
+level_change_cond         = {+actor_come_to_red_forest} true, false
+level_change_on_use       = %+level_change_to_jupiter_from_red_forest%
+level_change_travel_coord = -21.298183441162,-2.5170681476593,-497.30108642578
+level_change_throw_coord  = -11.355313301086,0.8248587846756,-429.3258972168,-0.365
+level_change_travel_time  = 1,15
+level_change_spot         = level_change_down_location,st_level_change_to_jupiter,false
+level_change_autosave     = st_save_travel_red_forest_to_jupiter
+level_change_silent_travel = false
+level_change_hidden_mode  = true

@@ -1,0 +1,66 @@
+[logic]
+active = move@wait_actor
+on_death = death
+danger = danger_ignore
+
+[death]
+on_info = %+zat_rasvet_quest_homsa_leader_dead%
+
+[danger_ignore]            
+ignore_distance = 5
+
+[move@wait_actor]
+move_dest_number       = 792178
+move_look_subject      = actor
+move_state_when_center = hide
+move_state_when_move   = walk
+meet                   = meet
+invulnerable           = true
+on_info                = {+zat_b106_stalker_gonta_b52_about_hunters_rasvet_dialog_talking !npc_talking} move@go_to_batllepoint
+
+[move@go_to_batllepoint]
+scheme_type            = patrol
+patrol_count_path      = 9
+patrol_path_1          = 649233
+patrol_path_1_state    = rush
+patrol_path_2          = 599849
+patrol_path_2_state    = rush
+patrol_path_3          = 579081
+patrol_path_3_state    = rush
+patrol_path_4          = 472285
+patrol_path_4_state    = rush
+patrol_path_5          = 339841
+patrol_path_5_state    = rush
+patrol_path_6          = 236350
+patrol_path_6_state    = rush
+patrol_path_7          = 186171
+patrol_path_7_state    = rush
+patrol_path_8          = 118325
+patrol_path_8_state    = rush
+patrol_path_9          = 58406
+patrol_path_9_state    = walk
+approach_state         = hide_na|20|>
+on_patrol_path         = 9|move@back_to_readypoint
+invulnerable           = false
+meet                   = no_meet
+
+[move@back_to_readypoint]
+move_dest_number       = 20348
+move_look_vertex       = 20343
+move_state_when_center = threat
+move_state_when_move   = patrol
+invulnerable           = true
+meet                   = no_meet
+on_info                = {+zat_b106_stalker_gonta_b52_quest_homsa_done =dist_to_actor_ge(150)} %=release_npc%
+
+[meet]
+abuse           = false
+use             = true
+allow_break     = false
+meet_on_talking = false
+
+[no_meet]
+abuse           = false
+use             = true
+allow_break     = false
+meet_on_talking = false

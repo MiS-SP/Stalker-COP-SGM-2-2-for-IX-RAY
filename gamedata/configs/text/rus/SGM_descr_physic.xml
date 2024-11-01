@@ -1,0 +1,18 @@
+        <string id="st_demolution_barrel_name">
+		<text>Бочка c топливом</text>
+	</string>
+        <string id="st_demolution_kanistra_name">
+		<text>Канистра с топливом</text>
+	</string>
+        <string id="st_demolution_ballon_name">
+		<text>Баллон с газом</text>
+	</string>
+        <string id="st_demolution_barrel_descr">
+		<text>Бочка с топливом, по виду - авиационный керосин.</text>
+	</string>
+        <string id="st_demolution_kanistra_descr">
+		<text>Двадцати литровая канистра с топливом неизвестного типа. По запаху, похоже на дизельное.</text>
+	</string>
+        <string id="st_demolution_ballon_descr">
+		<text>Баллон с неизвестным газом. Пока не вскрывался, поэтому о свойствах ничего не известно.</text>
+	</string>

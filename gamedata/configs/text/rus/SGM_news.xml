@@ -1,0 +1,471 @@
+	<string id="st_found_unique_treasure">
+		<text>Получены координаты кодового тайника</text>
+	</string>
+	<string id="st_detector_battery_replaced">
+		<text>Аккумулятор разряжен.</text>
+	</string>
+	<string id="st_detector_battery_discharged">
+		<text>Детектор разряжен. Необходим аккумулятор.</text>
+	</string>
+	<string id="st_automatic_use_title">
+		<text>Система приёма препаратов:</text>
+	</string>
+	<string id="st_automatic_vs_bleeding">
+		<text>Обнаружено кровотечение.</text>
+	</string>
+	<string id="st_automatic_vs_health">
+		<text>Обнаружена серьезная потеря здоровья.</text>
+	</string>
+	<string id="st_automatic_vs_psy_health">
+		<text>Обнаружено воздействие на пси-здоровье.</text>
+	</string>
+	<string id="st_automatic_vs_radiation">
+		<text>В организме обнаружено облучение.</text>
+	</string>
+	<string id="st_used_item_descr">
+		<text>Использован предмет =</text>
+	</string>
+	<string id="st_activated_item_is">
+		<text>Использован предмет:</text>
+	</string>
+	<string id="st_in_web_money">
+		<text>Получены электронные деньги:</text>
+	</string>
+	<string id="st_out_web_money">
+		<text>Потеряны электронные деньги:</text>
+	</string>
+	<string id="st_from_pda_title">
+		<text>КПК:</text>
+	</string>
+	<string id="st_utilizator_used_event">
+		<text>Вы только что получили деньги за утилизацию.</text>
+	</string>
+	<string id="st_fake_svd_event">
+		<text>Трах тибидох, ваш новый знакомый СВД - убёг.</text>
+	</string>
+	<string id="st_mp3_new_content_title">
+		<text>Получен бонус-трек:</text>
+	</string>
+	<string id="st_mp3_new_content_descr">
+		<text>В МП-3 плеер был загружен новый трек.</text>
+	</string>
+	<string id="st_no_repair">
+		<text>Предмет не удалось отремонировать,\n его нет в слоте.</text>
+	</string>
+	<string id="st_no_donor_repair">
+		<text>Предмет не удалось отремонировать,\n у вас нет соответствующего донора.</text>
+	</string>
+	<string id="st_revealled_area">
+		<text>Отмечена новая территория на карте:</text>
+	</string>
+	<string id="st_loot_entry">
+		<text>Извлечены элетронные деньги:</text>
+	</string>
+	<string id="st_no_repair_title">
+		<text>Сбой ремонта:</text>
+	</string>
+	<string id="st_repair_title">
+		<text>Отремонтирован предмет:</text>
+	</string>
+	<string id="st_repair_cond">
+		<text>НП=</text>
+	</string>
+	<string id="st_bodyguard_price_ru">
+		<text>RU</text>
+	</string>
+	<string id="st_theatre_tip_title">
+		<text>Голосовое сообщение,</text>
+	</string>
+	<string id="st_auto_energy_used">
+		<text>Использован авто-энергетик:</text>
+	</string>
+	<string id="st_item_used">
+		<text>Использован предмет:</text>
+	</string>
+	<string id="st_bring_af">
+		<text>Подобран артефакт:</text>
+	</string>
+	<string id="st_bring_obj">
+		<text>Подобран предмет:</text>
+	</string>
+	<string id="st_entry_mod_secret">
+		<text>Получен SGM тайник</text>
+	</string>
+        <string id="st_medal_tip_title">
+		<text>За достижение ранга:</text>
+        </string>
+        <string id="st_medal_tip_text1">
+		<text>Получена медаль - Первенство «Новичка»</text>
+        </string>
+        <string id="st_medal_tip_text2">
+		<text>Получена медаль - Первенство «Следопыта»</text>
+        </string>
+        <string id="st_medal_tip_text3">
+		<text>Получена медаль - Первенство «Сталкера»</text>
+        </string>
+        <string id="st_medal_tip_text4">
+		<text>Получена медаль - Первенство «Опытного»</text>
+        </string>
+        <string id="st_medal_tip_text5">
+		<text>Получена медаль - Первенство «Ветерана»</text>
+        </string>
+        <string id="st_medal_tip_text6">
+		<text>Получена медаль - Первенство «Мастера»</text>
+        </string>
+        <string id="st_medal_tip_text7">
+		<text>Получена медаль - Первенство «Элитария»</text>
+        </string>
+        <string id="st_medal_tip_text8">
+		<text>Получена медаль - Первенство «Героя зоны»</text>
+        </string>
+        <string id="st_medal_tip_text9">
+		<text>Получена медаль - Первенство «Величайшего сталкера»</text>
+        </string>
+        <string id="st_medal_tip_text10">
+		<text>Получена медаль - Первенство «Зова Припяти»</text>
+        </string>
+        <string id="st_info_skill">
+		<text>Информация о предмете:</text>
+        </string>
+        <string id="st_info2_skill">
+		<text>Тактика ведения боя</text>
+        </string>
+        <string id="st_info3_skill">
+		<text>- %c[255,200,60,26]уже изучена.</text>
+        </string>
+        <string id="st_add_skill">
+		<text>Повышен навык ведения боя для:</text>
+        </string>
+        <string id="st_add2_skill">
+		<text>Установлен синхро-элемент:</text>
+        </string>
+        <string id="send_deserve_title">
+		<text>Загружена информация:</text>
+        </string>
+	<string id="st_add_info_title">
+		<text>Доп. информация:</text>
+	</string>
+	<string id="st_bodyguard_init_tip">
+		<text>Вами нанят телохранитель:</text>
+	</string>
+	<string id="st_bodyguard_death_tip">
+		<text>Ваш телохранитель:</text>
+	</string>
+	<string id="st_bodyguard_death2_tip">
+		<text>погиб.</text>
+	</string>
+	<string id="st_bodyguard_commands_tip">
+		<text>Ваш телохранитель:</text>
+	</string>
+	<string id="st_bodyguard_command_0_tip">
+		<text>выполняет команду «Охранять».</text>
+	</string>
+	<string id="st_bodyguard_command_1_tip">
+		<text>выполняет команду «Не применять оружие».</text>
+	</string>
+	<string id="st_bodyguard_command_2_tip">
+		<text>выполняет команду «Стоять на месте».</text>
+	</string>
+	<string id="st_bodyguard_command_3_tip">
+		<text>выполняет команду «Охранять свою позицию».</text>
+	</string>
+	<string id="st_bodyguard_command_4_tip">
+		<text>был вами отпущен.</text>
+	</string>
+	<string id="st_about_deposit_title">
+		<text>Получена информация от местного сберегателя:</text>
+	</string>
+	<string id="st_about_deposit_part0">
+		<text>%c[110,128,128,255]«Активировано время сбора»</text>
+	</string>
+	<string id="st_about_deposit_part1">
+		<text>%c[110,230,25,100]Накопительный процент составляет =</text>
+	</string>
+	<string id="st_about_deposit_part2">
+		<text>%c[110,0,128,64]Всего на депозите =</text>
+	</string>
+	<string id="st_reached_assistant_news_z">
+		<text>Вы зарабатали признание техника на %c[110,0,128,64]Затоне%c[default]. Теперь техник будет делать вам любую модернизацию и ремонт по заниженным ценам.</text>
+	</string>
+	<string id="st_reached_assistant_news_j">
+		<text>Вы зарабатали признание техника на %c[110,0,128,64]Юпитере%c[default]. Теперь техник будет делать вам любую модернизацию и ремонт по заниженным ценам.</text>
+	</string>
+	<string id="st_reached_assistant_news_p">
+		<text>Вы зарабатали признание техника на %c[110,0,128,64]Припяти%c[default]. Теперь техник будет делать вам любую модернизацию и ремонт по заниженным ценам.</text>
+	</string>
+	<string id="st_reveal_toolkit_zaton_descr">
+		<text>Получена информация о местонахождении набора инструментов на %c[110,0,128,64]Затоне</text>
+	</string>
+	<string id="st_reveal_toolkit_jupiter_descr">
+		<text>Получена информация о местонахождении набора инструментов на %c[110,0,128,64]Юпитере</text>
+	</string>
+	<string id="st_reveal_toolkit_pripyat_descr">
+		<text>Получена информация о местонахождении набора инструментов на %c[110,0,128,64]Припяти</text>
+	</string>
+	<string id="st_default_faction_b_event">
+		<text>Соглашение о мире с группировкой «Бандиты» - расторгнуто.</text>
+	</string>
+	<string id="st_default_faction_r_event">
+		<text>Соглашение о мире с группировкой «Рассвет» - расторгнуто.</text>
+	</string>
+	<string id="st_default_faction_k_event">
+		<text>Соглашение о мире с группировкой «Наёмники» - расторгнуто.</text>
+	</string>
+	<string id="st_default_faction_m_event">
+		<text>Соглашение о мире с группировкой «Монолит» - расторгнуто.</text>
+	</string>
+	<string id="st_achievement_tip_title">
+		<text>Получено SGM достижение:</text>
+	</string>
+	<string id="st_achievement_sniper_text">
+		<text>%c[110,230,25,100]«Ворошиловский стрелок»\n%c[default]Бонус активирован.</text>
+	</string>
+	<string id="st_achievement_client_text">
+		<text>%c[110,230,25,100]«Постоянный клиент»\n%c[default]Бонус активирован.</text>
+	</string>
+	<string id="st_achievement_pathfinder_text">
+		<text>%c[110,230,25,100]«Ловкий следопыт»\n%c[default]Бонус активирован.</text>
+	</string>
+	<string id="st_achievement_guidebook_text">
+		<text>%c[110,230,25,100]«Аномальный проводник»\n%c[default]Бонус активирован.</text>
+	</string>
+	<string id="st_achievement_marauder_text">
+		<text>%c[110,230,25,100]«Великий мародер»\n%c[default]Бонус активирован.</text>
+	</string>
+	<string id="st_achievement_magnate_text">
+		<text>%c[110,230,25,100]«Электронный магнат»\n%c[default]Бонус активирован.</text>
+	</string>
+	<string id="st_achievement_assistant_text">
+		<text>%c[110,230,25,100]«Помощник техника»\n%c[default]Бонус активирован.</text>
+	</string>
+	<string id="st_achievement_lifeguard_text">
+		<text>%c[110,230,25,100]«Благородный спасатель»\n%c[default]Бонус активирован.</text>
+	</string>
+	<string id="zat_stalker_elbrus_need_command_title">
+		<text>«Эльбрус»</text>
+	</string>
+	<string id="zat_stalker_elbrus_need_command_text">
+		<text>Александр, ждем твоей команды.</text>
+	</string>
+	<string id="zat_hero_title">
+		<text>«Дегтярёв»</text>
+	</string>
+	<string id="zat_hero_say_command_text">
+		<text>Ребята, вперед!</text>
+	</string>
+	<string id="zat_chimera_zagon_final_text">
+		<text>Получила, гадина!</text>
+	</string>
+	<string id="zat_accompany_stalker_title">
+		<text>«Вася»</text>
+	</string>
+	<string id="zat_accompany_final_text">
+		<text>Все! Мы пришли, дальше ты сам, а я побегу, нужно хабар забрать.</text>
+	</string>
+	<string id="zat_barge_defence_commander_title">
+		<text>«Давид»</text>
+	</string>
+	<string id="zat_monsters_wave_1_controller_appeared_text">
+		<text>Саша и остальные, скорее к «портовым кранам», похоже там есть контролер, и сдается мне именно он манипулирует волной.</text>
+	</string>
+	<string id="zat_monsters_wave_2_controller_appeared_text">
+		<text>Снова контролер! Теперь со стороны «Шевченко», попробуйте обезвредить его.</text>
+	</string>
+	<string id="zat_monsters_wave_3_controller_appeared_text">
+		<text>Ну нет, еще один, на сей раз неподалеку от «сталкерской стоянки». Давайте ребята, еще не много осталось.</text>
+	</string>
+	<string id="zat_barge_noah_title">
+		<text>«Ной»</text>
+	</string>
+	<string id="zat_barge_noah_about_commander_death_text">
+		<text>Без нашего Давида нам не устоять.</text>
+	</string>
+	<string id="zat_bandit_base_leader_title">
+		<text>«Чапаев»</text>
+	</string>
+	<string id="zat_bandit_kill_shakal_treachery_text">
+		<text>А вот и предатель обьявился. Теперь пиняй на себя, холера!</text>
+	</string>
+	<string id="zat_general_staff_about_refer_parcel_intro_tip_1_text">
+		<text>Майор, как стало известно только что, - некие подробности крушения вертолетов возможно знает кто-то на Скадовске, месте укрытия сталкеров. Из неофициального источника следует, что это тамошний сберегатель. Ваша задача: найти сберегателя, и заполучить ценную информацию, если таковая имеет место быть.</text>
+	</string>
+	<string id="zat_general_staff_about_refer_parcel_intro_tip_2_text">
+		<text>Майор, как стало известно только что, - некие подробности крушения вертолетов возможно знает кто-то на Скадовске, месте укрытия сталкеров. Из неофициального источника следует, что это тамошний сберегатель. Ваша задача: найти сберегателя, и заполучить ценную информацию, если таковая имеет место быть.</text>
+	</string>
+	<string id="zat_killer_osman_title">
+		<text>«Сёма»</text>
+	</string>
+	<string id="zat_killer_osman_about_spez_2_text">
+		<text>Майор, я слежу за ходом операции. Уничтожь долговцев с учеными, как заберешь кейс - займись остальными...</text>
+	</string>
+	<string id="jup_duty_shulga_title">
+		<text>«Шульга»</text>
+	</string>
+	<string id="jup_duty_shulga_about_spez_1_text">
+		<text>Майор, почему-то отряд охраняющий ученых не выходит на связь. Я не знаю что там могло произойти. Быстро туда и выясни что случилось...</text>
+	</string>
+	<string id="jup_rasvet_migel_title">
+		<text>«Мигель»</text>
+	</string>
+	<string id="jup_rasvet_migel_about_help_text">
+		<text>Помогите...что....это...совсем...рядом....</text>
+	</string>
+	<string id="jup_rasvet_leader_title">
+		<text>«Назар»</text>
+	</string>
+	<string id="jup_rasvet_leader_quest_about_dead_patrol_text">
+		<text>Майор, у меня плохие новости. Одна из патрульных групп не выходит на связь. Нужно срочно провереть что с ними произошло. Я сбрасываю тебе координаты ПДА их командира. По сигналу он антивен, но статичен. Это очень обнадеживает. Проверь это место, а дальше действуй по обстановке. Похоже что тебе придется прочесать район их маршрута. Подробная схема должна быть у патрульных...Но надеюсь этого не потребуется, хотя надежды мало...Поторопись.</text>
+	</string>
+	<string id="jup_rasvet_leader_about_eliminate_burrow_2_text">
+		<text>Отлично, первая нора зачищена! На очереди вторая.. мутанты окопались на территории завода «Юпитер».</text>
+	</string>
+	<string id="jup_rasvet_leader_about_eliminate_burrow_3_text">
+		<text>Вторая нора зачищена! Двигайся теперь в южную часть окрестностей «Юпитера».</text>
+	</string>
+	<string id="jup_rasvet_leader_about_eliminate_burrow_4_text">
+		<text>Третья нора зачищена! Осталась последняя, надеюсь.. возле Ж/Д.</text>
+	</string>
+	<string id="jup_rasvet_leader_about_eliminate_burrow_5_text">
+		<text>Саша, обнаружена еще одна нора. Около ЗРК «Волхов». Скорее туда.</text>
+	</string>
+	<string id="jup_rasvet_leader_about_eliminate_burrow_5_victory_text">
+		<text>Молодца, всех замолотил! Возвращайся, буду выдавать тебе награду.</text>
+	</string>
+	<string id="jup_german_title">
+		<text>«Герман»</text>
+	</string>
+	<string id="jup_german_about_anomal_prototype_text">
+		<text>Майор, как только окажетесь в районе нашего бункера, обязательно зайдите ко мне. Есть очень интересное задание.  Думаю, никто, кроме вас, его не способен выполнить.</text>
+	</string>
+	<string id="jup_german_about_transform_end_text">
+		<text>Майор, мы с коллегами уже провели эксперимент, как только окажетесь в районе нашего бункера, обязательно зайдите ко мне.</text>
+	</string>
+	<string id="jup_general_staff_title">
+		<text>«Генеральный штаб»</text>
+	</string>
+	<string id="jup_general_staff_about_darkvalley_travel_bubble_text">
+		<text>Майор, появились новые задачи. Вы должны будете отправиться в Темную Долину и разыскать там одного сталкера по кличке Бальтазар, с тем, чтобы получить от него документы и в последствии передать их нам. Предположительные данные об этом сталкере были отправлены на ваш КПК. Также, Майор, попасть в Темную Долину обыкновенным путем не представляется возможным. Есть информация, что на территории Юпитера раположена некая пространственная аномалия, способная, при правильном её использовании, отправить человека в нужное место. Найдите пространственную аномалию и используйте её для путешествия в Темную Долину. Как только вы окажитесь где нужно, первым делом разыщите лидера сталкеров в Темной Долине. Наш источник утвержает, что его зовут Акулов и он может распологать некоторой информацией о нашем Балтазаре. Удачи вам, майор!</text>
+	</string>
+	<string id="jup_b220_trapper_title">
+		<text>«Зверобой»</text>
+	</string>
+	<string id="val_b2_assault_b1_commander_title">
+		<text>«Тарас»</text>
+	</string>
+	<string id="val_assault_factory_squad_in_sneak_text">
+		<text>Всем тихо, на цыпочках!</text>
+	</string>
+	<string id="val_assault_factory_squad_in_attack_text">
+		<text>Вперёд, вали их!</text>
+	</string>
+	<string id="all_lucas_title">
+		<text>«Лукас»</text>
+	</string>
+	<string id="val_lucas_about_quest_text_1">
+		<text>Отлично, майор. Эта долговская падаль теперь никого не побеспокоит. Теперь главное- отправляйся на территорию базы. Отыщи все три тайника с документами. Я только что получил подтверждение от Умника- их должно быть именно три. Действуй.</text>
+	</string>
+	<string id="val_lucas_about_quest_text_2">
+		<text>Замечательно, документы у тебя. Дождись меня на указанной точке...</text>
+	</string>
+	<string id="val_lucas_about_quest_text_3">
+		<text>Майор. Нахожусь неподалеку. Что за черт твориться. Походу зверье с ума посходило. Что-то гонет их к базе...Берегись, они близко...Ищи укрытие...Я пережду в стороне.</text>
+	</string>
+	<string id="mil_b7_base_leader_title">
+		<text>«Демиург»</text>
+	</string>
+	<string id="mil_dislodge_invaders_target_b1_captured_text">
+		<text>Хутор захвачен. Следующая наша цель - Деревня.</text>
+	</string>
+	<string id="mil_dislodge_invaders_target_b2_captured_text">
+		<text>Деревня под нашим контролем. Идем дальше, теперь нужно захватить Западную Заставу.</text>
+	</string>
+	<string id="mil_dislodge_invaders_target_b3_captured_text">
+		<text>Застава наша. Далее берем на себя захват Посёлка.</text>
+	</string>
+	<string id="mil_dislodge_invaders_target_b4_captured_text">
+		<text>Очень хорошо. Посёлок за нами. Держим курс на Стоянку.</text>
+	</string>
+	<string id="mil_dislodge_invaders_target_b5_captured_text">
+		<text>Контроль почти установлен. На очереди - Западная Застава. Будьте осторожны.</text>
+	</string>
+	<string id="mil_dislodge_invaders_target_b6_captured_text">
+		<text>Мы сделали это. Всем отбой, можете пить пиво.</text>
+	</string>
+	<string id="mil_defence_b1_done_text">
+		<text>Мы отбили Хутор. Теперь, срочно, все в деревню! Волна мутантов уже на подходе.</text>
+	</string>
+	<string id="mil_defence_b1_fail_text">
+		<text>Мы не смогли удержать Хутор. Но ничего, еще не всё потеряно... идите в Деревню, мутанты уже на подступах.</text>
+	</string>
+	<string id="mil_defence_b2_done_text">
+		<text>Деревня отбита. Следующая атака мутантов будет совершена на Западную Заставу. Все туда!</text>
+	</string>
+	<string id="mil_defence_b2_fail_text">
+		<text>Деревня была утрачена. Но это еще не конец. Мутанты держут свой путь на Западную Заставу. Нужно дать им отпор.</text>
+	</string>
+	<string id="mil_defence_b3_done_text">
+		<text>Западная Застава уцелела. Монстры движутся на соседнюю точку - Посёлок. Будьте готовы к отражению.</text>
+	</string>
+	<string id="mil_defence_b3_fail_text">
+		<text>Мы утратили Западную Заставу. Не велика потеря. Давайте теперь защитим Посёлок.</text>
+	</string>
+	<string id="mil_defence_b4_done_text">
+		<text>Посёлок под контролем. Теперь необходимо защитить Стоянку.</text>
+	</string>
+	<string id="mil_defence_b4_fail_text">
+		<text>Отряд на Посёлке пал в неравном бою. Мутанты взяли своё. Давайте же возьмем у них реванш, и отразим их грядущий наскок на Стоянку.</text>
+	</string>
+	<string id="mil_defence_b5_done_text">
+		<text>Стоянка благополучно удержана. Поступала информация о том, что около Посёлка есть огромная нора, из которой выползают эти гады. Предлагаю уничтожить её. Если там будет очень серьезно - взрывчатка на базе.</text>
+	</string>
+	<string id="mil_defence_b5_fail_text">
+		<text>Очень плохие новости. Наш отряд на Стоянке был разбит. Также, поступала информация о том, что около Посёлка есть огромная нора, из которой выползают эти гады. Предлагаю уничтожить её. Если там будет очень серьезно - взрывчатка на базе.</text>
+	</string>
+	<string id="mil_smash_monster_hole_done_text">
+		<text>Нора разрушена. Следующая волна мутантов уже направляется на Восточную Заставу. Нам будет нужно удержать эту точку, во что бы то не стало.</text>
+	</string>
+	<string id="mil_defence_b6_complete_text">
+		<text>Как это не печально звучит, но Востояная Застава, наш последний оплот, была сметена непомерным количеством мутантов. Самое страшное впереди - волна идёт на нашу базу. Всем, кто выжил, срочно нужно вернуться на базу, дабы отстоять нашу честь, и показать этим гадам ползучим, чего мы стоим.</text>
+	</string>
+	<string id="mil_b7_night_stalker_leader_title">
+		<text>«Мортен»</text>
+	</string>
+	<string id="mil_bolted_influence_target_b1_captured_text">
+		<text>Хутор захвачен. Следующая наша цель - Деревня.</text>
+	</string>
+	<string id="mil_bolted_influence_target_b2_captured_text">
+		<text>Деревня под нашим контролем. Идем дальше, теперь нужно захватить Западную Заставу.</text>
+	</string>
+	<string id="mil_bolted_influence_target_b3_captured_text">
+		<text>Застава наша. Далее берем на себя захват Посёлка.</text>
+	</string>
+	<string id="mil_bolted_influence_target_b4_captured_text">
+		<text>Очень хорошо. Посёлок за нами. Держим курс на Стоянку.</text>
+	</string>
+	<string id="mil_bolted_influence_target_b5_captured_text">
+		<text>Контроль почти установлен. На очереди - Западная Застава.</text>
+	</string>
+	<string id="mil_bolted_influence_target_b6_captured_text">
+		<text>Мы сделали это. Контроль установлен.</text>
+	</string>
+	<string id="agr_general_staff_about_underground_way_text">
+		<text>Майор, новое задание! Из добытых вами документов получена информация о второй лаборатории под Агропромом. Ваша задача - найти путь в подземелье Агропрома, и достать все документы, связанные с работой лаборатории. Всё, что сможете там найти. На Агропром можно попасть только с Затона. Удачи!</text>
+	</string>
+	<string id="esc_b1_base_commander_title">
+		<text>«Медведев»</text>
+	</string>
+	<string id="esc_blockpost_protection_began_text">
+		<text>Майор! На наш блокпост покушаются мутанты. Их становится всё больше. Нужна твоя помощь. Помоги нашим отразить эту дерзость.</text>
+	</string>
+	<string id="esc_blockpost_protection_done_1_text">
+		<text>Мутанты скопытились. Всем отбой. Майор, вам отдельное спасибо.</text>
+	</string>
+	<string id="esc_blockpost_protection_done_2_text">
+		<text>Ура! Со зверьем разобрались. Майор, вы нам очень помогли. Спасибо. Награда за поддержку в вашем ящике.</text>
+	</string>
+	<string id="esc_blockpost_protection_done_3_text">
+		<text>Вот это был бой! Одолели тварей. Майор, вы очень хорошо себя показали. Именно поэтому для вас я приготовил особую награду.</text>
+	</string>
+	<string id="red_psyho_trapper_call_text">
+		<text>Майор, будешь на Янове - зайдёшь ко мне. Для тебя информация есть.</text>
+	</string>

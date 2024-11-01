@@ -1,0 +1,11 @@
+[smart_terrain]
+squad_id = 15
+max_population = 2
+respawn_params = respawn@pas_sim_8
+
+[respawn@pas_sim_8]
+spawn_monsters
+
+[spawn_monsters]
+spawn_squads = simulation_controller
+spawn_num = {+pri_rescue_underground_guide_start -pri_rescue_underground_guide_fail} 1, {-pri_rescue_underground_guide_start +pri_rescue_underground_guide_fail} 1, 0

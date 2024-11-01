@@ -1,0 +1,18 @@
+[logic]
+active = move@chasovoy
+on_death = death
+on_hit = hit
+
+[hit]
+on_info = {=hit_by_actor} %+pri_army_kasilov_hit%
+
+[death]
+on_info = %+pri_army_chasovoy_death%
+
+[move@chasovoy]
+move_avail_speak       = 15|wait|false|true
+move_dest_number       = 403066
+move_look_vertex       = 392035
+move_state_when_center = guard
+move_state_when_move   = assault
+on_info                = {!actor_enemy +pri_army_kasilov_hit} %=actor_enemy%

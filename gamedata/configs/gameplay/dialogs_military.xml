@@ -1,0 +1,1152 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+<game_dialogs>
+<!-----------------------------------------================----------------------------------------------->
+<!-----------------------------------------'Военные Склады'----------------------------------------------->
+<!-----------------------------------------================----------------------------------------------->
+<dialog id="mil_b7_base_chief_start_dialog">
+        <dont_has_info>mil_b7_base_chief_hello</dont_has_info>
+        <phrase_list>
+            <phrase id="0">
+                <text />
+                <next>100</next>
+            </phrase>
+            <phrase id="100">
+                <text />
+                <next>101</next>
+            </phrase>
+            <phrase id="101">
+                <text>mil_b7_base_chief_dialog_1</text>
+                <give_info>mil_b7_base_chief_hello</give_info>
+                <next>102</next>
+            </phrase>
+            <phrase id="102">
+                <text>mil_b7_base_chief_dialog_2</text>
+                <next>103</next>
+            </phrase>
+            <phrase id="103">
+                <text>mil_b7_base_chief_dialog_3</text>
+                <give_info>mil_first_receipts_info</give_info>
+                <next>104</next>
+            </phrase>
+            <phrase id="104">
+                <text>mil_b7_base_chief_dialog_4</text>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+        </phrase_list>
+</dialog>
+
+<dialog id="mil_b7_base_leader_start_dialog">
+        <phrase_list>
+            <phrase id="0">
+                <text />
+                <next>100</next>
+                <next>200</next>
+                <next>300</next>
+            </phrase>
+            <phrase id="100">
+                <text />
+                <dont_has_info>mil_first_receipts_meeting</dont_has_info>
+                <next>101</next>
+            </phrase>
+            <phrase id="101">
+                <text>mil_b7_base_leader_dialog_1</text>
+                <next>102</next>
+            </phrase>
+            <phrase id="102">
+                <text>mil_b7_base_leader_dialog_2</text>
+                <next>103</next>
+            </phrase>
+            <phrase id="103">
+                <text>mil_b7_base_leader_dialog_3</text>
+                <give_info>mil_first_receipts_meeting</give_info>
+                <give_info>mil_dislodge_invaders_start</give_info>
+                <action>sgm_dialogs.mil_dislodge_invaders</action>
+                <next>104</next>
+            </phrase>
+            <phrase id="104">
+                <text>mil_b7_base_leader_dialog_4</text>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+            <phrase id="200">
+                <text />
+                <has_info>mil_first_receipts_meeting</has_info>
+                <dont_has_info>mil_dislodge_invaders_reward</dont_has_info>
+                <next>201</next>
+            </phrase>
+            <phrase id="201">
+                <text>mil_b7_base_leader_dialog_5</text>
+                <next>210</next>
+                <next>220</next>
+            </phrase>
+            <phrase id="220">
+                <dont_has_info>mil_dislodge_invaders_all_captured</dont_has_info>
+                <text>mil_b7_base_leader_dialog_6</text>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+            <phrase id="210">
+                <has_info>mil_dislodge_invaders_all_captured</has_info>
+                <text>mil_b7_base_leader_dialog_7</text>
+                <next>211</next>
+            </phrase>
+            <phrase id="211">
+                <text>mil_b7_base_leader_dialog_8</text>
+                <give_info>mil_dislodge_invaders_reward</give_info>
+                <action>sgm_dialogs.mil_dislodge_invaders_reward</action>
+                <give_info>mil_defence_b1_start</give_info>
+                <action>sgm_dialogs.mil_defence_b1</action>
+                <next>212</next>
+            </phrase>
+            <phrase id="212">
+                <text>mil_b7_base_leader_dialog_9</text>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+            <phrase id="300">
+                <text />
+                <has_info>mil_dislodge_invaders_reward</has_info>
+                <next>301</next>
+            </phrase>
+            <phrase id="301">
+                <text>mil_b7_base_leader_dialog_10</text>
+                <next>302</next>
+            </phrase>
+            <phrase id="302">
+                <text>mil_b7_base_leader_dialog_11</text>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+        </phrase_list>
+</dialog>
+
+<dialog id="mil_b7_colonizer_commander_start_dialog">
+        <dont_has_info>mil_conduct_night_stalkers_talk</dont_has_info>
+        <phrase_list>
+            <phrase id="0">
+                <text />
+                <next>100</next>
+            </phrase>
+            <phrase id="100">
+                <text />
+                <next>101</next>
+            </phrase>
+            <phrase id="101">
+                <text>mil_b7_colonizer_commander_dialog_1</text>
+                <give_info>mil_conduct_night_stalkers_talk</give_info>
+                <action>sgm_dialogs.mil_boarding_money_case_pre_reward</action>
+                <next>102</next>
+            </phrase>
+            <phrase id="102">
+                <text>mil_b7_colonizer_commander_dialog_2</text>
+                <next>103</next>
+            </phrase>
+            <phrase id="103">
+                <text>mil_b7_colonizer_commander_dialog_3</text>
+                <action>sgm_dialogs.mil_boarding_money_case</action>
+                <give_info>mil_boarding_money_case_start</give_info>
+                <next>104</next>
+            </phrase>
+            <phrase id="104">
+                <text>mil_b7_colonizer_commander_dialog_4</text>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+        </phrase_list>
+</dialog>
+
+<dialog id="mil_b7_colonizer_commander_about_name_dialog">
+        <dont_has_info>mil_b7_colonizer_commander_about_name</dont_has_info>
+        <phrase_list>
+            <phrase id="0">
+                <text>mil_b7_colonizer_commander_about_name_dialog_1</text>
+                <next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>mil_b7_colonizer_commander_about_name_dialog_2</text>
+                <next>2</next>
+            </phrase>
+            <phrase id="2">
+                <text>mil_b7_colonizer_commander_about_name_dialog_3</text>
+                <next>3</next>
+            </phrase>
+            <phrase id="3">
+                <text>mil_b7_colonizer_commander_about_name_dialog_4</text>
+                <next>4</next>
+            </phrase>
+            <phrase id="4">
+                <text>mil_b7_colonizer_commander_about_name_dialog_5</text>
+                <next>5</next>
+            </phrase>
+            <phrase id="5">
+                <text>mil_b7_colonizer_commander_about_name_dialog_6</text>
+                <next>6</next>
+            </phrase>
+            <phrase id="6">
+                <text>mil_b7_colonizer_commander_about_name_dialog_7</text>
+                <next>7</next>
+            </phrase>
+            <phrase id="7">
+                <text>mil_b7_colonizer_commander_about_name_dialog_8</text>
+                <give_info>mil_b7_colonizer_commander_about_name</give_info>
+                <next>8</next>
+            </phrase>
+            <phrase id="8">
+                <text>mil_b7_colonizer_commander_about_name_dialog_9</text>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+        </phrase_list>
+</dialog>
+
+<dialog id="mil_b7_colonizer_commander_about_outfit_dialog">
+        <dont_has_info>mil_b7_colonizer_commander_about_outfit</dont_has_info>
+        <phrase_list>
+            <phrase id="0">
+                <text>mil_b7_colonizer_commander_about_outfit_dialog_1</text>
+                <next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>mil_b7_colonizer_commander_about_outfit_dialog_2</text>
+                <next>2</next>
+            </phrase>
+            <phrase id="2">
+                <text>mil_b7_colonizer_commander_about_outfit_dialog_3</text>
+                <next>3</next>
+            </phrase>
+            <phrase id="3">
+                <text>mil_b7_colonizer_commander_about_outfit_dialog_4</text>
+                <next>4</next>
+            </phrase>
+            <phrase id="4">
+                <text>mil_b7_colonizer_commander_about_outfit_dialog_5</text>
+                <next>5</next>
+            </phrase>
+            <phrase id="5">
+                <text>mil_b7_colonizer_commander_about_outfit_dialog_6</text>
+                <next>6</next>
+            </phrase>
+            <phrase id="6">
+                <text>mil_b7_colonizer_commander_about_outfit_dialog_7</text>
+                <next>7</next>
+            </phrase>
+            <phrase id="7">
+                <text>mil_b7_colonizer_commander_about_outfit_dialog_8</text>
+                <give_info>mil_b7_colonizer_commander_about_outfit</give_info>
+                <next>8</next>
+            </phrase>
+            <phrase id="8">
+                <text>mil_b7_colonizer_commander_about_outfit_dialog_9</text>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+        </phrase_list>
+</dialog>
+
+<dialog id="mil_b7_night_stalker_leader_start_dialog">
+        <dont_has_info>mil_bolted_influence_reward</dont_has_info>
+        <phrase_list>
+            <phrase id="0">
+                <text />
+                <next>100</next>
+                <next>200</next>
+            </phrase>
+            <phrase id="100">
+                <text />
+                <dont_has_info>mil_bolted_influence_start</dont_has_info>
+                <next>101</next>
+            </phrase>
+            <phrase id="101">
+                <text>mil_b7_night_stalker_leader_dialog_1</text>
+                <action>sgm_dialogs.mil_bolted_influence_spawn</action>
+                <give_info>mil_meet_with_morten_talk</give_info>
+                <next>102</next>
+            </phrase>
+            <phrase id="102">
+                <text>mil_b7_night_stalker_leader_dialog_2</text>
+                <next>103</next>
+            </phrase>
+            <phrase id="103">
+                <text>mil_b7_night_stalker_leader_dialog_3</text>
+                <action>sgm_dialogs.mil_bolted_influence</action>
+                <give_info>mil_bolted_influence_start</give_info>
+                <next>104</next>
+            </phrase>
+            <phrase id="104">
+                <text>mil_b7_night_stalker_leader_dialog_4</text>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+            <phrase id="200">
+                <text />
+                <has_info>mil_bolted_influence_start</has_info>
+                <dont_has_info>mil_bolted_influence_reward</dont_has_info>
+                <next>201</next>
+            </phrase>
+            <phrase id="201">
+                <text>mil_b7_night_stalker_leader_dialog_5</text>
+                <next>210</next>
+                <next>220</next>
+            </phrase>
+            <phrase id="220">
+                <dont_has_info>mil_bolted_influence_all_captured</dont_has_info>
+                <text>mil_b7_night_stalker_leader_dialog_6</text>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+            <phrase id="210">
+                <has_info>mil_bolted_influence_all_captured</has_info>
+                <text>mil_b7_night_stalker_leader_dialog_7</text>
+                <next>211</next>
+            </phrase>
+            <phrase id="211">
+                <text>mil_b7_night_stalker_leader_dialog_8</text>
+                <give_info>mil_bolted_influence_reward</give_info>
+                <action>sgm_dialogs.mil_bolted_influence_reward</action>
+                <give_info>mil_storyline_done</give_info>
+                <next>212</next>
+            </phrase>
+            <phrase id="212">
+                <text>mil_b7_night_stalker_leader_dialog_9</text>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+        </phrase_list>
+</dialog>
+
+<dialog id="mil_night_stalker_trader_start_dialog">
+        <precondition>sgm_dialogs.mod_dialog_precond</precondition>
+        <phrase_list>
+            <phrase id="0">
+                <text />
+                <next>100</next>
+            </phrase>
+            <phrase id="100">
+                <text />
+                <next>101</next>
+            </phrase>
+            <phrase id="101">
+                <text>mil_night_stalker_trader_dialog_1</text>
+                <next>110</next>
+                <next>120</next>
+                <next>130</next>
+                <next>140</next>
+            </phrase>
+            <phrase id="110">
+                <text>mil_night_stalker_trader_dialog_2</text>
+                <action>sgm_dialogs.switch_to_trade</action>
+                <next>111</next>
+            </phrase>
+            <phrase id="111">
+                <text>mil_night_stalker_trader_dialog_3</text>
+                <next>110</next>
+                <next>120</next>
+                <next>130</next>
+                <next>140</next>
+            </phrase>
+            <phrase id="130">
+                <text>mil_night_stalker_trader_dialog_12</text>
+                <has_info>mil_night_stalker_trader_order</has_info>
+                <next>131</next>
+            </phrase>
+            <phrase id="131">
+                <text>mil_night_stalker_trader_dialog_9</text>
+                <next>132</next>
+                <next>13999</next>
+            </phrase>
+            <phrase id="132">
+                <precondition>sgm_dialogs.order_recoil_have_money</precondition>
+                <text>mil_night_stalker_trader_dialog_10</text>
+                <action>sgm_dialogs.order_recoil_give_money</action>
+                <disable_info>mil_night_stalker_trader_order</disable_info>
+                <disable_info>mil_night_stalker_trader_weapon</disable_info>
+                <disable_info>mil_night_stalker_trader_army_nauchniy_outfit</disable_info>
+                <disable_info>mil_night_stalker_trader_stalker_reinforced_outfit</disable_info>
+                <next>133</next>
+            </phrase>
+            <phrase id="133">
+                <text>mil_night_stalker_trader_dialog_11</text>
+            <!--<next>12901</next>-->
+                <next>12903</next>
+                <next>12888</next>
+            </phrase>
+            <phrase id="140">
+                <text>mil_night_stalker_trader_dialog_4</text>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+            <phrase id="12888">
+                <text>mil_night_stalker_trader_dialog_5</text>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+            <phrase id="13999">
+                <text>mil_night_stalker_trader_dialog_6</text>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+            <phrase id="12005">
+                <text>mil_night_stalker_trader_dialog_7</text>
+                <next>12006</next>
+            </phrase>
+            <phrase id="12006">
+                <text>mil_night_stalker_trader_dialog_8</text>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+            <phrase id="120">
+                <text>mil_night_stalker_trader_dialog_18</text>
+                <dont_has_info>mil_night_stalker_trader_order</dont_has_info>
+                <next>1210</next>
+            </phrase>
+            <phrase id="1210">
+                <text>mil_night_stalker_trader_dialog_19</text>
+            <!--<next>12901</next>-->
+                <next>12903</next>
+                <next>12888</next>
+            </phrase>
+            --[Арсенал]
+            <phrase id="12105">
+                <text>mil_night_stalker_trader_dialog_7</text>
+                <next>12106</next>
+            </phrase>
+            <phrase id="12106">
+                <text>mil_night_stalker_trader_dialog_8</text>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+            <phrase id="12901">
+                <text>mil_night_stalker_trader_dialog_20</text>
+                <next>12902</next>
+            </phrase>
+            <phrase id="12902">
+                <text>mil_night_stalker_trader_dialog_17</text>
+                <next>1200000</next>
+                <next>12888</next>
+            </phrase>
+            <phrase id="831209900">
+                <text>zat_trader_back_phrase</text>
+                <next>12902</next>
+            </phrase>
+            --[А1]
+            <phrase id="1200000">
+                <text>mil_night_stalker_trader_dialog_22</text>
+                <action>sgm_dialogs.mil_n_trader_w_1</action>
+                <next>1200002</next>
+            </phrase>
+            <phrase id="1200002">
+                <text>mil_night_stalker_trader_dialog_16</text>
+                <action>sgm_dialogs.show_order_costs</action>
+                <next>831209900</next>
+                <next>1200003</next>
+                <next>1200004</next>
+                <next>1200007</next>
+            </phrase>
+            <phrase id="1200007">
+                <precondition>sgm_dialogs.order_has_money</precondition>
+                <text>mil_night_stalker_trader_dialog_14</text>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+            <phrase id="1200004">
+                <precondition>sgm_dialogs.order_agree_less_money</precondition>
+                <text>mil_night_stalker_trader_dialog_13</text>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+            <phrase id="1200003">
+                <precondition>sgm_dialogs.order_has_money</precondition>
+                <text>mil_night_stalker_trader_dialog_15</text>
+                <action>sgm_dialogs.order_agree_give_money</action>
+                <give_info>mil_night_stalker_trader_order</give_info>
+                <give_info>mil_night_stalker_trader_weapon</give_info>
+                <next>12005</next>
+            </phrase>
+            --[Броники]
+            <phrase id="12903">
+                <text>mil_night_stalker_trader_dialog_21</text>
+                <next>12904</next>
+            </phrase>
+            <phrase id="12904">
+                <text>mil_night_stalker_trader_dialog_17</text>
+                <next>1210000</next>
+                <next>1210100</next>
+                <next>12888</next>
+            </phrase>
+            <phrase id="831209910">
+                <text>zat_trader_back_phrase</text>
+                <next>12904</next>
+            </phrase>
+            --[Б1]
+            <phrase id="1210000">
+                <text>mil_night_stalker_trader_dialog_23</text>
+                <action>sgm_dialogs.mil_n_trader_o_1</action>
+                <next>1210001</next>
+            </phrase>
+            <phrase id="1210001">
+                <text>mil_night_stalker_trader_dialog_16</text>
+                <action>sgm_dialogs.show_order_costs</action>
+                <next>831209910</next>
+                <next>1210003</next>
+                <next>1210004</next>
+                <next>1210007</next>
+            </phrase>
+            <phrase id="1210007">
+                <precondition>sgm_dialogs.order_has_money</precondition>
+                <text>mil_night_stalker_trader_dialog_14</text>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+            <phrase id="1210004">
+                <precondition>sgm_dialogs.order_agree_less_money</precondition>
+                <text>mil_night_stalker_trader_dialog_13</text>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+            <phrase id="1210003">
+                <precondition>sgm_dialogs.order_has_money</precondition>
+                <text>mil_night_stalker_trader_dialog_15</text>
+                <action>sgm_dialogs.order_agree_give_money</action>
+                <give_info>mil_night_stalker_trader_order</give_info>
+                <give_info>mil_night_stalker_trader_army_nauchniy_outfit</give_info>
+                <next>12105</next>
+            </phrase>
+            --[Б2]
+            <phrase id="1210100">
+                <text>mil_night_stalker_trader_dialog_24</text>
+                <action>sgm_dialogs.mil_n_trader_o_2</action>
+                <next>1210101</next>
+            </phrase>
+            <phrase id="1210101">
+                <text>mil_night_stalker_trader_dialog_16</text>
+                <action>sgm_dialogs.show_order_costs</action>
+                <next>831209910</next>
+                <next>1210103</next>
+                <next>1210104</next>
+                <next>1210107</next>
+            </phrase>
+            <phrase id="1210107">
+                <precondition>sgm_dialogs.order_has_money</precondition>
+                <text>mil_night_stalker_trader_dialog_14</text>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+            <phrase id="1210104">
+                <precondition>sgm_dialogs.order_agree_less_money</precondition>
+                <text>mil_night_stalker_trader_dialog_13</text>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+            <phrase id="1210103">
+                <precondition>sgm_dialogs.order_has_money</precondition>
+                <text>mil_night_stalker_trader_dialog_15</text>
+                <action>sgm_dialogs.order_agree_give_money</action>
+                <give_info>mil_night_stalker_trader_order</give_info>
+                <give_info>mil_night_stalker_trader_stalker_reinforced_outfit</give_info>
+                <next>12105</next>
+            </phrase>
+        </phrase_list>
+</dialog>
+
+<dialog id="mil_night_stalker_bankir_start_dialog">
+        <precondition>sgm_dialogs.mod_dialog_precond</precondition>
+        <phrase_list>
+            <phrase id="0">
+                <text />
+                <next>100</next>
+            </phrase>
+            <phrase id="900">
+                <text>mil_night_stalker_bankir_dialog_1</text>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+            <phrase id="999">
+                <text>mil_night_stalker_bankir_dialog_2</text>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+            <phrase id="106">
+                <text>mil_night_stalker_bankir_dialog_3</text>
+                <action>sgm_dialogs.bankir_show_money</action>
+                <next>991</next>
+            </phrase>
+            <phrase id="8999">
+                <text>mil_night_stalker_bankir_dialog_4</text>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+            <phrase id="89800">
+                <text>mil_night_stalker_bankir_dialog_5</text>
+                <next>89801</next>
+                <next>89802</next>
+            </phrase>
+            <phrase id="89801">
+                <text>mil_night_stalker_bankir_dialog_6</text>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+            <phrase id="89802">
+                <text>mil_night_stalker_bankir_dialog_7</text>
+                <precondition>sgm_dialogs.bankir_capital_has_something</precondition>
+                <next>221</next>
+            </phrase>
+            <phrase id="991">
+                <text>mil_night_stalker_bankir_dialog_8</text>
+                <next>992</next>
+            </phrase>
+            <phrase id="992">
+                <text>mil_night_stalker_bankir_dialog_9</text>
+                <next>993</next>
+                <next>994</next>
+            </phrase>
+            <phrase id="993">
+                <text>mil_night_stalker_bankir_dialog_10</text>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+            <phrase id="994">
+                <text>mil_night_stalker_bankir_dialog_11</text>
+                <precondition>sgm_dialogs.actor_have_something_money</precondition>
+                <next>995</next>
+            </phrase>
+            <phrase id="995">
+                <text>mil_night_stalker_bankir_dialog_12</text>
+                <next>996</next>
+            </phrase>
+            <phrase id="996">
+                <text>mil_night_stalker_bankir_dialog_13</text>
+                <next>105</next>
+            </phrase>
+            <phrase id="9000">
+                <text>mil_night_stalker_bankir_dialog_19</text>
+                <precondition>sgm_dialogs.actor_have_something_money</precondition>
+                <action>sgm_dialogs.bankir_capital_add_all</action>
+                <next>106</next>
+            </phrase>
+            <phrase id="9001">
+                <text>mil_night_stalker_bankir_dialog_20</text>
+                <precondition>sgm_dialogs.actor_have_1000_money</precondition>
+                <action>sgm_dialogs.bankir_capital_add_1000</action>
+                <next>106</next>
+            </phrase>
+            <phrase id="9002">
+                <text>mil_night_stalker_bankir_dialog_21</text>
+                <precondition>sgm_dialogs.actor_have_2000_money</precondition>
+                <action>sgm_dialogs.bankir_capital_add_2000</action>
+                <next>106</next>
+            </phrase>
+            <phrase id="9003">
+                <text>mil_night_stalker_bankir_dialog_22</text>
+                <precondition>sgm_dialogs.actor_have_3000_money</precondition>
+                <action>sgm_dialogs.bankir_capital_add_3000</action>
+                <next>106</next>
+            </phrase>
+            <phrase id="9004">
+                <text>mil_night_stalker_bankir_dialog_23</text>
+                <precondition>sgm_dialogs.actor_have_4000_money</precondition>
+                <action>sgm_dialogs.bankir_capital_add_4000</action>
+                <next>106</next>
+            </phrase>
+            <phrase id="9005">
+                <text>mil_night_stalker_bankir_dialog_24</text>
+                <precondition>sgm_dialogs.actor_have_5000_money</precondition>
+                <action>sgm_dialogs.bankir_capital_add_5000</action>
+                <next>106</next>
+            </phrase>
+            <phrase id="9010">
+                <text>mil_night_stalker_bankir_dialog_25</text>
+                <precondition>sgm_dialogs.actor_have_10000_money</precondition>
+                <action>sgm_dialogs.bankir_capital_add_10000</action>
+                <next>106</next>
+            </phrase>
+            <phrase id="105">
+                <text>mil_night_stalker_bankir_dialog_18</text>
+                <next>9000</next>
+                <next>9001</next>
+                <next>9002</next>
+                <next>9003</next>
+                <next>9004</next>
+                <next>9005</next>
+                <next>9010</next>
+                <next>999</next>
+            </phrase>
+            <phrase id="100">
+                <text />
+                <next>201</next>
+            </phrase>
+            <phrase id="201">
+                <text>mil_night_stalker_bankir_dialog_26</text>
+                <action>sgm_dialogs.bankir_set_zero_capital</action>
+                <next>20199</next>
+            </phrase>
+            <phrase id="20199">
+                <text>mil_night_stalker_bankir_dialog_27</text>
+                <next>202</next>
+            </phrase>
+            <phrase id="202">
+                <text>mil_night_stalker_bankir_dialog_28</text>
+                <next>200</next>
+                <next>290</next>
+                <next>700</next>
+                <next>230</next>
+            </phrase>
+            <phrase id="700">
+                <text>mil_night_stalker_bankir_dialog_71</text>
+                <next>701</next>
+            </phrase>
+            <phrase id="701">
+                <text>mil_night_stalker_bankir_dialog_72</text>
+                <action>sgm_dialogs.bankir_show_web_money_course</action>
+                <next>7150</next>
+                <next>7010</next>
+                <next>7020</next>
+                <next>7030</next>
+                <next>7040</next>
+                <next>7050</next>
+                <next>7060</next>
+                <next>7070</next>
+                <next>7080</next>
+                <next>7090</next>
+                <next>7100</next>
+                <next>7210</next>
+                <next>7220</next>
+            </phrase>
+            <phrase id="70102">
+                <text>mil_night_stalker_bankir_dialog_73</text>
+                <action>sgm_dialogs.bankir_show_web_money_course</action>
+                <next>7150</next>
+                <next>7010</next>
+                <next>7020</next>
+                <next>7030</next>
+                <next>7040</next>
+                <next>7050</next>
+                <next>7060</next>
+                <next>7070</next>
+                <next>7080</next>
+                <next>7090</next>
+                <next>7100</next>
+                <next>7210</next>
+                <next>7220</next>
+            </phrase>
+            <phrase id="7998">
+                <text>mil_night_stalker_bankir_dialog_74</text>
+                <next>70102</next>
+            </phrase>
+            <phrase id="7999">
+                <text>mil_night_stalker_bankir_dialog_75</text>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+            <phrase id="7210">
+                <precondition>sgm_dialogs.actor_have_something_web_money</precondition>
+                <text>mil_night_stalker_bankir_dialog_76</text>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+            <phrase id="7220">
+                <precondition>sgm_dialogs.actor_dont_something_web_money</precondition>
+                <text>mil_night_stalker_bankir_dialog_77</text>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+            <phrase id="7150">
+                <precondition>sgm_dialogs.actor_have_something_web_money</precondition>
+                <text>mil_night_stalker_bankir_dialog_78</text>
+                <next>7151</next>
+            </phrase>
+            <phrase id="7151">
+                <text>mil_night_stalker_bankir_dialog_79</text>
+                <action>sgm_dialogs.actor_give_all_web_money</action>
+                <next>7998</next>
+                <next>7999</next>
+            </phrase>
+            <phrase id="7010">
+                <precondition>sgm_dialogs.actor_have_1000_web_money</precondition>
+                <text>mil_night_stalker_bankir_dialog_80</text>
+                <next>7011</next>
+            </phrase>
+            <phrase id="7011">
+                <text>mil_night_stalker_bankir_dialog_79</text>
+                <action>sgm_dialogs.actor_give_1000_web_money</action>
+                <next>7998</next>
+                <next>7999</next>
+            </phrase>
+            <phrase id="7020">
+                <precondition>sgm_dialogs.actor_have_2000_web_money</precondition>
+                <text>mil_night_stalker_bankir_dialog_81</text>
+                <next>7021</next>
+            </phrase>
+            <phrase id="7021">
+                <text>mil_night_stalker_bankir_dialog_79</text>
+                <action>sgm_dialogs.actor_give_2000_web_money</action>
+                <next>7998</next>
+                <next>7999</next>
+            </phrase>
+            <phrase id="7030">
+                <precondition>sgm_dialogs.actor_have_3000_web_money</precondition>
+                <text>mil_night_stalker_bankir_dialog_82</text>
+                <next>7031</next>
+            </phrase>
+            <phrase id="7031">
+                <text>mil_night_stalker_bankir_dialog_79</text>
+                <action>sgm_dialogs.actor_give_3000_web_money</action>
+                <next>7998</next>
+                <next>7999</next>
+            </phrase>
+            <phrase id="7040">
+                <precondition>sgm_dialogs.actor_have_4000_web_money</precondition>
+                <text>mil_night_stalker_bankir_dialog_83</text>
+                <next>7041</next>
+            </phrase>
+            <phrase id="7041">
+                <text>mil_night_stalker_bankir_dialog_79</text>
+                <action>sgm_dialogs.actor_give_4000_web_money</action>
+                <next>7998</next>
+                <next>7999</next>
+            </phrase>
+            <phrase id="7050">
+                <precondition>sgm_dialogs.actor_have_5000_web_money</precondition>
+                <text>mil_night_stalker_bankir_dialog_84</text>
+                <next>7051</next>
+            </phrase>
+            <phrase id="7051">
+                <text>mil_night_stalker_bankir_dialog_79</text>
+                <action>sgm_dialogs.actor_give_5000_web_money</action>
+                <next>7998</next>
+                <next>7999</next>
+            </phrase>
+            <phrase id="7060">
+                <precondition>sgm_dialogs.actor_have_6000_web_money</precondition>
+                <text>mil_night_stalker_bankir_dialog_85</text>
+                <next>7061</next>
+            </phrase>
+            <phrase id="7061">
+                <text>mil_night_stalker_bankir_dialog_79</text>
+                <action>sgm_dialogs.actor_give_6000_web_money</action>
+                <next>7998</next>
+                <next>7999</next>
+            </phrase>
+            <phrase id="7070">
+                <precondition>sgm_dialogs.actor_have_7000_web_money</precondition>
+                <text>mil_night_stalker_bankir_dialog_86</text>
+                <next>7071</next>
+            </phrase>
+            <phrase id="7071">
+                <text>mil_night_stalker_bankir_dialog_79</text>
+                <action>sgm_dialogs.actor_give_7000_web_money</action>
+                <next>7998</next>
+                <next>7999</next>
+            </phrase>
+            <phrase id="7080">
+                <precondition>sgm_dialogs.actor_have_8000_web_money</precondition>
+                <text>mil_night_stalker_bankir_dialog_87</text>
+                <next>7081</next>
+            </phrase>
+            <phrase id="7081">
+                <text>mil_night_stalker_bankir_dialog_79</text>
+                <action>sgm_dialogs.actor_give_8000_web_money</action>
+                <next>7998</next>
+                <next>7999</next>
+            </phrase>
+            <phrase id="7090">
+                <precondition>sgm_dialogs.actor_have_9000_web_money</precondition>
+                <text>mil_night_stalker_bankir_dialog_88</text>
+                <next>7091</next>
+            </phrase>
+            <phrase id="7091">
+                <text>mil_night_stalker_bankir_dialog_79</text>
+                <action>sgm_dialogs.actor_give_9000_web_money</action>
+                <next>7998</next>
+                <next>7999</next>
+            </phrase>
+            <phrase id="7100">
+                <precondition>sgm_dialogs.actor_have_10000_web_money</precondition>
+                <text>mil_night_stalker_bankir_dialog_89</text>
+                <next>7101</next>
+            </phrase>
+            <phrase id="7101">
+                <text>mil_night_stalker_bankir_dialog_79</text>
+                <action>sgm_dialogs.actor_give_10000_web_money</action>
+                <next>7998</next>
+                <next>7999</next>
+            </phrase>
+            <phrase id="200">
+                <text>mil_night_stalker_bankir_dialog_69</text>
+                <next>20001</next>
+            </phrase>
+            <phrase id="20001">
+                <text>mil_night_stalker_bankir_dialog_70</text>
+                <next>210</next>
+                <next>220</next>
+            </phrase>
+            <phrase id="210">
+                <text>mil_night_stalker_bankir_dialog_29</text>
+                <next>105</next>
+            </phrase>
+            <phrase id="230">
+                <text>mil_night_stalker_bankir_dialog_30</text>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+            <phrase id="220">
+                <text>mil_night_stalker_bankir_dialog_31</text>
+                <precondition>sgm_dialogs.bankir_capital_has_something</precondition>
+                <next>221</next>
+            </phrase>
+            <phrase id="221">
+                <text>mil_night_stalker_bankir_dialog_32</text>
+                <action>sgm_dialogs.bankir_show_money</action>
+                <next>8000</next>
+                <next>8001</next>
+                <next>8002</next>
+                <next>8003</next>
+                <next>8004</next>
+                <next>8005</next>
+                <next>8010</next>
+                <next>8999</next>
+            </phrase>
+            <phrase id="8001">
+                <text>mil_night_stalker_bankir_dialog_20</text>
+                <precondition>sgm_dialogs.bankir_capital_has_1000</precondition>
+                <next>80010</next>
+            </phrase>
+            <phrase id="80010">
+                <text>mil_night_stalker_bankir_dialog_33</text>
+                <next>80011</next>
+            </phrase>
+            <phrase id="80011">
+                <text>mil_night_stalker_bankir_dialog_34</text>
+                <action>sgm_dialogs.bankir_capital_10_convert_1000</action>
+                <next>89800</next>
+            </phrase>
+            <phrase id="8002">
+                <text>mil_night_stalker_bankir_dialog_21</text>
+                <precondition>sgm_dialogs.bankir_capital_has_2000</precondition>
+                <next>80020</next>
+            </phrase>
+            <phrase id="80020">
+                <text>mil_night_stalker_bankir_dialog_35</text>
+                <next>80021</next>
+            </phrase>
+            <phrase id="80021">
+                <text>mil_night_stalker_bankir_dialog_34</text>
+                <action>sgm_dialogs.bankir_capital_10_convert_2000</action>
+                <next>89800</next>
+            </phrase>
+            <phrase id="8003">
+                <text>mil_night_stalker_bankir_dialog_22</text>
+                <precondition>sgm_dialogs.bankir_capital_has_3000</precondition>
+                <next>80030</next>
+            </phrase>
+            <phrase id="80030">
+                <text>mil_night_stalker_bankir_dialog_36</text>
+                <next>80031</next>
+            </phrase>
+            <phrase id="80031">
+                <text>mil_night_stalker_bankir_dialog_34</text>
+                <action>sgm_dialogs.bankir_capital_10_convert_3000</action>
+                <next>89800</next>
+            </phrase>
+            <phrase id="8004">
+                <text>mil_night_stalker_bankir_dialog_23</text>
+                <precondition>sgm_dialogs.bankir_capital_has_4000</precondition>
+                <next>80040</next>
+            </phrase>
+            <phrase id="80040">
+                <text>mil_night_stalker_bankir_dialog_37</text>
+                <next>80041</next>
+            </phrase>
+            <phrase id="80041">
+                <text>mil_night_stalker_bankir_dialog_34</text>
+                <action>sgm_dialogs.bankir_capital_10_convert_4000</action>
+                <next>89800</next>
+            </phrase>
+            <phrase id="8005">
+                <text>mil_night_stalker_bankir_dialog_24</text>
+                <precondition>sgm_dialogs.bankir_capital_has_5000</precondition>
+                <next>80050</next>
+            </phrase>
+            <phrase id="80050">
+                <text>mil_night_stalker_bankir_dialog_38</text>
+                <next>80051</next>
+            </phrase>
+            <phrase id="80051">
+                <text>mil_night_stalker_bankir_dialog_34</text>
+                <action>sgm_dialogs.bankir_capital_10_convert_5000</action>
+                <next>89800</next>
+            </phrase>
+            <phrase id="8010">
+                <text>mil_night_stalker_bankir_dialog_25</text>
+                <precondition>sgm_dialogs.bankir_capital_has_10000</precondition>
+                <next>80100</next>
+            </phrase>
+            <phrase id="80100">
+                <text>mil_night_stalker_bankir_dialog_39</text>
+                <next>80101</next>
+            </phrase>
+            <phrase id="80101">
+                <text>mil_night_stalker_bankir_dialog_34</text>
+                <action>sgm_dialogs.bankir_capital_10_convert_10000</action>
+                <next>89800</next>
+            </phrase>
+            <phrase id="8000">
+                <text>mil_night_stalker_bankir_dialog_40</text>
+                <next>8700</next>
+                <next>8800</next>
+            </phrase>
+            <phrase id="8700">
+                <text>mil_night_stalker_bankir_dialog_41</text>
+                <precondition>sgm_dialogs.actor_more_100_money</precondition>
+                <action>sgm_dialogs.bankir_10_capital_percent_money</action>
+                <next>8701</next>
+            </phrase>
+            <phrase id="8701">
+                <text>mil_night_stalker_bankir_dialog_34</text>
+                <action>sgm_dialogs.bankir_capital_10_convert_all</action>
+                <next>89800</next>
+            </phrase>
+            <phrase id="8800">
+                <text>mil_night_stalker_bankir_dialog_42</text>
+                <precondition>sgm_dialogs.actor_less_100_money</precondition>
+                <next>8801</next>
+            </phrase>
+            <phrase id="8801">
+                <text>mil_night_stalker_bankir_dialog_43</text>
+                <action>sgm_dialogs.bankir_capital_10_convert_all2</action>
+                <next>89800</next>
+            </phrase>
+            <phrase id="290">
+                <text>mil_night_stalker_bankir_dialog_45</text>
+                <action>sgm_dialogs.bankir_set_zero_deposit</action>
+                <next>2900</next>
+            </phrase>
+            <phrase id="2900">
+                <text>mil_night_stalker_bankir_dialog_44</text>
+                <next>2910</next>
+                <next>2920</next>
+                <next>2999</next>
+            </phrase>
+            <phrase id="2999">
+                <text>mil_night_stalker_bankir_dialog_46</text>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+            <phrase id="2910">
+                <text>mil_night_stalker_bankir_dialog_47</text>
+                <next>29990</next>
+            </phrase>
+            <phrase id="299100">
+                <text>mil_night_stalker_bankir_dialog_48</text>
+                <action>sgm_dialogs.bankir_load_money</action>
+                <action>sgm_dialogs.bankir_show_deposit_and_percent</action>
+                <next>299101</next>
+                <next>299102</next>
+            </phrase>
+            <phrase id="299101">
+                <text>mil_night_stalker_bankir_dialog_49</text>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+            <phrase id="299102">
+                <text>mil_night_stalker_bankir_dialog_50</text>
+                <precondition>sgm_dialogs.actor_have_something_money</precondition>
+                <next>29990</next>
+            </phrase>
+            <phrase id="29990">
+                <text>mil_night_stalker_bankir_dialog_51</text>
+                <action>sgm_dialogs.bankir_load_money</action>
+                <next>29100</next>
+                <next>29101</next>
+                <next>29102</next>
+                <next>29103</next>
+                <next>29104</next>
+                <next>29105</next>
+                <next>29110</next>
+                <next>291101</next>
+                <next>291102</next>
+                <next>291103</next>
+                <next>29111</next>
+            </phrase>
+            <phrase id="29111">
+                <text>mil_night_stalker_bankir_dialog_52</text>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+            <phrase id="29100">
+                <text>mil_night_stalker_bankir_dialog_53</text>
+                <precondition>sgm_dialogs.actor_have_something_money</precondition>
+                <action>sgm_dialogs.bankir_deposit_add_all</action>
+                <next>299100</next>
+            </phrase>
+            <phrase id="29101">
+                <text>mil_night_stalker_bankir_dialog_54</text>
+                <precondition>sgm_dialogs.actor_have_1000_money</precondition>
+                <action>sgm_dialogs.bankir_deposit_add_1000</action>
+                <next>299100</next>
+            </phrase>
+            <phrase id="29102">
+                <text>mil_night_stalker_bankir_dialog_55</text>
+                <precondition>sgm_dialogs.actor_have_2000_money</precondition>
+                <action>sgm_dialogs.bankir_deposit_add_2000</action>
+                <next>299100</next>
+            </phrase>
+            <phrase id="29103">
+                <text>mil_night_stalker_bankir_dialog_56</text>
+                <precondition>sgm_dialogs.actor_have_3000_money</precondition>
+                <action>sgm_dialogs.bankir_deposit_add_3000</action>
+                <next>299100</next>
+            </phrase>
+            <phrase id="29104">
+                <text>mil_night_stalker_bankir_dialog_57</text>
+                <precondition>sgm_dialogs.actor_have_4000_money</precondition>
+                <action>sgm_dialogs.bankir_deposit_add_4000</action>
+                <next>299100</next>
+            </phrase>
+            <phrase id="29105">
+                <text>mil_night_stalker_bankir_dialog_58</text>
+                <precondition>sgm_dialogs.actor_have_5000_money</precondition>
+                <action>sgm_dialogs.bankir_deposit_add_5000</action>
+                <next>299100</next>
+            </phrase>
+            <phrase id="29110">
+                <text>mil_night_stalker_bankir_dialog_59</text>
+                <precondition>sgm_dialogs.actor_have_10000_money</precondition>
+                <action>sgm_dialogs.bankir_deposit_add_10000</action>
+                <next>299100</next>
+            </phrase>
+            <phrase id="291101">
+                <text>mil_night_stalker_bankir_dialog_59_1</text>
+                <precondition>sgm_dialogs.actor_have_25000_money</precondition>
+                <action>sgm_dialogs.bankir_deposit_add_25000</action>
+                <next>299100</next>
+            </phrase>
+            <phrase id="291102">
+                <text>mil_night_stalker_bankir_dialog_59_2</text>
+                <precondition>sgm_dialogs.actor_have_50000_money</precondition>
+                <action>sgm_dialogs.bankir_deposit_add_50000</action>
+                <next>299100</next>
+            </phrase>
+            <phrase id="291103">
+                <text>mil_night_stalker_bankir_dialog_59_3</text>
+                <precondition>sgm_dialogs.actor_have_100000_money</precondition>
+                <action>sgm_dialogs.bankir_deposit_add_100000</action>
+                <next>299100</next>
+            </phrase>
+            <phrase id="2920">
+                <text>mil_night_stalker_bankir_dialog_60</text>
+                <precondition>sgm_dialogs.actor_something_deposit</precondition>
+                <precondition>sgm_dialogs.is_deposit_time</precondition>
+                <next>29200</next>
+            </phrase>
+            <phrase id="29200">
+                <text>mil_night_stalker_bankir_dialog_61</text>
+                <next>29300</next>
+                <next>29400</next>
+                <next>29500</next>
+                <next>2999</next>
+            </phrase>
+            <phrase id="29300">
+                <text>mil_night_stalker_bankir_dialog_62</text>
+                <precondition>sgm_dialogs.actor_something_percent</precondition>
+                <precondition>sgm_dialogs.is_percent_allow</precondition>
+                <action>sgm_dialogs.bankir_deposit_convert_percent</action>
+                <next>29301</next>
+            </phrase>
+            <phrase id="29301">
+                <text>mil_night_stalker_bankir_dialog_63</text>
+                <next>29302</next>
+            </phrase>
+            <phrase id="29302">
+                <text>mil_night_stalker_bankir_dialog_64</text>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+            <phrase id="29400">
+                <text>mil_night_stalker_bankir_dialog_65</text>
+                <precondition>sgm_dialogs.actor_something_deposit</precondition>
+                <action>sgm_dialogs.bankir_deposit_convert_all</action>
+                <next>29401</next>
+            </phrase>
+            <phrase id="29401">
+                <text>mil_night_stalker_bankir_dialog_66</text>
+                <next>29402</next>
+            </phrase>
+            <phrase id="29402">
+                <text>mil_night_stalker_bankir_dialog_67</text>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+            <phrase id="29500">
+                <text>mil_night_stalker_bankir_dialog_68</text>
+                <precondition>sgm_dialogs.actor_something_deposit</precondition>
+                <action>sgm_dialogs.bankir_show_something_percent</action>
+                <next>29200</next>
+            </phrase>
+        </phrase_list>
+</dialog>
+</game_dialogs>

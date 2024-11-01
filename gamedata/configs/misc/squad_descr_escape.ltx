@@ -1,0 +1,248 @@
+;---------------------------------------------------------------------------------------;
+;                                       Кордон                                          ;
+;---------------------------------------------------------------------------------------;
+[esc_a1_monster_wave_1_squad]:online_offline_group
+faction = monster
+assault_squad = true
+npc = pseudodog_normal, pseudodog_normal, pseudodog_normal, pseudodog_normal, dog_weak, dog_normal, dog_strong, dog_cute
+target_smart = esc_monster_burrow_16
+story_id = esc_a1_monster_wave_1_squad
+on_member_death = {=killed_by_actor(esc_a1_monster_wave_1_squad)} %=esc_blockpost_protection_bonus_inc%
+on_death = %+esc_a1_monster_wave_1_squad_death%
+spot = quest_enemy_squad_2_location|st_monster_spot_name
+
+[esc_a1_monster_wave_2_squad]:online_offline_group
+faction = monster
+assault_squad = true
+npc = flesh_normal, flesh_normal, flesh_strong, flesh_cruel
+target_smart = esc_monster_burrow_16
+story_id = esc_a1_monster_wave_2_squad
+on_member_death = {=killed_by_actor(esc_a1_monster_wave_2_squad)} %=esc_blockpost_protection_bonus_inc%
+on_death = %+esc_a1_monster_wave_2_squad_death%
+spot = quest_enemy_squad_2_location|st_monster_spot_name
+
+[esc_a1_monster_wave_3_squad]:online_offline_group
+faction = monster
+assault_squad = true
+npc = boar_normal, boar_strong, boar_cruel, boar_cruel, flesh_strong, flesh_cruel
+target_smart = esc_monster_burrow_16
+story_id = esc_a1_monster_wave_3_squad
+on_member_death = {=killed_by_actor(esc_a1_monster_wave_3_squad)} %=esc_blockpost_protection_bonus_inc%
+on_death = %+esc_a1_monster_wave_3_squad_death%
+spot = quest_enemy_squad_2_location|st_monster_spot_name
+
+[esc_a1_monster_squad]:online_offline_group
+faction = monster
+npc = pseudodog_normal, pseudodog_normal, pseudodog_normal, pseudodog_normal, pseudodog_normal
+target_smart = esc_monster_burrow_1
+spawn_point = esc_monster_burrow_1_spawn_point
+story_id = esc_a1_monster_squad
+on_death = %=esc_a1_monster_squad_death +esc_lull_before_borax_pseudodog_done%
+
+[esc_a2_monster_wave_1_squad]:online_offline_group
+faction = monster
+assault_squad = true
+npc = dog_weak, dog_normal, dog_strong, dog_cute, dog_strong, pseudodog_normal
+target_smart = esc_monster_burrow_15
+story_id = esc_a2_monster_wave_1_squad
+on_death = %+esc_a2_monster_wave_1_squad_death%
+spot = quest_enemy_squad_2_location|st_monster_spot_name
+
+[esc_a2_monster_wave_2_squad]:online_offline_group
+faction = monster
+assault_squad = true
+npc = pseudodog_normal, pseudodog_normal, pseudodog_normal, pseudodog_normal, pseudodog_normal
+target_smart = esc_monster_burrow_15
+story_id = esc_a2_monster_wave_2_squad
+on_death = %+esc_a2_monster_wave_2_squad_death%
+spot = quest_enemy_squad_2_location|st_monster_spot_name
+
+[esc_a2_monster_wave_3_squad]:online_offline_group
+faction = monster
+assault_squad = true
+npc = flesh_normal, flesh_strong, boar_normal, boar_strong, flesh_cruel
+target_smart = esc_monster_burrow_15
+story_id = esc_a2_monster_wave_3_squad
+on_death = %+esc_a2_monster_wave_3_squad_death%
+spot = quest_enemy_squad_2_location|st_monster_spot_name
+
+[esc_a2_monster_squad]:online_offline_group
+faction = monster
+npc = dog_weak, dog_normal, dog_strong, dog_cute, dog_strong, dog_cute
+target_smart = esc_monster_burrow_2
+spawn_point = esc_monster_burrow_2_spawn_point
+story_id = esc_a2_monster_squad
+on_death = %=esc_a2_monster_squad_death +esc_lull_before_borax_dog_done%
+
+[esc_a3_monster_squad]:online_offline_group
+faction = monster
+npc = flesh_normal, flesh_normal, flesh_normal, flesh_strong, flesh_cruel
+target_smart = esc_monster_burrow_3
+spawn_point = esc_monster_burrow_3_spawn_point
+story_id = esc_a3_monster_squad
+on_death = %=esc_a3_monster_squad_death +esc_lull_before_borax_flesh_done%
+
+[esc_a5_monster_squad]:online_offline_group
+faction = monster
+npc = boar_normal, boar_normal, boar_normal, boar_strong, boar_cruel
+target_smart = esc_monster_burrow_5
+spawn_point = esc_monster_burrow_5_spawn_point
+story_id = esc_a5_monster_squad
+on_death = %+esc_lull_before_borax_boar_done%
+
+[esc_b1_stalker_squad]:online_offline_group
+faction = stalker
+npc = esc_b1_commander, sim_default_stalker_0, sim_default_stalker_1, sim_default_stalker_2, sim_default_stalker_0, sim_default_stalker_1, sim_default_stalker_2, sim_default_stalker_0, sim_default_stalker_1, sim_default_stalker_2, sim_default_stalker_0, sim_default_stalker_1, sim_default_stalker_2, sim_default_stalker_0, sim_default_stalker_1, sim_default_stalker_2
+target_smart = esc_smart_terrain_1
+spawn_point = esc_smart_terrain_1_spawn_point
+story_id = esc_b1_stalker_squad
+on_death = %+esc_b1_stalker_squad_death%
+
+[esc_b2_bandit_squad]:online_offline_group
+faction = bandit_enemy
+npc = esc_b2_commander, sim_default_bandit_enemy_0, sim_default_bandit_enemy_1, sim_default_bandit_enemy_2, sim_default_bandit_enemy_0, sim_default_bandit_enemy_1, sim_default_bandit_enemy_2, sim_default_bandit_enemy_0, sim_default_bandit_enemy_1, sim_default_bandit_enemy_2, sim_default_bandit_enemy_0, sim_default_bandit_enemy_1, sim_default_bandit_enemy_2, sim_default_bandit_enemy_0, sim_default_bandit_enemy_1
+target_smart = esc_smart_terrain_2
+spawn_point = esc_smart_terrain_2_spawn_point
+story_id = esc_b2_bandit_squad
+on_death = %+esc_b2_bandit_squad_death%
+
+[esc_b2_stalker_squad]:online_offline_group
+faction = stalker
+assault_squad = true
+npc = sim_default_stalker_0, sim_default_stalker_1, sim_default_stalker_2, sim_default_stalker_0, sim_default_stalker_1, sim_default_stalker_2
+target_smart = esc_smart_terrain_2
+spawn_point = esc_smart_terrain_1_spawn_point
+story_id = esc_b2_stalker_squad
+on_death = %+esc_b2_stalker_squad_death%
+
+[esc_b2_stalker_invaders_squad]:online_offline_group
+faction = stalker
+assault_squad = true
+npc = sim_default_stalker_2, sim_default_stalker_1, sim_default_stalker_0
+target_smart = esc_smart_terrain_2
+spawn_point = esc_smart_terrain_31_spawn_point
+story_id = esc_b2_stalker_invaders_squad
+on_death = %+esc_b2_stalker_invaders_squad_death%
+
+[esc_b2_bandit_retreat_squad]:online_offline_group
+faction = bandit_enemy
+assault_squad = true
+npc = sim_default_bandit_enemy_0, sim_default_bandit_enemy_1, sim_default_bandit_enemy_2, sim_default_bandit_enemy_0
+target_smart = esc_smart_terrain_26:esc_smart_terrain_27:esc_smart_terrain_28:esc_smart_terrain_24:loop
+story_id = esc_b2_bandit_retreat_squad
+on_death = %+esc_village_annex_overtake%
+
+[esc_b3_bandit_squad]:online_offline_group
+faction = bandit_enemy
+npc = esc_b3_commander, sim_default_bandit_enemy_0, sim_default_bandit_enemy_1, sim_default_bandit_enemy_2, sim_default_bandit_enemy_0, sim_default_bandit_enemy_1, sim_default_bandit_enemy_2, sim_default_bandit_enemy_0, sim_default_bandit_enemy_1, sim_default_bandit_enemy_2, sim_default_bandit_enemy_0, sim_default_bandit_enemy_1, sim_default_bandit_enemy_2, sim_default_bandit_enemy_0, sim_default_bandit_enemy_1
+target_smart = esc_smart_terrain_3
+spawn_point = esc_smart_terrain_3_spawn_point
+story_id = esc_b3_bandit_squad
+on_death = %+esc_b3_bandit_squad_death%
+online_cond = {+esc_atp_annex_is_night} true
+
+[esc_b3_stalker_squad]:online_offline_group
+faction = stalker
+assault_squad = true
+npc = sim_default_stalker_0, sim_default_stalker_1, sim_default_stalker_2, sim_default_stalker_0, sim_default_stalker_1, sim_default_stalker_2, sim_default_stalker_3, sim_default_stalker_1
+target_smart = esc_smart_terrain_3
+story_id = esc_b3_stalker_squad
+on_death = %+esc_b3_stalker_squad_death%
+
+[esc_b3_stalker_invaders_squad]:online_offline_group
+faction = stalker
+assault_squad = true
+npc = sim_default_stalker_0, sim_default_stalker_1, sim_default_stalker_2
+target_smart = esc_smart_terrain_3
+spawn_point = esc_smart_terrain_28_spawn_point
+story_id = esc_b3_stalker_invaders_squad
+on_death = %+esc_b3_stalker_invaders_squad_death%
+
+[esc_b4_bandit_squad]:online_offline_group
+faction = bandit_enemy
+npc = sim_default_bandit_enemy_0, sim_default_bandit_enemy_1, sim_default_bandit_enemy_2, sim_default_bandit_enemy_0, sim_default_bandit_enemy_1, sim_default_bandit_enemy_2
+target_smart = esc_smart_terrain_4
+spawn_point = esc_smart_terrain_4_spawn_point
+story_id = esc_b4_bandit_squad
+on_death = %+esc_b4_bandit_squad_death%
+
+[esc_b5_bandit_squad]:online_offline_group
+faction = bandit_enemy
+npc = sim_default_bandit_enemy_0, sim_default_bandit_enemy_1, sim_default_bandit_enemy_2, sim_default_bandit_enemy_0, sim_default_bandit_enemy_1, sim_default_bandit_enemy_2
+target_smart = esc_smart_terrain_5
+spawn_point = esc_smart_terrain_5_spawn_point
+story_id = esc_b5_bandit_squad
+on_death = %+esc_b5_bandit_squad_death%
+
+[esc_b6_bandit_squad]:online_offline_group
+faction = bandit_enemy
+npc = esc_b6_commander, sim_default_bandit_enemy_0, sim_default_bandit_enemy_1, sim_default_bandit_enemy_2, sim_default_bandit_enemy_0, sim_default_bandit_enemy_1, sim_default_bandit_enemy_2, sim_default_bandit_enemy_0, sim_default_bandit_enemy_1, sim_default_bandit_enemy_2, sim_default_bandit_enemy_0, sim_default_bandit_enemy_1, sim_default_bandit_enemy_2, sim_default_bandit_enemy_0, sim_default_bandit_enemy_1, sim_default_bandit_enemy_2, sim_default_bandit_enemy_0, sim_default_bandit_enemy_1, sim_default_bandit_enemy_2, sim_default_bandit_enemy_2
+target_smart = esc_smart_terrain_6
+spawn_point = esc_smart_terrain_6_spawn_point
+story_id = esc_b6_bandit_squad
+on_death = %+esc_b6_bandit_squad_death%
+
+[esc_b6_stalker_invaders_squad]:online_offline_group
+faction = stalker
+assault_squad = true
+npc = sim_default_stalker_0, sim_default_stalker_1, sim_default_stalker_2, sim_default_stalker_0, sim_default_stalker_1, sim_default_stalker_2
+target_smart = esc_smart_terrain_6
+spawn_point = esc_smart_terrain_3_spawn_point
+story_id = esc_b6_stalker_invaders_squad
+on_death = %+esc_b6_stalker_invaders_squad_death%
+
+[esc_b7_bandit_squad]:online_offline_group
+faction = bandit_enemy
+npc = esc_b7_commander, sim_default_bandit_enemy_0, sim_default_bandit_enemy_1, sim_default_bandit_enemy_2, sim_default_bandit_enemy_3, sim_default_bandit_enemy_1, sim_default_bandit_enemy_2, sim_default_bandit_enemy_3, sim_default_bandit_enemy_0, , sim_default_bandit_enemy_1, sim_default_bandit_enemy_2, sim_default_bandit_enemy_3, sim_default_bandit_enemy_1
+target_smart = esc_smart_terrain_7
+spawn_point = esc_smart_terrain_7_spawn_point
+story_id = esc_b7_bandit_squad
+on_death = %+esc_b7_bandit_squad_death%
+
+[esc_b8_bandit_squad]:online_offline_group
+faction = bandit_enemy
+npc = sim_default_bandit_enemy_0, sim_default_bandit_enemy_1, sim_default_bandit_enemy_2, sim_default_bandit_enemy_3, sim_default_bandit_enemy_1
+target_smart = esc_smart_terrain_8
+spawn_point = esc_smart_terrain_8_spawn_point
+story_id = esc_b8_bandit_squad
+on_death = %+esc_b8_bandit_squad_death%
+
+[esc_b9_bandit_squad]:online_offline_group
+faction = bandit_enemy
+npc = sim_default_bandit_enemy_0, sim_default_bandit_enemy_1, sim_default_bandit_enemy_2, sim_default_bandit_enemy_3, sim_default_bandit_enemy_1
+target_smart = esc_smart_terrain_9
+spawn_point = esc_smart_terrain_9_spawn_point
+story_id = esc_b9_bandit_squad
+on_death = %+esc_b9_bandit_squad_death%
+
+[esc_b10_bandit_squad]:online_offline_group
+faction = bandit_enemy
+npc = sim_default_bandit_enemy_0, sim_default_bandit_enemy_1, sim_default_bandit_enemy_2, sim_default_bandit_enemy_3
+target_smart = esc_smart_terrain_10
+spawn_point = esc_smart_terrain_10_spawn_point
+story_id = esc_b10_bandit_squad
+on_death = %+esc_b10_bandit_squad_death%
+
+[esc_b18_bandit_squad]:online_offline_group
+faction = bandit_enemy
+npc = sim_default_bandit_enemy_0, sim_default_bandit_enemy_1, sim_default_bandit_enemy_2, sim_default_bandit_enemy_3, sim_default_bandit_enemy_1
+target_smart = esc_smart_terrain_18
+spawn_point = esc_smart_terrain_18_spawn_point
+story_id = esc_b18_bandit_squad
+on_death = %+esc_b18_bandit_squad_death%
+
+[esc_b19_bandit_squad]:online_offline_group
+faction = bandit_enemy
+npc = sim_default_bandit_enemy_0, sim_default_bandit_enemy_1, sim_default_bandit_enemy_2, sim_default_bandit_enemy_3, sim_default_bandit_enemy_1
+target_smart = esc_smart_terrain_19
+spawn_point = esc_smart_terrain_19_spawn_point
+story_id = esc_b19_bandit_squad
+on_death = %+esc_b19_bandit_squad_death%
+
+[esc_b22_bandit_squad]:online_offline_group
+faction = bandit_enemy
+npc = sim_default_bandit_enemy_0, sim_default_bandit_enemy_1, sim_default_bandit_enemy_2, sim_default_bandit_enemy_3, sim_default_bandit_enemy_1, sim_default_bandit_enemy_0, sim_default_bandit_enemy_1, sim_default_bandit_enemy_2, sim_default_bandit_enemy_3
+target_smart = esc_smart_terrain_22
+spawn_point = esc_smart_terrain_22_spawn_point
+story_id = esc_b22_bandit_squad
+on_death = %+esc_b22_bandit_squad_death%

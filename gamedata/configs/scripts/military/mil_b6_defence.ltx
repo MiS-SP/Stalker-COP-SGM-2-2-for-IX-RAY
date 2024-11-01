@@ -1,0 +1,9 @@
+;Зона запускающая волну мутантов на "Восточной Заставе".
+
+[logic]
+active = sr_idle
+
+[sr_idle]
+on_info = {+mil_defence_b6_start -mil_defence_b6_allow =actor_in_zone(mil_b6_defence)} sr_idle@end %+mil_defence_b6_allow%
+
+[sr_idle@end]

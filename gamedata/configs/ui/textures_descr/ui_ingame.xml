@@ -1,0 +1,172 @@
+<w>
+   <file name="wpn\crosshairs\wpn_crosshair">
+    <texture id="wpn_crosshair" x="0" y="0" width="1024" height="1024" />
+     <texture id="wpn_crosshair_add_l" x="0"	y="0" width="102" height="768" />
+     <texture id="wpn_crosshair_add_r" x="0"	y="0" width="102" height="768" />
+   </file>
+   <file name="wpn\crosshairs\wpn_crosshair_2">
+    <texture id="wpn_crosshair_2" x="0" y="0" width="1024" height="1024" />
+   </file>
+   <file name="wpn\crosshairs\wpn_crosshair_3">
+    <texture id="wpn_crosshair_3" x="0" y="0" width="1024" height="1024" />
+   </file>
+   <file name="wpn\crosshairs\wpn_crosshair_4">
+    <texture id="wpn_crosshair_4" x="0" y="0" width="1024" height="1024" />
+   </file>
+   <file name="wpn\crosshairs\wpn_crosshair_5">
+    <texture id="wpn_crosshair_5" x="0" y="0" width="1024" height="1024" />
+   </file>
+   <file name="wpn\crosshairs\wpn_crosshair_6">
+    <texture id="wpn_crosshair_6" x="0" y="0" width="1024" height="1024" />
+   </file>
+   <file name="wpn\crosshairs\wpn_crosshair_7">
+    <texture id="wpn_crosshair_7" x="0" y="0" width="1024" height="1024" />
+   </file>
+   <file name="wpn\crosshairs\wpn_crosshair_8">
+    <texture id="wpn_crosshair_8" x="0" y="0" width="1024" height="1024" />
+   </file>
+   <file name="wpn\crosshairs\wpn_crosshair_9">
+    <texture id="wpn_crosshair_9" x="0" y="0" width="1024" height="1024" />
+   </file>
+   <file name="wpn\crosshairs\wpn_crosshair_10">
+    <texture id="wpn_crosshair_10" x="0" y="0" width="1024" height="1024" />
+   </file>
+   <file name="wpn\crosshairs\wpn_crosshair_11">
+    <texture id="wpn_crosshair_11" x="0" y="0" width="1024" height="1024" />
+   </file>
+   <file name="wpn\crosshairs\wpn_crosshair_12">
+    <texture id="wpn_crosshair_12" x="0" y="0" width="1024" height="1024" />
+   </file>
+   <file name="wpn\crosshairs\wpn_crosshair_13">
+    <texture id="wpn_crosshair_13" x="0" y="0" width="1024" height="1024" />
+   </file>
+   <file name="wpn\crosshairs\wpn_crosshair_14">
+    <texture id="wpn_crosshair_14" x="0" y="0" width="1024" height="1024" />
+   </file>
+   <file name="wpn\crosshairs\wpn_crosshair_15">
+    <texture id="wpn_crosshair_15" x="0" y="0" width="1024" height="1024" />
+   </file>
+   <file name="wpn\crosshairs\wpn_crosshair_16">
+    <texture id="wpn_crosshair_16" x="0" y="0" width="1024" height="1024" />
+   </file>
+   <file name="wpn\crosshairs\wpn_crosshair_17">
+    <texture id="wpn_crosshair_17" x="0" y="0" width="1024" height="1024" />
+   </file>
+   <file name="wpn\crosshairs\wpn_crosshair_18">
+    <texture id="wpn_crosshair_18" x="0" y="0" width="1024" height="1024" />
+   </file>
+   <file name="wpn\crosshairs\wpn_crosshair_19">
+    <texture id="wpn_crosshair_19" x="0" y="0" width="1024" height="1024" />
+   </file>
+   <file name="wpn\crosshairs\wpn_crosshair_20">
+    <texture id="wpn_crosshair_20" x="0" y="0" width="1024" height="1024" />
+   </file>
+   <file name="wpn\crosshairs\wpn_crosshair_21">
+    <texture id="wpn_crosshair_21" x="0" y="0" width="1024" height="1024" />
+   </file>
+   <file name="wpn\crosshairs\wpn_crosshair_bino">
+    <texture id="wpn_crosshair_bino" x="0" y="0" width="1024" height="1024" />
+   </file>
+   <file name="wpn\crosshairs\wpn_crosshair_bino_m1">
+    <texture id="wpn_crosshair_bino_m1" x="0" y="0" width="1024" height="1024" />
+   </file>
+   <file name="wpn\crosshairs\wpn_crosshair_bino_m2">
+    <texture id="wpn_crosshair_bino_m2" x="0" y="0" width="1024" height="1024" />
+   </file>
+   <file name="wpn\crosshairs\wpn_crosshair_bino_m3">
+    <texture id="wpn_crosshair_bino_m3" x="0" y="0" width="1024" height="1024" />
+   </file>
+   <file name="wpn\crosshairs\wpn_crosshair_01">
+    <texture id="wpn_crosshair_coll_1" x="0" y="0" width="1024" height="1024" />
+   </file>
+   <file name="wpn\crosshairs\wpn_crosshair_02">
+    <texture id="wpn_crosshair_coll_2" x="0" y="0" width="1024" height="1024" />
+   </file>
+   <file name="wpn\crosshairs\wpn_crosshair_03">
+    <texture id="wpn_crosshair_coll_3" x="0" y="0" width="1024" height="1024" />
+   </file>
+   <file name="wpn\crosshairs\wpn_crosshair_04">
+    <texture id="wpn_crosshair_coll_4" x="0" y="0" width="1024" height="1024" />
+   </file>
+   <file name="wpn\crosshairs\wpn_crosshair_05">
+    <texture id="wpn_crosshair_coll_5" x="0" y="0" width="1024" height="1024" />
+   </file>
+   <file name="wpn\crosshairs\wpn_crosshair_06">
+    <texture id="wpn_crosshair_coll_6" x="0" y="0" width="1024" height="1024" />
+   </file>
+   <file name="wpn\crosshairs\wpn_crosshair_07">
+    <texture id="wpn_crosshair_coll_7" x="0" y="0" width="1024" height="1024" />
+   </file>
+   <file name="wpn\crosshairs\wpn_crosshair_08">
+    <texture id="wpn_crosshair_coll_8" x="0" y="0" width="1024" height="1024" />
+   </file>
+   <file name="wpn\crosshairs\wpn_crosshair_09">
+    <texture id="wpn_crosshair_coll_9" x="0" y="0" width="1024" height="1024" />
+   </file>
+   <file name="wpn\crosshairs\wpn_crosshair_010">
+    <texture id="wpn_crosshair_coll_10" x="0" y="0" width="1024" height="1024" />
+   </file>
+   <file name="wpn\crosshairs\wpn_crosshair_011">
+    <texture id="wpn_crosshair_coll_11" x="0" y="0" width="1024" height="1024" />
+   </file>
+   <file name="wpn\crosshairs\wpn_crosshair_012">
+    <texture id="wpn_crosshair_coll_12" x="0" y="0" width="1024" height="1024" />
+   </file>
+   <file name="wpn\crosshairs\wpn_crosshair_013">
+    <texture id="wpn_crosshair_coll_13" x="0" y="0" width="1024" height="1024" />
+   </file>
+   <file name="wpn\crosshairs\wpn_crosshair_014">
+    <texture id="wpn_crosshair_coll_14" x="0" y="0" width="1024" height="1024" />
+   </file>
+   <file name="wpn\crosshairs\wpn_crosshair_015">
+    <texture id="wpn_crosshair_coll_15" x="0" y="0" width="1024" height="1024" />
+   </file>
+   <file name="wpn\crosshairs\wpn_crosshair_016">
+    <texture id="wpn_crosshair_coll_16" x="0" y="0" width="1024" height="1024" />
+   </file>
+   <file name="wpn\crosshairs\wpn_crosshair_017">
+    <texture id="wpn_crosshair_coll_17" x="0" y="0" width="1024" height="1024" />
+   </file>
+   <file name="wpn\crosshairs\wpn_crosshair_018">
+    <texture id="wpn_crosshair_coll_18" x="0" y="0" width="1024" height="1024" />
+   </file>
+   <file name="wpn\crosshairs\wpn_crosshair_019">
+    <texture id="wpn_crosshair_coll_19" x="0" y="0" width="1024" height="1024" />
+   </file>
+   <file name="wpn\crosshairs\wpn_crosshair_020">
+    <texture id="wpn_crosshair_coll_20" x="0" y="0" width="1024" height="1024" />
+   </file>
+   <file name="wpn\crosshairs\wpn_crosshair_001">
+    <texture id="wpn_crosshair_spec_1" x="0" y="0" width="1024" height="1024" />
+   </file>
+   <file name="wpn\crosshairs\wpn_crosshair_002">
+    <texture id="wpn_crosshair_spec_2" x="0" y="0" width="1024" height="1024" />
+   </file>
+   <file name="wpn\crosshairs\wpn_crosshair_003">
+    <texture id="wpn_crosshair_spec_3" x="0" y="0" width="1024" height="1024" />
+   </file>
+   <file name="wpn\crosshairs\wpn_crosshair_004">
+    <texture id="wpn_crosshair_spec_4" x="0" y="0" width="1024" height="1024" />
+   </file>
+   <file name="wpn\crosshairs\wpn_crosshair_005">
+    <texture id="wpn_crosshair_spec_5" x="0" y="0" width="1024" height="1024" />
+   </file>
+   <file name="wpn\crosshairs\wpn_crosshair_006">
+    <texture id="wpn_crosshair_spec_6" x="0" y="0" width="1024" height="1024" />
+   </file>
+   <file name="wpn\crosshairs\wpn_crosshair_007">
+    <texture id="wpn_crosshair_spec_7" x="0" y="0" width="1024" height="1024" />
+   </file>
+   <file name="wpn\crosshairs\wpn_crosshair_008">
+    <texture id="wpn_crosshair_spec_8" x="0" y="0" width="1024" height="1024" />
+   </file>
+   <file name="wpn\crosshairs\wpn_crosshair_009">
+    <texture id="wpn_crosshair_spec_9" x="0" y="0" width="1024" height="1024" />
+   </file>
+   <file name="wpn\crosshairs\wpn_crosshair_0010">
+    <texture id="wpn_crosshair_spec_10" x="0" y="0" width="1024" height="1024" />
+   </file>
+   <file name="wpn\crosshairs\wpn_crosshair_0011">
+    <texture id="wpn_crosshair_spec_11" x="0" y="0" width="1024" height="1024" />
+   </file>
+</w>

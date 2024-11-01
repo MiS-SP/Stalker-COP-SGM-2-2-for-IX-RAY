@@ -1,0 +1,13 @@
+[logic]
+active = ph_idle@retranslator_take
+
+[ph_idle@retranslator_take]
+nonscript_usable = false
+tips = st_take_retranslator
+on_use = ph_idle@retranslator_heavy %+pri_expiation_sin_3_retranslator_used =autosave_game(save_pri_expiation_sin_3_retranslator_got)%
+on_info = {+pri_expiation_sin_3_say_kiborg_about_retranslator} nil
+
+[ph_idle@retranslator_heavy]
+nonscript_usable = false
+tips = st_retranslator_is_heavy
+on_info = {+pri_expiation_sin_3_say_kiborg_about_retranslator} nil

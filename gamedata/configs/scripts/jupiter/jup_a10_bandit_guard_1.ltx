@@ -1,0 +1,20 @@
+[logic@jup_a10_bandit_guard_1]
+suitable = {=target_squad_name(jup_a10_bandit_squad_3) !check_npc_name(jup_a10_bandit_leader)} true
+prior = 100
+active = walker@jup_a10_bandit_guard_1
+on_death = death
+
+[death]
+on_info = {=killed_by_actor =squad_exist(jup_a10_bandit_squad) =squad_exist(jup_a10_bandit_squad_2) =squad_exist(jup_a10_bandit_squad_3)} %=set_squad_enemy_to_actor(jup_a10_bandit_squad) =set_squad_enemy_to_actor(jup_a10_bandit_squad_2) =set_squad_enemy_to_actor(jup_a10_bandit_squad_3)%
+
+[walker@jup_a10_bandit_guard_1]
+path_walk = jup_a10_bandit_guard_1_walk
+path_look  = jup_a10_bandit_guard_1_look
+on_info = {=surge_started} walker@surge
+
+
+[walker@surge]
+path_walk = bodyguard_1_walk
+path_look  = bodyguard_1_look
+on_info = {=surge_complete} walker@jup_a10_bandit_guard_1
+

@@ -1,0 +1,24 @@
+[logic]
+active = move@guard
+on_death = death
+
+[death]
+on_info = %+zat_quest_the_spez_freedom_1_3_dead%
+
+[move@guard]
+scheme_type            = patrol
+patrol_count_path      = 3
+patrol_path_1          = 17887
+patrol_path_1_state    = patrol
+patrol_path_2          = 27719
+patrol_path_2_state    = patrol
+patrol_path_3          = 73282
+meet                   = meet
+
+
+[meet]
+abuse           = true
+use             = false
+allow_break     = true
+meet_on_talking = false
+

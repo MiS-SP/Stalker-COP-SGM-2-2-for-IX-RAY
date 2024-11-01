@@ -1,0 +1,18 @@
+;Логика "Военная база"
+
+[walker@def_guarder]
+use_camp = false
+gather_items_enabled = false
+help_wounded_enabled = true
+corpse_detection_enabled = false
+
+;
+
+[logic@agr_b2_commander]
+active = walker@commander
+suitable = {=check_npc_name(agr_b2_base_commander)} true
+prior = 200
+
+[walker@commander]:walker@def_guarder
+path_walk = commander_walk
+path_look = commander_look

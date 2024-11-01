@@ -1,0 +1,158 @@
+;---------------------------------------------------------------------------------------;
+;                                  Desert Eagle                                         ;
+;---------------------------------------------------------------------------------------;
+[wpn_desert_eagle]:identity_immunities,weapon_probability,default_weapon_params,mod_desert_eagle,mod_desert_eagle_damage,mod_desert_eagle_sounds,mod_pistol2_particles,cost_wpn_desert_eagle
+GroupControlSection     = spawn_group
+discovery_dependency 	=
+$spawn                  = "weapons\Desert Eagle"
+$npc			= on
+$prefetch 	        = 8
+scheduled         	= off
+cform             	= skeleton
+class                   = WP_PM
+ef_weapon_type		= 5
+;-----------[Главные параметры]----------------;
+inv_weight		= 1.7
+inv_name		= st_wpn_eagle
+inv_name_short		= st_wpn_eagle
+description		= st_wpn_eagle_descr
+inv_grid_width		= 2
+inv_grid_height		= 1
+inv_grid_x		= 6
+inv_grid_y		= 25
+upgr_icon_x		= 794
+upgr_icon_y		= 614
+upgr_icon_width		= 203
+upgr_icon_height   	= 132
+ammo_elapsed		= 8
+ammo_mag_size		= 8
+ammo_class		= ammo_11.43x23_fmj, ammo_11.43x23_hydro, ammo_dumdum
+;-------------[Модернизация]-------------------;
+upgrades                = up_gr_firstab_desert_eagle, up_gr_firstcd_desert_eagle, up_gr_firste_desert_eagle, up_gr_firstf_desert_eagle, up_gr_seconab_desert_eagle, up_gr_seconcd_desert_eagle, up_gr_secone_desert_eagle, up_gr_seconf_desert_eagle, up_gr_thirda_desert_eagle, up_gr_thirdc_desert_eagle, up_gr_thirdd_desert_eagle, up_gr_thirdef_desert_eagle, up_gr_fourtab_desert_eagle, up_gr_fourtcd_desert_eagle, up_gr_fifthab_desert_eagle, up_gr_change_components_desert_eagle
+installed_upgrades      =
+upgrade_scheme          = upgrade_scheme_desert_eagle
+scope_status		= 0
+silencer_status		= 0
+grenade_launcher_status	= 0
+zoom_enabled		= true
+zoom_rotate_time        = 0.25
+scope_zoom_factor	= 55
+silencer_name  		= wpn_addon_silencer_11.43x23
+silencer_x 		= 78
+silencer_y 		= -18
+;--------------[Дисперсия]---------------------;
+fire_dispersion_base	= 0.40 			
+control_inertion_factor	= 1.1
+crosshair_inertion	= 4
+cam_return		= 0
+cam_relax_speed         = 6			
+cam_relax_speed_ai      = 120.75
+cam_dispersion          = 1.8		
+cam_dispersion_inc	= 1.8		
+cam_dispersion_frac	= 1.0		
+cam_max_angle		= 15.0		
+cam_max_angle_horz	= 15.0		
+cam_step_angle_horz	= 1.0		
+fire_dispersion_condition_factor = 12
+;--------[Держания ствола в руках НПС]---------;
+position                = -0.021, -0.085, 0.0
+orientation             = 0, 0, 0
+;-----------[Другие параметры]-----------------;
+use_aim_bullet		= false
+time_to_aim		= 1.0
+hud                     = wpn_desert_eagle_hud
+misfire_probability     = 0.005
+misfire_start_condition	= 0.6
+misfire_end_condition   = 0.1
+misfire_start_prob	= 0.01
+misfire_end_prob	= 0.1
+condition_shot_dec      = 0.0045
+condition_queue_shot_dec= 0.0045
+hand_dependence		= 1
+single_handed	        = 1
+zoom_dof		= -1000, 1.0, 1000
+reload_dof		= 0.0, 0.5, 5, 1.7
+PDM_disp_base 		= 0.9
+PDM_disp_vel_factor 	= 1.1
+PDM_disp_accel_factor 	= 1.1
+PDM_disp_crouch	 	= 1.0
+PDM_disp_crouch_no_acc 	= 1.0
+holder_range_modifier	= 1.0               
+holder_fov_modifier	= 1.0              
+min_radius              = 0
+max_radius              = 50
+slot 			= 1
+animation_slot		= 1									
+default_to_ruck		= false
+sprint_allowed	        = true
+kill_msg_x		= 194
+kill_msg_y		= 123
+kill_msg_width		= 46
+kill_msg_height		= 27
+visual                  = dynamics\weapons\wpn_desert_eagle\wpn_desert_eagle.ogf
+fire_point              = 0.0, 0.133, 0.22
+shell_point		= 0.0, 0.133, 0.047
+shell_dir		= 0.0, 0.0, 0.4
+light_color		= 0.6,0.5,0.3
+light_range		= 3.0
+light_var_color		= 0.05
+light_var_range		= 0.5
+light_time 		= 0.2
+ph_mass			= 1
+silencer_light_color	= 0.6,0.5,0.3
+silencer_light_range	= 0.01
+silencer_light_var_color= 0.05
+silencer_light_var_range= 0.5
+silencer_light_time 	= 0.2
+
+[wpn_desert_eagle_hud]:hud_base
+zoom_hide_crosshair	= true
+hands_position		= -0.021000,-0.160000,0.002500
+hands_orientation	= -0.350000,0.650000,0.849999
+hands_position_16x9	= -0.010000,-0.176500,0.039000
+hands_orientation_16x9	= -1.500000,0.800000,2.449998
+item_position		= 0.000746,-0.000321,0.003479
+item_orientation	= 1.239378,-0.134046,-2.052052
+item_visual             = dynamics\weapons\wpn_desert_eagle\wpn_desert_eagle_hud.ogf
+attach_place_idx	= 0
+shell_point		= 0.021,0.057,0.456
+shell_bone              = wpn_body
+fire_point		= 0,0.048,0.222
+fire_bone               = wpn_body
+anm_show		= desert_eagle_draw
+anm_show_empty		= desert_eagle_draw, desert_eagle_opened
+anm_hide             	= desert_eagle_holster
+anm_hide_empty         	= desert_eagle_holster, desert_eagle_opened
+anm_idle             	= desert_eagle_idle
+anm_idle_empty         	= desert_eagle_idle, desert_eagle_opened
+anm_shots		= desert_eagle_shoot
+anm_shot_l		= desert_eagle_shoot, desert_eagle_open
+anm_idle_aim		= desert_eagle_idle_aim
+anm_idle_aim_empty	= desert_eagle_idle_aim, desert_eagle_opened
+anm_reload		= desert_eagle_reload
+anm_reload_empty	= desert_eagle_reload, desert_eagle_close
+anm_idle_moving 	= desert_eagle_idle_moving
+anm_idle_moving_empty	= desert_eagle_idle_moving, desert_eagle_opened
+anm_idle_sprint		= desert_eagle_idle_sprint
+anm_idle_sprint_empty	= desert_eagle_idle_sprint, desert_eagle_opened
+anm_bore		= desert_eagle_idle_bore
+anm_bore_empty		= desert_eagle_idle_bore, desert_eagle_opened
+aim_hud_offset_pos	= -0.104500,0.015500,-0.063500
+aim_hud_offset_rot	= -0.022500,0.007500,-0.035000
+gl_hud_offset_pos	= 0,0,0
+gl_hud_offset_rot	= 0,0,0
+lean_hud_offset_pos	= 0,0,0
+lean_hud_offset_rot	= 0,0,0
+aim_hud_offset_pos_16x9	= -0.120501,0.033000,0.000000
+aim_hud_offset_rot_16x9	= -0.017500,-0.010000,-0.010000
+
+;---------------------------------------------------------------------------------------;
+;                                  Модификации                                          ;
+;---------------------------------------------------------------------------------------;
+
+[wpn_desert_eagle_nimble]:wpn_desert_eagle,cost_wpn_desert_eagle_nimble
+$spawn                  = "weapons\wpn_desert_eagle_nimble"
+inv_name		= st_wpn_desert_eagle_nimble
+description		= st_wpn_desert_eagle_nimble_descr
+fire_dispersion_base	= 0.11
+hit_power           	= 0.80, 0.80, 0.80, 0.80

@@ -1,0 +1,69 @@
+	<string id="st_up_change_components_name">
+		<text>Замена основных компонентов</text>
+	</string>
+	<string id="st_up_change_components_descr">
+		<text>Полное переоборудование оружия позволяет повысить практически все боевые характеристики.</text>
+	</string>
+	<string id="st_up_technological_fortification_name">
+		<text>Технологическое укрепление брони</text>
+	</string>
+	<string id="st_up_technological_fortification_descr">
+		<text>Перепрошивка и уплотнение позволяют повысить защитные характеристики бронекостюма.</text>
+	</string>
+	<string id="st_prop_mod_outfit">
+		<text>Технологическое укрепление брони</text>
+	</string>
+	<string id="st_prop_mod_weapon">
+		<text>Замена основных компонентов</text>
+	</string>
+	<string id="st_upgrade_rpg7_optika_name">
+		<text>Оптика современных гранатометов</text>
+	</string>
+	<string id="st_upgrade_rpg7_optika_descr">
+		<text>Позволяет модернизировать оптический глазок гранатомета, увеличив дальность обзора.</text>
+	</string>
+	<string id="st_upgrade_rpg7_kurok_name">
+		<text>Облегчение гранатомета</text>
+	</string>
+	<string id="st_upgrade_rpg7_kurok_descr">
+		<text>Позволяет облегчить вес РПГ-7, для удобного переноса.</text>
+	</string>
+	<string id="st_upgrade_rpg7_truba_name">
+		<text>Модернизация дульного отверстия</text>
+	</string>
+	<string id="st_upgrade_rpg7_truba_descr">
+		<text>Увеличивает скорость полета боеголовки, а также скорострельность самого гранатомета.</text>
+	</string>
+	<string id="st_upgrade_rpg7_body_name">
+		<text>Техническое усовершенствование</text>
+	</string>
+	<string id="st_upgrade_rpg7_body_descr">
+		<text>Полное техническое усовершенствование оружия, позволяющее повысить практически все боевые характеристики.</text>
+	</string>
+	<string id="st_upgrade_demo_kanistra_name">
+		<text>Долив топлива</text>
+	</string>
+	<string id="st_upgrade_demo_kanistra_descr">
+		<text>Позволит увеличить мощность взрыва.</text>
+	</string>
+	<string id="st_upgrade_demo_ballon_name">
+		<text>Докачка газа</text>
+	</string>
+	<string id="st_upgrade_demo_ballon_descr">
+		<text>Позволит увеличить мощность взрыва.</text>
+	</string>
+	<string id="st_upgrade_demo_barrel_name">
+		<text>Докачка топлива</text>
+	</string>
+	<string id="st_upgrade_demo_barrel_descr">
+		<text>Позволит увеличить мощность взрыва.</text>
+	</string>
+	<string id="st_upgr_signaller_toolkit_1">
+		<text>технику нужны армейские инструменты ОРК-42</text>
+	</string>
+	<string id="st_upgr_signaller_toolkit_2">
+		<text>технику нужны армейские инструменты РКБ-86у</text>
+	</string>
+	<string id="st_upgr_need_completing">
+		<text>технику нужны детали</text>
+	</string>

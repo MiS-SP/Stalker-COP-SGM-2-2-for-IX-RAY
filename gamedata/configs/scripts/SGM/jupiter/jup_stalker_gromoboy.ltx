@@ -1,0 +1,25 @@
+[logic]
+active = move@gromoboy
+on_death = death
+
+[death]
+on_info = %+jup_find_gromoboy_vintar_fail%
+
+[move@gromoboy]
+move_dest_number       = 698425
+move_look_vertex       = 684124
+move_state_when_center = sit_ass
+move_state_when_move   = walk
+move_combat_disable    = true
+meet                   = meet
+invulnerable           = true
+combat_ignore_cond     = true
+combat_ignore_keep_when_attacked = true
+on_info                = {+jup_find_gromoboy_vintar_complete =dist_to_actor_ge(90)} nil %=release_npc%, {+jup_find_gromoboy_vintar_fail =dist_to_actor_ge(90)} nil %=release_npc%
+
+[meet]
+abuse           = false
+use             = true
+allow_break     = false
+meet_on_talking = false
+trade_enable    = false

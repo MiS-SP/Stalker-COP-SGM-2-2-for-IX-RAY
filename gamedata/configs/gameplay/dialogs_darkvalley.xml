@@ -1,0 +1,1278 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+<game_dialogs>
+<!-----------------------------------------===============------------------------------------------------>
+<!-----------------------------------------'Темная Долина'------------------------------------------------>
+<!-----------------------------------------===============------------------------------------------------>
+<dialog id="val_b2_assault_b1_commander_start_dialog">
+        <has_info>val_assault_factory_bridge_cleared</has_info>
+        <dont_has_info>val_assault_factory_join_squad</dont_has_info>
+        <phrase_list>
+            <phrase id="0">
+                <text />
+                <next>100</next>
+            </phrase>
+            <phrase id="100">
+                <text />
+                <next>101</next>
+            </phrase>
+            <phrase id="101">
+                <text>val_b2_assault_b1_commander_dialog_1</text>
+                <give_info>val_assault_factory_join_squad</give_info>
+                <next>102</next>
+            </phrase>
+            <phrase id="102">
+                <text>val_b2_assault_b1_commander_dialog_2</text>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+        </phrase_list>
+</dialog>
+
+<dialog id="val_b2_accompany_guider_start_dialog">
+        <dont_has_info>val_first_coming_valley_guider_farewell</dont_has_info>
+        <phrase_list>
+            <phrase id="0">
+                <text />
+                <next>100</next>
+                <next>200</next>
+            </phrase>
+            <phrase id="100">
+                <text />
+                <dont_has_info>val_first_coming_valley_guider_coming</dont_has_info>
+                <next>101</next>
+            </phrase>
+            <phrase id="101">
+                <text>val_b2_accompany_guider_dialog_1</text>
+                <next>102</next>
+            </phrase>
+            <phrase id="102">
+                <text>val_b2_accompany_guider_dialog_2</text>
+                <give_info>val_first_coming_valley_guider_coming</give_info>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+            <phrase id="200">
+                <text />
+                <has_info>val_first_coming_valley_guider_coming</has_info>
+                <next>201</next>
+            </phrase>
+            <phrase id="201">
+                <text>val_b2_accompany_guider_dialog_3</text>
+                <next>202</next>
+            </phrase>
+            <phrase id="202">
+                <text>val_b2_accompany_guider_dialog_4</text>
+                <give_info>val_first_coming_valley_guider_farewell</give_info>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+        </phrase_list>
+</dialog>
+
+<dialog id="val_b2_base_leader_start_dialog">
+        <dont_has_info>mil_boarding_money_case_reward</dont_has_info>
+        <phrase_list>
+            <phrase id="0">
+                <text />
+                <next>100</next>
+                <next>200</next>
+                <next>300</next>
+                <next>400</next>
+                <next>500</next>
+                <next>600</next>
+                <next>700</next>
+                <next>800</next>
+                <next>900</next>
+                <next>1000</next>
+                <next>1100</next>
+            </phrase>
+            <phrase id="100">
+                <text />
+                <dont_has_info>val_first_coming_valley_talk_with_leader</dont_has_info>
+                <next>101</next>
+            </phrase>
+            <phrase id="101">
+                <text>val_b2_base_leader_dialog_1</text>
+                <next>102</next>
+            </phrase>
+            <phrase id="102">
+                <text>val_b2_base_leader_dialog_2</text>
+                <next>103</next>
+            </phrase>
+            <phrase id="103">
+                <text>val_b2_base_leader_dialog_3</text>
+                <next>104</next>
+            </phrase>
+            <phrase id="104">
+                <text>val_b2_base_leader_dialog_4</text>
+                <next>105</next>
+            </phrase>
+            <phrase id="105">
+                <text>val_b2_base_leader_dialog_5</text>
+                <next>106</next>
+                <next>109</next>
+            </phrase>
+            <phrase id="106">
+                <text>val_b2_base_leader_dialog_6</text>
+                <next>107</next>
+            </phrase>
+            <phrase id="107">
+                <text>val_b2_base_leader_dialog_7</text>
+                <give_info>val_first_coming_valley_leader_asked_help</give_info>
+                <action>sgm_dialogs.val_kill_night_predator_spawn</action>
+                <next>108</next>
+            </phrase>
+            <phrase id="108">
+                <text>val_b2_base_leader_dialog_8</text>
+                <next>110</next>
+            </phrase>
+            <phrase id="110">
+                <text>val_b2_base_leader_dialog_9</text>
+                <give_info>val_first_coming_valley_talk_with_leader</give_info>
+                <next>111</next>
+            </phrase>
+            <phrase id="111">
+                <text>val_b2_base_leader_dialog_10</text>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+            <phrase id="109">
+                <text>val_b2_base_leader_dialog_11</text>
+                <next>1091</next>
+            </phrase>
+            <phrase id="1091">
+                <text>val_b2_base_leader_dialog_12</text>
+                <next>1092</next>
+            </phrase>
+            <phrase id="1092">
+                <text>val_b2_base_leader_dialog_13</text>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+            <phrase id="200">
+                <text />
+                <has_info>val_first_coming_valley_talk_with_leader</has_info>
+                <dont_has_info>val_kill_night_predator_say_about_plan</dont_has_info>
+                <next>201</next>
+            </phrase>
+            <phrase id="201">
+                <text>val_b2_base_leader_dialog_14</text>
+                <next>202</next>
+                <next>280</next>
+            </phrase>
+            <phrase id="202">
+                <has_info>val_kill_night_predator_chimera_shooted</has_info>
+                <text>val_b2_base_leader_dialog_15</text>
+                <next>203</next>
+            </phrase>
+            <phrase id="203">
+                <text>val_b2_base_leader_dialog_16</text>
+                <give_info>val_kill_night_predator_say_about_plan</give_info>
+                <next>204</next>
+            </phrase>
+            <phrase id="204">
+                <text>val_b2_base_leader_dialog_17</text>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+            <phrase id="280">
+                <dont_has_info>val_kill_night_predator_chimera_shooted</dont_has_info>
+                <text>val_b2_base_leader_dialog_18</text>
+                <next>281</next>
+            </phrase>
+            <phrase id="281">
+                <text>val_b2_base_leader_dialog_19</text>
+                <next>282</next>
+            </phrase>
+            <phrase id="282">
+                <text>val_b2_base_leader_dialog_20</text>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+            <phrase id="300">
+                <text />
+                <has_info>val_kill_night_predator_say_about_plan</has_info>
+                <dont_has_info>val_first_coming_valley_request_approved</dont_has_info>
+                <next>301</next>
+            </phrase>
+            <phrase id="301">
+                <text>val_b2_base_leader_dialog_21</text>
+                <next>310</next>
+                <next>350</next>
+            </phrase>
+            <phrase id="350">
+                <dont_has_info>val_kill_night_predator_chimera_defeated</dont_has_info>
+                <text>val_b2_base_leader_dialog_22</text>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+            <phrase id="310">
+                <has_info>val_kill_night_predator_chimera_defeated</has_info>
+                <text>val_b2_base_leader_dialog_23</text>
+                <next>311</next>
+            </phrase>
+            <phrase id="311">
+                <text>val_b2_base_leader_dialog_24</text>
+                <give_info>val_kill_night_predator_talk_with_leader</give_info>
+                <action>sgm_dialogs.val_kill_night_predator_reward</action>
+                <next>312</next>
+            </phrase>
+            <phrase id="312">
+                <text>val_b2_base_leader_dialog_25</text>
+                <next>313</next>
+            </phrase>
+            <phrase id="313">
+                <text>val_b2_base_leader_dialog_26</text>
+                <give_info>val_first_coming_valley_request_approved</give_info>
+                <next>314</next>
+            </phrase>
+            <phrase id="314">
+                <text>val_b2_base_leader_dialog_27</text>
+                <next>315</next>
+            </phrase>
+            <phrase id="315">
+                <text>val_b2_base_leader_dialog_28</text>
+                <action>sgm_dialogs.val_assault_factory_spawn</action>
+                <give_info>val_first_coming_valley_assault_factory</give_info>
+                <next>316</next>
+            </phrase>
+            <phrase id="316">
+                <text>val_b2_base_leader_dialog_29</text>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+            <phrase id="400">
+                <text />
+                <has_info>val_assault_factory_get_corpse_pda</has_info>
+                <dont_has_info>val_assault_factory_pda_brought</dont_has_info>
+                <next>401</next>
+            </phrase>
+            <phrase id="401">
+                <text>val_b2_base_leader_dialog_30</text>
+                <action>sgm_dialogs.val_assault_factory_reward_1</action>
+                <next>402</next>
+            </phrase>
+            <phrase id="402">
+                <text>val_b2_base_leader_dialog_31</text>
+                <give_info>val_assault_factory_pda_brought</give_info>
+                <action>sgm_dialogs.val_assault_factory_brought_pda</action>
+                <next>403</next>
+            </phrase>
+            <phrase id="403">
+                <text>val_b2_base_leader_dialog_32</text>
+                <action>sgm_dialogs.val_assault_factory_reward_2</action>
+                <action>sgm_dialogs.val_shade_of_time</action>
+                <next>404</next>
+            </phrase>
+            <phrase id="404">
+                <text>val_b2_base_leader_dialog_33</text>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+            <phrase id="500">
+                <text />
+                <has_info>val_shade_of_time_door_is_locked</has_info>
+                <dont_has_info>val_shade_of_time_get_helped</dont_has_info>
+                <next>501</next>
+            </phrase>
+            <phrase id="501">
+                <text>val_b2_base_leader_dialog_34</text>
+                <next>502</next>
+            </phrase>
+            <phrase id="502">
+                <text>val_b2_base_leader_dialog_35</text>
+                <next>503</next>
+            </phrase>
+            <phrase id="503">
+                <text>val_b2_base_leader_dialog_36</text>
+                <next>504</next>
+            </phrase>
+            <phrase id="504">
+                <text>val_b2_base_leader_dialog_37</text>
+                <next>505</next>
+            </phrase>
+            <phrase id="505">
+                <text>val_b2_base_leader_dialog_38</text>
+                <next>506</next>
+            </phrase>
+            <phrase id="506">
+                <text>val_b2_base_leader_dialog_39</text>
+                <next>507</next>
+            </phrase>
+            <phrase id="507">
+                <text>val_b2_base_leader_dialog_40</text>
+                <give_info>val_shade_of_time_get_helped</give_info>
+                <next>508</next>
+            </phrase>
+            <phrase id="508">
+                <text>val_b2_base_leader_dialog_41</text>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+            <phrase id="600">
+                <text />
+                <has_info>val_assault_factory_pda_brought</has_info>
+                <dont_has_info>val_shade_of_time_door_is_locked</dont_has_info>
+                <next>601</next>
+            </phrase>
+            <phrase id="601">
+                <text>val_b2_base_leader_dialog_42</text>
+                <next>602</next>
+            </phrase>
+            <phrase id="602">
+                <text>val_b2_base_leader_dialog_43</text>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+            <phrase id="700">
+                <text />
+                <has_info>val_shade_of_time_get_helped</has_info>
+                <dont_has_info>mil_akulov_offer_start</dont_has_info>
+                <next>701</next>
+            </phrase>
+            <phrase id="701">
+                <text>val_b2_base_leader_dialog_44</text>
+                <next>702</next>
+            </phrase>
+            <phrase id="702">
+                <text>val_b2_base_leader_dialog_45</text>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+            <phrase id="800">
+                <text />
+                <has_info>mil_akulov_offer_start</has_info>
+                <dont_has_info>mil_akulov_offer_raciya</dont_has_info>
+                <next>801</next>
+            </phrase>
+            <phrase id="801">
+                <text>val_b2_base_leader_dialog_46</text>
+                <next>802</next>
+            </phrase>
+            <phrase id="802">
+                <text>val_b2_base_leader_dialog_47</text>
+                <next>803</next>
+            </phrase>
+            <phrase id="803">
+                <text>val_b2_base_leader_dialog_48</text>
+                <give_info>mil_akulov_offer_raciya</give_info>
+                <next>804</next>
+            </phrase>
+            <phrase id="804">
+                <text>val_b2_base_leader_dialog_49</text>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+            <phrase id="900">
+                <text />
+                <has_info>mil_akulov_offer_raciya</has_info>
+                <dont_has_info>mil_akulov_offer_talk</dont_has_info>
+                <next>901</next>
+            </phrase>
+            <phrase id="901">
+                <text>val_b2_base_leader_dialog_50</text>
+                <give_info>mil_akulov_offer_talk</give_info>
+                <action>sgm_dialogs.mil_conduct_night_stalkers</action>
+                <give_info>mil_conduct_night_stalkers_start</give_info>
+                <next>902</next>
+            </phrase>
+            <phrase id="902">
+                <text>val_b2_base_leader_dialog_51</text>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+            <phrase id="1000">
+                <text />
+                <has_info>mil_akulov_offer_talk</has_info>
+                <dont_has_info>mil_boarding_money_case_founded</dont_has_info>
+                <next>1001</next>
+            </phrase>
+            <phrase id="1001">
+                <text>val_b2_base_leader_dialog_52</text>
+                <next>1002</next>
+            </phrase>
+            <phrase id="1002">
+                <text>val_b2_base_leader_dialog_53</text>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+            <phrase id="1100">
+                <text />
+                <has_info>mil_boarding_money_case_founded</has_info>
+                <dont_has_info>mil_boarding_money_case_reward</dont_has_info>
+                <next>1101</next>
+            </phrase>
+            <phrase id="1101">
+                <text>val_b2_base_leader_dialog_54</text>
+                <next>1102</next>
+            </phrase>
+            <phrase id="1102">
+                <text>val_b2_base_leader_dialog_55</text>
+                <give_info>mil_boarding_money_case_reward</give_info>
+                <action>sgm_dialogs.mil_boarding_money_case_bring</action>
+                <next>1103</next>
+            </phrase>
+            <phrase id="1103">
+                <text>val_b2_base_leader_dialog_56</text>
+                <give_info>mil_meet_with_morten_start</give_info>
+                <action>sgm_dialogs.mil_boarding_money_case_reward</action>
+                <action>sgm_dialogs.mil_meet_with_morten</action>
+                <next>1104</next>
+            </phrase>
+            <phrase id="1104">
+                <text>val_b2_base_leader_dialog_57</text>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+        </phrase_list>
+</dialog>
+
+<dialog id="val_b2_leviafan_start_dialog">
+        <phrase_list>
+            <phrase id="0">
+                <text />
+                <next>100</next>
+                <next>200</next>
+                <next>300</next>
+                <next>400</next>
+                <next>500</next>
+                <next>600</next>
+            </phrase>
+            <phrase id="100">
+                <text />
+                <dont_has_info>val_brigand_start</dont_has_info>
+                <next>101</next>
+            </phrase>
+            <phrase id="101">
+                <text>val_b2_leviafan_dialog_1</text>
+                <next>102</next>
+            </phrase>
+            <phrase id="102">
+                <text>val_b2_leviafan_dialog_2</text>
+                <next>103</next>
+            </phrase>
+            <phrase id="103">
+                <text>val_b2_leviafan_dialog_3</text>
+                <next>104</next>
+                <next>1095</next>
+            </phrase>
+            <phrase id="1095">
+                <text>val_b2_leviafan_dialog_4</text>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+            <phrase id="104">
+                <text>val_b2_leviafan_dialog_5</text>
+                <next>105</next>
+            </phrase>
+            <phrase id="105">
+                <text>val_b2_leviafan_dialog_6</text>
+                <give_info>val_brigand_start</give_info>
+                <action>sgm_dialogs.val_brigand</action>
+                <next>106</next>
+            </phrase>
+            <phrase id="106">
+                <text>val_b2_leviafan_dialog_7</text>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+            <phrase id="200">
+                <text />
+                <has_info>val_brigand_start</has_info>
+                <dont_has_info>val_brigand_award_is_received</dont_has_info>
+                <next>201</next>
+            </phrase>
+            <phrase id="201">
+                <text>val_b2_leviafan_dialog_8</text>
+                <next>210</next>
+                <next>220</next>
+            </phrase>
+            <phrase id="210">
+                <has_info>val_brigand_renegade_killed</has_info>
+                <text>val_b2_leviafan_dialog_9</text>
+                <next>211</next>
+            </phrase>
+            <phrase id="211">
+                <text>val_b2_leviafan_dialog_10</text>
+                <give_info>val_brigand_award_is_received</give_info>
+                <action>sgm_dialogs.val_brigand_give_reward</action>
+                <next>212</next>
+            </phrase>
+            <phrase id="212">
+                <text>val_b2_leviafan_dialog_11</text>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+            <phrase id="220">
+                <dont_has_info>val_brigand_renegade_killed</dont_has_info>
+                <text>val_b2_leviafan_dialog_12</text>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+            <phrase id="300">
+                <text />
+                <has_info>val_brigand_award_is_received</has_info>
+                <dont_has_info>x18_abyss_complete</dont_has_info>
+                <next>301</next>
+            </phrase>
+            <phrase id="301">
+                <text>val_b2_leviafan_dialog_13</text>
+                <next>302</next>
+            </phrase>
+            <phrase id="302">
+                <text>val_b2_leviafan_dialog_14</text>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+            <phrase id="400">
+                <text />
+                <has_info>val_brigand_award_is_received</has_info>
+                <has_info>x18_abyss_complete</has_info>
+                <dont_has_info>val_secret_development_start</dont_has_info>
+                <next>401</next>
+            </phrase>
+            <phrase id="401">
+                <text>val_b2_leviafan_dialog_21</text>
+                <next>402</next>
+                <next>4025</next>
+            </phrase>
+            <phrase id="4025">
+                <text>val_b2_leviafan_dialog_4</text>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+            <phrase id="402">
+                <text>val_b2_leviafan_dialog_5</text>
+                <next>403</next>
+            </phrase>
+            <phrase id="403">
+                <text>val_b2_leviafan_dialog_20</text>
+                <give_info>val_secret_development_start</give_info>
+                <action>sgm_dialogs.val_secret_development</action>
+                <next>404</next>
+            </phrase>
+            <phrase id="404">
+                <text>val_b2_leviafan_dialog_7</text>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+            <phrase id="500">
+                <text />
+                <has_info>val_secret_development_start</has_info>
+                <dont_has_info>val_secret_development_reward</dont_has_info>
+                <next>501</next>
+            </phrase>
+            <phrase id="501">
+                <text>val_b2_leviafan_dialog_18</text>
+                <next>510</next>
+                <next>520</next>
+            </phrase>
+            <phrase id="510">
+                <has_info>val_secret_development_gs67_founded</has_info>
+                <text>val_b2_leviafan_dialog_17</text>
+                <action>sgm_dialogs.val_secret_development_give</action>
+                <next>511</next>
+            </phrase>
+            <phrase id="511">
+                <text>val_b2_leviafan_dialog_19</text>
+                <give_info>val_secret_development_reward</give_info>
+                <action>sgm_dialogs.val_secret_development_reward</action>
+                <next>512</next>
+            </phrase>
+            <phrase id="512">
+                <text>val_b2_leviafan_dialog_16</text>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+            <phrase id="520">
+                <dont_has_info>val_secret_development_gs67_founded</dont_has_info>
+                <text>val_b2_leviafan_dialog_12</text>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+            <phrase id="600">
+                <text />
+                <has_info>val_secret_development_reward</has_info>
+                <next>601</next>
+            </phrase>
+            <phrase id="601">
+                <text>val_b2_leviafan_dialog_15</text>
+                <next>602</next>
+            </phrase>
+            <phrase id="602">
+                <text>val_b2_leviafan_dialog_16</text>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+        </phrase_list>
+</dialog>
+
+<dialog id="val_b11_outpost_commander_start_dialog">
+        <dont_has_info>val_first_coming_valley_talk_with_commander</dont_has_info>
+        <dont_has_info>val_first_coming_valley_guider_escaped</dont_has_info>
+        <phrase_list>
+            <phrase id="0">
+                <text />
+                <next>100</next>
+                <next>200</next>
+            </phrase>
+            <phrase id="100">
+                <text />
+                <dont_has_info>val_first_coming_valley_commander_send_guider</dont_has_info>
+                <next>101</next>
+            </phrase>
+            <phrase id="101">
+                <text>val_b11_outpost_commander_dialog_1</text>
+                <next>102</next>
+            </phrase>
+            <phrase id="102">
+                <text>val_b11_outpost_commander_dialog_2</text>
+                <next>103</next>
+            </phrase>
+            <phrase id="103">
+                <text>val_b11_outpost_commander_dialog_3</text>
+                <next>104</next>
+            </phrase>
+            <phrase id="104">
+                <text>val_b11_outpost_commander_dialog_4</text>
+                <next>105</next>
+            </phrase>
+            <phrase id="105">
+                <text>val_b11_outpost_commander_dialog_5</text>
+                <next>106</next>
+            </phrase>
+            <phrase id="106">
+                <text>val_b11_outpost_commander_dialog_6</text>
+                <give_info>val_first_coming_valley_commander_send_guider</give_info>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+            <phrase id="200">
+                <text />
+                <has_info>val_first_coming_valley_commander_send_guider</has_info>
+                <dont_has_info>val_first_coming_valley_talk_with_commander</dont_has_info>
+                <next>201</next>
+            </phrase>
+            <phrase id="201">
+                <text>val_b11_outpost_commander_dialog_7</text>
+                <action>sgm_dialogs.val_first_coming_valley_spawn</action>
+                <next>202</next>
+            </phrase>
+            <phrase id="202">
+                <text>val_b11_outpost_commander_dialog_8</text>
+                <give_info>val_first_coming_valley_talk_with_commander</give_info>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+        </phrase_list>
+</dialog>
+
+<dialog id="val_b11_outpost_chief_start_dialog">
+        <phrase_list>
+            <phrase id="0">
+                <text />
+                <next>100</next>
+            </phrase>
+            <phrase id="100">
+                <text />
+                <next>101</next>
+            </phrase>
+            <phrase id="101">
+                <text>val_b11_outpost_chief_dialog_1</text>
+                <next>102</next>
+            </phrase>
+            <phrase id="102">
+                <text>val_b11_outpost_chief_dialog_2</text>
+                <next>103</next>
+            </phrase>
+            <phrase id="103">
+                <text>val_b11_outpost_chief_dialog_3</text>
+                <next>104</next>
+            </phrase>
+            <phrase id="104">
+                <text>val_b11_outpost_chief_dialog_4</text>
+                <give_info>val_b11_outpost_actor_checked</give_info>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+        </phrase_list>
+</dialog>
+
+<dialog id="val_b14_outpost_commander_start_dialog">
+        <has_info>val_kill_night_predator_say_about_plan</has_info>
+        <dont_has_info>val_kill_night_predator_setup_ambush</dont_has_info>
+        <phrase_list>
+            <phrase id="0">
+                <text />
+                <next>100</next>
+            </phrase>
+            <phrase id="100">
+                <text />
+                <dont_has_info>val_kill_night_predator_setup_ambush</dont_has_info>
+                <next>101</next>
+            </phrase>
+            <phrase id="101">
+                <text>val_b14_outpost_commander_dialog_1</text>
+                <next>102</next>
+            </phrase>
+            <phrase id="102">
+                <text>val_b14_outpost_commander_dialog_2</text>
+                <next>103</next>
+            </phrase>
+            <phrase id="103">
+                <text>val_b14_outpost_commander_dialog_3</text>
+                <next>104</next>
+            </phrase>
+            <phrase id="104">
+                <text>val_b14_outpost_commander_dialog_4</text>
+                <next>105</next>
+            </phrase>
+            <phrase id="105">
+                <text>val_b14_outpost_commander_dialog_5</text>
+                <give_info>val_kill_night_predator_setup_ambush</give_info>
+                <next>106</next>
+            </phrase>
+            <phrase id="106">
+                <text>val_b14_outpost_commander_dialog_6</text>
+                <next>107</next>
+            </phrase>
+            <phrase id="107">
+                <text>val_b14_outpost_commander_dialog_7</text>
+                <next>108</next>
+            </phrase>
+            <phrase id="108">
+                <text>val_b14_outpost_commander_dialog_8</text>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+        </phrase_list>
+</dialog>
+
+<dialog id="val_night_zam_leader_kolmogor_quest_1_first_dialog">        
+    	<dont_has_info>val_zam_quest_1_started</dont_has_info>
+		<dont_has_info>val_zam_quest_1_otkazal</dont_has_info>
+	    <phrase_list>
+		<phrase id="0">
+            <text />
+            <next>01</next>
+        </phrase>
+        <phrase id="01">
+            <text />
+            <next>101</next>
+        </phrase>
+        <phrase id="101"> 
+             <text>val_night_zam_leader_kolmogor_quest_1_first_dialog_00</text> 
+             <next>102</next>
+        </phrase>		
+        <phrase id="102"> 
+             <text>val_night_zam_leader_kolmogor_quest_1_first_dialog_0</text> 
+             <next>1</next>
+        </phrase>
+        <phrase id="1"> 
+             <text>val_night_zam_leader_kolmogor_quest_1_first_dialog_1</text> 
+             <next>2</next>
+        </phrase>
+        <phrase id="2"> 
+             <text>val_night_zam_leader_kolmogor_quest_1_first_dialog_2</text> 
+             <next>3</next>
+        </phrase>
+        <phrase id="3"> 
+             <text>val_night_zam_leader_kolmogor_quest_1_first_dialog_3</text> 
+             <next>4</next>			 
+			 <next>404</next>
+			 <next>44</next>
+        </phrase>
+        <phrase id="4"> 
+             <text>val_night_zam_leader_kolmogor_quest_1_first_dialog_4</text> 
+             <next>5</next>
+        </phrase>
+        <phrase id="5"> 
+             <text>val_night_zam_leader_kolmogor_quest_1_first_dialog_5</text>             
+             <action>sgm_dialogs.colmogor_create_freedom_lucas</action>
+			 <next>6</next>			 
+        </phrase>
+		<phrase id="6"> 
+             <text>val_night_zam_leader_kolmogor_quest_1_first_dialog_76</text> 
+             <give_info>val_zam_quest_1_started</give_info>
+			 <action>dialogs.break_dialog</action>
+        </phrase>
+		<phrase id="404"> 
+             <text>val_night_zam_leader_kolmogor_quest_1_first_dialog_44</text> 
+             <next>505</next>
+        </phrase>
+        <phrase id="505"> 
+             <text>val_night_zam_leader_kolmogor_quest_1_first_dialog_55</text>              
+			 <next>506</next>                    	 
+        </phrase>
+		<phrase id="506"> 
+             <text>val_night_zam_leader_kolmogor_quest_1_first_dialog_56</text> 
+             <give_info>val_zam_quest_1_otkazal</give_info>
+			 <action>dialogs.break_dialog</action>
+        </phrase>
+		<phrase id="44"> 
+             <text>val_night_zam_leader_kolmogor_quest_1_first_dialog_6</text> 
+             <next>444</next>
+        </phrase>
+        <phrase id="444"> 
+             <text>val_night_zam_leader_kolmogor_quest_1_first_dialog_7</text>
+             <next>4</next>			 
+        </phrase>
+        </phrase_list> 
+</dialog>
+
+<dialog id="val_freedom_lucas_quest_first_dialog">
+        <has_info>val_zam_quest_1_started</has_info>    	
+		<dont_has_info>val_freedom_spez_agent_lucas_talking_dolg</dont_has_info>
+	    <phrase_list>
+		<phrase id="0">
+            <text />
+            <next>01</next>
+        </phrase>
+        <phrase id="01">
+            <text />
+            <next>101</next>
+			<next>1011</next>
+			<next>10112</next>
+        </phrase>
+		<phrase id="1011">
+		     <has_info>val_lucas_talking_antenna</has_info>
+             <dont_has_info>val_lucas_all_antenna_done</dont_has_info>		
+             <text>val_freedom_lucas_quest_first_dialog_202</text> 
+             <next>1012</next>
+        </phrase>
+		<phrase id="1012">             		
+             <text>val_freedom_lucas_quest_first_dialog_2021</text>
+             <action>dialogs.break_dialog</action>           
+        </phrase>		
+		<phrase id="10112">
+		     <has_info>val_lucas_all_antenna_done</has_info>             	
+             <text>val_freedom_lucas_quest_first_dialog_202</text> 
+             <next>101122</next>
+        </phrase>
+		<phrase id="101122">             		
+             <text>val_freedom_lucas_quest_first_dialog_2022</text>
+             <next>1011223</next>         
+        </phrase>
+		<phrase id="1011223">             		
+             <text>val_freedom_lucas_quest_first_dialog_20222</text>
+             <next>1011224</next>         
+        </phrase>
+		<phrase id="1011224">             		
+             <text>val_freedom_lucas_quest_first_dialog_202222</text>
+             <next>3</next>
+             <action>sgm_dialogs.lucas_give_antenna_skaner</action>			 
+        </phrase>
+		<phrase id="3"> 
+             <text>val_freedom_lucas_quest_first_dialog_3</text> 
+             <next>4</next>
+        </phrase>
+		<phrase id="4"> 
+             <text>val_freedom_lucas_quest_first_dialog_4</text> 
+             <next>5</next>
+        </phrase>
+		<phrase id="5"> 
+             <text>val_freedom_lucas_quest_first_dialog_5</text> 
+             <next>6</next>
+        </phrase>
+		<phrase id="6"> 
+             <text>val_freedom_lucas_quest_first_dialog_6</text> 
+             <next>7</next>
+        </phrase>
+        <phrase id="7"> 
+             <text>val_freedom_lucas_quest_first_dialog_7</text>             
+             <action>sgm_dialogs.lucas_create_quad_dolg</action>
+			 <next>8</next>			 
+        </phrase>
+		<phrase id="8"> 
+             <text>val_freedom_lucas_quest_first_dialog_8</text> 
+             <give_info>val_freedom_spez_agent_lucas_talking_dolg</give_info>
+			 <action>dialogs.break_dialog</action>
+        </phrase>		
+        <phrase id="101">
+		     <dont_has_info>val_freedom_spez_agent_lucas_talking_dolg</dont_has_info>
+             <dont_has_info>val_lucas_talking_antenna</dont_has_info>		
+             <text>val_freedom_lucas_quest_first_dialog_00</text> 
+             <next>102</next>
+        </phrase>		
+        <phrase id="102"> 
+             <text>val_freedom_lucas_quest_first_dialog_0</text> 
+             <next>1</next>
+        </phrase>
+        <phrase id="1"> 
+             <text>val_freedom_lucas_quest_first_dialog_1</text> 
+             <next>2</next>
+        </phrase>
+        <phrase id="2"> 
+             <text>val_freedom_lucas_quest_first_dialog_2</text> 
+             <next>22</next>
+        </phrase>
+		<phrase id="22"> 
+             <text>val_freedom_lucas_quest_first_dialog_22</text> 
+             <next>222</next>
+        </phrase>
+		<phrase id="222"> 
+             <text>val_freedom_lucas_quest_first_dialog_222</text> 
+             <next>2222</next>
+        </phrase>
+		<phrase id="2222"> 
+             <text>val_freedom_lucas_quest_first_dialog_2222</text>
+			 <action>sgm_dialogs.lucas_give_antenna_quest_1</action>			 
+             <next>22222</next>		 			 			 
+        </phrase>
+		<phrase id="22222">             		
+             <text>val_freedom_lucas_quest_first_dialog_22222</text>
+             <give_info>val_lucas_talking_antenna</give_info>			 
+             <action>dialogs.break_dialog</action>                        
+        </phrase>        	
+        </phrase_list> 
+</dialog>
+
+<dialog id="val_freedom_lucas_quest_second_dialog">
+        <has_info>val_beat_from_monsters_safely</has_info>    	
+		<dont_has_info>val_freedom_spez_agent_lucas_talking_go</dont_has_info>
+	    <phrase_list>
+		<phrase id="0">
+            <text />
+            <next>01</next>
+        </phrase>
+        <phrase id="01">
+            <text />
+            <next>101</next>
+        </phrase>
+        <phrase id="101"> 
+             <text>val_freedom_lucas_quest_second_dialog_00</text> 
+             <next>102</next>
+        </phrase>		
+        <phrase id="102"> 
+             <text>val_freedom_lucas_quest_second_dialog_0</text> 
+             <next>1</next>
+        </phrase>
+        <phrase id="1"> 
+             <text>val_freedom_lucas_quest_second_dialog_1</text> 
+             <next>2</next>
+			 <next>3</next>
+			 <next>4</next>
+        </phrase>
+        <phrase id="2"> 
+             <text>val_freedom_lucas_quest_second_dialog_2</text> 
+             <next>22</next>
+        </phrase>
+        <phrase id="22"> 
+             <text>val_freedom_lucas_quest_second_dialog_22</text> 
+             <next>222</next>
+        </phrase>
+        <phrase id="222"> 
+             <text>val_freedom_lucas_quest_second_dialog_222</text> 
+             <next>2222</next>
+        </phrase>
+        <phrase id="2222"> 
+             <text>val_freedom_lucas_quest_second_dialog_2222</text>
+             <action>sgm_dialogs.to_actor_give_money_val_lucas</action>			 
+             <next>22222</next>
+        </phrase> 
+		<phrase id="22222"> 
+             <text>val_freedom_lucas_quest_second_dialog_22222</text>
+             <action>sgm_dialogs.to_lucas_give_documents</action>			 
+             <next>5</next>
+        </phrase>
+        <phrase id="3"> 
+             <text>val_freedom_lucas_quest_second_dialog_3</text> 
+             <next>33</next>
+        </phrase>
+        <phrase id="33"> 
+             <text>val_freedom_lucas_quest_second_dialog_33</text> 
+             <next>333</next>
+        </phrase>
+        <phrase id="333"> 
+             <text>val_freedom_lucas_quest_second_dialog_333</text> 
+             <next>3333</next>
+        </phrase>
+        <phrase id="3333"> 
+             <text>val_freedom_lucas_quest_second_dialog_3333</text>             		 
+             <next>33333</next>
+        </phrase>
+		<phrase id="33333"> 
+             <text>val_freedom_lucas_quest_second_dialog_33333</text>
+             <action>sgm_dialogs.to_lucas_give_documents</action>			 
+             <next>5</next>
+        </phrase>
+        <phrase id="4"> 
+             <text>val_freedom_lucas_quest_second_dialog_4</text> 
+             <next>44</next>
+        </phrase>
+        <phrase id="44"> 
+             <text>val_freedom_lucas_quest_second_dialog_44</text> 
+             <next>5</next>
+        </phrase>        	
+		<phrase id="5"> 
+             <text>val_freedom_lucas_quest_second_dialog_5</text> 
+             <next>6</next>
+        </phrase>
+		<phrase id="6"> 
+             <text>val_freedom_lucas_quest_second_dialog_6</text> 
+             <next>7</next>
+        </phrase>
+        <phrase id="7"> 
+             <text>val_freedom_lucas_quest_second_dialog_7</text>             
+             <action>sgm_dialogs.lucas_create_quad_freedom</action>
+			 <next>8</next>			 
+        </phrase>
+		<phrase id="8"> 
+             <text>val_freedom_lucas_quest_second_dialog_8</text> 
+             <give_info>val_freedom_spez_agent_lucas_talking_go</give_info>
+			 <action>dialogs.break_dialog</action>
+        </phrase>		
+        </phrase_list> 
+</dialog>
+
+<dialog id="val_night_zam_leader_kolmogor_quest_1_second_dialog">        
+    	<has_info>val_lucas_quests_point_2_checked</has_info>
+		<dont_has_info>val_lucas_mistery_quest_complete</dont_has_info>
+	    <phrase_list>
+		<phrase id="0">
+            <text />
+            <next>01</next>
+        </phrase>
+        <phrase id="01">
+            <text />
+            <next>101</next>
+        </phrase>
+        <phrase id="101"> 
+             <text>val_night_zam_leader_kolmogor_quest_1_second_dialog_00</text> 
+             <next>102</next>
+        </phrase>		
+        <phrase id="102"> 
+             <text>val_night_zam_leader_kolmogor_quest_1_second_dialog_0</text> 
+             <next>1</next>
+        </phrase>
+        <phrase id="1"> 
+             <text>val_night_zam_leader_kolmogor_quest_1_second_dialog_1</text>
+             <action>sgm_dialogs.to_actor_give_money_val_kolmogor</action>			 
+             <next>2</next>
+        </phrase>
+        <phrase id="2"> 
+             <text>val_night_zam_leader_kolmogor_quest_1_second_dialog_2</text> 
+             <next>3</next>
+        </phrase>
+        <phrase id="3"> 
+             <text>val_night_zam_leader_kolmogor_quest_1_second_dialog_3</text> 
+             <next>4</next>			 
+			 <next>5</next>
+			 <next>6</next>
+			 <next>7</next>
+        </phrase>
+        <phrase id="4"> 
+             <text>val_night_zam_leader_kolmogor_quest_1_second_dialog_4</text>
+             <action>sgm_dialogs.colmogor_create_equipment_1</action>			 
+             <next>44</next>
+        </phrase>
+		<phrase id="44"> 
+             <text>val_night_zam_leader_kolmogor_quest_1_second_dialog_44</text>  
+       		 <next>444</next>			 
+        </phrase>
+		<phrase id="444"> 
+             <text>val_night_zam_leader_kolmogor_quest_1_second_dialog_444</text> 
+             <give_info>val_lucas_mistery_quest_complete</give_info>
+			 <action>dialogs.break_dialog</action>
+        </phrase>		
+		<phrase id="5"> 
+             <text>val_night_zam_leader_kolmogor_quest_1_second_dialog_5</text> 
+             <next>55</next>
+        </phrase>
+		<phrase id="55"> 
+             <text>val_night_zam_leader_kolmogor_quest_1_second_dialog_55</text>  
+       		 <next>555</next>			 
+        </phrase>
+		<phrase id="555"> 
+             <text>val_night_zam_leader_kolmogor_quest_1_second_dialog_555</text> 
+             <give_info>val_lucas_mistery_quest_complete</give_info>
+			 <action>dialogs.break_dialog</action>
+        </phrase>		
+		<phrase id="6"> 
+             <text>val_night_zam_leader_kolmogor_quest_1_second_dialog_6</text>
+             <action>sgm_dialogs.colmogor_create_equipment_2</action>			 
+             <next>66</next>
+        </phrase>
+		<phrase id="66"> 
+             <text>val_night_zam_leader_kolmogor_quest_1_second_dialog_66</text>  
+       		 <next>666</next>			 
+        </phrase>
+		<phrase id="666"> 
+             <text>val_night_zam_leader_kolmogor_quest_1_second_dialog_666</text> 
+             <give_info>val_lucas_mistery_quest_complete</give_info>
+			 <action>dialogs.break_dialog</action>
+        </phrase>		
+		<phrase id="7"> 
+             <text>val_night_zam_leader_kolmogor_quest_1_second_dialog_7</text> 
+             <next>77</next>
+        </phrase>		
+		<phrase id="77"> 
+             <text>val_night_zam_leader_kolmogor_quest_1_second_dialog_77</text>  
+       		 <next>777</next>			 
+        </phrase>
+		<phrase id="777"> 
+             <text>val_night_zam_leader_kolmogor_quest_1_second_dialog_777</text> 
+             <give_info>val_lucas_mistery_quest_complete</give_info>
+			 <action>dialogs.break_dialog</action>
+        </phrase>		
+        </phrase_list> 
+</dialog>
+
+<dialog id="val_night_stalker_trader_start_dialog">
+        <precondition>sgm_dialogs.mod_dialog_precond</precondition>
+        <phrase_list>
+            <phrase id="0">
+                <text />
+                <next>100</next>
+            </phrase>
+            <phrase id="100">
+                <text />
+                <next>101</next>
+            </phrase>
+            <phrase id="101">
+                <text>val_night_stalker_trader_dialog_1</text>
+                <next>110</next>
+            <!--<next>120</next>-->
+                <next>130</next>
+                <next>140</next>
+            </phrase>
+            <phrase id="110">
+                <text>val_night_stalker_trader_dialog_2</text>
+                <action>sgm_dialogs.switch_to_trade</action>
+                <next>111</next>
+            </phrase>
+            <phrase id="111">
+                <text>val_night_stalker_trader_dialog_3</text>
+                <next>110</next>
+            <!--<next>120</next>-->
+                <next>130</next>
+                <next>140</next>
+            </phrase>
+            <phrase id="130">
+                <text>val_night_stalker_trader_dialog_12</text>
+                <has_info>val_night_stalker_trader_order</has_info>
+                <next>131</next>
+            </phrase>
+            <phrase id="131">
+                <text>val_night_stalker_trader_dialog_9</text>
+                <next>132</next>
+                <next>13999</next>
+            </phrase>
+            <phrase id="132">
+                <precondition>sgm_dialogs.order_recoil_have_money</precondition>
+                <text>val_night_stalker_trader_dialog_10</text>
+                <action>sgm_dialogs.order_recoil_give_money</action>
+                <disable_info>val_night_stalker_trader_order</disable_info>
+                <disable_info>val_night_stalker_trader_weapon</disable_info>
+                <disable_info>val_night_stalker_trader_outfit</disable_info>
+                <next>133</next>
+            </phrase>
+            <phrase id="133">
+                <text>val_night_stalker_trader_dialog_11</text>
+                <next>12901</next>
+                <next>12903</next>
+                <next>12888</next>
+            </phrase>
+            <phrase id="140">
+                <text>val_night_stalker_trader_dialog_4</text>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+            <phrase id="12888">
+                <text>val_night_stalker_trader_dialog_5</text>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+            <phrase id="13999">
+                <text>val_night_stalker_trader_dialog_6</text>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+            <phrase id="12005">
+                <text>val_night_stalker_trader_dialog_7</text>
+                <next>12006</next>
+            </phrase>
+            <phrase id="12006">
+                <text>val_night_stalker_trader_dialog_8</text>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+            <phrase id="120">
+                <text>val_night_stalker_trader_dialog_18</text>
+                <dont_has_info>val_night_stalker_trader_order</dont_has_info>
+                <next>1210</next>
+            </phrase>
+            <phrase id="1210">
+                <text>val_night_stalker_trader_dialog_19</text>
+                <next>12901</next>
+                <next>12903</next>
+                <next>12888</next>
+            </phrase>
+            --[Арсенал]
+            <phrase id="12105">
+                <text>val_night_stalker_trader_dialog_7</text>
+                <next>12106</next>
+            </phrase>
+            <phrase id="12106">
+                <text>val_night_stalker_trader_dialog_8</text>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+            <phrase id="12901">
+                <text>val_night_stalker_trader_dialog_20</text>
+                <next>12902</next>
+            </phrase>
+            <phrase id="12902">
+                <text>val_night_stalker_trader_dialog_17</text>
+                <next>1200000</next>
+                <next>12888</next>
+            </phrase>
+            <phrase id="831209900">
+                <text>zat_trader_back_phrase</text>
+                <next>12902</next>
+            </phrase>
+            --[А1]
+            <phrase id="1200000">
+                <text>val_night_stalker_trader_dialog_22</text>
+                <action>sgm_dialogs.val_n_trader_w_1</action>
+                <next>1200002</next>
+            </phrase>
+            <phrase id="1200002">
+                <text>val_night_stalker_trader_dialog_16</text>
+                <action>sgm_dialogs.show_order_costs</action>
+                <next>831209900</next>
+                <next>1200003</next>
+                <next>1200004</next>
+                <next>1200007</next>
+            </phrase>
+            <phrase id="1200007">
+                <precondition>sgm_dialogs.order_has_money</precondition>
+                <text>val_night_stalker_trader_dialog_14</text>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+            <phrase id="1200004">
+                <precondition>sgm_dialogs.order_agree_less_money</precondition>
+                <text>val_night_stalker_trader_dialog_13</text>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+            <phrase id="1200003">
+                <precondition>sgm_dialogs.order_has_money</precondition>
+                <text>val_night_stalker_trader_dialog_15</text>
+                <action>sgm_dialogs.order_agree_give_money</action>
+                <give_info>val_night_stalker_trader_order</give_info>
+                <give_info>val_night_stalker_trader_weapon</give_info>
+                <next>12005</next>
+            </phrase>
+            --[Броники]
+            <phrase id="12903">
+                <text>val_night_stalker_trader_dialog_21</text>
+                <next>12904</next>
+            </phrase>
+            <phrase id="12904">
+                <text>val_night_stalker_trader_dialog_17</text>
+                <next>1210000</next>
+                <next>12888</next>
+            </phrase>
+            <phrase id="831209910">
+                <text>zat_trader_back_phrase</text>
+                <next>12904</next>
+            </phrase>
+            --[Б1]
+            <phrase id="1210000">
+                <text>val_night_stalker_trader_dialog_23</text>
+                <action>sgm_dialogs.val_n_trader_o_1</action>
+                <next>1210001</next>
+            </phrase>
+            <phrase id="1210001">
+                <text>val_night_stalker_trader_dialog_16</text>
+                <action>sgm_dialogs.show_order_costs</action>
+                <next>831209910</next>
+                <next>1210003</next>
+                <next>1210004</next>
+                <next>1210007</next>
+            </phrase>
+            <phrase id="1210007">
+                <precondition>sgm_dialogs.order_has_money</precondition>
+                <text>val_night_stalker_trader_dialog_14</text>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+            <phrase id="1210004">
+                <precondition>sgm_dialogs.order_agree_less_money</precondition>
+                <text>val_night_stalker_trader_dialog_13</text>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+            <phrase id="1210003">
+                <precondition>sgm_dialogs.order_has_money</precondition>
+                <text>val_night_stalker_trader_dialog_15</text>
+                <action>sgm_dialogs.order_agree_give_money</action>
+                <give_info>val_night_stalker_trader_order</give_info>
+                <give_info>val_night_stalker_trader_outfit</give_info>
+                <next>12105</next>
+            </phrase>
+        </phrase_list>
+</dialog>
+</game_dialogs>

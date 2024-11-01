@@ -1,0 +1,42 @@
+[logic]
+active = move@soldier
+
+[c_i_s]
+combat_ignore_cond     = {-esc_atp_annex_assault =check_enemy_name(bandit)} true
+
+[c_i]
+move_flashlight        = false
+combat_ignore_cond     = {-esc_atp_annex_assault =check_enemy_name(bandit)} true
+
+[move@soldier]:c_i_s
+move_dest_number       = 334716
+move_look_vertex       = 339971
+move_state_when_center = binocular
+move_state_when_move   = patrol
+on_info                = {+esc_atp_annex_squad_in_move} move@crossing
+
+[move@crossing]:c_i
+move_pursue_sid        = esc_b3_attack_commander|true
+move_pursue_range      = 3|30
+move_pursue_formation  = back
+on_info                = {+esc_atp_annex_squad_passed} move@atp_cover
+on_info2               = {+esc_atp_annex_assault} move@atp_assault
+
+[move@atp_cover]:c_i
+move_dest_number       = 409556
+move_look_vertex       = 454229
+move_state_when_center = hide
+move_state_when_move   = sneak_run
+on_info                = {+esc_atp_annex_assault} move@atp_assault
+
+[move@atp_assault]
+move_dest_number       = 454229
+move_state_when_center = guard
+move_state_when_move   = assault
+on_info                = {+esc_atp_annex_captured} move@atp_occupy %=actor_friend%
+
+[move@atp_occupy]
+move_dest_number       = 448200
+move_look_vertex       = 442764
+move_state_when_center = guard
+move_state_when_move   = patrol

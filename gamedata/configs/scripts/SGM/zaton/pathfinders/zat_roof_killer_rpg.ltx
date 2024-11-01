@@ -1,0 +1,29 @@
+[logic]
+active = move@killer_pathfinder
+on_hit = hit
+
+[hit]
+on_info = {=present_hit_by_actor} %+zat_roof_killer_rpg_hit%
+
+[move@killer_pathfinder]
+scheme_type         = shooter
+shooter_pos         = {=global_pattern_is_one} 593679, 623978
+shooter_fire_look   = enemy
+shooter_idle_look   = actor
+shooter_clip        = 10
+shooter_reload      = 4800
+shooter_type_wpn    = grenade_launcher
+shooter_need_see    = true
+shooter_need_dist   = 118
+shooter_move_state  = run
+shooter_idle_state  = threat
+shooter_fire_state  = threat_fire
+shooter_switch      = stage_end | nil
+death_cleaning      = true|weapon
+combat_ignore_cond  = true
+combat_ignore_keep_when_attacked = true
+on_info             = {+zat_roof_killer_rpg_hit} nil
+on_info2            = {=dist_to_actor_le(8)} nil
+
+
+

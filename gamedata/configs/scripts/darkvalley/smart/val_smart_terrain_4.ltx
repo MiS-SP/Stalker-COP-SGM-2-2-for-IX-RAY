@@ -1,0 +1,36 @@
+[smart_terrain];val_smart_terrain_4 (12 работ)
+squad_id = 4
+max_population = 4
+respawn_params = respawn@val_smart_terrain_4
+arrive_dist = 30
+
+[respawn@val_smart_terrain_4]
+spawn_renegade@novice
+spawn_renegade@advanced
+spawn_renegade@veteran
+
+[spawn_renegade@novice]
+spawn_squads = renegade_sim_squad_novice
+spawn_num = {+val_storyline_done =check_actor_rank(0:1000)} 1, 0
+
+[spawn_renegade@advanced]
+spawn_squads = renegade_sim_squad_advanced
+spawn_num = {+val_storyline_done =check_actor_rank(1000:1500)} 1, 0
+
+[spawn_renegade@veteran]
+spawn_squads = renegade_sim_squad_veteran
+spawn_num = {+val_storyline_done =check_actor_rank(1500)} 1, 0
+
+[exclusive]
+val_b4_commander = darkvalley\val_b4_logic.ltx
+val_b4_guarder_1 = darkvalley\val_b4_logic.ltx
+val_b4_guarder_2 = darkvalley\val_b4_logic.ltx
+val_b4_guarder_3 = darkvalley\val_b4_logic.ltx
+val_b4_guarder_4 = darkvalley\val_b4_logic.ltx
+val_b4_guarder_5 = darkvalley\val_b4_logic.ltx
+val_b4_guarder_6 = darkvalley\val_b4_logic.ltx
+val_b4_guarder_7 = darkvalley\val_b4_logic.ltx
+val_b4_guarder_8 = darkvalley\val_b4_logic.ltx
+val_b4_guarder_9 = darkvalley\val_b4_logic.ltx
+val_b4_guarder_10 = darkvalley\val_b4_logic.ltx
+val_b4_guarder_11 = darkvalley\val_b4_logic.ltx

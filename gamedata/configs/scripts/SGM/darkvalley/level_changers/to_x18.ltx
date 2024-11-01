@@ -1,0 +1,15 @@
+[logic]
+active = sr_universal
+
+[sr_universal]
+scheme_type = level_change_zone
+level_change_cond         = {+val_shade_of_time_card_received} true, false
+level_change_on_use       = %+level_change_to_x18_from_darkvalley%
+level_change_travel_coord = 120.39437866211,-2.8708584308624,-254.27005004883
+level_change_throw_coord  = 123.08081054688,-2.8388257026672,-266.77911376953,3.865,val_shade_of_time_door_is_locked,val_shade_of_time_pda_is_found
+level_change_travel_time  = 0,25
+level_change_spot         = level_change_right_location,st_level_change_to_x18,false
+level_change_autosave     = st_save_travel_darkvalley_to_x18
+level_change_silent_travel = false
+level_change_hidden_mode  = false
+level_change_message_impossible = st_level_change_zone_ok_need_acces_card_text

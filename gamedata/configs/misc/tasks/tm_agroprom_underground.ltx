@@ -1,0 +1,26 @@
+;---------------------------------------------------------------------------------------;
+;                              Подземелья Агропрома                                     ;
+;---------------------------------------------------------------------------------------;
+;сюжетные задания 
+
+[agru_underground_cave]
+icon = ui_inGame2_UndergroundCave
+prior = 100
+storyline = true
+title = {=check_counter(agru_secret_docks_founded:me:2)} agru_underground_cave_title2, {=check_counter(agru_secret_docks_founded:is:1)} agru_underground_cave_title1, agru_underground_cave_title0
+descr = {=check_counter(agru_secret_docks_founded:me:2)} agru_underground_cave_text2, {=check_counter(agru_secret_docks_founded:is:1)} agru_underground_cave_text1, agru_underground_cave_text0
+target = {=check_counter(agru_secret_docks_founded:me:2)} nil, {=check_counter(agru_secret_docks_founded:is:1)} nil, nil
+condlist_0 = {+agru_underground_cave_chosen_on_surface} complete
+on_complete = %+agru_underground_cave_complete +agr_storyline_done =add_actor_rank(5) =increase_counter(stat_kvestov)%
+
+[agru_search_door_key]
+icon = ui_inGame2_SearchDoorKey
+prior = 101
+storyline = true
+title = {+agru_search_door_key_founded} agru_search_door_key_title1, {-agru_search_door_key_founded} agru_search_door_key_title0
+descr = {+agru_search_door_key_founded} agru_search_door_key_text1, {-agru_search_door_key_founded} agru_search_door_key_text0
+target = {+agru_search_door_key_founded} agru_door_3, {-agru_search_door_key_founded} nil
+condlist_0 = {+agru_search_door_key_opened} complete
+on_complete = %+agru_search_door_key_complete =increase_counter(stat_kvestov)%
+
+;второстепенные задания

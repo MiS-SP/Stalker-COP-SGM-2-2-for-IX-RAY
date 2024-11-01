@@ -1,0 +1,4 @@
+medkit = 1, prob=0.04 \n
+bandage = 1, prob=0.1 \n
+bio_bandage = 1, prob=0.05 \n
+psy_complex = 1, prob=0.04 \n

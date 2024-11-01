@@ -1,0 +1,15 @@
+[logic]
+active = sr_idle
+
+[sr_idle]
+on_info = {=actor_has_item(toolkit_2) -jup_b214_actor_has_toolkit_2} %+jup_b214_actor_has_toolkit_2%
+on_info2 = {+jup_beat_from_monsters_start -jup_beat_from_monsters_safely -jup_beat_from_monsters_rpg_off} sr_idle2
+on_info3 = {+jup_b214_actor_has_toolkit_2 +jup_beat_from_monsters_rpg_off} nil
+
+[sr_idle2]
+on_info = {=actor_has_item(toolkit_2) -jup_b214_actor_has_toolkit_2} %+jup_b214_actor_has_toolkit_2%
+on_timer = 10000 | sr_idle3 %+jup_beat_from_monsters_rpg_allow%
+
+[sr_idle3]
+on_info = {=actor_has_item(toolkit_2) -jup_b214_actor_has_toolkit_2} %+jup_b214_actor_has_toolkit_2%
+on_timer = 16000 | sr_idle %+jup_beat_from_monsters_rpg_off -jup_beat_from_monsters_rpg_allow%

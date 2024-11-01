@@ -1,428 +1,487 @@
 [inventory_box]
 GroupControlSection	= spawn_group
-discovery_dependency =
-$spawn 				= "devices\inventory box"
-class				= S_INVBOX
-cform				= skeleton
-visual				= dynamics\equipment_cache\equipment_box_01_case.ogf
-script_binding      = bind_physic_object.init
+discovery_dependency    =
+$spawn 			= "devices\inventory box"
+class			= S_INVBOX
+cform			= skeleton
+visual			= dynamics\equipment_cache\equipment_box_01_case.ogf
+script_binding          = bind_physic_object.init
 
 [device_flare]:identity_immunities
 class                   = D_FLARE
-visual					= dynamics\devices\dev_flare\dev_flare
+visual			= dynamics\devices\dev_flare\dev_flare
 description             = enc_weapons1_wpn_flare
-
-inv_weight				= 0.2
-inv_name				= device_flare
-inv_name_short			= device_flare_short
-
-inv_grid_width				= 2
-inv_grid_height				= 1
-inv_grid_x					= 12
-inv_grid_y					= 7
-
-slot					= 11
-cost					= 50
+inv_weight		= 0.2
+inv_name		= device_flare
+inv_name_short		= device_flare_short
+inv_grid_width		= 2
+inv_grid_height		= 1
+inv_grid_x		= 12
+inv_grid_y		= 7
+slot			= 11
+cost			= 50
 default_to_ruck         = true
-sprint_allowed			= true
+sprint_allowed		= true
 control_inertion_factor = 1.0
-work_time_sec			= 10000
+work_time_sec		= 10000
 hud                     = device_flare_hud
-animation_slot			= 7
-
-working_particles		= weapons\dev_flare_flame
+animation_slot		= 7
+working_particles	= weapons\dev_flare_flame
 
 [device_flare_hud]:hud_base
-hands_position				= 0.361999,-0.164000,0.106000
-hands_orientation			= 21.000044,-1.700000,0.000000
-hands_position_16x9             = 0,0,0
-hands_orientation_16x9          = 0,0,0
+hands_position		= 0.361999,-0.164000,0.106000
+hands_orientation	= 21.000044,-1.700000,0.000000
+hands_position_16x9     = 0,0,0
+hands_orientation_16x9  = 0,0,0
+aim_hud_offset_pos	= 0,0,0
+aim_hud_offset_rot	= 0,0,0
+gl_hud_offset_pos	= 0,0,0
+gl_hud_offset_rot	= 0,0,0
+lean_hud_offset_pos	= 0,0,0
+lean_hud_offset_rot	= 0,0,0
+item_position	        = -0.031455,0.017528,0.136259
+item_orientation        = 62.783558,75.663406,-79.665085
+item_visual             = dynamics\devices\dev_flare\dev_flare
+attach_place_idx	= 1
+fire_point		= 0.279000,-0.143000,-0.009000
+fire_bone               = flare_point
+anm_show		= flare_draw
+anm_hide		= flare_holster
+anm_idle		= flare_idle
+anm_drop		= flare_holster
 
-aim_hud_offset_pos				= 0,0,0
-aim_hud_offset_rot				= 0,0,0
-
-gl_hud_offset_pos				= 0,0,0
-gl_hud_offset_rot				= 0,0,0
-
-lean_hud_offset_pos				= 0,0,0
-lean_hud_offset_rot				= 0,0,0
-
-item_position				= -0.031455,0.017528,0.136259
-item_orientation			= 62.783558,75.663406,-79.665085
-
-item_visual                   	= dynamics\devices\dev_flare\dev_flare
-attach_place_idx				= 1
-
-fire_point						= 0.279000,-0.143000,-0.009000
-fire_bone                		= flare_point
-
-
-anm_show						= flare_draw
-anm_hide						= flare_holster
-anm_idle						= flare_idle
-anm_drop						= flare_holster
-
-
-[detector_simple]:identity_immunities
-GroupControlSection	= spawn_group
-$spawn 			= "devices\detector_simple"
-$prefetch 		= 32
-class			= DET_SIMP
-cform			= skeleton
-visual			= dynamics\devices\dev_detector_1\dev_detector_1.ogf
-
-hud			= detector_simple_hud
-animation_slot		= 7
-
-inv_name		= st_detector1
-inv_name_short	= st_detector1
-description		= st_detector1_descr
-
-slot			= 8
-ef_detector_type	= 1
-inv_weight		= 0.5
-
-inv_grid_width		= 1
-inv_grid_height		= 1
-inv_grid_x		= 9
-inv_grid_y		= 14
-cost			= 500
-default_to_ruck		= false
-
-af_radius		= 30
-af_vis_radius		= 3
-
+[detector_simple_af_base]
 af_class_1		= af_cristall
 af_sound_1_		= detectors\art_beep1
 af_freq_1		= 0.05, 2
 af_class_2		= af_fireball
 af_sound_2_		= detectors\art_beep1
 af_freq_2		= 0.05, 2
-
 af_class_3		= af_medusa
 af_sound_3_		= detectors\art_beep1
 af_freq_3		= 0.05, 2
 af_class_4		= af_cristall_flower
 af_sound_4_		= detectors\art_beep1
 af_freq_4		= 0.05, 2
-
 af_class_5		= af_blood
 af_sound_5_		= detectors\art_beep1
 af_freq_5		= 0.05, 2
 af_class_6		= af_mincer_meat
 af_sound_6_		= detectors\art_beep1
 af_freq_6		= 0.05, 2
-
 af_class_7		= af_electra_sparkler
 af_sound_7_		= detectors\art_beep1
 af_freq_7		= 0.05, 2
 af_class_8		= af_electra_flash
 af_sound_8_		= detectors\art_beep1
 af_freq_8		= 0.05, 2
-
 af_class_9		= af_quest_b14_twisted
 af_sound_9_		= detectors\art_beep1
 af_freq_9		= 0.05, 2
-
 af_class_10		= jup_b1_half_artifact
 af_sound_10_		= detectors\art_beep1
 af_freq_10		= 0.05, 2
-
 af_class_11		= af_compass
 af_sound_11_		= detectors\art_beep1
 af_freq_11		= 0.05, 2
-
-attach_angle_offset		= -1.303,-1.493,-1.202
-attach_position_offset	= 0.110,-0.019,0.000
-
-attach_bone_name	= bip01_l_hand
-auto_attach		= false
-snd_draw                = weapons\ak74_draw
-snd_holster             = weapons\generic_holster
-
-[detector_base_hud]:hud_base
-attach_place_idx		= 1
-
-;--from beretta
-hands_position				= -0.021000,-0.160000,0.002500
-hands_orientation			= -0.500000,1.000000,1.149999
-hands_position_16x9				= 0.033000,-0.189500,0.039000
-hands_orientation_16x9			= 2.349998,2.749999,2.849998
-
-aim_hud_offset_pos		= 0,0,0
-aim_hud_offset_rot		= 0,0,0
-
-gl_hud_offset_pos			= 0,0,0
-gl_hud_offset_rot			= 0,0,0
-
-lean_hud_offset_pos		= 0,0,0
-lean_hud_offset_rot		= 0,0,0
-
-
-
-[detector_simple_hud]:detector_base_hud
-
-
-item_position				= -0.072424,0.030392,-0.012213
-item_orientation			= 324.640503,-189.627350,-183.009415
-
-item_visual                   	= dynamics\devices\dev_detector_1\dev_detector_1_hud
-
-fire_point			= 0,0,-0.05
-fire_bone      	      		= light_bone_2
-fire_point2			= 0,0,0
-fire_bone2			= light_bone_1
-
-anm_show			= dev_detector_1_draw
-anm_show_fast			= dev_detector_1_draw	;_quick
-anm_hide			= dev_detector_1_holster
-anm_hide_fast			= dev_detector_1_holster_quick
-anm_idle			= dev_detector_1_idle
-anm_idle_moving			= dev_detector_1_idle_moving
-anm_idle_sprint			= dev_detector_1_idle_moving
-anm_bore				= dev_detector_1_idle_bore
-
-anm_show_16x9			= dev_detector_1_draw_ws, dev_detector_1_draw
-anm_show_fast_16x9		= dev_detector_1_draw_ws	;_quick
-anm_hide_16x9			= dev_detector_1_holster_ws, dev_detector_1_holster
-anm_hide_fast_16x9		= dev_detector_1_holster_ws_quick
-anm_idle_16x9			= dev_detector_1_idle_ws, dev_detector_1_idle
-anm_idle_moving_16x9		= dev_detector_1_idle_moving_ws, dev_detector_1_idle_moving
-anm_idle_sprint_16x9		= dev_detector_1_idle_moving_ws, dev_detector_1_idle_moving
-anm_bore_16x9			= dev_detector_1_idle_bore_ws, dev_detector_1_idle_bore
-
-flash_light_range		= 0.1
-onoff_light_range		= 0.1
-
-[detector_advanced]:detector_simple
-$spawn 			= "devices\detector_advanced"
-class			= DET_ADVA
-visual			= dynamics\devices\dev_detector_2\dev_detector_2.ogf
-
-
-inv_name		= st_detector2
-inv_name_short	= st_detector2
-description		= st_detector2_descr
-
-inv_grid_width	= 1
-inv_grid_height	= 1
-inv_grid_x		= 15
-inv_grid_y		= 7
-cost			= 1000
-hud			= detector_advanced_hud
-
-af_radius		= 30
-af_vis_radius		= 4
-
-af_class_12		= af_dummy_glassbeads
+af_class_12		= af_cristall_breeding_1
 af_sound_12_		= detectors\art_beep1
 af_freq_12		= 0.05, 2
-
-af_class_13		= af_night_star
+af_class_13		= af_fireball_breeding_1
 af_sound_13_		= detectors\art_beep1
 af_freq_13		= 0.05, 2
-af_class_14		= af_vyvert
+af_class_14		= af_medusa_breeding_1
 af_sound_14_		= detectors\art_beep1
 af_freq_14		= 0.05, 2
-
-af_class_15		= af_soul
+af_class_15		= af_cristall_flower_breeding_1
 af_sound_15_		= detectors\art_beep1
 af_freq_15		= 0.05, 2
-af_class_16		= af_fuzz_kolobok
+af_class_16		= af_blood_breeding_1
 af_sound_16_		= detectors\art_beep1
 af_freq_16		= 0.05, 2
-
-af_class_17		= af_electra_moonlight
+af_class_17		= af_mincer_meat_breeding_1
 af_sound_17_		= detectors\art_beep1
 af_freq_17		= 0.05, 2
-af_class_18		= af_dummy_battery
+af_class_18		= af_electra_sparkler_breeding_1
 af_sound_18_		= detectors\art_beep1
 af_freq_18		= 0.05, 2
-
-
-[detector_advanced_hud]:detector_base_hud
-
-item_position				= -0.078949,0.039172,-0.019197
-item_orientation			= 320.606964,-194.089020,-186.572464
-
-item_visual                   	= dynamics\devices\dev_detector_2\dev_detector_2_hud
-
-anm_show			= dev_detector_2_draw
-anm_show_fast			= dev_detector_2_draw	;_quick
-anm_hide			= dev_detector_2_holster
-anm_hide_fast			= dev_detector_2_holster_quick
-anm_idle			= dev_detector_2_idle
-anm_idle_moving			= dev_detector_2_idle_moving
-anm_idle_sprint			= dev_detector_2_idle_moving
-anm_bore				= dev_detector_2_idle_bore
-
-anm_show_16x9			= dev_detector_2_draw_ws, dev_detector_2_draw
-anm_show_fast_16x9		= dev_detector_2_draw_ws	;_quick
-anm_hide_16x9			= dev_detector_2_holster_ws, dev_detector_2_holster
-anm_hide_fast_16x9		= dev_detector_2_holster_ws_quick
-anm_idle_16x9			= dev_detector_2_idle_ws, dev_detector_2_idle
-anm_idle_moving_16x9		= dev_detector_2_idle_moving_ws, dev_detector_2_idle_moving
-anm_idle_sprint_16x9		= dev_detector_2_idle_moving_ws, dev_detector_2_idle_moving
-anm_bore_16x9			= dev_detector_2_idle_bore_ws, dev_detector_1_idle_bore
-
-[detector_elite]:detector_advanced
-$spawn 			= "devices\detector_elite"
-class			= DET_ELIT
-visual			= dynamics\devices\dev_detector_3\dev_detector_3.ogf
-inv_name		= st_detector3
-inv_name_short	= st_detector3
-description		= st_detector3_descr
-hud			= detector_elite_hud
-
-inv_grid_width		= 1
-inv_grid_height		= 1
-inv_grid_x		= 5
-inv_grid_y		= 14
-cost			= 2000
-
-; elite x="0.00096" y="0.0035"
-ui_p			= -0.02904,0.01,0.0364
-ui_r			= 0,90,0
-
-af_radius		= 30
-af_vis_radius		= 5
-
-af_class_19		= af_eye
+af_class_19		= af_electra_flash_breeding_1
 af_sound_19_		= detectors\art_beep1
 af_freq_19		= 0.05, 2
-af_class_20		= af_fire
+af_class_19		= af_cristall_breeding_2
+af_sound_19_		= detectors\art_beep1
+af_freq_19		= 0.05, 2
+af_class_20		= af_fireball_breeding_2
 af_sound_20_		= detectors\art_beep1
 af_freq_20		= 0.05, 2
-
-af_class_21		= af_gravi
+af_class_21		= af_medusa_breeding_2
 af_sound_21_		= detectors\art_beep1
 af_freq_21		= 0.05, 2
-af_class_22		= af_gold_fish
+af_class_22		= af_cristall_flower_breeding_2
 af_sound_22_		= detectors\art_beep1
 af_freq_22		= 0.05, 2
-
-af_class_23		= af_baloon
+af_class_23		= af_blood_breeding_2
 af_sound_23_		= detectors\art_beep1
 af_freq_23		= 0.05, 2
-af_class_24		= af_glass
+af_class_24		= af_mincer_meat_breeding_2
 af_sound_24_		= detectors\art_beep1
 af_freq_24		= 0.05, 2
-
-af_class_25		= af_dummy_dummy
+af_class_25		= af_electra_sparkler_breeding_2
 af_sound_25_		= detectors\art_beep1
 af_freq_25		= 0.05, 2
-af_class_26		= af_ice
+af_class_26		= af_electra_flash_breeding_2
 af_sound_26_		= detectors\art_beep1
 af_freq_26		= 0.05, 2
-
-
-[detector_elite_hud]:detector_base_hud
-item_position				= -0.071685,0.036188,-0.009934
-item_orientation			= 314.589233,-186.420761,-189.323669
-
-item_visual                   	= dynamics\devices\dev_detector_3\dev_detector_3_hud
-
-anm_show			= dev_detector_3_draw
-anm_show_fast			= dev_detector_3_draw	;_quick
-anm_hide			= dev_detector_3_holster
-anm_hide_fast			= dev_detector_3_holster_quick
-anm_idle			= dev_detector_3_idle
-anm_idle_moving			= dev_detector_3_idle_moving
-anm_idle_sprint			= dev_detector_3_idle_moving
-anm_bore				= dev_detector_3_idle_bore
-
-anm_show_16x9			= dev_detector_3_draw_ws, dev_detector_3_draw
-anm_show_fast_16x9		= dev_detector_3_draw_ws	;_quick
-anm_hide_16x9			= dev_detector_3_holster_ws, dev_detector_3_holster
-anm_hide_fast_16x9		= dev_detector_3_holster_ws_quick
-anm_idle_16x9			= dev_detector_3_idle_ws, dev_detector_3_idle
-anm_idle_moving_16x9		= dev_detector_3_idle_moving_ws, dev_detector_3_idle_moving
-anm_idle_sprint_16x9		= dev_detector_3_idle_moving_ws, dev_detector_3_idle_moving
-anm_bore_16x9			= dev_detector_3_idle_bore_ws, dev_detector_1_idle_bore
-
-[detector_scientific]:detector_elite
-$spawn 				= "devices\detector_scientific"
-class				= DET_SCIE
-
-visual			= dynamics\devices\dev_detector_4\dev_detector_4.ogf
-
-inv_name		= st_detector4
-inv_name_short	= st_detector4
-description		= st_detector4_descr
-hud			= detector_scientific_hud
-
-inv_grid_width		= 1
-inv_grid_height		= 1
-inv_grid_x		= 19
-inv_grid_y		= 21
-cost			= 12500
-
-; elite x="0.00096" y="0.0035"
-ui_p			= -0.02904,0.01,0.0364
-ui_r			= 0,90,0
-
-af_radius		= 30
-af_vis_radius		= 6
-
-af_class_27		= af_oasis_heart
+af_class_27		= af_cristall_breeding_3
 af_sound_27_		= detectors\art_beep1
 af_freq_27		= 0.05, 2
+af_class_28		= af_fireball_breeding_3
+af_sound_28_		= detectors\art_beep1
+af_freq_28		= 0.05, 2
+af_class_29		= af_medusa_breeding_3
+af_sound_29_		= detectors\art_beep1
+af_freq_29		= 0.05, 2
+af_class_30		= af_cristall_flower_breeding_3
+af_sound_30_		= detectors\art_beep1
+af_freq_30		= 0.05, 2
+af_class_31		= af_blood_breeding_2
+af_sound_31_		= detectors\art_beep1
+af_freq_31		= 0.05, 2
+af_class_32		= af_mincer_meat_breeding_3
+af_sound_32_		= detectors\art_beep1
+af_freq_32		= 0.05, 2
+af_class_33		= af_electra_sparkler_breeding_3
+af_sound_33_		= detectors\art_beep1
+af_freq_33		= 0.05, 2
+af_class_34		= af_electra_flash_breeding_3
+af_sound_34_		= detectors\art_beep1
+af_freq_34		= 0.05, 2
+af_class_35		= af_acid_star
+af_sound_35_		= detectors\art_beep1
+af_freq_35		= 0.05, 2
+af_class_36		= af_shapoklak
+af_sound_36_		= detectors\art_beep1
+af_freq_36		= 0.05, 2
 
+[detector_advanced_af_base]
+af_class_35		= af_dummy_glassbeads
+af_sound_35_		= detectors\art_beep1
+af_freq_35		= 0.05, 2
+af_class_36		= af_night_star
+af_sound_36_		= detectors\art_beep1
+af_freq_36		= 0.05, 2
+af_class_37		= af_vyvert
+af_sound_37_		= detectors\art_beep1
+af_freq_37		= 0.05, 2
+af_class_38		= af_soul
+af_sound_38_		= detectors\art_beep1
+af_freq_38		= 0.05, 2
+af_class_39		= af_fuzz_kolobok
+af_sound_39_		= detectors\art_beep1
+af_freq_39		= 0.05, 2
+af_class_40		= af_electra_moonlight
+af_sound_40_		= detectors\art_beep1
+af_freq_40		= 0.05, 2
+af_class_41		= af_dummy_battery
+af_sound_41_		= detectors\art_beep1
+af_freq_41		= 0.05, 2
+af_class_42		= af_dummy_glassbeads_breeding_1
+af_sound_42_		= detectors\art_beep1
+af_freq_42		= 0.05, 2
+af_class_43		= af_night_star_breeding_1
+af_sound_43_		= detectors\art_beep1
+af_freq_43		= 0.05, 2
+af_class_44		= af_vyvert_breeding_1
+af_sound_44_		= detectors\art_beep1
+af_freq_44		= 0.05, 2
+af_class_45		= af_soul_breeding_1
+af_sound_45_		= detectors\art_beep1
+af_freq_45		= 0.05, 2
+af_class_46		= af_fuzz_kolobok_breeding_1
+af_sound_46_		= detectors\art_beep1
+af_freq_46		= 0.05, 2
+af_class_47		= af_electra_moonlight_breeding_1
+af_sound_47_		= detectors\art_beep1
+af_freq_47		= 0.05, 2
+af_class_48		= af_dummy_battery_breeding_1
+af_sound_48_		= detectors\art_beep1
+af_freq_48		= 0.05, 2
+af_class_49		= af_dummy_glassbeads_breeding_2
+af_sound_49_		= detectors\art_beep1
+af_freq_49		= 0.05, 2
+af_class_50		= af_night_star_breeding_2
+af_sound_50_		= detectors\art_beep1
+af_freq_50		= 0.05, 2
+af_class_51		= af_vyvert_breeding_2
+af_sound_51_		= detectors\art_beep1
+af_freq_51		= 0.05, 2
+af_class_52		= af_soul_breeding_2
+af_sound_52_		= detectors\art_beep1
+af_freq_52		= 0.05, 2
+af_class_53		= af_fuzz_kolobok_breeding_2
+af_sound_53_		= detectors\art_beep1
+af_freq_53		= 0.05, 2
+af_class_54		= af_electra_moonlight_breeding_2
+af_sound_54_		= detectors\art_beep1
+af_freq_54		= 0.05, 2
+af_class_55		= af_dummy_battery_breeding_2
+af_sound_55_		= detectors\art_beep1
+af_freq_55		= 0.05, 2
+af_class_56		= af_dummy_glassbeads_breeding_3
+af_sound_56_		= detectors\art_beep1
+af_freq_56		= 0.05, 2
+af_class_57		= af_night_star_breeding_3
+af_sound_57_		= detectors\art_beep1
+af_freq_57		= 0.05, 2
+af_class_58		= af_vyvert_breeding_3
+af_sound_58_		= detectors\art_beep1
+af_freq_58		= 0.05, 2
+af_class_59		= af_soul_breeding_3
+af_sound_59_		= detectors\art_beep1
+af_freq_59		= 0.05, 2
+af_class_60		= af_fuzz_kolobok_breeding_3
+af_sound_60_		= detectors\art_beep1
+af_freq_60		= 0.05, 2
+af_class_61		= af_electra_moonlight_breeding_3
+af_sound_61_		= detectors\art_beep1
+af_freq_61		= 0.05, 2
+af_class_62		= af_dummy_battery_breeding_3
+af_sound_62_		= detectors\art_beep1
+af_freq_62		= 0.05, 2
+af_class_63		= af_acid_star
+af_sound_63_		= detectors\art_beep1
+af_freq_63		= 0.05, 2
+af_class_64		= af_shapoklak
+af_sound_64_		= detectors\art_beep1
+af_freq_64		= 0.05, 2
+
+[detector_elite_af_base]
+af_class_63		= af_eye
+af_sound_63_		= detectors\art_beep1
+af_freq_63		= 0.05, 2
+af_class_64		= af_fire
+af_sound_64_		= detectors\art_beep1
+af_freq_64		= 0.05, 2
+af_class_65		= af_gravi
+af_sound_65_		= detectors\art_beep1
+af_freq_65		= 0.05, 2
+af_class_66		= af_gold_fish
+af_sound_66_		= detectors\art_beep1
+af_freq_66		= 0.05, 2
+af_class_67		= af_baloon
+af_sound_67_		= detectors\art_beep1
+af_freq_67		= 0.05, 2
+af_class_68		= af_glass
+af_sound_68_		= detectors\art_beep1
+af_freq_68		= 0.05, 2
+af_class_69		= af_dummy_dummy
+af_sound_69_		= detectors\art_beep1
+af_freq_69		= 0.05, 2
+af_class_70		= af_ice
+af_sound_70_		= detectors\art_beep1
+af_freq_70		= 0.05, 2
+af_class_71		= af_geliy
+af_sound_71_		= detectors\art_beep1
+af_freq_71		= 0.05, 2
+af_class_72		= af_vaselisk
+af_sound_72_		= detectors\art_beep1
+af_freq_72		= 0.05, 2
+af_class_73		= af_dragon_eye
+af_sound_73_		= detectors\art_beep1
+af_freq_73		= 0.05, 2
+af_class_74		= af_monolit
+af_sound_74_		= detectors\art_beep1
+af_freq_74		= 0.05, 2
+af_class_75		= af_eye_breeding_1
+af_sound_75_		= detectors\art_beep1
+af_freq_75		= 0.05, 2
+af_class_76		= af_fire_breeding_1
+af_sound_76_		= detectors\art_beep1
+af_freq_76		= 0.05, 2
+af_class_77		= af_gravi_breeding_1
+af_sound_77_		= detectors\art_beep1
+af_freq_77		= 0.05, 2
+af_class_78		= af_gold_fish_breeding_1
+af_sound_78_		= detectors\art_beep1
+af_freq_78		= 0.05, 2
+af_class_79		= af_baloon_breeding_1
+af_sound_79_		= detectors\art_beep1
+af_freq_79		= 0.05, 2
+af_class_80		= af_glass_breeding_1
+af_sound_80_		= detectors\art_beep1
+af_freq_80		= 0.05, 2
+af_class_81		= af_dummy_dummy_breeding_1
+af_sound_81_		= detectors\art_beep1
+af_freq_81		= 0.05, 2
+af_class_82		= af_ice_breeding_1
+af_sound_82_		= detectors\art_beep1
+af_freq_82		= 0.05, 2
+af_class_83		= af_geliy_breeding_1
+af_sound_83_		= detectors\art_beep1
+af_freq_83		= 0.05, 2
+af_class_84		= af_vaselisk_breeding_1
+af_sound_84_		= detectors\art_beep1
+af_freq_84		= 0.05, 2
+af_class_85		= af_dragon_eye_breeding_1
+af_sound_85_		= detectors\art_beep1
+af_freq_85		= 0.05, 2
+af_class_86		= af_monolit_breeding_1
+af_sound_86_		= detectors\art_beep1
+af_freq_86		= 0.05, 2
+af_class_87		= af_eye_breeding_2
+af_sound_87_		= detectors\art_beep1
+af_freq_87		= 0.05, 2
+af_class_88		= af_fire_breeding_2
+af_sound_88_		= detectors\art_beep1
+af_freq_88		= 0.05, 2
+af_class_89		= af_gravi_breeding_2
+af_sound_89_		= detectors\art_beep1
+af_freq_89		= 0.05, 2
+af_class_90		= af_gold_fish_breeding_2
+af_sound_90_		= detectors\art_beep1
+af_freq_90		= 0.05, 2
+af_class_91		= af_baloon_breeding_2
+af_sound_91_		= detectors\art_beep1
+af_freq_91		= 0.05, 2
+af_class_92		= af_glass_breeding_2
+af_sound_92_		= detectors\art_beep1
+af_freq_92		= 0.05, 2
+af_class_93		= af_dummy_dummy_breeding_2
+af_sound_93_		= detectors\art_beep1
+af_freq_93		= 0.05, 2
+af_class_94		= af_ice_breeding_2
+af_sound_94_		= detectors\art_beep1
+af_freq_94		= 0.05, 2
+af_class_95		= af_geliy_breeding_2
+af_sound_95_		= detectors\art_beep1
+af_freq_95		= 0.05, 2
+af_class_96		= af_vaselisk_breeding_2
+af_sound_96_		= detectors\art_beep1
+af_freq_96		= 0.05, 2
+af_class_97		= af_dragon_eye_breeding_2
+af_sound_97_		= detectors\art_beep1
+af_freq_97		= 0.05, 2
+af_class_98		= af_monolit_breeding_2
+af_sound_98_		= detectors\art_beep1
+af_freq_98		= 0.05, 2
+af_class_99		= af_eye_breeding_3
+af_sound_99_		= detectors\art_beep1
+af_freq_99		= 0.05, 2
+af_class_100		= af_fire_breeding_3
+af_sound_100_		= detectors\art_beep1
+af_freq_100		= 0.05, 2
+af_class_101		= af_gravi_breeding_3
+af_sound_101_		= detectors\art_beep1
+af_freq_101		= 0.05, 2
+af_class_102		= af_gold_fish_breeding_3
+af_sound_102_		= detectors\art_beep1
+af_freq_102		= 0.05, 2
+af_class_103		= af_baloon_breeding_3
+af_sound_103_		= detectors\art_beep1
+af_freq_103		= 0.05, 2
+af_class_104		= af_glass_breeding_3
+af_sound_104_		= detectors\art_beep1
+af_freq_104		= 0.05, 2
+af_class_105		= af_dummy_dummy_breeding_3
+af_sound_105_		= detectors\art_beep1
+af_freq_105		= 0.05, 2
+af_class_106		= af_ice_breeding_3
+af_sound_106_		= detectors\art_beep1
+af_freq_106		= 0.05, 2
+af_class_107		= af_geliy_breeding_3
+af_sound_107_		= detectors\art_beep1
+af_freq_107		= 0.05, 2
+af_class_108		= af_vaselisk_breeding_3
+af_sound_108_		= detectors\art_beep1
+af_freq_108		= 0.05, 2
+af_class_109		= af_dragon_eye_breeding_3
+af_sound_109_		= detectors\art_beep1
+af_freq_109		= 0.05, 2
+af_class_110		= af_monolit_breeding_3
+af_sound_110_		= detectors\art_beep1
+af_freq_110		= 0.05, 2
+af_class_111		= af_acid_star
+af_sound_111_		= detectors\art_beep1
+af_freq_111		= 0.05, 2
+af_class_112		= af_shapoklak
+af_sound_112_		= detectors\art_beep1
+af_freq_112		= 0.05, 2
+
+[detector_scientific_af_base]
+af_class_111		= af_oasis_heart
+af_sound_111_		= detectors\art_beep1
+af_freq_111		= 0.05, 2
+af_class_113		= af_acid_star
+af_sound_113_		= detectors\art_beep1
+af_freq_113		= 0.05, 2
+
+[detector_scientific_anomaly_base]
 zone_class_1		= zone_mine_acidic_weak
 zone_class_2		= zone_mine_acidic_average
 zone_class_3		= zone_mine_acidic_strong
-
 zone_class_4		= zone_mine_electric_weak
 zone_class_5		= zone_mine_electric_average
 zone_class_6		= zone_mine_electric_strong
-
 zone_class_7		= zone_mine_gravitational_weak
 zone_class_8		= zone_mine_gravitational_average
 zone_class_9		= zone_mine_gravitational_strong
-
 zone_class_10		= zone_mine_thermal_weak
 zone_class_11		= zone_mine_thermal_average
 zone_class_12		= zone_mine_thermal_strong
-
 zone_class_13		= zone_mine_steam_weak
 zone_class_14		= zone_mine_steam_average
 zone_class_15		= zone_mine_steam_strong
-
 zone_class_16		= zone_mine_acidic_big
-
 zone_class_17		= zone_mine_chemical_weak
 zone_class_18		= zone_mine_chemical_average
 zone_class_19		= zone_mine_chemical_strong
-
 zone_class_20		= zone_buzz_weak
 zone_class_21		= zone_buzz_average
 zone_class_22		= zone_buzz_strong
-
 zone_class_23		= zone_mine_static_weak
 zone_class_24		= zone_mine_static_average
 zone_class_25		= zone_mine_static_strong
-
 zone_class_26		= zone_witches_galantine_weak
 zone_class_27		= zone_witches_galantine_average
 zone_class_28		= zone_witches_galantine_strong
-
 zone_class_29		= zone_mine_gravitational_big
-
 zone_class_30		= zone_gravi_zone
-
 zone_class_31		= zone_zharka_static_weak
 zone_class_32		= zone_zharka_static_average
 zone_class_33		= zone_zharka_static_strong
-
-zone_freq_1			= 0.05, 2
-zone_freq_2			= 0.05, 2
-zone_freq_3			= 0.05, 2
-zone_freq_4			= 0.05, 2
-zone_freq_5			= 0.05, 2
-zone_freq_6			= 0.05, 2
-zone_freq_7			= 0.05, 2
-zone_freq_8			= 0.05, 2
-zone_freq_9			= 0.05, 2
+zone_class_34		= sgm_acidic_field_weak
+zone_class_35		= sgm_acidic_field_average
+zone_class_36		= sgm_acidic_field_strong
+zone_class_37		= sgm_psychic_field_weak
+zone_class_38		= sgm_psychic_field_average
+zone_class_39		= sgm_psychic_field_strong
+zone_class_40		= sgm_thermal_field_weak
+zone_class_41		= sgm_thermal_field_average
+zone_class_42		= sgm_thermal_field_strong
+zone_class_43		= sgm_thermal_streem_weak
+zone_class_44		= sgm_thermal_streem_average
+zone_class_45		= sgm_thermal_streem_strong
+zone_class_46		= sgm_blue_thermal_streem_weak
+zone_class_47		= sgm_blue_thermal_streem_average
+zone_class_48		= sgm_blue_thermal_streem_strong
+zone_class_49		= sgm_red_thermal_streem_weak
+zone_class_50		= sgm_red_thermal_streem_average
+zone_class_51		= sgm_red_thermal_streem_strong
+zone_class_52		= sgm_gravitational_field_weak
+zone_class_53		= sgm_gravitational_field_average
+zone_class_54		= sgm_gravitational_field_strong
+zone_class_55		= sgm_electric_field_weak
+zone_class_56		= sgm_electric_field_average
+zone_class_57		= sgm_electric_field_strong
+zone_freq_1		= 0.05, 2
+zone_freq_2		= 0.05, 2
+zone_freq_3		= 0.05, 2
+zone_freq_4		= 0.05, 2
+zone_freq_5		= 0.05, 2
+zone_freq_6		= 0.05, 2
+zone_freq_7		= 0.05, 2
+zone_freq_8		= 0.05, 2
+zone_freq_9		= 0.05, 2
 zone_freq_10		= 0.05, 2
 zone_freq_11		= 0.05, 2
 zone_freq_12		= 0.05, 2
@@ -447,27 +506,206 @@ zone_freq_30		= 0.05, 2
 zone_freq_31		= 0.05, 2
 zone_freq_32		= 0.05, 2
 zone_freq_33		= 0.05, 2
+zone_freq_34		= 0.05, 2
+zone_freq_35		= 0.05, 2
+zone_freq_36		= 0.05, 2
+zone_freq_37		= 0.05, 2
+zone_freq_38		= 0.05, 2
+zone_freq_39		= 0.05, 2
+zone_freq_40		= 0.05, 2
+zone_freq_41		= 0.05, 2
+zone_freq_42		= 0.05, 2
+zone_freq_43		= 0.05, 2
+zone_freq_44		= 0.05, 2
+zone_freq_45		= 0.05, 2
+zone_freq_46		= 0.05, 2
+zone_freq_47		= 0.05, 2
+zone_freq_48		= 0.05, 2
+zone_freq_49		= 0.05, 2
+zone_freq_50		= 0.05, 2
+zone_freq_51		= 0.05, 2
+zone_freq_52		= 0.05, 2
+zone_freq_53		= 0.05, 2
+zone_freq_54		= 0.05, 2
+zone_freq_55		= 0.05, 2
+zone_freq_56		= 0.05, 2
+zone_freq_57		= 0.05, 2
+
+[detector_simple]:identity_immunities,detector_simple_af_base
+GroupControlSection	= spawn_group
+$spawn 			= "devices\detector_simple"
+$prefetch 		= 32
+class			= DET_SIMP
+cform			= skeleton
+visual			= dynamics\devices\dev_detector_1\dev_detector_1.ogf
+hud			= detector_simple_hud
+animation_slot		= 7
+inv_name		= st_detector1
+inv_name_short	        = st_detector1
+description		= st_detector1_descr
+slot			= 8
+ef_detector_type	= 1
+inv_weight		= 0.5
+inv_grid_width		= 1
+inv_grid_height		= 1
+inv_grid_x		= 9
+inv_grid_y		= 14
+cost			= 500
+default_to_ruck		= false
+af_radius		= 30
+af_vis_radius		= 3
+attach_angle_offset	= -1.303,-1.493,-1.202
+attach_position_offset	= 0.110,-0.019,0.000
+attach_bone_name	= bip01_l_hand
+auto_attach		= false
+snd_draw                = weapons\ak74_draw
+snd_holster             = weapons\generic_holster
+
+[detector_base_hud]:hud_base
+attach_place_idx	= 1
+hands_position		= -0.021000,-0.160000,0.002500
+hands_orientation	= -0.500000,1.000000,1.149999
+hands_position_16x9	= 0.033000,-0.189500,0.039000
+hands_orientation_16x9	= 2.349998,2.749999,2.849998
+aim_hud_offset_pos	= 0,0,0
+aim_hud_offset_rot	= 0,0,0
+gl_hud_offset_pos	= 0,0,0
+gl_hud_offset_rot	= 0,0,0
+lean_hud_offset_pos	= 0,0,0
+lean_hud_offset_rot	= 0,0,0
+
+[detector_simple_hud]:detector_base_hud
+item_position		= -0.072424,0.030392,-0.012213
+item_orientation	= 324.640503,-189.627350,-183.009415
+item_visual             = dynamics\devices\dev_detector_1\dev_detector_1_hud
+fire_point		= 0,0,-0.05
+fire_bone      	      	= light_bone_2
+fire_point2		= 0,0,0
+fire_bone2		= light_bone_1
+anm_show		= dev_detector_1_draw
+anm_show_fast		= dev_detector_1_draw	;_quick
+anm_hide		= dev_detector_1_holster
+anm_hide_fast		= dev_detector_1_holster_quick
+anm_idle		= dev_detector_1_idle
+anm_idle_moving		= dev_detector_1_idle_moving
+anm_idle_sprint		= dev_detector_1_idle_moving
+anm_show_16x9		= dev_detector_1_draw_ws, dev_detector_1_draw
+anm_show_fast_16x9	= dev_detector_1_draw_ws	;_quick
+anm_hide_16x9		= dev_detector_1_holster_ws, dev_detector_1_holster
+anm_hide_fast_16x9	= dev_detector_1_holster_ws_quick
+anm_idle_16x9		= dev_detector_1_idle_ws, dev_detector_1_idle
+anm_idle_moving_16x9	= dev_detector_1_idle_moving_ws, dev_detector_1_idle_moving
+anm_idle_sprint_16x9	= dev_detector_1_idle_moving_ws, dev_detector_1_idle_moving
+flash_light_range	= 0.1
+onoff_light_range	= 0.1
+
+[detector_advanced]:detector_simple, detector_advanced_af_base
+$spawn 			= "devices\detector_advanced"
+class			= DET_ADVA
+visual			= dynamics\devices\dev_detector_2\dev_detector_2.ogf
+inv_name		= st_detector2
+inv_name_short		= st_detector2
+description		= st_detector2_descr
+inv_grid_width		= 1
+inv_grid_height		= 1
+inv_grid_x		= 15
+inv_grid_y		= 7
+cost			= 1000
+hud			= detector_advanced_hud
+af_radius		= 30
+af_vis_radius		= 4
+
+[detector_advanced_hud]:detector_base_hud
+item_position		= -0.078949,0.039172,-0.019197
+item_orientation	= 320.606964,-194.089020,-186.572464
+item_visual             = dynamics\devices\dev_detector_2\dev_detector_2_hud
+anm_show		= dev_detector_2_draw
+anm_show_fast		= dev_detector_2_draw	;_quick
+anm_hide		= dev_detector_2_holster
+anm_hide_fast		= dev_detector_2_holster_quick
+anm_idle		= dev_detector_2_idle
+anm_idle_moving		= dev_detector_2_idle_moving
+anm_idle_sprint		= dev_detector_2_idle_moving
+anm_show_16x9		= dev_detector_2_draw_ws, dev_detector_2_draw
+anm_show_fast_16x9	= dev_detector_2_draw_ws	;_quick
+anm_hide_16x9		= dev_detector_2_holster_ws, dev_detector_2_holster
+anm_hide_fast_16x9	= dev_detector_2_holster_ws_quick
+anm_idle_16x9		= dev_detector_2_idle_ws, dev_detector_2_idle
+anm_idle_moving_16x9	= dev_detector_2_idle_moving_ws, dev_detector_2_idle_moving
+anm_idle_sprint_16x9	= dev_detector_2_idle_moving_ws, dev_detector_2_idle_moving
+
+[detector_elite]:detector_advanced, detector_elite_af_base
+$spawn 			= "devices\detector_elite"
+class			= DET_ELIT
+visual			= dynamics\devices\dev_detector_3\dev_detector_3.ogf
+inv_name		= st_detector3
+inv_name_short	        = st_detector3
+description		= st_detector3_descr
+hud			= detector_elite_hud
+inv_grid_width		= 1
+inv_grid_height		= 1
+inv_grid_x		= 5
+inv_grid_y		= 14
+cost			= 2000
+; elite x="0.00096" y="0.0035"
+ui_p			= -0.02904,0.01,0.0364
+ui_r			= 0,90,0
+af_radius		= 30
+af_vis_radius		= 5
+
+[detector_elite_hud]:detector_base_hud
+item_position		= -0.071685,0.036188,-0.009934
+item_orientation	= 314.589233,-186.420761,-189.323669
+item_visual             = dynamics\devices\dev_detector_3\dev_detector_3_hud
+anm_show		= dev_detector_3_draw
+anm_show_fast		= dev_detector_3_draw	;_quick
+anm_hide		= dev_detector_3_holster
+anm_hide_fast		= dev_detector_3_holster_quick
+anm_idle		= dev_detector_3_idle
+anm_idle_moving		= dev_detector_3_idle_moving
+anm_idle_sprint		= dev_detector_3_idle_moving
+anm_show_16x9		= dev_detector_3_draw_ws, dev_detector_3_draw
+anm_show_fast_16x9	= dev_detector_3_draw_ws	;_quick
+anm_hide_16x9		= dev_detector_3_holster_ws, dev_detector_3_holster
+anm_hide_fast_16x9	= dev_detector_3_holster_ws_quick
+anm_idle_16x9		= dev_detector_3_idle_ws, dev_detector_3_idle
+anm_idle_moving_16x9	= dev_detector_3_idle_moving_ws, dev_detector_3_idle_moving
+anm_idle_sprint_16x9	= dev_detector_3_idle_moving_ws, dev_detector_3_idle_moving
+
+[detector_scientific]:detector_elite, detector_scientific_af_base, detector_scientific_anomaly_base
+$spawn 			= "devices\detector_scientific"
+class			= DET_SCIE
+visual			= dynamics\devices\dev_detector_4\dev_detector_4.ogf
+inv_name		= st_detector4
+inv_name_short	        = st_detector4
+description		= st_detector4_descr
+hud			= detector_scientific_hud
+inv_grid_width		= 1
+inv_grid_height		= 1
+inv_grid_x		= 19
+inv_grid_y		= 21
+cost			= 12500
+; elite x="0.00096" y="0.0035"
+ui_p			= -0.02904,0.01,0.0364
+ui_r			= 0,90,0
+af_radius		= 30
+af_vis_radius		= 6
 
 [detector_scientific_hud]:detector_base_hud
-item_position				= -0.071685,0.036188,-0.009934
-item_orientation			= 314.589233,-186.420761,-189.323669
-
-item_visual                   	= dynamics\devices\dev_detector_4\dev_detector_4_hud
-
-anm_show			= dev_detector_3_draw
-anm_show_fast			= dev_detector_3_draw	;_quick
-anm_hide			= dev_detector_3_holster
-anm_hide_fast			= dev_detector_3_holster_quick
-anm_idle			= dev_detector_3_idle
-anm_idle_moving			= dev_detector_3_idle_moving
-anm_idle_sprint			= dev_detector_3_idle_moving
-anm_bore				= dev_detector_3_idle_bore
-
-anm_show_16x9			= dev_detector_3_draw_ws, dev_detector_3_draw
-anm_show_fast_16x9		= dev_detector_3_draw_ws	;_quick
-anm_hide_16x9			= dev_detector_3_holster_ws, dev_detector_3_holster
-anm_hide_fast_16x9		= dev_detector_3_holster_ws_quick
-anm_idle_16x9			= dev_detector_3_idle_ws, dev_detector_3_idle
-anm_idle_moving_16x9		= dev_detector_3_idle_moving_ws, dev_detector_3_idle_moving
-anm_idle_sprint_16x9		= dev_detector_3_idle_moving_ws, dev_detector_3_idle_moving
-anm_bore_16x9			= dev_detector_3_idle_bore_ws, dev_detector_1_idle_bore
+item_position		= -0.071685,0.036188,-0.009934
+item_orientation	= 314.589233,-186.420761,-189.323669
+item_visual             = dynamics\devices\dev_detector_4\dev_detector_4_hud
+anm_show		= dev_detector_3_draw
+anm_show_fast		= dev_detector_3_draw	;_quick
+anm_hide		= dev_detector_3_holster
+anm_hide_fast		= dev_detector_3_holster_quick
+anm_idle		= dev_detector_3_idle
+anm_idle_moving		= dev_detector_3_idle_moving
+anm_idle_sprint		= dev_detector_3_idle_moving
+anm_show_16x9		= dev_detector_3_draw_ws, dev_detector_3_draw
+anm_show_fast_16x9	= dev_detector_3_draw_ws	;_quick
+anm_hide_16x9		= dev_detector_3_holster_ws, dev_detector_3_holster
+anm_hide_fast_16x9	= dev_detector_3_holster_ws_quick
+anm_idle_16x9		= dev_detector_3_idle_ws, dev_detector_3_idle
+anm_idle_moving_16x9	= dev_detector_3_idle_moving_ws, dev_detector_3_idle_moving
+anm_idle_sprint_16x9	= dev_detector_3_idle_moving_ws, dev_detector_3_idle_moving

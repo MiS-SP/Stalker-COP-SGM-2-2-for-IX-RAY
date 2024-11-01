@@ -1,0 +1,21 @@
+[logic]
+active = move@bankir
+
+[move@bankir]
+move_dest_number       = 225935
+move_look_vertex       = 225932
+move_state_when_center = ward_noweap
+move_state_when_move   = walk
+move_combat_disable    = true
+meet                   = meet
+invulnerable           = true
+combat_ignore_cond     = true
+combat_ignore_keep_when_attacked = true
+on_info                = {=can_release_base_member} nil %=release_npc%
+
+[meet]
+abuse           = false
+use             = true
+allow_break     = false
+meet_on_talking = false
+trade_enable    = false

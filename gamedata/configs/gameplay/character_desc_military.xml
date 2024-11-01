@@ -1,0 +1,379 @@
+<?xml version='1.0' encoding="windows-1251"?>
+<xml>
+<!-----------------------------------------================----------------------------------------------->
+<!-----------------------------------------'Военные Склады'----------------------------------------------->
+<!-----------------------------------------================----------------------------------------------->
+<specific_character id="mil_b7_base_leader" team_default = "1">
+                <name>mil_b7_base_leader_name</name>
+                <icon>ui_npc_u_rasvet_exo</icon>
+                <map_icon x="1" y="0"></map_icon>
+                <bio>Опытный сталкер. Детальная информация отсутствует.</bio>
+                <class>mil_b7_base_leader</class>
+                <community>rasvet</community> <terrain_sect>stalker_terrain</terrain_sect>
+                <snd_config>characters_voice\human_03\stalker\</snd_config>
+                <rank>900</rank>
+	        <money min="50000" max="100000" infinitive="0"/>
+                <reputation>0</reputation>
+                <visual>actors\stalker_rasvet\stalker_rasvet_exo_2</visual>
+                <supplies>
+                [spawn] \n
+	        device_torch \n
+                hand_radio \n
+      		wpn_gauss = 1 \n
+		ammo_gauss = 5 \n
+      		wpn_desert_eagle = 1 \n
+		ammo_dumdum = 1 \n
+      		grenade_f1 = 1 \n
+#include "gameplay\character_items_3.xml"
+#include "gameplay\character_food.xml"
+#include "gameplay\character_drugs_4.xml"
+#include "gameplay\character_drugs_sci.xml"
+#include "gameplay\character_sell_weapons.xml"
+		</supplies>
+#include "gameplay\character_criticals_4.xml"
+                <start_dialog>mil_b7_base_leader_start_dialog</start_dialog>
+		<actor_dialog>actor_break_dialog</actor_dialog>
+#include "gameplay\character_dialogs.xml"
+</specific_character>
+
+<specific_character id="mil_b7_base_chief" team_default = "1">
+                <name>mil_b7_base_chief_name</name>
+                <icon>ui_npc_u_rasvet_exo</icon>
+                <map_icon x="1" y="0"></map_icon>
+                <bio>Опытный сталкер. Детальная информация отсутствует.</bio>
+                <class>mil_b7_base_chief</class>
+                <community>rasvet</community> <terrain_sect>stalker_terrain</terrain_sect>
+                <snd_config>characters_voice\human_03\stalker\</snd_config>
+                <rank>700</rank>
+	        <money min="25000" max="100000" infinitive="0"/>
+                <reputation>0</reputation>
+                <visual>actors\stalker_rasvet\stalker_rasvet_exo</visual>
+                <supplies>
+                [spawn] \n
+	        device_torch \n
+                hand_radio \n
+      		wpn_fn2000 \n
+		ammo_5.56x45_ap \n
+      		wpn_desert_eagle = 1 \n
+		ammo_11.43x23_hydro = 1 \n
+      		grenade_f1 = 1 \n
+#include "gameplay\character_items_3.xml"
+#include "gameplay\character_food.xml"
+#include "gameplay\character_drugs_4.xml"
+#include "gameplay\character_drugs_sci.xml"
+#include "gameplay\character_sell_weapons.xml"
+		</supplies>
+#include "gameplay\character_criticals_4.xml"
+                <start_dialog>mil_b7_base_chief_start_dialog</start_dialog>
+		<actor_dialog>actor_break_dialog</actor_dialog>
+#include "gameplay\character_dialogs.xml"
+</specific_character>
+
+<specific_character id="mil_b7_colonizer_commander" team_default = "1">
+                <name>mil_b7_colonizer_commander_name</name>
+                <icon>ui_inGame2_neutral_4</icon>
+                <map_icon x="1" y="0"></map_icon>
+                <bio>Опытный сталкер. Детальная информация отсутствует.</bio>
+                <class>mil_b7_colonizer_commander</class>
+                <community>night_stalker</community> <terrain_sect>stalker_terrain</terrain_sect>
+                <snd_config>characters_voice\human_03\stalker\</snd_config>
+                <rank>300</rank>
+	        <money min="15000" max="30000" infinitive="0"/>
+                <reputation>0</reputation>
+                <visual>actors\stalker_special\stalker_prototype</visual>
+                <supplies>
+                [spawn] \n
+	        device_torch \n
+                hand_radio \n
+      		wpn_groza = 1, silencer \n
+		ammo_9x39_ap = 1 \n
+      		wpn_usp = 1, silencer \n
+		ammo_11.43x23_hydro = 1 \n
+      		grenade_f1 = 1 \n
+#include "gameplay\character_items_3.xml"
+#include "gameplay\character_food.xml"
+#include "gameplay\character_drugs_4.xml"
+#include "gameplay\character_drugs_sci.xml"
+#include "gameplay\character_sell_weapons.xml"
+		</supplies>
+#include "gameplay\character_criticals_4.xml"
+                #include "gameplay\character_dialogs.xml"
+                <start_dialog>mil_b7_colonizer_commander_start_dialog</start_dialog>
+		<actor_dialog>mil_b7_colonizer_commander_about_name_dialog</actor_dialog>
+		<actor_dialog>mil_b7_colonizer_commander_about_outfit_dialog</actor_dialog>
+                <actor_dialog>about_story_dialog</actor_dialog>
+		<actor_dialog>actor_break_dialog</actor_dialog>
+</specific_character>
+
+<specific_character id="mil_b7_colonizer_soldier_1" team_default = "1">
+                <name>GENERATE_NAME_stalker</name>
+                <icon>ui_inGame2_neutral_nauchniy</icon>
+                <map_icon x="1" y="0"></map_icon>
+                <bio>Опытный сталкер. Детальная информация отсутствует.</bio>
+                <class>mil_b7_colonizer_soldier_1</class>
+                <community>night_stalker</community> <terrain_sect>stalker_terrain</terrain_sect>
+                <snd_config>characters_voice\human_03\stalker\</snd_config>
+                <rank>250</rank>
+	        <money min="5000" max="10000" infinitive="0"/>
+                <reputation>0</reputation>
+                <visual>actors\stalker_night\stalker_night_3</visual>
+                <supplies>
+                [spawn] \n
+      		wpn_wincheaster1300 \n
+		ammo_12x76_zhekan = 1 \n
+	  	wpn_walther \n
+	  	ammo_9x18_pmm = 1 \n
+#include "gameplay\character_items_3.xml"
+#include "gameplay\character_food.xml"
+#include "gameplay\character_drugs_4.xml"
+#include "gameplay\character_drugs_sci.xml"
+#include "gameplay\character_sell_weapons.xml"
+		</supplies>
+#include "gameplay\character_criticals_4.xml"
+#include "gameplay\character_dialogs.xml"
+</specific_character>
+
+<specific_character id="mil_b7_colonizer_soldier_2" team_default = "1">
+                <name>GENERATE_NAME_stalker</name>
+                <icon>ui_inGame2_neutral_3</icon>
+                <map_icon x="1" y="0"></map_icon>
+                <bio>Опытный сталкер. Детальная информация отсутствует.</bio>
+                <class>mil_b7_colonizer_soldier_2</class>
+                <community>night_stalker</community> <terrain_sect>stalker_terrain</terrain_sect>
+                <snd_config>characters_voice\human_03\stalker\</snd_config>
+                <rank>250</rank>
+	        <money min="2500" max="5000" infinitive="0"/>
+                <reputation>0</reputation>
+                <visual>actors\stalker_night\stalker_night_2</visual>
+                <supplies>
+                [spawn] \n
+      		wpn_ak74 = 1, launcher \n
+		ammo_5.45x39_ap = 1 \n
+      		wpn_usp \n
+		ammo_9x18_pmm = 1 \n
+      		grenade_f1 = 1 \n
+#include "gameplay\character_items_2.xml"
+#include "gameplay\character_food.xml"
+#include "gameplay\character_drugs_3.xml"
+#include "gameplay\character_drugs_sci.xml"
+#include "gameplay\character_sell_weapons.xml"
+		</supplies>
+#include "gameplay\character_criticals_4.xml"
+#include "gameplay\character_dialogs.xml"
+</specific_character>
+
+<specific_character id="mil_b7_colonizer_soldier_3" team_default = "1">
+                <name>GENERATE_NAME_stalker</name>
+                <icon>ui_inGame2_neutral_2</icon>
+                <map_icon x="1" y="0"></map_icon>
+                <bio>Опытный сталкер. Детальная информация отсутствует.</bio>
+                <class>mil_b7_colonizer_soldier_3</class>
+                <community>night_stalker</community> <terrain_sect>stalker_terrain</terrain_sect>
+                <snd_config>characters_voice\human_03\stalker\</snd_config>
+                <rank>250</rank>
+	        <money min="2500" max="5000" infinitive="0"/>
+                <reputation>0</reputation>
+                <visual>actors\stalker_night\stalker_night_1</visual>
+                <supplies>
+                [spawn] \n
+      		wpn_g36 = 1, launcher, silencer \n
+		ammo_5.56x45_ap = 1 \n
+      		wpn_sig220 = 1, silencer \n
+		ammo_11.43x23_fmj = 1 \n
+      		grenade_f1 = 2 \n
+#include "gameplay\character_items_2.xml"
+#include "gameplay\character_food.xml"
+#include "gameplay\character_drugs_3.xml"
+#include "gameplay\character_drugs_sci.xml"
+#include "gameplay\character_sell_weapons.xml"
+		</supplies>
+#include "gameplay\character_criticals_4.xml"
+#include "gameplay\character_dialogs.xml"
+</specific_character>
+
+<specific_character id="mil_b7_colonizer_soldier_4" team_default = "1">
+                <name>GENERATE_NAME_stalker</name>
+                <icon>ui_inGame2_neutral_2</icon>
+                <map_icon x="1" y="0"></map_icon>
+                <bio>Опытный сталкер. Детальная информация отсутствует.</bio>
+                <class>mil_b7_colonizer_soldier_4</class>
+                <community>night_stalker</community> <terrain_sect>stalker_terrain</terrain_sect>
+                <snd_config>characters_voice\human_03\stalker\</snd_config>
+                <rank>250</rank>
+	        <money min="2500" max="5000" infinitive="0"/>
+                <reputation>0</reputation>
+                <visual>actors\stalker_night\stalker_night_2</visual>
+                <supplies>
+                [spawn] \n
+      		wpn_l85 = 1, launcher \n
+		ammo_5.56x45_ap = 1 \n
+      		wpn_colt1911 = 1, silencer \n
+		ammo_11.43x23_fmj = 1 \n
+      		grenade_f1 = 1 \n
+#include "gameplay\character_items_2.xml"
+#include "gameplay\character_food.xml"
+#include "gameplay\character_drugs_3.xml"
+#include "gameplay\character_drugs_sci.xml"
+#include "gameplay\character_sell_weapons.xml"
+		</supplies>
+#include "gameplay\character_criticals_4.xml"
+#include "gameplay\character_dialogs.xml"
+</specific_character>
+
+<specific_character id="mil_b7_colonizer_soldier_5" team_default = "1">
+                <name>GENERATE_NAME_stalker</name>
+                <icon>ui_inGame2_neutral_2</icon>
+                <map_icon x="1" y="0"></map_icon>
+                <bio>Опытный сталкер. Детальная информация отсутствует.</bio>
+                <class>mil_b7_colonizer_soldier_5</class>
+                <community>night_stalker</community> <terrain_sect>stalker_terrain</terrain_sect>
+                <snd_config>characters_voice\human_02\stalker\</snd_config>
+                <rank>250</rank>
+	        <money min="2500" max="5000" infinitive="0"/>
+                <reputation>0</reputation>
+                <visual>actors\stalker_night\stalker_night_1</visual>
+                <supplies>
+                [spawn] \n
+      		wpn_sig550 = 1, launcher, scope, silencer \n
+		ammo_9x39_ap = 1 \n
+      		wpn_sig220 = 1, silencer \n
+		ammo_11.43x23_fmj = 1 \n
+#include "gameplay\character_items_2.xml"
+#include "gameplay\character_food.xml"
+#include "gameplay\character_drugs_3.xml"
+#include "gameplay\character_drugs_sci.xml"
+#include "gameplay\character_sell_weapons.xml"
+		</supplies>
+#include "gameplay\character_criticals_4.xml"
+#include "gameplay\character_dialogs.xml"
+</specific_character>
+
+<specific_character id="mil_b7_night_stalker_leader" team_default = "1">
+                <name>mil_b7_night_stalker_leader_name</name>
+                <icon>ui_inGame2_neutral_4</icon>
+                <map_icon x="1" y="0"></map_icon>
+                <bio>Опытный сталкер. Детальная информация отсутствует.</bio>
+                <class>mil_b7_night_stalker_leader</class>
+                <community>night_stalker</community> <terrain_sect>stalker_terrain</terrain_sect>
+                <snd_config>characters_voice\human_03\stalker\</snd_config>
+                <rank>300</rank>
+	        <money min="15000" max="30000" infinitive="0"/>
+                <reputation>0</reputation>
+                <visual>actors\stalker_night\stalker_night_3</visual>
+                <supplies>
+                [spawn] \n
+	        device_torch \n
+                hand_radio \n
+      		wpn_gauss = 1 \n
+		ammo_gauss = 5 \n
+      		wpn_desert_eagle = 1 \n
+		ammo_dumdum = 1 \n
+      		grenade_f1 = 1 \n
+#include "gameplay\character_items_3.xml"
+#include "gameplay\character_food.xml"
+#include "gameplay\character_drugs_4.xml"
+#include "gameplay\character_drugs_sci.xml"
+#include "gameplay\character_sell_weapons.xml"
+		</supplies>
+#include "gameplay\character_criticals_4.xml"
+                <start_dialog>mil_b7_night_stalker_leader_start_dialog</start_dialog>
+		<actor_dialog>actor_break_dialog</actor_dialog>
+#include "gameplay\character_dialogs.xml"
+</specific_character>
+
+<specific_character id="mil_b7_employer" team_default = "1">
+                <name>mil_b7_employer_name</name>
+                <icon>ui_inGame2_neutral_2</icon>
+                <map_icon x="1" y="0"></map_icon>
+                <bio>Опытный сталкер. Детальная информация отсутствует.</bio>
+                <class>mil_b7_employer</class>
+                <community>night_stalker</community> <terrain_sect>stalker_terrain</terrain_sect>
+                <snd_config>characters_voice\human_03\stalker\</snd_config>
+                <rank>300</rank>
+	        <money min="15000" max="30000" infinitive="0"/>
+                <reputation>0</reputation>
+                <visual>actors\stalker_night\stalker_night_2</visual>
+                <supplies>
+                [spawn] \n
+	        device_torch \n
+      		wpn_ak74 \n
+		ammo_5.45x39_ap = 1 \n
+	  	wpn_sig220 = 1 \n
+	  	ammo_11.43x23_hydro = 1 \n
+#include "gameplay\character_items_3.xml"
+#include "gameplay\character_food.xml"
+#include "gameplay\character_drugs_4.xml"
+#include "gameplay\character_drugs_sci.xml"
+#include "gameplay\character_sell_weapons.xml"
+		</supplies>
+#include "gameplay\character_criticals_4.xml"
+                <start_dialog>employer_job_dialog</start_dialog>
+		<actor_dialog>actor_break_dialog</actor_dialog>
+#include "gameplay\character_dialogs.xml"
+</specific_character>
+
+<specific_character id="mil_b7_trader" team_default = "1">
+                <name>mil_b7_trader_name</name>
+                <icon>ui_inGame2_neutral_3</icon>
+                <map_icon x="1" y="0"></map_icon>
+                <bio>Опытный сталкер. Детальная информация отсутствует.</bio>
+                <class>mil_b7_trader</class>
+                <community>trader</community> <terrain_sect>stalker_terrain</terrain_sect>
+                <snd_config>characters_voice\human_03\stalker\</snd_config>
+                <rank>500</rank>
+	        <money min="480000" max="480000" infinitive="1" />
+                <reputation>0</reputation>
+                <visual>actors\stalker_night\stalker_night_3</visual>
+                <supplies>
+                [spawn] \n
+	        device_torch \n
+      		wpn_l85 = 1, launcher \n
+		ammo_5.56x45_ap = 1 \n
+	  	wpn_sig220 = 1 \n
+	  	ammo_11.43x23_hydro = 1 \n
+#include "gameplay\character_items_3.xml"
+#include "gameplay\character_food.xml"
+#include "gameplay\character_drugs_4.xml"
+#include "gameplay\character_drugs_sci.xml"
+#include "gameplay\character_sell_weapons.xml"
+		</supplies>
+#include "gameplay\character_criticals_4.xml"
+                <start_dialog>mil_night_stalker_trader_start_dialog</start_dialog>
+		<actor_dialog>actor_break_dialog</actor_dialog>
+#include "gameplay\character_criticals_4.xml"
+                #include "gameplay\character_dialogs.xml"
+</specific_character>
+
+<specific_character id="mil_b7_bankir" team_default = "1">
+                <name>mil_b7_bankir_name</name>
+                <icon>ui_inGame2_neutral_2</icon>
+                <map_icon x="1" y="0"></map_icon>
+                <bio>Опытный сталкер. Детальная информация отсутствует.</bio>
+                <class>mil_b7_bankir</class>
+                <community>night_stalker</community> <terrain_sect>stalker_terrain</terrain_sect>
+                <snd_config>characters_voice\human_03\stalker\</snd_config>
+                <rank>250</rank>
+	        <money min="60000" max="70000" infinitive="0" />
+                <reputation>0</reputation>
+                <visual>actors\stalker_night\stalker_night_2</visual>
+                <supplies>
+                [spawn] \n
+	        device_torch \n
+      		wpn_ak74 \n
+		ammo_5.45x39_ap = 1 \n
+	  	wpn_sig220 = 1 \n
+	  	ammo_11.43x23_hydro = 1 \n
+#include "gameplay\character_items_3.xml"
+#include "gameplay\character_food.xml"
+#include "gameplay\character_drugs_4.xml"
+#include "gameplay\character_drugs_sci.xml"
+#include "gameplay\character_sell_weapons.xml"
+		</supplies>
+#include "gameplay\character_criticals_4.xml"
+                <start_dialog>mil_night_stalker_bankir_start_dialog</start_dialog>
+		<actor_dialog>actor_break_dialog</actor_dialog>
+#include "gameplay\character_criticals_4.xml"
+                #include "gameplay\character_dialogs.xml"
+</specific_character>
+<!-------------------------------------------------------------------------------------------------------->
+</xml>

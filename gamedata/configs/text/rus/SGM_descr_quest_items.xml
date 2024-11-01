@@ -1,0 +1,543 @@
+	<string id="st_signaller_toolkit_1_descr">
+		<text>Предназначены для проведения качественного походного ремонта войскового оборудования.</text>
+	</string>
+	<string id="st_signaller_toolkit_1">
+		<text>Армейские инструменты ОРК-42</text>
+	</string>
+	<string id="st_signaller_toolkit_2_descr">
+		<text>Предназначены для настройки и калибровки войскового оборудования.</text>
+	</string>
+	<string id="st_signaller_toolkit_2">
+		<text>Армейские инструменты РКБ-86у</text>
+	</string>
+	<string id="st_special_helicopter_key">
+		<text>Универсальный ключ пилота</text>
+	</string>
+	<string id="st_special_helicopter_key_descr">
+		<text>Предназначен для получения экстренного доступа вертолётам.</text>
+	</string>
+	<string id="st_detector_modify_toolkit_descr">
+		<text>Профессиональный набор инструментов для тонкого ремонта и модернизации детекторов. Того, что включено в комплект, достаточно для проведения любых работ по настройке и модернизации детекторов всех типов.</text>
+	</string>
+	<string id="st_detector_modify_toolkit">
+		<text>Инструменты для работы с детекторами</text>
+	</string>
+	<string id="st_important_science_docks">
+		<text>Научный доклад №1264</text>
+	</string>
+	<string id="st_important_science_docks_descr">
+		<text>Сшитые степплером, несколько листов формата А4. Надпись на обложке:\n«Слияние аномальных пород»\nS/N 1264</text>
+	</string>
+	<string id="st_flash_avoid_witnesses_name">
+		<text>Ячейка данных СБУ №15764</text>
+	</string>
+	<string id="st_flash_avoid_witnesses_descr">
+		<text>Прикрепленная информация: Группа наёмников задержала нашего агента в окрестностях Юпитера. Есть основания полагать, что наш агент все еще жив. Ваша цель - освобождение агента и нейтрализация наёмников, оказавших сопротивление. Для безопасного прохода внутрь лагеря - используйте «Комбинезон наёмника».\nДля загрузки данных в КПК - необходимо использовать.</text>
+	</string>
+	<string id="st_letter_from_agent">
+		<text>Письмо от связного</text>
+	</string>
+	<string id="st_letter_from_agent_descr">
+		<text>В письме значится: Майору Дегтярёву. Вам нужно срочно встретиться со связным на территории электростанции. Позывной - "Как ваше филе?".</text>
+	</string>
+	<string id="st_quest_flash_light">
+		<text>Фонарь с оптикой «Messler»</text>
+	</string>
+	<string id="st_quest_flash_light_descr">
+		<text>Галогенный фонарик и оптический прицел, смонтированные в общем корпусе.</text>
+	</string>
+	<string id="st_quest_arms_case">
+		<text>Кейс с «Ruger GP100»</text>
+	</string>
+	<string id="st_quest_arms_case_descr">
+		<text>Внутри кейса находится разобранный «Ruger GP100», а также ремкомплект к нему.</text>
+	</string>
+	<string id="st_quest_heavy_medkits">
+		<text>Медкомплект «CCA72»</text>
+	</string>
+	<string id="st_quest_heavy_medkits_descr">
+		<text>Используемый МЧС, универсальный медицинский набор с дефибрилятором.</text>
+	</string>
+	<string id="st_quest_photo_device">
+		<text>Фотоаппарат «Suzanna»</text>
+	</string>
+	<string id="st_quest_photo_device_descr">
+		<text>Средне-форматная аналоговая камера с жёстко прикреплённым штативом.</text>
+	</string>
+	<string id="st_quest_drink_beylis">
+		<text>«Бейлиз»</text>
+	</string>
+	<string id="st_quest_drink_beylis_descr">
+		<text>Раритетный напиток, по крайней мере в пределах зоны.</text>
+	</string>
+	<string id="st_quest_frequency_radio">
+		<text>Высокочастотная рация «Grundig»</text>
+	</string>
+	<string id="st_quest_frequency_radio_descr">
+		<text>Используется для обеспечения связи на огромных дистанциях. Производства Германии.</text>
+	</string>
+	<string id="st_quest_sharpshooter_binocular">
+		<text>Бинокль «Следопыт»</text>
+	</string>
+	<string id="st_quest_sharpshooter_binocular_descr">
+		<text>Специализированный армейский бинокль. Входит в экипировку военных снайперов.</text>
+	</string>
+	<string id="st_quest_live_water">
+		<text>Живая вода</text>
+	</string>
+	<string id="st_quest_live_water_descr">
+		<text>Еще одно чудо, рожденное в пределах зоны.</text>
+	</string>
+	<string id="st_quest_medic_medkit">
+		<text>Аптечка В98</text>
+	</string>
+	<string id="st_quest_medic_medkit_descr">
+		<text>Большой медицинский комплект. Отлично справляется с любым ранением или кровотечением.</text>
+	</string>
+	<string id="st_quest_bloodsucker_letter_1">
+		<text>Странная записка 1</text>
+	</string>
+	<string id="st_quest_bloodsucker_letter_1_descr">
+		<text>В письме значится следующее: "...ты первый кто увидел меня...я тебе сохранил жизнь...в обмен на молчание и... и помощь. Помоги мне...я не могу появится среди людей, но я знаю что у учёных наверняка есть то, что мне нужно...NG-7. Принеси мне этот препарат. Он мне поможет. И я тебя отблагодарю."\nДля загрузки данных в КПК - необходимо использовать.</text>
+	</string>
+	<string id="st_quest_bloodsucker_letter_2">
+		<text>Странная записка 2</text>
+	</string>
+	<string id="st_quest_bloodsucker_letter_2_descr">
+		<text>В письме значится следующее: "Спасибо. Загляни в мой ящик, он в конце коридора. Там твоё вознаграждение."</text>
+	</string>
+	<string id="st_quest_bloodsucker_vaccine">
+		<text>Вакцина NG-7</text>
+	</string>
+	<string id="st_quest_bloodsucker_vaccine_descr">
+		<text>Озёрский ничего не говорил об этом препарате, но я полагаю, что данный препарат останавливает мутацию.</text>
+	</string>
+	<string id="st_device_pda_alfa_commander_novice">
+		<text>КПК командира отряда Альфа</text>
+	</string>
+	<string id="st_device_pda_alfa_commander_novice_descr">
+		<text>%c[255,238,153,26]Командир группы вспомогательного назначения. %c[default]Приказ - всем вспомогательным группам! Обеспечить поддержку группам спецназа или по возможности самим - захватить живым или мёртвым Дегтярёва Александра Григорьевича 1978 года рождения, уроженца г. Припять УССР. Приметы: худощавое телосложение, на вид 25-30 лет, рост - 179 см, волосы волнистые, светло-русые. Особо опасен, майор СБУ. Все вещи, найденные при нём, немедленно доставить в центр. Особо обратить внимание на сохранность КПК, бумажных и электронных носителей информации. 5 кратное вознаграждение за успешное выполнение задачи!</text>
+	</string>
+	<string id="st_device_pda_alfa_commander_regular">
+		<text>КПК командира отряда Альфа</text>
+	</string>
+	<string id="st_device_pda_alfa_commander_regular_descr">
+		<text>%c[255,238,153,26]Командир группы специального назначения. %c[default]Приказ - всем группам специального назначения! Захватить живым или мёртвым Дегтярёва Александра Григорьевича 1978 года рождения, уроженца г. Припять УССР. Приметы: худощавое телосложение, на вид 25-30 лет, рост - 179 см, волосы волнистые, светло-русые. Особо опасен, майор СБУ. Все вещи, найденные при нём, немедленно доставить в центр. Особо обратить внимание на сохранность КПК, бумажных и электронных носителей информации. 10 кратное вознаграждение за успешное выполнение задачи!</text>
+	</string>
+	<string id="st_device_pda_alfa_commander_experienced">
+		<text>КПК командира отряда Альфа</text>
+	</string>
+	<string id="st_device_pda_alfa_commander_experienced_descr">
+		<text>%c[255,238,153,26]Командир группы специального назначения. %c[default]Приказ - всем вспомогательным группам и группам специального назначения! Захватить живым или мёртвым Дегтярёва Александра Григорьевича 1978 года рождения, уроженца г. Припять УССР. Приметы: худощавое телосложение, на вид 25-30 лет, рост - 179 см, волосы волнистые, светло-русые. Особо опасен, майор СБУ. Все вещи, найденные при нём, немедленно доставить в центр. Особо обратить внимание на сохранность КПК, бумажных и электронных носителей информации. 15 кратное вознаграждение за успешное выполнение задачи!</text>
+	</string>
+	<string id="st_device_pda_alfa_commander_veteran">
+		<text>КПК командира отряда Альфа</text>
+	</string>
+	<string id="st_device_pda_alfa_commander_veteran_descr">
+		<text>%c[255,238,153,26]Командир специального элитного подразделения. %c[default]Приказ - всем группам специального элитного подразделения! Захватить живым или мёртвым Дегтярёва Александра Григорьевича 1978 года рождения, уроженца г. Припять УССР. Приметы: худощавое телосложение, на вид 25-30 лет, рост - 179 см, волосы волнистые, светло-русые. Особо опасен, майор СБУ. Все вещи, найденные при нём, немедленно доставить в центр. Особо обратить внимание на сохранность КПК, бумажных и электронных носителей информации. 20 кратное вознаграждение за успешное выполнение задачи!</text>
+	</string>
+	<string id="st_device_pda_alfa_commander_master">
+		<text>КПК командира отряда Альфа</text>
+	</string>
+	<string id="st_device_pda_alfa_commander_master_descr">
+		<text>%c[255,238,153,26]Командир специального сверх элитного подразделения. %c[default]Приказ - всем группам специального сверх элитного подразделения! Захватить живым или мёртвым Дегтярёва Александра Григорьевича 1978 года рождения, уроженца г. Припять УССР. Приметы: худощавое телосложение, на вид 25-30 лет, рост - 179 см, волосы волнистые, светло-русые. Особо опасен, майор СБУ. Все вещи, найденные при нём, немедленно доставить в центр. Особо обратить внимание на сохранность КПК, бумажных и электронных носителей информации. 30 кратное вознаграждение за успешное выполнение задачи!</text>
+	</string>
+	<string id="st_device_pda_b1_commander">
+		<text>КПК «Бульдога»</text>
+	</string>
+	<string id="st_device_pda_b1_commander_descr">
+		<text>КПК с ценной для сталкеров информацией.</text>
+	</string>
+	<string id="st_device_pda_b1_renegade_1">
+		<text>КПК ренегатовца</text>
+	</string>
+	<string id="st_device_pda_b1_renegade_1_descr">
+		<text>КПК с ценной для сталкеров информацией.</text>
+	</string>
+	<string id="st_device_pda_b1_renegade_2">
+		<text>КПК ренегатовца</text>
+	</string>
+	<string id="st_device_pda_b1_renegade_2_descr">
+		<text>КПК с ценной для сталкеров информацией.</text>
+	</string>
+	<string id="st_device_pda_b1_renegade_3">
+		<text>КПК ренегатовца</text>
+	</string>
+	<string id="st_device_pda_b1_renegade_3_descr">
+		<text>КПК с ценной для сталкеров информацией.</text>
+	</string>
+	<string id="st_device_pda_kasilov">
+		<text>КПК «Касилова»</text>
+	</string>
+	<string id="st_device_pda_kasilov_descr">
+		<text>КПК с неизвестной информацией.</text>
+	</string>
+	<string id="st_device_pda_cherniy">
+		<text>КПК «Черного»</text>
+	</string>
+	<string id="st_device_pda_cherniy_descr">
+		<text>КПК лидера наёмников. Информация с КПК: Наш пароль - "раскукоженая кукушка".</text>
+	</string>
+	<string id="st_monolith_intercepted_case">
+		<text>Кейс «Леона»</text>
+	</string>
+	<string id="st_monolith_intercepted_case_descr">
+		<text>Кейс, перехваченный агентом Монолита у наёмников. Леон просил доставить кейс в Припять, не открывая его.</text>
+	</string>
+	<string id="st_jup_thief_voron_pda">
+		<text>КПК «Ворона»</text>
+	</string>
+	<string id="st_jup_thief_voron_pda_descr">
+		<text>КПК содержит заархивированный файл, архив защищён паролем. Мой КПК не поддерживает данную версию архиватора. Необходимо передать КПК Громобою - возможно, он сможет извлечь информацию.</text>
+	</string>
+	<string id="st_zat_shakal_weapon">
+		<text>Именной «Ruger GP100»</text>
+	</string>
+	<string id="st_zat_shakal_weapon_descr">
+		<text>Именное оружие. Выполнено под заказ, на рукоятке красуется надпись "Чапа".</text>
+	</string>
+	<string id="st_af_acid_star_name">
+		<text>«Кислотный инфузорий»</text>
+	</string>
+	<string id="st_af_acid_star_descr">
+		<text>Уникальный артефакт с превосходными защитными свойствами. Необходимо доставить его селекционеру... жалко.</text>
+	</string>
+	<string id="st_af_shapoklak_name">
+		<text>«Шапокляк»</text>
+	</string>
+	<string id="st_af_shapoklak_descr">
+		<text>Уникальный артефакт с неплохими защитными и восстановительными свойствами. Однако излучает радиацию. Нужно передать артефакт Кривоухову.</text>
+	</string>
+	<string id="st_zat_postman_parcel">
+		<text>Посылка для сберегателя</text>
+	</string>
+	<string id="st_zat_postman_parcel_descr">
+		<text>По словам сталкера Петьки Печкина, внутри находится абонплата. Получатель - Маркович, сберегатель на Скадовске.</text>
+	</string>
+	<string id="st_zat_danger_parcel">
+		<text>Посылка для Каневского</text>
+	</string>
+	<string id="st_zat_danger_parcel_descr">
+		<text>То, что Мститель пренебрежительно назвал "фейерверки", на самом деле выглядит как грамотно упакованный заряд С-4 с детонатором. Получатель - "долговец" Каневский.</text>
+	</string>
+	<string id="st_shustriy_ingram_m10">
+		<text>Трофейный «Ingram Mac-10»</text>
+	</string>
+	<string id="st_shustriy_ingram_m10_descr">
+		<text>На рукоятке пистолета-пулемета выгравирована надпись. Разобрать можно только «За отличн... сл..бу..» и чьи-то инициалы «А.С. П.шк.н».</text>
+	</string>
+	<string id="st_shustriy_ak47">
+		<text>Трофейный «АК-47»</text>
+	</string>
+	<string id="st_shustriy_ak47_descr">
+		<text>Старый потертый автомат, со следами чьих-то когтей на прикладе. Оружие, про которое ходят легенды. В частности - говорят, что сам Меченный убил из него последнего в Зоне "излома".</text>
+	</string>
+	<string id="st_shustriy_mossberg_590mk">
+		<text>Трофейный «Mossberg 590Mk.L»</text>
+	</string>
+	<string id="st_shustriy_mossberg_590mk_descr">
+		<text>Судя по внешнему виду, это оружие долго втаптывали в землю; причём, скорее всего, в окрестностях "Агропрома". Заводская надпись на прикладе гласит, что это дробовик из ограниченной партии, отличающейся более качественным воронением.</text>
+	</string>
+	<string id="st_shustriy_steyr_aug_ss190">
+		<text>Трофейный «Steyr AUG SS190»</text>
+	</string>
+	<string id="st_shustriy_steyr_aug_ss190_descr">
+		<text>Оружие для настоящих спецназовцев. Над этим оружием поработал техник, знающий свое дело, существенно улучшив боевые характеристики. По слухам, это был Шуруп - легендарный умелец с "Военных складов".</text>
+	</string>
+	<string id="st_detector_serafim">
+		<text>Детектор «Серафим»</text>
+	</string>
+	<string id="st_detector_serafim_descr">
+		<text>Специальная разработка учёных. Снабжён локатором аномальных образований и светодиодным таблом для отображения направления к неизвестному образцу, причём способен не только обнаруживать образцы, но и определять расстояния до них. Режим поиска образцов включается поднятием крышки-антенны на лицевой стороне прибора.</text>
+	</string>
+	<string id="st_af_prodigy_danger_name">
+		<text>«Неизвестный артефакт»</text>
+	</string>
+	<string id="st_af_prodigy_danger_descr">
+		<text>Радиоактивен. О свойствах артефакта практически ничего не известно.</text>
+	</string>
+	<string id="st_af_prodigy_1_processed_name">
+		<text>«Порода №768»</text>
+	</string>
+	<string id="st_af_prodigy_1_processed_descr">
+		<text>Артефакт органической природы. Состоит из деформированных тканей животного происхождения. При попадании в зону химического загрязнения начинает «вытягивать» химикалии из воздуха, преобразуя их в густую вязкую массу.</text>
+	</string>
+	<string id="st_af_prodigy_2_processed_name">
+		<text>«Порода №815»</text>
+	</string>
+	<string id="st_af_prodigy_2_processed_descr">
+		<text>Точно установлено, что излучение, возникающее при пульсации утолщений этой породы, заставляет кровь в открытых ранах очень быстро сворачиваться.</text>
+	</string>
+	<string id="st_af_prodigy_3_processed_name">
+		<text>«Порода №862»</text>
+	</string>
+	<string id="st_af_prodigy_3_processed_descr">
+		<text>Органический артефакт с уникальными свойствами. Неизвестным пока образом увеличивает общую скорость восстановления организма после травм любой природы, не ускоряя накопление токсинов.</text>
+	</string>
+	<string id="st_af_prodigy_4_processed_name">
+		<text>«Порода №874»</text>
+	</string>
+	<string id="st_af_prodigy_4_processed_descr">
+		<text>Артефакт электростатической природы. Способен резко увеличивать мышечный тонус носителя.</text>
+	</string>
+	<string id="st_af_prodigy_5_processed_name">
+		<text>«Порода №895»</text>
+	</string>
+	<string id="st_af_prodigy_5_processed_descr">
+		<text>Генерирует вокруг себя сферу направленного гравитационного поля. Очень эффективно снижает вес содержимого рюкзака носителя.</text>
+	</string>
+	<string id="st_af_prodigy_6_processed_name">
+		<text>«Порода №934»</text>
+	</string>
+	<string id="st_af_prodigy_6_processed_descr">
+		<text>Органический артефакт. Генерирует вокруг себя невидимую сферу, которая повышает иммунитет носителя.</text>
+	</string>
+	<string id="st_x18_secret_docks_1">
+		<text>Дело №45</text>
+	</string>
+	<string id="st_x18_secret_docks_1_descr">
+		<text>Сшитые степплером, несколько листов формата А4. Надпись на обложке:\n«Совершенно секретно»\nS/N 773645</text>
+	</string>
+	<string id="st_x18_secret_docks_2">
+		<text>Дело №112</text>
+	</string>
+	<string id="st_x18_secret_docks_2_descr">
+		<text>Сшитые степплером, несколько листов формата А4. Надпись на обложке:\n«Совершенно секретно»\nS/N 7736112</text>
+	</string>
+	<string id="st_x18_secret_docks_3">
+		<text>Дело №18</text>
+	</string>
+	<string id="st_x18_secret_docks_3_descr">
+		<text>Сшитые степплером, несколько листов формата А4. Надпись на обложке:\n«Совершенно секретно»\nS/N 773618</text>
+	</string>
+	<string id="st_val_key_from_safe">
+		<text>Ключ от сейфа</text>
+	</string>
+	<string id="st_val_key_from_safe_descr">
+		<text>Ключ от сейфа, в котором должна лежать карта доступа к подземной лаборатории.</text>
+	</string>
+	<string id="st_zat_medic_antidote">
+		<text>Антидот Фельдшера</text>
+	</string>
+	<string id="st_zat_medic_antidote_descr">
+		<text>Посылка Костоправу.</text>
+	</string>
+	<string id="st_zat_wisdom_book_1">
+		<text>Книга «Мудрости»</text>
+	</string>
+	<string id="st_zat_wisdom_book_1_descr">
+		<text>Редкая в зоне книга.</text>
+	</string>
+	<string id="st_zat_wisdom_book_2">
+		<text>Книга «Мудрости»</text>
+	</string>
+	<string id="st_zat_wisdom_book_2_descr">
+		<text>Редкая в зоне книга.</text>
+	</string>
+	<string id="st_zat_wisdom_book_3">
+		<text>Книга «Мудрости»</text>
+	</string>
+	<string id="st_zat_wisdom_book_3_descr">
+		<text>Редкая в зоне книга.</text>
+	</string>
+	<string id="st_zat_mad_dog_pda">
+		<text>КПК капитана Рогожина</text>
+	</string>
+	<string id="st_zat_mad_dog_pda_descr">
+		<text>КПК с драгоценной информацией для лидера вольных сталкеров - Меча.</text>
+	</string>
+	<string id="st_pri_inquisitor_pda_1">
+		<text>КПК монолитовца</text>
+	</string>
+	<string id="st_pri_inquisitor_pda_1_descr">
+		<text>КПК с данными.</text>
+	</string>
+	<string id="st_pri_inquisitor_pda_2">
+		<text>КПК монолитовца</text>
+	</string>
+	<string id="st_pri_inquisitor_pda_2_descr">
+		<text>КПК с данными.</text>
+	</string>
+	<string id="st_pri_fenix_brother_medallion">
+		<text>Медальон Германика</text>
+	</string>
+	<string id="st_pri_fenix_brother_medallion_descr">
+		<text>Личный медальон брата Феникса - Германика.</text>
+	</string>
+	<string id="st_val_access_card_x18">
+		<text>Карта доступа</text>
+	</string>
+	<string id="st_val_access_card_x18_descr">
+		<text>Карта доступа к лаборатории Х18.</text>
+	</string>
+	<string id="st_val_b4_baltazar_pda">
+		<text>КПК Балтазара</text>
+	</string>
+	<string id="st_val_b4_baltazar_pda_descr">
+		<text>КПК с ценной информацией.</text>
+	</string>
+	<string id="st_x18_secret_gs67">
+		<text>Секретное оружие</text>
+	</string>
+	<string id="st_mil_hole_bomb">
+		<text>Взрывчатка C4</text>
+	</string>
+	<string id="st_mil_hole_bomb_descr">
+		<text>Подрывной заряд. Идет в комплекте с пультом управления.</text>
+	</string>
+	<string id="st_mil_hole_bomb_control">
+		<text>Пульт управления зарядом C4</text>
+	</string>
+	<string id="st_mil_hole_bomb_control_descr">
+		<text>Для детонации удаленного заряда C4 - необходимо использовать.</text>
+	</string>
+	<string id="st_val_renegade_money_case">
+		<text>Ящик с деньгами</text>
+	</string>
+	<string id="st_val_renegade_money_case_descr">
+		<text>Стальной ящик с целым состоянием внутри.</text>
+	</string>
+	<string id="st_jup_killer_caravan_case">
+		<text>Груз каравана</text>
+	</string>
+	<string id="st_jup_killer_caravan_case_descr">
+		<text>Стальной ящик с чем-то внутри.</text>
+	</string>
+	<string id="st_agru_key_from_door">
+		<text>Ключ от двери</text>
+	</string>
+	<string id="st_agru_key_from_door_descr">
+		<text>Ключ найденный у мёртвого учёного.</text>
+	</string>
+	<string id="st_agru_secret_docks_1">
+		<text>Дело №708</text>
+	</string>
+	<string id="st_agru_secret_docks_1_descr">
+		<text>Сшитые степплером, несколько листов формата А4. Надпись на обложке:\n«Совершенно секретно»\nS/N 7736708</text>
+	</string>
+	<string id="st_agru_secret_docks_2">
+		<text>Дело №711</text>
+	</string>
+	<string id="st_agru_secret_docks_2_descr">
+		<text>Сшитые степплером, несколько листов формата А4. Надпись на обложке:\n«Совершенно секретно»\nS/N 7736711</text>
+	</string>
+	<string id="st_esc_key_from_gate">
+		<text>Ключ от ворот</text>
+	</string>
+	<string id="st_esc_key_from_gate_descr">
+		<text>Ключ бандитов. Используется для открытия ворот ведущих на Болота</text>
+	</string>
+	<string id="st_esc_b2_bomb">
+		<text>Взрывчатка C4</text>
+	</string>
+	<string id="st_esc_b2_bomb_descr">
+		<text>Подрывной заряд. Идет в комплекте с пультом управления.</text>
+	</string>
+	<string id="st_esc_b2_bomb_control">
+		<text>Пульт управления зарядом C4</text>
+	</string>
+	<string id="st_esc_b2_bomb_control_descr">
+		<text>Для детонации удаленного заряда C4 - необходимо использовать.</text>
+	</string>
+	<string id="st_esc_b2_tamerlan_flash">
+		<text>Флешка Тамерлана</text>
+	</string>
+	<string id="st_esc_b2_tamerlan_flash_descr">
+		<text>Флешка взятая с тела Тамерлана.</text>
+	</string>
+	<string id="st_esc_b3_safe_flash">
+		<text>Флешка бандитов</text>
+	</string>
+	<string id="st_esc_b3_safe_flash_descr">
+		<text>Флешка с полезной для сталкеров информацией.</text>
+	</string>
+	<string id="st_esc_b3_safe_key">
+		<text>Ключ от сейфа</text>
+	</string>
+	<string id="st_esc_b3_safe_key_descr">
+		<text>Ключ бандитов. Используется для открытия сейфа.</text>
+	</string>
+	<string id="st_mar_army_cargo">
+		<text>Военная поклажа</text>
+	</string>
+	<string id="st_mar_army_cargo_descr">
+		<text>Армейский груз. Внутри содержится неизвестное мне химическое вещество. Нужно передать его в СБУ.</text>
+	</string>
+	<string id="st_mar_mine_sensor">
+		<text>Датчик для миноискателя</text>
+	</string>
+	<string id="st_mar_mine_sensor_descr">
+		<text>Наиболее важная деталь любого миноискателя.</text>
+	</string>
+	<string id="st_mar_mine_detector">
+		<text>Миноискатель</text>
+	</string>
+	<string id="st_mar_mine_detector_descr">
+		<text>С его помощью можно находить и обезвреживать мины спрятанные под землей.</text>
+	</string>
+	<string id="st_mar_georadar">
+		<text>Георадар</text>
+	</string>
+	<string id="st_mar_georadar_descr">
+		<text>При помощи георадара можно найти любую железяку, как бы глубоко под землей она не находилась. Радиус обнаружения - 30 метров.</text>
+	</string>
+	<string id="st_zat_alfa_performer_bandit_pda">
+		<text>КПК неизвестного бандита</text>
+	</string>
+	<string id="st_zat_alfa_performer_bandit_pda_descr">
+		<text>Информация с КПК: "Спасибо за проделанную работу, деньги заберёте возле Железного леса у нашего человека".</text>
+	</string>
+	<string id="st_zat_alfa_customer_pda">
+		<text>КПК альфовца</text>
+	</string>
+	<string id="st_zat_alfa_customer_pda_descr">
+		<text>Информация с КПК: "Пять зарядов заложены в пяти точках возможного появления агента СБУ, деньги готовы для передачи".</text>
+	</string>
+	<string id="st_jup_azot_simply_raciya">
+		<text>Рация</text>
+	</string>
+	<string id="st_jup_azot_simply_raciya_descr">
+		<text>Обыкновенная рация с ФМ приемником.</text>
+	</string>
+	<string id="st_jup_azot_charge_instruments">
+		<text>Инструменты для работы со взрывчаткой</text>
+	</string>
+	<string id="st_jup_azot_charge_instruments_descr">
+		<text>Специальный комплект для обезвреживания зарядов.</text>
+	</string>
+	<string id="st_jup_azot_charge_scanner">
+		<text>Низкочастотный сканер</text>
+	</string>
+	<string id="st_jup_azot_charge_scanner_descr">
+		<text>Специальный сканер для пеленгации зарядов. Радиус поиска - 50 метров.</text>
+	</string>
+	<string id="st_red_psyho_development_1">
+		<text>Экспериментальный препарат ПСИХО-1</text>
+	</string>
+	<string id="st_red_psyho_development_1_descr">
+		<text>Препарат разработанный учёными для борьбы с пси-излучением.</text>
+	</string>
+	<string id="st_red_psyho_development_2">
+		<text>Экспериментальный препарат ПСИХО-2</text>
+	</string>
+	<string id="st_red_psyho_development_2_descr">
+		<text>Препарат разработанный учёными для борьбы с пси-излучением.</text>
+	</string>
+	<string id="st_red_psyho_killer_pda_1">
+		<text>КПК охранника экспедиции учёных</text>
+	</string>
+	<string id="st_red_psyho_killer_pda_1_descr">
+		<text>Информация с КПК: "Людей для охраны практически не осталось. Мутанты атакуют всё с новой силой. Завтра будем возвращаться".</text>
+	</string>
+	<string id="st_red_psyho_killer_pda_2">
+		<text>КПК члена экспедиции</text>
+	</string>
+	<string id="st_red_psyho_killer_pda_2_descr">
+		<text>Информация с КПК: "Препарат практически сделан, осталось испытать его. Группа получившая препарат отправилась в центр локации для его испытаний".</text>
+	</string>
+	<string id="st_red_psyho_ecolog_pda">
+		<text>КПК научно-исследовательской группы</text>
+	</string>
+	<string id="st_red_psyho_ecolog_pda_descr">
+		<text>Информация с КПК: "Препарт был применён на группе охраны, показатели нас удивили. Всё прошло отлично. Второй изобретённый нами препарат для уменьшения пси-активности самого контролёра был применён на пойманом нами контролёре, но к сожалению его пси-активность не уменьшилась, а наоборот увеличилась в несколько раз".</text>
+	</string>

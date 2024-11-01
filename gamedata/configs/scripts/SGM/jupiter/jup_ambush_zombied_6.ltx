@@ -1,0 +1,12 @@
+[logic]
+active = move@zombied
+on_death = death
+
+[death]
+on_info = %+jup_ambush_zombied_6_death =jup_ambush_zombied_check%
+
+[move@zombied]
+scheme_type          = depend
+depend_home_point    = 1244500
+depend_holder        = 20
+depend_anim          = walk

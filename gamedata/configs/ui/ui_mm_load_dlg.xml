@@ -1,0 +1,57 @@
+<w>
+	<background width="1024" height="768">
+		<auto_static x="500" y="130" width="432" height="160" stretch="1">
+			<texture width="432" height="160">ui\video_voroni_crop</texture>
+		</auto_static>
+		<auto_static x="413" y="352" width="576" height="416" stretch="1">
+			<texture width="576" height="416">ui\video_water_crop</texture>
+		</auto_static>
+	    <auto_static width="1024" height="768">
+	      <texture>ui_inGame2_background</texture>
+	    </auto_static>
+		<auto_static x="0" y="0" width="613" height="651">
+			<texture>ui_inGame2_save_load_wnd</texture>
+		</auto_static>
+	</background>
+	<file_item>
+	    <main width="490" height="18"/>
+	    <fn width="325" height="18"/>
+	    <fd width="110" height="18"/>
+	</file_item>
+	<form x="0" y="0" width="613" height="651">
+	    <caption x="106" y="190" width="408" height="30">
+		    <text font="letterica18" align="c">ui_mm_load_game</text>
+	    </caption>
+	    <auto_static x="18" y="229" width="579" height="132">
+	           <texture>ui_inGame2_load_table</texture>
+	    </auto_static>
+	    <picture x="18" y="230" width="128" height="128">
+		    <texture width="128" height="128">ui\ui_noise</texture>
+	    </picture>
+	    <file_caption x="170" y="250" width="433" height="20">
+		    <text font="letterica18"/>
+	    </file_caption>
+	    <file_data x="170" y="270" width="433" height="50" complex_mode="1">
+		    <text font="letterica18"/>
+	    </file_data>
+
+	    <list_frame x="30" y="430" width="500" height="175">
+	    </list_frame>
+	    <list x="19" y="363" width="576" height="231" item_height="18" can_select="1">
+		    <font font="letterica16"/>
+	    </list>
+
+	    <btn_load x="85" y="604" width="135" height="26">
+	        <texture>ui_inGame2_Mp_bigbuttone</texture>
+	        <text font="letterica18">ui_mm_load</text>
+	    </btn_load>
+	    <btn_delete x="241" y="604" width="135" height="26">
+	        <texture>ui_inGame2_Mp_bigbuttone</texture>
+	        <text font="letterica18">ui_mm_delete</text>
+	    </btn_delete>
+	    <btn_cancel x="397" y="604" width="135" height="26">
+	        <texture>ui_inGame2_Mp_bigbuttone</texture>
+	        <text font="letterica18">ui_mm_cancel</text>
+	    </btn_cancel>
+	</form>
+</w>

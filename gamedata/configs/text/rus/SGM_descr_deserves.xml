@@ -1,0 +1,540 @@
+      <string id="st_bandit_kastet_case_title">
+		<text>«Флешка Кастета»</text>
+      </string>
+      <string id="st_bandit_kastet_case_descr">
+		<text>Флешка с информацией о личном тайнике шестёрки Султана - Кастета.</text>
+      </string>
+      <string id="st_bandit_kastet_unpack_title">
+		<text>%c[110,128,128,255]«%c[110,200,128,0]Хабар Кастета%c[110,128,128,255]»</text>
+      </string>
+      <string id="st_bandit_kastet_unpack_descr">
+		<text>%c[255,238,153,26]Хабар «Кастета»\n%c[default]Информация с флешки: Юго-восток, КПП.</text>
+      </string>
+      <string id="st_bandit_port_leader_case_title">
+		<text>«Флешка неизвестного бандоса»</text>
+      </string>
+      <string id="st_bandit_port_leader_case_descr">
+		<text>Флешка с информацией о личном тайнике неопознанного бандюгана.</text>
+      </string>
+      <string id="st_bandit_port_leader_unpack_title">
+		<text>%c[110,128,128,255]«%c[110,200,128,0]Хабар Неизвестного Бандита%c[110,128,128,255]»</text>
+      </string>
+      <string id="st_bandit_port_leader_unpack_descr">
+		<text>%c[255,238,153,26]Хабар «Неизвестного бандита»\n%c[default]Информация с флешки: Центр, сгоревший хутор.</text>
+      </string>
+      <string id="st_bandit_chapaev_case_title">
+		<text>«Флешка Чапаева»</text>
+      </string>
+      <string id="st_bandit_chapaev_case_descr">
+		<text>Флешка с информацией о личном тайнике пахана бандитов - Чапаева.</text>
+      </string>
+      <string id="st_bandit_chapaev_unpack_title">
+		<text>%c[110,128,128,255]«%c[110,200,128,0]Хабар Чапаева%c[110,128,128,255]»</text>
+      </string>
+      <string id="st_bandit_chapaev_unpack_descr">
+		<text>%c[255,238,153,26]Хабар «Чапаева»\n%c[default]Информация с флешки: Портовые краны, контейнер.</text>
+      </string>
+      <string id="st_bandit_valet_case_title">
+		<text>«Флешка Валета»</text>
+      </string>
+      <string id="st_bandit_valet_case_descr">
+		<text>Флешка с информацией о личном тайнике самопровозглашённого бугра - Валета.</text>
+      </string>
+      <string id="st_bandit_valet_unpack_title">
+		<text>%c[110,128,128,255]«%c[110,200,128,0]Хабар Валета%c[110,128,128,255]»</text>
+      </string>
+      <string id="st_bandit_valet_unpack_descr">
+		<text>%c[255,238,153,26]Хабар «Валета»\n%c[default]Информация с флешки: Возле станции Янов, кусты.</text>
+      </string>
+      <string id="st_bandit_shishak_case_title">
+		<text>«Флешка Шишака»</text>
+      </string>
+      <string id="st_bandit_shishak_case_descr">
+		<text>Флешка с информацией о личном тайнике пахана складских бандосов - Шишака.</text>
+      </string>
+      <string id="st_bandit_shishak_unpack_title">
+		<text>%c[110,128,128,255]«%c[110,200,128,0]Хабар Шишака%c[110,128,128,255]»</text>
+      </string>
+      <string id="st_bandit_shishak_unpack_descr">
+		<text>%c[255,238,153,26]Хабар «Шишака»\n%c[default]Информация с флешки: Ж/Д туннель.</text>
+      </string>
+      <string id="st_bandit_gnom_case_title">
+		<text>«Флешка Гнома»</text>
+      </string>
+      <string id="st_bandit_gnom_case_descr">
+		<text>Флешка с информацiею про схованку босякуватого хулiгана - вуйка Гнома.</text>
+      </string>
+      <string id="st_bandit_gnom_unpack_title">
+		<text>%c[110,128,128,255]«%c[110,200,128,0]Хабар Гнома%c[110,128,128,255]»</text>
+      </string>
+      <string id="st_bandit_gnom_unpack_descr">
+		<text>%c[255,238,153,26]Хабар «Гнома»\n%c[default]Информация с флешки: отсутствует.</text>
+      </string>
+      <string id="st_stalker_barga_case_title">
+		<text>«Флешка Баржи»</text>
+      </string>
+      <string id="st_stalker_barga_case_descr">
+		<text>Флешка с информацией о личном тайнике спелеолога - Баржи.</text>
+      </string>
+      <string id="st_stalker_barga_unpack_title">
+		<text>%c[110,128,128,255]«%c[110,200,128,0]Хабар Баржи%c[110,128,128,255]»</text>
+      </string>
+      <string id="st_stalker_barga_unpack_descr">
+		<text>%c[255,238,153,26]Хабар «Баржи»\n%c[default]Информация с флешки: Где-то в центре, под мостом.</text>
+      </string>
+      <string id="st_stalker_noy_case_title">
+		<text>«Флешка Ноя»</text>
+      </string>
+      <string id="st_stalker_noy_case_descr">
+		<text>Флешка с информацией о личном тайнике затонского психопата - Ноя.</text>
+      </string>
+      <string id="st_stalker_noy_unpack_title">
+		<text>%c[110,128,128,255]«%c[110,200,128,0]Хабар Ноя%c[110,128,128,255]»</text>
+      </string>
+      <string id="st_stalker_noy_unpack_descr">
+		<text>%c[255,238,153,26]Хабар «Ноя»\n%c[default]Информация с флешки: Северо-восток, за вулканической аномалией.</text>
+      </string>
+      <string id="st_stalker_petruha_case_title">
+		<text>«Флешка Петрухи»</text>
+      </string>
+      <string id="st_stalker_petruha_case_descr">
+		<text>Флешка с информацией о личном тайнике отчаянного охотника за артефактами, героя битвы при АТП - Петрухи.</text>
+      </string>
+      <string id="st_stalker_petruha_unpack_title">
+		<text>%c[110,128,128,255]«%c[110,200,128,0]Хабар Петрухи%c[110,128,128,255]»</text>
+      </string>
+      <string id="st_stalker_petruha_unpack_descr">
+		<text>%c[255,238,153,26]Хабар «Петрухи»\n%c[default]Информация с флешки: Где-то в центре, заброшеная деревня.</text>
+      </string>
+      <string id="st_stalker_spartak_case_title">
+		<text>«Флешка Спартака»</text>
+      </string>
+      <string id="st_stalker_spartak_case_descr">
+		<text>Флешка с информацией о личном тайнике командира зачисточного отряда - Спартака.</text>
+      </string>
+      <string id="st_stalker_spartak_unpack_title">
+		<text>%c[110,128,128,255]«%c[110,200,128,0]Хабар Спартака%c[110,128,128,255]»</text>
+      </string>
+      <string id="st_stalker_spartak_unpack_descr">
+		<text>%c[255,238,153,26]Хабар «Спартака»\n%c[default]Информация с флешки: Лесопилка, на конвеере.</text>
+      </string>
+      <string id="st_stalker_mayron_case_title">
+		<text>«Флешка Майрона»</text>
+      </string>
+      <string id="st_stalker_mayron_case_descr">
+		<text>Флешка с информацией о личном тайнике сталкера-загадки, Майрона.</text>
+      </string>
+      <string id="st_stalker_mayron_unpack_title">
+		<text>%c[110,128,128,255]«%c[110,200,128,0]Хабар Майрона%c[110,128,128,255]»</text>
+      </string>
+      <string id="st_stalker_mayron_unpack_descr">
+		<text>%c[255,238,153,26]Хабар «Майрона»\n%c[default]Информация с флешки: Запад, трансформаторная комната.</text>
+      </string>
+      <string id="st_stalker_crab_case_title">
+		<text>«Флешка Краба»</text>
+      </string>
+      <string id="st_stalker_crab_case_descr">
+		<text>Флешка с информацией о личном тайнике сталкера - Краба.</text>
+      </string>
+      <string id="st_stalker_crab_unpack_title">
+		<text>%c[110,128,128,255]«%c[110,200,128,0]Хабар Краба%c[110,128,128,255]»</text>
+      </string>
+      <string id="st_stalker_crab_unpack_descr">
+		<text>%c[255,238,153,26]Хабар «Краба»\n%c[default]Информация с флешки: Юг, база наёмников.</text>
+      </string>
+      <string id="st_stalker_gluhar_case_title">
+		<text>«Флешка Глухаря»</text>
+      </string>
+      <string id="st_stalker_gluhar_case_descr">
+		<text>Флешка с информацией о личном тайнике отважного мента, сталкера - Глухаря.</text>
+      </string>
+      <string id="st_stalker_gluhar_unpack_title">
+		<text>%c[110,128,128,255]«%c[110,200,128,0]Хабар Глухаря%c[110,128,128,255]»</text>
+      </string>
+      <string id="st_stalker_gluhar_unpack_descr">
+		<text>%c[255,238,153,26]Хабар «Глухаря»\n%c[default]Информация с флешки: Юг, стоянка на разломе.</text>
+      </string>
+      <string id="st_stalker_commander_case_title">
+		<text>«Флешка Командира»</text>
+      </string>
+      <string id="st_stalker_commander_case_descr">
+		<text>Флешка с информацией о личном тайнике неизвестного - Командира.</text>
+      </string>
+      <string id="st_stalker_commander_unpack_title">
+		<text>%c[110,128,128,255]«%c[110,200,128,0]Хабар Командира%c[110,128,128,255]»</text>
+      </string>
+      <string id="st_stalker_commander_unpack_descr">
+		<text>%c[255,238,153,26]Хабар «Командира»\n%c[default]Информация с флешки: Где-то в центре...</text>
+      </string>
+      <string id="st_stalker_vano_case_title">
+		<text>«Флешка генацвале Вано»</text>
+      </string>
+      <string id="st_stalker_vano_case_descr">
+		<text>Флешка с информацией о личном тайнике знатока грузинской кухни, сталкера - Вано.</text>
+      </string>
+      <string id="st_stalker_vano_unpack_title">
+		<text>%c[110,128,128,255]«%c[110,200,128,0]Хабар Вано%c[110,128,128,255]»</text>
+      </string>
+      <string id="st_stalker_vano_unpack_descr">
+		<text>%c[255,238,153,26]Хабар «Вано»\n%c[default]Информация с флешки: Не простой тайник, в аномальном поле.</text>
+      </string>
+      <string id="st_stalker_zulus_case_title">
+		<text>«Флешка Зулуса»</text>
+      </string>
+      <string id="st_stalker_zulus_case_descr">
+		<text>Флешка с информацией о личном тайнике легендарного пулемётчика, сталкера - Зулуса.</text>
+      </string>
+      <string id="st_stalker_zulus_unpack_title">
+		<text>%c[110,128,128,255]«%c[110,200,128,0]Хабар Зулуса%c[110,128,128,255]»</text>
+      </string>
+      <string id="st_stalker_zulus_unpack_descr">
+		<text>%c[255,238,153,26]Хабар «Зулуса»\n%c[default]Информация с флешки: Юго-восток, старое здание.</text>
+      </string>
+      <string id="st_stalker_koriaga_case_title">
+		<text>«Флешка Коряги»</text>
+      </string>
+      <string id="st_stalker_koriaga_case_descr">
+		<text>Флешка с информацией о личном тайнике приблатнённого лоха, горе-сталкера - Коряги.</text>
+      </string>
+      <string id="st_stalker_koriaga_unpack_title">
+		<text>%c[110,128,128,255]«%c[110,200,128,0]Хабар Коряги%c[110,128,128,255]»</text>
+      </string>
+      <string id="st_stalker_koriaga_unpack_descr">
+		<text>%c[255,238,153,26]Хабар «Коряги»\n%c[default]Информация с флешки: КПП, второй этаж.</text>
+      </string>
+      <string id="st_stalker_elbrus_case_title">
+		<text>«Флешка Эльбруса»</text>
+      </string>
+      <string id="st_stalker_elbrus_case_descr">
+		<text>Флешка с информацией о личном тайнике героя Затона - Эльбруса.</text>
+      </string>
+      <string id="st_stalker_elbrus_unpack_title">
+		<text>%c[110,128,128,255]«%c[110,200,128,0]Хабар Эльбруса%c[110,128,128,255]»</text>
+      </string>
+      <string id="st_stalker_elbrus_unpack_descr">
+		<text>%c[255,238,153,26]Хабар «Эльбруса»\n%c[default]Информация с флешки: Цеха подстанции, в домике.</text>
+      </string>
+      <string id="st_stalker_vobla_case_title">
+		<text>«Флешка Воблы»</text>
+      </string>
+      <string id="st_stalker_vobla_case_descr">
+		<text>Флешка с информацией о личном тайнике наглого засранца - Воблы.</text>
+      </string>
+      <string id="st_stalker_vobla_unpack_title">
+		<text>%c[110,128,128,255]«%c[110,200,128,0]Хабар Воблы%c[110,128,128,255]»</text>
+      </string>
+      <string id="st_stalker_vobla_unpack_descr">
+		<text>%c[255,238,153,26]Хабар «Воблы»\n%c[default]Информация с флешки: Цеха подстанции, в УАЗике.</text>
+      </string>
+      <string id="st_freedom_gaiduk_case_title">
+		<text>«Флешка Гайдука»</text>
+      </string>
+      <string id="st_freedom_gaiduk_case_descr">
+		<text>Флешка с информацией о личном тайнике полу-командира "Свободы" - Гайдука.</text>
+      </string>
+      <string id="st_freedom_gaiduk_unpack_title">
+		<text>%c[110,128,128,255]«%c[110,200,128,0]Хабар Гайдука%c[110,128,128,255]»</text>
+      </string>
+      <string id="st_freedom_gaiduk_unpack_descr">
+		<text>%c[255,238,153,26]Хабар «Гайдука»\n%c[default]Информация с флешки: Цементный завод, крыша здания.</text>
+      </string>
+      <string id="st_duty_kanevskiy_case_title">
+		<text>«Флешка Каневского»</text>
+      </string>
+      <string id="st_duty_kanevskiy_case_descr">
+		<text>Флешка с информацией о личном тайнике мастера сапёрного дела - долговца Каневского.</text>
+      </string>
+      <string id="st_duty_kanevskiy_unpack_title">
+		<text>%c[110,128,128,255]«%c[110,200,128,0]Хабар Каневского%c[110,128,128,255]»</text>
+      </string>
+      <string id="st_duty_kanevskiy_unpack_descr">
+		<text>%c[255,238,153,26]Хабар «Каневского»\n%c[default]Информация с флешки: Лесопилка.</text>
+      </string>
+      <string id="st_dolg_morgan_case_title">
+		<text>«Флешка Моргана»</text>
+      </string>
+      <string id="st_dolg_morgan_case_descr">
+		<text>Флешка с информацией о личном тайнике ушлого барыги - долговца Моргана.</text>
+      </string>
+      <string id="st_dolg_morgan_unpack_title">
+		<text>%c[110,128,128,255]«%c[110,200,128,0]Хабар Моргана%c[110,128,128,255]»</text>
+      </string>
+      <string id="st_dolg_morgan_unpack_descr">
+		<text>%c[255,238,153,26]Хабар «Моргана»\n%c[default]Информация с флешки: Где-то в центре, возле вертолета.</text>
+      </string>
+      <string id="st_killer_kruk_case_title">
+		<text>«Флешка Крюка»</text>
+      </string>
+      <string id="st_killer_kruk_case_descr">
+		<text>Флешка с информацией о личном тайнике наёмника - Крюка.</text>
+      </string>
+      <string id="st_killer_kruk_unpack_title">
+		<text>%c[110,128,128,255]«%c[110,200,128,0]Хабар Крюка%c[110,128,128,255]»</text>
+      </string>
+      <string id="st_killer_kruk_unpack_descr">
+		<text>%c[255,238,153,26]Хабар «Крюка»\n%c[default]Информация с флешки: Северо-запад, около проводника.</text>
+      </string>
+      <string id="st_killer_tesak_case_title">
+		<text>«Флешка Тесакова»</text>
+      </string>
+      <string id="st_killer_tesak_case_descr">
+		<text>Флешка с информацией о личном тайнике командира наёмников - Рубака Тесакова.</text>
+      </string>
+      <string id="st_killer_tesak_unpack_title">
+		<text>%c[110,128,128,255]«%c[110,200,128,0]Хабар Тесака%c[110,128,128,255]»</text>
+      </string>
+      <string id="st_killer_tesak_unpack_descr">
+		<text>%c[255,238,153,26]Хабар «Тесака»\n%c[default]Информация с флешки: Северо-запад, земснаряд.</text>
+      </string>
+      <string id="st_killer_grif_case_title">
+		<text>«Флешка Грифа»</text>
+      </string>
+      <string id="st_killer_grif_case_descr">
+		<text>Флешка с информацией о личном тайнике наёмника - Грифа.</text>
+      </string>
+      <string id="st_killer_grif_unpack_title">
+		<text>%c[110,128,128,255]«%c[110,200,128,0]Хабар Грифа%c[110,128,128,255]»</text>
+      </string>
+      <string id="st_killer_grif_unpack_descr">
+		<text>%c[255,238,153,26]Хабар «Грифа»\n%c[default]Информация с флешки: Куст возле аномального поля.</text>
+      </string>
+      <string id="st_killer_cherep_case_title">
+		<text>«Флешка Черепа»</text>
+      </string>
+      <string id="st_killer_cherep_case_descr">
+		<text>Флешка с информацией о личном тайнике наёмника - Черепа.</text>
+      </string>
+      <string id="st_killer_cherep_unpack_title">
+		<text>%c[110,128,128,255]«%c[110,200,128,0]Хабар Черепа%c[110,128,128,255]»</text>
+      </string>
+      <string id="st_killer_cherep_unpack_descr">
+		<text>%c[255,238,153,26]Хабар «Черепа»\n%c[default]Информация с флешки: В окружении электрических аномалий.</text>
+      </string>
+      <string id="st_killer_molfar_case_title">
+		<text>«Флешка Мольфара»</text>
+      </string>
+      <string id="st_killer_molfar_case_descr">
+		<text>Флешка с информацией о личном тайнике главнокомандующего наёмников - Мольфара.</text>
+      </string>
+      <string id="st_killer_molfar_unpack_title">
+		<text>%c[110,128,128,255]«%c[110,200,128,0]Хабар Мольфара%c[110,128,128,255]»</text>
+      </string>
+      <string id="st_killer_molfar_unpack_descr">
+		<text>%c[255,238,153,26]Хабар «Мольфара»\n%c[default]Информация с флешки: Отсутствует.</text>
+      </string>
+      <string id="st_army_smoliak_case_title">
+		<text>«Флешка лт. Смоляка»</text>
+      </string>
+      <string id="st_army_smoliak_case_descr">
+		<text>Флешка с информацией о личном тайнике запасливого лейтенанта.</text>
+      </string>
+      <string id="st_army_smoliak_unpack_title">
+		<text>%c[110,128,128,255]«%c[110,200,128,0]Хабар Смоляка%c[110,128,128,255]»</text>
+      </string>
+      <string id="st_army_smoliak_unpack_descr">
+		<text>%c[255,238,153,26]Хабар «Смоляка»\n%c[default]Информация с флешки: Юго-восток, завод по переработке.</text>
+      </string>
+      <string id="st_monolit_brodiaga_case_title">
+		<text>«Флешка Бродяги»</text>
+      </string>
+      <string id="st_monolit_brodiaga_case_descr">
+		<text>Флешка с информацией о личном тайнике бывшего монолитовца - Бродяги.</text>
+      </string>
+      <string id="st_monolit_brodiaga_unpack_title">
+		<text>%c[110,128,128,255]«%c[110,200,128,0]Хабар Бродяги%c[110,128,128,255]»</text>
+      </string>
+      <string id="st_monolit_brodiaga_unpack_descr">
+		<text>%c[255,238,153,26]Хабар «Бродяги»\n%c[default]Информация с флешки: Восток, блоки.</text>
+      </string>
+      <string id="st_monolit_kiborg_case_title">
+		<text>«Флешка Киборга»</text>
+      </string>
+      <string id="st_monolit_kiborg_case_descr">
+		<text>Флешка с информацией о личном тайнике главнокомандующего силами Великого Монолита - Киборга.</text>
+      </string>
+      <string id="st_monolit_kiborg_unpack_title">
+		<text>%c[110,128,128,255]«%c[110,200,128,0]Хабар Киборга%c[110,128,128,255]»</text>
+      </string>
+      <string id="st_monolit_kiborg_unpack_descr">
+		<text>%c[255,238,153,26]Хабар «Киборга»\n%c[default]Информация с флешки: Верхний ярус порта.</text>
+      </string>
+      <string id="st_monolit_voland_case_title">
+		<text>«Флешка Воланда»</text>
+      </string>
+      <string id="st_monolit_voland_case_descr">
+		<text>Флешка с информацией о личном тайнике лидера группировки Монолит - Воланда.</text>
+      </string>
+      <string id="st_monolit_voland_unpack_title">
+		<text>%c[110,128,128,255]«%c[110,200,128,0]Хабар Воланда%c[110,128,128,255]»</text>
+      </string>
+      <string id="st_monolit_voland_unpack_descr">
+		<text>%c[255,238,153,26]Хабар «Воланда»\n%c[default]Информация с флешки: Госпиталь. В столе.</text>
+      </string>
+      <string id="st_rasvet_nazar_case_title">
+		<text>«Флешка Назара»</text>
+      </string>
+      <string id="st_rasvet_nazar_case_descr">
+		<text>Флешка с информацией о личном тайнике директора группировки «Рассвет» - Назара.</text>
+      </string>
+      <string id="st_rasvet_nazar_unpack_title">
+		<text>%c[110,128,128,255]«%c[110,200,128,0]Хабар Назара%c[110,128,128,255]»</text>
+      </string>
+      <string id="st_rasvet_nazar_unpack_descr">
+		<text>%c[255,238,153,26]Хабар «Назара»\n%c[default]Информация с флешки: Восточное депо.</text>
+      </string>
+      <string id="st_monolith_inquisitor_case_title">
+		<text>«Флешка Инквизитора»</text>
+      </string>
+      <string id="st_monolith_inquisitor_case_descr">
+		<text>Флешка с информацией о личном тайнике верховного жреца Монолита - Инквизитора.</text>
+      </string>
+      <string id="st_monolith_inquisitor_unpack_title">
+		<text>%c[110,128,128,255]«%c[110,200,128,0]Хабар Инквизитора%c[110,128,128,255]»</text>
+      </string>
+      <string id="st_monolith_inquisitor_unpack_descr">
+		<text>%c[255,238,153,26]Хабар «Инквизитора»\n%c[default]Информация с флешки: отсутствует.</text>
+      </string>
+      <string id="st_killer_revizor_case_title">
+		<text>«Флешка Ревизора»</text>
+      </string>
+      <string id="st_killer_revizor_case_descr">
+		<text>Флешка с информацией о личном тайнике наёмника - Ревизора.</text>
+      </string>
+      <string id="st_killer_revizor_unpack_title">
+		<text>%c[110,128,128,255]«%c[110,200,128,0]Хабар Ревизора%c[110,128,128,255]»</text>
+      </string>
+      <string id="st_killer_revizor_unpack_descr">
+		<text>%c[255,238,153,26]Хабар «Ревизора»\n%c[default]Информация с флешки: отсутствует.</text>
+      </string>
+      <string id="st_killer_warlord_case_title">
+		<text>«Флешка Варлорда»</text>
+      </string>
+      <string id="st_killer_warlord_case_descr">
+		<text>Флешка с информацией о личном тайнике наёмника - Варлорда.</text>
+      </string>
+      <string id="st_killer_warlord_unpack_title">
+		<text>%c[110,128,128,255]«%c[110,200,128,0]Хабар Варлорда%c[110,128,128,255]»</text>
+      </string>
+      <string id="st_killer_warlord_unpack_descr">
+		<text>%c[255,238,153,26]Хабар «Варлорда»\n%c[default]Информация с флешки: отсутствует.</text>
+      </string>
+      <string id="st_mercenary_suvorov_case_title">
+		<text>«Флешка капитана Суворова»</text>
+      </string>
+      <string id="st_mercenary_suvorov_case_descr">
+		<text>Флешка с информацией о личном тайнике коммандира наёмников - капитана Суворова.</text>
+      </string>
+      <string id="st_mercenary_suvorov_unpack_title">
+		<text>%c[110,128,128,255]«%c[110,200,128,0]Хабар капитана Суворова%c[110,128,128,255]»</text>
+      </string>
+      <string id="st_mercenary_suvorov_unpack_descr">
+		<text>%c[255,238,153,26]Хабар капитана «Суворова»\n%c[default]Информация с флешки: отсутствует.</text>
+      </string>
+      <string id="st_mercenary_tverdohlebov_case_title">
+		<text>«Флешка майора Твёрдохлебова»</text>
+      </string>
+      <string id="st_mercenary_tverdohlebov_case_descr">
+		<text>Флешка с информацией о личном тайнике коммандира наёмников - майора Твёрдохлебова.</text>
+      </string>
+      <string id="st_mercenary_tverdohlebov_unpack_title">
+		<text>%c[110,128,128,255]«%c[110,200,128,0]Хабар майора Твёрдохлебова%c[110,128,128,255]»</text>
+      </string>
+      <string id="st_mercenary_tverdohlebov_unpack_descr">
+		<text>%c[255,238,153,26]Хабар майора «Твёрдохлебова»\n%c[default]Информация с флешки: отсутствует.</text>
+      </string>
+      <string id="st_bandit_bulava_case_title">
+		<text>«Флешка Булавы»</text>
+      </string>
+      <string id="st_bandit_bulava_case_descr">
+		<text>Флешка с информацией о личном тайнике бандита - Булавы.</text>
+      </string>
+      <string id="st_bandit_bulava_unpack_title">
+		<text>%c[110,128,128,255]«%c[110,200,128,0]Хабар Булавы%c[110,128,128,255]»</text>
+      </string>
+      <string id="st_bandit_bulava_unpack_descr">
+		<text>%c[255,238,153,26]Хабар «Булавы»\n%c[default]Информация с флешки: отсутствует.</text>
+      </string>
+      <string id="st_bandit_rogach_case_title">
+		<text>«Флешка Рогача»</text>
+      </string>
+      <string id="st_bandit_rogach_case_descr">
+		<text>Флешка с информацией о личном тайнике бандита - Рогача.</text>
+      </string>
+      <string id="st_bandit_rogach_unpack_title">
+		<text>%c[110,128,128,255]«%c[110,200,128,0]Хабар Рогача%c[110,128,128,255]»</text>
+      </string>
+      <string id="st_bandit_rogach_unpack_descr">
+		<text>%c[255,238,153,26]Хабар «Рогача»\n%c[default]Информация с флешки: отсутствует.</text>
+      </string>
+      <string id="st_bandit_mazay_case_title">
+		<text>«Флешка Мазая»</text>
+      </string>
+      <string id="st_bandit_mazay_case_descr">
+		<text>Флешка с информацией о личном тайнике бандита - Мазая.</text>
+      </string>
+      <string id="st_bandit_mazay_unpack_title">
+		<text>%c[110,128,128,255]«%c[110,200,128,0]Хабар Мазая%c[110,128,128,255]»</text>
+      </string>
+      <string id="st_bandit_mazay_unpack_descr">
+		<text>%c[255,238,153,26]Хабар «Мазая»\n%c[default]Информация с флешки: отсутствует.</text>
+      </string>
+      <string id="st_bandit_dinozavr_case_title">
+		<text>«Флешка Динозавра»</text>
+      </string>
+      <string id="st_bandit_dinozavr_case_descr">
+		<text>Флешка с информацией о личном тайнике бандита - Динозавра.</text>
+      </string>
+      <string id="st_bandit_dinozavr_unpack_title">
+		<text>%c[110,128,128,255]«%c[110,200,128,0]Хабар Динозавра%c[110,128,128,255]»</text>
+      </string>
+      <string id="st_bandit_dinozavr_unpack_descr">
+		<text>%c[255,238,153,26]Хабар «Динозавра»\n%c[default]Информация с флешки: отсутствует.</text>
+      </string>
+      <string id="st_stalker_magomet_case_title">
+		<text>«Флешка Магомета»</text>
+      </string>
+      <string id="st_stalker_magomet_case_descr">
+		<text>Флешка с информацией о личном тайнике вольного сталкера - Магомета.</text>
+      </string>
+      <string id="st_stalker_magomet_unpack_title">
+		<text>%c[110,128,128,255]«%c[110,200,128,0]Хабар Магомета%c[110,128,128,255]»</text>
+      </string>
+      <string id="st_stalker_magomet_unpack_descr">
+		<text>%c[255,238,153,26]Хабар «Магомета»\n%c[default]Информация с флешки: отсутствует.</text>
+      </string>
+      <string id="st_stalker_tamerlan_case_title">
+		<text>«Флешка Тамерлана»</text>
+      </string>
+      <string id="st_stalker_tamerlan_case_descr">
+		<text>Флешка с информацией о личном тайнике вольного сталкера - Тамерлана.</text>
+      </string>
+      <string id="st_stalker_tamerlan_unpack_title">
+		<text>%c[110,128,128,255]«%c[110,200,128,0]Хабар Тамерлана%c[110,128,128,255]»</text>
+      </string>
+      <string id="st_stalker_tamerlan_unpack_descr">
+		<text>%c[255,238,153,26]Хабар «Тамерлана»\n%c[default]Информация с флешки: отсутствует.</text>
+      </string>
+      <string id="st_bandit_karas_case_title">
+		<text>«Флешка Карася»</text>
+      </string>
+      <string id="st_bandit_karas_case_descr">
+		<text>Флешка с информацией о личном тайнике бандита - Карася.</text>
+      </string>
+      <string id="st_bandit_karas_unpack_title">
+		<text>%c[110,128,128,255]«%c[110,200,128,0]Хабар Карася%c[110,128,128,255]»</text>
+      </string>
+      <string id="st_bandit_karas_unpack_descr">
+		<text>%c[255,238,153,26]Хабар «Карася»\n%c[default]Информация с флешки: отсутствует.</text>
+      </string>
+      <string id="st_bandit_kaschey_case_title">
+		<text>«Флешка Кащея»</text>
+      </string>
+      <string id="st_bandit_kaschey_case_descr">
+		<text>Флешка с информацией о личном тайнике бандита - Кащея.</text>
+      </string>
+      <string id="st_bandit_kaschey_unpack_title">
+		<text>%c[110,128,128,255]«%c[110,200,128,0]Хабар Кащея%c[110,128,128,255]»</text>
+      </string>
+      <string id="st_bandit_kaschey_unpack_descr">
+		<text>%c[255,238,153,26]Хабар «Кащея»\n%c[default]Информация с флешки: отсутствует.</text>
+      </string>

@@ -1,0 +1,23 @@
+[logic]
+active = move@bandit_pathfinder
+
+[move@bandit_pathfinder]
+scheme_type         = shooter
+shooter_pos         = {=global_pattern_is_one} 1246414, 1261651
+shooter_fire_look   = enemy
+shooter_idle_look   = actor
+shooter_clip        = -1
+shooter_reload      = 1
+shooter_type_wpn    = rifle
+shooter_need_see    = true
+shooter_need_dist   = 120
+shooter_move_state  = run
+shooter_idle_state  = threat
+shooter_fire_state  = threat_fire
+death_cleaning      = true|weapon
+combat_ignore_cond  = true
+combat_ignore_keep_when_attacked = true
+on_info             = {!actor_enemy} %=actor_enemy%
+on_info2            = {=dist_to_actor_le(6)} nil
+
+

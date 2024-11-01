@@ -1,0 +1,226 @@
+;Логика "Блокпост у фермы"
+
+[walker@def_guarder]
+use_camp = false
+gather_items_enabled = false
+help_wounded_enabled = false
+corpse_detection_enabled = false
+;precond_timer = {!actor_enemy =actor_has_weapon} true, false
+
+[walker@defence]:walker@def_guarder
+precond_timer = false
+meet = no_meet
+
+[remark@def_guarder]
+anim = threat
+target = story|actor
+on_info = {-val_b14_outpost_guard =actor_has_weapon} %+val_b14_outpost_guard =play_sound_theme(zat_a2_base_guard)%
+
+;
+
+[logic@val_b14_commander]
+active = walker@commander
+suitable = {=check_npc_name(val_b14_outpost_commander) !surge_started -val_storyline_done} true
+prior = 200
+
+[walker@commander]:walker@def_guarder
+path_walk = commander_walk
+path_look = commander_look
+on_info = {=check_precond_timer(3000) =dist_to_actor_le(15)} remark@commander
+on_info2 = {+val_kill_night_predator_setup_ambush -val_kill_night_predator_chimera_defeated =dist_to_actor_ge(10)} walker@commander_defence %+val_kill_night_predator_b14_defence%
+invulnerable = {-val_kill_night_predator_setup_ambush -val_alt_storyline_commenced} true, false
+meet = meet@b14_commander
+
+[walker@commander_defence]:walker@defence
+path_walk = commander_defence_walk
+path_look = commander_defence_look
+on_info2 = {+val_kill_night_predator_chimera_defeated} walker@commander
+
+[remark@commander]:remark@def_guarder
+on_info2 = {!actor_has_weapon} walker@commander %-val_b14_outpost_guard%
+on_game_timer = 180|walker@commander %-val_b14_outpost_guard%
+
+[meet@b14_commander]
+abuse = false
+use = {!actor_enemy !actor_has_weapon !has_enemy} true, false
+allow_break = false
+trade_enable = false
+
+;
+
+[logic@val_b14_guarder_1]
+active = walker@guarder_1
+suitable = {=check_npc_name(sim_default_night_stalker) !surge_started -val_storyline_done} true
+prior = 100
+
+[walker@guarder_1]:walker@def_guarder
+path_walk = guard_1_walk
+path_look = guard_1_look
+on_info = {=check_precond_timer(3000) =dist_to_actor_le(15)} remark@guarder_1
+on_info2 = {+val_kill_night_predator_b14_defence -val_kill_night_predator_chimera_defeated} walker@guarder_1_defence
+
+[walker@guarder_1_defence]:walker@defence
+path_walk = guard_1_defence_walk
+path_look = guard_1_defence_look
+on_info2 = {+val_kill_night_predator_chimera_defeated} walker@guarder_1
+
+[remark@guarder_1]:remark@def_guarder
+on_info2 = {!actor_has_weapon} walker@guarder_1 %-val_b14_outpost_guard%
+on_game_timer = 180|walker@guarder_1 %-val_b14_outpost_guard%
+
+;
+
+[logic@val_b14_guarder_2]
+active = walker@guarder_2
+suitable = {=check_npc_name(sim_default_night_stalker) !surge_started -val_storyline_done} true
+prior = 100
+
+[walker@guarder_2]:walker@def_guarder
+path_walk = guard_2_walk
+path_look = guard_2_look
+on_info = {=check_precond_timer(3000) =dist_to_actor_le(15)} remark@guarder_2
+on_info2 = {+val_kill_night_predator_b14_defence -val_kill_night_predator_chimera_defeated} walker@guarder_2_defence
+
+[walker@guarder_2_defence]:walker@defence
+path_walk = guard_2_defence_walk
+path_look = guard_2_defence_look
+on_info2 = {+val_kill_night_predator_chimera_defeated} walker@guarder_2
+
+[remark@guarder_2]:remark@def_guarder
+on_info2 = {!actor_has_weapon} walker@guarder_2 %-val_b14_outpost_guard%
+on_game_timer = 180|walker@guarder_2 %-val_b14_outpost_guard%
+
+;
+
+[logic@val_b14_guarder_3]
+active = walker@guarder_3
+suitable = {=check_npc_name(sim_default_night_stalker) !surge_started -val_storyline_done} true
+prior = 100
+
+[walker@guarder_3]:walker@def_guarder
+path_walk = guard_3_walk
+path_look = guard_3_look
+on_info = {=check_precond_timer(3000) =dist_to_actor_le(15)} remark@guarder_3
+on_info2 = {+val_kill_night_predator_b14_defence -val_kill_night_predator_chimera_defeated} walker@guarder_3_defence
+
+[walker@guarder_3_defence]:walker@defence
+path_walk = guard_3_defence_walk
+path_look = guard_3_defence_look
+on_info2 = {+val_kill_night_predator_chimera_defeated} walker@guarder_3
+
+[remark@guarder_3]:remark@def_guarder
+on_info2 = {!actor_has_weapon} walker@guarder_3 %-val_b14_outpost_guard%
+on_game_timer = 180|walker@guarder_3 %-val_b14_outpost_guard%
+
+;
+
+[logic@val_b14_guarder_4]
+active = walker@guarder_4
+suitable = {=check_npc_name(sim_default_night_stalker) !surge_started -val_storyline_done} true
+prior = 200
+
+[walker@guarder_4]:walker@def_guarder
+path_walk = guard_4_walk
+path_look = guard_4_look
+on_info = {=check_precond_timer(3000) =dist_to_actor_le(15)} remark@guarder_4
+on_info2 = {+val_kill_night_predator_b14_defence -val_kill_night_predator_chimera_defeated} walker@guarder_4_defence
+
+[walker@guarder_4_defence]:walker@defence
+path_walk = guard_4_defence_walk
+path_look = guard_4_defence_look
+on_info2 = {+val_kill_night_predator_chimera_defeated} walker@guarder_4
+
+[remark@guarder_4]:remark@def_guarder
+on_info2 = {!actor_has_weapon} walker@guarder_4 %-val_b14_outpost_guard%
+on_game_timer = 180|walker@guarder_4 %-val_b14_outpost_guard%
+
+;
+
+[logic@val_b14_guarder_5]
+active = walker@guarder_5
+suitable = {=check_npc_name(sim_default_night_stalker) !surge_started -val_storyline_done} true
+prior = 100
+
+[walker@guarder_5]:walker@def_guarder
+path_walk = guard_5_walk
+path_look = guard_5_look
+on_info = {=check_precond_timer(3000) =dist_to_actor_le(15)} remark@guarder_5
+on_info2 = {+val_kill_night_predator_b14_defence -val_kill_night_predator_chimera_defeated} walker@guarder_5_defence
+
+[walker@guarder_5_defence]:walker@defence
+path_walk = guard_5_defence_walk
+path_look = guard_5_defence_look
+on_info2 = {+val_kill_night_predator_chimera_defeated} walker@guarder_5
+
+[remark@guarder_5]:remark@def_guarder
+on_info2 = {!actor_has_weapon} walker@guarder_5 %-val_b14_outpost_guard%
+on_game_timer = 180|walker@guarder_5 %-val_b14_outpost_guard%
+
+;
+
+[logic@val_b14_guarder_6]
+active = walker@guarder_6
+suitable = {=check_npc_name(sim_default_night_stalker) !surge_started -val_storyline_done} true
+prior = 100
+
+[walker@guarder_6]:walker@def_guarder
+avail_speak = 15|wait|true
+path_walk = guard_6_walk
+path_look = guard_6_look
+on_info = {=check_precond_timer(3000) =dist_to_actor_le(15)} remark@guarder_6
+on_info2 = {+val_kill_night_predator_b14_defence -val_kill_night_predator_chimera_defeated} walker@guarder_6_defence
+
+[walker@guarder_6_defence]:walker@defence
+path_walk = guard_6_defence_walk
+path_look = guard_6_defence_look
+on_info2 = {+val_kill_night_predator_chimera_defeated} walker@guarder_6
+
+[remark@guarder_6]:remark@def_guarder
+on_info2 = {!actor_has_weapon} walker@guarder_6 %-val_b14_outpost_guard%
+on_game_timer = 180|walker@guarder_6 %-val_b14_outpost_guard%
+
+;
+
+[logic@val_b14_guarder_7]
+active = walker@guarder_7
+suitable = {=check_npc_name(sim_default_night_stalker) !surge_started -val_storyline_done} true
+prior = 100
+
+[walker@guarder_7]:walker@def_guarder
+avail_speak = 21|wait|true
+path_walk = guard_7_walk
+path_look = guard_7_look
+on_info = {=check_precond_timer(3000) =dist_to_actor_le(15)} remark@guarder_7
+on_info2 = {+val_kill_night_predator_b14_defence -val_kill_night_predator_chimera_defeated} walker@guarder_7_defence
+
+[walker@guarder_7_defence]:walker@defence
+path_walk = guard_7_defence_walk
+path_look = guard_7_defence_look
+on_info2 = {+val_kill_night_predator_chimera_defeated} walker@guarder_7
+
+[remark@guarder_7]:remark@def_guarder
+on_info2 = {!actor_has_weapon} walker@guarder_7 %-val_b14_outpost_guard%
+on_game_timer = 180|walker@guarder_7 %-val_b14_outpost_guard%
+
+;
+
+[logic@val_b14_guarder_8]
+active = walker@guarder_8
+suitable = {=check_npc_name(sim_default_night_stalker) !surge_started -val_storyline_done} true
+prior = 100
+
+[walker@guarder_8]:walker@def_guarder
+avail_speak = 27|wait|true
+path_walk = guard_8_walk
+path_look = guard_8_look
+on_info = {=check_precond_timer(3000) =dist_to_actor_le(15)} remark@guarder_8
+on_info2 = {+val_kill_night_predator_b14_defence -val_kill_night_predator_chimera_defeated} walker@guarder_8_defence
+
+[walker@guarder_8_defence]:walker@defence
+path_walk = guard_8_defence_walk
+path_look = guard_8_defence_look
+on_info2 = {+val_kill_night_predator_chimera_defeated} walker@guarder_8
+
+[remark@guarder_8]:remark@def_guarder
+on_info2 = {!actor_has_weapon} walker@guarder_8 %-val_b14_outpost_guard%
+on_game_timer = 180|walker@guarder_8 %-val_b14_outpost_guard%

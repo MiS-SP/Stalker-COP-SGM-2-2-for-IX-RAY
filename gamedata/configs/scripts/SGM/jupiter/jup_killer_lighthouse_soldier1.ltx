@@ -1,0 +1,37 @@
+[logic]
+active = move@waiting_actor
+
+[move@waiting_actor]
+move_dest_number       = 1015685
+move_state_when_center = hide
+move_state_when_move   = patrol
+move_look_subject      = actor
+move_combat_disable    = true
+combat_ignore_cond     = true
+combat_ignore_keep_when_attacked = true
+invulnerable           = {!actor_enemy} true, false
+on_info                = {+jup_weak_lighthouse_entry} move@pursue_actor
+
+[move@pursue_actor]
+move_pursue_actor      = true
+move_pursue_range      = 8|35
+move_pursue_formation  = back
+on_info                = {+jup_weak_lighthouse_squad_came} move@go_to_hiding
+on_info2               = {=jup_killer_lighthouse_squad_came -jup_weak_lighthouse_squad_came} %+jup_weak_lighthouse_squad_came%
+
+[move@go_to_hiding]
+move_dest_number       = 1331863
+move_look_vertex       = 1336819
+move_state_when_center = guard
+move_state_when_move   = assault
+move_center_info       = jup_weak_lighthouse_squad_conducted
+on_info                = {+jup_weak_lighthouse_squad_conducted} move@go_to_exit
+
+[move@go_to_exit]
+move_dest_number       = 1149699
+move_look_vertex       = 1149709
+move_state_when_center = guard
+move_state_when_move   = patrol
+move_center_info       = jup_weak_lighthouse_squad_offline
+on_info                = {+jup_weak_lighthouse_squad_offline} nil
+on_info2               = {=dist_to_actor_ge(80)} nil %=release_npc%

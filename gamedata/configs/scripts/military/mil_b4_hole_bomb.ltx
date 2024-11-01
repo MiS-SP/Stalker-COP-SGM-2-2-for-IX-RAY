@@ -1,0 +1,10 @@
+;Зона в которой ГГ должен заложить взрывчатку.
+
+[logic]
+active = sr_idle
+
+[sr_idle]
+on_info = {=actor_in_zone(mil_b4_hole_bomb) +mil_smash_monster_hole_bomb_founded -mil_smash_monster_hole_bomb_setuped} sr_idle@in_place %=run_tutorial(mil_b4_hole_bomb_placed) +mil_b4_hole_bomb_start_tutorial%
+
+[sr_idle@in_place]
+on_info = {!actor_in_zone(mil_b4_hole_bomb) +mil_b4_hole_bomb_start_tutorial} sr_idle %-mil_b4_hole_bomb_start_tutorial =stop_tutorial%

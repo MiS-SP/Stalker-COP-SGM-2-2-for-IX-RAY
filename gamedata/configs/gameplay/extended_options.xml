@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding="windows-1251"?>
+<game_information_portions>
+<!------------------------------------------------->
+<info_portion id="opt_activate_immortal"></info_portion>
+<info_portion id="opt_activate_power"></info_portion>
+<info_portion id="opt_activate_bleeding"></info_portion>
+<info_portion id="opt_activate_repair"></info_portion>
+<info_portion id="opt_activate_ammo"></info_portion>
+
+<info_portion id="opt_activate_alfa_force"></info_portion>
+<info_portion id="opt_activate_auto_energy"></info_portion>
+<info_portion id="opt_activate_automatic_use"></info_portion>
+<info_portion id="opt_deactivate_no_wpn"></info_portion>
+<info_portion id="opt_deactivate_vibros"></info_portion>
+<info_portion id="opt_deactivate_blackday"></info_portion>
+<info_portion id="opt_deactivate_minetrap"></info_portion>
+<info_portion id="opt_disable_ai_granade"></info_portion>
+<info_portion id="opt_disable_abandoned"></info_portion>
+<info_portion id="opt_more_monsters"></info_portion>
+<info_portion id="opt_marauder_container"></info_portion>
+
+<info_portion id="opt_disable_hud_wpn"></info_portion>
+<info_portion id="opt_disable_shock_hits"></info_portion>
+<info_portion id="opt_disable_actor_vertigo"></info_portion>
+<info_portion id="opt_disable_statistic_event"></info_portion>
+<info_portion id="opt_activate_shock_motion"></info_portion>
+<info_portion id="opt_activate_carrying_hud"></info_portion>
+<info_portion id="opt_activate_carrying_breathing"></info_portion>
+<info_portion id="opt_show_rank_counter"></info_portion>
+<info_portion id="opt_disable_hit_marks"></info_portion>
+
+<info_portion id="opt_balanced_skill_books"></info_portion>
+<info_portion id="screenshot_mode"></info_portion>
+<!------------------------------------------------->
+</game_information_portions>

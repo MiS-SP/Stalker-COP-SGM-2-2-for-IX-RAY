@@ -1,0 +1,14 @@
+[logic]
+active = sr_universal
+
+[sr_universal]
+scheme_type = level_change_zone
+level_change_cond         = {+val_storyline_done} true, false
+level_change_on_use       = %+level_change_to_zaton_from_darkvalley%
+level_change_travel_coord = -209.997,8.914,-424.863
+level_change_throw_coord  = 183.116,-3.287,-281.318,0.202
+level_change_travel_time  = 6,25
+level_change_spot         = level_change_right_location,st_level_change_to_zaton,false
+level_change_autosave     = st_save_travel_darkvalley_to_zaton
+level_change_silent_travel = false
+level_change_hidden_mode  = true

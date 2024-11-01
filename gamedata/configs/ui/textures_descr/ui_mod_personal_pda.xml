@@ -1,0 +1,45 @@
+<w>
+   <file name="ui\ui_mod_pda_main">
+        <texture id="ui_mod_pda_tab_e" x="0" y="972" width="249" height="26"/>
+        <texture id="ui_mod_pda_tab_t" x="0" y="1006" width="249" height="26"/>
+        <texture id="ui_mod_pda_tab_h" x="0" y="1006" width="249" height="26"/>
+        <texture id="ui_mod_pda_button_off_e" x="3" y="1138" width="33" height="34"/>
+        <texture id="ui_mod_pda_button_off_t" x="37" y="1138" width="33" height="34"/>
+        <texture id="ui_mod_pda_button_off_h" x="37" y="1138" width="33" height="34"/>
+        <texture id="ui_mod_pda_button_next_e" x="45" y="1185" width="36" height="34"/>
+        <texture id="ui_mod_pda_button_next_t" x="45" y="1223" width="36" height="34"/>
+        <texture id="ui_mod_pda_button_next_h" x="45" y="1223" width="36" height="34"/>
+        <texture id="ui_mod_pda_button_back_e" x="0" y="1185" width="36" height="34"/>
+        <texture id="ui_mod_pda_button_back_t" x="0" y="1223" width="36" height="34"/>
+        <texture id="ui_mod_pda_button_back_h" x="0" y="1223" width="36" height="34"/>
+        <texture id="ui_mod_pda_help_button" x="55" y="910" width="14" height="10"/>
+        <texture id="ui_mod_pda_main_wnd" x="0" y="0" width="1023" height="766"/>
+        <texture id="ui_mod_pda_time_wnd" x="81" y="1142" width="65" height="27"/>
+        <texture id="ui_mod_pda_frame_top" x="0" y="803" width="981" height="39"/>
+        <texture id="ui_mod_pda_army_logo" x="0" y="907" width="50" height="56"/>
+        <texture id="ui_mod_pda_hero_foto" x="1043" y="0" width="717" height="643"/>
+        <texture id="ui_mod_pda_achievement_sniper" x="1355" y="662" width="121" height="121"/>
+        <texture id="ui_mod_pda_achievement_client" x="1479" y="663" width="120" height="120"/>
+        <texture id="ui_mod_pda_achievement_pathfinder" x="1604" y="663" width="121" height="121"/>
+        <texture id="ui_mod_pda_achievement_guidebook" x="1355" y="788" width="121" height="121"/>
+        <texture id="ui_mod_pda_achievement_marauder" x="1481" y="788" width="121" height="121"/>
+        <texture id="ui_mod_pda_achievement_magnate" x="1605" y="785" width="121" height="121"/>
+        <texture id="ui_mod_pda_achievement_assistant" x="1729" y="663" width="121" height="121"/>
+        <texture id="ui_mod_pda_achievement_lifeguard" x="1729" y="786" width="121" height="121"/>
+        <texture id="ui_mod_pda_diplomatia_logo_stalkers" x="1041" y="657" width="94" height="94"/>
+        <texture id="ui_mod_pda_diplomatia_logo_bandits" x="1250" y="751" width="94" height="94"/>
+        <texture id="ui_mod_pda_diplomatia_logo_dolgs" x="1043" y="756" width="94" height="94"/>
+        <texture id="ui_mod_pda_diplomatia_logo_freedoms" x="1149" y="755" width="94" height="94"/>
+        <texture id="ui_mod_pda_diplomatia_logo_killers" x="1248" y="657" width="94" height="94"/>
+        <texture id="ui_mod_pda_diplomatia_logo_rasvets" x="1144" y="656" width="94" height="94"/>
+        <texture id="ui_mod_pda_community_progress_bar" x="78" y="907" width="436" height="57"/>
+        <texture id="ui_mod_pda_check_area" x="302" y="907" width="67" height="28"/>
+    </file>
+    <file name="ui\ui_mod_pda_tables">
+        <texture id="ui_mod_pda_statistic_table" x="0" y="0" width="707" height="610"/>
+        <texture id="ui_mod_pda_library_table" x="712" y="122" width="186" height="43"/>
+        <texture id="ui_mod_pda_achievement_table" x="0" y="619" width="497" height="146"/>
+        <texture id="ui_mod_pda_diplomatia_table" x="712" y="0" width="244" height="117"/>
+        <texture id="ui_mod_pda_equipments_table" x="961" y="0" width="718" height="643"/>
+    </file>
+</w>

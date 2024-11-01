@@ -1,0 +1,362 @@
+      <string id="st_advices_text">
+		<text>
+%c[default]Советы по прохождению:\n
+%c[255,238,153,26]• %c[default]При выборе любимого ствола, следует учитывать многие характеристики. Следует помнить, что одним из главных параметров является максимальный урон, который может нанести данный вид оружия. Также стоит учитывать дальность ведения прицельного огня.\n
+%c[255,238,153,26]• %c[default]По мере прохождения, вам будут встречаться новые персонажи, обладающие различными специализациями или умениями. Например, с их помощью можно будет улучшать оружие, бронекостюмы или даже артефакты. Среди таких персонажей встретятся и торговцы, с которыми можно будет хорошо "сойтись" в ценах на товары и заказать какой-нибудь уникальный предмет.\n
+%c[255,238,153,26]• %c[default]С некоторых поверженных ключевых персонажей можно снимать флешки. На них хранится информация о персональных тайниках. Для того, что бы узнать о местонахождении такого тайника, флешку нужно "использовать". В отношении обычных тайников, следует учесть, что их владельцы, сталкеры - народ тёртый и смекалистый; проявляющий, при закладке своего добра в закрома, чудеса изобретательности. Легче найти чёрную кошку в тёмной комнате, чем тайник ветерана.\n
+%c[255,238,153,26]• %c[default]В некоторых тайниках (или в качестве награды за выполненные квесты) вы будете находить техническую документацию и теоретический материал об использовании различных видов оружия в форме папки "Тактика ведения боя". Найденную "тактику" полезно сразу же изучить - это позволит вам наносить больший урон по противнику из освоенного оружия. Список изученных "тактик" хранится в разделе личного ПДА - библиотеке.\n
+%c[255,238,153,26]• %c[default]В моде присутствует новый параметр главного героя - ранг. Очки ранга начисляются за выполнение квестов, за победы над врагами (и над мутантами в том числе) и за прочие подвиги. При невысоком ранге, некоторые квестовые персонажи будут относиться к вам снисходительно и вряд ли доверят выполнение серьёзных задач. Не расстраивайтесь - совершенствуйте свои умения, изучая Зону. Повышение ранга будет отмечаться наградами, при достижении ключевых значений. Сражайтесь - и со временем, вы сможете на деле продемонстрировать свои бойцовские качества недальновидным командирам.\n
+%c[255,238,153,26]• %c[default]Кидая гранату, убедитесь что она не удариться об объект находящийся близко к вам, и не отлетит назад.\n
+%c[255,238,153,26]• %c[default]Не забывайте, что враги имеют свою тактику, создавайте и изменяйте свою.\n
+%c[255,238,153,26]• %c[default]Отряды Альфа хорошо вооружены, если вы идете на уничтожение таких отрядов - хорошо готовьтесь. КПК командиров Альфы можно выгодно продать торговцам.\n
+%c[255,238,153,26]• %c[default]Сдавайте механикам ненужное оружие и снаряжение, они разбирая это получают детали и делают вам скидки.\n
+%c[255,238,153,26]• %c[default]Чините оружие вовремя, иначе оружие будет часто заедать, и ещё чаще вас подводить.\n
+%c[255,238,153,26]• %c[default]При возможности, покупайте миноискатель. Это часто спасёт вам жизнь.\n
+%c[255,238,153,26]• %c[default]Сохраняйтесь как можно чаще, это спасёт вам жизнь.
+                </text>
+      </string>
+      <string id="st_enciclopedia_text">
+		<text>Энциклопедия:</text>
+      </string>
+      <string id="st_mod_pda_tab_statistic">
+		<text>Статистика</text>
+      </string>
+      <string id="st_mod_pda_tab_advices">
+		<text>Советы</text>
+      </string>
+      <string id="st_mod_pda_tab_tutorial">
+		<text>Энциклопедия</text>
+      </string>
+      <string id="st_mod_pda_tab_achievements">
+		<text>Достижения</text>
+      </string>
+      <string id="st_mod_pda_tab_diplomatia">
+		<text>Дипломатия</text>
+      </string>
+      <string id="st_mod_pda_tab_library">
+		<text>Библиотека</text>
+      </string>
+      <string id="st_mod_pda_tab_equipments">
+		<text>Оборудование</text>
+      </string>
+      <string id="st_statistic_no_slot_item">
+		<text>предмета нет в слоте.</text>
+      </string>
+      <string id="st_statistic_actor_health">
+		<text>Состояние здоровья ГГ</text>
+      </string>
+      <string id="st_statistic_actor_psi">
+		<text>Состояние психики ГГ</text>
+      </string>
+      <string id="st_statistic_actor_toxicity">
+		<text>Процентное содержание токсинов в крови</text>
+      </string>
+      <string id="st_statistic_actor_outfit">
+		<text>Состояние бронекостюма</text>
+      </string>
+      <string id="st_statistic_actor_helm">
+		<text>Состояние шлема</text>
+      </string>
+      <string id="st_statistic_actor_slot1_cond">
+		<text>Состояние оружия из 1-го слота</text>
+      </string>
+      <string id="st_statistic_actor_slot2_cond">
+		<text>Состояние оружия из 2-го слота</text>
+      </string>
+      <string id="st_statistic_actor_rank">
+		<text>Ранг ГГ</text>
+      </string>
+      <string id="st_statistic_weapon_shots">
+		<text>Выстрелов из оружия</text>
+      </string>
+      <string id="st_statistic_head_shots">
+		<text>Убийств в голову (хедшотов)</text>
+      </string>
+      <string id="st_statistic_peregito_zatmeniy">
+		<text>Пережито затмений</text>
+      </string>
+      <string id="st_statistic_naydeno_taynikov">
+		<text>Найдено SGM тайников</text>
+      </string>
+      <string id="st_statistic_vipolneno_kvestov">
+		<text>Пройдено SGM квестов</text>
+      </string>
+      <string id="st_statistic_polucheno_dostigeniy">
+		<text>Получено SGM достижений</text>
+      </string>
+      <string id="st_statistic_polucheno_medaley">
+		<text>Получено SGM медалей</text>
+      </string>
+      <string id="st_statistic_gruppirovka">
+		<text>Группировка ГГ</text>
+      </string>
+      <string id="st_statistic_knig_viucheno">
+		<text>Изучено тактик</text>
+      </string>
+      <string id="st_statistic_habara_naydeno">
+		<text>Найдено персональных тайников</text>
+      </string>
+      <string id="st_statistic_sobral_s_trupov">
+		<text>Подобрано денег с трупов</text>
+      </string>
+      <string id="st_statistic_ubito_bossov">
+		<text>Убито главнокомандующих</text>
+      </string>
+      <string id="st_statistic_ispolzoval_gps_provodnikov">
+		<text>Использовано GPS-проводников</text>
+      </string>
+      <string id="st_statistic_dengi_na_deposite">
+		<text>Денег на депозите у сберегателей</text>
+      </string>
+      <string id="st_statistic_okazano_pomosch_ranenim">
+		<text>Вылечено раненных</text>
+      </string>
+      <string id="st_statistic_zarabotano_web_money">
+		<text>Количество электронных денег</text>
+      </string>
+      <string id="st_statistic_oformleno_zakazov">
+		<text>Оформлено заказов у торгашей</text>
+      </string>
+      <string id="st_statistic_naydeno_pda_alfa">
+		<text>Найдено КПК командиров Альфа</text>
+      </string>
+      <string id="st_statistic_killed_s_title">
+		<text>%c[110,0,128,64]Убийство сталкеров:</text>
+      </string>
+      <string id="st_statistic_killed_m_title">
+		<text>%c[110,0,128,64]Убийство мутантов:</text>
+      </string>
+      <string id="st_statistic_killed_s_count">
+		<text>чел.</text>
+      </string>
+      <string id="st_statistic_killed_m_count">
+		<text>шт.</text>
+      </string>
+      <string id="st_statistic_killed_s_1_name">
+		<text>Альфа</text>
+      </string>
+      <string id="st_statistic_killed_s_2_name">
+		<text>Военные</text>
+      </string>
+      <string id="st_statistic_killed_s_3_name">
+		<text>Бандиты</text>
+      </string>
+      <string id="st_statistic_killed_s_4_name">
+		<text>Долг</text>
+      </string>
+      <string id="st_statistic_killed_s_5_name">
+		<text>Учёные</text>
+      </string>
+      <string id="st_statistic_killed_s_6_name">
+		<text>Свобода</text>
+      </string>
+      <string id="st_statistic_killed_s_7_name">
+		<text>Наёмники</text>
+      </string>
+      <string id="st_statistic_killed_s_8_name">
+		<text>Монолит</text>
+      </string>
+      <string id="st_statistic_killed_s_9_name">
+		<text>Сталкеры</text>
+      </string>
+      <string id="st_statistic_killed_s_10_name">
+		<text>Рассвет</text>
+      </string>
+      <string id="st_statistic_killed_s_11_name">
+		<text>Ренегаты</text>
+      </string>
+      <string id="st_statistic_killed_s_12_name">
+		<text>Зомбированные</text>
+      </string>
+      <string id="st_statistic_killed_s_13_name">
+		<text>Ночные сталкеры</text>
+      </string>
+      <string id="st_statistic_killed_m_1_name">
+		<text>Кровосос</text>
+      </string>
+      <string id="st_statistic_killed_m_2_name">
+		<text>Кабан</text>
+      </string>
+      <string id="st_statistic_killed_m_3_name">
+		<text>Бюрер</text>
+      </string>
+      <string id="st_statistic_killed_m_4_name">
+		<text>Химера</text>
+      </string>
+      <string id="st_statistic_killed_m_5_name">
+		<text>Контролер</text>
+      </string>
+      <string id="st_statistic_killed_m_6_name">
+		<text>Слепой пес</text>
+      </string>
+      <string id="st_statistic_killed_m_7_name">
+		<text>Плоть</text>
+      </string>
+      <string id="st_statistic_killed_m_8_name">
+		<text>Псевдогигант</text>
+      </string>
+      <string id="st_statistic_killed_m_9_name">
+		<text>Полтергейст</text>
+      </string>
+      <string id="st_statistic_killed_m_10_name">
+		<text>Псевдособака</text>
+      </string>
+      <string id="st_statistic_killed_m_11_name">
+		<text>Снорк</text>
+      </string>
+      <string id="st_statistic_killed_m_12_name">
+		<text>Тушкан</text>
+      </string>
+      <string id="st_statistic_killed_m_13_name">
+		<text>Излом</text>
+      </string>
+      <string id="st_statistic_killed_m_14_name">
+		<text>Кот баюн</text>
+      </string>
+      <string id="st_statistic_killed_m_15_name">
+		<text>Зомби</text>
+      </string>
+      <string id="st_library_yes_studies">
+		<text>%c[110,0,128,64]Тактика изучена</text>
+      </string>
+      <string id="st_library_no_studies">
+		<text>%c[110,128,32,22]Такт. не изучена</text>
+      </string>
+      <string id="st_achievements_dalee">
+		<text>Далее</text>
+      </string>
+      <string id="st_achievements_nazad">
+		<text>Назад</text>
+      </string>
+      <string id="st_achievements_status_a">
+		<text>Статус достижения</text>
+      </string>
+      <string id="st_achievements_status_b_true">
+		<text>%c[110,0,128,64]получено</text>
+      </string>
+      <string id="st_achievements_status_b_false">
+		<text>%c[110,200,32,22]отсутствует</text>
+      </string>
+      <string id="st_achievements_need_title">
+		<text>Необходимо:</text>
+      </string>
+      <string id="st_achievements_bonus_title">
+		<text>Бонус:</text>
+      </string>
+      <string id="st_achievements_name_sniper">
+		<text>«Ворошиловский стрелок»</text>
+      </string>
+      <string id="st_achievements_need_sniper">
+		<text>Количество убийств в голову - 300.\nУбитых главнокомандующих - 1.</text>
+      </string>
+      <string id="st_achievements_bonus_sniper">
+		<text>Повышение ущерба, наносимого с любого вида оружия, на 20%.</text>
+      </string>
+      <string id="st_achievements_name_client">
+		<text>«Постоянный клиент»</text>
+      </string>
+      <string id="st_achievements_need_client">
+		<text>Оформленных заказов у торгашей - 10.\nРанг ГГ - 50.</text>
+      </string>
+      <string id="st_achievements_bonus_client">
+		<text>Изменение стоимости товаров для всех торгашей. В ночное время суток будут действовать еще более выгодные цены.</text>
+      </string>
+      <string id="st_achievements_name_pathfinder">
+		<text>«Ловкий следопыт»</text>
+      </string>
+      <string id="st_achievements_need_pathfinder">
+		<text>Найденых SGM тайников - 60.</text>
+      </string>
+      <string id="st_achievements_bonus_pathfinder">
+		<text>Передаст на КПК координаты остальных тайников. Тайники будут видны в радиусе 150м, около ГГ.</text>
+      </string>
+      <string id="st_achievements_name_guidebook">
+		<text>«Аномальный проводник»</text>
+      </string>
+      <string id="st_achievements_need_guidebook">
+		<text>Использованых GPS-проводников - 12.</text>
+      </string>
+      <string id="st_achievements_bonus_guidebook">
+		<text>Получение Alternal GPS-проводника.</text>
+      </string>
+      <string id="st_achievements_name_marauder">
+		<text>«Великий мародер»</text>
+      </string>
+      <string id="st_achievements_need_marauder">
+		<text>Подобрано электронных денег с трупов - 18000.</text>
+      </string>
+      <string id="st_achievements_bonus_marauder">
+		<text>Позволит снимать больше электронных денег с КПК погибших сталкеров, на 40%.</text>
+      </string>
+      <string id="st_achievements_name_magnate">
+		<text>«Электронный магнат»</text>
+      </string>
+      <string id="st_achievements_need_magnate">
+		<text>Количество электронных денег - 20000</text>
+      </string>
+      <string id="st_achievements_bonus_magnate">
+		<text>Новый и более выгодный курс обмена электронных денег у сберегателей. Максимальная ставка в игре "21 очко" - 2000.</text>
+      </string>
+      <string id="st_achievements_name_assistant">
+		<text>«Помощник техника»</text>
+      </string>
+      <string id="st_achievements_need_assistant">
+		<text>Достать одному из техников более 80 коробок с деталями.</text>
+      </string>
+      <string id="st_achievements_bonus_assistant">
+		<text>Повышенная скидка на ремонт и модернизацию у техника.</text>
+      </string>
+      <string id="st_achievements_name_lifeguard">
+		<text>«Благородный спасатель»</text>
+      </string>
+      <string id="st_achievements_need_lifeguard">
+		<text>Вылечено раненных - 8.</text>
+      </string>
+      <string id="st_achievements_bonus_lifeguard">
+		<text>Сталкеры которых вы будете спасать, будут вам хорошо платить.</text>
+      </string>
+      <string id="st_diplomatia_need_title">
+		<text>Требования:</text>
+      </string>
+      <string id="st_diplomatia_community_stalkers">
+		<text>«Вольные сталкеры»</text>
+      </string>
+      <string id="st_diplomatia_need_stalkers">
+		<text>Оплата в эквиваленте - 25000 RU.</text>
+      </string>
+      <string id="st_diplomatia_community_bandits">
+		<text>«Бандиты»</text>
+      </string>
+      <string id="st_diplomatia_need_bandits">
+		<text>Оплата в эквиваленте - 28000 RU.</text>
+      </string>
+      <string id="st_diplomatia_community_dolgs">
+		<text>«Долг»</text>
+      </string>
+      <string id="st_diplomatia_need_dolgs">
+		<text>Оплата в эквиваленте - 30000 RU.</text>
+      </string>
+      <string id="st_diplomatia_community_freedoms">
+		<text>«Свобода»</text>
+      </string>
+      <string id="st_diplomatia_need_freedoms">
+		<text>Оплата в эквиваленте - 30000 RU.</text>
+      </string>
+      <string id="st_diplomatia_community_killers">
+		<text>«Наёмники»</text>
+      </string>
+      <string id="st_diplomatia_need_killers">
+		<text>Оплата в эквиваленте - 35000 RU.</text>
+      </string>
+      <string id="st_diplomatia_community_rasvets">
+		<text>«Рассвет»</text>
+      </string>
+      <string id="st_diplomatia_need_rasvets">
+		<text>Оплата в эквиваленте - 10000 RU.</text>
+      </string>
+      <string id="st_agreement_check_friend_hint">
+		<text>Заключать договор о мире.</text>
+      </string>
+      <string id="st_agreement_check_enemy_hint">
+		<text>Заключать договор о войне.</text>
+      </string>

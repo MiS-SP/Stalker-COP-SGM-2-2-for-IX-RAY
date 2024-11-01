@@ -1,0 +1,26 @@
+[logic]
+active = ph_door@locked
+
+[ph_door@locked]
+locked = true
+closed = true
+snd_open_start = trader_door_open_start
+snd_close_start = trader_door_close_start
+snd_close_stop = trader_door_close_stop
+tip_open = st_esc_trader_door_tip
+
+[ph_door@open]
+locked = false
+closed = false
+snd_open_start = wood_large_open
+snd_close_start = wood_large_close_start
+snd_close_stop = wood_large_close_stop
+on_use = ph_door@close
+
+[ph_door@close]
+locked = false
+closed = true
+snd_open_start = wood_large_open
+snd_close_start = wood_large_close_start
+snd_close_stop = wood_large_close_stop
+on_use = ph_door@open

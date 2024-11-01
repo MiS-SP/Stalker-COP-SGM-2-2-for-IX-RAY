@@ -1,0 +1,222 @@
+;---------------------------------------------------------------------------------------;
+;                                   Военные Склады                                      ;
+;---------------------------------------------------------------------------------------;
+;сюжетные задания
+
+[mil_come_to_military]
+icon = ui_inGame2_ComeToMilitary
+prior = 99
+storyline = true
+title = mil_come_to_military_title0
+descr = mil_come_to_military_text0
+target = val_mod_level_changer_to_military
+condlist_0 = {+actor_come_to_military} complete
+on_complete = %+mil_come_to_military_complete%
+
+[mil_first_receipts]
+icon = ui_inGame2_FirstReceipts
+prior = 100
+storyline = true
+title = {+mil_first_receipts_info} mil_first_receipts_title1, {-mil_first_receipts_info} mil_first_receipts_title0
+descr = {+mil_first_receipts_info} mil_first_receipts_text1, {-mil_first_receipts_info} mil_first_receipts_text0
+target = {+mil_first_receipts_info} mil_b7_base_leader, {-mil_first_receipts_info} mil_region_7_spot
+condlist_0 = {+mil_first_receipts_meeting} complete
+condlist_1 = {+mil_alt_storyline_commenced} fail
+on_fail = %+mil_first_receipts_complete%
+on_complete = %+mil_first_receipts_complete =add_actor_rank(3) =inc_faction_goodwill_to_actor(rasvet:50)%
+
+[mil_dislodge_invaders]
+icon = ui_inGame2_DislodgeInvaders
+prior = 100
+storyline = true
+title = {+mil_dislodge_invaders_b6_captured +mil_dislodge_invaders_all_captured} mil_dislodge_invaders_title6, {+mil_dislodge_invaders_b5_captured -mil_dislodge_invaders_b6_captured} mil_dislodge_invaders_title5, {+mil_dislodge_invaders_b4_captured -mil_dislodge_invaders_b5_captured} mil_dislodge_invaders_title4, {+mil_dislodge_invaders_b3_captured -mil_dislodge_invaders_b4_captured} mil_dislodge_invaders_title3, {+mil_dislodge_invaders_b2_captured -mil_dislodge_invaders_b3_captured} mil_dislodge_invaders_title2, {+mil_dislodge_invaders_b1_captured -mil_dislodge_invaders_b2_captured} mil_dislodge_invaders_title1, {-mil_dislodge_invaders_b1_captured} mil_dislodge_invaders_title0
+descr = {+mil_dislodge_invaders_b6_captured +mil_dislodge_invaders_all_captured} mil_dislodge_invaders_text6, {+mil_dislodge_invaders_b5_captured -mil_dislodge_invaders_b6_captured} mil_dislodge_invaders_text5, {+mil_dislodge_invaders_b4_captured -mil_dislodge_invaders_b5_captured} mil_dislodge_invaders_text4, {+mil_dislodge_invaders_b3_captured -mil_dislodge_invaders_b4_captured} mil_dislodge_invaders_text3, {+mil_dislodge_invaders_b2_captured -mil_dislodge_invaders_b3_captured} mil_dislodge_invaders_text2, {+mil_dislodge_invaders_b1_captured -mil_dislodge_invaders_b2_captured} mil_dislodge_invaders_text1, {-mil_dislodge_invaders_b1_captured} mil_dislodge_invaders_text0
+target = {+mil_dislodge_invaders_b6_captured +mil_dislodge_invaders_all_captured} mil_b7_base_leader, {+mil_dislodge_invaders_b5_captured -mil_dislodge_invaders_b6_captured} mil_region_6_spot, {+mil_dislodge_invaders_b4_captured -mil_dislodge_invaders_b5_captured} mil_region_5_spot, {+mil_dislodge_invaders_b3_captured -mil_dislodge_invaders_b4_captured} mil_region_4_spot, {+mil_dislodge_invaders_b2_captured -mil_dislodge_invaders_b3_captured} mil_region_3_spot, {+mil_dislodge_invaders_b1_captured -mil_dislodge_invaders_b2_captured} mil_region_2_spot, {-mil_dislodge_invaders_b1_captured} mil_region_1_spot
+condlist_0 = {+mil_dislodge_invaders_reward} complete
+condlist_1 = {+mil_alt_storyline_commenced} fail
+on_fail = %+mil_dislodge_invaders_complete%
+on_complete = %+mil_dislodge_invaders_complete =add_actor_rank(3) =inc_faction_goodwill_to_actor(rasvet:300) =increase_counter(stat_kvestov)%
+
+[mil_defence_b1]
+icon = ui_inGame2_MilDefenceB1
+prior = 100
+storyline = true
+title = mil_defence_b1_title0
+descr = mil_defence_b1_text0
+target = mil_region_1_spot
+condlist_0 = {+mil_defence_b1_done} complete
+condlist_1 = {+mil_defence_b1_fail} fail
+condlist_2 = {+mil_alt_storyline_commenced} fail
+on_fail = %+mil_defence_b1_complete =mil_defence_b1_fail%
+on_complete = %+mil_defence_b1_complete =mil_defence_b1_done =add_actor_rank(2) =inc_faction_goodwill_to_actor(rasvet:100)%
+
+[mil_defence_b2]
+icon = ui_inGame2_MilDefenceB2
+prior = 100
+storyline = true
+title = mil_defence_b2_title0
+descr = mil_defence_b2_text0
+target = mil_region_2_spot
+condlist_0 = {+mil_defence_b2_done} complete
+condlist_1 = {+mil_defence_b2_fail} fail
+condlist_2 = {+mil_alt_storyline_commenced} fail
+on_fail = %+mil_defence_b2_complete =mil_defence_b2_fail%
+on_complete = %+mil_defence_b2_complete =mil_defence_b2_done =add_actor_rank(3) =inc_faction_goodwill_to_actor(rasvet:110)%
+
+[mil_defence_b3]
+icon = ui_inGame2_MilDefenceB3
+prior = 100
+storyline = true
+title = mil_defence_b3_title0
+descr = mil_defence_b3_text0
+target = mil_region_3_spot
+condlist_0 = {+mil_defence_b3_done} complete
+condlist_1 = {+mil_defence_b3_fail} fail
+condlist_2 = {+mil_alt_storyline_commenced} fail
+on_fail = %+mil_defence_b3_complete =mil_defence_b3_fail%
+on_complete = %+mil_defence_b3_complete =mil_defence_b3_done =add_actor_rank(4) =inc_faction_goodwill_to_actor(rasvet:120)%
+
+[mil_defence_b4]
+icon = ui_inGame2_MilDefenceB4
+prior = 100
+storyline = true
+title = mil_defence_b4_title0
+descr = mil_defence_b4_text0
+target = mil_region_4_spot
+condlist_0 = {+mil_defence_b4_done} complete
+condlist_1 = {+mil_defence_b4_fail} fail
+condlist_2 = {+mil_alt_storyline_commenced} fail
+on_fail = %+mil_defence_b4_complete =mil_defence_b4_fail%
+on_complete = %+mil_defence_b4_complete =mil_defence_b4_done =add_actor_rank(5) =inc_faction_goodwill_to_actor(rasvet:130)%
+
+[mil_defence_b5]
+icon = ui_inGame2_MilDefenceB5
+prior = 100
+storyline = true
+title = mil_defence_b5_title0
+descr = mil_defence_b5_text0
+target = mil_region_5_spot
+condlist_0 = {+mil_defence_b5_done} complete
+condlist_1 = {+mil_defence_b5_fail} fail
+condlist_2 = {+mil_alt_storyline_commenced} fail
+on_fail = %+mil_defence_b5_complete =mil_defence_b5_fail%
+on_complete = %+mil_defence_b5_complete =mil_defence_b5_done =add_actor_rank(6) =inc_faction_goodwill_to_actor(rasvet:140)%
+
+[mil_defence_b6]
+icon = ui_inGame2_MilDefenceB6
+prior = 100
+storyline = true
+title = mil_defence_b6_title0
+descr = mil_defence_b6_text0
+target = mil_region_6_spot
+condlist_0 = {+mil_defence_b6_fail} complete
+condlist_1 = {+mil_alt_storyline_commenced} fail
+on_fail = %+mil_defence_b6_complete =mil_defence_b6_complete%
+on_complete = %+mil_defence_b6_complete =mil_defence_b6_complete%
+
+[mil_defence_b7]
+icon = ui_inGame2_MilDefenceB7
+prior = 100
+storyline = true
+title = mil_defence_b7_title0
+descr = mil_defence_b7_text0
+target = mil_region_7_spot
+condlist_0 = {+mil_defence_b7_fail} complete
+condlist_1 = {+mil_alt_storyline_commenced} fail
+on_fail = %+mil_defence_b7_complete%
+on_complete = %+mil_defence_b7_complete%
+
+[mil_smash_monster_hole]
+icon = ui_inGame2_SmashMonsterHole
+prior = 101
+storyline = true
+title = {+mil_smash_monster_hole_bomb_setuped -mil_smash_monster_hole_liquidated} mil_smash_monster_hole_title3, {+mil_smash_monster_hole_bomb_founded -mil_smash_monster_hole_bomb_setuped} mil_smash_monster_hole_title2, {+mil_smash_monster_hole_cleared -mil_smash_monster_hole_bomb_founded} mil_smash_monster_hole_title1, {-mil_smash_monster_hole_cleared} mil_smash_monster_hole_title0
+descr = {+mil_smash_monster_hole_bomb_setuped -mil_smash_monster_hole_liquidated} mil_smash_monster_hole_text3, {+mil_smash_monster_hole_bomb_founded -mil_smash_monster_hole_bomb_setuped} mil_smash_monster_hole_text2, {+mil_smash_monster_hole_cleared -mil_smash_monster_hole_bomb_founded} mil_smash_monster_hole_text1, {-mil_smash_monster_hole_cleared} mil_smash_monster_hole_text0
+target = {+mil_smash_monster_hole_bomb_setuped -mil_smash_monster_hole_liquidated} mil_monster_hole_spot, {+mil_smash_monster_hole_bomb_founded -mil_smash_monster_hole_bomb_setuped} mil_monster_hole_spot, {+mil_smash_monster_hole_cleared -mil_smash_monster_hole_bomb_founded} mil_hole_bomb, {-mil_smash_monster_hole_cleared} mil_monster_hole_spot
+condlist_0 = {+mil_smash_monster_hole_liquidated} complete
+condlist_1 = {+mil_alt_storyline_commenced} fail
+on_fail = %+mil_smash_monster_hole_complete%
+on_complete = %+mil_smash_monster_hole_complete =mil_smash_monster_hole_done =add_actor_rank(3) =inc_faction_goodwill_to_actor(rasvet:200) =increase_counter(stat_kvestov)%
+
+[mil_akulov_offer]
+icon = ui_inGame2_AkulovOffer
+prior = 102
+storyline = true
+title = mil_akulov_offer_title0
+descr = mil_akulov_offer_text0
+target = val_b2_base_leader
+condlist_0 = {+mil_akulov_offer_talk} complete
+condlist_1 = {+mil_alt_storyline_commenced} fail
+condlist_2 = {=sid_thinks_actor_is_enemy(val_b2_base_leader)} fail
+on_fail = %+mil_akulov_offer_complete +mil_alt_storyline_commenced%
+on_complete = %+mil_akulov_offer_complete =add_actor_rank(2) =inc_faction_goodwill_to_actor(night_stalker:250) =increase_counter(stat_kvestov)%
+
+[mil_conduct_night_stalkers]
+icon = ui_inGame2_ConductNightStalkers
+prior = 100
+storyline = true
+title = {+mil_conduct_night_stalkers_allow_meet} mil_conduct_night_stalkers_title2, {+mil_conduct_night_stalkers_entry -mil_conduct_night_stalkers_allow_meet} mil_conduct_night_stalkers_title1, {-mil_conduct_night_stalkers_entry} mil_conduct_night_stalkers_title0
+descr = {+mil_conduct_night_stalkers_allow_meet} mil_conduct_night_stalkers_text2, {+mil_conduct_night_stalkers_entry -mil_conduct_night_stalkers_allow_meet} mil_conduct_night_stalkers_text1, {-mil_conduct_night_stalkers_entry} mil_conduct_night_stalkers_text0
+target = {!actor_on_level(military)} mil_region_7_spot, {+mil_conduct_night_stalkers_allow_meet} mil_b7_colonizer_commander, {-mil_conduct_night_stalkers_entry} mil_b7_colonizer_commander, {-mil_conduct_night_stalkers_allow_meet} mil_region_7_spot
+condlist_0 = {+mil_conduct_night_stalkers_talk} complete
+condlist_1 = {+mil_alt_storyline_commenced} fail
+on_fail = %+mil_conduct_night_stalkers_complete%
+on_complete = %+mil_conduct_night_stalkers_complete =add_actor_rank(5) =inc_faction_goodwill_to_actor(night_stalker:500) =increase_counter(stat_kvestov)%
+
+[mil_boarding_money_case]
+icon = ui_inGame2_BoardingMoneyCase
+prior = 100
+storyline = true
+title = {+mil_boarding_money_case_founded} mil_boarding_money_case_title1, {-mil_boarding_money_case_founded} mil_boarding_money_case_title0
+descr = {+mil_boarding_money_case_founded} mil_boarding_money_case_text1, {-mil_boarding_money_case_founded} mil_boarding_money_case_text0
+target = {+mil_boarding_money_case_founded} val_b2_base_leader, {-mil_boarding_money_case_founded} val_b3_collector
+condlist_0 = {+mil_boarding_money_case_reward} complete
+condlist_1 = {+mil_alt_storyline_commenced} fail
+condlist_2 = {=sid_thinks_actor_is_enemy(val_b2_base_leader)} fail
+on_fail = %+mil_boarding_money_case_complete +mil_boarding_money_case_fail +mil_alt_storyline_commenced%
+on_complete = %+mil_boarding_money_case_complete =add_actor_rank(5) =inc_faction_goodwill_to_actor(night_stalker:500) =increase_counter(stat_kvestov)%
+
+[mil_meet_with_morten]
+icon = ui_inGame2_MeetWithMorten
+prior = 102
+storyline = true
+title = mil_meet_with_morten_title0
+descr = mil_meet_with_morten_text0
+target = mil_b7_night_stalker_leader
+condlist_0 = {+mil_meet_with_morten_talk} complete
+condlist_1 = {=sid_thinks_actor_is_enemy(mil_b7_night_stalker_leader)} fail
+condlist_2 = {+mil_alt_storyline_commenced} fail
+on_fail = %+mil_alt_storyline_commenced%
+on_complete = %+mil_meet_with_morten_complete%
+
+[mil_bolted_influence]
+icon = ui_inGame2_BoltedInfluence
+prior = 100
+storyline = true
+title = {+mil_bolted_influence_b6_captured +mil_bolted_influence_all_captured} mil_bolted_influence_title6, {+mil_bolted_influence_b5_captured -mil_bolted_influence_b6_captured} mil_bolted_influence_title5, {+mil_bolted_influence_b4_captured -mil_bolted_influence_b5_captured} mil_bolted_influence_title4, {+mil_bolted_influence_b3_captured -mil_bolted_influence_b4_captured} mil_bolted_influence_title3, {+mil_bolted_influence_b2_captured -mil_bolted_influence_b3_captured} mil_bolted_influence_title2, {+mil_bolted_influence_b1_captured -mil_bolted_influence_b2_captured} mil_bolted_influence_title1, {-mil_bolted_influence_b1_captured} mil_bolted_influence_title0
+descr = {+mil_bolted_influence_b6_captured +mil_bolted_influence_all_captured} mil_bolted_influence_text6, {+mil_bolted_influence_b5_captured -mil_bolted_influence_b6_captured} mil_bolted_influence_text5, {+mil_bolted_influence_b4_captured -mil_bolted_influence_b5_captured} mil_bolted_influence_text4, {+mil_bolted_influence_b3_captured -mil_bolted_influence_b4_captured} mil_bolted_influence_text3, {+mil_bolted_influence_b2_captured -mil_bolted_influence_b3_captured} mil_bolted_influence_text2, {+mil_bolted_influence_b1_captured -mil_bolted_influence_b2_captured} mil_bolted_influence_text1, {-mil_bolted_influence_b1_captured} mil_bolted_influence_text0
+target = {+mil_bolted_influence_b6_captured +mil_bolted_influence_all_captured} mil_b7_night_stalker_leader, {+mil_bolted_influence_b5_captured -mil_bolted_influence_b6_captured} mil_region_6_spot, {+mil_bolted_influence_b4_captured -mil_bolted_influence_b5_captured} mil_region_5_spot, {+mil_bolted_influence_b3_captured -mil_bolted_influence_b4_captured} mil_region_4_spot, {+mil_bolted_influence_b2_captured -mil_bolted_influence_b3_captured} mil_region_3_spot, {+mil_bolted_influence_b1_captured -mil_bolted_influence_b2_captured} mil_region_2_spot, {-mil_bolted_influence_b1_captured} mil_region_1_spot
+condlist_0 = {+mil_bolted_influence_reward} complete
+condlist_1 = {+mil_alt_storyline_commenced} fail
+condlist_2 = {=sid_thinks_actor_is_enemy(mil_b7_night_stalker_leader)} fail
+on_fail = %+mil_boarding_money_case_complete +mil_alt_storyline_commenced%
+on_complete = %+mil_boarding_money_case_complete =add_actor_rank(5) =inc_faction_goodwill_to_actor(night_stalker:500) =increase_counter(stat_kvestov)%
+
+
+;второстепенные задания
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

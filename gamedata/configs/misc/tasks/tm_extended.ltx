@@ -1,0 +1,783 @@
+;<!-----------------------------------------===============----------------------------------------------->;
+;<!-----------------------------------------'SGM[Сюжетные]'----------------------------------------------->;
+;<!-----------------------------------------===============----------------------------------------------->;
+;---------------------------------------------------------------------------------------;
+;                                      Затон                                            ;
+;---------------------------------------------------------------------------------------;
+[sgm_zat_meet_authorities_agent]
+icon = ui_inGame2_MeetAuthoritiesAgent
+prior = 125
+storyline = true
+title = zat_meet_authorities_agent_title0
+descr = zat_meet_authorities_agent_text0
+target = zat_authorities_agent
+condlist_0 = {+zat_meet_authorities_agent_talk} complete
+on_complete = %=add_actor_rank(3) =inc_faction_goodwill_to_actor(army:50) =increase_counter(stat_kvestov)%
+
+[sgm_zat_check_sbu_cell]
+icon = ui_inGame2_CheckSbuCell
+prior = 125
+storyline = true
+title = zat_check_sbu_cell_title0
+descr = zat_check_sbu_cell_text0
+target = zat_sbu_cell_spot
+condlist_0 = {+zat_check_sbu_cell_searched} complete
+on_complete = %=add_actor_rank(1) =inc_faction_goodwill_to_actor(stalker:150) =increase_counter(stat_kvestov) +zat_check_sbu_cell_complete%
+
+[sgm_zat_accompany_to_boat]
+icon = ui_inGame2_Accompany_To_Boat
+prior = 120
+storyline = true
+title = {+zat_accompany_to_boat_i_am_alone -zat_accompany_to_boat_alt} zat_accompany_to_boat_title3,{+zat_accompany_to_boat_alt -zat_accompany_to_boat_i_am_alone} zat_accompany_to_boat_title2,{+zat_accompany_to_boat_daleko -zat_accompany_to_boat_alt} zat_accompany_to_boat_title1,{-zat_accompany_to_boat_daleko -zat_accompany_to_boat_alt} zat_accompany_to_boat_title0
+descr = {+zat_accompany_to_boat_i_am_alone -zat_accompany_to_boat_alt} zat_accompany_to_boat_text3,{+zat_accompany_to_boat_alt -zat_accompany_to_boat_i_am_alone} zat_accompany_to_boat_text2,{+zat_accompany_to_boat_daleko -zat_accompany_to_boat_alt} zat_accompany_to_boat_text1,{-zat_accompany_to_boat_daleko -zat_accompany_to_boat_alt} zat_accompany_to_boat_text0
+target = zat_accompany_to_boat_spot
+condlist_0 = {+zat_accompany_to_boat_complete} complete
+on_complete = %=add_actor_rank(1) =inc_faction_goodwill_to_actor(stalker:30) =increase_counter(stat_kvestov)%
+
+[sgm_zat_refer_parcel]
+icon = ui_inGame2_Refer_Parcel
+prior = 119
+storyline = true
+title = zat_refer_parcel_title0
+descr = zat_refer_parcel_text0
+target = zat_stalker_bankir
+condlist_0 = {+zat_refer_parcel_complete} complete
+on_complete = %=add_actor_rank(1) =inc_faction_goodwill_to_actor(stalker:10) =increase_counter(stat_kvestov)%
+
+[sgm_zat_refer_parcel2]
+icon = ui_inGame2_Refer_Parcel
+prior = 119
+storyline = true
+title = zat_refer_parcel2_title0
+descr = zat_refer_parcel2_text0
+target = zat_stalker_bankir
+condlist_0 = {+zat_refer_parcel_complete} complete
+on_complete = %=add_actor_rank(1) =inc_faction_goodwill_to_actor(stalker:10) =increase_counter(stat_kvestov)%
+
+[sgm_zat_meet_to_breeder]
+icon = ui_inGame2_MeetToBreeder
+prior = 115
+storyline = true
+title = zat_breeder_talk_and_job_title0
+descr = zat_breeder_talk_and_job_text0
+target = zat_stalker_breeder
+condlist_0 = {+zat_breeder_talk_and_job_meeted} complete
+on_complete = %=inc_faction_goodwill_to_actor(stalker:10) =increase_counter(stat_kvestov)%
+
+[sgm_zat_breeder_search_unknown]
+icon = ui_inGame2_BreederSearch
+prior = 114
+storyline = true
+title = {+zat_breeder_talk_and_job_founded} zat_breeder_talk_and_job_title2,{-zat_breeder_talk_and_job_founded} zat_breeder_talk_and_job_title1
+descr = {+zat_breeder_talk_and_job_founded} zat_breeder_talk_and_job_text2,{-zat_breeder_talk_and_job_founded} zat_breeder_talk_and_job_text1
+target = {+zat_breeder_talk_and_job_founded} zat_stalker_breeder,{-zat_breeder_talk_and_job_founded} af_acid_star
+condlist_0 = {+zat_breeder_talk_and_job_complete} complete
+on_complete = %=add_actor_rank(2) =inc_faction_goodwill_to_actor(stalker:50) =increase_counter(stat_kvestov)%
+
+[sgm_zat_will_leave_jupiter]
+icon = ui_inGame2_WillLeaveJupiter
+prior = 115
+storyline = true
+title = {+zat_will_leave_jupiter_govor} zat_will_leave_jupiter_title1,{-zat_will_leave_jupiter_govor} zat_will_leave_jupiter_title0
+descr = {+zat_will_leave_jupiter_govor} zat_will_leave_jupiter_text1,{-zat_will_leave_jupiter_govor} zat_will_leave_jupiter_text0
+target = {+zat_will_leave_jupiter_govor} zat_b215_stalker_guide_zaton,{-zat_will_leave_jupiter_govor} zat_a2_stalker_barmen
+condlist_0 = {+zat_will_leave_jupiter_complete} complete
+on_complete = %=add_actor_rank(1) =inc_faction_goodwill_to_actor(stalker:10) =give_task(sgm_jup_arrive_on_bunker) +jup_arrive_on_bunker_start =increase_counter(stat_kvestov)%
+
+[sgm_zat_get_wireing_heli_key]
+icon = ui_inGame2_GetWireingHeliKey
+prior = 100
+storyline = true
+title = zat_get_wireing_heli_key_title0
+descr = zat_get_wireing_heli_key_text0
+target = nil
+condlist_0 = {=actor_has_item(special_helicopter_key)} complete
+on_complete = %=add_actor_rank(1) =inc_faction_goodwill_to_actor(army:10) =increase_counter(stat_kvestov) +zat_get_wireing_heli_key_complete%
+;---------------------------------------------------------------------------------------;
+;                                     Юпитер                                            ;
+;---------------------------------------------------------------------------------------;
+[sgm_jup_arrive_on_bunker]
+icon = ui_inGame2_ArriveBunker
+prior = 117
+storyline = true
+title = {+jup_arrive_on_bunker_pribil} jup_arrive_on_bunker_title2,{+jup_arrive_on_bunker_talk -jup_arrive_on_bunker_pribil} jup_arrive_on_bunker_title1,{-jup_arrive_on_bunker_talk} jup_arrive_on_bunker_title0
+descr = {+jup_arrive_on_bunker_pribil} jup_arrive_on_bunker_text2,{+jup_arrive_on_bunker_talk -jup_arrive_on_bunker_pribil} jup_arrive_on_bunker_text1,{-jup_arrive_on_bunker_talk} jup_arrive_on_bunker_text0
+target = {+jup_arrive_on_bunker_pribil} jup_b6_scientist_tech,{+jup_arrive_on_bunker_talk -jup_arrive_on_bunker_pribil} jup_b6_scientist_tech,{-jup_arrive_on_bunker_talk} jup_b217_stalker_tech
+condlist_0 = {+jup_arrive_on_bunker_complete} complete
+on_complete = %=add_actor_rank(3) =inc_faction_goodwill_to_actor(stalker:50) =give_task(sgm_jup_return_zaton) =jup_train_zasada =increase_counter(stat_kvestov)%
+
+[sgm_jup_return_zaton]
+icon = ui_inGame2_ReturnZaton
+prior = 118
+storyline = true
+title = jup_return_zaton_title0
+descr = jup_return_zaton_text0
+target = zat_b215_stalker_guide_jupiter
+condlist_0 = {+jup_return_zaton_complete} complete
+on_complete = %=add_actor_rank(1) =inc_faction_goodwill_to_actor(stalker:10) +cop_storyline_restored =increase_counter(stat_kvestov)%
+
+[sgm_jup_avoid_witnesses]
+icon = ui_inGame2_AvoidWitnesses
+prior = 100
+storyline = true
+title = {+jup_avoid_witnesses_hands_free} jup_avoid_witnesses_title3,{+jup_avoid_witnesses_cleaned -jup_avoid_witnesses_hands_free} jup_avoid_witnesses_title2,{+jup_avoid_witnesses_podoshel -jup_avoid_witnesses_cleaned} jup_avoid_witnesses_title1,{-jup_avoid_witnesses_podoshel} jup_avoid_witnesses_title0
+descr = {+jup_avoid_witnesses_hands_free} jup_avoid_witnesses_text3,{+jup_avoid_witnesses_cleaned -jup_avoid_witnesses_hands_free} jup_avoid_witnesses_text2,{+jup_avoid_witnesses_podoshel -jup_avoid_witnesses_cleaned} jup_avoid_witnesses_text1,{-jup_avoid_witnesses_podoshel} jup_avoid_witnesses_text0
+target = {+jup_avoid_witnesses_hands_free} jup_hostage_dest_spot,{-jup_avoid_witnesses_hands_free} jup_witnesses_hostage
+condlist_0 = {+jup_avoid_witnesses_safety} complete
+on_complete = %=add_actor_rank(5) =inc_faction_goodwill_to_actor(army:150) =increase_counter(stat_kvestov) +jup_avoid_witnesses_complete%
+
+[sgm_jup_night_agent_meeting]
+icon = ui_inGame2_NightAgentMeeting
+prior = 110
+storyline = true
+title = jup_night_agent_meeting_title0
+descr = jup_night_agent_meeting_text0
+target = jup_authorities_agent
+condlist_0 = {+jup_night_agent_meeting_talk} complete
+condlist_1 = {-jup_night_agent_meeting_start} reversed
+on_complete = %=add_actor_rank(2) =increase_counter(stat_kvestov) +jup_night_agent_meeting_complete%
+
+[sgm_jup_darkvalley_travel_bubble]
+icon = ui_inGame2_DarkvalleyTravelBubble
+prior = 155
+storyline = true
+title = jup_darkvalley_travel_bubble_title0
+descr = jup_darkvalley_travel_bubble_text0
+target = nil
+condlist_0 = {+actor_come_to_darkvalley =actor_on_level(darkvalley)} complete
+on_complete = %=add_actor_rank(1) =increase_counter(stat_kvestov) =inc_faction_goodwill_to_actor(stalker:400) +jup_darkvalley_travel_bubble_complete%
+;---------------------------------------------------------------------------------------;
+;                                     Припять                                           ;
+;---------------------------------------------------------------------------------------;
+[sgm_pri_find_science_briefing]
+icon = ui_inGame2_FindScienceDocks
+prior = 111
+storyline = true
+title = {+pri_find_science_briefing_otneseno} pri_find_science_briefing_title2,{+pri_find_science_briefing_naydeno -pri_find_science_briefing_otneseno} pri_find_science_briefing_title1,{-pri_find_science_briefing_naydeno} pri_find_science_briefing_title0
+descr = {+pri_find_science_briefing_otneseno} pri_find_science_briefing_text2,{+pri_find_science_briefing_naydeno -pri_find_science_briefing_otneseno} pri_find_science_briefing_text1,{-pri_find_science_briefing_naydeno} pri_find_science_briefing_text0
+target = {+pri_find_science_briefing_otneseno} pri_briefing_reward_spot,{+pri_find_science_briefing_naydeno -pri_find_science_briefing_otneseno} jup_authorities_agent2,{-pri_find_science_briefing_naydeno} pri_ecolog_briefing
+condlist_0 = {+pri_find_science_briefing_rewarded} complete
+on_complete = %=add_actor_rank(10) =increase_counter(stat_kvestov) +pri_find_science_briefing_complete%
+
+[sgm_pri_zone_cleaning]
+icon = ui_inGame2_ZoneCleaning
+prior = 150
+storyline = true
+title = pri_zone_cleaning_title0
+descr = pri_zone_cleaning_text0
+descr_end = pri_zone_cleaning_end
+condlist_0 = {+pri_zone_cleaning_interrupted} complete
+on_complete = %=add_actor_rank(50) +pri_zone_cleaning_complete =give_money_to_actor(25000) =inc_faction_goodwill_to_actor(bandit:250) =inc_faction_goodwill_to_actor(dolg:250) =inc_faction_goodwill_to_actor(freedom:250) =inc_faction_goodwill_to_actor(stalker:250) =inc_faction_goodwill_to_actor(rasvet:250) =increase_counter(stat_kvestov)%
+;<!-----------------------------------------=====================----------------------------------------->;
+;<!-----------------------------------------'SGM[Второстепенные]'----------------------------------------->;
+;<!-----------------------------------------=====================----------------------------------------->;
+;---------------------------------------------------------------------------------------;
+;                                      Затон                                            ;
+;---------------------------------------------------------------------------------------;
+[sgm_zat_danger_parcel]
+icon = ui_inGame2_DangerParcel
+prior = 2
+storyline = false
+title = {+zat_danger_parcel_podoshel} zat_danger_parcel_title1,{-zat_danger_parcel_podoshel} zat_danger_parcel_title0
+descr = {+zat_danger_parcel_podoshel} zat_danger_parcel_text1,{-zat_danger_parcel_podoshel} zat_danger_parcel_text0
+target = zat_duty_kanevskiy
+condlist_0 = {+zat_danger_parcel_complete} complete
+condlist_1 = {+zat_danger_parcel_fail} fail
+on_complete = %=add_actor_rank(1) =inc_faction_goodwill_to_actor(stalker:50) =increase_counter(stat_kvestov)%
+
+[sgm_zat_assault_bandit_base]
+icon = ui_inGame2_Assault_Bandit_Base
+prior = 4
+storyline = false
+title = {+zat_assault_bandit_base_bandits_lost} zat_assault_bandit_base_title4,{+zat_assault_bandit_base_choose -zat_assault_bandit_base_bandits_lost} zat_assault_bandit_base_title3,{+zat_assault_bandit_base_on_pos -zat_assault_bandit_base_choose} zat_assault_bandit_base_title2,{+zat_assault_bandit_base_elbrus -zat_assault_bandit_base_on_pos} zat_assault_bandit_base_title1, {-zat_assault_bandit_base_elbrus} zat_assault_bandit_base_title0
+descr = {+zat_assault_bandit_base_bandits_lost} zat_assault_bandit_base_text4,{+zat_assault_bandit_base_choose -zat_assault_bandit_base_bandits_lost} zat_assault_bandit_base_text3,{+zat_assault_bandit_base_on_pos -zat_assault_bandit_base_choose} zat_assault_bandit_base_text2,{+zat_assault_bandit_base_elbrus -zat_assault_bandit_base_on_pos} zat_assault_bandit_base_text1, {-zat_assault_bandit_base_elbrus} zat_assault_bandit_base_text0
+target = {+zat_assault_bandit_base_bandits_lost} zat_stalker_member,{+zat_assault_bandit_base_choose -zat_assault_bandit_base_bandits_lost} zat_bandit_base_leader,{+zat_assault_bandit_base_on_pos -zat_assault_bandit_base_choose} zat_bandit_base_west_chief,{+zat_assault_bandit_base_elbrus -zat_assault_bandit_base_on_pos} zat_assault_bandit_base_eminence_spot, {-zat_assault_bandit_base_elbrus} zat_stalker_elbrus
+condlist_0 = {+zat_assault_bandit_base_complete} complete
+condlist_1 = {+zat_assault_bandit_base_fail} fail
+on_complete = %=add_actor_rank(5) =inc_faction_goodwill_to_actor(stalker:300) =increase_counter(stat_kvestov)%
+
+[sgm_zat_deliver_monolith_case]
+icon = ui_inGame2_Deliver_Monolith_Case
+prior = 1
+storyline = false
+title = {+zat_deliver_monolith_case_otdal} zat_deliver_monolith_case_title4,{=zat_has_intercepted_case +zat_deliver_monolith_case_doshol -zat_deliver_monolith_case_otdal} zat_deliver_monolith_case_title3,{=zat_has_intercepted_case +actor_come_to_pripyat -zat_deliver_monolith_case_doshol} zat_deliver_monolith_case_title2,{=zat_has_intercepted_case -actor_come_to_pripyat} zat_deliver_monolith_case_title1,{!zat_has_intercepted_case} zat_deliver_monolith_case_title0
+descr = {+zat_deliver_monolith_case_otdal} zat_deliver_monolith_case_text4,{=zat_has_intercepted_case +zat_deliver_monolith_case_doshol -zat_deliver_monolith_case_otdal} zat_deliver_monolith_case_text3,{=zat_has_intercepted_case +actor_come_to_pripyat -zat_deliver_monolith_case_doshol} zat_deliver_monolith_case_text2,{=zat_has_intercepted_case -actor_come_to_pripyat} zat_deliver_monolith_case_text1,{!zat_has_intercepted_case} zat_deliver_monolith_case_text0
+target = {+zat_deliver_monolith_case_otdal} pri_monolit_base_trader,{=zat_has_intercepted_case +zat_deliver_monolith_case_doshol -zat_deliver_monolith_case_otdal} pri_monolit_base_chief,{=zat_has_intercepted_case +actor_come_to_pripyat -zat_deliver_monolith_case_doshol} pri_monolit_base_chief,{=zat_has_intercepted_case -actor_come_to_pripyat} pri_monolit_base_leader,{!zat_has_intercepted_case} zat_intercepted_case
+condlist_0 = {+zat_deliver_monolith_case_reward} complete
+condlist_1 = {+zat_deliver_monolith_case_fail} fail
+condlist_2 = {=sid_is_dead(pri_monolit_base_chief) -zat_deliver_monolith_case_otdal} fail
+on_complete = %=add_actor_rank(20) =inc_faction_goodwill_to_actor(monolith:200) =inc_faction_goodwill_to_actor(monolith_alies:200) =increase_counter(stat_kvestov)%
+
+[sgm_zat_bandit_kill_shakal]
+icon = ui_inGame2_Bandit_Kill_Shakal
+prior = 3
+storyline = false
+title = {+zat_bandit_kill_shakal_zabral} zat_bandit_kill_shakal_title3,{+zat_bandit_kill_shakal_ubil -zat_bandit_kill_shakal_zabral} zat_bandit_kill_shakal_title2,{+zat_bandit_kill_shakal_prishol -zat_bandit_kill_shakal_ubil} zat_bandit_kill_shakal_title1,{-zat_bandit_kill_shakal_prishol} zat_bandit_kill_shakal_title0
+descr = {+zat_bandit_kill_shakal_zabral} zat_bandit_kill_shakal_text3,{+zat_bandit_kill_shakal_ubil -zat_bandit_kill_shakal_zabral} zat_bandit_kill_shakal_text2,{+zat_bandit_kill_shakal_prishol -zat_bandit_kill_shakal_ubil} zat_bandit_kill_shakal_text1,{-zat_bandit_kill_shakal_prishol} zat_bandit_kill_shakal_text0
+target = {+zat_bandit_kill_shakal_zabral} zat_bandit_base_leader,{+zat_bandit_kill_shakal_ubil -zat_bandit_kill_shakal_zabral} zat_killer_shakal,{+zat_bandit_kill_shakal_prishol -zat_bandit_kill_shakal_ubil} zat_bandit_kill_shakal_spot,{-zat_bandit_kill_shakal_prishol} zat_bandit_kill_shakal_spot
+condlist_0 = {+zat_bandit_kill_shakal_complete} complete
+condlist_1 = {+zat_bandit_base_leader_death} fail
+condlist_2 = {+zat_bandit_base_actor_hit} fail
+condlist_3 = {+zat_bandit_kill_shakal_predal} fail
+condlist_4 = {+zat_bandit_kill_shakal_fail} fail
+condlist_5 = {=sid_is_dead(zat_bandit_base_leader)} fail
+condlist_6 = {=sid_thinks_actor_is_enemy(zat_bandit_base_leader)} fail
+on_complete = %=add_actor_rank(5) =inc_faction_goodwill_to_actor(bandit:200) =increase_counter(stat_kvestov)%
+on_fail = %+zat_bandit_kill_shakal_fail =dec_faction_goodwill_to_actor(bandit:500)%
+
+[sgm_zat_bring_flash_light]
+icon = ui_inGame2_BringFlashLight
+prior = 2
+storyline = false
+title = {+zat_bring_flash_light_have} zat_bring_flash_light_title1,{-zat_bring_flash_light_have} zat_bring_flash_light_title0
+descr = {+zat_bring_flash_light_have} zat_bring_flash_light_text1,{-zat_bring_flash_light_have} zat_bring_flash_light_text0
+target = {+zat_bring_flash_light_have} zat_bandit_trader,{-zat_bring_flash_light_have} quest_flash_light
+condlist_0 = {+zat_bring_flash_light_reward} complete
+condlist_1 = {+zat_bring_flash_light_fail} fail
+condlist_2 = {-actor_entry_in_bandit} fail
+on_fail = %+zat_bring_flash_light_fail%
+on_complete = %=add_actor_rank(2) +zat_bring_flash_light_complete =inc_faction_goodwill_to_actor(bandit:120) =increase_counter(stat_kvestov)%
+
+[sgm_zat_bring_drink_beylis]
+icon = ui_inGame2_BringDrinkBeylis
+prior = 3
+storyline = false
+title = {+zat_bring_drink_beylis_have} zat_bring_drink_beylis_title2,{+zat_bring_drink_beylis_talk -zat_bring_drink_beylis_have} zat_bring_drink_beylis_title1,{-zat_bring_drink_beylis_talk} zat_bring_drink_beylis_title0
+descr = {+zat_bring_drink_beylis_have} zat_bring_drink_beylis_text2,{+zat_bring_drink_beylis_talk -zat_bring_drink_beylis_have} zat_bring_drink_beylis_text1,{-zat_bring_drink_beylis_talk} zat_bring_drink_beylis_text0
+target = {+zat_bring_drink_beylis_have} zat_a2_stalker_barmen,{+zat_bring_drink_beylis_talk -zat_bring_drink_beylis_have} quest_drink_beylis,{-zat_bring_drink_beylis_talk} zat_stalker_trader
+condlist_0 = {+zat_bring_drink_beylis_reward} complete
+on_complete = %=add_actor_rank(2) +zat_bring_drink_beylis_complete =inc_faction_goodwill_to_actor(stalker:160) =increase_counter(stat_kvestov)%
+
+[sgm_zat_bring_sharpshooter_bino]
+icon = ui_inGame2_BringSharpshooterBino
+prior = 3
+storyline = false
+title = {+zat_bring_sharpshooter_bino_have} zat_bring_sharpshooter_bino_title2,{-zat_bring_sharpshooter_bino_have +zat_bring_sharpshooter_bino_guide} zat_bring_sharpshooter_bino_title1,{-zat_bring_sharpshooter_bino_guide} zat_bring_sharpshooter_bino_title0
+descr = {+zat_bring_sharpshooter_bino_have} zat_bring_sharpshooter_bino_text2,{-zat_bring_sharpshooter_bino_have +zat_bring_sharpshooter_bino_guide} zat_bring_sharpshooter_bino_text1,{-zat_bring_sharpshooter_bino_guide} zat_bring_sharpshooter_bino_text0
+target = {+zat_bring_sharpshooter_bino_have} zat_bandit_base_leader,{-zat_bring_sharpshooter_bino_have +zat_bring_sharpshooter_bino_guide} quest_sharpshooter_binocular,{-zat_bring_sharpshooter_bino_guide} zat_bandit_base_guider
+condlist_0 = {+zat_bring_sharpshooter_bino_reward} complete
+condlist_1 = {+zat_bring_sharpshooter_bino_fail} fail
+condlist_2 = {=sid_thinks_actor_is_enemy(zat_bandit_base_leader)} fail
+condlist_3 = {=sid_is_dead(zat_bandit_base_leader)} fail
+condlist_4 = {-actor_entry_in_bandit} fail
+on_fail = %+zat_bring_sharpshooter_bino_fail%
+on_complete = %=add_actor_rank(3) +zat_bring_sharpshooter_bino_complete =inc_faction_goodwill_to_actor(bandit:250) =increase_counter(stat_kvestov)%
+
+[sgm_zat_monsters_wave]
+icon = ui_inGame2_Monsters_Wave
+prior = 10
+storyline = false
+title = {+zat_monsters_wave_3_controller_destroyed} zat_monsters_wave_title8,{+zat_monsters_wave_3rd_wave_end -zat_monsters_wave_3_controller_destroyed} zat_monsters_wave_title7,{+zat_monsters_wave_2_controller_destroyed -zat_monsters_wave_3rd_wave_end} zat_monsters_wave_title4,{+zat_monsters_wave_2nd_wave_end -zat_monsters_wave_2_controller_destroyed} zat_monsters_wave_title6,{+zat_monsters_wave_1_controller_destroyed -zat_monsters_wave_2nd_wave_end} zat_monsters_wave_title4,{+zat_monsters_wave_1st_wave_end -zat_monsters_wave_1_controller_destroyed} zat_monsters_wave_title5,{+zat_monsters_wave_on_firepos -zat_monsters_wave_1st_wave_end} zat_monsters_wave_title3,{+zat_monsters_wave_noah_talked +zat_monsters_wave_has_weapon -zat_monsters_wave_on_firepos} zat_monsters_wave_title2,{+zat_monsters_wave_noah_talked -zat_monsters_wave_has_weapon} zat_monsters_wave_title1,{-zat_monsters_wave_noah_talked} zat_monsters_wave_title0
+descr = {+zat_monsters_wave_3_controller_destroyed} zat_monsters_wave_text8,{+zat_monsters_wave_3rd_wave_end -zat_monsters_wave_3_controller_destroyed} zat_monsters_wave_text7,{+zat_monsters_wave_2_controller_destroyed -zat_monsters_wave_3rd_wave_end} zat_monsters_wave_text4,{+zat_monsters_wave_2nd_wave_end -zat_monsters_wave_2_controller_destroyed} zat_monsters_wave_text6,{+zat_monsters_wave_1_controller_destroyed -zat_monsters_wave_2nd_wave_end} zat_monsters_wave_text4,{+zat_monsters_wave_1st_wave_end -zat_monsters_wave_1_controller_destroyed} zat_monsters_wave_text5,{+zat_monsters_wave_on_firepos -zat_monsters_wave_1st_wave_end} zat_monsters_wave_text3,{+zat_monsters_wave_noah_talked +zat_monsters_wave_has_weapon -zat_monsters_wave_on_firepos} zat_monsters_wave_text2,{+zat_monsters_wave_noah_talked -zat_monsters_wave_has_weapon} zat_monsters_wave_text1,{-zat_monsters_wave_noah_talked} zat_monsters_wave_text0
+target = {+zat_monsters_wave_3_controller_destroyed} zat_b18_noah,{+zat_monsters_wave_3rd_wave_end -zat_monsters_wave_3_controller_destroyed} zat_monsters_wave_3_controller,{+zat_monsters_wave_2_controller_destroyed -zat_monsters_wave_3rd_wave_end} zat_noah_barge_main_spot,{+zat_monsters_wave_2nd_wave_end -zat_monsters_wave_2_controller_destroyed} zat_monsters_wave_2_controller,{+zat_monsters_wave_1_controller_destroyed -zat_monsters_wave_2nd_wave_end} zat_noah_barge_main_spot,{+zat_monsters_wave_1st_wave_end -zat_monsters_wave_1_controller_destroyed} zat_monsters_wave_1_controller,{+zat_monsters_wave_on_firepos -zat_monsters_wave_1st_wave_end} zat_noah_barge_main_spot,{+zat_monsters_wave_noah_talked +zat_monsters_wave_has_weapon -zat_monsters_wave_on_firepos} zat_noah_barge_firepos_spot,{+zat_monsters_wave_noah_talked -zat_monsters_wave_has_weapon} nil,{-zat_monsters_wave_noah_talked} zat_b18_noah
+condlist_0 = {+zat_monsters_wave_reward} complete
+condlist_1 = {=sid_thinks_actor_is_enemy(zat_b18_noah)} fail
+condlist_2 = {=sid_is_dead(zat_b18_noah)} fail
+condlist_3 = {+zat_monsters_wave_fail} fail
+on_fail = %+zat_monsters_wave_fail%
+on_complete = %=add_actor_rank(15) =inc_faction_goodwill_to_actor(stalker:150) =increase_counter(stat_kvestov) +zat_monsters_wave_complete%
+
+[sgm_zat_wisdom_books]
+icon = ui_inGame2_WisdomBooks
+prior = 2
+storyline = false
+title = {+zat_wisdom_books_book_done_founded} zat_wisdom_books_title3, {-zat_wisdom_books_book_3_taked} zat_wisdom_books_title2, {-zat_wisdom_books_book_2_taked} zat_wisdom_books_title1, {-zat_wisdom_books_book_1_taked} zat_wisdom_books_title0
+descr = {+zat_wisdom_books_book_done_founded} zat_wisdom_books_text3, {-zat_wisdom_books_book_3_taked} zat_wisdom_books_title2, {-zat_wisdom_books_book_2_taked} zat_wisdom_books_title1, {-zat_wisdom_books_book_1_taked} zat_wisdom_books_title0
+target = {+zat_wisdom_books_book_done_founded} осведомитель, {-zat_wisdom_books_book_3_taked} zat_wisdom_book_3, {-zat_wisdom_books_book_2_taked} zat_wisdom_book_2, {-zat_wisdom_books_book_1_taked} zat_wisdom_book_1
+condlist_0 = {+zat_wisdom_books_book_bringed} complete
+on_complete = %+zat_wisdom_books_complete =add_actor_rank(2) =increase_counter(stat_kvestov)%
+
+[sgm_zat_mad_dog]
+icon = ui_inGame2_MadDog
+prior = 9
+storyline = false
+title = {+zat_mad_dog_alfa_commander_pda_founded} zat_mad_dog_title1, {-zat_mad_dog_alfa_commander_pda_founded} zat_mad_dog_title0
+descr = {+zat_mad_dog_alfa_commander_pda_founded} zat_mad_dog_text1, {-zat_mad_dog_alfa_commander_pda_founded} zat_mad_dog_text0
+target = {+zat_mad_dog_alfa_commander_pda_founded} zat_stalker_member, {-zat_mad_dog_alfa_commander_pda_founded} zat_mad_dog_squad
+condlist_0 = {+zat_mad_dog_reward_taked} complete
+on_complete = %+zat_mad_dog_complete =add_actor_rank(2) =increase_counter(stat_kvestov)%
+
+[sgm_zat_carrying_antidote]
+icon = ui_inGame2_CarryingAntidote
+prior = 3
+storyline = false
+title = {+zat_carrying_antidote_is_sent} zat_carrying_antidote_title1, {-zat_carrying_antidote_is_sent} zat_carrying_antidote_title0
+descr = {+zat_carrying_antidote_is_sent} zat_carrying_antidote_text1, {-zat_carrying_antidote_is_sent} zat_carrying_antidote_text0
+target = {+zat_carrying_antidote_is_sent} zat_stalker_medic, {-zat_carrying_antidote_is_sent} jup_a6_stalker_medik
+condlist_0 = {+zat_carrying_antidote_reward_taked} complete
+on_complete = %+zat_carrying_antidote_complete =add_actor_rank(2) =increase_counter(stat_kvestov)% 
+
+[sgm_zat_alfa_sabotage]
+icon = ui_inGame2_AlfaSabotage
+prior = 5
+storyline = false
+title = {+zat_alfa_sabotage_reward_1} zat_alfa_sabotage_title14, {+zat_alfa_sabotage_charge_all_innocuous -zat_alfa_sabotage_reward_1} zat_alfa_sabotage_title13, {+zat_alfa_sabotage_scaner_available =check_counter(zat_alfa_sabotage_charge_innocuous:is:5)} zat_alfa_sabotage_title12_5, {+zat_alfa_sabotage_scaner_available =check_counter(zat_alfa_sabotage_charge_innocuous:is:4)} zat_alfa_sabotage_title12_5, {+zat_alfa_sabotage_scaner_available =check_counter(zat_alfa_sabotage_charge_innocuous:is:3)} zat_alfa_sabotage_title12_4, {+zat_alfa_sabotage_scaner_available =check_counter(zat_alfa_sabotage_charge_innocuous:is:2)} zat_alfa_sabotage_title12_3, {+zat_alfa_sabotage_scaner_available =check_counter(zat_alfa_sabotage_charge_innocuous:is:1)} zat_alfa_sabotage_title12_2, {+zat_alfa_sabotage_scaner_available =check_counter(zat_alfa_sabotage_charge_innocuous:is:0)} zat_alfa_sabotage_title12, {+zat_alfa_sabotage_order_executed -zat_alfa_sabotage_scaner_available} zat_alfa_sabotage_title11, {+zat_alfa_sabotage_order_begin -zat_alfa_sabotage_order_executed} zat_alfa_sabotage_title10, {+zat_alfa_sabotage_raciya_founded -zat_alfa_sabotage_order_begin} zat_alfa_sabotage_title9, {+zat_alfa_sabotage_raciya_need -zat_alfa_sabotage_raciya_founded} zat_alfa_sabotage_title8, {+zat_alfa_sabotage_talk_kardan -zat_alfa_sabotage_talk_azot} zat_alfa_sabotage_title7, {+zat_alfa_sabotage_charge_founded -zat_alfa_sabotage_talk_kardan} zat_alfa_sabotage_title6, {+zat_alfa_sabotage_talk_sich -zat_alfa_sabotage_charge_founded} zat_alfa_sabotage_title5, {+zat_alfa_sabotage_talk_boroda -zat_alfa_sabotage_talk_sich} zat_alfa_sabotage_title4, {+zat_alfa_sabotage_alfa_info -zat_alfa_sabotage_talk_boroda} zat_alfa_sabotage_title3, {+zat_alfa_sabotage_alfa_dead -zat_alfa_sabotage_alfa_info} zat_alfa_sabotage_title2, {+zat_alfa_sabotage_alfa_founded -zat_alfa_sabotage_alfa_dead} zat_alfa_sabotage_title1, zat_alfa_sabotage_title0
+descr = {+zat_alfa_sabotage_reward_1} zat_alfa_sabotage_text14, {+zat_alfa_sabotage_charge_all_innocuous -zat_alfa_sabotage_reward_1} zat_alfa_sabotage_text13, {+zat_alfa_sabotage_scaner_available =check_counter(zat_alfa_sabotage_charge_innocuous:is:5)} zat_alfa_sabotage_text12, {+zat_alfa_sabotage_scaner_available =check_counter(zat_alfa_sabotage_charge_innocuous:is:4)} zat_alfa_sabotage_text12, {+zat_alfa_sabotage_scaner_available =check_counter(zat_alfa_sabotage_charge_innocuous:is:3)} zat_alfa_sabotage_text12, {+zat_alfa_sabotage_scaner_available =check_counter(zat_alfa_sabotage_charge_innocuous:is:2)} zat_alfa_sabotage_text12, {+zat_alfa_sabotage_scaner_available =check_counter(zat_alfa_sabotage_charge_innocuous:is:1)} zat_alfa_sabotage_text12, {+zat_alfa_sabotage_scaner_available =check_counter(zat_alfa_sabotage_charge_innocuous:is:0)} zat_alfa_sabotage_text12, {+zat_alfa_sabotage_order_executed -zat_alfa_sabotage_scaner_available} zat_alfa_sabotage_text11, {+zat_alfa_sabotage_order_begin -zat_alfa_sabotage_order_executed} zat_alfa_sabotage_text10, {+zat_alfa_sabotage_raciya_founded -zat_alfa_sabotage_order_begin} zat_alfa_sabotage_text9, {+zat_alfa_sabotage_raciya_need -zat_alfa_sabotage_raciya_founded} zat_alfa_sabotage_text8, {+zat_alfa_sabotage_talk_kardan -zat_alfa_sabotage_talk_azot} zat_alfa_sabotage_text7, {+zat_alfa_sabotage_charge_founded -zat_alfa_sabotage_talk_kardan} zat_alfa_sabotage_text6, {+zat_alfa_sabotage_talk_sich -zat_alfa_sabotage_charge_founded} zat_alfa_sabotage_text5, {+zat_alfa_sabotage_talk_boroda -zat_alfa_sabotage_talk_sich} zat_alfa_sabotage_text4, {+zat_alfa_sabotage_alfa_info -zat_alfa_sabotage_talk_boroda} zat_alfa_sabotage_text3, {+zat_alfa_sabotage_alfa_dead -zat_alfa_sabotage_alfa_info} zat_alfa_sabotage_text2, {+zat_alfa_sabotage_alfa_founded -zat_alfa_sabotage_alfa_dead} zat_alfa_sabotage_text1, zat_alfa_sabotage_text0
+target = {+zat_alfa_sabotage_reward_1} zat_a2_stalker_barmen, {+zat_alfa_sabotage_charge_all_innocuous -zat_alfa_sabotage_reward_1} jup_a6_stalker_barmen, {+zat_alfa_sabotage_scaner_available =check_counter(zat_alfa_sabotage_charge_innocuous:is:4)} nil, {+zat_alfa_sabotage_scaner_available =check_counter(zat_alfa_sabotage_charge_innocuous:is:3)} nil, {+zat_alfa_sabotage_scaner_available =check_counter(zat_alfa_sabotage_charge_innocuous:is:2)} nil, {+zat_alfa_sabotage_scaner_available =check_counter(zat_alfa_sabotage_charge_innocuous:is:1)} nil, {+zat_alfa_sabotage_scaner_available =check_counter(zat_alfa_sabotage_charge_innocuous:is:0)} nil, {+zat_alfa_sabotage_order_executed -zat_alfa_sabotage_scaner_available} jup_b217_stalker_tech, {+zat_alfa_sabotage_order_begin -zat_alfa_sabotage_order_executed} nil, {+zat_alfa_sabotage_raciya_founded -zat_alfa_sabotage_order_begin} jup_b217_stalker_tech, {+zat_alfa_sabotage_raciya_need -zat_alfa_sabotage_raciya_founded} jup_azot_simply_raciya, {+zat_alfa_sabotage_talk_kardan -zat_alfa_sabotage_talk_azot} jup_b217_stalker_tech, {+zat_alfa_sabotage_charge_founded -zat_alfa_sabotage_talk_kardan} zat_a2_stalker_mechanic, {+zat_alfa_sabotage_talk_sich -zat_alfa_sabotage_charge_founded} nil, {+zat_alfa_sabotage_talk_boroda -zat_alfa_sabotage_talk_sich} zat_b30_owl_stalker_trader_id, {+zat_alfa_sabotage_alfa_info -zat_alfa_sabotage_talk_boroda} zat_alfa_sabotage_inhabitants_spot, {+zat_alfa_sabotage_alfa_dead -zat_alfa_sabotage_alfa_info} zat_alfa_sabotage_meeting_place_spot, {+zat_alfa_sabotage_alfa_founded -zat_alfa_sabotage_alfa_dead} zat_alfa_sabotage_meeting_place_spot, zat_alfa_sabotage_meeting_place_spot
+condlist_0 = {+zat_alfa_sabotage_reward_1 +zat_alfa_sabotage_reward_2} complete
+on_complete = %+zat_alfa_sabotage_complete =add_actor_rank(3) =inc_faction_goodwill_to_actor(stalker:250) =increase_counter(stat_kvestov)%
+;---------------------------------------------------------------------------------------;
+;                                     Юпитер                                            ;
+;---------------------------------------------------------------------------------------;
+[sgm_jup_bring_detector_kit]
+icon = ui_inGame2_BringDetectorKit
+prior = 1
+storyline = false
+title = {+jup_bring_detector_kit_naydeni} jup_bring_detector_kit_title1,{-jup_bring_detector_kit_naydeni} jup_bring_detector_kit_title0
+descr = {+jup_bring_detector_kit_naydeni} jup_bring_detector_kit_text1,{-jup_bring_detector_kit_naydeni} jup_bring_detector_kit_text0
+target = {+jup_bring_detector_kit_naydeni} jup_b6_scientist_tech,{-jup_bring_detector_kit_naydeni} detector_modify_toolkit
+condlist_0 = {+jup_bring_detector_kit_otdal} complete
+on_complete = %=add_actor_rank(2) +jup_bring_detector_kit_complete =increase_counter(stat_kvestov)%
+
+[sgm_jup_search_treasure]
+icon = ui_inGame2_SearchTreasure
+prior = 2
+storyline = false
+title = jup_search_treasure_title0
+descr = jup_search_treasure_text0
+target = jup_rasvet_base_treasure_spot
+condlist_0 = {+jup_search_treasure_proveril} complete
+on_complete = %+jup_search_treasure_complete =increase_counter(stat_kvestov)%
+
+[sgm_jup_find_gromoboy_vintar]
+icon = ui_inGame2_FindGromoboyVintar
+prior = 3
+storyline = false
+title = {+jup_find_gromoboy_vintar_nashol} jup_find_gromoboy_vintar_title4,{+jup_find_gromoboy_vintar_unpack -jup_find_gromoboy_vintar_nashol} jup_find_gromoboy_vintar_title3,{+jup_find_gromoboy_vintar_fake_loot -jup_find_gromoboy_vintar_unpack} jup_find_gromoboy_vintar_title2,{+jup_find_gromoboy_vintar_doshol -jup_find_gromoboy_vintar_fake_loot} jup_find_gromoboy_vintar_title1,{-jup_find_gromoboy_vintar_doshol} jup_find_gromoboy_vintar_title0
+descr = {+jup_find_gromoboy_vintar_nashol} jup_find_gromoboy_vintar_text4,{+jup_find_gromoboy_vintar_unpack -jup_find_gromoboy_vintar_nashol} jup_find_gromoboy_vintar_text3,{+jup_find_gromoboy_vintar_fake_loot -jup_find_gromoboy_vintar_unpack} jup_find_gromoboy_vintar_text2,{+jup_find_gromoboy_vintar_doshol -jup_find_gromoboy_vintar_fake_loot} jup_find_gromoboy_vintar_text1,{-jup_find_gromoboy_vintar_doshol} jup_find_gromoboy_vintar_text0
+target = {+jup_find_gromoboy_vintar_nashol} jup_stalker_gromoboy,{+jup_find_gromoboy_vintar_unpack -jup_find_gromoboy_vintar_nashol} jup_find_gromoboy_vintar_spot,{+jup_find_gromoboy_vintar_fake_loot -jup_find_gromoboy_vintar_unpack} jup_stalker_gromoboy,{+jup_find_gromoboy_vintar_doshol -jup_find_gromoboy_vintar_fake_loot} jup_monolith_thief,{-jup_find_gromoboy_vintar_doshol} jup_monolith_thief
+condlist_0 = {+jup_find_gromoboy_vintar_complete} complete
+condlist_1 = {+jup_find_gromoboy_vintar_fail} fail
+condlist_2 = {=sid_thinks_actor_is_enemy(jup_stalker_gromoboy)} fail
+condlist_3 = {=sid_is_dead(jup_stalker_gromoboy)} fail
+on_fail = %=dec_faction_goodwill_to_actor(stalker:50) +jup_find_gromoboy_vintar_failure%
+on_complete = %=add_actor_rank(8) =inc_faction_goodwill_to_actor(stalker:200) =increase_counter(stat_kvestov)%
+
+[sgm_jup_beat_from_monsters]
+icon = ui_inGame2_BeatFromMonsters
+prior = 2
+storyline = false
+title = {+jup_beat_from_monsters_safely} jup_beat_from_monsters_title1,{-jup_beat_from_monsters_safely} jup_beat_from_monsters_title0
+descr = {+jup_beat_from_monsters_safely} jup_beat_from_monsters_text1,{-jup_beat_from_monsters_safely} jup_beat_from_monsters_text0
+target = {+jup_beat_from_monsters_safely} jup_rasvet_base_leader,{-jup_beat_from_monsters_safely} jup_rasvet_base_spot
+condlist_0 = {+jup_beat_from_monsters_complete} complete
+condlist_1 = {+jup_rasvet_base_leader_death} fail
+condlist_2 = {=sid_thinks_actor_is_enemy(jup_rasvet_base_leader)} fail
+condlist_3 = {=sid_is_dead(jup_rasvet_base_leader)} fail
+on_fail = %+jup_beat_from_monsters_fail%
+on_complete = %=add_actor_rank(5) =inc_faction_goodwill_to_actor(rasvet:300) =increase_counter(stat_kvestov)%
+
+[sgm_jup_destroy_night_killers]
+icon = ui_inGame2_Destroy_Night_Killers
+prior = 2
+storyline = false
+title = {+jup_destroy_night_killers_perebil} jup_destroy_night_killers_title3,{+jup_destroy_night_killers_pobeg -jup_destroy_night_killers_perebil} jup_destroy_night_killers_title2,{+jup_destroy_night_killers_prishol -jup_destroy_night_killers_pobeg} jup_destroy_night_killers_title1,{-jup_destroy_night_killers_prishol} jup_destroy_night_killers_title0
+descr = {+jup_destroy_night_killers_perebil} jup_destroy_night_killers_text3,{+jup_destroy_night_killers_pobeg -jup_destroy_night_killers_perebil} jup_destroy_night_killers_text2,{+jup_destroy_night_killers_prishol -jup_destroy_night_killers_pobeg} jup_destroy_night_killers_text1,{-jup_destroy_night_killers_prishol} jup_destroy_night_killers_text0
+target = {+jup_destroy_night_killers_perebil} jup_freedom_trader,{+jup_destroy_night_killers_pobeg -jup_destroy_night_killers_perebil} jup_night_killer_runner,{+jup_destroy_night_killers_prishol -jup_destroy_night_killers_pobeg} jup_night_killers_spot,{-jup_destroy_night_killers_prishol} jup_night_killers_spot
+condlist_0 = {+jup_destroy_night_killers_complete} complete
+condlist_1 = {+jup_destroy_night_killers_fail} fail
+on_complete = %=add_actor_rank(4) =inc_faction_goodwill_to_actor(freedom:300) =increase_counter(stat_kvestov)%
+on_fail = %=dec_faction_goodwill_to_actor(freedom:300)%
+
+[sgm_jup_follow_scientists]
+icon = ui_inGame2_Follow_Scientists
+prior = 3
+storyline = false
+title = {+jup_follow_scientists_prishli} jup_follow_scientists_title1,{-jup_follow_scientists_prishli} jup_follow_scientists_title0
+descr = {+jup_follow_scientists_prishli} jup_follow_scientists_text1,{-jup_follow_scientists_prishli} jup_follow_scientists_text0
+target = {+jup_follow_scientists_prishli} jup_follower_scientist_leader,{-jup_follow_scientists_prishli} jup_follower_scientist_leader
+condlist_0 = {+jup_follow_scientists_complete} complete
+condlist_1 = {+jup_follow_scientists_fail} fail
+condlist_2 = {=sid_thinks_actor_is_enemy(jup_follower_scientist_leader)} fail
+on_complete = %=add_actor_rank(5) =inc_faction_goodwill_to_actor(ecolog:1000) =increase_counter(stat_kvestov)%
+on_fail = %=dec_faction_goodwill_to_actor(ecolog:200) +jup_follow_scientists_fail%
+
+[sgm_jup_bring_heavy_medkits]
+icon = ui_inGame2_BringHeavyMedkits
+prior = 2
+storyline = false
+title = {+jup_bring_heavy_medkits_have} jup_bring_heavy_medkits_title1,{-jup_bring_heavy_medkits_have} jup_bring_heavy_medkits_title0
+descr = {+jup_bring_heavy_medkits_have} jup_bring_heavy_medkits_text1,{-jup_bring_heavy_medkits_have} jup_bring_heavy_medkits_text0
+target = {+jup_bring_heavy_medkits_have} jup_a6_stalker_medik,{-jup_bring_heavy_medkits_have} quest_heavy_medkits
+condlist_0 = {+jup_bring_heavy_medkits_reward} complete
+on_complete = %=add_actor_rank(2) +jup_bring_heavy_medkits_complete =inc_faction_goodwill_to_actor(freedom:150) =inc_faction_goodwill_to_actor(stalker:100) =increase_counter(stat_kvestov)%
+
+[sgm_jup_bring_photo_device]
+icon = ui_inGame2_BringPhotoDevice
+prior = 2
+storyline = false
+title = {+jup_bring_photo_device_have} jup_bring_photo_device_title1,{-jup_bring_photo_device_have} jup_bring_photo_device_title0
+descr = {+jup_bring_photo_device_have} jup_bring_photo_device_text1,{-jup_bring_photo_device_have} jup_bring_photo_device_text0
+target = {+jup_bring_photo_device_have} jup_b19_freedom_yar,{-jup_bring_photo_device_have} quest_photo_device
+condlist_0 = {+jup_bring_photo_device_reward} complete
+on_complete = %=add_actor_rank(2) +jup_bring_photo_device_complete =inc_faction_goodwill_to_actor(freedom:150) =increase_counter(stat_kvestov)%
+
+[sgm_jup_bring_arms_case]
+icon = ui_inGame2_BringArmsCase
+prior = 2
+storyline = false
+title = {+jup_bring_arms_case_have} jup_bring_arms_case_title1,{-jup_bring_arms_case_have} jup_bring_arms_case_title0
+descr = {+jup_bring_arms_case_have} jup_bring_arms_case_text1,{-jup_bring_arms_case_have} jup_bring_arms_case_text0
+target = {+jup_bring_arms_case_have} jup_a6_stalker_barmen,{-jup_bring_arms_case_have} quest_arms_case
+condlist_0 = {+jup_bring_arms_case_reward} complete
+on_complete = %=add_actor_rank(9) +jup_bring_arms_case_complete =inc_faction_goodwill_to_actor(freedom:120) =inc_faction_goodwill_to_actor(dolg:120) =inc_faction_goodwill_to_actor(stalker:120) =increase_counter(stat_kvestov)%
+
+[sgm_jup_rasvet_destroy_snorks]
+icon = ui_inGame2_RasvetDestroySnorks
+prior = 2
+storyline = false
+title = {+jup_rasvet_polter_skauts_to_returned} jup_rasvet_destroy_snorks_title4, {+jup_rasvet_polter_skauts_talking -jup_rasvet_polter_skauts_to_returned} jup_rasvet_destroy_snorks_title3, {+jup_rasvet_polter_skauts_spawn -jup_rasvet_polter_skauts_talking} jup_rasvet_destroy_snorks_title2, {+jup_rasvet_polter_squad_spawn -jup_rasvet_polter_squad_killed} jup_rasvet_destroy_snorks_title1, {-jup_rasvet_destroy_snorks_killed} jup_rasvet_destroy_snorks_title0
+descr = {+jup_rasvet_polter_skauts_to_returned} jup_rasvet_destroy_snorks_text4, {+jup_rasvet_polter_skauts_talking -jup_rasvet_polter_skauts_to_returned} jup_rasvet_destroy_snorks_text3, {+jup_rasvet_polter_skauts_spawn -jup_rasvet_polter_skauts_talking} jup_rasvet_destroy_snorks_text2, {+jup_rasvet_polter_squad_spawn -jup_rasvet_polter_squad_killed} jup_rasvet_destroy_snorks_text1, {-jup_rasvet_destroy_snorks_killed} jup_rasvet_destroy_snorks_text0
+target = {+jup_rasvet_polter_skauts_to_returned} jup_rasvet_base_leader, {+jup_rasvet_polter_skauts_talking -jup_rasvet_polter_skauts_to_returned} jup_rasvet_polter_quest_spot, {+jup_rasvet_polter_skauts_spawn -jup_rasvet_polter_skauts_talking} jup_rasvet_polter_quest_skaut, {+jup_rasvet_polter_squad_spawn -jup_rasvet_polter_squad_killed} jup_rasvet_polter_squad, {-jup_rasvet_destroy_snorks_killed} jup_rasvet_snorks_squad
+condlist_0 = {+jup_rasvet_destroy_snorks_reward} complete
+condlist_1 = {=sid_thinks_actor_is_enemy(jup_rasvet_base_leader)} fail
+condlist_2 = {=sid_is_dead(jup_rasvet_base_leader)} fail
+condlist_3 = {-actor_entry_in_rasvet} fail
+condlist_4 = {+jup_rasvet_polter_quest_skaut_dead} fail
+on_fail = %+jup_rasvet_destroy_snorks_fail%
+on_complete = %=add_actor_rank(5) +jup_rasvet_destroy_snorks_complete =inc_faction_goodwill_to_actor(rasvet:70) =increase_counter(stat_kvestov)%
+
+[sgm_jup_rasvet_eliminate_burrows]
+icon = ui_inGame2_RasvetEliminateBurrows
+prior = 8
+storyline = false
+title = {+jup_rasvet_eliminate_burrows_5_hole_death -jup_rasvet_eliminate_burrows_reward} jup_rasvet_eliminate_burrows_title6,{+jup_rasvet_eliminate_burrows_message_about_5_hole -jup_rasvet_eliminate_burrows_5_hole_death} jup_rasvet_eliminate_burrows_title5,{+jup_rasvet_eliminate_burrows_4_hole_death -jup_rasvet_eliminate_burrows_message_about_5_hole} jup_rasvet_eliminate_burrows_title4,{+jup_rasvet_eliminate_burrows_4_hole_spawn -jup_rasvet_eliminate_burrows_4_hole_death} jup_rasvet_eliminate_burrows_title3,{+jup_rasvet_eliminate_burrows_3_hole_spawn -jup_rasvet_eliminate_burrows_4_hole_spawn} jup_rasvet_eliminate_burrows_title2,{+jup_rasvet_eliminate_burrows_2_hole_spawn -jup_rasvet_eliminate_burrows_3_hole_spawn} jup_rasvet_eliminate_burrows_title1,{-jup_rasvet_eliminate_burrows_2_hole_spawn} jup_rasvet_eliminate_burrows_title0
+descr = {+jup_rasvet_eliminate_burrows_5_hole_death -jup_rasvet_eliminate_burrows_reward} jup_rasvet_eliminate_burrows_text6,{+jup_rasvet_eliminate_burrows_message_about_5_hole -jup_rasvet_eliminate_burrows_5_hole_death} jup_rasvet_eliminate_burrows_text5,{+jup_rasvet_eliminate_burrows_4_hole_death -jup_rasvet_eliminate_burrows_message_about_5_hole} jup_rasvet_eliminate_burrows_text4,{+jup_rasvet_eliminate_burrows_4_hole_spawn -jup_rasvet_eliminate_burrows_4_hole_death} jup_rasvet_eliminate_burrows_text3,{+jup_rasvet_eliminate_burrows_3_hole_spawn -jup_rasvet_eliminate_burrows_4_hole_spawn} jup_rasvet_eliminate_burrows_text2,{+jup_rasvet_eliminate_burrows_2_hole_spawn -jup_rasvet_eliminate_burrows_3_hole_spawn} jup_rasvet_eliminate_burrows_text1,{-jup_rasvet_eliminate_burrows_2_hole_spawn} jup_rasvet_eliminate_burrows_text0
+target = {+jup_rasvet_eliminate_burrows_5_hole_death -jup_rasvet_eliminate_burrows_reward} jup_rasvet_base_leader,{+jup_rasvet_eliminate_burrows_message_about_5_hole -jup_rasvet_eliminate_burrows_5_hole_death} jup_rasvet_monsters_5_hole_squad,{+jup_rasvet_eliminate_burrows_4_hole_death -jup_rasvet_eliminate_burrows_message_about_5_hole} jup_rasvet_base_leader,{+jup_rasvet_eliminate_burrows_4_hole_spawn -jup_rasvet_eliminate_burrows_4_hole_death} jup_rasvet_monsters_4_hole_squad,{+jup_rasvet_eliminate_burrows_3_hole_spawn -jup_rasvet_eliminate_burrows_4_hole_spawn} jup_rasvet_monsters_3_hole_squad,{+jup_rasvet_eliminate_burrows_2_hole_spawn -jup_rasvet_eliminate_burrows_3_hole_spawn} jup_rasvet_monsters_2_hole_squad,{-jup_rasvet_eliminate_burrows_2_hole_spawn} jup_rasvet_monsters_1_hole_squad
+condlist_0 = {+jup_rasvet_eliminate_burrows_reward} complete
+condlist_1 = {=sid_thinks_actor_is_enemy(jup_rasvet_base_leader)} fail
+condlist_2 = {=sid_is_dead(jup_rasvet_base_leader)} fail
+condlist_3 = {-actor_entry_in_rasvet} fail
+on_fail = %+jup_rasvet_eliminate_burrows_fail%
+on_complete = %=add_actor_rank(10) =inc_faction_goodwill_to_actor(rasvet:150) =increase_counter(stat_kvestov) +jup_rasvet_eliminate_burrows_complete%
+
+[sgm_jup_mercenary_check_plant]
+icon = ui_inGame2_MercenaryCheckPlant
+prior = 10
+storyline = false
+title = {+jup_mercenary_check_plant_have_secured} jup_mercenary_check_plant_title11,{+jup_mercenary_check_plant_again_entry -jup_mercenary_check_plant_have_secured} jup_mercenary_check_plant_title10,{+jup_mercenary_check_plant_collected_troop -jup_mercenary_check_plant_again_entry} jup_mercenary_check_plant_title9,{+jup_mercenary_check_plant_wait_medikaments =actor_has_four_psy_complex -jup_mercenary_check_plant_collected_troop} jup_mercenary_check_plant_title8,{+jup_mercenary_check_plant_wait_medikaments !actor_has_four_psy_complex -jup_mercenary_check_plant_collected_troop} jup_mercenary_check_plant_title7,{+jup_mercenary_check_plant_told_to_leader -jup_mercenary_check_plant_wait_medikaments} jup_mercenary_check_plant_title6,{+jup_mercenary_check_plant_was_chosen -jup_mercenary_check_plant_told_to_leader} jup_mercenary_check_plant_title5,{+jup_mercenary_check_plant_psi_atacked -jup_mercenary_check_plant_was_chosen} jup_mercenary_check_plant_title4,{+jup_mercenary_check_plant_clear_perimetr -jup_mercenary_check_plant_psi_atacked} jup_mercenary_check_plant_title3,{+jup_mercenary_check_plant_near_perimetr -jup_mercenary_check_plant_clear_perimetr} jup_mercenary_check_plant_title2,{+jup_mercenary_check_plant_talk_with_squad -jup_mercenary_check_plant_near_perimetr} jup_mercenary_check_plant_title1,{-jup_mercenary_check_plant_talk_with_squad} jup_mercenary_check_plant_title0
+descr = {+jup_mercenary_check_plant_have_secured} jup_mercenary_check_plant_text11,{+jup_mercenary_check_plant_again_entry -jup_mercenary_check_plant_have_secured} jup_mercenary_check_plant_text10,{+jup_mercenary_check_plant_collected_troop -jup_mercenary_check_plant_again_entry} jup_mercenary_check_plant_text9,{+jup_mercenary_check_plant_wait_medikaments =actor_has_four_psy_complex -jup_mercenary_check_plant_collected_troop} jup_mercenary_check_plant_text8,{+jup_mercenary_check_plant_wait_medikaments !actor_has_four_psy_complex -jup_mercenary_check_plant_collected_troop} jup_mercenary_check_plant_text7,{+jup_mercenary_check_plant_told_to_leader -jup_mercenary_check_plant_wait_medikaments} jup_mercenary_check_plant_text6,{+jup_mercenary_check_plant_was_chosen -jup_mercenary_check_plant_told_to_leader} jup_mercenary_check_plant_text5,{+jup_mercenary_check_plant_psi_atacked -jup_mercenary_check_plant_was_chosen} jup_mercenary_check_plant_text4,{+jup_mercenary_check_plant_clear_perimetr -jup_mercenary_check_plant_psi_atacked} jup_mercenary_check_plant_text3,{+jup_mercenary_check_plant_near_perimetr -jup_mercenary_check_plant_clear_perimetr} jup_mercenary_check_plant_text2,{+jup_mercenary_check_plant_talk_with_squad -jup_mercenary_check_plant_near_perimetr} jup_mercenary_check_plant_text1,{-jup_mercenary_check_plant_talk_with_squad} jup_mercenary_check_plant_text0
+target = {+jup_mercenary_check_plant_have_secured} jup_killer_base_leader,{+jup_mercenary_check_plant_again_entry -jup_mercenary_check_plant_have_secured} jup_plant_perimetr_spot,{+jup_mercenary_check_plant_collected_troop -jup_mercenary_check_plant_again_entry} jup_killer_second_squad_commander,{+jup_mercenary_check_plant_wait_medikaments =actor_has_four_psy_complex -jup_mercenary_check_plant_collected_troop} jup_killer_second_squad_commander,{+jup_mercenary_check_plant_wait_medikaments !actor_has_four_psy_complex -jup_mercenary_check_plant_collected_troop} jup_killer_second_squad_commander,{+jup_mercenary_check_plant_told_to_leader -jup_mercenary_check_plant_wait_medikaments} jup_killer_second_squad_commander,{+jup_mercenary_check_plant_was_chosen -jup_mercenary_check_plant_told_to_leader} jup_killer_base_leader,{+jup_mercenary_check_plant_psi_atacked -jup_mercenary_check_plant_was_chosen} jup_plant_building_exit_spot,{+jup_mercenary_check_plant_clear_perimetr -jup_mercenary_check_plant_psi_atacked} jup_plant_second_stage_spot,{+jup_mercenary_check_plant_near_perimetr -jup_mercenary_check_plant_clear_perimetr} jup_plant_perimetr_spot,{+jup_mercenary_check_plant_talk_with_squad -jup_mercenary_check_plant_near_perimetr} jup_killer_first_squad_commander,{-jup_mercenary_check_plant_talk_with_squad} jup_killer_first_squad_commander
+condlist_0 = {+jup_mercenary_check_plant_reward} complete
+condlist_1 = {=sid_thinks_actor_is_enemy(jup_killer_base_leader)} fail
+condlist_2 = {=sid_is_dead(jup_killer_base_leader)} fail
+condlist_3 = {+jup_mercenary_check_plant_fail} fail
+on_fail    = %+jup_mercenary_check_plant_fail%
+on_complete = %=add_actor_rank(10) +jup_mercenary_check_plant_complete =increase_counter(stat_kvestov)%
+
+[sgm_jup_search_anomal_prototype]
+icon = ui_inGame2_SearchAnomalPrototype
+prior = 10
+storyline = false
+title = {+jup_search_anomal_prototype_transform_end} jup_search_anomal_prototype_title9,{+jup_search_anomal_prototype_transform_start -jup_search_anomal_prototype_transform_end} jup_search_anomal_prototype_title8,{+jup_search_anomal_prototype_prodigy_finded +jup_search_anomal_prototype_prodigy_5_bringed +jup_search_anomal_prototype_prodigy_lasted -jup_search_anomal_prototype_transform_start} jup_search_anomal_prototype_title7,{+jup_search_anomal_prototype_prodigy_finded -jup_search_anomal_prototype_prodigy_5_bringed +jup_search_anomal_prototype_prodigy_gross} jup_search_anomal_prototype_title10,{+jup_search_anomal_prototype_prodigy_finded -jup_search_anomal_prototype_prodigy_5_bringed -jup_search_anomal_prototype_prodigy_gross} jup_search_anomal_prototype_title1,{-jup_search_anomal_prototype_prodigy_finded +jup_search_anomal_prototype_prodigy_5_bringed} jup_search_anomal_prototype_title6,{-jup_search_anomal_prototype_prodigy_finded +jup_search_anomal_prototype_prodigy_4_bringed} jup_search_anomal_prototype_title5,{-jup_search_anomal_prototype_prodigy_finded +jup_search_anomal_prototype_prodigy_3_bringed} jup_search_anomal_prototype_title4,{-jup_search_anomal_prototype_prodigy_finded +jup_search_anomal_prototype_prodigy_2_bringed} jup_search_anomal_prototype_title3,{-jup_search_anomal_prototype_prodigy_finded +jup_search_anomal_prototype_prodigy_1_bringed} jup_search_anomal_prototype_title2,{-jup_search_anomal_prototype_prodigy_finded -jup_search_anomal_prototype_prodigy_1_bringed} jup_search_anomal_prototype_title0
+descr = {+jup_search_anomal_prototype_transform_end} jup_search_anomal_prototype_text9,{+jup_search_anomal_prototype_transform_start -jup_search_anomal_prototype_transform_end} jup_search_anomal_prototype_text8,{+jup_search_anomal_prototype_prodigy_finded +jup_search_anomal_prototype_prodigy_5_bringed +jup_search_anomal_prototype_prodigy_lasted -jup_search_anomal_prototype_transform_start} jup_search_anomal_prototype_text7,{+jup_search_anomal_prototype_prodigy_finded -jup_search_anomal_prototype_prodigy_5_bringed +jup_search_anomal_prototype_prodigy_gross} jup_search_anomal_prototype_text10,{+jup_search_anomal_prototype_prodigy_finded -jup_search_anomal_prototype_prodigy_5_bringed -jup_search_anomal_prototype_prodigy_gross} jup_search_anomal_prototype_text1,{-jup_search_anomal_prototype_prodigy_finded +jup_search_anomal_prototype_prodigy_5_bringed} jup_search_anomal_prototype_text6,{-jup_search_anomal_prototype_prodigy_finded +jup_search_anomal_prototype_prodigy_4_bringed} jup_search_anomal_prototype_text5,{-jup_search_anomal_prototype_prodigy_finded +jup_search_anomal_prototype_prodigy_3_bringed} jup_search_anomal_prototype_text4,{-jup_search_anomal_prototype_prodigy_finded +jup_search_anomal_prototype_prodigy_2_bringed} jup_search_anomal_prototype_text3,{-jup_search_anomal_prototype_prodigy_finded +jup_search_anomal_prototype_prodigy_1_bringed} jup_search_anomal_prototype_text2,{-jup_search_anomal_prototype_prodigy_finded -jup_search_anomal_prototype_prodigy_1_bringed} jup_search_anomal_prototype_text0
+target = {+jup_search_anomal_prototype_transform_end} jup_b6_scientist_nuclear_physicist, {+jup_search_anomal_prototype_prodigy_finded} jup_b6_scientist_nuclear_physicist, nil
+condlist_0 = {+jup_search_anomal_prototype_reward} complete
+condlist_1 = {+jup_search_anomal_prototype_fail} fail
+condlist_2 = {+jup_search_anomal_prototype_reversed} reversed
+on_reversed = %+jup_search_anomal_prototype_fail%
+on_complete = %+jup_search_anomal_prototype_complete =increase_counter(stat_kvestov)%
+
+[sgm_jup_examine_caravan]
+icon = ui_inGame2_ExamineCaravan
+prior = 10
+storyline = true
+title = {+jup_examine_caravan_case_founded} jup_examine_caravan_title3, {+jup_examine_caravan_giant_killed -jup_examine_caravan_case_founded} jup_examine_caravan_title2, {+jup_examine_caravan_is_dead -jup_examine_caravan_giant_killed} jup_examine_caravan_title1, {-jup_examine_caravan_is_dead} jup_examine_caravan_title0
+descr = {+jup_examine_caravan_case_founded} jup_examine_caravan_text3, {+jup_examine_caravan_giant_killed -jup_examine_caravan_case_founded} jup_examine_caravan_text2, {+jup_examine_caravan_is_dead -jup_examine_caravan_giant_killed} jup_examine_caravan_text1, {-jup_examine_caravan_is_dead} jup_examine_caravan_text0
+target = {+jup_examine_caravan_case_founded} jup_killer_base_leader, {+jup_examine_caravan_giant_killed -jup_examine_caravan_case_founded} jup_killer_caravan_commander, {+jup_examine_caravan_is_dead -jup_examine_caravan_giant_killed} jup_caravan_gigant, {-jup_examine_caravan_is_dead} jup_killer_caravan_commander
+condlist_0 = {+jup_examine_caravan_reward} complete
+condlist_1 = {=sid_thinks_actor_is_enemy(jup_killer_base_leader)} fail
+on_fail    = %+jup_examine_caravan_fail%
+on_complete = %+jup_examine_caravan_complete =add_actor_rank(3) =increase_counter(stat_kvestov)%
+
+[sgm_jup_liquidate_valet]
+icon = ui_inGame2_LiquidateValet
+prior = 10
+storyline = true
+title = {+jup_liquidate_valet_killed} jup_liquidate_valet_title1, {-jup_liquidate_valet_killed} jup_liquidate_valet_title0
+descr = {+jup_liquidate_valet_killed} jup_liquidate_valet_text1, {-jup_liquidate_valet_killed} jup_liquidate_valet_text0
+target = {+jup_liquidate_valet_killed} jup_killer_base_leader, {-jup_liquidate_valet_killed} jup_a10_bandit_leader
+condlist_0 = {+jup_liquidate_valet_reward} complete
+condlist_1 = {=sid_thinks_actor_is_enemy(jup_killer_base_leader)} fail
+on_fail    = %+jup_liquidate_valet_fail%
+on_complete = %+jup_liquidate_valet_complete =add_actor_rank(3) =increase_counter(stat_kvestov)%
+
+[sgm_jup_weak_lighthouse]
+icon = ui_inGame2_WeakLighthouse
+prior = 10
+storyline = true
+title = {+jup_weak_lighthouse_squad_conducted} jup_weak_lighthouse_title4, {+jup_weak_lighthouse_talk_about_hiding -jup_weak_lighthouse_squad_conducted} jup_weak_lighthouse_title3, {+jup_weak_lighthouse_hiding_used -jup_weak_lighthouse_talk_about_hiding} jup_weak_lighthouse_title2, {+jup_weak_lighthouse_hiding_online -jup_weak_lighthouse_hiding_used} jup_weak_lighthouse_title1, {-jup_weak_lighthouse_hiding_online} jup_weak_lighthouse_title0
+descr = {+jup_weak_lighthouse_squad_conducted} jup_weak_lighthouse_text4, {+jup_weak_lighthouse_talk_about_hiding -jup_weak_lighthouse_squad_conducted} jup_weak_lighthouse_text3, {+jup_weak_lighthouse_hiding_used -jup_weak_lighthouse_talk_about_hiding} jup_weak_lighthouse_text2, {+jup_weak_lighthouse_hiding_online -jup_weak_lighthouse_hiding_used} jup_weak_lighthouse_text1, {-jup_weak_lighthouse_hiding_online} jup_weak_lighthouse_text0
+target = {+jup_weak_lighthouse_squad_conducted} jup_killer_base_leader, {+jup_weak_lighthouse_talk_about_hiding -jup_weak_lighthouse_squad_conducted} jup_weak_lighthouse, {+jup_weak_lighthouse_hiding_used -jup_weak_lighthouse_talk_about_hiding} jup_killer_base_leader, {+jup_weak_lighthouse_hiding_online -jup_weak_lighthouse_hiding_used} jup_weak_lighthouse, {-jup_weak_lighthouse_hiding_online} nil
+condlist_0 = {+jup_weak_lighthouse_reward} complete
+condlist_1 = {=sid_thinks_actor_is_enemy(jup_killer_base_leader)} fail
+on_fail    = %+jup_weak_lighthouse_fail%
+on_complete = %+jup_weak_lighthouse_complete =add_actor_rank(3) =increase_counter(stat_kvestov)%
+
+[geonezis_jup_rasvet_dyavol_flowers]
+icon = ui_inGame2_Anomalnoe_rastenie
+prior = 4
+storyline = false
+title = {+jup_a6_rasvet_medik_quest_have_flowers} jup_rasvet_dyavol_flowers_title3, {+jup_a6_rasvet_medik_quest_all_talking -jup_a6_rasvet_medik_quest_have_flowers} jup_rasvet_dyavol_flowers_title2, {+jup_b206_rasvet_medik_quest_german -jup_a6_rasvet_medik_quest_all_talking} jup_rasvet_dyavol_flowers_title1, {-jup_b206_rasvet_medik_quest_german} jup_rasvet_dyavol_flowers_title0
+descr = {+jup_a6_rasvet_medik_quest_have_flowers} jup_rasvet_dyavol_flowers_text3, {+jup_a6_rasvet_medik_quest_all_talking -jup_a6_rasvet_medik_quest_have_flowers} jup_rasvet_dyavol_flowers_text2, {+jup_b206_rasvet_medik_quest_german -jup_a6_rasvet_medik_quest_all_talking} jup_rasvet_dyavol_flowers_text1, {-jup_b206_rasvet_medik_quest_german} jup_rasvet_dyavol_flowers_text0
+target = {+jup_a6_rasvet_medik_quest_have_flowers} jup_rasvet_polter_quest_skaut, {+jup_a6_rasvet_medik_quest_all_talking -jup_a6_rasvet_medik_quest_have_flowers} nil, {+jup_b206_rasvet_medik_quest_german -jup_a6_rasvet_medik_quest_all_talking} nil, {-jup_b206_rasvet_medik_quest_german} jup_b6_scientist_nuclear_physicist
+condlist_0 = {+jup_a6_rasvet_medik_quest_done} complete
+condlist_1 = {=sid_thinks_actor_is_enemy(jup_rasvet_base_leader)} fail
+condlist_2 = {=sid_is_dead(jup_rasvet_base_leader)} fail
+condlist_3 = {-actor_entry_in_rasvet} fail
+condlist_4 = {+jup_rasvet_polter_quest_skaut_dead} fail
+on_complete = %=add_actor_rank(3) =inc_faction_goodwill_to_actor(rasvet:50) =increase_counter(stat_kvestov)%
+
+[geonezis_jup_rasvet_prior_main]
+icon = ui_inGame2_RasvetPrior
+prior = 6
+storyline = false
+title = {+jup_rasvet_prior_quest_spot_2_come} jup_rasvet_clan_prioritets_title8, {=actor_has_item(jup_rasvet_gudvin_letter) -jup_rasvet_prior_quest_spot_2_come} jup_rasvet_clan_prioritets_title7, {+jup_rasvet_prior_quest_spot_1_come !actor_has_item(jup_rasvet_gudvin_letter)} jup_rasvet_clan_prioritets_title6, {=actor_has_item(jup_rasvet_gudvin_pda) -jup_rasvet_prior_quest_spot_1_come} jup_rasvet_clan_prioritets_title5, {+jup_b206_rasvet_all_tainiki_zalogeny !actor_has_item(jup_rasvet_gudvin_pda)} jup_rasvet_clan_prioritets_title4, {+jup_b206_rasvet_prior_quest_ready_to_past -jup_b206_rasvet_all_tainiki_zalogeny} jup_rasvet_clan_prioritets_title3, {+jup_b206_rasvet_prior_quest_sutki_come -jup_b206_rasvet_prior_quest_ready_to_past} jup_rasvet_clan_prioritets_title2, {+jup_b206_rasvet_prior_quest_ready_to_wait -jup_b206_rasvet_prior_quest_sutki_come} jup_rasvet_clan_prioritets_title1, {-jup_b206_rasvet_prior_quest_ready_to_wait} jup_rasvet_clan_prioritets_title0
+descr = {+jup_rasvet_prior_quest_spot_2_come} jup_rasvet_clan_prioritets_text8, {=actor_has_item(jup_rasvet_gudvin_letter) -jup_rasvet_prior_quest_spot_2_come} jup_rasvet_clan_prioritets_text7, {+jup_rasvet_prior_quest_spot_1_come !actor_has_item(jup_rasvet_gudvin_letter)} jup_rasvet_clan_prioritets_text6, {=actor_has_item(jup_rasvet_gudvin_pda) -jup_rasvet_prior_quest_spot_1_come} jup_rasvet_clan_prioritets_text5, {+jup_b206_rasvet_all_tainiki_zalogeny !actor_has_item(jup_rasvet_gudvin_pda)} jup_rasvet_clan_prioritets_text4, {+jup_b206_rasvet_prior_quest_ready_to_past -jup_b206_rasvet_all_tainiki_zalogeny} jup_rasvet_clan_prioritets_text3, {+jup_b206_rasvet_prior_quest_sutki_come -jup_b206_rasvet_prior_quest_ready_to_past} jup_rasvet_clan_prioritets_text2, {+jup_b206_rasvet_prior_quest_ready_to_wait -jup_b206_rasvet_prior_quest_sutki_come} jup_rasvet_clan_prioritets_text1, {-jup_b206_rasvet_prior_quest_ready_to_wait} jup_rasvet_clan_prioritets_text0
+target = {+jup_rasvet_prior_quest_spot_2_come} jup_rasvet_base_leader, {=actor_has_item(jup_rasvet_gudvin_letter) -jup_rasvet_prior_quest_spot_2_come} jup_rasvet_prior_quest_spot_2, {+jup_rasvet_prior_quest_spot_1_come !actor_has_item(jup_rasvet_gudvin_letter)} jup_rasvet_gudvin_letter, {=actor_has_item(jup_rasvet_gudvin_pda) -jup_rasvet_prior_quest_spot_1_come} jup_rasvet_prior_quest_spot_1, {+jup_b206_rasvet_all_tainiki_zalogeny !actor_has_item(jup_rasvet_gudvin_pda)} jup_rasvet_gudvin_pda, {+jup_b206_rasvet_prior_quest_ready_to_past -jup_b206_rasvet_all_tainiki_zalogeny} nil, {+jup_b206_rasvet_prior_quest_sutki_come -jup_b206_rasvet_prior_quest_ready_to_past} jup_b6_scientist_tech, {+jup_b206_rasvet_prior_quest_ready_to_wait -jup_b206_rasvet_prior_quest_sutki_come} nil, {-jup_b206_rasvet_prior_quest_ready_to_wait} jup_b6_scientist_tech
+condlist_0 = {+jup_b206_rasvet_prior_quest_complete} complete
+condlist_1 = {=sid_thinks_actor_is_enemy(jup_rasvet_base_leader)} fail
+condlist_2 = {=sid_is_dead(jup_rasvet_base_leader)} fail
+condlist_3 = {-actor_entry_in_rasvet} fail
+on_fail = %+jup_b206_rasvet_prior_quest_fail%
+on_complete = %=add_actor_rank(5) =inc_faction_goodwill_to_actor(rasvet:150) =increase_counter(stat_kvestov)%
+
+[geonezis_jup_rasvet_prior_tainik_1] 
+icon = ui_inGame2_RasvetPrior
+prior = 6
+storyline = false
+title = jup_rasvet_clan_prioritets_1_title0 
+descr = jup_rasvet_clan_prioritets_1_text0
+target = jup_rasvet_prior_quest_tainik_1_spot
+condlist_0 = {+jup_rasvet_spez_taynik_1_zalogen} complete
+condlist_1 = {=sid_thinks_that_actor_is_enemy(jup_rasvet_base_leader)} fail
+condlist_2 = {=sid_is_dead(jup_rasvet_base_leader)} fail 
+on_complete = %=add_actor_rank(1) =inc_faction_goodwill_to_actor(rasvet:20)%
+
+[geonezis_jup_rasvet_prior_tainik_2] 
+icon = ui_inGame2_RasvetPrior
+prior = 6
+storyline = false
+title = jup_rasvet_clan_prioritets_2_title0 
+descr = jup_rasvet_clan_prioritets_2_text0
+target = jup_rasvet_prior_quest_tainik_2_spot
+condlist_0 = {+jup_rasvet_spez_taynik_2_zalogen} complete
+condlist_1 = {=sid_thinks_that_actor_is_enemy(jup_rasvet_base_leader)} fail
+condlist_2 = {=sid_is_dead(jup_rasvet_base_leader)} fail 
+on_complete = %=add_actor_rank(1) =inc_faction_goodwill_to_actor(rasvet:20)%
+
+[geonezis_jup_rasvet_prior_tainik_3] 
+icon = ui_inGame2_RasvetPrior
+prior = 6
+storyline = false
+title = jup_rasvet_clan_prioritets_3_title0 
+descr = jup_rasvet_clan_prioritets_3_text0
+target = jup_rasvet_prior_quest_tainik_3_spot
+condlist_0 = {+jup_rasvet_spez_taynik_3_zalogen} complete
+condlist_1 = {=sid_thinks_that_actor_is_enemy(jup_rasvet_base_leader)} fail
+condlist_2 = {=sid_is_dead(jup_rasvet_base_leader)} fail 
+on_complete = %=add_actor_rank(1) =inc_faction_goodwill_to_actor(rasvet:20)%
+
+[geonezis_jup_rasvet_prior_tainik_4] 
+icon = ui_inGame2_RasvetPrior
+prior = 6
+storyline = false
+title = jup_rasvet_clan_prioritets_4_title0 
+descr = jup_rasvet_clan_prioritets_4_text0
+target = jup_rasvet_prior_quest_tainik_4_spot
+condlist_0 = {+jup_rasvet_spez_taynik_4_zalogen} complete
+condlist_1 = {=sid_thinks_that_actor_is_enemy(jup_rasvet_base_leader)} fail
+condlist_2 = {=sid_is_dead(jup_rasvet_base_leader)} fail 
+on_complete = %=add_actor_rank(1) =inc_faction_goodwill_to_actor(rasvet:20)%
+
+[geonezis_jup_rasvet_prior_tainik_5] 
+icon = ui_inGame2_RasvetPrior
+prior = 6
+storyline = false
+title = jup_rasvet_clan_prioritets_5_title0 
+descr = jup_rasvet_clan_prioritets_5_text0
+target = jup_rasvet_prior_quest_tainik_5_spot
+condlist_0 = {+jup_rasvet_spez_taynik_5_zalogen} complete
+condlist_1 = {=sid_thinks_that_actor_is_enemy(jup_rasvet_base_leader)} fail
+condlist_2 = {=sid_is_dead(jup_rasvet_base_leader)} fail 
+on_complete = %=add_actor_rank(1) =inc_faction_goodwill_to_actor(rasvet:20)%
+;---------------------------------------------------------------------------------------;
+;                                    Припять                                            ;
+;---------------------------------------------------------------------------------------;
+[sgm_pri_assault_monolith_base]
+icon = ui_inGame2_Assault_Monolith_Base
+prior = 5
+storyline = false
+title = {+pri_assault_monolith_base_enemy_destroyed +pri_assault_monolith_base_squad_leader_death} pri_assault_monolith_base_title5,{+pri_assault_monolith_base_enemy_destroyed -pri_assault_monolith_base_squad_leader_death +pri_assault_monolith_base_after_fight_talk} pri_assault_monolith_base_title5,{+pri_assault_monolith_base_enemy_destroyed -pri_assault_monolith_base_squad_leader_death -pri_assault_monolith_base_after_fight_talk} pri_assault_monolith_base_title4,{+pri_assault_monolith_base_we_begin -pri_assault_monolith_base_enemy_destroyed} pri_assault_monolith_base_title3,{+pri_assault_monolith_base_sneak_move -pri_assault_monolith_base_we_begin} pri_assault_monolith_base_title2,{+pri_assault_monolith_base_follow_leader -pri_assault_monolith_base_sneak_move} pri_assault_monolith_base_title1,{-pri_assault_monolith_base_follow_leader} pri_assault_monolith_base_title0
+descr = {+pri_assault_monolith_base_enemy_destroyed +pri_assault_monolith_base_squad_leader_death} pri_assault_monolith_base_text5,{+pri_assault_monolith_base_enemy_destroyed -pri_assault_monolith_base_squad_leader_death +pri_assault_monolith_base_after_fight_talk} pri_assault_monolith_base_text5,{+pri_assault_monolith_base_enemy_destroyed -pri_assault_monolith_base_squad_leader_death -pri_assault_monolith_base_after_fight_talk} pri_assault_monolith_base_text4,{+pri_assault_monolith_base_we_begin -pri_assault_monolith_base_enemy_destroyed} pri_assault_monolith_base_text3,{+pri_assault_monolith_base_sneak_move -pri_assault_monolith_base_we_begin} pri_assault_monolith_base_text2,{+pri_assault_monolith_base_follow_leader -pri_assault_monolith_base_sneak_move} pri_assault_monolith_base_text1,{-pri_assault_monolith_base_follow_leader} pri_assault_monolith_base_text0
+target = {+pri_assault_monolith_base_enemy_destroyed +pri_assault_monolith_base_squad_leader_death} pri_a17_military_colonel_kovalski,{+pri_assault_monolith_base_enemy_destroyed -pri_assault_monolith_base_squad_leader_death +pri_assault_monolith_base_after_fight_talk} pri_a17_military_colonel_kovalski,{+pri_assault_monolith_base_enemy_destroyed -pri_assault_monolith_base_squad_leader_death -pri_assault_monolith_base_after_fight_talk} pri_assault_squad_leader,{+pri_assault_monolith_base_we_begin -pri_assault_monolith_base_enemy_destroyed} pri_assault_monolith_base_spot,{+pri_assault_monolith_base_on_firepos -pri_assault_monolith_base_we_begin} pri_assault_monolith_firepos_spot,{+pri_assault_monolith_base_sneak_move -pri_assault_monolith_base_on_firepos} pri_assault_monolith_firepos_spot,{+pri_assault_monolith_base_follow_leader -pri_assault_monolith_base_sneak_move} pri_assault_squad_leader,{-pri_assault_monolith_base_follow_leader} pri_assault_squad_leader
+condlist_0 = {+pri_assault_monolith_base_reward} complete
+condlist_1 = {=sid_thinks_actor_is_enemy(pri_assault_squad_leader)} fail
+condlist_2 = {+pri_assault_monolith_base_fail} reversed
+on_fail = %+pri_assault_monolith_base_fail%
+on_complete = %=add_actor_rank(10) =inc_faction_goodwill_to_actor(army:300) =increase_counter(stat_kvestov) +pri_assault_monolith_base_complete%
+
+[sgm_pri_necessary_kill_kasilov]
+icon = ui_inGame2_Necessary_Kill_Kasilov
+prior = 6
+storyline = false
+title = {+pri_necessary_kill_kasilov_in_zone +pri_necessary_kill_kasilov_kill =pri_has_kasilov_pda} pri_necessary_kill_kasilov_title3,{+pri_necessary_kill_kasilov_in_zone +pri_necessary_kill_kasilov_kill !pri_has_kasilov_pda} pri_necessary_kill_kasilov_title2,{+pri_necessary_kill_kasilov_in_zone -pri_necessary_kill_kasilov_kill +pri_army_kasilov_hit} pri_necessary_kill_kasilov_title4,{+pri_necessary_kill_kasilov_in_zone -pri_necessary_kill_kasilov_kill -pri_army_kasilov_hit} pri_necessary_kill_kasilov_title1,{-pri_necessary_kill_kasilov_in_zone} pri_necessary_kill_kasilov_title0
+descr = {+pri_necessary_kill_kasilov_in_zone +pri_necessary_kill_kasilov_kill =pri_has_kasilov_pda} pri_necessary_kill_kasilov_text3,{+pri_necessary_kill_kasilov_in_zone +pri_necessary_kill_kasilov_kill !pri_has_kasilov_pda} pri_necessary_kill_kasilov_text2,{+pri_necessary_kill_kasilov_in_zone -pri_necessary_kill_kasilov_kill +pri_army_kasilov_hit} pri_necessary_kill_kasilov_text4,{+pri_necessary_kill_kasilov_in_zone -pri_necessary_kill_kasilov_kill -pri_army_kasilov_hit} pri_necessary_kill_kasilov_text1,{-pri_necessary_kill_kasilov_in_zone} pri_necessary_kill_kasilov_text0
+target = {+pri_necessary_kill_kasilov_in_zone +pri_necessary_kill_kasilov_kill =pri_has_kasilov_pda} pri_monolit_base_leader,{+pri_necessary_kill_kasilov_in_zone +pri_necessary_kill_kasilov_kill !pri_has_kasilov_pda} pri_army_kasilov,{+pri_necessary_kill_kasilov_in_zone -pri_necessary_kill_kasilov_kill} pri_army_kasilov,{-pri_necessary_kill_kasilov_in_zone} pri_army_chasovoy
+condlist_0 = {+pri_necessary_kill_kasilov_reward} complete
+condlist_1 = {=sid_thinks_actor_is_enemy(pri_monolit_base_leader)} fail
+condlist_2 = {=sid_is_dead(pri_monolit_base_leader)} fail
+condlist_3 = {+pri_necessary_kill_kasilov_fail} fail
+on_fail = %+pri_necessary_kill_kasilov_fail%
+on_complete = %=add_actor_rank(10) =inc_faction_goodwill_to_actor(monolith:200) =increase_counter(stat_kvestov)%
+
+[sgm_pri_bloodsucker_vaccine]
+icon = ui_inGame2_BloodsuckerVaccine
+prior = 10
+storyline = false
+title = {+pri_bloodsucker_vaccine_back_to_place} pri_bloodsucker_vaccine_title3,{+pri_bloodsucker_vaccine_2nd_sleep_end -pri_bloodsucker_vaccine_back_to_place} pri_bloodsucker_vaccine_title4,{+pri_bloodsucker_vaccine_has_got -pri_bloodsucker_vaccine_2nd_sleep_end} pri_bloodsucker_vaccine_title2,{-pri_bloodsucker_vaccine_has_got +pri_bloodsucker_vaccine_no_buy} pri_bloodsucker_vaccine_title1,{-pri_bloodsucker_vaccine_has_got -pri_bloodsucker_vaccine_no_buy} pri_bloodsucker_vaccine_title0
+descr = {+pri_bloodsucker_vaccine_back_to_place} pri_bloodsucker_vaccine_text3,{+pri_bloodsucker_vaccine_2nd_sleep_end -pri_bloodsucker_vaccine_back_to_place} pri_bloodsucker_vaccine_text4,{+pri_bloodsucker_vaccine_has_got -pri_bloodsucker_vaccine_2nd_sleep_end} pri_bloodsucker_vaccine_text2,{-pri_bloodsucker_vaccine_has_got +pri_bloodsucker_vaccine_no_buy} pri_bloodsucker_vaccine_text1,{-pri_bloodsucker_vaccine_has_got -pri_bloodsucker_vaccine_no_buy} pri_bloodsucker_vaccine_text0
+target = {+pri_bloodsucker_vaccine_back_to_place} pri_bloodsucker_room_reward_spot,{+pri_bloodsucker_vaccine_has_got -pri_bloodsucker_vaccine_back_to_place} pri_bloodsucker_room_spot,{-pri_bloodsucker_vaccine_has_got} jup_b6_scientist_biochemist
+condlist_0 = {+pri_bloodsucker_vaccine_reward} complete
+condlist_1 = {+pri_bloodsucker_vaccine_fail} fail
+on_complete = %=add_actor_rank(10) =increase_counter(stat_kvestov) +pri_bloodsucker_vaccine_complete%
+
+[sgm_pri_rescue_underground_guide]
+icon = ui_inGame2_RescueUndergroundGuide
+prior = 8
+storyline = false
+title = {+pri_rescue_underground_guide_return_with_miller} pri_rescue_underground_guide_title5,{+pri_rescue_underground_guide_talk_with_miller -pri_rescue_underground_guide_return_with_miller} pri_rescue_underground_guide_title4,{+pri_rescue_underground_guide_terrain_is_secured -pri_rescue_underground_guide_talk_with_miller} pri_rescue_underground_guide_title3,{+pri_rescue_underground_guide_approached_to_miller -pri_rescue_underground_guide_terrain_is_secured} pri_rescue_underground_guide_title2,{+pri_rescue_underground_guide_came_down -pri_rescue_underground_guide_approached_to_miller} pri_rescue_underground_guide_title1,{-pri_rescue_underground_guide_came_down} pri_rescue_underground_guide_title0
+descr = {+pri_rescue_underground_guide_return_with_miller} pri_rescue_underground_guide_text5,{+pri_rescue_underground_guide_talk_with_miller -pri_rescue_underground_guide_return_with_miller} pri_rescue_underground_guide_text4,{+pri_rescue_underground_guide_terrain_is_secured -pri_rescue_underground_guide_talk_with_miller} pri_rescue_underground_guide_text3,{+pri_rescue_underground_guide_approached_to_miller -pri_rescue_underground_guide_terrain_is_secured} pri_rescue_underground_guide_text2,{+pri_rescue_underground_guide_came_down -pri_rescue_underground_guide_approached_to_miller} pri_rescue_underground_guide_text1,{-pri_rescue_underground_guide_came_down} pri_rescue_underground_guide_text0
+target = {+pri_rescue_underground_guide_talk_with_miller} jup_b43_stalker_assistant_pri,{+pri_rescue_underground_guide_came_down -pri_rescue_underground_guide_talk_with_miller} pass_hostage_miller,{-pri_rescue_underground_guide_came_down} pri_underground_lowering_spot
+condlist_0 = {+pri_rescue_underground_guide_reward} complete
+condlist_1 = {=sid_thinks_actor_is_enemy(pass_hostage_miller)} fail
+condlist_2 = {+pri_rescue_underground_guide_fail} fail
+on_fail = %+pri_rescue_underground_guide_fail%
+on_complete = %=add_actor_rank(10) =increase_counter(stat_kvestov) +pri_rescue_underground_guide_complete%
+
+[sgm_pri_expiation_sin_1]
+icon = ui_inGame2_ExpiationSin1
+prior = 12
+storyline = false
+title = {+pri_expiation_sin_1_bring_all} pri_expiation_sin_1_title7,{+pri_expiation_sin_1_live_water_found =actor_has_ten_anabiotics -pri_expiation_sin_1_bring_all} pri_expiation_sin_1_title5,{+pri_expiation_sin_1_live_water_found !actor_has_ten_anabiotics -pri_expiation_sin_1_bring_all} pri_expiation_sin_1_title6,{+pri_expiation_sin_1_info_scientist -pri_expiation_sin_1_live_water_found} pri_expiation_sin_1_title4,{+pri_expiation_sin_1_info_medic -pri_expiation_sin_1_info_scientist} pri_expiation_sin_1_title3,{+pri_expiation_sin_1_medic_quest_found -pri_expiation_sin_1_info_medic} pri_expiation_sin_1_title2,{+pri_expiation_sin_1_medic_quest_start -pri_expiation_sin_1_medic_quest_found} pri_expiation_sin_1_title1,{-pri_expiation_sin_1_medic_quest_start} pri_expiation_sin_1_title0
+descr = {+pri_expiation_sin_1_bring_all} pri_expiation_sin_1_text7,{+pri_expiation_sin_1_live_water_found =actor_has_ten_anabiotics -pri_expiation_sin_1_bring_all} pri_expiation_sin_1_text5,{+pri_expiation_sin_1_live_water_found !actor_has_ten_anabiotics -pri_expiation_sin_1_bring_all} pri_expiation_sin_1_text6,{+pri_expiation_sin_1_info_scientist -pri_expiation_sin_1_live_water_found} pri_expiation_sin_1_text4,{+pri_expiation_sin_1_info_medic -pri_expiation_sin_1_info_scientist} pri_expiation_sin_1_text3,{+pri_expiation_sin_1_medic_quest_found -pri_expiation_sin_1_info_medic} pri_expiation_sin_1_text2,{+pri_expiation_sin_1_medic_quest_start -pri_expiation_sin_1_medic_quest_found} pri_expiation_sin_1_text1,{-pri_expiation_sin_1_medic_quest_start} pri_expiation_sin_1_text0
+target = {+pri_expiation_sin_1_bring_all} pri_monolit_brother_leader,{+pri_expiation_sin_1_live_water_found =actor_has_ten_anabiotics -pri_expiation_sin_1_bring_all} pri_monolit_base_leader,{+pri_expiation_sin_1_live_water_found !actor_has_ten_anabiotics -pri_expiation_sin_1_bring_all} nil,{+pri_expiation_sin_1_info_scientist -pri_expiation_sin_1_live_water_found +jup_b16_oasis_artefact_to_scientist} quest_live_water,{+pri_expiation_sin_1_info_scientist -pri_expiation_sin_1_live_water_found -jup_b16_oasis_artefact_to_scientist} nil,{+pri_expiation_sin_1_info_medic -pri_expiation_sin_1_info_scientist} jup_b6_scientist_biochemist,{+pri_expiation_sin_1_medic_quest_found -pri_expiation_sin_1_info_medic +zat_b22_stalker_medic_death} zat_stalker_medic,{+pri_expiation_sin_1_medic_quest_found -pri_expiation_sin_1_info_medic -zat_b22_stalker_medic_death} zat_b22_stalker_medic,{+pri_expiation_sin_1_medic_quest_start -pri_expiation_sin_1_medic_quest_found} quest_medic_medkit,{+zat_b22_stalker_medic_death -pri_expiation_sin_1_medic_quest_start} zat_stalker_medic,{-zat_b22_stalker_medic_death -pri_expiation_sin_1_medic_quest_start} zat_b22_stalker_medic
+condlist_0 = {+pri_expiation_sin_1_reward} complete
+condlist_1 = {=sid_thinks_actor_is_enemy(pri_monolit_base_leader)} fail
+condlist_2 = {=sid_is_dead(pri_monolit_base_leader)} fail
+condlist_3 = {=sid_is_dead(pri_monolit_brother_leader)} fail
+condlist_4 = {+pri_expiation_sin_1_fail} fail
+condlist_5 = {-actor_entry_in_monolith} fail
+on_fail = %+pri_expiation_sin_1_fail%
+on_complete = %=add_actor_rank(10) =inc_faction_goodwill_to_actor(monolith:200) =inc_faction_goodwill_to_actor(monolith_alies:100) =increase_counter(stat_kvestov) +pri_expiation_sin_1_complete%
+
+[sgm_pri_expiation_sin_2]
+icon = ui_inGame2_ExpiationSin2
+prior = 14
+storyline = false
+title = {+pri_expiation_sin_2_talk} pri_expiation_sin_2_title10,{+pri_expiation_sin_2_taynik_vse_zalogeni -pri_expiation_sin_2_talk} pri_expiation_sin_2_title9,{+pri_expiation_sin_2_taynik_8_zalogen -pri_expiation_sin_2_taynik_9_zalogen} pri_expiation_sin_2_title8,{+pri_expiation_sin_2_taynik_7_zalogen -pri_expiation_sin_2_taynik_8_zalogen} pri_expiation_sin_2_title7,{+pri_expiation_sin_2_taynik_6_zalogen -pri_expiation_sin_2_taynik_7_zalogen} pri_expiation_sin_2_title6,{+pri_expiation_sin_2_taynik_5_zalogen -pri_expiation_sin_2_taynik_6_zalogen} pri_expiation_sin_2_title5,{+pri_expiation_sin_2_taynik_4_zalogen -pri_expiation_sin_2_taynik_5_zalogen} pri_expiation_sin_2_title4,{+pri_expiation_sin_2_taynik_3_zalogen -pri_expiation_sin_2_taynik_4_zalogen} pri_expiation_sin_2_title3,{+pri_expiation_sin_2_taynik_2_zalogen -pri_expiation_sin_2_taynik_3_zalogen} pri_expiation_sin_2_title2,{+pri_expiation_sin_2_taynik_1_zalogen -pri_expiation_sin_2_taynik_2_zalogen} pri_expiation_sin_2_title1,{-pri_expiation_sin_2_taynik_1_zalogen} pri_expiation_sin_2_title0
+descr = {+pri_expiation_sin_2_talk} pri_expiation_sin_2_text10,{+pri_expiation_sin_2_taynik_vse_zalogeni -pri_expiation_sin_2_talk} pri_expiation_sin_2_text9,{+pri_expiation_sin_2_taynik_8_zalogen -pri_expiation_sin_2_taynik_9_zalogen} pri_expiation_sin_2_text8,{+pri_expiation_sin_2_taynik_7_zalogen -pri_expiation_sin_2_taynik_8_zalogen} pri_expiation_sin_2_text7,{+pri_expiation_sin_2_taynik_6_zalogen -pri_expiation_sin_2_taynik_7_zalogen} pri_expiation_sin_2_text6,{+pri_expiation_sin_2_taynik_5_zalogen -pri_expiation_sin_2_taynik_6_zalogen} pri_expiation_sin_2_text5,{+pri_expiation_sin_2_taynik_4_zalogen -pri_expiation_sin_2_taynik_5_zalogen} pri_expiation_sin_2_text4,{+pri_expiation_sin_2_taynik_3_zalogen -pri_expiation_sin_2_taynik_4_zalogen} pri_expiation_sin_2_text3,{+pri_expiation_sin_2_taynik_2_zalogen -pri_expiation_sin_2_taynik_3_zalogen} pri_expiation_sin_2_text2,{+pri_expiation_sin_2_taynik_1_zalogen -pri_expiation_sin_2_taynik_2_zalogen} pri_expiation_sin_2_text1,{-pri_expiation_sin_2_taynik_1_zalogen} pri_expiation_sin_2_text0
+target = {+pri_expiation_sin_2_talk} pri_monolit_base_trader,{+pri_expiation_sin_2_taynik_vse_zalogeni -pri_expiation_sin_2_talk} pri_monolit_base_leader,{+pri_expiation_sin_2_taynik_8_zalogen -pri_expiation_sin_2_taynik_9_zalogen} pri_expiation_sin_2_taynik_9_spot,{+pri_expiation_sin_2_taynik_7_zalogen -pri_expiation_sin_2_taynik_8_zalogen} pri_expiation_sin_2_taynik_8_spot,{+pri_expiation_sin_2_taynik_6_zalogen -pri_expiation_sin_2_taynik_7_zalogen} pri_expiation_sin_2_taynik_7_spot,{+pri_expiation_sin_2_taynik_5_zalogen -pri_expiation_sin_2_taynik_6_zalogen} pri_expiation_sin_2_taynik_6_spot,{+pri_expiation_sin_2_taynik_4_zalogen -pri_expiation_sin_2_taynik_5_zalogen} pri_expiation_sin_2_taynik_5_spot,{+pri_expiation_sin_2_taynik_3_zalogen -pri_expiation_sin_2_taynik_4_zalogen} pri_expiation_sin_2_taynik_4_spot,{+pri_expiation_sin_2_taynik_2_zalogen -pri_expiation_sin_2_taynik_3_zalogen} pri_expiation_sin_2_taynik_3_spot,{+pri_expiation_sin_2_taynik_1_zalogen -pri_expiation_sin_2_taynik_2_zalogen} pri_expiation_sin_2_taynik_2_spot,{-pri_expiation_sin_2_taynik_1_zalogen} pri_expiation_sin_2_taynik_1_spot
+condlist_0 = {+pri_expiation_sin_2_reward} complete
+condlist_1 = {=sid_thinks_actor_is_enemy(pri_monolit_base_leader)} fail
+condlist_2 = {=sid_is_dead(pri_monolit_base_leader)} fail
+condlist_3 = {+pri_expiation_sin_2_fail} fail
+condlist_4 = {-actor_entry_in_monolith} fail
+on_fail = %+pri_expiation_sin_2_fail%
+on_complete = {+pri_expiation_sin_2_talk} %=add_actor_rank(10) =inc_faction_goodwill_to_actor(monolith:200) =inc_faction_goodwill_to_actor(monolith_alies:200) =increase_counter(stat_kvestov) +pri_expiation_sin_2_complete%
+
+[sgm_pri_expiation_sin_3]
+icon = ui_inGame2_ExpiationSin3
+prior = 25
+storyline = false
+title = {+pri_expiation_sin_3_monolith_voice} pri_expiation_sin_3_title14,{+pri_expiation_sin_3_repair_completed -pri_expiation_sin_3_monolith_voice} pri_expiation_sin_3_title13,{+pri_expiation_sin_3_got_reward -pri_expiation_sin_3_repair_completed} pri_expiation_sin_3_title12,{+pri_expiation_sin_3_kiborg_final_talk -pri_expiation_sin_3_got_reward} pri_expiation_sin_3_title11,{+pri_expiation_sin_3_install -pri_expiation_sin_3_kiborg_final_talk} pri_expiation_sin_3_title10,{+pri_expiation_sin_3_enemy_destroyed -pri_expiation_sin_3_install} pri_expiation_sin_3_title9,{+pri_expiation_sin_3_punitive_squad_came -pri_expiation_sin_3_enemy_destroyed} pri_expiation_sin_3_title8,{+pri_expiation_sin_3_punitive_squad_go -pri_expiation_sin_3_punitive_squad_came} pri_expiation_sin_3_title7,{+pri_expiation_sin_3_say_kiborg_about_retranslator -pri_expiation_sin_3_punitive_squad_go} pri_expiation_sin_3_title6,{+pri_expiation_sin_3_retranslator_used -pri_expiation_sin_3_say_kiborg_about_retranslator} pri_expiation_sin_3_title5,{+pri_expiation_sin_3_info_matched -pri_expiation_sin_3_retranslator_used} pri_expiation_sin_3_title4,{-pri_expiation_sin_3_info_matched -pri_expiation_sin_3_info_with_sich -pri_expiation_sin_3_info_with_gavaec +pri_expiation_sin_3_info_with_ozerskiy} pri_expiation_sin_3_title3,{-pri_expiation_sin_3_info_matched -pri_expiation_sin_3_info_with_sich +pri_expiation_sin_3_info_with_gavaec -pri_expiation_sin_3_info_with_ozerskiy} pri_expiation_sin_3_title2,{-pri_expiation_sin_3_info_matched +pri_expiation_sin_3_info_with_sich -pri_expiation_sin_3_info_with_gavaec -pri_expiation_sin_3_info_with_ozerskiy} pri_expiation_sin_3_title1,{-pri_expiation_sin_3_info_matched -pri_expiation_sin_3_info_with_sich -pri_expiation_sin_3_info_with_gavaec -pri_expiation_sin_3_info_with_ozerskiy} pri_expiation_sin_3_title0
+descr = {+pri_expiation_sin_3_monolith_voice} pri_expiation_sin_3_text14,{+pri_expiation_sin_3_repair_completed -pri_expiation_sin_3_monolith_voice} pri_expiation_sin_3_text13,{+pri_expiation_sin_3_got_reward -pri_expiation_sin_3_repair_completed} pri_expiation_sin_3_text12,{+pri_expiation_sin_3_kiborg_final_talk -pri_expiation_sin_3_got_reward} pri_expiation_sin_3_text11,{+pri_expiation_sin_3_install -pri_expiation_sin_3_kiborg_final_talk} pri_expiation_sin_3_text10,{+pri_expiation_sin_3_enemy_destroyed -pri_expiation_sin_3_install} pri_expiation_sin_3_text9,{+pri_expiation_sin_3_punitive_squad_came -pri_expiation_sin_3_enemy_destroyed} pri_expiation_sin_3_text8,{+pri_expiation_sin_3_punitive_squad_go -pri_expiation_sin_3_punitive_squad_came} pri_expiation_sin_3_text7,{+pri_expiation_sin_3_say_kiborg_about_retranslator -pri_expiation_sin_3_punitive_squad_go} pri_expiation_sin_3_text6,{+pri_expiation_sin_3_retranslator_used -pri_expiation_sin_3_say_kiborg_about_retranslator} pri_expiation_sin_3_text5,{+pri_expiation_sin_3_info_matched -pri_expiation_sin_3_retranslator_used} pri_expiation_sin_3_text4,{-pri_expiation_sin_3_info_matched -pri_expiation_sin_3_info_with_sich -pri_expiation_sin_3_info_with_gavaec +pri_expiation_sin_3_info_with_ozerskiy} pri_expiation_sin_3_text3,{-pri_expiation_sin_3_info_matched -pri_expiation_sin_3_info_with_sich +pri_expiation_sin_3_info_with_gavaec -pri_expiation_sin_3_info_with_ozerskiy} pri_expiation_sin_3_text2,{-pri_expiation_sin_3_info_matched +pri_expiation_sin_3_info_with_sich -pri_expiation_sin_3_info_with_gavaec -pri_expiation_sin_3_info_with_ozerskiy} pri_expiation_sin_3_text1,{-pri_expiation_sin_3_info_matched -pri_expiation_sin_3_info_with_sich -pri_expiation_sin_3_info_with_gavaec -pri_expiation_sin_3_info_with_ozerskiy} pri_expiation_sin_3_text0
+target = {+pri_expiation_sin_3_monolith_voice} pri_knigi_antenni_spot,{+pri_expiation_sin_3_repair_completed -pri_expiation_sin_3_monolith_voice} pri_knigi_voice_spot,{+pri_expiation_sin_3_got_reward -pri_expiation_sin_3_repair_completed} nil,{+pri_expiation_sin_3_kiborg_final_talk -pri_expiation_sin_3_got_reward} pri_monolit_base_trader,{+pri_expiation_sin_3_install -pri_expiation_sin_3_kiborg_final_talk} pri_monolit_base_leader,{+pri_expiation_sin_3_enemy_destroyed -pri_expiation_sin_3_install} pri_monolith_longshoremen,{+pri_expiation_sin_3_punitive_squad_came -pri_expiation_sin_3_enemy_destroyed} pri_knigi_center_spot,{+pri_expiation_sin_3_punitive_squad_go -pri_expiation_sin_3_punitive_squad_came} pri_monolit_brother_leader,{+pri_expiation_sin_3_say_kiborg_about_retranslator -pri_expiation_sin_3_punitive_squad_go} pri_monolit_brother_leader,{+pri_expiation_sin_3_retranslator_used -pri_expiation_sin_3_say_kiborg_about_retranslator} pri_monolit_base_leader,{+pri_expiation_sin_3_info_matched -pri_expiation_sin_3_retranslator_used} jup_monolith_retranslator_spot,{-pri_expiation_sin_3_info_matched -pri_expiation_sin_3_info_with_sich -pri_expiation_sin_3_info_with_gavaec +pri_expiation_sin_3_info_with_ozerskiy} nil,{-pri_expiation_sin_3_info_matched -pri_expiation_sin_3_info_with_sich +pri_expiation_sin_3_info_with_gavaec -pri_expiation_sin_3_info_with_ozerskiy} nil,{-pri_expiation_sin_3_info_matched +pri_expiation_sin_3_info_with_sich -pri_expiation_sin_3_info_with_gavaec -pri_expiation_sin_3_info_with_ozerskiy} nil,{-pri_expiation_sin_3_info_matched -pri_expiation_sin_3_info_with_sich -pri_expiation_sin_3_info_with_gavaec -pri_expiation_sin_3_info_with_ozerskiy} nil
+condlist_0 = {+pri_expiation_sin_3_back_to_temple} complete
+condlist_1 = {=sid_thinks_actor_is_enemy(pri_monolit_base_leader)} fail
+condlist_2 = {=sid_thinks_actor_is_enemy(pri_monolit_brother_leader)} fail
+condlist_3 = {=sid_is_dead(pri_monolit_base_leader)} fail
+condlist_4 = {+pri_expiation_sin_3_fail} fail
+condlist_5 = {-actor_entry_in_monolith} fail
+on_fail = %+pri_expiation_sin_3_fail%
+on_complete = %=add_actor_rank(10) =inc_faction_goodwill_to_actor(monolith:200) =inc_faction_goodwill_to_actor(monolith_alies:200) =increase_counter(stat_kvestov) +pri_expiation_sin_3_complete%
+
+[geonezis_pri_alf_informs]
+icon = ui_inGame2_AlfInforms
+prior = 2
+storyline = false
+title = {=actor_has_item(pri_alf_info_1) =actor_has_item(pri_alf_info_2) =actor_has_item(pri_alf_info_3)} pri_alf_informs_title7, {!actor_has_item(pri_alf_info_1) =actor_has_item(pri_alf_info_2) =actor_has_item(pri_alf_info_3)} pri_alf_informs_title6, {=actor_has_item(pri_alf_info_1) !actor_has_item(pri_alf_info_2) =actor_has_item(pri_alf_info_3)} pri_alf_informs_title5, {=actor_has_item(pri_alf_info_1) =actor_has_item(pri_alf_info_2) !actor_has_item(pri_alf_info_3)} pri_alf_informs_title4, {!actor_has_item(pri_alf_info_1) !actor_has_item(pri_alf_info_2) =actor_has_item(pri_alf_info_3)} pri_alf_informs_title3, {!actor_has_item(pri_alf_info_1) =actor_has_item(pri_alf_info_2) !actor_has_item(pri_alf_info_3)} pri_alf_informs_title2, {=actor_has_item(pri_alf_info_1) !actor_has_item(pri_alf_info_2) !actor_has_item(pri_alf_info_3)} pri_alf_informs_title1, pri_alf_informs_title0 
+descr = {=actor_has_item(pri_alf_info_1) =actor_has_item(pri_alf_info_2) =actor_has_item(pri_alf_info_3)} pri_alf_informs_text7, {!actor_has_item(pri_alf_info_1) =actor_has_item(pri_alf_info_2) =actor_has_item(pri_alf_info_3)} pri_alf_informs_text6, {=actor_has_item(pri_alf_info_1) !actor_has_item(pri_alf_info_2) =actor_has_item(pri_alf_info_3)} pri_alf_informs_text5, {=actor_has_item(pri_alf_info_1) =actor_has_item(pri_alf_info_2) !actor_has_item(pri_alf_info_3)} pri_alf_informs_text4, {!actor_has_item(pri_alf_info_1) !actor_has_item(pri_alf_info_2) =actor_has_item(pri_alf_info_3)} pri_alf_informs_text3, {!actor_has_item(pri_alf_info_1) =actor_has_item(pri_alf_info_2) !actor_has_item(pri_alf_info_3)} pri_alf_informs_text2, {=actor_has_item(pri_alf_info_1) !actor_has_item(pri_alf_info_2) !actor_has_item(pri_alf_info_3)} pri_alf_informs_text1, pri_alf_informs_text0
+target = {=actor_has_item(pri_alf_info_1) =actor_has_item(pri_alf_info_2) =actor_has_item(pri_alf_info_3)} pri_monolith_library_base_mechanic, nil
+condlist_0 = {+pri_alf_quest_informs_complete} complete
+condlist_1 = {=sid_thinks_actor_is_enemy(pri_monolit_base_leader)} fail
+condlist_2 = {=sid_thinks_actor_is_enemy(pri_monolit_brother_leader)} fail
+condlist_3 = {=sid_is_dead(pri_monolit_base_leader)} fail
+condlist_4 = {-actor_entry_in_monolith} fail
+on_fail = %+pri_alf_quest_informs_fail%
+on_complete = %=add_actor_rank(1) =inc_faction_goodwill_to_actor(monolith:50) =inc_faction_goodwill_to_actor(monolith_alies:50) =increase_counter(stat_kvestov)%
+
+[sgm_pri_fenix_vendetta]
+icon = ui_inGame2_FenixVendetta
+prior = 10
+storyline = false
+title = {+pri_fenix_vendetta_hiding_place_explored} pri_fenix_vendetta_title6, {+pri_fenix_vendetta_flash_used -pri_fenix_vendetta_hiding_place_explored} pri_fenix_vendetta_title5, {+pri_fenix_vendetta_flash_founded -pri_fenix_vendetta_flash_used} pri_fenix_vendetta_title4, {+pri_fenix_vendetta_inquisitor_dead -pri_fenix_vendetta_flash_founded} pri_fenix_vendetta_title3, {+pri_fenix_vendetta_pda_2_founded -pri_fenix_vendetta_inquisitor_dead} pri_fenix_vendetta_title2, {+pri_fenix_vendetta_pda_1_founded -pri_fenix_vendetta_pda_2_founded} pri_fenix_vendetta_title1, {-pri_fenix_vendetta_pda_1_founded} pri_fenix_vendetta_title0
+descr = {+pri_fenix_vendetta_hiding_place_explored} pri_fenix_vendetta_text6, {+pri_fenix_vendetta_flash_used -pri_fenix_vendetta_hiding_place_explored} pri_fenix_vendetta_text5, {+pri_fenix_vendetta_flash_founded -pri_fenix_vendetta_flash_used} pri_fenix_vendetta_text4, {+pri_fenix_vendetta_inquisitor_dead -pri_fenix_vendetta_flash_founded} pri_fenix_vendetta_text3, {+pri_fenix_vendetta_pda_2_founded -pri_fenix_vendetta_inquisitor_dead} pri_fenix_vendetta_text2, {+pri_fenix_vendetta_pda_1_founded -pri_fenix_vendetta_pda_2_founded} pri_fenix_vendetta_text1, {-pri_fenix_vendetta_pda_1_founded} pri_fenix_vendetta_text0
+target = {+pri_fenix_vendetta_hiding_place_explored} pri_army_fenix, {+pri_fenix_vendetta_flash_used -pri_fenix_vendetta_hiding_place_explored} pri_inquisitor_hiding_place_spot, {+pri_fenix_vendetta_flash_founded -pri_fenix_vendetta_flash_used} nil, {+pri_fenix_vendetta_inquisitor_dead -pri_fenix_vendetta_flash_founded} pri_monolith_inquisitor, {+pri_fenix_vendetta_pda_2_founded -pri_fenix_vendetta_inquisitor_dead} pri_inquisitor_squad_3, {+pri_fenix_vendetta_pda_1_founded -pri_fenix_vendetta_pda_2_founded} pri_inquisitor_squad_2, {-pri_fenix_vendetta_pda_1_founded} pri_inquisitor_squad_1
+condlist_0 = {+pri_fenix_vendetta_property_bringed} complete
+on_complete = %+pri_fenix_vendetta_complete =add_actor_rank(4) =increase_counter(stat_kvestov)%
+;---------------------------------------------------------------------------------------;
+;                               Заказы от Шустрого                                      ;
+;---------------------------------------------------------------------------------------;
+[sgm_shustriy_find_1]
+icon = ui_inGame2_Shustriy_Find_1
+prior = 1
+storyline = false
+title = {+shustriy_find_1_have} shustriy_find_1_title1,{-shustriy_find_1_have} shustriy_find_1_title0
+descr = {+shustriy_find_1_have} shustriy_find_1_text1,{-shustriy_find_1_have} shustriy_find_1_text0
+target = {+shustriy_find_1_have} zat_a2_stalker_nimble_id,{-shustriy_find_1_have} shustriy_ingram_m10
+condlist_0 = {+shustriy_find_1_reward} complete
+condlist_1 = {+shustriy_find_1_reverse} reversed
+on_reversed = %-shustriy_find_1_reverse%
+on_complete = %=add_actor_rank(4) +shustriy_find_1_complete =inc_faction_goodwill_to_actor(stalker:25) =increase_counter(stat_kvestov)%
+
+[sgm_shustriy_find_2]
+icon = ui_inGame2_Shustriy_Find_2
+prior = 1
+storyline = false
+title = {+shustriy_find_2_have} shustriy_find_2_title1,{-shustriy_find_2_have} shustriy_find_2_title0
+descr = {+shustriy_find_2_have} shustriy_find_2_text1,{-shustriy_find_2_have} shustriy_find_2_text0
+target = {+shustriy_find_2_have} zat_a2_stalker_nimble_id,{-shustriy_find_2_have} shustriy_ak47
+condlist_0 = {+shustriy_find_2_reward} complete
+condlist_1 = {+shustriy_find_2_reverse} reversed
+on_reversed = %-shustriy_find_2_reverse%
+on_complete = %=add_actor_rank(6) +shustriy_find_2_complete =inc_faction_goodwill_to_actor(stalker:35) =increase_counter(stat_kvestov)%
+
+[sgm_shustriy_find_3]
+icon = ui_inGame2_Shustriy_Find_3
+prior = 1
+storyline = false
+title = {+shustriy_find_3_have} shustriy_find_3_title1,{-shustriy_find_3_have} shustriy_find_3_title0
+descr = {+shustriy_find_3_have} shustriy_find_3_text1,{-shustriy_find_3_have} shustriy_find_3_text0
+target = {+shustriy_find_3_have} zat_a2_stalker_nimble_id,{-shustriy_find_3_have} shustriy_mossberg_590mk
+condlist_0 = {+shustriy_find_3_reward} complete
+condlist_1 = {+shustriy_find_3_reverse} reversed
+on_reversed = %-shustriy_find_3_reverse%
+on_complete = %=add_actor_rank(8) +shustriy_find_3_complete =inc_faction_goodwill_to_actor(stalker:55) =increase_counter(stat_kvestov)%
+
+[sgm_shustriy_find_4]
+icon = ui_inGame2_Shustriy_Find_4
+prior = 1
+storyline = false
+title = {+shustriy_find_4_have} shustriy_find_4_title1,{-shustriy_find_4_have} shustriy_find_4_title0
+descr = {+shustriy_find_4_have} shustriy_find_4_text1,{-shustriy_find_4_have} shustriy_find_4_text0
+target = {+shustriy_find_4_have} zat_a2_stalker_nimble_id,{-shustriy_find_4_have} shustriy_steyr_aug_ss190
+condlist_0 = {+shustriy_find_4_reward} complete
+condlist_1 = {+shustriy_find_4_reverse} reversed
+on_reversed = %-shustriy_find_4_reverse%
+on_complete = %=add_actor_rank(15) +shustriy_find_4_complete =inc_faction_goodwill_to_actor(stalker:125) =increase_counter(stat_kvestov)%
+
+
+
+
+

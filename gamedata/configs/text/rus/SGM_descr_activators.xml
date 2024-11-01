@@ -1,0 +1,84 @@
+        <string id="st_activate_binocular_title">
+		<text>Бинокль «Стандартный»</text>
+        </string>
+        <string id="st_activate_binocular_descr">
+		<text>Чтобы активировать бинокль - необходимо использовать.</text>
+        </string>
+        <string id="st_activate_binocular_m1_title">
+		<text>Бинокль «Ястреб»</text>
+        </string>
+        <string id="st_activate_binocular_m1_descr">
+		<text>Чтобы активировать бинокль - необходимо использовать.</text>
+        </string>
+        <string id="st_activate_binocular_m2_title">
+		<text>Бинокль «Оптимус»</text>
+        </string>
+        <string id="st_activate_binocular_m2_descr">
+		<text>Чтобы активировать бинокль - необходимо использовать.</text>
+        </string>
+        <string id="st_activate_binocular_m3_title">
+		<text>Бинокль «Гепард»</text>
+        </string>
+        <string id="st_activate_binocular_m3_descr">
+		<text>Чтобы активировать бинокль - необходимо использовать.</text>
+        </string>
+        <string id="st_activate_knife_title">
+		<text>Простой нож</text>
+        </string>
+        <string id="st_activate_knife_descr">
+		<text>Чтобы активировать нож - необходимо использовать.</text>
+        </string>
+        <string id="st_activate_knife_m1_title">
+		<text>Нож сталкера</text>
+        </string>
+        <string id="st_activate_knife_m1_descr">
+		<text>Чтобы активировать нож - необходимо использовать.</text>
+        </string>
+        <string id="st_activate_knife_m2_title">
+		<text>Нож Свободы</text>
+        </string>
+        <string id="st_activate_knife_m2_descr">
+		<text>Чтобы активировать нож - необходимо использовать.</text>
+        </string>
+        <string id="st_activate_knife_m3_title">
+		<text>Нож Долга</text>
+        </string>
+        <string id="st_activate_knife_m3_descr">
+		<text>Чтобы активировать нож - необходимо использовать.</text>
+        </string>
+        <string id="st_activate_knife_m4_title">
+		<text>Нож Ветерана</text>
+        </string>
+        <string id="st_activate_knife_m4_descr">
+		<text>Чтобы активировать нож - необходимо использовать.</text>
+        </string>
+        <string id="st_activate_knife_m5_title">
+		<text>Нож Бандита</text>
+        </string>
+        <string id="st_activate_knife_m5_descr">
+		<text>Чтобы активировать нож - необходимо использовать.</text>
+        </string>
+        <string id="st_activate_knife_m6_title">
+		<text>Нож Монолита</text>
+        </string>
+        <string id="st_activate_knife_m6_descr">
+		<text>Чтобы активировать нож - необходимо использовать.</text>
+        </string>
+        <string id="st_activate_knife_m7_title">
+		<text>Нож Наёмника</text>
+        </string>
+        <string id="st_activate_knife_m7_descr">
+		<text>Чтобы активировать нож - необходимо использовать.</text>
+        </string>
+        <string id="st_activate_knife_m8_title">
+		<text>Нож Мастера</text>
+        </string>
+        <string id="st_activate_knife_m8_descr">
+		<text>Чтобы активировать нож - необходимо использовать.</text>
+        </string>
+        <string id="st_activate_knife_m9_title">
+		<text>Нож Влада Прототипа</text>
+        </string>
+        <string id="st_activate_knife_m9_descr">
+		<text>Чтобы активировать нож - необходимо использовать.</text>
+        </string>

@@ -1,0 +1,62 @@
+[logic]
+active = move@commander
+on_death = death
+
+[death]
+on_info = {+esc_atp_annex_assault} %+esc_atp_annex_attack_choked%
+
+[c_i_s]
+combat_ignore_cond     = {-esc_atp_annex_assault =check_enemy_name(bandit)} true
+
+[c_i]
+move_flashlight        = false
+combat_ignore_cond     = {-esc_atp_annex_assault =check_enemy_name(bandit)} true
+
+[move@commander]:c_i_s
+move_dest_number       = 339062
+move_look_subject      = actor
+move_state_when_center = wait
+move_state_when_move   = patrol
+meet                   = meet
+approach_info          = esc_atp_annex_selfpos|8|<
+invulnerable           = {-esc_alt_storyline_commenced} true, false
+on_info                = {+esc_atp_annex_signal !npc_talking} move@crossing %+esc_atp_annex_squad_in_move =play_s3d_sound(characters_voice\human_01\stalker\alife\attack\attack_begin_1) =autosave_game(save_esc_atp_annex_b3_assault)%
+
+[move@crossing]:c_i
+scheme_type            = patrol
+patrol_count_path      = 3
+patrol_path_1          = 357421
+patrol_path_1_state    = rush
+patrol_path_2          = 372571
+patrol_path_2_state    = rush
+patrol_path_3          = 381651
+patrol_path_3_state    = rush
+patrol_path_3_sound    = patrol_sneak
+invulnerable           = {-esc_alt_storyline_commenced} true, false
+on_patrol_path         = 3|move@atp_cover %+esc_atp_annex_squad_passed%
+on_info                = {+esc_atp_annex_assault} move@atp_assault
+
+[move@atp_cover]:c_i
+move_dest_number       = 415884
+move_look_vertex       = 454229
+move_state_when_center = hide
+move_state_when_move   = sneak_run
+move_center_action     = %+esc_atp_annex_assault_timer%
+on_info                = {+esc_atp_annex_assault} move@atp_assault
+
+[move@atp_assault]
+move_dest_number       = 454229
+move_state_when_center = guard
+move_state_when_move   = assault
+on_info                = {+esc_atp_annex_captured} move@atp_occupy %=actor_friend =play_s2d_sound(characters_voice\human_01\stalker\alife\attack\end_fight_:1:3)%
+
+[move@atp_occupy]
+move_dest_number       = 440261
+move_look_vertex       = 436971
+move_state_when_center = guard
+move_state_when_move   = patrol
+
+[meet]
+use                  = {-esc_alt_storyline_commenced !actor_enemy} true, false
+allow_break          = false
+trade_enable         = false

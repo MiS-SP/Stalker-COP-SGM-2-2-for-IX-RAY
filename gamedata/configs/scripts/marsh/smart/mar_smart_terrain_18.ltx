@@ -1,0 +1,22 @@
+[smart_terrain];mar_smart_terrain_18 (6 работ)
+squad_id = 18
+max_population = 2
+arrive_dist = 15
+respawn_params = respawn@mar_smart_terrain_18
+
+[respawn@mar_smart_terrain_18]
+spawn_stalker@novice
+spawn_stalker@advanced
+spawn_stalker@veteran
+
+[spawn_stalker@novice]
+spawn_squads = stalker_sim_squad_novice
+spawn_num = {+mar_storyline_done =check_actor_rank(0:80)} 1, 0
+
+[spawn_stalker@advanced]
+spawn_squads = stalker_sim_squad_advanced
+spawn_num = {+mar_storyline_done =check_actor_rank(80:150)} 1, 0
+
+[spawn_stalker@veteran]
+spawn_squads = stalker_sim_squad_veteran
+spawn_num = {+mar_storyline_done =check_actor_rank(150)} 1, 0

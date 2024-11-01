@@ -1,0 +1,24 @@
+[logic]
+active = move@waiting
+
+[move@waiting]
+move_avail_speak       = 15|wait|false|true
+move_dest_number       = 1255930
+move_look_vertex       = 1272370
+move_state_when_center = sit
+move_state_when_move   = walk
+meet                   = meet
+invulnerable           = {-zat_monsters_wave_fail -zat_monsters_wave_reward} true, false
+combat_ignore_cond     = {=check_enemy_name(zat_b18_dog_noah)} true
+on_info                = {=actor_neutral} %=actor_friend%, {=actor_enemy} %=actor_friend%
+on_info2               = {+zat_monsters_wave_fail} nil, {+zat_monsters_wave_complete} nil
+on_info3               = {+zat_monsters_wave_on_firepos} move@defence
+
+[move@defence]
+move_dest_number       = 1255930
+move_look_vertex       = 1272370
+move_state_when_center = hide
+move_state_when_move   = walk
+combat_ignore_cond     = {=check_enemy_name(zat_b18_dog_noah)} true
+on_info                = {=actor_neutral} %=actor_friend%, {=actor_enemy} %=actor_friend%
+on_info2               = {+zat_monsters_wave_fail} nil, {+zat_monsters_wave_complete} nil

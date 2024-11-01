@@ -1,0 +1,38 @@
+;---------------------------------------------------------------------------------------;
+;                   Ограничение и синхронный респаун симуляционных отрядов              ;
+;---------------------------------------------------------------------------------------;
+[limiter_escape]
+cond = {+esc_storyline_done} true
+stalker = 4|bandit_enemy
+bandit_enemy = 4|stalker
+
+[limiter_marsh]
+cond = {+mar_storyline_done} true
+stalker = 5|bandit_enemy
+bandit_enemy = 5|stalker
+
+;[limiter_agroprom]
+;mercenary = 4
+;stalker = 3
+
+[limiter_darkvalley]
+cond = {+val_storyline_done} true
+night_stalker = 4|renegade
+renegade = 4|night_stalker
+
+[limiter_military]
+cond = {+mil_storyline_done} true
+night_stalker = 5|renegade
+renegade = 5|night_stalker
+
+[limiter_red_forest]
+cond = {+red_storyline_done} true
+stalker = 4|killer_enemy
+killer_enemy = 4|stalker
+;---------------------------------------------------------------------------------------;
+;                                 Война группировок                                     ;
+;---------------------------------------------------------------------------------------;
+;[community_war_darkvalley]
+;cond = {+val_storyline_done} true
+;val_b1_assault_squad = 1|val_smart_terrain_1
+;val_b2_assault_squad = 1|val_smart_terrain_2

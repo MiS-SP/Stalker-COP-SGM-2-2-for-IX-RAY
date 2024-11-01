@@ -1,0 +1,2334 @@
+	<string id="employer_find_item_title0">
+		<text>Работа: найти</text>
+	</string>
+	<string id="employer_find_item_text0">
+		<text>Найти</text>
+	</string>
+	<string id="employer_find_item_title1">
+		<text>Работа: отнести</text>
+	</string>
+	<string id="employer_find_item_text1">
+		<text>Поговорить с работодателем.</text>
+	</string>
+	<string id="employer_kill_stalker_title0">
+		<text>Работа: убить</text>
+	</string>
+	<string id="employer_kill_stalker_text0">
+		<text>Найти и нейтрализировать</text>
+	</string>
+	<string id="employer_kill_stalker_title1">
+		<text>Работа: вернуться за наградой</text>
+	</string>
+	<string id="employer_kill_stalker_text1">
+		<text>Доложить работодателю о выполнении заказа.</text>
+	</string>
+	<string id="shustriy_find_1_title0">
+		<text>Найти для Шустрого: трофейный «Ingram Mac10»</text>
+	</string>
+	<string id="shustriy_find_1_text0">
+		<text>Шустрый попросил найти для него трофейное оружие, координаты он мне оставил.</text>
+	</string>
+	<string id="shustriy_find_1_title1">
+		<text>Вернуть Шустрому: трофейный «Ingram Mac10»</text>
+	</string>
+	<string id="shustriy_find_1_text1">
+		<text>Вернуть трофейное оружие заказчику. Пользоваться трофейным оружием нельзя. Если Шустрого нет на Скадовске - нужно его дождаться.</text>
+	</string>
+	<string id="shustriy_find_2_title0">
+		<text>Найти для Шустрого: трофейный «АК-47»</text>
+	</string>
+	<string id="shustriy_find_2_text0">
+		<text>Шустрый попросил найти для него трофейное оружие, координаты он мне оставил.</text>
+	</string>
+	<string id="shustriy_find_2_title1">
+		<text>Вернуть Шустрому: трофейный «АК-47»</text>
+	</string>
+	<string id="shustriy_find_2_text1">
+		<text>Вернуть трофейное оружие заказчику. Пользоваться трофейным оружием нельзя. Если Шустрого нет на Скадовске - нужно его дождаться.</text>
+	</string>
+	<string id="shustriy_find_3_title0">
+		<text>Найти для Шустрого: трофейный «Mossberg 590Mk.L»</text>
+	</string>
+	<string id="shustriy_find_3_text0">
+		<text>Шустрый попросил найти для него трофейное оружие, координаты он мне оставил.</text>
+	</string>
+	<string id="shustriy_find_3_title1">
+		<text>Вернуть Шустрому: трофейный «Mossberg 590Mk.L»</text>
+	</string>
+	<string id="shustriy_find_3_text1">
+		<text>Вернуть трофейное оружие заказчику. Пользоваться трофейным оружием нельзя. Если Шустрого нет на Скадовске - нужно его дождаться.</text>
+	</string>
+	<string id="shustriy_find_4_title0">
+		<text>Найти для Шустрого: трофейный «Steyr AUG SS190»</text>
+	</string>
+	<string id="shustriy_find_4_text0">
+		<text>Шустрый попросил найти для него трофейное оружие, координаты он мне оставил.</text>
+	</string>
+	<string id="shustriy_find_4_title1">
+		<text>Вернуть Шустрому: трофейный «Steyr AUG SS190»</text>
+	</string>
+	<string id="shustriy_find_4_text1">
+		<text>Вернуть трофейное оружие заказчику. Пользоваться трофейным оружием нельзя. Если Шустрого нет на Скадовске - нужно его дождаться.</text>
+	</string>
+	<string id="zat_danger_parcel_title0">
+		<text>Важная посылка: разыскать Каневского</text>
+	</string>
+	<string id="zat_danger_parcel_text0">
+		<text>Для того, чтобы передать посылку Каневскому - нужно его разыскать.</text>
+	</string>
+	<string id="zat_danger_parcel_title1">
+		<text>Важная посылка: отдать посылку Каневскому</text>
+	</string>
+	<string id="zat_danger_parcel_text1">
+		<text>Каневский найден. Нужно вручить ему посылку от Мстителя.</text>
+	</string>
+	<string id="zat_refer_parcel_title0">
+		<text>Курьер: передать посылку Марковичу</text>
+	</string>
+	<string id="zat_refer_parcel_text0">
+		<text>Случайно встреченный сталкер Петька Печкин попросил меня передать посылку с абонплатой местному сберегателю на Скадовске. По словам Петьки, Маркович оплатит "дорожные издержки".</text>
+	</string>
+	<string id="zat_refer_parcel2_title0">
+		<text>Поиск информации: разыскать сберегателя на Скадовске</text>
+	</string>
+	<string id="zat_refer_parcel2_text0">
+		<text>По имеющейся информации, сберегатель на Скадовске должен знать что-то о рухнувших вертолетах. Необходимо его найти, и выяснить - что именно он знает.</text>
+	</string>
+	<string id="zat_breeder_talk_and_job_title0">
+		<text>Важная информация: поговорить с Маковецким</text>
+	</string>
+	<string id="zat_breeder_talk_and_job_text0">
+		<text>Из разговора с Марковичем стало ясно, что выжил один из пилотов. Но где найти пилота, пока не ясно. Нужно побеседовать с местным селекционером.</text>
+	</string>
+	<string id="zat_breeder_talk_and_job_title1">
+		<text>Важная информация: разыскать около лесопилки неизвестный артефакт</text>
+	</string>
+	<string id="zat_breeder_talk_and_job_text1">
+		<text>По непроверенным слухам, около лесопилки может находиться неизвестный артефакт. Данные необходимо проверить, осмотрев территорию около лесопилки.</text>
+	</string>
+	<string id="zat_breeder_talk_and_job_title2">
+		<text>Важная информация: принести артефакт доктору Маковецкому</text>
+	</string>
+	<string id="zat_breeder_talk_and_job_text2">
+		<text>Рядом с лесопилкой найден неизвестный артефакт. Нужно отнести его доктору Маковецкому, для обмена на информацию о выжившем пилоте.</text>
+	</string>
+	<string id="zat_will_leave_jupiter_title0">
+		<text>Путешествие: побеседовать с Бородой</text>
+	</string>
+	<string id="zat_will_leave_jupiter_text0">
+		<text>По всей видимости, мне нужно будет попасть на Юпитер. Только вот, как... Селекционер дал совет - поговорить с Бородой, хозяином местного бара.</text>
+	</string>
+	<string id="zat_will_leave_jupiter_title1">
+		<text>Путешествие: отправиться на Юпитер</text>
+	</string>
+	<string id="zat_will_leave_jupiter_text1">
+		<text>По словам Бороды, дорогу на Юпитер знает Лоцман - единственный проводник на Скадовске. Нужно договориться с ним о переходе.</text>
+	</string>
+	<string id="zat_accompany_to_boat_title0">
+		<text>Поход: пройтись со сталкером до Скадовска</text>
+	</string>
+	<string id="zat_accompany_to_boat_text0">
+		<text>Сталкер Петька Печкин попросил меня доставить на Скадовск посылку, посулив награду. Удачное совпадение - обитатели базы могут что-то знать о разбившихся вертолетах. Есть смысл отправиться именно туда. Сталкер-проводник согласился показать дорогу.</text>
+	</string>
+	<string id="zat_accompany_to_boat_title1">
+		<text>Поход: добраться до Скадовска</text>
+	</string>
+	<string id="zat_accompany_to_boat_text1">
+		<text>Я слишком далеко отошел от сталкера-проводника. Но метка на карте КПК сохранилась. Остаток пути придётся проделать самостоятельно.</text>
+	</string>
+	<string id="zat_accompany_to_boat_title2">
+		<text>Поход: добраться до Скадовска</text>
+	</string>
+	<string id="zat_accompany_to_boat_text2">
+		<text>Осмотрел труп одного сталкера и нашел информацию о каком-то Скадовске. Сходить туда, что ли...</text>
+	</string>
+	<string id="zat_accompany_to_boat_title3">
+		<text>Поход: добраться до Скадовска</text>
+	</string>
+	<string id="zat_accompany_to_boat_text3">
+		<text>Сталкер, согласившийся меня сопроводить - погиб. Метка на КПК у меня осталась, так что нужно добираться в одиночку.</text>
+	</string>
+	<string id="zat_assault_bandit_base_title0">
+		<text>Рейд: встретиться с группой «Эльбруса»</text>
+	</string>
+	<string id="zat_assault_bandit_base_text0">
+		<text>Необходимо встретиться с бригадой «Эльбруса» и взять командование на себя. Но прежде нужно отправится на место встречи - к портовым кранам.</text>
+	</string>
+	<string id="zat_assault_bandit_base_title1">
+		<text>Рейд: закрепиться на холме</text>
+	</string>
+	<string id="zat_assault_bandit_base_text1">
+		<text>Для осады базы бандитов необходимо подняться на возвышенность и занять позицию недалеко от главных ворот.</text>
+	</string>
+	<string id="zat_assault_bandit_base_title2">
+		<text>Рейд: произвести первый выстрел</text>
+	</string>
+	<string id="zat_assault_bandit_base_text2">
+		<text>Отряд Эльбруса ждет моего сигнала - необходимо сделать первый выстрел по противнику.</text>
+	</string>
+	<string id="zat_assault_bandit_base_title3">
+		<text>Рейд: уничтожить Чапая и его банду</text>
+	</string>
+	<string id="zat_assault_bandit_base_text3">
+		<text>Необходимо найти и уничтожить лидера бандитов - Чапая, а также всю его охрану.</text>
+	</string>
+	<string id="zat_assault_bandit_base_title4">
+		<text>Рейд: получить награду</text>
+	</string>
+	<string id="zat_assault_bandit_base_text4">
+		<text>Задание выполнено - бандиты уничтожены. Нужно вернуться на Скадовск, к Мечу, для получения вознаграждения.</text>
+	</string>
+	<string id="zat_deliver_monolith_case_title0">
+		<text>Доставка: поднять кейс монолитовца</text>
+	</string>
+	<string id="zat_deliver_monolith_case_text0">
+		<text>Раненый монолитовец попросил меня отнести его кейс в Припять, для передачи лидеру группировки - Киборгу. Но, сначала нужно этот кейс подобрать.</text>
+	</string>
+	<string id="zat_deliver_monolith_case_title1">
+		<text>Доставка: отнести кейс Леона в Припять</text>
+	</string>
+	<string id="zat_deliver_monolith_case_text1">
+		<text>Раненный боец "Монолита" перед смертью попросил меня доставить кейс лидеру монолитовцев - Киборгу. Их база находится в Припяти.</text>
+	</string>
+	<string id="zat_deliver_monolith_case_title2">
+		<text>Доставка: идти к кинотеатру Прометей</text>
+	</string>
+	<string id="zat_deliver_monolith_case_text2">
+		<text>Леон передал мне координаты базы Монолита. Если данные верны, то база расположена в кинотеатре Прометей.</text>
+	</string>
+	<string id="zat_deliver_monolith_case_title3">
+		<text>Доставка: отдать кейс начальнику охраны</text>
+	</string>
+	<string id="zat_deliver_monolith_case_text3">
+		<text>Необходимо передать кейс лидеру Монолита - Киборгу, через начальника охраны.</text>
+	</string>
+	<string id="zat_deliver_monolith_case_title4">
+		<text>Доставка: получить награду</text>
+	</string>
+	<string id="zat_deliver_monolith_case_text4">
+		<text>Вопреки ожиданиям, обошлось без пальбы. Более того, начальник охраны распорядился выдать мне вознаграждение за доставку кейса. Для его получения нужно подойти к Митрофану, здешнему торговцу.</text>
+	</string>
+	<string id="zat_bandit_kill_shakal_title0">
+		<text>Доверие: отправиться к цехам подстанции</text>
+	</string>
+	<string id="zat_bandit_kill_shakal_text0">
+		<text>Пахан бандитов Чапа поручил мне разобраться с предателем - Шакалом. По его мнению, Шакал находится в районе цехов подстанции. Координаты он сбросил на мой КПК.</text>
+	</string>
+	<string id="zat_bandit_kill_shakal_title1">
+		<text>Доверие: разыскать Шакала</text>
+	</string>
+	<string id="zat_bandit_kill_shakal_text1">
+		<text>Цеха подстанции заняты наёмниками - они оборудовали здесь временную базу. Судя по их количеству, найти и уничтожить Шакала будет не просто.</text>
+	</string>
+	<string id="zat_bandit_kill_shakal_title2">
+		<text>Доверие: забрать ствол Чапая</text>
+	</string>
+	<string id="zat_bandit_kill_shakal_text2">
+		<text>Скорее всего, Шакал прячет ствол в своём рюкзаке. Нужно осмотреть трупа и забрать пушку.</text>
+	</string>
+	<string id="zat_bandit_kill_shakal_title3">
+		<text>Доверие: отнести ствол Чапаю</text>
+	</string>
+	<string id="zat_bandit_kill_shakal_text3">
+		<text>Задание выполнено - именной ствол получен. Нужно отнести его Чапаю и получить награду.</text>
+	</string>
+	<string id="zat_meet_authorities_agent_title0">
+		<text>Контакт: встретиться со связным</text>
+	</string>
+	<string id="zat_meet_authorities_agent_text0">
+		<text>Я получил письмо от связного, в котором указан позывной; кроме того, на карте отмечена точка - место встречи. Нужно проверить обозначенный район.</text>
+	</string>
+	<string id="zat_check_sbu_cell_title0">
+		<text>Ячейка: обыскать ячейку СБУ</text>
+	</string>
+	<string id="zat_check_sbu_cell_text0">
+		<text>Связной дал мне координаты тайника, созданного одним из наших агентов. Мне нужно проверить тайник.</text>
+	</string>
+	<string id="zat_bring_flash_light_title0">
+		<text>Найти для Кочюбея: фонарь с оптикой «Messler»</text>
+	</string>
+	<string id="zat_bring_flash_light_text0">
+		<text>Кочюбей попросил найти для него потерянный фонарь, координаты он мне оставил.</text>
+	</string>
+	<string id="zat_bring_flash_light_title1">
+		<text>Вернуть Кочюбею: фонарь с оптикой «Messler»</text>
+	</string>
+	<string id="zat_bring_flash_light_text1">
+		<text>Вернуть фонарик Кочюбею и получить обещанное вознаграждение.</text>
+	</string>
+	<string id="zat_bring_drink_beylis_title0">
+		<text>Юбилей Кардана: поговорить с Жулябским</text>
+	</string>
+	<string id="zat_bring_drink_beylis_text0">
+		<text>По словам Бороды, Жулябский располагает информацией о местонахождении заветной бутылки. Нужно поговорить с торговцем и выяснить, где можно достать «Бейлиз».</text>
+	</string>
+	<string id="zat_bring_drink_beylis_title1">
+		<text>Юбилей Кардана: найти заветную бутыль</text>
+	</string>
+	<string id="zat_bring_drink_beylis_text1">
+		<text>У Кардана, местного механика, скоро день рождения. В связи с этим, Борода хочет от лица общественности преподнести ему ценный подарок - бутылку редкостного спиртного. Однако, где её искать, он точно не знает. Именно поэтому он поручил это дело мне. Тем более, что я бухать завязал и стопудово этот пузырь донесу нераспечатанным.</text>
+	</string>
+	<string id="zat_bring_drink_beylis_title2">
+		<text>Юбилей Кардана: вернуться к Бороде</text>
+	</string>
+	<string id="zat_bring_drink_beylis_text2">
+		<text>Отнести «Бейлиз» Бороде для того, чтоб он придержал этот напиток ко дню рождения Кардана. За выполненную работу Борода обещал щедрое вознаграждение.</text>
+	</string>
+	<string id="zat_bring_sharpshooter_bino_title0">
+		<text>Срочный заказ: поговорить с Гавром</text>
+	</string>
+	<string id="zat_bring_sharpshooter_bino_text0">
+		<text>Чапаев сказал, что Гавр собирается в сторону Юпитера. Можно составить ему компанию.</text>
+	</string>
+	<string id="zat_bring_sharpshooter_bino_title1">
+		<text>Срочный заказ: найти бинокль «Следопыт»</text>
+	</string>
+	<string id="zat_bring_sharpshooter_bino_text1">
+		<text>Чапаев, лидер бандитов на Затоне, поручил мне найти специальный армейский бинокль. Координаты получены, задача ясна - нужно искать.</text>
+	</string>
+	<string id="zat_bring_sharpshooter_bino_title2">
+		<text>Срочный заказ: вернуться к Чапаю</text>
+	</string>
+	<string id="zat_bring_sharpshooter_bino_text2">
+		<text>Армейский бинокль "Следопыт" найден. Необходимо вернуть его Чапаеву и получить вознаграждение за выполенную работу.</text>
+	</string>
+	<string id="zat_monsters_wave_title0">
+		<text>«Волна мутантов»: поговорить с Ноем</text>
+	</string>
+	<string id="zat_monsters_wave_text0">
+		<text>Отправиться к барже и поговорить с Ноем. Похоже, этот псих что-то задумал.</text>
+	</string>
+	<string id="zat_monsters_wave_title1">
+		<text>«Волна мутантов»: достать снайперскую винтовку</text>
+	</string>
+	<string id="zat_monsters_wave_text1">
+		<text>Я должен как можно скорее достать снайперское оружие. Волна мутантов прибудет с минуты на минуту.</text>
+	</string>
+	<string id="zat_monsters_wave_title2">
+		<text>«Волна мутантов»: занять огневой рубеж</text>
+	</string>
+	<string id="zat_monsters_wave_text2">
+		<text>Ной просит помочь ему защитить баржу от мутантов. Нужно занять оборонительную позицию.</text>
+	</string>
+	<string id="zat_monsters_wave_title3">
+		<text>«Волна мутантов»: держать оборону</text>
+	</string>
+	<string id="zat_monsters_wave_text3">
+		<text>Снайперская позиция занята, теперь нужно держать оборону. Лидер оборонительной операции Давид, должен остаться в живих.</text>
+	</string>
+	<string id="zat_monsters_wave_title4">
+		<text>«Волна мутантов»: продолжать оборону баржы</text>
+	</string>
+	<string id="zat_monsters_wave_text4">
+		<text>Держать оборону баржы. Лидер оборонительной операции Давид, должен остаться в живих.</text>
+	</string>
+	<string id="zat_monsters_wave_title5">
+		<text>«Волна мутантов»: убить контролера у «портовых кранов»</text>
+	</string>
+	<string id="zat_monsters_wave_text5">
+		<text>Замечен контролер у портовых кранов. Необходимо его убить.</text>
+	</string>
+	<string id="zat_monsters_wave_title6">
+		<text>«Волна мутантов»: обезвредить контролера на «Шевченко»</text>
+	</string>
+	<string id="zat_monsters_wave_text6">
+		<text>Замечен контролер на Шевченко. Необходимо его убить.</text>
+	</string>
+	<string id="zat_monsters_wave_title7">
+		<text>«Волна мутантов»: убить контролера около «сталкерской стоянки»</text>
+	</string>
+	<string id="zat_monsters_wave_text7">
+		<text>Замечен контролер около сталкерской стоянки. Необходимо его убить.</text>
+	</string>
+	<string id="zat_monsters_wave_title8">
+		<text>«Волна мутантов»: поговорить с Ноем</text>
+	</string>
+	<string id="zat_monsters_wave_text8">
+		<text>Волна мутантов захлебнулась. Нужно поговорить с Ноем.</text>
+	</string>
+	<string id="zat_get_wireing_heli_key_title0">
+		<text>Отряд «Скат»: найти ключ доступа к вертолетам</text>
+	</string>
+	<string id="zat_get_wireing_heli_key_text0">
+		<text>В найденном вертолёте отряда «Скат» погорела вся электроника, все двери внутрь заперты. Двери можно открыть только с помощью ключа резервного доступа.</text>
+	</string>
+	<string id="zat_wisdom_books_title0">
+		<text>Мудрость: добыть три книги</text>
+	</string>
+	<string id="zat_wisdom_books_text0">
+		<text>Достать для Осведомителя три книги.</text>
+	</string>
+	<string id="zat_wisdom_books_title1">
+		<text>Мудрость: добыть три книги</text>
+	</string>
+	<string id="zat_wisdom_books_text1">
+		<text>Достать для Осведомителя три книги.</text>
+	</string>
+	<string id="zat_wisdom_books_title2">
+		<text>Мудрость: добыть три книги</text>
+	</string>
+	<string id="zat_wisdom_books_text2">
+		<text>Достать для Осведомителя три книги.</text>
+	</string>
+	<string id="zat_wisdom_books_title3">
+		<text>Мудрость: передать книги Осведомителю</text>
+	</string>
+	<string id="zat_wisdom_books_text3">
+		<text>Вернуть книги и получить награду.</text>
+	</string>
+	<string id="zat_carrying_antidote_title0">
+		<text>Противоядие: передать антидот Костоправу</text>
+	</string>
+	<string id="zat_carrying_antidote_text0">
+		<text>Отнести антидот Костоправу, на Янов.</text>
+	</string>
+	<string id="zat_carrying_antidote_title1">
+		<text>Противоядие: вернуться за наградой</text>
+	</string>
+	<string id="zat_carrying_antidote_text1">
+		<text>Получить плату за доставку антидота.</text>
+	</string>
+	<string id="zat_mad_dog_title0">
+		<text>Бешеные псы: разобраться с отрядом Альфы</text>
+	</string>
+	<string id="zat_mad_dog_text0">
+		<text>Ликвидировать отряд Альфы который загубил уже который десяток одиночек. В последний раз эту клику видели у аномалии «Железный лес».</text>
+	</string>
+	<string id="zat_mad_dog_title1">
+		<text>Бешеные псы: показать Мечу КПК лидера Альфы</text>
+	</string>
+	<string id="zat_mad_dog_text1">
+		<text>Отряд Альфа уничтожен. У лидера найден КПК. Нужно показать его Мечу.</text>
+	</string>
+	<string id="zat_alfa_sabotage_title0">
+		<text>Диверсия Альфы: проверить условленное место встречи</text>
+	</string>
+	<string id="zat_alfa_sabotage_text0">
+		<text>По записи в КПК стало известно, что бандиты выполнили чье-то поручение и теперь с наградой их ждёт некто в Железном Лесу. Не мешало бы проверить, что это было за поручение и кто его дал.</text>
+	</string>
+	<string id="zat_alfa_sabotage_title1">
+		<text>Диверсия Альфы: уничтожить недругов</text>
+	</string>
+	<string id="zat_alfa_sabotage_text1">
+		<text>Нужно с ними разобраться.</text>
+	</string>
+	<string id="zat_alfa_sabotage_title2">
+		<text>Диверсия Альфы: обыскать тела Альфы</text>
+	</string>
+	<string id="zat_alfa_sabotage_text2">
+		<text>У Железного Леса мне довелось иметь дело с отрядом Альфы. Выходит, что Альфа отдавала приказы бандитам. Но какие, это мне и предстоит выяснить. Сейчас же нужно обыскать тела Альфовцев.</text>
+	</string>
+	<string id="zat_alfa_sabotage_title3">
+		<text>Диверсия Альфы: расспросить обитателей Скадовска</text>
+	</string>
+	<string id="zat_alfa_sabotage_text3">
+		<text>По всему видно, что бандиты что-то успели провернуть на Скадовске. Вероятно, им удалось пронести туда взрывчатку. Кто-нибудь должен был заметить что-то необычное. Нужно расспросить обитателей сухогруза, не появлялись ли незнакомые люди за последнее время.</text>
+	</string>
+	<string id="zat_alfa_sabotage_title4">
+		<text>Диверсия Альфы: поговорить с Сычом</text>
+	</string>
+	<string id="zat_alfa_sabotage_text4">
+		<text>Борода сообщил мне, что приметил давеча чужаков на Скадовсе, двух бандитов с каким-то ящиком. Возможно, в ящике переносилось оружие и патроны. Не лишним будет полюбопытствовать на этот счет у Сыча.</text>
+	</string>
+	<string id="zat_alfa_sabotage_title5">
+		<text>Диверсия Альфы: найти заряд на верхних палубах Скадовска</text>
+	</string>
+	<string id="zat_alfa_sabotage_text5">
+		<text>Из разговора с Сычом стало явственно, что бандиты покинули судно уже без ящика. И одно это значит, что дело пахнет керосином. Нужно найти заряд на верхних палубах сухогруза.</text>
+	</string>
+	<string id="zat_alfa_sabotage_title6">
+		<text>Диверсия Альфы: поговорить с Карданом</text>
+	</string>
+	<string id="zat_alfa_sabotage_text6">
+		<text>Спросить у Кардана, каким образом можно обезвредить заряд.</text>
+	</string>
+	<string id="zat_alfa_sabotage_title7">
+		<text>Диверсия Альфы: поговорить с Азотом</text>
+	</string>
+	<string id="zat_alfa_sabotage_text7">
+		<text>Кардан оказался несведущим в таких вопросах, как работа со взрывчаткой. Однако он посоветовал обратиться за помощью к Азоту.</text>
+	</string>
+	<string id="zat_alfa_sabotage_title8">
+		<text>Диверсия Альфы: найти для Азота рацию</text>
+	</string>
+	<string id="zat_alfa_sabotage_text8">
+		<text>Азот может собрать для меня специльный сканер, чтобы можно было обнаруживать заряды Альфы, установленнные, как мне видится, не только на одном Скадовске. Он затребовал найти для него простую рацию.</text>
+	</string>
+	<string id="zat_alfa_sabotage_title9">
+		<text>Диверсия Альфы: заказать у Азота сканер</text>
+	</string>
+	<string id="zat_alfa_sabotage_text9">
+		<text>Передать Азоту рацию и заказать сканер.</text>
+	</string>
+	<string id="zat_alfa_sabotage_title10">
+		<text>Диверсия Альфы: ожидать выполнения заказа</text>
+	</string>
+	<string id="zat_alfa_sabotage_text10">
+		<text>Азот принялся за сборку сканера. Необходимо дождаться окончания работы и забрать сканер.</text>
+	</string>
+	<string id="zat_alfa_sabotage_title11">
+		<text>Диверсия Альфы: оплатить заказ</text>
+	</string>
+	<string id="zat_alfa_sabotage_text11">
+		<text>Взять сканер у Азота и заплатить ему за старания.</text>
+	</string>
+	<string id="zat_alfa_sabotage_title12">
+		<text>Диверсия Альфы: обследовать все заселённые пункты Юпитера и Затона</text>
+	</string>
+	<string id="zat_alfa_sabotage_title12_2">
+		<text>Диверсия Альфы: продолжать поиск зарядов</text>
+	</string>
+	<string id="zat_alfa_sabotage_title12_3">
+		<text>Диверсия Альфы: продолжать поиск зарядов</text>
+	</string>
+	<string id="zat_alfa_sabotage_title12_4">
+		<text>Диверсия Альфы: продолжать поиск зарядов</text>
+	</string>
+	<string id="zat_alfa_sabotage_title12_5">
+		<text>Диверсия Альфы: продолжать поиск зарядов</text>
+	</string>
+	<string id="zat_alfa_sabotage_text12">
+		<text>Обследовать все заселённые пункты Затона и Юпитера на предмет установленных зарядов.</text>
+	</string>
+	<string id="zat_alfa_sabotage_title13">
+		<text>Диверсия Альфы: получить награду от обитателей Янова</text>
+	</string>
+	<string id="zat_alfa_sabotage_text13">
+		<text>Все заряды успешно обезврежены. Сталкеры, которым теперь не угрожает опасность, хотели бы вручить мне награду.</text>
+	</string>
+	<string id="zat_alfa_sabotage_title14">
+		<text>Диверсия Альфы: получить награду от обитателей Скадовска</text>
+	</string>
+	<string id="zat_alfa_sabotage_text14">
+		<text>Все заряды успешно обезврежены. Сталкеры, которым теперь не угрожает опасность, хотели бы вручить мне награду.</text>
+	</string>
+	<string id="jup_bring_detector_kit_title0">
+		<text>Найти Новикову: комплект инструментов для работы с детекторами</text>
+	</string>
+	<string id="jup_bring_detector_kit_text0">
+		<text>Новиков попросил меня раздобыть специальные инструменты для ремонта и модернизации детекторов.</text>
+	</string>
+	<string id="jup_bring_detector_kit_title1">
+		<text>Отнести Новикову: комплект инструментов для работы с детекторами</text>
+	</string>
+	<string id="jup_bring_detector_kit_text1">
+		<text>Новиков попросил меня раздобыть специальные инструменты, для ремонта и модернизации детекторов.</text>
+	</string>
+	<string id="jup_avoid_witnesses_title0">
+		<text>Перехват: добраться до лагеря наёмников</text>
+	</string>
+	<string id="jup_avoid_witnesses_text0">
+		<text>Прийти в лагерь наёмников, в котором предположительно держат пленного агента СБУ.</text>
+	</string>
+	<string id="jup_avoid_witnesses_title1">
+		<text>Перехват: вызволить пленного</text>
+	</string>
+	<string id="jup_avoid_witnesses_text1">
+		<text>Для освобождения пленного агента необходимо нейтрализировать всю охрану лагеря.</text>
+	</string>
+	<string id="jup_avoid_witnesses_title2">
+		<text>Перехват: поговорить с агентом</text>
+	</string>
+	<string id="jup_avoid_witnesses_text2">
+		<text>Завести диалог с пленным агентом.</text>
+	</string>
+	<string id="jup_avoid_witnesses_title3">
+		<text>Перехват: довести агента до станции Янов</text>
+	</string>
+	<string id="jup_avoid_witnesses_text3">
+		<text>Нужно сопроводить агента СБУ до станции Янов, поскольку там безопасно.</text>
+	</string>
+	<string id="jup_arrive_on_bunker_title0">
+		<text>Пилот: расспросить Азота о пилоте</text>
+	</string>
+	<string id="jup_arrive_on_bunker_text0">
+		<text>Добыть у Азота информацию о пилоте.</text>
+	</string>
+	<string id="jup_arrive_on_bunker_title1">
+		<text>Пилот: отправиться к ученым в бункер</text>
+	</string>
+	<string id="jup_arrive_on_bunker_text1">
+		<text>Пройти внутрь бункера. Возможно, пилот все еще там.</text>
+	</string>
+	<string id="jup_arrive_on_bunker_title2">
+		<text>Пилот: разыскать пилота в бункере</text>
+	</string>
+	<string id="jup_arrive_on_bunker_text2">
+		<text>Найти пилота и поговорить с ним.</text>
+	</string>
+	<string id="jup_return_zaton_title0">
+		<text>Пилот: вернуться на Затон</text>
+	</string>
+	<string id="jup_return_zaton_text0">
+		<text>Информация получена, Соколов дал наводку на Затон, и сказал, что передаст мне координаты рухнувших вертолетов как только я там окажусь. Найти на станции Янов Лоцмана и отправиться с ним на Затон.</text>
+	</string>
+	<string id="jup_find_gromoboy_vintar_title0">
+		<text>«Именное оружие»: сходить в село Копачи</text>
+	</string>
+	<string id="jup_find_gromoboy_vintar_text0">
+		<text>Прийти в село Копачи.</text>
+	</string>
+	<string id="jup_find_gromoboy_vintar_title1">
+		<text>«Именное оружие»: проверить чердак</text>
+	</string>
+	<string id="jup_find_gromoboy_vintar_text1">
+		<text>Необходимо осмотреть чердак сельсовета - Громобоя оглушили именно там.</text>
+	</string>
+	<string id="jup_find_gromoboy_vintar_title2">
+		<text>«Именное оружие»: показать КПК Ворона Громобою</text>
+	</string>
+	<string id="jup_find_gromoboy_vintar_text2">
+		<text>В рюкзаке мёртвого монолитовца обнаружился КПК с незнакомой версией ОС. Информация на нём зашифрована, необходимо отдать его Громобою.</text>
+	</string>
+	<string id="jup_find_gromoboy_vintar_title3">
+		<text>«Именное оружие»: осмотреть территорию цементного завода</text>
+	</string>
+	<string id="jup_find_gromoboy_vintar_text3">
+		<text>Громобою удалось разархивировать данные на КПК Ворона. Среди прочего, на нём хранилась карта с меткой, указывающей на цементный завод. Необходимо отправиться туда и разыскать именной винторез.</text>
+	</string>
+	<string id="jup_find_gromoboy_vintar_title4">
+		<text>«Именное оружие»: вернуться к Громобою</text>
+	</string>
+	<string id="jup_find_gromoboy_vintar_text4">
+		<text>Оружие найдено. Необходимо доставить его Громобою и решить, что предпринять.</text>
+	</string>
+	<string id="jup_beat_from_monsters_title0">
+		<text>Защита туннеля: помочь сталкерам</text>
+	</string>
+	<string id="jup_beat_from_monsters_text0">
+		<text>Волна мутантов держит курс на базу группировки «Рассвет», намереваясь уничтожить в её пределах всё живое. Если оказать "рассветовцам" помощь в защите от супостатов - можно будет рассчитывать на адекватное вознаграждение.</text>
+	</string>
+	<string id="jup_beat_from_monsters_title1">
+		<text>Защита туннеля: поговорить с Назаром</text>
+	</string>
+	<string id="jup_beat_from_monsters_text1">
+		<text>Атака мутантов отражена. Необходимо поговорить с командиром группировки и получить заслуженную награду.</text>
+	</string>
+	<string id="jup_destroy_night_killers_title0">
+		<text>Ночные снайперы: отправиться на карьер</text>
+	</string>
+	<string id="jup_destroy_night_killers_text0">
+		<text>Необходимо пробраться к Карьеру и узнать есть ли там кто-то.</text>
+	</string>
+	<string id="jup_destroy_night_killers_title1">
+		<text>Ночные снайперы: ликвидировать стрелков</text>
+	</string>
+	<string id="jup_destroy_night_killers_text1">
+		<text>По словам Неона, на территории Карьера были замечены неизвестные злодеи, расстреливающие сталкеров из неизвестного оружия. Их нужно уничтожить.</text>
+	</string>
+	<string id="jup_destroy_night_killers_title2">
+		<text>Ночные снайперы: догнать беглеца</text>
+	</string>
+	<string id="jup_destroy_night_killers_text2">
+		<text>При зачистке карьера от подозрительных лиц одному бандиту удалось бежать. Необходимо как можно скорее догнать его и уничтожить.</text>
+	</string>
+	<string id="jup_destroy_night_killers_title3">
+		<text>Ночные снайперы: вернуться к Неону</text>
+	</string>
+	<string id="jup_destroy_night_killers_text3">
+		<text>Задание выполнено, стрелки повержены. Неон обещал хорошую награду.</text>
+	</string>
+	<string id="jup_follow_scientists_title0">
+		<text>Вылазка: сопроводить ученых к шахте</text>
+	</string>
+	<string id="jup_follow_scientists_text0">
+		<text>Нужно обеспечить беспрепятственный проход исследовательской группы к шахте. Профессор Бондарь должен выжить.</text>
+	</string>
+	<string id="jup_follow_scientists_title1">
+		<text>Вылазка: поговорить с Бондарем</text>
+	</string>
+	<string id="jup_follow_scientists_text1">
+		<text>Задание успешно выполнено. Нужно получить награду у профессора Бондаря.</text>
+	</string>
+	<string id="jup_search_treasure_title0">
+		<text>Личный ящик: проверить личный ящик</text>
+	</string>
+	<string id="jup_search_treasure_text0">
+		<text>Группировка "Рассвет" выделила мне личный ящик, необходимо его оприходовать.</text>
+	</string>
+	<string id="jup_night_agent_meeting_title0">
+		<text>Ночная встреча: встретиться со связным</text>
+	</string>
+	<string id="jup_night_agent_meeting_text0">
+		<text>Прийти на территорию вертолетной площадки для встречи со связным СБУ.</text>
+	</string>
+	<string id="jup_bring_heavy_medkits_title0">
+		<text>Заказ Костоправа: найти медкомплект «CCA72»</text>
+	</string>
+	<string id="jup_bring_heavy_medkits_text0">
+		<text>Медик со станции Янов попросил меня достать специальный набор медикаментов, который, предположительно, может находиться на территории завода "Юпитер".</text>
+	</string>
+	<string id="jup_bring_heavy_medkits_title1">
+		<text>Заказ Костоправа: доставить медкомплект «CCA72» медику</text>
+	</string>
+	<string id="jup_bring_heavy_medkits_text1">
+		<text>Специальный медкомплект найден. Нужно отнести его Костоправу и получить вознаграждение.</text>
+	</string>
+	<string id="jup_bring_photo_device_title0">
+		<text>Поручение дядьки Яра: найти Фотоаппарат «Suzanna»</text>
+	</string>
+	<string id="jup_bring_photo_device_text0">
+		<text>Дядька Яр попросил оказать небольшую услугу - найти фотоаппарат, утерянный одним из новичком.</text>
+	</string>
+	<string id="jup_bring_photo_device_title1">
+		<text>Поручение дядьки Яра: вернуть Фотоаппарат «Suzanna»</text>
+	</string>
+	<string id="jup_bring_photo_device_text1">
+		<text>Техника найдена. Необходимо вернуться к дядьке Яру и получить вознаграждение.</text>
+	</string>
+	<string id="jup_bring_arms_case_title0">
+		<text>Просьба Гавайца: разыскать кейс</text>
+	</string>
+	<string id="jup_bring_arms_case_text0">
+		<text>Гаваец, торговец со станции Янов, попросил меня найти, утерянный в Припяти кейс.</text>
+	</string>
+	<string id="jup_bring_arms_case_title1">
+		<text>Просьба Гавайца: отнести кейс на Янов</text>
+	</string>
+	<string id="jup_bring_arms_case_text1">
+		<text>Кейс найден. Нужно отнести его Гавайцу, на Янов и получить вознаграждение.</text>
+	</string>
+	<string id="jup_rasvet_destroy_snorks_title0">
+		<text>Опасная работа: зачистить логово полтергейстов у полустанка</text>
+	</string>
+	<string id="jup_rasvet_destroy_snorks_text0">
+		<text>По словам лидера группировки "Рассвет", в районе полустанка и дальше у склада Янова было обнаружено скопление опасных мутантов - полтергейсов. Я заключил с ним договор на зачистку территорий от монстров. Нужно проверить первую точку.</text>
+	</string>
+	<string id="jup_rasvet_destroy_snorks_title1">
+		<text>Опасная работа: зачистить логово полтергейтсов у склада</text>
+	</string>
+	<string id="jup_rasvet_destroy_snorks_text1">
+		<text>Необоходимо уничтожить всех тварей появившихся рядом со складом станции Янов.</text>
+	</string>
+	<string id="jup_rasvet_destroy_snorks_title2">
+		<text>Опасная работа: следуйте на сигнал ПДА</text>
+	</string>
+	<string id="jup_rasvet_destroy_snorks_text2">
+		<text>Вам удалось засечь слабый сигнал от пропадшей разведгруппы. Возможно кто-то остался в живых. Окажите им помощь.</text>
+	</string>
+	<string id="jup_rasvet_destroy_snorks_title3">
+		<text>Опасная работа: сопроводите выжившего рассветовца до укрытия клана.</text>
+	</string>
+	<string id="jup_rasvet_destroy_snorks_text3">
+		<text>Один из разведчиков сумел спастись от мутантов. Помогите добраться ему до своей базы.</text>
+	</string>	
+	<string id="jup_rasvet_destroy_snorks_title4">
+		<text>Опасная работа: доложите Назару об успешном выполнении миссии</text>
+	</string>
+	<string id="jup_rasvet_destroy_snorks_text4">
+		<text>Полтергейтсы уничтожены. Один из разведчиков спасен. Можно идти к Назару за вознаграждением.</text>
+	</string>
+	<string id="jup_mercenary_check_plant_title0">
+		<text>Пропавший отряд: встретиться с отрядом</text>
+	</string>
+	<string id="jup_mercenary_check_plant_text0">
+		<text>Возле главных ворот меня ожидает группа наёмников. Нужно обсудить с их старшим детали предстоящей операции.</text>
+	</string>
+	<string id="jup_mercenary_check_plant_title1">
+		<text>Пропавший отряд: следовать за отрядом</text>
+	</string>
+	<string id="jup_mercenary_check_plant_text1">
+		<text>Следовать за отрядом наёмников.</text>
+	</string>
+	<string id="jup_mercenary_check_plant_title2">
+		<text>Пропавший отряд: зачистить периметр</text>
+	</string>
+	<string id="jup_mercenary_check_plant_text2">
+		<text>В районе контрольной точки обнаружилось небольшое скопление зомбированных. Нужно обезопасить местность.</text>
+	</string>
+	<string id="jup_mercenary_check_plant_title3">
+		<text>Пропавший отряд: осмотреть второй этаж</text>
+	</string>
+	<string id="jup_mercenary_check_plant_text3">
+		<text>Нужно проверить второй этаж - именно оттуда проистекал последний сигнал пропавшей группы наёмников.</text>
+	</string>
+	<string id="jup_mercenary_check_plant_title4">
+		<text>Пропавший отряд: выбраться из здания</text>
+	</string>
+	<string id="jup_mercenary_check_plant_text4">
+		<text>Наш отряд атаковал контролёр. Мне удалось вовремя применить "психоделин" - это спасло мне жизнь, а вот ребятам не повезло... теперь они зомбированные. Нужно, как можно скорее, выбраться из здания. Примечание: контролер обладает аурой не позволяющей мне пользоваться моим оружием.</text>
+	</string>
+	<string id="jup_mercenary_check_plant_title5">
+		<text>Пропавший отряд: поговорить с Мольфаром</text>
+	</string>
+	<string id="jup_mercenary_check_plant_text5">
+		<text>Мне удалось выбраться из здания, но контролёр по прежнему жив и опасен. Нужно сообщить новость Мольфару и принять меры. Возможно придется снова собрать отряд.</text>
+	</string>
+	<string id="jup_mercenary_check_plant_title6">
+		<text>Пропавший отряд: поговорить со старшим нового отряда</text>
+	</string>
+	<string id="jup_mercenary_check_plant_text6">
+		<text>Возле главных ворот ожидает новая группа наёмников. Нужно поговорить с их командиром и выработать стратегию предстоящей операции.</text>
+	</string>
+	<string id="jup_mercenary_check_plant_title7">
+		<text>Пропавший отряд: раздобыть «психоделин»</text>
+	</string>
+	<string id="jup_mercenary_check_plant_text7">
+		<text>Для обеспечения успеха операции, необходимо достать четыре упаковки препарата «психоделин».</text>
+	</string>
+	<string id="jup_mercenary_check_plant_title8">
+		<text>Пропавший отряд: передать препараты командиру отряда</text>
+	</string>
+	<string id="jup_mercenary_check_plant_text8">
+		<text>"Психоделин" найден. Необходимо передать его командиру группы наёмников, а он выдаст его членам отряда.</text>
+	</string>
+	<string id="jup_mercenary_check_plant_title9">
+		<text>Пропавший отряд: сопровождать отряд на завод</text>
+	</string>
+	<string id="jup_mercenary_check_plant_text9">
+		<text>Отправиться вместе с новым отрядом наёмников на завод «Юпитер».</text>
+	</string>
+	<string id="jup_mercenary_check_plant_title10">
+		<text>Пропавший отряд: зачистить прицеховую территорию</text>
+	</string>
+	<string id="jup_mercenary_check_plant_text10">
+		<text>Необходимо уничтожить контролёра, зомбированных, и остальных недругов.</text>
+	</string>
+	<string id="jup_mercenary_check_plant_title11">
+		<text>Пропавший отряд: доложить Мольфару о выполнении</text>
+	</string>
+	<string id="jup_mercenary_check_plant_text11">
+		<text>Задача выполнена, контролёр и его жертвы мертвы. Нужно рассказать об этом Мольфару.</text>
+	</string>
+	<string id="jup_rasvet_eliminate_burrows_title0">
+		<text>Странная активность: зачистить нору около цементного завода</text>
+	</string>
+	<string id="jup_rasvet_eliminate_burrows_text0">
+		<text>Обезопасить местность от мутантов, что окопались возле цементного завода.</text>
+	</string>
+	<string id="jup_rasvet_eliminate_burrows_title1">
+		<text>Странная активность: зачистить нору на территории завода «Юпитер»</text>
+	</string>
+	<string id="jup_rasvet_eliminate_burrows_text1">
+		<text>Обезопасить местность от мутантов, что окопались на территории завода «Юпитер».</text>
+	</string>
+	<string id="jup_rasvet_eliminate_burrows_title2">
+		<text>Странная активность: зачистить нору на юге «Юпитера»</text>
+	</string>
+	<string id="jup_rasvet_eliminate_burrows_text2">
+		<text>Найти и уничтожить нору, что в южной части окрестностей «Юпитера».</text>
+	</string>
+	<string id="jup_rasvet_eliminate_burrows_title3">
+		<text>Странная активность: зачистить нору возле Ж/Д</text>
+	</string>
+	<string id="jup_rasvet_eliminate_burrows_text3">
+		<text>Уничтожить нору, что возле Ж/Д.</text>
+	</string>
+	<string id="jup_rasvet_eliminate_burrows_title4">
+		<text>Странная активность: доложить о выполнении Назару</text>
+	</string>
+	<string id="jup_rasvet_eliminate_burrows_text4">
+		<text>Задача выполнена, норы зачищены. Можно возвращатся к Назару.</text>
+	</string>
+	<string id="jup_rasvet_eliminate_burrows_title5">
+		<text>Странная активность: зачистить последнюю нору около ЗРК «Волхов»</text>
+	</string>
+	<string id="jup_rasvet_eliminate_burrows_text5">
+		<text>Обнаружена еще одна нора. Нужно её уничтожить.</text>
+	</string>
+	<string id="jup_rasvet_eliminate_burrows_title6">
+		<text>Странная активность: поговорить с Назаром</text>
+	</string>
+	<string id="jup_rasvet_eliminate_burrows_text6">
+		<text>Задача выполнена. Теперь можно получить награду.</text>
+	</string>
+	<string id="jup_search_anomal_prototype_title0">
+		<text>Неизвестная порода: заполучить образец неизвестного артефакта</text>
+	</string>
+	<string id="jup_search_anomal_prototype_text0">
+		<text>Обнаружить неизвестную породу, при помощи детектора «Серафим».</text>
+	</string>
+	<string id="jup_search_anomal_prototype_title1">
+		<text>Неизвестная порода: показать образец Герману</text>
+	</string>
+	<string id="jup_search_anomal_prototype_text1">
+		<text>Отнести Герману неизвестный артефакт.</text>
+	</string>
+	<string id="jup_search_anomal_prototype_title2">
+		<text>Неизвестная порода: найти другие образцы</text>
+	</string>
+	<string id="jup_search_anomal_prototype_text2">
+		<text>Герман сообщил новость, о том, что количество такой породы только возрастает. Для проведения удачного эксперимента, необходимо достать не менее шести образцов. Один образец уже есть.</text>
+	</string>
+	<string id="jup_search_anomal_prototype_title3">
+		<text>Неизвестная порода: найти еще четыре образца</text>
+	</string>
+	<string id="jup_search_anomal_prototype_text3">
+		<text>Для проведения учёными удачного эксперимента, необходимо не менее шести образцов. Два образца уже есть.</text>
+	</string>
+	<string id="jup_search_anomal_prototype_title4">
+		<text>Неизвестная порода: найти еще три образца</text>
+	</string>
+	<string id="jup_search_anomal_prototype_text4">
+		<text>Для проведения учёными удачного эксперимента, необходимо не менее шести образцов. Три образца уже есть.</text>
+	</string>
+	<string id="jup_search_anomal_prototype_title5">
+		<text>Неизвестная порода: найти еще два образца</text>
+	</string>
+	<string id="jup_search_anomal_prototype_text5">
+		<text>Для проведения учёными удачного эксперимента, необходимо не менее шести образцов. Четыре образца уже есть.</text>
+	</string>
+	<string id="jup_search_anomal_prototype_title6">
+		<text>Неизвестная порода: найти последний образец</text>
+	</string>
+	<string id="jup_search_anomal_prototype_text6">
+		<text>Для проведения учёными удачного эксперимента, необходимо не менее шести образцов. Пять образцов уже есть.</text>
+	</string>
+	<string id="jup_search_anomal_prototype_title7">
+		<text>Неизвестная порода: вернуть последний образец</text>
+	</string>
+	<string id="jup_search_anomal_prototype_text7">
+		<text>Отдать Герману недостающие образцы.</text>
+	</string>
+	<string id="jup_search_anomal_prototype_title8">
+		<text>Неизвестная порода: дождаться окончания эксперимента</text>
+	</string>
+	<string id="jup_search_anomal_prototype_text8">
+		<text>Образцы собраны, теперь, для их полного исследования, требуется проведение научного эксперимента. Герман решил провести эксперимент сегодня. Необходимо дождаться окончания опыта, и после вернуться за своей наградой.</text>
+	</string>
+	<string id="jup_search_anomal_prototype_title9">
+		<text>Неизвестная порода: поговорить с Германом</text>
+	</string>
+	<string id="jup_search_anomal_prototype_text9">
+		<text>Герман сообщил, что эксперимент удачно окончен. Необходимо поговорить с Германом.</text>
+	</string>
+	<string id="jup_search_anomal_prototype_title10">
+		<text>Неизвестная порода: показать образцы Герману</text>
+	</string>
+	<string id="jup_search_anomal_prototype_text10">
+		<text>Отнести Герману неизвестные артефакты.</text>
+	</string>
+	<string id="jup_darkvalley_travel_bubble_title0">
+		<text>Пространственный телепорт: найти пространственную аномалию</text>
+	</string>
+	<string id="jup_darkvalley_travel_bubble_text0">
+		<text>С генерального штаба пришло новое задание. Командование требует скорейшего отправления в Темную Долину, для поиска пропавшего агента СБУ и некоторых документов государственной важности. Также поступила информация о том, что в окрестностях Юпитера существует некая пространственная аномалия, способная, при правильном её использовании, отправить человека в любое место. Командование считает, что я мог бы, с помощью этой аномалии, отправиться в Темную Долину. Остальные пути в Темную Долину пока недоступны.</text>
+	</string>
+	<string id="jup_examine_caravan_title0">
+		<text>Разбитый караван: прийти на помощь</text>
+	</string>
+	<string id="jup_examine_caravan_text0">
+		<text>По пути на базу караван наёмников напоролся на большого псевдогиганта. Они сейчас около вентиляционного комплекса. Им нужна моя помощь.</text>
+	</string>
+	<string id="jup_examine_caravan_title1">
+		<text>Разбитый караван: убить монстра</text>
+	</string>
+	<string id="jup_examine_caravan_text1">
+		<text>Разобраться с псевдогигантом.</text>
+	</string>
+	<string id="jup_examine_caravan_title2">
+		<text>Разбитый караван: подобрать груз</text>
+	</string>
+	<string id="jup_examine_caravan_text2">
+		<text>Караван переносил груз с ценной для наёмников информацией. Нужно его подобрать.</text>
+	</string>
+	<string id="jup_examine_caravan_title3">
+		<text>Разбитый караван: передать груз Мольфару</text>
+	</string>
+	<string id="jup_examine_caravan_text3">
+		<text>Отдать груз и получить вознаграждение.</text>
+	</string>
+	<string id="jup_liquidate_valet_title0">
+		<text>Покушение на Валета: убить Валета</text>
+	</string>
+	<string id="jup_liquidate_valet_text0">
+		<text>Мольфар решил разораться со своим закадычным врагом - Валетом. Нужно его пристрелить.</text>
+	</string>
+	<string id="jup_liquidate_valet_title1">
+		<text>Покушение на Валета: доложить Мольфару о выполнении</text>
+	</string>
+	<string id="jup_liquidate_valet_text1">
+		<text>Поговорить с Мольфаром.</text>
+	</string>
+	<string id="jup_weak_lighthouse_title0">
+		<text>Слабый маяк: найти тайник на территории завода</text>
+	</string>
+	<string id="jup_weak_lighthouse_text0">
+		<text>Наёмники давным давно установили тайник на территории завода Юпитер. Тот, кто устанавливал - давно уже погиб. Где точно спрятан этот тайник никто не знает. Сигнал GPS маяка на тайнике очень слаб. Чтобы он сработал необходимо подобраться к нему поближе. Моя задача - прочесать завод.</text>
+	</string>
+	<string id="jup_weak_lighthouse_title1">
+		<text>Слабый маяк: проверить тайник</text>
+	</string>
+	<string id="jup_weak_lighthouse_text1">
+		<text>Сигнал тайника обнаружен. Нужно обыскать тайник.</text>
+	</string>
+	<string id="jup_weak_lighthouse_title2">
+		<text>Слабый маяк: сообщить Мольфару</text>
+	</string>
+	<string id="jup_weak_lighthouse_text2">
+		<text>Тайник найден. Он замкнут. Нужно рассказать об этом Мольфару.</text>
+	</string>
+	<string id="jup_weak_lighthouse_title3">
+		<text>Слабый маяк: провести отряд к тайнику</text>
+	</string>
+	<string id="jup_weak_lighthouse_text3">
+		<text>Мольфар велел привести его ребят к тайнику. Они знают как открыть тайник.</text>
+	</string>
+	<string id="jup_weak_lighthouse_title4">
+		<text>Слабый маяк: вернуться на базу</text>
+	</string>
+	<string id="jup_weak_lighthouse_text4">
+		<text>Поговорить с Мольфаром.</text>
+	</string>
+	<string id="pri_find_science_briefing_title0">
+		<text>Научный доклад: разыскать профессора</text>
+	</string>
+	<string id="pri_find_science_briefing_text0">
+		<text>По информации связного, профессор исчез в районе речного порта. Необходимо отправиться туда и разыскать профессора.</text>
+	</string>
+	<string id="pri_find_science_briefing_title1">
+		<text>Научный доклад: отнести бумаги связному</text>
+	</string>
+	<string id="pri_find_science_briefing_text1">
+		<text>Информация получена, теперь нужно отдать её связному.</text>
+	</string>
+	<string id="pri_find_science_briefing_title2">
+		<text>Научный брифинг: обыскать наградной тайник</text>
+	</string>
+	<string id="pri_find_science_briefing_text2">
+		<text>Командование предоставило мне тайник с компенсацией потраченных средств.</text>
+	</string>
+	<string id="pri_necessary_kill_kasilov_title0">
+		<text>Грязная работа: идти по сигналу КПК</text>
+	</string>
+	<string id="pri_necessary_kill_kasilov_text0">
+		<text>Сигнал на КПК указывает, что место дислокации Касилова - прачечная. Необходимо подойти ближе.</text>
+	</string>
+	<string id="pri_necessary_kill_kasilov_title1">
+		<text>Грязная работа: убить Полковника Касилова</text>
+	</string>
+	<string id="pri_necessary_kill_kasilov_text1">
+		<text>Убить Полковника Касилова. Такова воля Великого Монолита.</text>
+	</string>
+	<string id="pri_necessary_kill_kasilov_title2">
+		<text>Грязная работа: обыскать тело Касилова</text>
+	</string>
+	<string id="pri_necessary_kill_kasilov_text2">
+		<text>В рюкзаке политрука Касилова должен находиться КПК с важной информацией. Нужно его забрать.</text>
+	</string>
+	<string id="pri_necessary_kill_kasilov_title3">
+		<text>Грязная работа: вернуться к главнокомандующему</text>
+	</string>
+	<string id="pri_necessary_kill_kasilov_text3">
+		<text>Донести КПК Касилова до базы Монолита и отдать его Киборгу.</text>
+	</string>
+	<string id="pri_necessary_kill_kasilov_title4">
+		<text>Грязная работа: догнать и убить Касилова</text>
+	</string>
+	<string id="pri_necessary_kill_kasilov_text4">
+		<text>По-тихому не удалось, Касилов бежал... Необходимо догнать его и пристрелить.</text>
+	</string>
+	<string id="pri_zone_cleaning_title0">
+		<text>Всплеск пси-излучения: зачистить зону от зомбированных</text>
+	</string>
+	<string id="pri_zone_cleaning_text0">
+		<text>Приборы зафиксировали очень мощную вспышку пси-излучения, приведшую к зомбированию огромного количества сталкеров. Необходимо обезопасить Зону, нейтрализировав как минимум четыре сотни зомбированных.</text>
+	</string>
+	<string id="pri_assault_monolith_base_title0">
+		<text>«Операция Вулкан»: встретится с отрядом во дворе</text>
+	</string>
+	<string id="pri_assault_monolith_base_text0">
+		<text>Полковник Ковальский организовал спец. операцию по уничтожению скоплений «Монолита» внутри Кинотеатра «Прометей». Я участвую в операции, и для старта операции мне нужно встретится с отрядом во дворе.</text>
+	</string>
+	<string id="pri_assault_monolith_base_title1">
+		<text>«Операция Вулкан»: следовать за лидером отряда</text>
+	</string>
+	<string id="pri_assault_monolith_base_text1">
+		<text>Операция началась, необходимо следовать за лидером спец. отряда.</text>
+	</string>
+	<string id="pri_assault_monolith_base_title2">
+		<text>«Операция Вулкан»: занять огневую позицию</text>
+	</string>
+	<string id="pri_assault_monolith_base_text2">
+		<text>Занять огневой рубеж на 2-м этаже КБО.</text>
+	</string>
+	<string id="pri_assault_monolith_base_title3">
+		<text>«Операция Вулкан»: уничтожить скопления «Монолита»</text>
+	</string>
+	<string id="pri_assault_monolith_base_text3">
+		<text>Вести огонь на поражение, до полного устранения противника.</text>
+	</string>
+	<string id="pri_assault_monolith_base_title4">
+		<text>«Операция Вулкан»: поговорить с лидером отряда</text>
+	</string>
+	<string id="pri_assault_monolith_base_text4">
+		<text>Операция завершена, нужно возвращатся на базу - вместе с выжившими членами отряда.</text>
+	</string>
+	<string id="pri_assault_monolith_base_title5">
+		<text>«Операция Вулкан»: доложить Ковальскому о выполнении</text>
+	</string>
+	<string id="pri_assault_monolith_base_text5">
+		<text>Нужно рассказать Ковальскому об успешно выполненной операции.</text>
+	</string>
+	<string id="pri_bloodsucker_vaccine_title0">
+		<text>«Вакцина для кровососа»: Распросить о NG-7 Озёрского</text>
+	</string>
+	<string id="pri_bloodsucker_vaccine_text0">
+		<text>В квартире на Припяти, меня оглушил кровосос. Как ни странно - я очнулся и вокруг никого не было. Мне удалось найти в том месте записку, в ней было сказано что кровососу нужна вакцина, так называемый препарат NG-7, именно поэтому он меня не трогал. Раз уж он меня не тронул, нужно оказать ему помощь, сходив к Озёрскому и расспросив о NG-7.</text>
+	</string>
+	<string id="pri_bloodsucker_vaccine_title1">
+		<text>«Вакцина для кровососа»: приобрести NG-7 у Озёрского</text>
+	</string>
+	<string id="pri_bloodsucker_vaccine_text1">
+		<text>Озёрский согласен продать мне NG-7, за 5400. Мне нужно купить эту вакцину у Озёрского.</text>
+	</string>
+	<string id="pri_bloodsucker_vaccine_title2">
+		<text>«Вакцина для кровососа»: вернуться на прошлое место встречи</text>
+	</string>
+	<string id="pri_bloodsucker_vaccine_text2">
+		<text>Вакцина у меня. Нужно передать вакцину тому кровососу.</text>
+	</string>
+	<string id="pri_bloodsucker_vaccine_title3">
+		<text>«Вакцина для кровососа»: забрать награду</text>
+	</string>
+	<string id="pri_bloodsucker_vaccine_text3">
+		<text>Кровосос оставил мне вознаграждение.</text>
+	</string>
+	<string id="pri_bloodsucker_vaccine_title4">
+		<text>«Вакцина для кровососа»: обследовать комнату</text>
+	</string>
+	<string id="pri_bloodsucker_vaccine_text4">
+		<text>Очнувшись я заметил что купленный мною препарат NG-7 исчез. Кровосос взял то что хотел. В записке он говорил о награде, возможно она где-то в комнате.</text>
+	</string>
+	<string id="pri_rescue_underground_guide_title0">
+		<text>«Пропавший проводник»: спуститься в путепровод «Припять-1»</text>
+	</string>
+	<string id="pri_rescue_underground_guide_text0">
+		<text>Не так давно пропал друг Гарика - Мельник, который по роду деятельности был проводником. Гарик очень волнуется за судьбу своего друга, и так как он сейчас не может сам все проверить, поручил это дело мне. Последний сигнал исходящий от КПК Мельника, свидетельствует о том, что он находится в путепроводе «Припять-1. Нужно проверить путепровод.</text>
+	</string>
+	<string id="pri_rescue_underground_guide_title1">
+		<text>«Пропавший проводник»: найти Мельника</text>
+	</string>
+	<string id="pri_rescue_underground_guide_text1">
+		<text>Сигнал КПК Мельника все еще активен, он исходит из путепровода. Нужно проверить источник сигнала.</text>
+	</string>
+	<string id="pri_rescue_underground_guide_title2">
+		<text>«Пропавший проводник»: спасти Мельника</text>
+	</string>
+	<string id="pri_rescue_underground_guide_text2">
+		<text>Похоже, что Мельник в плену. Нужно его вызволить, разобравшись с противником.</text>
+	</string>
+	<string id="pri_rescue_underground_guide_title3">
+		<text>«Пропавший проводник»: поговорить с Мельником</text>
+	</string>
+	<string id="pri_rescue_underground_guide_text3">
+		<text>Мельник спасен, нужно с ним поговорить.</text>
+	</string>
+	<string id="pri_rescue_underground_guide_title4">
+		<text>«Пропавший проводник»: вернуться вместе с Мельником к Гарику</text>
+	</string>
+	<string id="pri_rescue_underground_guide_text4">
+		<text>Пройтись вместе с Мельником к Гарику.</text>
+	</string>
+	<string id="pri_rescue_underground_guide_title5">
+		<text>«Пропавший проводник»: поговорить с Гариком</text>
+	</string>
+	<string id="pri_rescue_underground_guide_text5">
+		<text>Получить награду у Гарика.</text>
+	</string>
+	<string id="pri_expiation_sin_1_title0">
+		<text>«Искупление Грехов»: найти анабиотики и живую воду</text>
+	</string>
+	<string id="pri_expiation_sin_1_text0">
+		<text>Нужно принести 10 анабиотиков и живую воду, для искупления своих грехов перед «Монолитом». Нужно заглянуть к медику на Затоне, возможно он что-то знает.</text>
+	</string>
+	<string id="pri_expiation_sin_1_title1">
+		<text>«Искупление Грехов»: помочь медику найти аптечку</text>
+	</string>
+	<string id="pri_expiation_sin_1_text1">
+		<text>Медик на Затоне согласился мне рассказать все что он знает о живой воде, но не за просто так, а за поиск его универсальной аптечки.</text>
+	</string>
+	<string id="pri_expiation_sin_1_title2">
+		<text>«Искупление Грехов»: обменять аптечку на информацию о живой воде</text>
+	</string>
+	<string id="pri_expiation_sin_1_text2">
+		<text>Отдать аптечку медику, и получить информацию о живой воде.</text>
+	</string>
+	<string id="pri_expiation_sin_1_title3">
+		<text>«Искупление Грехов»: спросить о воде у Озёрского</text>
+	</string>
+	<string id="pri_expiation_sin_1_text3">
+		<text>Медик подсказал что Озёрский может знать больше об этом. Нужно поговорить с Озерским.</text>
+	</string>
+	<string id="pri_expiation_sin_1_title4">
+		<text>«Искупление Грехов»: найти на территории Оазиса живую воду</text>
+	</string>
+	<string id="pri_expiation_sin_1_text4">
+		<text>Озерский утверждает, что где-то на территории Оазиса должна быть живая вода.</text>
+	</string>
+	<string id="pri_expiation_sin_1_title5">
+		<text>«Искупление Грехов»: принести живую воду и анабиотики Киборгу</text>
+	</string>
+	<string id="pri_expiation_sin_1_text5">
+		<text>Живая вода и анабиотики найдены, нужно отнести их Киборгу.</text>
+	</string>
+	<string id="pri_expiation_sin_1_title6">
+		<text>«Искупление Грехов»: найти 10 анабиотиков</text>
+	</string>
+	<string id="pri_expiation_sin_1_text6">
+		<text>Живая вода найдена, однако анабитиков в количестве 10 штук у меня нет, нужно как можно скорее их найти, и отнести Киборгу.</text>
+	</string>
+	<string id="pri_expiation_sin_1_title7">
+		<text>«Искупление Грехов»: поговорить с новыми братьями</text>
+	</string>
+	<string id="pri_expiation_sin_1_text7">
+		<text>Живая вода поможет нашим братьям исцелится. Они хотели бы со мной поведаться.</text>
+	</string>
+	<string id="pri_expiation_sin_2_title0">
+		<text>«Искупление Грехов»: наполнить 1-й тайник монолита</text>
+	</string>
+	<string id="pri_expiation_sin_2_text0">
+		<text>Нужно восстановить тайники и схроны "Монолита". Для этого мне нужно положить в тайник отмеченный макером на карте такие предметы: 1)АК-74 или LR-300 или SPAS 12, и один магазин к соответствующему оружию. 2)Аккумуляторы или Кустарные батареи для Гаусс-пушки. 3)Любую аптечку, любой бинт, и на выбор противорадиационный препарат или психоделин.</text>
+	</string>
+	<string id="pri_expiation_sin_2_title1">
+		<text>«Искупление Грехов»: наполнить 2-й тайник монолита</text>
+	</string>
+	<string id="pri_expiation_sin_2_text1">
+		<text>Нужно восстановить тайники и схроны "Монолита". Для этого мне нужно положить в тайник отмеченный макером на карте такие предметы: 1)АК-74 или LR-300 или SPAS 12, и один магазин к соответствующему оружию. 2)Аккумуляторы или Кустарные батареи для Гаусс-пушки. 3)Любую аптечку, любой бинт, и на выбор противорадиационный препарат или психоделин.</text>
+	</string>
+	<string id="pri_expiation_sin_2_title2">
+		<text>«Искупление Грехов»: наполнить 3-й тайник монолита</text>
+	</string>
+	<string id="pri_expiation_sin_2_text2">
+		<text>Нужно восстановить тайники и схроны "Монолита". Для этого мне нужно положить в тайник отмеченный макером на карте такие предметы: 1)АК-74 или LR-300 или SPAS 12, и один магазин к соответствующему оружию. 2)Аккумуляторы или Кустарные батареи для Гаусс-пушки. 3)Любую аптечку, любой бинт, и на выбор противорадиационный препарат или психоделин.</text>
+	</string>
+	<string id="pri_expiation_sin_2_title3">
+		<text>«Искупление Грехов»: наполнить 4-й тайник монолита</text>
+	</string>
+	<string id="pri_expiation_sin_2_text3">
+		<text>Нужно восстановить тайники и схроны "Монолита". Для этого мне нужно положить в тайник отмеченный макером на карте такие предметы: 1)АК-74 или LR-300 или SPAS 12, и один магазин к соответствующему оружию. 2)Аккумуляторы или Кустарные батареи для Гаусс-пушки. 3)Любую аптечку, любой бинт, и на выбор противорадиационный препарат или психоделин.</text>
+	</string>
+	<string id="pri_expiation_sin_2_title4">
+		<text>«Искупление Грехов»: наполнить 5-й тайник монолита</text>
+	</string>
+	<string id="pri_expiation_sin_2_text4">
+		<text>Нужно восстановить тайники и схроны "Монолита". Для этого мне нужно положить в тайник отмеченный макером на карте такие предметы: 1)АК-74 или LR-300 или SPAS 12, и один магазин к соответствующему оружию. 2)Аккумуляторы или Кустарные батареи для Гаусс-пушки. 3)Любую аптечку, любой бинт, и на выбор противорадиационный препарат или психоделин.</text>
+	</string>
+	<string id="pri_expiation_sin_2_title5">
+		<text>«Искупление Грехов»: наполнить 6-й тайник монолита</text>
+	</string>
+	<string id="pri_expiation_sin_2_text5">
+		<text>Нужно восстановить тайники и схроны "Монолита". Для этого мне нужно положить в тайник отмеченный макером на карте такие предметы: 1)АК-74 или LR-300 или SPAS 12, и один магазин к соответствующему оружию. 2)Аккумуляторы или Кустарные батареи для Гаусс-пушки. 3)Любую аптечку, любой бинт, и на выбор противорадиационный препарат или психоделин.</text>
+	</string>
+	<string id="pri_expiation_sin_2_title6">
+		<text>«Искупление Грехов»: наполнить 7-й тайник монолита</text>
+	</string>
+	<string id="pri_expiation_sin_2_text6">
+		<text>Нужно восстановить тайники и схроны "Монолита". Для этого мне нужно положить в тайник отмеченный макером на карте такие предметы: 1)АК-74 или LR-300 или SPAS 12, и один магазин к соответствующему оружию. 2)Аккумуляторы или Кустарные батареи для Гаусс-пушки. 3)Любую аптечку, любой бинт, и на выбор противорадиационный препарат или психоделин.</text>
+	</string>
+	<string id="pri_expiation_sin_2_title7">
+		<text>«Искупление Грехов»: наполнить 8-й тайник монолита</text>
+	</string>
+	<string id="pri_expiation_sin_2_text7">
+		<text>Нужно восстановить тайники и схроны "Монолита". Для этого мне нужно положить в тайник отмеченный макером на карте такие предметы: 1)АК-74 или LR-300 или SPAS 12, и один магазин к соответствующему оружию. 2)Аккумуляторы или Кустарные батареи для Гаусс-пушки. 3)Любую аптечку, любой бинт, и на выбор противорадиационный препарат или психоделин.</text>
+	</string>
+	<string id="pri_expiation_sin_2_title8">
+		<text>«Искупление Грехов»: наполнить 9-й тайник монолита</text>
+	</string>
+	<string id="pri_expiation_sin_2_text8">
+		<text>Нужно восстановить тайники и схроны "Монолита". Для этого мне нужно положить в тайник отмеченный макером на карте такие предметы: 1)АК-74 или LR-300 или SPAS 12, и один магазин к соответствующему оружию. 2)Аккумуляторы или Кустарные батареи для Гаусс-пушки. 3)Любую аптечку, любой бинт, и на выбор противорадиационный препарат или психоделин.</text>
+	</string>
+	<string id="pri_expiation_sin_2_title9">
+		<text>«Искупление Грехов»: рассказать Киборгу</text>
+	</string>
+	<string id="pri_expiation_sin_2_text9">
+		<text>Все тайники монолита на Затоне заложены. Нужно поговорить с Киборгом.</text>
+	</string>
+	<string id="pri_expiation_sin_2_title10">
+		<text>«Искупление Грехов»: получить награду</text>
+	</string>
+	<string id="pri_expiation_sin_2_text10">
+		<text>Забрать вознаграждение у торговца монолитовцев.</text>
+	</string>
+	<string id="pri_expiation_sin_3_title0">
+		<text>«Искупление Грехов»: найти подпространственный ретранслятор</text>
+	</string>
+	<string id="pri_expiation_sin_3_text0">
+		<text>Монолитовцы хотят отремонтировать свою антенну, для связи с высшим разумом - "Монолитом". Главная составляющая такого рода антенны, это подпространственный ретранслятор, он был разрушен. После гибели духовного лидера монолитовцев Адепта, местоположение подпространственного ретранслятора осталось тайной. Любой ценой нужно достать сведенья об этом ретрансляторе.</text>
+	</string>
+	<string id="pri_expiation_sin_3_title1">
+		<text>«Искупление Грехов»: получить больше информации о ретрансляторе</text>
+	</string>
+	<string id="pri_expiation_sin_3_text1">
+		<text>Мне удалось получить информацию о местоположении ретранслятора. Со слов Сыча, ретранслятор может находится на территории завода Юпитер, во внутренних корпусах, и весить по слухам около 200 Кг. Информация может быть не достоверная, нужно получить информацию от другого информатора, и сопоставив определить точное местоположение обьекта.</text>
+	</string>
+	<string id="pri_expiation_sin_3_title2">
+		<text>«Искупление Грехов»: получить больше информации о ретрансляторе</text>
+	</string>
+	<string id="pri_expiation_sin_3_text2">
+		<text>Мне удалось получить информацию о местоположении ретранслятора. Со слов Гавайца, ретранслятор находится на территории завода Юпитер, и весит не мало. Информация может быть не достоверная, нужно получить информацию от другого информатора, и сопоставив определить точное местоположение обьекта.</text>
+	</string>
+	<string id="pri_expiation_sin_3_title3">
+		<text>«Искупление Грехов»: получить больше информации о ретрансляторе</text>
+	</string>
+	<string id="pri_expiation_sin_3_text3">
+		<text>Мне удалось получить информацию о местоположении ретранслятора. Со слов Озёрского, ретранслятор может находится на территории завода Юпитер, в отделе радиотехники, и весить около 200 Кг. Возможно, подпространственный ретранслятор до сих пор находится в одном из контейнеров. Информация может быть не достоверная, нужно получить информацию от другого информатора, и сопоставив определить точное местоположение обьекта.</text>
+	</string>
+	<string id="pri_expiation_sin_3_title4">
+		<text>«Искупление Грехов»: найти подпространственный ретранслятор</text>
+	</string>
+	<string id="pri_expiation_sin_3_text4">
+		<text>Информация о местоположении ретранслятора сопоставлена. Координаты полученные от информаторов совпали. Нужно удостоверится.</text>
+	</string>
+	<string id="pri_expiation_sin_3_title5">
+		<text>«Искупление Грехов»: поговорить с Киборгом</text>
+	</string>
+	<string id="pri_expiation_sin_3_text5">
+		<text>Подпространственный ретранслятор был найден, однако его вес слишком велик. Нужно рассказать о находке Киборгу.</text>
+	</string>
+	<string id="pri_expiation_sin_3_title6">
+		<text>«Искупление Грехов»: поговорить с Извергом</text>
+	</string>
+	<string id="pri_expiation_sin_3_text6">
+		<text>Киборг поручил отбить одну из антенн у неверных. Мне нужно вести наших братьев в бой.</text>
+	</string>
+	<string id="pri_expiation_sin_3_title7">
+		<text>«Искупление Грехов»: сопровождать отряд к магазину «Книги»</text>
+	</string>
+	<string id="pri_expiation_sin_3_text7">
+		<text>Мне нужно сопровождать наших братьев к магазину «Книги».</text>
+	</string>
+	<string id="pri_expiation_sin_3_title8">
+		<text>«Искупление Грехов»: отбить магазин «Книги»</text>
+	</string>
+	<string id="pri_expiation_sin_3_text8">
+		<text>Искоренить неверных, что забаррикадировались в магазине «Книги».</text>
+	</string>
+	<string id="pri_expiation_sin_3_title9">
+		<text>«Искупление Грехов»: начать ремонт антенн</text>
+	</string>
+	<string id="pri_expiation_sin_3_text9">
+		<text>Дать поручение монолитовцам, чтоб они начали ремонт антенн.</text>
+	</string>
+	<string id="pri_expiation_sin_3_title10">
+		<text>«Искупление Грехов»: поговорить с Киборгом</text>
+	</string>
+	<string id="pri_expiation_sin_3_text10">
+		<text>Вернуться к Киборгу.</text>
+	</string>
+	<string id="pri_expiation_sin_3_title11">
+		<text>«Искупление Грехов»: получить награду</text>
+	</string>
+	<string id="pri_expiation_sin_3_text11">
+		<text>Взять награду у торговца Метрофана.</text>
+	</string>
+	<string id="pri_expiation_sin_3_title12">
+		<text>«Искупление Грехов»: дождаться окончания ремонта антенны</text>
+	</string>
+	<string id="pri_expiation_sin_3_text12">
+		<text>Подождать окончания ремонта антенны.</text>
+	</string>
+	<string id="pri_expiation_sin_3_title13">
+		<text>«Искупление Грехов»: вернуться в Храм</text>
+	</string>
+	<string id="pri_expiation_sin_3_text13">
+		<text>Ремонт антенны завершен. Нужно навестить братьев в Храме.</text>
+	</string>
+	<string id="pri_expiation_sin_3_title14">
+		<text>«Искупление Грехов»: войти в контакт с «Монолитом»</text>
+	</string>
+	<string id="pri_expiation_sin_3_text14">
+		<text>Использовать антенну, для связи с «Монолитом». Монолит укажет мне путь.</text>
+	</string>
+	<string id="pri_fenix_vendetta_title0">
+		<text>Кровная месть: разобраться с Инквизитором</text>
+	</string>
+	<string id="pri_fenix_vendetta_text0">
+		<text>Необходимо ликвидировать Инквизитора - верховного жреца Монолита. Этот Инквизитор причастен к гибели брата Феникса - Германика.</text>
+	</string>
+	<string id="pri_fenix_vendetta_title1">
+		<text>Кровная месть: разобраться с Инквизитором</text>
+	</string>
+	<string id="pri_fenix_vendetta_text1">
+		<text>КПК, найденный у павшего монолитовца, обновил данные о координатах отряда, возглавляемого Инквизитором. Необходимо догнать этот отряд, и разобраться с убийцей брата Феникса.</text>
+	</string>
+	<string id="pri_fenix_vendetta_title2">
+		<text>Кровная месть: разобраться с Инквизитором</text>
+	</string>
+	<string id="pri_fenix_vendetta_text2">
+		<text>Получены новые сведенья. Теперь Инквизитор точно обнаружен. Нужно его устранить.</text>
+	</string>
+	<string id="pri_fenix_vendetta_title3">
+		<text>Кровная месть: проверить тело Инквизитора</text>
+	</string>
+	<string id="pri_fenix_vendetta_text3">
+		<text>Взять флешку Инквизитора.</text>
+	</string>
+	<string id="pri_fenix_vendetta_title4">
+		<text>Кровная месть: активировать флешку Инквизитора</text>
+	</string>
+	<string id="pri_fenix_vendetta_text4">
+		<text>Использовать флешку Инквизитора.</text>
+	</string>
+	<string id="pri_fenix_vendetta_title5">
+		<text>Кровная месть: обыскать загашник Инквизитора</text>
+	</string>
+	<string id="pri_fenix_vendetta_text5">
+		<text>Проверить тайник, оставленный Инквизитором.</text>
+	</string>
+	<string id="pri_fenix_vendetta_title6">
+		<text>Кровная месть: вернуть найденное Фениксу</text>
+	</string>
+	<string id="pri_fenix_vendetta_text6">
+		<text>Отдать то, что было в тайнике - Фениксу.</text>
+	</string>
+	<string id="val_first_coming_on_valley_title0">
+		<text>Прибытие: найти Акулова</text>
+	</string>
+	<string id="val_first_coming_on_valley_text0">
+		<text>Этот Акулов должен что-то знать о Балтазаре. Необходимо его найти.</text>
+	</string>
+	<string id="val_first_coming_on_valley_title1">
+		<text>Прибытие: поговорить с командиром блокпоста</text>
+	</string>
+	<string id="val_first_coming_on_valley_text1">
+		<text>Поговорить с командиром блокпоста.</text>
+	</string>
+	<string id="val_first_coming_on_valley_title2">
+		<text>Прибытие: подождать сталкера проводника</text>
+	</string>
+	<string id="val_first_coming_on_valley_text2">
+		<text>Куликов договорился с бойцом из восточного блокпоста, чтобы тот провел меня на ферму.</text>
+	</string>
+	<string id="val_first_coming_on_valley_title3">
+		<text>Прибытие: сходить со сталкером на ферму</text>
+	</string>
+	<string id="val_first_coming_on_valley_text3">
+		<text>База сталкеров расположена на территории фермы. Командир блокпоста попросил своего подчиненного показать мне дорогу к ферме.</text>
+	</string>
+	<string id="val_first_coming_on_valley_title4">
+		<text>Прибытие: сходить на ферму</text>
+	</string>
+	<string id="val_first_coming_on_valley_text4">
+		<text>Проводник погиб. Необходимо найти ферму.</text>
+	</string>
+	<string id="val_first_coming_on_valley_title5">
+		<text>Прибытие: сходить на ферму</text>
+	</string>
+	<string id="val_first_coming_on_valley_text5">
+		<text>Необходимо найти ферму.</text>
+	</string>
+	<string id="val_first_coming_on_valley_title6">
+		<text>Прибытие: поговорить с лидером сталкеров</text>
+	</string>
+	<string id="val_first_coming_on_valley_text6">
+		<text>На базе сталкеров есть лидер. Необходимо поговорить с ним и получить информацию о положении дел Темной Долине.</text>
+	</string>
+	<string id="val_first_coming_on_valley_title7">
+		<text>Прибытие: помочь сталкерам</text>
+	</string>
+	<string id="val_first_coming_on_valley_text7">
+		<text>Лидер сталкеров в Темной Долине - Акулов, согласился рассказать мне всё что он знает, но при условии того, что я расправлюсь с проблемной химерой.</text>
+	</string>
+	<string id="val_kill_night_predator_title0">
+		<text>Дерзкий Хищник: пройтись к аномалии «Раскол»</text>
+	</string>
+	<string id="val_kill_night_predator_text0">
+		<text>В последний раз химеру видели в районе аномалии «Раскол». Возможно, она там живёт. Нужно подойти поближе.</text>
+	</string>
+	<string id="val_kill_night_predator_title1">
+		<text>Дерзкий Хищник: сразить химеру</text>
+	</string>
+	<string id="val_kill_night_predator_text1">
+		<text>Химера обнаружена. Необходимо с ней разобраться.</text>
+	</string>
+	<string id="val_kill_night_predator_title2">
+		<text>Дерзкий Хищник: доложить Акулову</text>
+	</string>
+	<string id="val_kill_night_predator_text2">
+		<text>Чтобы лишний раз не рисковать своей жизнью, эффективнее будет организовать оборонительный рубеж на месте блокпоста, около фермы. Нужно рассказать Акулову о моем плане.</text>
+	</string>
+	<string id="val_kill_night_predator_title3">
+		<text>Дерзкий Хищник: поговорить с Леонидом</text>
+	</string>
+	<string id="val_kill_night_predator_text3">
+		<text>Предупредить сталкеров на блокпосте о химере. Необходимо рассказать Леониду о моем плане.</text>
+	</string>
+	<string id="val_kill_night_predator_title4">
+		<text>Дерзкий Хищник: найти химеру</text>
+	</string>
+	<string id="val_kill_night_predator_text4">
+		<text>Леонид и его ребята укрепляют блокпост для отражения и уничтожения химеры. Осталось только найти и заманить химеру на блокпост.</text>
+	</string>
+	<string id="val_kill_night_predator_title5">
+		<text>Дерзкий Хищник: заманить химеру на блокпост</text>
+	</string>
+	<string id="val_kill_night_predator_text5">
+		<text>Химера снова найдена. Нужно навести её на блокпост.</text>
+	</string>
+	<string id="val_kill_night_predator_title6">
+		<text>Дерзкий Хищник: сразить химеру</text>
+	</string>
+	<string id="val_kill_night_predator_text6">
+		<text>Химера в ловушке. Нужно её порешить, пока она не ушла.</text>
+	</string>
+	<string id="val_kill_night_predator_title7">
+		<text>Дерзкий Хищник: поговорить с Акуловым</text>
+	</string>
+	<string id="val_kill_night_predator_text7">
+		<text>Химера повержена. Нужно рассказать об этом Акулову.</text>
+	</string>
+	<string id="val_assault_factory_title0">
+		<text>Перехват: уничтожить скопление снорков</text>
+	</string>
+	<string id="val_assault_factory_text0">
+		<text>Сталкеры собираются штурмовать завод, который сейчас находится под контролем ренегатов. Для подхода к заводу, им необходимо будет перейти через мост. На данный момент мост небезопасен - около него были обнаружены скопления снорков. Нужно устранить эту проблему, расчистив близлежащую к мосту территорию.</text>
+	</string>
+	<string id="val_assault_factory_title1">
+		<text>Перехват: уничтожить скопление снорков</text>
+	</string>
+	<string id="val_assault_factory_text1">
+		<text>Порешить скопление снорков.</text>
+	</string>
+	<string id="val_assault_factory_title2">
+		<text>Перехват: собраться вместе с отрядом у главных ворот</text>
+	</string>
+	<string id="val_assault_factory_text2">
+		<text>Акулов собрал отряд для похода на завод. Необходимо принять участие в захвате завода.</text>
+	</string>
+	<string id="val_assault_factory_title3">
+		<text>Перехват: следовать за отрядом</text>
+	</string>
+	<string id="val_assault_factory_text3">
+		<text>Перейти вместе с отрядом через мост.</text>
+	</string>
+	<string id="val_assault_factory_title4">
+		<text>Перехват: устроить внезапное нападение</text>
+	</string>
+	<string id="val_assault_factory_text4">
+		<text>Подобраться как можно ближе к главным воротам завода, чтобы застать ренегатов врасплох.</text>
+	</string>
+	<string id="val_assault_factory_title5">
+		<text>Перехват: захватить завод</text>
+	</string>
+	<string id="val_assault_factory_text5">
+		<text>Отряд прорвался на территорию завода. Необходимо порешить всех ренегатов и захватить завод.</text>
+	</string>
+	<string id="val_assault_factory_title6">
+		<text>Перехват: обыскать трупы ренегатов</text>
+	</string>
+	<string id="val_assault_factory_text6">
+		<text>Возможно, кто-то из ренегатов может иметь ценную информацию на КПК. Нужно обыскать трупы ренегатов.</text>
+	</string>
+	<string id="val_assault_factory_title7">
+		<text>Перехват: отнести найденные КПК Акулову</text>
+	</string>
+	<string id="val_assault_factory_text7">
+		<text>Передать Акулову собранные с ренегатов КПК.</text>
+	</string>
+	<string id="val_brigand_title0">
+		<text>Разбой: совершить налет на лагерь ренегатов</text>
+	</string>
+	<string id="val_brigand_text0">
+		<text>Разбить ренегатов рядом с аномалией "Раскол".</text>
+	</string>
+	<string id="val_brigand_title1">
+		<text>Разбой: вернуться за наградой</text>
+	</string>
+	<string id="val_brigand_text1">
+		<text>Получить награду у Левиафана.</text>
+	</string>
+	<string id="val_secret_development_title0">
+		<text>Секретная разработка: спуститься в лабораторию Х18</text>
+	</string>
+	<string id="val_secret_development_text0">
+		<text>Отправиться в подземную лабораторию Х18.</text>
+	</string>
+	<string id="val_secret_development_title1">
+		<text>Секретная разработка: найти секретное оружие</text>
+	</string>
+	<string id="val_secret_development_text1">
+		<text>В лаборатории Х18 имеется секретная разработка учёных - гаусс-винтовка. Необходимо её найти.</text>
+	</string>
+	<string id="val_secret_development_title2">
+		<text>Секретная разработка: отнести оружие Левиафану</text>
+	</string>
+	<string id="val_secret_development_text2">
+		<text>Отдать секретное оружие Левиафану и получить награду.</text>
+	</string>
+	<string id="val_shade_of_time_title0_1">
+		<text>Тень времени: разыскать Балтазара в диспетчерской</text>
+	</string>
+	<string id="val_shade_of_time_text0_1">
+		<text>Ночным сталкерам достоверно известно, что Балтазар отправился в диспетчерскую. Нужно туда сходить и найти его.</text>
+	</string>
+	<string id="val_shade_of_time_title0_2">
+		<text>Тень времени: разыскать Балтазара</text>
+	</string>
+	<string id="val_shade_of_time_text0_2">
+		<text>Найти сталкера по имени "Балтазар".</text>
+	</string>
+	<string id="val_shade_of_time_title1">
+		<text>Тень времени: попасть в лабораторию Х18</text>
+	</string>
+	<string id="val_shade_of_time_text1">
+		<text>Из данных на КПК Балтазара следует, что секретные документы, так необходимые СБУ, находятся в коридорах подземной лаборатории Х18. Необходимо туда спуститься.</text>
+	</string>
+	<string id="val_shade_of_time_title2">
+		<text>Тень времени: поговорить с Акуловым</text>
+	</string>
+	<string id="val_shade_of_time_text2">
+		<text>Двери, ведущие в лабораторию Х18, - заперты. Требуется карта доступа. Возможно, Акулов может что-то об этом знать.</text>
+	</string>
+	<string id="val_shade_of_time_title3_1">
+		<text>Тень времени: найти карту доступа к лаборатории Х18</text>
+	</string>
+	<string id="val_shade_of_time_text3_1">
+		<text>У одного из трех командиров Ренегатов, скорее всего, есть карта доступа к лаборатории. Эта карта прежде была у Балтазара, но теперь, когда он погиб, она наверняка перекочевала к кому-то из головотяпов группировки "Ренегаты".</text>
+	</string>
+	<string id="val_shade_of_time_title3_2">
+		<text>Тень времени: найти карту доступа к лаборатории Х18</text>
+	</string>
+	<string id="val_shade_of_time_text3_2">
+		<text>Чтобы попасть в подземную лабораторию, необходимо найти карту доступа.</text>
+	</string>
+	<string id="val_shade_of_time_title4">
+		<text>Тень времени: получить карту доступа</text>
+	</string>
+	<string id="val_shade_of_time_text4">
+		<text>Найти способ достать карту доступа.</text>
+	</string>
+	<string id="val_shade_of_time_title5">
+		<text>Тень времени: открыть сейф</text>
+	</string>
+	<string id="val_shade_of_time_text5">
+		<text>Взять карту доступа из сейфа.</text>
+	</string>
+	<string id="val_shade_of_time_title6">
+		<text>Тень времени: спуститься в лабораторию Х18</text>
+	</string>
+	<string id="val_shade_of_time_text6">
+		<text>Отправиться за документами в подземную лабораторию.</text>
+	</string>
+	<string id="val_shade_of_time_title7">
+		<text>Отмычка: найти ключ от сейфа</text>
+	</string>
+	<string id="val_shade_of_time_text7">
+		<text>В сейфе должна быть карта доступа к лаборатории. Необходимо получить ключ.</text>
+	</string>
+	<string id="val_issue_secret_data_title0">
+		<text>Перевод документов: встретиться со связным на Припяти</text>
+	</string>
+	<string id="val_issue_secret_data_text0">
+		<text>Передать документы, найденные в лаборатории Х18, агенту СБУ в Припяти.</text>
+	</string>
+	<string id="x18_abyss_title0">
+		<text>Бездна: найти секретные документы</text>
+	</string>
+	<string id="x18_abyss_text0">
+		<text>Найти три секретных документа.</text>
+	</string>
+	<string id="x18_abyss_title1">
+		<text>Бездна: найти секретные документы</text>
+	</string>
+	<string id="x18_abyss_text1">
+		<text>Найти два секретных документа.</text>
+	</string>
+	<string id="x18_abyss_title2">
+		<text>Бездна: найти секретный документ</text>
+	</string>
+	<string id="x18_abyss_text2">
+		<text>Найти один секретный документ.</text>
+	</string>
+	<string id="x18_abyss_title3">
+		<text>Бездна: выбраться из подземной лаборатории</text>
+	</string>
+	<string id="x18_abyss_text3">
+		<text>Выйти на поверхность.</text>
+	</string>
+	<string id="mil_come_to_military_title0">
+		<text>Новая территория: попасть на Военные Склады</text>
+	</string>
+	<string id="mil_come_to_military_text0">
+		<text>Необходимо найти путь на территорию Военных Складов.</text>
+	</string>
+	<string id="mil_first_receipts_title0">
+		<text>Новое знакомство: найти лидера группировки Рассвет</text>
+	</string>
+	<string id="mil_first_receipts_text0">
+		<text>Поговорить с лидером группировки Рассвет. Разыскать его на базе Рассвета.</text>
+	</string>
+	<string id="mil_first_receipts_title1">
+		<text>Новое знакомство: поговорить с Демиургом</text>
+	</string>
+	<string id="mil_first_receipts_text1">
+		<text>Поговорить с лидером группировки Рассвет.</text>
+	</string>
+	<string id="mil_dislodge_invaders_title0">
+		<text>Опустошение: захватить Хутор</text>
+	</string>
+	<string id="mil_dislodge_invaders_text0">
+		<text>Группировка Рассвет планирует взять под свой контроль всю территорию Военных Складов. Я могу помочь. Необходимо выбить ренегатов из Хутора и дождаться прихода дружеских отрядов.</text>
+	</string>
+	<string id="mil_dislodge_invaders_title1">
+		<text>Опустошение: захватить Деревню</text>
+	</string>
+	<string id="mil_dislodge_invaders_text1">
+		<text>Необходимо выкурить ренегатов из Деревни и позволить дружеским отрядам войти и закрепить свои позиции в Деревне.</text>
+	</string>
+	<string id="mil_dislodge_invaders_title2">
+		<text>Опустошение: захватить Западную Заставу</text>
+	</string>
+	<string id="mil_dislodge_invaders_text2">
+		<text>Нужно разбить ренегатов на Западной Заставе, затем, чтобы группировка Рассвет расширила своё влияние на Военных Складах.</text>
+	</string>
+	<string id="mil_dislodge_invaders_title3">
+		<text>Опустошение: захватить Посёлок</text>
+	</string>
+	<string id="mil_dislodge_invaders_text3">
+		<text>Разчихвостить ренегатов на Посёлке, чтобы дружеские отряды смогли войти и закрепить позиции.</text>
+	</string>
+	<string id="mil_dislodge_invaders_title4">
+		<text>Опустошение: захватить Стоянку</text>
+	</string>
+	<string id="mil_dislodge_invaders_text4">
+		<text>Раздраконить ренегатов у Стоянки, чтобы отряд дружеских войск смог занять эту позицию.</text>
+	</string>
+	<string id="mil_dislodge_invaders_title5">
+		<text>Опустошение: захватить Восточную Заставу</text>
+	</string>
+	<string id="mil_dislodge_invaders_text5">
+		<text>Взять под свой контроль Восточную Заставу и дождаться прибытия дружеских отрядов.</text>
+	</string>
+	<string id="mil_dislodge_invaders_title6">
+		<text>Опустошение: поговорить с Демиургом</text>
+	</string>
+	<string id="mil_dislodge_invaders_text6">
+		<text>Получить награду от Демиурга за помощь.</text>
+	</string>
+	<string id="mil_defence_b1_title0">
+		<text>Оскал зверя: отбить Хутор от мутантов</text>
+	</string>
+	<string id="mil_defence_b1_text0">
+		<text>Мутанты взбеленились. Они решились напасть на Хутор. С этим нужно что-то делать.</text>
+	</string>
+	<string id="mil_defence_b2_title0">
+		<text>Оскал зверя: защитить Деревню от мутантов</text>
+	</string>
+	<string id="mil_defence_b2_text0">
+		<text>Новое нападение мутантов. На сей раз атаке подверглась - Деревня. Разрешить ситуацию.</text>
+	</string>
+	<string id="mil_defence_b3_title0">
+		<text>Оскал зверя: обеспечить защиту Западной Заставы</text>
+	</string>
+	<string id="mil_defence_b3_text0">
+		<text>Снова их звериные наскоки. Оказать помощь дружеским отрядам.</text>
+	</string>
+	<string id="mil_defence_b4_title0">
+		<text>Оскал зверя: поддержать союзников у Посёлка</text>
+	</string>
+	<string id="mil_defence_b4_text0">
+		<text>Помочь союзникам отбиться от мутантов у Посёлка.</text>
+	</string>
+	<string id="mil_defence_b5_title0">
+		<text>Оскал зверя: защитить Стоянку</text>
+	</string>
+	<string id="mil_defence_b5_text0">
+		<text>Поджарить мутантов, которые сейчас позарились на Стоянку.</text>
+	</string>
+	<string id="mil_defence_b6_title0">
+		<text>Оскал зверя: выдержать оборону Восточной Заставы</text>
+	</string>
+	<string id="mil_defence_b6_text0">
+		<text>Под угрозой стратегическая точка. Важно удержать оборону и не дать мутантам прорваться.</text>
+	</string>
+	<string id="mil_defence_b7_title0">
+		<text>Оскал зверя: защитить базу группировки Рассвет</text>
+	</string>
+	<string id="mil_defence_b7_text0">
+		<text>Нужно защитить базу группировки "Рассвет" от волны мутантов, чего бы мне это не стоило. На кону всё.</text>
+	</string>
+	<string id="mil_smash_monster_hole_title0">
+		<text>Оскал зверя: зачистить логово монстров</text>
+	</string>
+	<string id="mil_smash_monster_hole_text0">
+		<text>Обнаружена нора, из которой выползают монстры. Нужно её уничтожить.</text>
+	</string>
+	<string id="mil_smash_monster_hole_title1">
+		<text>Оскал зверя: взять взрывчатку на базе</text>
+	</string>
+	<string id="mil_smash_monster_hole_text1">
+		<text>Нора по прежнему на месте. Мутанты смогут пробраться. Поэтому, необходимо срочно взять взрывчатку и заложить её в норе. Взрыв завалит выход на поверхность и мутанты будут навсегда погребены под землей.</text>
+	</string>
+	<string id="mil_smash_monster_hole_title2">
+		<text>Оскал зверя: установить взрывчатку в норе</text>
+	</string>
+	<string id="mil_smash_monster_hole_text2">
+		<text>Завалить выход из норы мощным взрывом.</text>
+	</string>
+	<string id="mil_smash_monster_hole_title3">
+		<text>Оскал зверя: активировать заряд</text>
+	</string>
+	<string id="mil_smash_monster_hole_text3">
+		<text>Детонировать взрывчатку при помощи пульта управления.</text>
+	</string>
+	<string id="mil_akulov_offer_title0">
+		<text>Воскрешение: сделать предложение Акулову</text>
+	</string>
+	<string id="mil_akulov_offer_text0">
+		<text>Акулов - лидер ночных сталкеров. Необходимо предложить ему взять под своё начало Военные Склады.</text>
+	</string>
+	<string id="mil_conduct_night_stalkers_title0">
+		<text>Колонизация: повстречаться с отрядом Акулова</text>
+	</string>
+	<string id="mil_conduct_night_stalkers_text0">
+		<text>Нужно встретиться с отрядом Акулова в южной части Военных Складов.</text>
+	</string>
+	<string id="mil_conduct_night_stalkers_title1">
+		<text>Колонизация: провести отряд Акулова на базу</text>
+	</string>
+	<string id="mil_conduct_night_stalkers_text1">
+		<text>Помочь отряду Акулова перебраться на новую базу. Сопроводить отряд.</text>
+	</string>
+	<string id="mil_conduct_night_stalkers_title2">
+		<text>Колонизация: поговорить с лидером отряда</text>
+	</string>
+	<string id="mil_conduct_night_stalkers_text2">
+		<text>Побеседовать с лидером отряда.</text>
+	</string>
+	<string id="mil_boarding_money_case_title0">
+		<text>Инкассаторы: отобрать у Ренегатов ящик с деньгами</text>
+	</string>
+	<string id="mil_boarding_money_case_text0">
+		<text>По данным разведки, в Темной Долине сейчас находится отряд "инкассаторов" группировки Ренегаты. Они переносят ящик с большими деньгами. Нужно отобрать у них этот ящик.</text>
+	</string>
+	<string id="mil_boarding_money_case_title1">
+		<text>Инкассаторы: отнести ящик Акулову</text>
+	</string>
+	<string id="mil_boarding_money_case_text1">
+		<text>Нужно отдать ящик.</text>
+	</string>
+	<string id="mil_meet_with_morten_title0">
+		<text>Визит на новую базу: поговорить с Мортеном</text>
+	</string>
+	<string id="mil_meet_with_morten_text0">
+		<text>Акулов велел пообщаться с Мортеном.</text>
+	</string>
+	<string id="mil_bolted_influence_title0">
+		<text>Тотальный контроль: захватить Хутор</text>
+	</string>
+	<string id="mil_bolted_influence_text0">
+		<text>Мортен хочет взять под себя всю территорию Военных Складов. Нужно помочь ночным сталкерам занять Хутор.</text>
+	</string>
+	<string id="mil_bolted_influence_title1">
+		<text>Тотальный контроль: захватить Деревню</text>
+	</string>
+	<string id="mil_bolted_influence_text1">
+		<text>Помочь ночным сталкерам оприходовать Деревню.</text>
+	</string>
+	<string id="mil_bolted_influence_title2">
+		<text>Тотальный контроль: захватить Западную Заставу</text>
+	</string>
+	<string id="mil_bolted_influence_text2">
+		<text>Помочь ночным сталкерам занять Западную Заставу.</text>
+	</string>
+	<string id="mil_bolted_influence_title3">
+		<text>Тотальный контроль: захватить Посёлок</text>
+	</string>
+	<string id="mil_bolted_influence_text3">
+		<text>Помочь ночным сталкерам занять Посёлок.</text>
+	</string>
+	<string id="mil_bolted_influence_title4">
+		<text>Тотальный контроль: захватить Стоянку</text>
+	</string>
+	<string id="mil_bolted_influence_text4">
+		<text>Помочь ночным сталкерам занять Стоянку.</text>
+	</string>
+	<string id="mil_bolted_influence_title5">
+		<text>Тотальный контроль: захватить Восточную Заставу</text>
+	</string>
+	<string id="mil_bolted_influence_text5">
+		<text>Помочь ночным сталкерам захватить Восточную Заставу.</text>
+	</string>
+	<string id="mil_bolted_influence_title6">
+		<text>Тотальный контроль: получить награду</text>
+	</string>
+	<string id="mil_bolted_influence_text6">
+		<text>Поговорить с Мортеном.</text>
+	</string>
+	<string id="agr_research_heli_1_crash_title0">
+		<text>«Скат-6»: исследовать место падения</text>
+	</string>
+	<string id="agr_research_heli_1_crash_text0">
+		<text>Исследовать место падения вертолёта «Скат-6».</text>
+	</string>
+	<string id="agr_research_heli_2_crash_title0">
+		<text>«Скат-7»: исследовать место падения</text>
+	</string>
+	<string id="agr_research_heli_2_crash_text0">
+		<text>Исследовать место падения вертолёта «Скат-7».</text>
+	</string>
+	<string id="agr_find_underground_way_title0">
+		<text>Новая тропа: отправиться на Затон</text>
+	</string>
+	<string id="agr_find_underground_way_text0">
+		<text>Прийти на Затон, затем чтобы найти путь на Агропром.</text>
+	</string>
+	<string id="agr_find_underground_way_title1">
+		<text>Новая тропа: перейти в Агропром</text>
+	</string>
+	<string id="agr_find_underground_way_text1">
+		<text>Путь на Агропром найден. Необходимо им воспользоваться.</text>
+	</string>
+	<string id="agr_find_underground_way_title2">
+		<text>Новая тропа: попасть в подземелья Агропрома</text>
+	</string>
+	<string id="agr_find_underground_way_text2">
+		<text>Найти способ пройти в подземелья Агропрома.</text>
+	</string>
+	<string id="agr_deliver_secret_docks_title0">
+		<text>Передача документов: встретиться со связным</text>
+	</string>
+	<string id="agr_deliver_secret_docks_text0">
+		<text>Вернуть документы связному СБУ.</text>
+	</string>
+	<string id="agru_search_door_key_title0">
+		<text>Дверь: найти способ открыть дверь</text>
+	</string>
+	<string id="agru_search_door_key_text0">
+		<text>Чтобы открыть дверь - необходим ключ.</text>
+	</string>
+	<string id="agru_search_door_key_title1">
+		<text>Дверь: использовать ключ</text>
+	</string>
+	<string id="agru_search_door_key_text1">
+		<text>Отпереть дверь найденным ключем.</text>
+	</string>
+	<string id="agru_underground_cave_title0">
+		<text>Поиск документов: найти секретные документы</text>
+	</string>
+	<string id="agru_underground_cave_text0">
+		<text>Обнаружить два секретных документа.</text>
+	</string>
+	<string id="agru_underground_cave_title1">
+		<text>Поиск документов: найти секретный документ</text>
+	</string>
+	<string id="agru_underground_cave_text1">
+		<text>Отыскать последний секретный документ.</text>
+	</string>
+	<string id="agru_underground_cave_title2">
+		<text>Поиск документов: покинуть подземелье</text>
+	</string>
+	<string id="agru_underground_cave_text2">
+		<text>Все документы найдены. Необходимо выйти на поверхность.</text>
+	</string>
+	<string id="esc_whimsical_artefact_title0">
+		<text>Причудливый артефакт: найти артефакт</text>
+	</string>
+	<string id="esc_whimsical_artefact_text0">
+		<text>Торговец попросил меня отыскать на Кордоне артефакт с интересным названием "шапокляк". Этот артефакт нужно найти.</text>
+	</string>
+	<string id="esc_whimsical_artefact_title1">
+		<text>Причудливый артефакт: принести артефакт заказчику</text>
+	</string>
+	<string id="esc_whimsical_artefact_text1">
+		<text>Артефакт найден. Нужно передать его Кривоухову.</text>
+	</string>
+	<string id="esc_blockpost_protection_title0">
+		<text>Оборона блокпоста: обеспечить защиту</text>
+	</string>
+	<string id="esc_blockpost_protection_text0">
+		<text>Помочь сталкерам отбиться от мутантов.</text>
+	</string>
+	<string id="esc_blockpost_protection_title1">
+		<text>Оборона блокпоста: получить награду</text>
+	</string>
+	<string id="esc_blockpost_protection_text1">
+		<text>Забрать награду из ящика.</text>
+	</string>
+	<string id="esc_introduction_kordon_title0">
+		<text>Кордон: найти командующего блокпостом</text>
+	</string>
+	<string id="esc_introduction_kordon_text0">
+		<text>В СБУ было поручено - найти Медведева по прибытию. Он должен быть где-то на блокпосте. Цель моего визита на Кордон - узнать, что случилось с пропавшими недавно военными, выполнявшими в зоне особое задание.</text>
+	</string>
+	<string id="esc_renew_spares_title0">
+		<text>Подготовка: пополнить запасы аммуниции</text>
+	</string>
+	<string id="esc_renew_spares_text0">
+		<text>Командующий блокпостом Медведев позволил мне воспользоваться сталкерскими запасами. Нужно запастись патронами.</text>
+	</string>
+	<string id="esc_renew_spares_title1">
+		<text>Подготовка: поговорить с Медведевым</text>
+	</string>
+	<string id="esc_renew_spares_text1">
+		<text>Нужно обсудить с командующим блокпоста детали предстоящей операции.</text>
+	</string>
+	<string id="esc_village_annex_title0">
+		<text>Решительные меры: поддержать сталкеров</text>
+	</string>
+	<string id="esc_village_annex_text0">
+		<text>Оказать содействие сталкерам в захвате деревни.</text>
+	</string>
+	<string id="esc_village_annex_title1">
+		<text>Решительные меры: догнать отступающих</text>
+	</string>
+	<string id="esc_village_annex_text1">
+		<text>Деревня захвачена. Однако часть бандитов решила скрыться поспешным ретирадом. Они не должны уйти.</text>
+	</string>
+	<string id="esc_village_annex_title2">
+		<text>Решительные меры: найти тело Тамерлана</text>
+	</string>
+	<string id="esc_village_annex_text2">
+		<text>Многие разведчики вольных сталкеров были казнены бандитами в этой деревне. Их тела должны были остаться. Среди погибших был и Тамерлан - близкий товарищ Медведева. Необходимо разыскать его останки.</text>
+	</string>
+	<string id="esc_village_annex_title3">
+		<text>Решительные меры: найти взрывчатку</text>
+	</string>
+	<string id="esc_village_annex_text3">
+		<text>Есть информация, что в одном укромном месте на территории деревни - лежит взрывчатка С4. Без неё дверь ведущая в подвал никак не уступит.</text>
+	</string>
+	<string id="esc_village_annex_title4">
+		<text>Решительные меры: заложить взрывчатку</text>
+	</string>
+	<string id="esc_village_annex_text4">
+		<text>Установить заряд С4 около двери.</text>
+	</string>
+	<string id="esc_village_annex_title5">
+		<text>Решительные меры: детонировать заряд</text>
+	</string>
+	<string id="esc_village_annex_text5">
+		<text>Воспользоваться пультом управления взрывчаткой.</text>
+	</string>
+	<string id="esc_village_annex_title6">
+		<text>Решительные меры: исследовать подвал</text>
+	</string>
+	<string id="esc_village_annex_text6">
+		<text>Нужно обыскать подвал.</text>
+	</string>
+	<string id="esc_village_annex_title7">
+		<text>Решительные меры: передать флешку Медведеву</text>
+	</string>
+	<string id="esc_village_annex_text7">
+		<text>В подвале был найден труп Тамерлана. При нём была его флешка. Нужно отнести её Медведеву.</text>
+	</string>
+	<string id="esc_village_annex_title8">
+		<text>Решительные меры: защищить деревню от мутантов</text>
+	</string>
+	<string id="esc_village_annex_text8">
+		<text>Взрыв двери в подвале привлёк мутантов. Нужно отразить их нашествие.</text>
+	</string>
+	<string id="esc_village_annex_title9">
+		<text>Решительные меры: доложить Медведеву об успешном захвате Деревни</text>
+	</string>
+	<string id="esc_village_annex_text9">
+		<text>Деревня захвачена. Флешка Тамерлана найдена. Можно возвращаться к Медведеву.</text>
+	</string>
+	<string id="esc_lull_before_borax_title0">
+		<text>Охота на мутантов: устранить стаю слепых псов</text>
+	</string>
+	<string id="esc_lull_before_borax_text0">
+		<text>Разобраться со слепыми псами, нападающими на сталкеров.</text>
+	</string>
+	<string id="esc_lull_before_borax_title1">
+		<text>Охота на мутантов: уничтожить стаю пседособак</text>
+	</string>
+	<string id="esc_lull_before_borax_text1">
+		<text>Разобраться со стаей псевдособак.</text>
+	</string>
+	<string id="esc_lull_before_borax_title2">
+		<text>Охота на мутантов: ликвидировать стадо плотей</text>
+	</string>
+	<string id="esc_lull_before_borax_text2">
+		<text>Порешить стадо плотей.</text>
+	</string>
+	<string id="esc_lull_before_borax_title3">
+		<text>Охота на мутантов: ликвидировать стадо кабанов</text>
+	</string>
+	<string id="esc_lull_before_borax_text3">
+		<text>Расправиться с назойливыми кабанами.</text>
+	</string>
+	<string id="esc_lull_before_borax_title4">
+		<text>Охота на мутантов: получить награду</text>
+	</string>
+	<string id="esc_lull_before_borax_text4">
+		<text>Вернуться к Медведеву за наградой.</text>
+	</string>
+	<string id="esc_atp_annex_title0">
+		<text>Блокада: дождаться ночи</text>
+	</string>
+	<string id="esc_atp_annex_text0">
+		<text>Начинать операцию по осаде бандитов на АТП будет наиболее уместно только ночью. Нужно дождаться ночи.</text>
+	</string>
+	<string id="esc_atp_annex_title1">
+		<text>Блокада: занять свою позицию</text>
+	</string>
+	<string id="esc_atp_annex_text1">
+		<text>Прийти в условленное место встречи.</text>
+	</string>
+	<string id="esc_atp_annex_title2">
+		<text>Блокада: начать операцию</text>
+	</string>
+	<string id="esc_atp_annex_text2">
+		<text>Инициировать начало штурма.</text>
+	</string>
+	<string id="esc_atp_annex_title3">
+		<text>Блокада: занять АТП</text>
+	</string>
+	<string id="esc_atp_annex_text3">
+		<text>Уничтожить бандитов на АТП.</text>
+	</string>
+	<string id="esc_atp_annex_title4">
+		<text>Блокада: найти бандитский сейф</text>
+	</string>
+	<string id="esc_atp_annex_text4">
+		<text>На АТП должен быть сейф. Его небходимо отыскать.</text>
+	</string>
+	<string id="esc_atp_annex_title5">
+		<text>Блокада: найти способ открыть сейф</text>
+	</string>
+	<string id="esc_atp_annex_text5">
+		<text>Чтобы открыть сейф - понадобится ключ.</text>
+	</string>
+	<string id="esc_atp_annex_title6">
+		<text>Блокада: открыть сейф</text>
+	</string>
+	<string id="esc_atp_annex_text6">
+		<text>Воспользоваться ключом и обследовать сейф.</text>
+	</string>
+	<string id="esc_atp_annex_title7">
+		<text>Блокада: отнести флешку Медведеву</text>
+	</string>
+	<string id="esc_atp_annex_text7">
+		<text>Передать Медведеву флешку с АТП, найденную в бандитском сейфе.</text>
+	</string>
+	<string id="esc_spy_meeting_title0">
+		<text>Встреча с разведчиком: найти Белоусова</text>
+	</string>
+	<string id="esc_spy_meeting_text0">
+		<text>Прибыть на место встречи.</text>
+	</string>
+	<string id="esc_spy_meeting_title1">
+		<text>Встреча с разведчиком: поговорить с Белоусовым</text>
+	</string>
+	<string id="esc_spy_meeting_text1">
+		<text>Расспросить Белоусова касательно военных.</text>
+	</string>
+	<string id="esc_uncoupling_title0">
+		<text>Развязка: поговорить с Ермаком</text>
+	</string>
+	<string id="esc_uncoupling_text0">
+		<text>Отыскать Ермака на южном блокпосту. Белоусов сообщил, что этот сталкер знает о военных на Кордоне больше кого бы то ни было - он ремонтировал им оружие.</text>
+	</string>
+	<string id="esc_uncoupling_title1">
+		<text>Развязка: проверить места привалов</text>
+	</string>
+	<string id="esc_uncoupling_text1">
+		<text>Ермак передал мне координаты трёх мест остановки военных на Кордоне. Военный отряд, направляясь к Болотам, должен был по пути туда устраивать привалы на этих местах.</text>
+	</string>
+	<string id="esc_uncoupling_title2">
+		<text>Развязка: отправиться на Болота</text>
+	</string>
+	<string id="esc_uncoupling_text2">
+		<text>Исследовав точки привалов - мне удалось обнаружить некоторые данные. Из них следует, что отряд военных был атакован бандитами. Выжившие армейцы бежали на Болота. Нужно проследовать за ними.</text>
+	</string>
+	<string id="esc_army_halt_1_title0">
+		<text>Военный привал: исследовать отмеченную точку</text>
+	</string>
+	<string id="esc_army_halt_1_text0">
+		<text>Проверить отмеченную точку.</text>
+	</string>
+	<string id="esc_army_halt_2_title0">
+		<text>Военный привал: исследовать отмеченную точку</text>
+	</string>
+	<string id="esc_army_halt_2_text0">
+		<text>Проверить отмеченную точку.</text>
+	</string>
+	<string id="esc_army_halt_3_title0">
+		<text>Военный привал: исследовать отмеченную точку</text>
+	</string>
+	<string id="esc_army_halt_3_text0">
+		<text>Проверить отмеченную точку.</text>
+	</string>
+	<string id="mar_find_army_squad_title0">
+		<text>Болота: найти военных</text>
+	</string>
+	<string id="mar_find_army_squad_text0">
+		<text>Военные должны быть где-то на Болотах. Нужно их найти.</text>
+	</string>
+	<string id="mar_army_cargo_title0">
+		<text>Армейская поклажа: найти военный груз</text>
+	</string>
+	<string id="mar_army_cargo_text0">
+		<text>Раненный армеец сообщил мне, что на их отряд напали бандиты. Груз они умыкнули. Нужно найти бандитов, которые к этому причастны.</text>
+	</string>
+	<string id="mar_army_cargo_title1">
+		<text>Армейская поклажа: проникнуть на базу к бандитам</text>
+	</string>
+	<string id="mar_army_cargo_text1">
+		<text>Минное поле, препятствующее проходу на базу к бандитам - теперь не помеха. У меня есть миноскатель. С его помощью я вольготно проберусь на базу к бандитам.</text>
+	</string>
+	<string id="mar_army_cargo_title1_2">
+		<text>Армейская поклажа: найти военый груз</text>
+	</string>
+	<string id="mar_army_cargo_text1_2">
+		<text>Искать военный груз, или информацию о нём, на территории механизаторского двора.</text>
+	</string>
+	<string id="mar_army_cargo_title2">
+		<text>Армейская поклажа: поговорить с Багратионом</text>
+	</string>
+	<string id="mar_army_cargo_text2">
+		<text>На базе бандитов военного груза не обнаружилось. Скорее всего бандиты его спрятали. Считаю необходимым обратиться за помощью к сталкерам.</text>
+	</string>
+	<string id="mar_army_cargo_title3">
+		<text>Армейская поклажа: найти механика на насосной станции</text>
+	</string>
+	<string id="mar_army_cargo_text3">
+		<text>Багратион посоветовал обратиться за помощью к механику Макаренко. Он, вероятно, сможет собрать для меня георадар.</text>
+	</string>
+	<string id="mar_army_cargo_title4">
+		<text>Армейская поклажа: ждать сообщения от механика</text>
+	</string>
+	<string id="mar_army_cargo_text4">
+		<text>Макаренко взялся мне помочь. Он соберет георадар. Но ему на это потребуется некоторое время.</text>
+	</string>
+	<string id="mar_army_cargo_title5">
+		<text>Армейская поклажа: забрать георадар</text>
+	</string>
+	<string id="mar_army_cargo_text5">
+		<text>Поступило сообщение от механика. Георадар готов.</text>
+	</string>
+	<string id="mar_army_cargo_title6">
+		<text>Армейская поклажа: найти военный груз</text>
+	</string>
+	<string id="mar_army_cargo_text6">
+		<text>Использовать георадар для обнаружения военного груза.</text>
+	</string>
+	<string id="mar_army_cargo_title7">
+		<text>Армейская поклажа: передать поклажу связному</text>
+	</string>
+	<string id="mar_army_cargo_text7">
+		<text>Поклажа военных должна быть передана в СБУ. Носиться с ней по зоне - бессмысленно.</text>
+	</string>
+	<string id="mar_army_cargo_title8">
+		<text>Армейская поклажа: следовать на Затон</text>
+	</string>
+	<string id="mar_army_cargo_text8">
+		<text>Отправиться на Затон.</text>
+	</string>
+	<string id="mar_capture_church_title0">
+		<text>Поддержка союзников: помочь сталкерам захватить церковь</text>
+	</string>
+	<string id="mar_capture_church_text0">
+		<text>Сталкеры просят поддержки. Они намереваются занять церковь.</text>
+	</string>
+	<string id="mar_capture_church_title1">
+		<text>Поддержка союзников: вернуться за наградой</text>
+	</string>
+	<string id="mar_capture_church_text1">
+		<text>Поговорить с командиром сталкеров.</text>
+	</string>
+	<string id="mar_mine_detector_title0">
+		<text>Миноискатель: поговорить с Ермаком</text>
+	</string>
+	<string id="mar_mine_detector_text0">
+		<text>Поговорить с Ермаком насчет миноискателя. Он должен помочь.</text>
+	</string>
+	<string id="mar_mine_detector_title1">
+		<text>Миноискатель: забрать датчик для миноискателя</text>
+	</string>
+	<string id="mar_mine_detector_text1">
+		<text>Сходить на Болота и взять датчик для Ермака.</text>
+	</string>
+	<string id="mar_mine_detector_title2">
+		<text>Миноискатель: отнести датчик Ермаку</text>
+	</string>
+	<string id="mar_mine_detector_text2">
+		<text>Передать датчик Ермаку, чтобы он собрал миноискатель.</text>
+	</string>
+	<string id="mar_mine_detector_title3">
+		<text>Миноискатель: ожидать выполнения заказа</text>
+	</string>
+	<string id="mar_mine_detector_text3">
+		<text>Необходимо подождать, пока Ермак соберет миноискатель.</text>
+	</string>
+	<string id="mar_mine_detector_title4">
+		<text>Миноискатель: получить миноискатель</text>
+	</string>
+	<string id="mar_mine_detector_text4">
+		<text>Миноискатель уже должен быть готов.</text>
+	</string>
+	<string id="red_psyho_title0">
+		<text>Неизвестное дело: поговорить с учёным</text>
+	</string>
+	<string id="red_psyho_text0">
+		<text>Зверобой сказал, что со мной желает встретиться ученый муж. Есть важный разговор. Детали на месте встречи.</text>
+	</string>
+	<string id="red_psyho_title1">
+		<text>Психо: выйти в Рыжий Лес</text>
+	</string>
+	<string id="red_psyho_text1">
+		<text>Ученый сообщил мне, что недавно сталкеры открыли новую тропу. Она ведет в Рыжий Лес. Сразу после того, как это стало известно, учёные отправили туда две научно-исследовательские группы под прикрытием наёмной охраны, с целью проведения какого-то эксперимента, возможного лишь на той местности. Из экспедиции никто так и не вернулся, и связь с ними оборвалась. Мне предстоит отправиться туда и найти исследовательскую группу.</text>
+	</string>
+	<string id="red_psyho_title2">
+		<text>Психо: проверить место на котором оборвалась связь с экспедицией</text>
+	</string>
+	<string id="red_psyho_text2">
+		<text>Проследовать на место, из которого последний раз был отправлен сигнал о месте дислокации.</text>
+	</string>
+	<string id="red_psyho_title3">
+		<text>Психо: отправиться на место проведения испытаний</text>
+	</string>
+	<string id="red_psyho_text3">
+		<text>В трупе ученого был найден КПК с информацией о том, что вторая группа экспедиции отправилась к аномалии Ведьмин Круг для проведения испытаний нового препарата. Необходимо проверить это место.</text>
+	</string>
+	<string id="red_psyho_title4">
+		<text>Психо: покинуть Рыжий Лес</text>
+	</string>
+	<string id="red_psyho_text4">
+		<text>Пройти к месту испытания препарата никак не получиться - мешает сильнейшее пси-излучение. Нужно вернуться на Юпитер.</text>
+	</string>
+	<string id="red_psyho_title5">
+		<text>Психо: поговорить с ученым</text>
+	</string>
+	<string id="red_psyho_text5">
+		<text>Нужно рассказать ученому об увиденном.</text>
+	</string>
+	<string id="red_psyho_title6">
+		<text>Психо: подготовиться к походу в Рыжий Лес</text>
+	</string>
+	<string id="red_psyho_text6">
+		<text>Нужно запастись препаратом "Психоделин" в количестве десяти штук.</text>
+	</string>
+	<string id="red_psyho_title7">
+		<text>Психо: проследовать в Рыжий Лес</text>
+	</string>
+	<string id="red_psyho_text7">
+		<text>Отправиться в Рыжий Лес.</text>
+	</string>
+	<string id="red_psyho_title8">
+		<text>Психо: обследовать место вероятной стоянки учёных</text>
+	</string>
+	<string id="red_psyho_text8">
+		<text>Проверить место предположительной остановки исследовательской группы.</text>
+	</string>
+	<string id="red_psyho_title9">
+		<text>Психо: обследовать место вероятной стоянки учёных</text>
+	</string>
+	<string id="red_psyho_text9">
+		<text>Проверить место предположительной остановки исследовательской группы.</text>
+	</string>
+	<string id="red_psyho_title10">
+		<text>Психо: обследовать место вероятной стоянки учёных</text>
+	</string>
+	<string id="red_psyho_text10">
+		<text>Проверить место предположительной остановки исследовательской группы.</text>
+	</string>
+	<string id="red_psyho_title11">
+		<text>Психо: уничтожить контроллера</text>
+	</string>
+	<string id="red_psyho_text11">
+		<text>Выжить в схватке с контроллером.</text>
+	</string>
+	<string id="red_psyho_title12">
+		<text>Психо: исследовать логово контроллера</text>
+	</string>
+	<string id="red_psyho_text12">
+		<text>Осмотреть логово контроллера.</text>
+	</string>
+	<string id="red_psyho_title13">
+		<text>Психо: поговорить с ученым</text>
+	</string>
+	<string id="red_psyho_text13">
+		<text>Передать ученым сведенья об экспедиции и два испытанных препарата.</text>
+	</string>

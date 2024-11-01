@@ -1,0 +1,22 @@
+[logic]
+active = move@guard
+on_death = death
+
+[death]
+on_info = %+zat_quest_the_spez_ecolog_2_1_dead%
+
+[move@guard]
+scheme_type            = patrol
+patrol_count_path      = 2
+patrol_path_1          = 1840389
+patrol_path_1_state    = patrol
+patrol_path_2          = 1747320
+meet                   = no_meet
+
+
+[no_meet]
+abuse           = true
+use             = false
+allow_break     = true
+meet_on_talking = false
+

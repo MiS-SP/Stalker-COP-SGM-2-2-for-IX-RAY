@@ -1,0 +1,211 @@
+[monster_points_zaton]
+zat_monster_point1
+zat_monster_point2
+zat_monster_point3
+zat_monster_point4
+zat_monster_point5
+zat_monster_point6
+zat_monster_point7
+zat_monster_point8
+
+[monster_points_jupiter]
+jup_monster_point1
+jup_monster_point2
+jup_monster_point3
+jup_monster_point4
+jup_monster_point5
+jup_monster_point6
+
+[monster_points_pripyat]
+pri_monster_point1
+pri_monster_point2
+pri_monster_point3
+pri_monster_point4
+
+[monster_points]:monster_points_zaton, monster_points_jupiter, monster_points_pripyat
+;---------------------------------------------------------------------------------------;
+;                                    Затон                                              ;
+;---------------------------------------------------------------------------------------;
+[zat_monster_point1]
+  activate_place = -332.185,14.932,493.854,287059,226
+  activate_time = 21,30
+  monster_layers = 3
+  monster_sects_1 = m_controller_normal
+  monster_sects_2 = burer_normal
+  monster_sects_3 = pseudodog_normal,5
+  reload_info = zat_monster_point1_spawned
+  cond = {+actor_come_to_zaton} true, false
+
+[zat_monster_point2]
+  activate_place = -453.339,4.629,287.915,108384,198
+  activate_time = 23,12
+  monster_layers = 3
+  monster_sects_1 = tushkano_normal,10
+  monster_sects_2 = boar_strong,5
+  monster_sects_3 = pseudodog_normal,4
+  reload_info = zat_monster_point2_spawned
+  cond = {+actor_come_to_zaton} true, false
+
+[zat_monster_point3]
+  activate_place = -368.450,40.035,-343.366,225833,29
+  activate_time = 3,15
+  monster_layers = 3
+  monster_sects_1 = snork_normal,4
+  monster_sects_2 = snork_strong,3
+  monster_sects_3 = dog_strong,8
+  reload_info = zat_monster_point3_spawned
+  cond = {+actor_come_to_zaton} true, false
+
+[zat_monster_point4]
+  activate_place = -60.287,18.632,-258.307,823478,86
+  activate_time = 4,45
+  monster_layers = 3
+  monster_sects_1 = tushkano_normal,3
+  monster_sects_2 = m_controller_normal,tushkano_normal,4
+  monster_sects_3 = snork_strong,4
+  reload_info = zat_monster_point4_spawned
+  cond = {+actor_come_to_zaton} true, false
+
+[zat_monster_point5]
+  activate_place = -497.609,11.239,-12.634,57380,252
+  activate_time = 5,30
+  monster_layers = 3
+  monster_sects_1 = dog_strong,4,pseudodog_normal,3
+  monster_sects_2 = dog_strong,2,pseudodog_normal,5
+  monster_sects_3 = gigant_normal
+  reload_info = zat_monster_point5_spawned
+  cond = {+actor_come_to_zaton} true, false
+
+[zat_monster_point6]
+  activate_place = 176.447,12.969,-277.697,1267580,23
+  activate_time = 2,11
+  monster_layers = 3
+  monster_sects_1 = tushkano_normal,10
+  monster_sects_2 = flesh_strong,6
+  monster_sects_3 = m_controller_normal
+  reload_info = zat_monster_point6_spawned
+  cond = {+actor_come_to_zaton} true, false
+
+[zat_monster_point7]
+  activate_place = -20.868,-7.804,-56.470,903375,172
+  activate_time = 3,38
+  monster_layers = 3
+  monster_sects_1 = snork_normal,5
+  monster_sects_2 = pseudodog_normal,5
+  monster_sects_3 = snork_normal,4
+  reload_info = zat_monster_point7_spawned
+  cond = {+actor_come_to_zaton} true, false
+
+[zat_monster_point8]
+  activate_place = -171.139,7.799,138.547,599575,11
+  activate_time = 1,25
+  monster_layers = 3
+  monster_sects_1 = m_controller_normal,tushkano_normal,3
+  monster_sects_2 = gigant_normal
+  monster_sects_3 = boar_strong,4
+  reload_info = zat_monster_point8_spawned
+  cond = {+zat_b106_chimera_dead} true, false
+;---------------------------------------------------------------------------------------;
+;                                    Юпитер                                             ;
+;---------------------------------------------------------------------------------------;
+[jup_monster_point1]
+  activate_place = -162.526,-3.711,294.957,443869,416
+  activate_time = 23,15
+  monster_layers = 3
+  monster_sects_1 = snork_weak,3,chimera_normal
+  monster_sects_2 = flesh_strong,2,gigant_normal
+  monster_sects_3 = pseudodog_normal,3,dog_weak,5
+  reload_info = jup_monster_point1_spawned
+  cond = {+actor_come_to_jupiter} true, false
+
+[jup_monster_point2]
+  activate_place = 272.979,3.055,328.126,1168406,517
+  activate_time = 0,25
+  monster_layers = 3
+  monster_sects_1 = tushkano_normal,3
+  monster_sects_2 = boar_strong,3,flesh_strong,2
+  monster_sects_3 = m_controller_normal
+  reload_info = jup_monster_point2_spawned
+  cond = {+actor_come_to_jupiter} true, false
+
+[jup_monster_point3]
+  activate_place = 443.442,26.526,-334.587,1418819,552
+  activate_time = 1,52
+  monster_layers = 3
+  monster_sects_1 = snork_strong,5
+  monster_sects_2 = boar_strong,5,flesh_strong,3
+  monster_sects_3 = dog_weak,3,pseudodog_normal,4
+  reload_info = jup_monster_point3_spawned
+  cond = {+actor_come_to_jupiter} true, false
+
+[jup_monster_point4]
+  activate_place = -263.695,-1.711,-208.814,268513,658
+  activate_time = 2,16
+  monster_layers = 3
+  monster_sects_1 = gigant_normal
+  monster_sects_2 = chimera_normal
+  monster_sects_3 = burer_normal
+  reload_info = jup_monster_point4_spawned
+  cond = {+actor_come_to_jupiter} true, false
+
+[jup_monster_point5]
+  activate_place = -26.161,27.579,-223.984,673971,492
+  activate_time = 3,41
+  monster_layers = 3
+  monster_sects_1 = tushkano_normal,3
+  monster_sects_2 = dog_strong,5
+  monster_sects_3 = snork_strong,4
+  reload_info = jup_monster_point5_spawned
+  cond = {+actor_come_to_jupiter} true, false
+
+[jup_monster_point6]
+  activate_place = 139.544,1.346,212.657,954310,347
+  activate_time = 4,58
+  monster_layers = 3
+  monster_sects_1 = m_controller_normal
+  monster_sects_2 = dog_strong,8
+  monster_sects_3 = flesh_strong,6
+  reload_info = jup_monster_point6_spawned
+  cond = {+actor_come_to_jupiter} true, false
+;---------------------------------------------------------------------------------------;
+;                                    Припять                                            ;
+;---------------------------------------------------------------------------------------;
+[pri_monster_point1]
+  activate_place = -15.043,-0.467,-155.787,177573,776
+  activate_time = 22,36
+  monster_layers = 3
+  monster_sects_1 = m_controller_normal,tushkano_normal,8
+  monster_sects_2 = gigant_normal
+  monster_sects_3 = chimera_normal
+  reload_info = pri_monster_point1_spawned
+  cond = {+actor_come_to_pripyat} true, false
+
+[pri_monster_point2]
+  activate_place = -2.330,-0.436,-316.738,195080,781
+  activate_time = 23,45
+  monster_layers = 3
+  monster_sects_1 = burer_normal,2
+  monster_sects_2 = gigant_normal
+  monster_sects_3 = pseudodog_normal,5,dog_strong,6
+  reload_info = pri_monster_point2_spawned
+  cond = {+actor_come_to_pripyat} true, false
+
+[pri_monster_point3]
+  activate_place = 151.974,0.431,257.731,381599,707
+  activate_time = 0,18
+  monster_layers = 3
+  monster_sects_1 = chimera_normal,tushkano_normal,5
+  monster_sects_2 = burer_normal,tushkano_normal,6
+  monster_sects_3 = gigant_normal
+  reload_info = pri_monster_point3_spawned
+  cond = {+actor_come_to_pripyat} true, false
+
+[pri_monster_point4]
+  activate_place = 123.831,-0.340,99.188,350360,764
+  activate_time = 3,23
+  monster_layers = 3
+  monster_sects_1 = boar_strong,5,flesh_strong,3
+  monster_sects_2 = m_controller_normal
+  monster_sects_3 = gigant_normal
+  reload_info = pri_monster_point4_spawned
+  cond = {+actor_come_to_pripyat} true, false

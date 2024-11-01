@@ -1,0 +1,16 @@
+[smart_terrain]
+squad_id = 14
+max_population = 3
+respawn_params = respawn@pas_sim_7
+
+[respawn@pas_sim_7]
+spawn_monsters
+spawn_stalkers
+
+[spawn_monsters]
+spawn_squads = simulation_bloodsucker
+spawn_num = {+pri_a17_military_base_commander_start_talk} 2, 0
+
+[spawn_stalkers]
+spawn_squads = pas_territory_patrol_2_squad
+spawn_num = {+pri_a17_military_base_commander_start_talk} 1, 0

@@ -1,0 +1,23 @@
+[logic]
+active = move@started
+on_death = death
+
+[death]
+on_info = %+jup_respawn4_random4_death =jup_respawn4_randoms_counter%
+
+[move@started]
+scheme_type         = patrol
+patrol_count_path   = 4
+patrol_path_1       = 184
+patrol_path_2       = 49
+patrol_path_3       = 21
+patrol_path_4       = 54
+patrol_countdown    = false
+patrol_no_reaction  = false
+meet                = meet
+
+[meet]
+abuse           = true
+use             = {!actor_enemy} true, false
+allow_break     = true
+meet_on_talking = false

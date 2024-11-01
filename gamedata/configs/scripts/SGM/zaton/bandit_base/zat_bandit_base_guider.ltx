@@ -1,0 +1,35 @@
+[logic]
+active = move@guider
+
+[move@guider]
+surge_hide_point       = 1668379
+move_dest_number       = 1712008
+move_look_vertex       = 1708954
+move_state_when_center = sit_ass
+move_state_when_move   = walk
+move_combat_disable    = true
+meet                   = meet
+combat_ignore_cond     = true
+combat_ignore_keep_when_attacked = true
+on_info                = {+zat_bring_sharpshooter_bino_have} move@guider_offline
+on_info2               = {=zat_b5_stalker_task_hindrance_precond} nil %=kill_npc%
+
+[move@guider_offline]
+surge_hide_point       = 1668379
+move_dest_number       = 1712008
+move_look_vertex       = 1708954
+move_state_when_center = guard
+move_state_when_move   = walk
+move_combat_disable    = true
+meet                   = meet
+combat_ignore_cond     = true
+combat_ignore_keep_when_attacked = true
+on_info                = {=dist_to_actor_ge(90)} nil %=release_npc%
+on_info2               = {=zat_b5_stalker_task_hindrance_precond} nil %=kill_npc%
+
+[meet]
+abuse           = false
+use             = {!actor_enemy} true, false
+allow_break     = false
+meet_on_talking = false
+trade_enable    = false

@@ -1,0 +1,88 @@
+[logic]
+active = move@waiting_actor
+on_death = death
+on_hit = hit
+
+[hit]
+on_info = {=present_hit_by_actor} %+zat_assault_bandit_base_fail%
+
+[death]
+on_info = %+zat_stalker_elbrus_death%
+
+[move@waiting_actor]
+move_dest_number       = 1354156
+move_state_when_center = hello_wpn
+move_state_when_move   = walk
+move_look_subject      = actor
+move_combat_disable    = true
+meet                   = meet
+combat_ignore_cond     = true
+combat_ignore_keep_when_attacked = true
+invulnerable           = {!actor_enemy} true, false
+on_info                = {=zat_b5_stalker_task_hindrance_precond} nil %=release_npc%, {+zat_assault_bandit_base_fail} nil,{+zat_assault_bandit_base_bandits_lost} move@after_victory
+on_info2               = {+zat_assault_bandit_base_repeat -zat_assault_bandit_base_bandits_lost} move@assault_base
+on_info3               = {+zat_assault_bandit_base_elbrus -zat_assault_bandit_base_repeat} move@pursue_actor %=play_s3d_sound(characters_voice\human_01\stalker\alife\attack\attack_begin_1)%
+
+[move@pursue_actor]
+move_pursue_actor      = true
+move_pursue_range      = 8|35
+move_pursue_formation  = back
+move_combat_disable    = true
+combat_ignore_cond     = true
+combat_ignore_keep_when_attacked = true
+invulnerable           = {!actor_enemy} true, false
+on_actor_dist_ge_nvis  = 35| move@themselves %=play_s2d_sound(characters_voice\human_01\stalker\alife\attack\wait_again_1)%
+on_info                = {+zat_assault_bandit_base_fail} nil,{+zat_assault_bandit_base_actor_pos} move@themselves
+
+[move@themselves]
+move_dest_number       = 1531223
+move_state_when_center = hide
+move_state_when_move   = assault
+move_look_subject      = actor
+move_center_info       = zat_assault_bandit_base_on_pos
+move_send_tip          = zat_stalker_elbrus_need_command_title|zat_stalker_elbrus_need_command_text|elbrus|0|6000
+move_combat_disable    = true
+combat_ignore_cond     = true
+combat_ignore_keep_when_attacked = true
+invulnerable           = {!actor_enemy} true, false
+on_signal              = on_center|{+zat_assault_bandit_base_on_pos} move@waiting_signal %=autosave_game(save_zat_assault_bandit_base_wait_signal)%
+
+[move@waiting_signal]
+move_dest_number       = 1531223
+move_look_vertex       = 1581785
+move_state_when_center = threat_danger
+move_state_when_move   = assault
+move_combat_disable    = true
+combat_ignore_cond     = true
+combat_ignore_keep_when_attacked = true
+invulnerable           = {!actor_enemy} true, false
+on_timer               = 50000|move@assault_base %+zat_assault_bandit_base_alarm +zat_assault_bandit_base_choose =set_community_to_community_relation(bandit_alies:stalker_alies:enemy)%
+on_info                = {+zat_assault_bandit_base_fail} nil,{+zat_assault_bandit_base_alarm} move@assault_base %+zat_assault_bandit_base_choose =set_community_to_community_relation(bandit_alies:stalker_alies:enemy)%
+
+[move@assault_base]
+move_dest_number       = 1633419
+move_state_when_center = guard
+move_state_when_move   = raid
+on_info                = {+zat_assault_bandit_base_fail} nil,{+zat_assault_bandit_base_bandits_lost} move@after_victory
+
+[move@after_victory]
+move_dest_number       = 1633419
+move_look_vertex       = 1640615
+move_state_when_center = sit_ass
+move_state_when_move   = walk
+meet                   = meet_victory
+on_info                = {=zat_b5_stalker_task_hindrance_precond} nil %=release_npc +zat_elbrus_released%
+
+[meet]
+abuse           = false
+use             = {+zat_assault_bandit_base_elbrus !actor_enemy} true, {-zat_assault_bandit_base_elbrus =dist_to_actor_le(6) !actor_enemy} self, false
+allow_break     = false
+meet_on_talking = false
+trade_enable    = false
+
+[meet_victory]
+abuse           = false
+use             = {!actor_enemy} true, false
+allow_break     = true
+meet_on_talking = false
+trade_enable    = false

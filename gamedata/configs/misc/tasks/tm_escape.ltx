@@ -1,0 +1,143 @@
+;---------------------------------------------------------------------------------------;
+;                                    Кордон                                             ;
+;---------------------------------------------------------------------------------------;
+;сюжетные задания 
+
+[esc_introduction_kordon]
+icon = ui_inGame2_IntroductionKordon
+prior = 100
+storyline = true
+title = esc_introduction_kordon_title0
+descr = esc_introduction_kordon_text0
+target = esc_region_1_spot
+condlist_0 = {+esc_introduction_kordon_talk} complete
+condlist_1 = {=sid_thinks_actor_is_enemy(esc_b1_commander)} fail
+on_fail = %+esc_alt_storyline_commenced%
+on_complete = %+esc_introduction_kordon_complete =increase_counter(stat_kvestov)%
+
+[esc_renew_spares]
+icon = ui_inGame2_RenewSpares
+prior = 101
+storyline = true
+title = {+esc_renew_spares_ammunition} esc_renew_spares_title1, esc_renew_spares_title0
+descr = {+esc_renew_spares_ammunition} esc_renew_spares_text1, esc_renew_spares_text0
+target = {+esc_renew_spares_ammunition} esc_b1_commander, esc_b1_ammunition_box_spot
+condlist_0 = {+esc_renew_spares_talk} complete
+condlist_1 = {=sid_thinks_actor_is_enemy(esc_b1_commander)} fail
+on_fail = %+esc_alt_storyline_commenced%
+on_complete = %+esc_renew_spares_complete =increase_counter(stat_kvestov)%
+
+[esc_village_annex]
+icon = ui_inGame2_VillageAnnex
+prior = 102
+storyline = true
+title = {+esc_village_annex_defence_end} esc_village_annex_title9, {+esc_village_annex_defence_start -esc_village_annex_defence_end} esc_village_annex_title8, {+esc_village_annex_cellar_explored -esc_village_annex_defence_start} esc_village_annex_title7, {+esc_village_annex_detonated_c4 -esc_village_annex_cellar_explored} esc_village_annex_title6, {+esc_village_annex_placed_c4 -esc_village_annex_detonated_c4} esc_village_annex_title5, {+esc_village_annex_has_c4 -esc_village_annex_placed_c4} esc_village_annex_title4, {+esc_village_annex_need_c4 -esc_village_annex_has_c4} esc_village_annex_title3, {+esc_village_annex_overtake -esc_village_annex_need_c4} esc_village_annex_title2, {+esc_village_annex_captured -esc_village_annex_overtake} esc_village_annex_title1, esc_village_annex_title0
+descr = {+esc_village_annex_defence_end} esc_village_annex_text9, {+esc_village_annex_defence_start -esc_village_annex_defence_end} esc_village_annex_text8, {+esc_village_annex_cellar_explored -esc_village_annex_defence_start} esc_village_annex_text7, {+esc_village_annex_detonated_c4 -esc_village_annex_cellar_explored} esc_village_annex_text6, {+esc_village_annex_placed_c4 -esc_village_annex_detonated_c4} esc_village_annex_text5, {+esc_village_annex_has_c4 -esc_village_annex_placed_c4} esc_village_annex_text4, {+esc_village_annex_need_c4 -esc_village_annex_has_c4} esc_village_annex_text3, {+esc_village_annex_overtake -esc_village_annex_need_c4} esc_village_annex_text2, {+esc_village_annex_captured -esc_village_annex_overtake} esc_village_annex_text1, esc_village_annex_text0
+target = {+esc_village_annex_defence_end} esc_b1_commander, {+esc_village_annex_defence_start -esc_village_annex_defence_end} esc_region_2_spot, {+esc_village_annex_cellar_explored -esc_village_annex_defence_start} esc_b1_commander, {+esc_village_annex_detonated_c4 -esc_village_annex_cellar_explored} nil, {+esc_village_annex_placed_c4 -esc_village_annex_detonated_c4} nil, {+esc_village_annex_has_c4 -esc_village_annex_placed_c4} esc_b2_bomb_place, {+esc_village_annex_need_c4 -esc_village_annex_has_c4} nil, {+esc_village_annex_overtake -esc_village_annex_need_c4} nil, {+esc_village_annex_captured -esc_village_annex_overtake} esc_b2_bandit_retreat_squad, esc_region_2_spot
+condlist_0 = {+esc_village_annex_talk} complete
+condlist_1 = {=sid_thinks_actor_is_enemy(esc_b1_commander)} fail
+on_fail = %+esc_alt_storyline_commenced%
+on_complete = %+esc_village_annex_complete =increase_counter(stat_kvestov)%
+
+[esc_lull_before_borax]
+icon = ui_inGame2_LullBeforeBorax
+prior = 103
+storyline = true
+title = {+esc_lull_before_borax_boar_done} esc_lull_before_borax_title4, {+esc_lull_before_borax_flesh_done -esc_lull_before_borax_boar_done} esc_lull_before_borax_title3, {+esc_lull_before_borax_pseudodog_done -esc_lull_before_borax_flesh_done} esc_lull_before_borax_title2, {+esc_lull_before_borax_dog_done -esc_lull_before_borax_pseudodog_done} esc_lull_before_borax_title1, esc_lull_before_borax_title0
+descr = {+esc_lull_before_borax_boar_done} esc_lull_before_borax_text4, {+esc_lull_before_borax_flesh_done -esc_lull_before_borax_boar_done} esc_lull_before_borax_text3, {+esc_lull_before_borax_pseudodog_done -esc_lull_before_borax_flesh_done} esc_lull_before_borax_text2, {+esc_lull_before_borax_dog_done -esc_lull_before_borax_pseudodog_done} esc_lull_before_borax_text1, esc_lull_before_borax_text0
+target = {+esc_lull_before_borax_boar_done} esc_b1_commander, {+esc_lull_before_borax_flesh_done -esc_lull_before_borax_boar_done} esc_a5_monster_squad, {+esc_lull_before_borax_pseudodog_done -esc_lull_before_borax_flesh_done} esc_a3_monster_squad, {+esc_lull_before_borax_dog_done -esc_lull_before_borax_pseudodog_done} esc_a1_monster_squad, esc_a2_monster_squad
+condlist_0 = {+esc_lull_before_borax_talk} complete
+condlist_1 = {=sid_thinks_actor_is_enemy(esc_b1_commander)} fail
+on_fail = %+esc_alt_storyline_commenced%
+on_complete = %+esc_lull_before_borax_complete =increase_counter(stat_kvestov)%
+
+[esc_atp_annex]
+icon = ui_inGame2_AtpAnnex
+prior = 104
+storyline = true
+title = {+esc_atp_annex_safe_searched} esc_atp_annex_title7, {+esc_atp_annex_key_founded -esc_atp_annex_safe_searched} esc_atp_annex_title6, {+esc_atp_annex_safe_is_founded -esc_atp_annex_key_founded} esc_atp_annex_title5, {+esc_atp_annex_captured -esc_atp_annex_safe_is_founded} esc_atp_annex_title4, {+esc_atp_annex_signal -esc_atp_annex_captured} esc_atp_annex_title3, {+esc_atp_annex_selfpos -esc_atp_annex_signal} esc_atp_annex_title2, {+esc_atp_annex_is_night -esc_atp_annex_selfpos} esc_atp_annex_title1, esc_atp_annex_title0
+descr = {+esc_atp_annex_safe_searched} esc_atp_annex_text7, {+esc_atp_annex_key_founded -esc_atp_annex_safe_searched} esc_atp_annex_text6, {+esc_atp_annex_safe_is_founded -esc_atp_annex_key_founded} esc_atp_annex_text5, {+esc_atp_annex_captured -esc_atp_annex_safe_is_founded} esc_atp_annex_text4, {+esc_atp_annex_signal -esc_atp_annex_captured} esc_atp_annex_text3, {+esc_atp_annex_selfpos -esc_atp_annex_signal} esc_atp_annex_text2, {+esc_atp_annex_is_night -esc_atp_annex_selfpos} esc_atp_annex_text1, esc_atp_annex_text0
+target = {+esc_atp_annex_safe_searched} esc_b1_commander, {+esc_atp_annex_key_founded -esc_atp_annex_safe_searched} esc_b3_bandit_safe, {+esc_atp_annex_safe_is_founded -esc_atp_annex_key_founded} nil, {+esc_atp_annex_captured -esc_atp_annex_safe_is_founded} nil, {+esc_atp_annex_signal -esc_atp_annex_captured} esc_region_3_spot, {+esc_atp_annex_selfpos -esc_atp_annex_signal} esc_b3_attack_commander, {+esc_atp_annex_is_night -esc_atp_annex_selfpos} esc_atp_annex_selfpos_spot, nil
+condlist_0 = {+esc_atp_annex_talk} complete
+condlist_1 = {=sid_thinks_actor_is_enemy(esc_b1_commander)} fail
+on_fail = %+esc_alt_storyline_commenced%
+on_complete = %+esc_atp_annex_complete =increase_counter(stat_kvestov)%
+
+[esc_spy_meeting]
+icon = ui_inGame2_SpyMeeting
+prior = 105
+storyline = true
+title = {+esc_spy_meeting_he_is_come} esc_spy_meeting_title1, esc_spy_meeting_title0
+descr = {+esc_spy_meeting_he_is_come} esc_spy_meeting_text1, esc_spy_meeting_text0
+target = {+esc_spy_meeting_he_is_come} esc_stalker_scout, esc_spy_meeting_place_spot
+condlist_0 = {+esc_spy_meeting_talk} complete
+condlist_1 = {=sid_thinks_actor_is_enemy(esc_b1_commander)} fail
+on_fail = %+esc_alt_storyline_commenced%
+on_complete = %+esc_spy_meeting_complete =increase_counter(stat_kvestov)%
+
+[esc_uncoupling]
+icon = ui_inGame2_Uncoupling
+prior = 106
+storyline = true
+title = {+esc_uncoupling_halt_searched} esc_uncoupling_title2, {+esc_uncoupling_talk -esc_uncoupling_halt_searched} esc_uncoupling_title1, esc_uncoupling_title0
+descr = {+esc_uncoupling_halt_searched} esc_uncoupling_text2, {+esc_uncoupling_talk -esc_uncoupling_halt_searched} esc_uncoupling_text1, esc_uncoupling_text0
+target = {+esc_uncoupling_halt_searched} esc_mod_level_changer_to_marsh, {+esc_uncoupling_talk -esc_uncoupling_halt_searched} nil, esc_b1_stalker_mechanic
+condlist_0 = {+actor_come_to_marsh} complete
+condlist_1 = {=sid_thinks_actor_is_enemy(esc_b1_commander)} fail
+on_fail = %+esc_alt_storyline_commenced%
+on_complete = %+esc_uncoupling_complete +esc_storyline_done =increase_counter(stat_kvestov)%
+
+[esc_army_halt_1]
+icon = ui_inGame2_ArmyHalt
+prior = 109
+storyline = true
+title = esc_army_halt_1_title0
+descr = esc_army_halt_1_text0
+target = esc_army_halt_1_spot
+condlist_0 = {+esc_army_halt_1_explored} complete
+on_complete = %+esc_army_halt_1_complete%
+
+[esc_army_halt_2]
+icon = ui_inGame2_ArmyHalt
+prior = 108
+storyline = true
+title = esc_army_halt_2_title0
+descr = esc_army_halt_2_text0
+target = esc_army_halt_2_spot
+condlist_0 = {+esc_army_halt_2_explored} complete
+on_complete = %+esc_army_halt_2_complete%
+
+[esc_army_halt_3]
+icon = ui_inGame2_ArmyHalt
+prior = 107
+storyline = true
+title = esc_army_halt_3_title0
+descr = esc_army_halt_3_text0
+target = esc_army_halt_3_spot
+condlist_0 = {+esc_army_halt_3_explored} complete
+on_complete = %+esc_army_halt_3_complete%
+
+[esc_blockpost_protection]
+icon = ui_inGame2_BlockpostProtection
+prior = 150
+storyline = true
+title = {+esc_blockpost_protection_done} esc_blockpost_protection_title1, esc_blockpost_protection_title0
+descr = {+esc_blockpost_protection_done} esc_blockpost_protection_text1, esc_blockpost_protection_text0
+target = {+esc_blockpost_protection_done} esc_inventory_box_20, esc_region_1_spot
+condlist_0 = {+esc_blockpost_protection_reward} complete
+condlist_1 = {=sid_thinks_actor_is_enemy(esc_b1_commander)} fail
+condlist_2 = {+esc_b1_commander_dead} fail
+on_complete = %+esc_blockpost_protection_complete =increase_counter(stat_kvestov)%
+
+;второстепенные задания
+
+[esc_whimsical_artefact]
+icon = ui_inGame2_WhimsicalArtefact
+prior = 1
+storyline = false
+title = {+esc_whimsical_artefact_founded} esc_whimsical_artefact_title1, {-esc_whimsical_artefact_founded} esc_whimsical_artefact_title0
+descr = {+esc_whimsical_artefact_founded} esc_whimsical_artefact_text1, {-esc_whimsical_artefact_founded} esc_whimsical_artefact_text0
+target = {+esc_whimsical_artefact_founded} esc_stalker_trader, {-esc_whimsical_artefact_founded} nil
+condlist_0 = {+esc_whimsical_artefact_reward} complete
+condlist_1 = {+esc_whimsical_artefact_fail} fail
+on_complete = %+esc_whimsical_artefact_complete =add_actor_rank(1) =increase_counter(stat_kvestov)%

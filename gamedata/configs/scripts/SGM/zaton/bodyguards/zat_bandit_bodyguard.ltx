@@ -1,0 +1,57 @@
+[logic]
+active = bodyguard@wait_job
+on_death = death
+
+[death]
+on_info = {=killed_by_actor} %+zat_bandit_bodyguard_death =bodyguard_death%, %+zat_bandit_bodyguard_death =respawn_zat_bandit_bodyguard =bodyguard_death%
+
+[bodyguard@wait_job]
+use_command     = wait_job
+bodyguard_pos   = 1633413
+bodyguard_state = sit
+bodyguard_look  = 1640597
+meet            = meet
+combat_ignore_cond = {!check_enemy_name(actor)} true
+on_info         = {+zat_bandit_bodyguard_pursue} bodyguard@changer %=bodyguard_init%
+on_info2        = {=can_release_base_member} nil %=release_npc%
+
+[bodyguard@changer]
+use_command     = guard
+meet            = meet
+combat_ignore_cond = {=bodyguard_ignore_precond} true
+on_info         = {+zat_bandit_bodyguard_nofire} bodyguard@command_nofire %=bodyguard_command_1%
+on_info2        = {+zat_bandit_bodyguard_stop} bodyguard@command_stop %=bodyguard_command_2%
+on_info3        = {+zat_bandit_bodyguard_stand_and_fire} bodyguard@command_stand_and_fire %=bodyguard_command_3%
+on_info4        = {+zat_bandit_bodyguard_release} nil %=bodyguard_command_4%
+
+[bodyguard@command_nofire]
+use_command     = nofire
+meet            = meet
+combat_ignore_cond = true
+combat_ignore_keep_when_attacked = true
+on_info         = {-zat_bandit_bodyguard_nofire} bodyguard@changer %=bodyguard_command_0%
+on_info2        = {+zat_bandit_bodyguard_release} nil %=bodyguard_command_4%
+
+[bodyguard@command_stop]
+use_command     = stop
+meet            = meet
+combat_ignore_cond = true
+combat_ignore_keep_when_attacked = true
+on_info         = {-zat_bandit_bodyguard_stop} bodyguard@changer %=bodyguard_command_0%
+on_info2        = {+zat_bandit_bodyguard_release} nil %=bodyguard_command_4%
+
+[bodyguard@command_stand_and_fire]
+use_command     = stand_and_fire
+meet            = meet
+combat_ignore_cond = true
+combat_ignore_keep_when_attacked = true
+on_info         = {-zat_bandit_bodyguard_stand_and_fire} bodyguard@changer %=bodyguard_command_0%
+on_info2        = {+zat_bandit_bodyguard_release} nil %=bodyguard_command_4%
+
+[meet]
+abuse           = false
+use             = true
+allow_break     = true
+trade_enable    = false
+meet_on_talking = false
+

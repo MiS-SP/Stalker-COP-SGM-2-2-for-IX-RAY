@@ -1,0 +1,39 @@
+[logic]
+active = move@prisoner_wait
+on_death = death
+
+[death]
+on_info = %+pri_rescue_underground_guide_fail%
+
+[move@prisoner_wait]
+move_dest_number       = 39641
+move_look_vertex       = 38541
+move_state_when_center = prisoner
+move_state_when_move   = walk
+move_combat_disable    = true
+meet                   = meet
+combat_ignore_cond     = true
+combat_ignore_keep_when_attacked = true
+approach_info          = pri_rescue_underground_guide_approached_to_miller|60|<
+on_info                = {+pri_rescue_underground_guide_miller_teleport !actor_talking} nil %=release_npc%, {+pri_rescue_underground_guide_fail} nil
+on_info2               = {+pri_rescue_underground_guide_terrain_is_secured =dist_to_actor_le(10)} move@prisoner_free
+
+[move@prisoner_free]
+move_dest_number       = 39641
+move_look_vertex       = 38541
+move_state_when_center = wait
+move_state_when_move   = walk
+move_quick_animation   = false
+move_combat_disable    = true
+meet                   = meet
+combat_ignore_cond     = true
+combat_ignore_keep_when_attacked = true
+on_info                = {+pri_rescue_underground_guide_miller_teleport !actor_talking} nil %=release_npc%, {+pri_rescue_underground_guide_fail} nil
+on_info2               = {=dist_to_actor_le(4) -pri_rescue_underground_guide_miller_thanx_1} %+pri_rescue_underground_guide_miller_thanx_1 =play_s2d_sound(characters_voice\human_01\stalker\help\wounded_thanx\thanx_2)%
+
+[meet]
+abuse           = false
+use             = {+pri_rescue_underground_guide_terrain_is_secured -pri_rescue_underground_guide_miller_teleport !actor_enemy} true, false
+allow_break     = false
+meet_on_talking = false
+trade_enable    = false

@@ -1,0 +1,81 @@
+[logic]
+active = move@idle
+on_death = death
+post_combat_time = 3,6
+
+[death]
+on_info = {-val_first_coming_valley_came_to_farm} %+val_first_coming_valley_guider_is_dead%
+
+[precond]
+on_info3               = {+val_first_coming_valley_came_to_farm =dist_to_actor_ge(125)} nil %=release_npc%, {+val_first_coming_valley_guider_escaped =dist_to_actor_ge(10)} nil %=release_npc%
+on_info4               = {+val_alt_storyline_commenced =dist_to_actor_ge(100)} nil %=release_npc%
+on_info5               = {+val_alt_storyline_commenced !actor_enemy} nil %=actor_enemy%
+
+[move@idle]:precond
+move_dest_number       = 44684
+move_state_when_center = guard
+move_state_when_move   = patrol
+on_info                = {+val_first_coming_valley_commander_raciya_end -val_first_coming_valley_guider_stay} move@go_to_commander
+
+[move@go_to_commander]:precond
+scheme_type            = patrol
+patrol_count_path      = 4
+patrol_path_1          = 34198
+patrol_path_1_state    = rush
+patrol_path_2          = 25663
+patrol_path_2_state    = rush
+patrol_path_3          = 15268
+patrol_path_3_state    = rush
+patrol_path_4          = 9366
+patrol_path_4_state    = walk
+on_patrol_path         = 4|move@salut_commander %+val_first_coming_valley_guider_stay%
+
+[move@salut_commander]:precond
+move_dest_number       = 9366
+move_look_subject      = val_b11_outpost_commander
+move_state_when_center = salut
+move_state_when_move   = walk
+on_timer               = 4000|move@wait_actor
+
+[move@wait_actor]:precond
+move_dest_number       = 9366
+move_look_subject      = actor
+move_state_when_center = wait
+move_state_when_move   = walk
+meet                   = meet
+on_info                = {+val_first_coming_valley_guider_coming !npc_talking} move@go_to_farm %+val_first_coming_valley_follow_guider%
+
+[move@go_to_farm]:precond
+scheme_type            = patrol
+patrol_count_path      = 7
+patrol_path_1          = 33482
+patrol_path_1_state    = rush
+patrol_path_2          = 45419
+patrol_path_2_state    = rush
+patrol_path_3          = 41858
+patrol_path_3_state    = rush
+patrol_path_4          = 34767
+patrol_path_4_state    = rush
+patrol_path_5          = 24281
+patrol_path_5_state    = rush
+patrol_path_6          = 26600
+patrol_path_6_state    = rush
+patrol_path_7          = 25960
+patrol_path_7_state    = walk
+approach_state         = hide_na|20|>
+on_patrol_path         = 7|move@back_to_home %+val_first_coming_valley_came_to_farm%
+on_info                = {=dist_to_actor_ge(80)} move@back_to_home %+val_first_coming_valley_guider_farewell +val_first_coming_valley_guider_escaped%
+on_info2               = {-val_first_coming_valley_guider_ambush =val_b2_accompany_guider_ambush_cond} %+val_first_coming_valley_guider_ambush =val_b2_accompany_guider_ambush_action%
+
+[move@back_to_home]
+move_dest_number       = {+val_first_coming_valley_guider_farewell !npc_talking} 15312, 25960
+move_look_subject      = actor
+move_state_when_center = wait
+move_state_when_move   = {+val_first_coming_valley_guider_farewell !npc_talking} run, patrol
+meet                   = meet
+on_info                = {=dist_to_actor_ge(125)} nil %=release_npc%, {-val_first_coming_valley_guider_farewell =dist_to_actor_ge(15)} %+val_first_coming_valley_guider_farewell%
+
+[meet]
+use                  = {=has_enemy} false, {=dist_to_actor_le(4) -val_first_coming_valley_guider_coming} self, {-val_first_coming_valley_guider_farewell} true, false
+allow_break          = false
+trade_enable         = false

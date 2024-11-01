@@ -1,0 +1,72 @@
+[logic]
+active = move@brothers_wait
+on_death = death
+
+[death]
+on_info = %+pri_monolit_brother_leader_death%
+
+[move@brothers_wait]
+move_dest_number       = 245838
+move_look_vertex       = 234997
+move_state_when_center = guard
+move_state_when_move   = patrol
+meet                   = meet
+invulnerable           = {!actor_enemy} true, false
+on_info                = {+pri_expiation_sin_3_repair_completed} nil %=release_npc%, {+pri_expiation_sin_3_fail} nil
+on_info3               = {+pri_expiation_sin_3_enemy_destroyed} move@settled_on_base
+on_info4               = {+pri_expiation_sin_3_punitive_squad_go !actor_talking} move@checkpoint_1 %+pri_expiation_sin_3_logic_checkpoint_1 =play_s2d_sound(characters_voice\human_01\monolith\fight\attack\attack_7)%
+
+[move@checkpoint_1]
+move_dest_number       = 378297
+move_look_vertex       = 3944046
+move_state_when_center = guard
+move_state_when_move   = assault
+invulnerable           = {!actor_enemy} true, false
+on_signal              = on_center|{=dist_to_actor_le(10)} move@path_1 %+pri_expiation_sin_3_logic_path_1 =play_s2d_sound(characters_voice\human_01\monolith\fight\attack\script_attack_8)%
+on_info                = {+pri_expiation_sin_3_fail} nil
+
+[move@path_1]
+scheme_type            = patrol
+patrol_count_path      = 4
+patrol_path_1          = 438248
+patrol_path_1_state    = assault
+patrol_path_2          = 323143
+patrol_path_2_state    = assault
+patrol_path_3          = 152003
+patrol_path_3_state    = assault
+patrol_path_4          = 225688
+patrol_path_4_state    = assault
+invulnerable           = {!actor_enemy} true, false
+on_patrol_path         = 4|move@checkpoint_2 %+pri_expiation_sin_3_logic_checkpoint_2 =play_s2d_sound(characters_voice\human_01\monolith\fight\attack\script_attack_7)%
+
+[move@checkpoint_2]
+move_dest_number       = 207912
+move_look_vertex       = 108357
+move_state_when_center = hide
+move_state_when_move   = assault
+invulnerable           = {!actor_enemy} true, false
+on_signal              = on_center|{=dist_to_actor_le(10)} move@assault_magazine %+pri_expiation_sin_3_punitive_squad_came +pri_expiation_sin_3_logic_assault_magazine =play_s2d_sound(characters_voice\human_01\monolith\fight\attack\attack_many_6) =autosave_game(save_pri_expiation_sin_3_began_attack)%
+on_info                = {+pri_expiation_sin_3_fail} nil
+
+[move@assault_magazine]
+move_dest_number       = 33349
+move_look_vertex       = 40756
+move_state_when_center = guard
+move_state_when_move   = assault
+on_info                = {+pri_expiation_sin_3_fail} nil
+on_info2               = {+pri_expiation_sin_3_enemy_destroyed} move@settled_on_base %=play_s2d_sound(characters_voice\human_01\monolith\fight\attack\script_attack_24)%
+
+[move@settled_on_base]
+move_dest_number       = 33349
+move_look_vertex       = 40756
+move_state_when_center = choose
+move_state_when_move   = assault
+meet                   = meet
+on_info                = {+pri_expiation_sin_3_repair_completed} nil %=release_npc%, {+pri_expiation_sin_3_fail} nil
+
+[meet]
+abuse           = false
+use             = {!actor_enemy} true, false
+allow_break     = false
+meet_on_talking = false
+trade_enable    = false

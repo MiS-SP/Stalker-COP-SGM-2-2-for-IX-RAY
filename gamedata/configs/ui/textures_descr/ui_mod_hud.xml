@@ -1,0 +1,24 @@
+<w>
+   <file name="ui\ui_mod_huds">
+        <texture id="ui_mod_cheat_mode_wnd" x="2" y="411" width="73" height="18" />
+        <texture id="ui_mod_wpn_state_bar" x="418" y="410" width="5" height="58"/>
+        <texture id="ui_mod_boss_bar" x="360" y="1" width="130" height="17"/>
+        <texture id="ui_mod_geiger_bar" x="484" y="345" width="133" height="8"/>
+        <texture id="ui_mod_monster_capture_wnd" x="2" y="210" width="265" height="71" />
+        <texture id="ui_mod_monster_capture_bar" x="32" y="292" width="133" height="8" />
+        <texture id="ui_mod_battery_power_wnd" x="335" y="241" width="72" height="10" />
+        <texture id="ui_mod_battery_power_bar" x="341" y="267" width="58" height="5"/>
+        <texture id="ui_mod_indicator_sleep_green" x="4" y="4" width="33" height="35" />
+        <texture id="ui_mod_indicator_sleep_yellow" x="4" y="47" width="33" height="35" />
+        <texture id="ui_mod_indicator_sleep_orange" x="4" y="88" width="33" height="35" />
+        <texture id="ui_mod_indicator_sleep_red" x="4" y="130" width="33" height="35" />
+        <texture id="ui_mod_indicator_toxic_green" x="175" y="4" width="33" height="35" />
+        <texture id="ui_mod_indicator_toxic_yellow" x="175" y="47" width="33" height="35" />
+        <texture id="ui_mod_indicator_toxic_orange" x="175" y="88" width="33" height="35" />
+        <texture id="ui_mod_indicator_toxic_red" x="175" y="130" width="33" height="35" />
+        <texture id="ui_mod_indicator_aura_inactivity_green" x="119" y="4" width="33" height="35" />
+        <texture id="ui_mod_indicator_aura_inactivity_yellow" x="119" y="47" width="33" height="35" />
+        <texture id="ui_mod_indicator_aura_inactivity_orange" x="119" y="88" width="33" height="35" />
+        <texture id="ui_mod_indicator_aura_inactivity_red" x="119" y="130" width="33" height="35" />
+   </file>
+</w>

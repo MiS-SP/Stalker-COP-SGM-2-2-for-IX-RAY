@@ -1,0 +1,14 @@
+[logic]
+active = sr_universal
+
+[sr_universal]
+scheme_type = level_change_zone
+level_change_cond         = {+actor_come_to_darkvalley} true, false
+level_change_on_use       = %+level_change_to_darkvalley_from_jupiter%
+level_change_travel_coord = -292.527,26.533,502.841
+level_change_throw_coord  = -383.968,21.301,445.535,2.522
+level_change_travel_time  = 5,15
+level_change_spot         = level_change_up_location,st_level_change_to_darkvalley,false
+level_change_autosave     = st_save_travel_jupiter_to_darkvalley
+level_change_silent_travel = false
+level_change_hidden_mode  = true

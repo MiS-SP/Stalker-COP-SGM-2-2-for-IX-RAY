@@ -1,0 +1,14 @@
+[logic]
+active = sr_universal
+
+[sr_universal]
+scheme_type = level_change_zone
+level_change_cond         = {+pri_a17_military_base_commander_start_talk} true, false
+level_change_on_use       = %+level_change_to_pripyat_from_underground%
+level_change_travel_coord = -7.679,9.151,-138.181
+level_change_throw_coord  = 71.835,4.230,-222.644,0.055
+level_change_travel_time  = 0,7
+level_change_spot         = level_change_up_location,st_level_change_to_prypiat,true
+level_change_autosave     = st_save_travel_underground_to_pripyat
+level_change_silent_travel = false
+level_change_hidden_mode  = true

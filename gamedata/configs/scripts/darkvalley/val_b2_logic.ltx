@@ -1,0 +1,538 @@
+;Логика "Ферма"
+
+[walker@def_guarder]
+use_camp = false
+gather_items_enabled = false
+help_wounded_enabled = true
+corpse_detection_enabled = false
+approach_info = val_first_coming_valley_came_to_farm|14|<
+precond_timer = {!actor_enemy =actor_has_weapon} true, false
+
+[camper@def_guarder]
+use_camp = false
+gather_items_enabled = false
+help_wounded_enabled = true
+corpse_detection_enabled = false
+
+[remark@def_guarder]
+anim = threat
+target = story|actor
+on_info = {-val_b2_base_guard =actor_has_weapon} %+val_b2_base_guard =play_sound_theme(zat_a2_base_guard)%
+
+;
+
+[logic@val_b2_leader]
+active = walker@leader
+suitable = {=check_npc_name(val_b2_base_leader) !surge_started} true
+prior = 200
+
+[walker@leader]
+path_walk = leader_walk
+path_look = leader_look
+use_camp = false
+gather_items_enabled = false
+help_wounded_enabled = false
+corpse_detection_enabled = false
+meet = meet@b2_leader
+on_info = {-val_kill_night_predator_radio_talk +val_kill_night_predator_say_about_plan !npc_talking} remark@leader_talk_with_leonid
+on_info2 = {+mil_akulov_offer_raciya -mil_akulov_offer_raciya_end !npc_talking} remark@leader_talk_with_morten
+invulnerable = {-val_alt_storyline_commenced} true, false
+
+[remark@leader_talk_with_leonid]
+meet = no_meet
+anim = wait_rac
+target = story|actor
+on_timer = 10000|walker@leader %+val_kill_night_predator_radio_talk%
+
+[remark@leader_talk_with_morten]
+meet = no_meet
+anim = wait_rac
+target = story|actor
+on_timer = 10000|walker@leader %+mil_akulov_offer_raciya_end%
+
+[meet@b2_leader]
+use = {+mil_akulov_offer_raciya_end -mil_akulov_offer_talk =dist_to_actor_le(5)} self, {+mil_akulov_offer_raciya -mil_akulov_offer_raciya_end !npc_talking} false, {+val_first_coming_valley_assault_factory -val_assault_factory_get_corpse_pda !npc_talking} false, {!actor_enemy !actor_has_weapon !has_enemy} true, false
+allow_break = false
+trade_enable = false
+
+;
+
+[logic@val_b2_guarder_1]
+active = walker@guarder_1
+suitable = {=check_npc_name(sim_default_night_stalker) !surge_started -val_storyline_done} true
+prior = 100
+
+[walker@guarder_1]:walker@def_guarder
+path_walk = guard_1_walk
+path_look = guard_1_look
+on_info = {=check_precond_timer(2500) =dist_to_actor_le(15)} remark@guarder_1
+
+[remark@guarder_1]:remark@def_guarder
+on_info2 = {!actor_has_weapon} walker@guarder_1 %-val_b2_base_guard%
+on_game_timer = 180|walker@guarder_1 %-val_b2_base_guard%
+
+;
+
+[logic@val_b2_guarder_2]
+active = walker@guarder_2
+suitable = {=check_npc_name(sim_default_night_stalker) !surge_started -val_storyline_done} true
+prior = 100
+
+[walker@guarder_2]:walker@def_guarder
+avail_speak = 15|wait|true
+path_walk = guard_2_walk
+path_look = guard_2_look
+on_info = {=check_precond_timer(2500) =dist_to_actor_le(15)} remark@guarder_2
+
+[remark@guarder_2]:remark@def_guarder
+on_info2 = {!actor_has_weapon} walker@guarder_2 %-val_b2_base_guard%
+on_game_timer = 180|walker@guarder_2 %-val_b2_base_guard%
+
+;
+
+[logic@val_b2_guarder_3]
+active = walker@guarder_3
+suitable = {=check_npc_name(sim_default_night_stalker) !surge_started -val_storyline_done} true
+prior = 100
+
+[walker@guarder_3]:walker@def_guarder
+path_walk = guard_3_walk
+path_look = guard_3_look
+on_info = {=check_precond_timer(2500) =dist_to_actor_le(15)} remark@guarder_3
+
+[remark@guarder_3]:remark@def_guarder
+on_info2 = {!actor_has_weapon} walker@guarder_3 %-val_b2_base_guard%
+on_game_timer = 180|walker@guarder_3 %-val_b2_base_guard%
+
+;
+
+[logic@val_b2_guarder_4]
+active = walker@guarder_4
+suitable = {=check_npc_name(sim_default_night_stalker) !surge_started -val_storyline_done} true
+prior = 100
+
+[walker@guarder_4]:walker@def_guarder
+avail_speak = 20|wait|true
+path_walk = guard_4_walk
+path_look = guard_4_look
+on_info = {=check_precond_timer(2500) =dist_to_actor_le(15)} remark@guarder_4
+
+[remark@guarder_4]:remark@def_guarder
+on_info2 = {!actor_has_weapon} walker@guarder_4 %-val_b2_base_guard%
+on_game_timer = 180|walker@guarder_4 %-val_b2_base_guard%
+
+;
+
+[logic@val_b2_guarder_5]
+active = walker@guarder_5
+suitable = {=check_npc_name(sim_default_night_stalker) !surge_started -val_storyline_done} true
+prior = 100
+
+[walker@guarder_5]:walker@def_guarder
+avail_speak = 25|wait|true
+path_walk = guard_5_walk
+path_look = guard_5_look
+on_info = {=check_precond_timer(2500) =dist_to_actor_le(15)} remark@guarder_5
+
+[remark@guarder_5]:remark@def_guarder
+on_info2 = {!actor_has_weapon} walker@guarder_5 %-val_b2_base_guard%
+on_game_timer = 180|walker@guarder_5 %-val_b2_base_guard%
+
+;
+
+[logic@val_b2_guarder_6]
+active = walker@guarder_6
+suitable = {=check_npc_name(sim_default_night_stalker) !surge_started -val_storyline_done} true
+prior = 100
+
+[walker@guarder_6]:walker@def_guarder
+avail_speak = 30|wait|true
+path_walk = guard_6_walk
+path_look = guard_6_look
+on_info = {=check_precond_timer(2500) =dist_to_actor_le(15)} remark@guarder_6
+
+[remark@guarder_6]:remark@def_guarder
+on_info2 = {!actor_has_weapon} walker@guarder_6 %-val_b2_base_guard%
+on_game_timer = 180|walker@guarder_6 %-val_b2_base_guard%
+
+;
+
+[logic@val_b2_guarder_7]
+active = walker@guarder_7
+suitable = {=check_npc_name(sim_default_night_stalker) !surge_started -val_storyline_done} true
+prior = 100
+
+[walker@guarder_7]:walker@def_guarder
+path_walk = guard_7_walk
+path_look = guard_7_look
+on_info = {=check_precond_timer(2500) =dist_to_actor_le(15)} remark@guarder_7
+
+[remark@guarder_7]:remark@def_guarder
+on_info2 = {!actor_has_weapon} walker@guarder_7 %-val_b2_base_guard%
+on_game_timer = 180|walker@guarder_7 %-val_b2_base_guard%
+
+;
+
+[logic@val_b2_guarder_8]
+active = walker@guarder_8
+suitable = {=check_npc_name(sim_default_night_stalker) !surge_started -val_storyline_done} true
+prior = 100
+
+[walker@guarder_8]:walker@def_guarder
+avail_speak = 18|wait|true
+path_walk = guard_8_walk
+path_look = guard_8_look
+on_info = {=check_precond_timer(2500) =dist_to_actor_le(15)} remark@guarder_8
+
+[remark@guarder_8]:remark@def_guarder
+on_info2 = {!actor_has_weapon} walker@guarder_8 %-val_b2_base_guard%
+on_game_timer = 180|walker@guarder_8 %-val_b2_base_guard%
+
+;
+
+[logic@val_b2_guarder_9]
+active = walker@guarder_9
+suitable = {=check_npc_name(sim_default_night_stalker) !surge_started -val_storyline_done} true
+prior = 100
+
+[walker@guarder_9]:walker@def_guarder
+path_walk = guard_9_walk
+path_look = guard_9_look
+on_info = {=check_precond_timer(2500) =dist_to_actor_le(15)} remark@guarder_9
+
+[remark@guarder_9]:remark@def_guarder
+on_info2 = {!actor_has_weapon} walker@guarder_9 %-val_b2_base_guard%
+on_game_timer = 180|walker@guarder_9 %-val_b2_base_guard%
+
+;
+
+[logic@val_b2_guarder_10]
+active = walker@guarder_10
+suitable = {=check_npc_name(sim_default_night_stalker) !surge_started -val_storyline_done} true
+prior = 100
+
+[walker@guarder_10]:walker@def_guarder
+path_walk = guard_10_walk
+path_look = guard_10_look
+on_info = {=check_precond_timer(2500) =dist_to_actor_le(15)} remark@guarder_10
+
+[remark@guarder_10]:remark@def_guarder
+on_info2 = {!actor_has_weapon} walker@guarder_10 %-val_b2_base_guard%
+on_game_timer = 180|walker@guarder_10 %-val_b2_base_guard%
+
+;
+
+[logic@val_b2_guarder_11]
+active = walker@guarder_11
+suitable = {=check_npc_name(sim_default_night_stalker) !surge_started -val_storyline_done} true
+prior = 100
+
+[walker@guarder_11]:walker@def_guarder
+avail_speak = 16|wait|true
+path_walk = guard_11_walk
+path_look = guard_11_look
+on_info = {=check_precond_timer(2500) =dist_to_actor_le(15)} remark@guarder_11
+
+[remark@guarder_11]:remark@def_guarder
+on_info2 = {!actor_has_weapon} walker@guarder_11 %-val_b2_base_guard%
+on_game_timer = 180|walker@guarder_11 %-val_b2_base_guard%
+
+;
+
+[logic@val_b2_guarder_12]
+active = walker@guarder_12
+suitable = {=check_npc_name(sim_default_night_stalker) !surge_started -val_storyline_done} true
+prior = 100
+
+[walker@guarder_12]:walker@def_guarder
+path_walk = guard_12_walk
+path_look = guard_12_look
+on_info = {=check_precond_timer(2500) =dist_to_actor_le(15)} remark@guarder_12
+
+[remark@guarder_12]:remark@def_guarder
+on_info2 = {!actor_has_weapon} walker@guarder_12 %-val_b2_base_guard%
+on_game_timer = 180|walker@guarder_12 %-val_b2_base_guard%
+
+;
+
+[logic@val_b2_guarder_13]
+active = walker@guarder_13
+suitable = {=check_npc_name(sim_default_night_stalker) !surge_started -val_storyline_done} true
+prior = 100
+
+[walker@guarder_13]:walker@def_guarder
+path_walk = guard_13_walk
+path_look = guard_13_look
+on_info = {=check_precond_timer(2500) =dist_to_actor_le(15)} remark@guarder_13
+
+[remark@guarder_13]:remark@def_guarder
+on_info2 = {!actor_has_weapon} walker@guarder_13 %-val_b2_base_guard%
+on_game_timer = 180|walker@guarder_13 %-val_b2_base_guard%
+
+;
+
+[logic@val_b2_guarder_14]
+active = walker@guarder_14
+suitable = {=check_npc_name(sim_default_night_stalker) !surge_started -val_storyline_done} true
+prior = 100
+
+[walker@guarder_14]:walker@def_guarder
+path_walk = guard_14_walk
+path_look = guard_14_look
+on_info = {=check_precond_timer(2500) =dist_to_actor_le(15)} remark@guarder_14
+
+[remark@guarder_14]:remark@def_guarder
+on_info2 = {!actor_has_weapon} walker@guarder_14 %-val_b2_base_guard%
+on_game_timer = 180|walker@guarder_14 %-val_b2_base_guard%
+
+;
+
+[logic@val_b2_guarder_15]
+active = walker@guarder_15
+suitable = {=check_npc_name(sim_default_night_stalker) !surge_started -val_storyline_done} true
+prior = 100
+
+[walker@guarder_15]:walker@def_guarder
+path_walk = guard_15_walk
+path_look = guard_15_look
+on_info = {=check_precond_timer(2500) =dist_to_actor_le(15)} remark@guarder_15
+
+[remark@guarder_15]:remark@def_guarder
+on_info2 = {!actor_has_weapon} walker@guarder_15 %-val_b2_base_guard%
+on_game_timer = 180|walker@guarder_15 %-val_b2_base_guard%
+
+;
+
+[logic@val_b2_guarder_16]
+active = walker@guarder_16
+suitable = {=check_npc_name(sim_default_night_stalker) !surge_started -val_storyline_done} true
+prior = 100
+
+[walker@guarder_16]:walker@def_guarder
+path_walk = guard_16_walk
+path_look = guard_16_look
+on_info = {=check_precond_timer(2500) =dist_to_actor_le(15)} remark@guarder_16
+
+[remark@guarder_16]:remark@def_guarder
+on_info2 = {!actor_has_weapon} walker@guarder_16 %-val_b2_base_guard%
+on_game_timer = 180|walker@guarder_16 %-val_b2_base_guard%
+
+;
+
+[logic@val_b2_guarder_17]
+active = walker@guarder_17
+suitable = {=check_npc_name(sim_default_night_stalker) !surge_started -val_storyline_done} true
+prior = 100
+
+[walker@guarder_17]:walker@def_guarder
+avail_speak = 15|wait|true
+path_walk = guard_17_walk
+path_look = guard_17_look
+on_info = {=check_precond_timer(2500) =dist_to_actor_le(15)} remark@guarder_17
+
+[remark@guarder_17]:remark@def_guarder
+on_info2 = {!actor_has_weapon} walker@guarder_17 %-val_b2_base_guard%
+on_game_timer = 180|walker@guarder_17 %-val_b2_base_guard%
+
+;
+
+[logic@val_b2_guarder_18]
+active = walker@guarder_18
+suitable = {=check_npc_name(sim_default_night_stalker) !surge_started -val_storyline_done} true
+prior = 100
+
+[walker@guarder_18]:walker@def_guarder
+avail_speak = 15|wait|true
+path_walk = guard_18_walk
+path_look = guard_18_look
+on_info = {=check_precond_timer(2500) =dist_to_actor_le(15)} remark@guarder_18
+
+[remark@guarder_18]:remark@def_guarder
+on_info2 = {!actor_has_weapon} walker@guarder_18 %-val_b2_base_guard%
+on_game_timer = 180|walker@guarder_18 %-val_b2_base_guard%
+
+;
+
+[logic@val_b2_guarder_19]
+active = walker@guarder_19
+suitable = {=check_npc_name(sim_default_night_stalker) !surge_started -val_storyline_done} true
+prior = 100
+
+[walker@guarder_19]:walker@def_guarder
+avail_speak = 15|wait|true
+path_walk = guard_19_walk
+path_look = guard_19_look
+on_info = {=check_precond_timer(2500) =dist_to_actor_le(15)} remark@guarder_19
+
+[remark@guarder_19]:remark@def_guarder
+on_info2 = {!actor_has_weapon} walker@guarder_19 %-val_b2_base_guard%
+on_game_timer = 180|walker@guarder_19 %-val_b2_base_guard%
+
+;
+
+[logic@val_b2_guarder_20]
+active = walker@guarder_20
+suitable = {=check_npc_name(sim_default_night_stalker) !surge_started -val_storyline_done} true
+prior = 100
+
+[walker@guarder_20]:walker@def_guarder
+path_walk = guard_20_walk
+path_look = guard_20_look
+on_info = {=check_precond_timer(2500) =dist_to_actor_le(15)} remark@guarder_20
+
+[remark@guarder_20]:remark@def_guarder
+on_info2 = {!actor_has_weapon} walker@guarder_20 %-val_b2_base_guard%
+on_game_timer = 180|walker@guarder_20 %-val_b2_base_guard%
+
+;
+
+[logic@val_b2_guarder_21]
+active = walker@guarder_21
+suitable = {=check_npc_name(sim_default_night_stalker) !surge_started -val_storyline_done} true
+prior = 100
+
+[walker@guarder_21]:walker@def_guarder
+path_walk = guard_21_walk
+path_look = guard_21_look
+on_info = {=check_precond_timer(2500) =dist_to_actor_le(15)} remark@guarder_21
+
+[remark@guarder_21]:remark@def_guarder
+on_info2 = {!actor_has_weapon} walker@guarder_21 %-val_b2_base_guard%
+on_game_timer = 180|walker@guarder_21 %-val_b2_base_guard%
+
+;
+
+[logic@val_b2_guarder_22]
+active = walker@guarder_22
+suitable = {=check_npc_name(sim_default_night_stalker) !surge_started -val_storyline_done} true
+prior = 100
+
+[walker@guarder_22]:walker@def_guarder
+avail_speak = 18|wait|true
+path_walk = guard_22_walk
+path_look = guard_22_look
+on_info = {=check_precond_timer(2500) =dist_to_actor_le(15)} remark@guarder_22
+
+[remark@guarder_22]:remark@def_guarder
+on_info2 = {!actor_has_weapon} walker@guarder_22 %-val_b2_base_guard%
+on_game_timer = 180|walker@guarder_22 %-val_b2_base_guard%
+
+;
+
+[logic@val_b2_guarder_23]
+active = walker@guarder_23
+suitable = {=check_npc_name(sim_default_night_stalker) !surge_started -val_storyline_done} true
+prior = 101
+
+[walker@guarder_23]:walker@def_guarder
+avail_speak = 15|wait|true
+path_walk = walker_1_walk
+on_info = {=check_precond_timer(2500) =dist_to_actor_le(15)} remark@guarder_23
+
+[remark@guarder_23]:remark@def_guarder
+on_info2 = {!actor_has_weapon} walker@guarder_23 %-val_b2_base_guard%
+on_game_timer = 180|walker@guarder_23 %-val_b2_base_guard%
+
+;
+
+[logic@val_b2_guarder_24]
+active = walker@guarder_24
+suitable = {=check_npc_name(sim_default_night_stalker) !surge_started -val_storyline_done} true
+prior = 101
+
+[walker@guarder_24]:walker@def_guarder
+avail_speak = 15|wait|true
+path_walk = walker_2_walk
+on_info = {=check_precond_timer(2500) =dist_to_actor_le(15)} remark@guarder_24
+
+[remark@guarder_24]:remark@def_guarder
+on_info2 = {!actor_has_weapon} walker@guarder_24 %-val_b2_base_guard%
+on_game_timer = 180|walker@guarder_24 %-val_b2_base_guard%
+
+;
+
+[logic@val_b2_guarder_25]
+active = walker@guarder_25
+suitable = {=check_npc_name(sim_default_night_stalker) !surge_started -val_storyline_done} true
+prior = 101
+
+[walker@guarder_25]:walker@def_guarder
+avail_speak = 15|wait|true
+path_walk = walker_3_walk
+on_info = {=check_precond_timer(2500) =dist_to_actor_le(15)} remark@guarder_25
+
+[remark@guarder_25]:remark@def_guarder
+on_info2 = {!actor_has_weapon} walker@guarder_25 %-val_b2_base_guard%
+on_game_timer = 180|walker@guarder_25 %-val_b2_base_guard%
+
+;
+
+[logic@val_b2_guarder_26]
+active = walker@guarder_26
+suitable = {=check_npc_name(sim_default_night_stalker) !surge_started -val_storyline_done} true
+prior = 101
+
+[walker@guarder_26]:walker@def_guarder
+avail_speak = 15|wait|true
+path_walk = walker_4_walk
+on_info = {=check_precond_timer(2500) =dist_to_actor_le(15)} remark@guarder_26
+
+[remark@guarder_26]:remark@def_guarder
+on_info2 = {!actor_has_weapon} walker@guarder_26 %-val_b2_base_guard%
+on_game_timer = 180|walker@guarder_26 %-val_b2_base_guard%
+
+;
+
+[logic@val_b2_guarder_27]
+active = camper@guarder_27
+suitable = {=check_npc_name(sim_default_night_stalker) !surge_started -val_storyline_done} true
+prior = 102
+
+[camper@guarder_27]:camper@def_guarder
+path_walk = sniper_1_walk
+path_look = sniper_1_look
+def_state_campering = guard
+def_state_campering_fire = threat_fire
+sniper = true
+
+;
+
+[logic@val_b2_guarder_28]
+active = camper@guarder_28
+suitable = {=check_npc_name(sim_default_night_stalker) !surge_started -val_storyline_done} true
+prior = 102
+
+[camper@guarder_28]:camper@def_guarder
+path_walk = sniper_2_walk
+path_look = sniper_2_look
+def_state_campering = guard
+def_state_campering_fire = threat_fire
+sniper = true
+
+;
+
+[logic@val_b2_guarder_29]
+active = camper@guarder_29
+suitable = {=check_npc_name(sim_default_night_stalker) !surge_started -val_storyline_done} true
+prior = 102
+
+[camper@guarder_29]:camper@def_guarder
+path_walk = sniper_3_walk
+path_look = sniper_3_look
+def_state_campering = guard
+def_state_campering_fire = threat_fire
+sniper = true
+
+;
+
+[logic@val_b2_guarder_30]
+active = camper@guarder_30
+suitable = {=check_npc_name(sim_default_night_stalker) !surge_started -val_storyline_done} true
+prior = 102
+
+[camper@guarder_30]:camper@def_guarder
+path_walk = sniper_4_walk
+path_look = sniper_4_look
+def_state_campering = guard
+def_state_campering_fire = threat_fire
+sniper = true

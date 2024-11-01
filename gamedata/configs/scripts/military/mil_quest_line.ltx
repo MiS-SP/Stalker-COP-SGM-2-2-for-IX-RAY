@@ -1,0 +1,41 @@
+;Рестриктор "Основная сюжетная линия"
+
+[logic]
+active = sr_idle
+
+[sr_idle]
+on_info  = {-mil_first_receipts_start =game_is_loaded} %+mil_first_receipts_start =give_task(mil_first_receipts)%
+on_info2 = {+mil_defence_b1_complete -mil_defence_b2_start =game_is_loaded -mil_alt_storyline_commenced} sr_idle@defence_b2
+on_info3 = {+mil_defence_b2_complete -mil_defence_b3_start =game_is_loaded -mil_alt_storyline_commenced} sr_idle@defence_b3
+on_info4 = {+mil_defence_b3_complete -mil_defence_b4_start =game_is_loaded -mil_alt_storyline_commenced} sr_idle@defence_b4
+on_info5 = {+mil_defence_b4_complete -mil_defence_b5_start =game_is_loaded -mil_alt_storyline_commenced} sr_idle@defence_b5
+on_info6 = {+mil_smash_monster_hole_complete -mil_defence_b6_start =game_is_loaded -mil_alt_storyline_commenced} sr_idle@defence_b6
+on_info7 = {+mil_defence_b6_complete -mil_defence_b7_start =game_is_loaded -mil_alt_storyline_commenced} sr_idle@defence_b7
+on_info8 = {+mil_defence_b5_complete -mil_smash_monster_hole_start =game_is_loaded -mil_alt_storyline_commenced} sr_idle@smash_monster_hole
+on_info9 = {+mil_defence_b7_complete -mil_akulov_offer_start =game_is_loaded -mil_alt_storyline_commenced -val_alt_storyline_commenced} sr_idle@akulov_offer
+
+[sr_idle@defence_b2]
+on_timer = 10000|sr_idle %+mil_defence_b2_start =give_task(mil_defence_b2)%
+
+[sr_idle@defence_b3]
+on_timer = 10000|sr_idle %+mil_defence_b3_start =give_task(mil_defence_b3)%
+
+[sr_idle@defence_b4]
+on_timer = 10000|sr_idle %+mil_defence_b4_start =give_task(mil_defence_b4)%
+
+[sr_idle@defence_b5]
+on_timer = 10000|sr_idle %+mil_defence_b5_start =give_task(mil_defence_b5)%
+
+[sr_idle@defence_b6]
+on_timer = 10000|sr_idle %+mil_defence_b6_start =give_task(mil_defence_b6)%
+
+[sr_idle@defence_b7]
+on_timer = 10000|sr_idle %+mil_defence_b7_start =give_task(mil_defence_b7)%
+
+[sr_idle@smash_monster_hole]
+on_timer = 10000|sr_idle %+mil_smash_monster_hole_start =mil_create_hole_bomb =give_task(mil_smash_monster_hole)%
+
+[sr_idle@akulov_offer]
+on_timer = 5000|sr_idle@final %+mil_akulov_offer_start =give_task(mil_akulov_offer)%
+
+[sr_idle@final]

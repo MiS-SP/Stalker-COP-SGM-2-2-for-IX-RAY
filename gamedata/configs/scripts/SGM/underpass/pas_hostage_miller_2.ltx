@@ -1,0 +1,38 @@
+[logic]
+active = move@miller_go_start
+on_death = death
+
+[death]
+on_info = %+pri_rescue_underground_guide_fail%
+
+[move@miller_go_start]
+move_dest_number       = 393541
+move_state_when_center = wait
+move_state_when_move   = run
+move_combat_disable    = true
+combat_ignore_cond     = true
+combat_ignore_keep_when_attacked = true
+on_signal              = on_center|move@miller_go_enter
+on_info                = {+pri_rescue_underground_guide_reward =dist_to_actor_ge(120)} nil %=release_npc%, {+pri_rescue_underground_guide_fail} nil
+
+[move@miller_go_enter]
+move_dest_number       = 407007
+move_state_when_center = wait
+move_state_when_move   = run
+move_combat_disable    = true
+combat_ignore_cond     = true
+combat_ignore_keep_when_attacked = true
+on_signal              = on_center|move@miller_go_home
+on_info                = {+pri_rescue_underground_guide_reward =dist_to_actor_ge(120)} nil %=release_npc%, {+pri_rescue_underground_guide_fail} nil
+
+[move@miller_go_home]
+move_dest_number       = 418374
+move_look_vertex       = 393541
+move_state_when_center = sit_ass
+move_state_when_move   = walk
+move_center_info       = pri_rescue_underground_guide_return_with_miller
+move_combat_disable    = true
+combat_ignore_cond     = true
+combat_ignore_keep_when_attacked = true
+on_info                = {+pri_rescue_underground_guide_reward =dist_to_actor_ge(120)} nil %=release_npc%, {+pri_rescue_underground_guide_fail} nil
+on_info2               = {=dist_to_actor_le(3) +pri_rescue_underground_guide_return_with_miller -pri_rescue_underground_guide_miller_thanx_2} %+pri_rescue_underground_guide_miller_thanx_2 =play_s2d_sound(characters_voice\human_01\stalker\help\wounded_thanx\thanx_3)%

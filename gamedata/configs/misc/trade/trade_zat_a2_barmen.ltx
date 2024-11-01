@@ -1,0 +1,280 @@
+#include "order_traders\default_sections.ltx"
+
+[trader]
+buy_condition = {+zat_b30_sultan_loose} buy_tier_2,trade_generic_buy 
+sell_condition = trade_generic_sell
+buy_supplies = {=wealthy_functor +zat_b30_sultan_loose} supplies_tier_4, {=wealthy_functor +zat_b29_exclusive_conditions} supplies_tier_3, {+zat_b30_sultan_loose} supplies_tier_3, {+zat_b29_exclusive_conditions} supplies_tier_2, supplies_start
+
+
+[supplies_start]
+bread				= 3,0.8
+kolbasa				= 3,0.8
+conserva			= 3,0.8
+vodka				= 3,0.8
+energy_drink			= 3,0.8
+nuts				= 3,0.1
+sardina				= 3,0.1
+wild_drink			= 3,0.2
+olivki				= 3,0.1
+cheese				= 3,0.1
+galet				= 3,0.1
+shokolad			= 3,0.2
+batonchik			= 3,0.1
+beer				= 3,0.3
+juice				= 3,0.2
+
+[supplies_tier_2]:supplies_start
+af_cristall			= 1,0.4
+af_dummy_glassbeads		= 1,0.4
+af_medusa 			= 1,0.4
+af_cristall_flower 		= 1,0.4
+af_night_star 			= 1,0.4
+af_blood 			= 1,0.4
+af_soul  			= 1,0.4
+af_fuzz_kolobok   		= 1,0.4
+af_electra_sparkler		= 1,0.4
+
+[supplies_tier_3]:supplies_start
+af_cristall			= 2,0.4
+af_dummy_glassbeads		= 2,0.4
+af_medusa 			= 2,0.4
+af_cristall_flower 		= 2,0.4
+af_night_star 			= 2,0.4
+af_blood 			= 2,0.4
+af_soul  			= 2,0.4
+af_fuzz_kolobok   		= 2,0.4
+af_electra_sparkler		= 2,0.4
+af_fireball			= 1,0.4
+af_vyvert 			= 1,0.4
+af_mincer_meat			= 1,0.4
+af_electra_flash		= 1,0.4
+af_electra_moonlight 	        = 1,0.4
+af_dummy_battery 		= 1,0.4
+
+[supplies_tier_4]:supplies_start
+af_cristall			= 3,0.4
+af_dummy_glassbeads		= 3,0.4
+af_medusa 			= 3,0.4
+af_cristall_flower 		= 3,0.4
+af_night_star 			= 3,0.4
+af_blood 			= 3,0.4
+af_soul  			= 3,0.4
+af_fuzz_kolobok   		= 3,0.4
+af_electra_sparkler		= 3,0.4
+af_fireball			= 2,0.4
+af_vyvert 			= 2,0.4
+af_mincer_meat			= 2,0.4
+af_electra_flash		= 2,0.4
+af_electra_moonlight 	        = 2,0.4
+af_dummy_battery 		= 2,0.4
+
+
+[trade_generic_buy]:default_buy
+;---------------------Артефакты------------------------>
+af_cristall			= 0.8,0.5
+af_fireball			= 0.8,0.5
+af_dummy_glassbeads		= 0.8,0.5
+af_eye				= 0.8,0.5
+af_fire				= 0.8,0.5
+af_medusa			= 0.8,0.5
+af_cristall_flower		= 0.8,0.5
+af_night_star			= 0.8,0.5
+af_vyvert			= 0.8,0.5
+af_gravi			= 0.8,0.5
+af_gold_fish			= 0.8,0.5
+af_blood			= 0.8,0.5
+af_mincer_meat			= 0.8,0.5
+af_soul				= 0.8,0.5
+af_fuzz_kolobok			= 0.8,0.5
+af_baloon			= 0.8,0.5
+af_glass			= 0.8,0.5
+af_electra_sparkler		= 0.8,0.5
+af_electra_flash		= 0.8,0.5
+af_electra_moonlight	        = 0.8,0.5
+af_dummy_battery		= 0.8,0.5
+af_dummy_dummy			= 0.8,0.5
+af_ice				= 0.8,0.5
+af_monolit			= 0.8,0.5
+af_geliy			= 0.8,0.5
+af_vaselisk		        = 0.8,0.5
+af_dragon_eye		        = 0.8,0.5
+;-------------------Селекция------------------------>
+af_medusa_breeding_1		= 0.8,0.6
+af_medusa_breeding_2		= 0.8,0.6
+af_medusa_breeding_3		= 0.8,0.6
+af_cristall_flower_breeding_1	= 0.8,0.6
+af_cristall_flower_breeding_2	= 0.8,0.6
+af_cristall_flower_breeding_3	= 0.8,0.6
+af_night_star_breeding_1	= 0.8,0.6
+af_night_star_breeding_2	= 0.8,0.6
+af_night_star_breeding_3	= 0.8,0.6
+af_vyvert_breeding_1		= 0.8,0.6
+af_vyvert_breeding_2		= 0.8,0.6
+af_vyvert_breeding_3		= 0.8,0.6
+af_gravi_breeding_1		= 0.8,0.6
+af_gravi_breeding_2		= 0.8,0.6
+af_gravi_breeding_3		= 0.8,0.6
+af_gold_fish_breeding_1		= 0.8,0.6
+af_gold_fish_breeding_2		= 0.8,0.6
+af_gold_fish_breeding_3		= 0.8,0.6
+af_cristall_breeding_1		= 0.8,0.6
+af_cristall_breeding_2		= 0.8,0.6
+af_cristall_breeding_3		= 0.8,0.6
+af_fireball_breeding_1		= 0.8,0.6
+af_fireball_breeding_2		= 0.8,0.6
+af_fireball_breeding_3		= 0.8,0.6
+af_dummy_glassbeads_breeding_1	= 0.8,0.6
+af_dummy_glassbeads_breeding_2	= 0.8,0.6
+af_dummy_glassbeads_breeding_3	= 0.8,0.6
+af_eye_breeding_1		= 0.8,0.6
+af_eye_breeding_2		= 0.8,0.6
+af_eye_breeding_3		= 0.8,0.6
+af_fire_breeding_1		= 0.8,0.6
+af_fire_breeding_2		= 0.8,0.6
+af_fire_breeding_3		= 0.8,0.6
+af_blood_breeding_1		= 0.8,0.6
+af_blood_breeding_2		= 0.8,0.6
+af_blood_breeding_3		= 0.8,0.6
+af_mincer_meat_breeding_1	= 0.8,0.6
+af_mincer_meat_breeding_2	= 0.8,0.6
+af_mincer_meat_breeding_3	= 0.8,0.6
+af_soul_breeding_1		= 0.8,0.6
+af_soul_breeding_2		= 0.8,0.6
+af_soul_breeding_3		= 0.8,0.6
+af_fuzz_kolobok_breeding_1	= 0.8,0.6
+af_fuzz_kolobok_breeding_2	= 0.8,0.6
+af_fuzz_kolobok_breeding_3	= 0.8,0.6
+af_baloon_breeding_1		= 0.8,0.6
+af_baloon_breeding_2		= 0.8,0.6
+af_baloon_breeding_3		= 0.8,0.6
+af_glass_breeding_1		= 0.8,0.6
+af_glass_breeding_2		= 0.8,0.6
+af_glass_breeding_3		= 0.8,0.6
+af_electra_sparkler_breeding_1	= 0.8,0.6
+af_electra_sparkler_breeding_2	= 0.8,0.6
+af_electra_sparkler_breeding_3	= 0.8,0.6
+af_electra_flash_breeding_1	= 0.8,0.6
+af_electra_flash_breeding_2	= 0.8,0.6
+af_electra_flash_breeding_3	= 0.8,0.6
+af_electra_moonlight_breeding_1	= 0.8,0.6
+af_electra_moonlight_breeding_2	= 0.8,0.6
+af_electra_moonlight_breeding_3	= 0.8,0.6
+af_dummy_battery_breeding_1	= 0.8,0.6
+af_dummy_battery_breeding_2	= 0.8,0.6
+af_dummy_battery_breeding_3	= 0.8,0.6
+af_dummy_dummy_breeding_1	= 0.8,0.6
+af_dummy_dummy_breeding_2	= 0.8,0.6
+af_dummy_dummy_breeding_3	= 0.8,0.6
+af_ice_breeding_1		= 0.8,0.6
+af_ice_breeding_2		= 0.8,0.6
+af_ice_breeding_3		= 0.8,0.6
+af_monolit_breeding_1		= 0.8,0.6
+af_monolit_breeding_2		= 0.8,0.6
+af_monolit_breeding_3		= 0.8,0.6
+af_geliy_breeding_1		= 0.8,0.6
+af_geliy_breeding_2		= 0.8,0.6
+af_geliy_breeding_3		= 0.8,0.6
+af_vaselisk_breeding_1          = 0.8,0.6
+af_vaselisk_breeding_2          = 0.8,0.6
+af_vaselisk_breeding_3          = 0.8,0.6
+af_dragon_eye_breeding_1        = 0.8,0.6
+af_dragon_eye_breeding_2        = 0.8,0.6
+af_dragon_eye_breeding_3        = 0.8,0.6
+;-------------Защитные елементы--------------------->
+cev_plastin_1			= 0.8,0.6
+cev_plastin_2			= 0.8,0.6
+cev_plastin_3			= 0.8,0.6
+cev_plastin_4			= 0.8,0.6
+cev_plastin_5			= 0.8,0.6
+;---------------------Трофеи------------------------>
+mutant_snork_booty	        = 0.5,0.3
+mutant_psevdodog_booty	        = 0.5,0.3
+mutant_krovosos_booty	        = 0.5,0.3
+mutant_boar_booty	        = 0.5,0.3
+mutant_dog_booty	        = 0.5,0.3
+mutant_flesh_booty	        = 0.5,0.3
+mutant_giant_booty	        = 0.5,0.3
+mutant_chimera_booty	        = 0.5,0.3
+mutant_controler_booty	        = 0.5,0.3
+mutant_burer_booty	        = 0.5,0.3
+;-------------------Еда------------------------>
+bread				= 0.6,0.3
+kolbasa				= 0.6,0.3
+conserva			= 0.6,0.3
+vodka				= 0.6,0.3
+energy_drink			= 0.6,0.3
+nuts				= 0.6,0.3
+sardina				= 0.6,0.3
+wild_drink			= 0.6,0.3
+olivki				= 0.6,0.3
+cheese				= 0.6,0.3
+galet				= 0.6,0.3
+shokolad			= 0.6,0.3
+batonchik			= 0.6,0.3
+beer				= 0.6,0.3
+juice				= 0.6,0.3
+
+[buy_tier_2]:trade_generic_buy
+af_cristall			= 1.2,0.6
+af_fireball			= 1.2,0.6
+af_dummy_glassbeads		= 1.2,0.6
+af_eye				= 1.2,0.6
+af_fire				= 1.2,0.6
+af_medusa			= 1.2,0.6
+af_cristall_flower		= 1.2,0.6
+af_night_star			= 1.2,0.6
+af_vyvert			= 1.2,0.6
+af_gravi			= 1.2,0.6
+af_gold_fish			= 1.2,0.6
+af_blood			= 1.2,0.6
+af_mincer_meat			= 1.2,0.6
+af_soul				= 1.2,0.6
+af_fuzz_kolobok			= 1.2,0.6
+af_baloon			= 1.2,0.6
+af_glass			= 1.2,0.6
+af_electra_sparkler		= 1.2,0.6
+af_electra_flash		= 1.2,0.6
+af_electra_moonlight	        = 1.2,0.6
+af_dummy_battery		= 1.2,0.6
+af_dummy_dummy			= 1.2,0.6
+af_ice				= 1.2,0.6
+af_vaselisk		        = 1.2,0.6
+af_dragon_eye		        = 1.2,0.6
+
+[trade_generic_sell]:default_sell
+;---------------------Артефакты------------------------>
+af_cristall			= 1.2,2
+af_fireball			= 1.2,2
+af_dummy_glassbeads		= 1.2,2
+af_medusa			= 1.2,2
+af_cristall_flower		= 1.2,2
+af_night_star			= 1.2,2
+af_vyvert			= 1.2,2
+af_blood			= 1.2,2
+af_mincer_meat			= 1.2,2
+af_soul				= 1.2,2
+af_fuzz_kolobok			= 1.2,2
+af_electra_sparkler		= 1.2,2
+af_electra_flash		= 1.2,2
+af_electra_moonlight	        = 1.2,2
+af_dummy_battery		= 1.2,2
+af_monolit			= 1.2,2
+af_geliy			= 1.2,2
+af_vaselisk		        = 1.2,2
+af_dragon_eye		        = 1.2,2
+;-------------------Еда------------------------>
+bread				= 1,2
+kolbasa				= 1,2
+conserva			= 1,2
+vodka				= 1,2
+energy_drink			= 1,2
+nuts				= 1,2
+sardina				= 1,2
+wild_drink			= 1,2
+olivki				= 1,2
+cheese				= 1,2
+galet				= 1,2
+shokolad			= 1,2
+batonchik			= 1,2
+beer				= 1,2
+juice				= 1,2

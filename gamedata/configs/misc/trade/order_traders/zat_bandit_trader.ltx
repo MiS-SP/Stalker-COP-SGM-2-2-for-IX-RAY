@@ -1,0 +1,41 @@
+#include "default_sections.ltx"
+
+[trader]
+buy_condition  = {+sgm_achievements_client =check_night_interval(22:5)} order_trader_buy_upgraded_hidden, {+sgm_achievements_client} order_trader_buy_upgraded, order_trader_buy
+sell_condition = {+sgm_achievements_client} order_trader_sell_upgraded, order_trader_sell
+buy_supplies   = {+zat_bandit_trader_weapon =check_trader_order_item(wpn_weapon)} supplies_weapon,{+zat_bandit_trader_bandit_exo_outfit =check_trader_order_item(bandit_exo_outfit)} supplies_bandit_exo_outfit,{+zat_bandit_trader_bandit_raid_outfit =check_trader_order_item(bandit_raid_outfit)} supplies_bandit_raid_outfit,order_trader_supplies
+buy_item_condition_factor = {+sgm_achievements_client} 0.4, 0.5
+
+[order_trader_supplies]
+minetrap_detector               = 1,0.80
+mp3_player                      = 1,0.99
+personal_marker                 = 1,0.60
+army_timer                      = 1,0.99
+personal_rukzak		        = 2,0.99
+repair_arms_box	                = 1,0.70
+repair_outfit_box	        = 1,0.70
+detector_battery_1		= 2,0.99
+detector_battery_2		= 2,0.70
+demolution_ballon		= 1,0.80
+ammo_box_10_vog			= 1,0.50
+ammo_box_10_m209		= 1,0.50
+activate_knife_m5               = 1,0.60
+
+[supplies_weapon]:order_trader_supplies
+
+[supplies_bandit_exo_outfit]:order_trader_supplies
+bandit_exo_outfit		= 1,1.0
+[supplies_bandit_raid_outfit]:order_trader_supplies
+bandit_raid_outfit		= 1,1.0
+
+[order_trader_buy]:default_order_trader_buy
+[order_trader_buy_upgraded]:default_order_trader_buy_upgraded
+[order_trader_buy_upgraded_hidden]:default_order_trader_buy_upgraded_hidden
+
+[order_trader_sell]:default_order_trader_sell
+bandit_raid_outfit		= 1,1.5
+bandit_exo_outfit               = 1,1.5
+
+[order_trader_sell_upgraded]:default_order_trader_sell_upgraded
+bandit_raid_outfit		= 1,1
+bandit_exo_outfit		= 1,1

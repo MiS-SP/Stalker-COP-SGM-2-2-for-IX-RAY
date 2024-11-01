@@ -1,0 +1,42 @@
+[logic]
+active = move@guard
+on_death = death
+
+[death]
+on_info = %+zat_a6_sultan_quest_kontra_lucian_dead_fail%
+
+[move@guard]
+move_dest_number       = 1660818
+move_look_vertex       = 1656576
+move_state_when_center = guard
+move_state_when_move   = walk
+move_stop_on_talk      = true
+meet                   = meet
+invulnerable           = true
+on_info                = {+zat_a6_sultan_quest_kontra_lucian_2} move@guard_no_talking
+on_info2               = {+zat_a6_sultan_quest_kontra_sultan_kill} %=release_npc% 
+
+
+[move@guard_no_talking]
+move_dest_number       = 1660818
+move_look_vertex       = 1656576
+move_state_when_center = sit_knee
+move_state_when_move   = walk
+move_stop_on_talk      = true
+invulnerable           = false
+meet                   = no_meet
+on_info                = {+zat_a6_sultan_quest_kontra_loki} %=release_npc%
+on_info2               = {+zat_a6_sultan_quest_kontra_sultan_kill} %=release_npc%
+
+[meet]
+abuse           = true
+use             = true
+allow_break     = false
+meet_on_talking = true
+trade_enable    = false
+
+[no_meet]
+abuse           = true
+use             = false
+allow_break     = true
+meet_on_talking = false

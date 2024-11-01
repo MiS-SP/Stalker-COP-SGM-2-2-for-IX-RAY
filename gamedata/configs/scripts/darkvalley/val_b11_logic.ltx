@@ -1,0 +1,183 @@
+;Ћогика "ёжный блокпост"
+
+[walker@def_guarder]
+use_camp = false
+gather_items_enabled = false
+help_wounded_enabled = false
+corpse_detection_enabled = false
+approach_info = val_b11_outpost_actor_captured|18|<
+precond_timer = {!actor_enemy =actor_has_weapon +val_b11_outpost_actor_checked} true, false
+
+[remark@def_guarder]
+anim = threat
+target = story|actor
+on_info = {+val_b11_outpost_actor_checked -val_b11_outpost_guard =actor_has_weapon} %+val_b11_outpost_guard =play_sound_theme(zat_a2_base_guard)%
+
+;
+
+[logic@val_b11_guarder_1]
+active = walker@guarder_1
+suitable = {=check_npc_name(val_b11_outpost_commander) !surge_started -val_storyline_done} true
+prior = 200
+
+[walker@guarder_1]:walker@def_guarder
+path_walk = commander_walk
+path_look = commander_look
+on_info = {+val_b11_outpost_actor_checked =check_precond_timer(3000) =dist_to_actor_le(15)} remark@guarder_1, {-val_b11_outpost_actor_checked +val_b11_outpost_actor_captured} remark@guarder_1_1
+on_info2 = {-val_first_coming_valley_guider_escaped -val_b11_outpost_commander_wait +val_b11_outpost_actor_checked =dist_to_actor_le(9)} %+val_b11_outpost_commander_wait =play_s2d_sound(characters_voice\scenario\darkvalley\val_b11_blockpost_commander_wait)%
+on_info3 = {-val_first_coming_valley_commander_raciya_end +val_first_coming_valley_commander_send_guider} remark@guarder_1_raciya_talk, {-val_first_coming_valley_guider_stay -val_first_coming_valley_guider_escaped =dist_to_actor_ge(100)} %+val_first_coming_valley_guider_escaped%
+invulnerable = {-val_alt_storyline_commenced} true, false
+meet = meet@b11_commander
+
+[remark@guarder_1]:remark@def_guarder
+on_info2 = {+val_b11_outpost_actor_checked !actor_has_weapon} walker@guarder_1 %-val_b11_outpost_guard%
+on_game_timer = 180|walker@guarder_1 %-val_b11_outpost_guard%
+
+[remark@guarder_1_1]:remark@guarder_1
+on_timer = 8000|{=actor_has_weapon} remark@guarder_1_2
+on_info3 = {-val_b11_outpost_actor_checked -val_b11_outpost_alarm =dist_to_actor_ge(32)} %+val_b11_outpost_alarm%
+
+[remark@guarder_1_2]:remark@guarder_1
+on_timer = 5000|{-val_b11_outpost_alarm =actor_has_weapon} %+val_b11_outpost_alarm%
+on_info3 = {-val_b11_outpost_actor_checked -val_b11_outpost_alarm =dist_to_actor_ge(32)} %+val_b11_outpost_alarm%
+
+[remark@guarder_1_raciya_talk]
+meet = no_meet
+anim = wait_rac
+target = story|actor
+on_timer = 10000|walker@guarder_1 %+val_first_coming_valley_commander_raciya_end%
+
+[meet@b11_commander]
+abuse = false
+use = {+val_first_coming_valley_talk_with_commander !actor_enemy !actor_has_weapon} true, {-val_first_coming_valley_talk_with_commander +val_first_coming_valley_commander_raciya_end !actor_enemy =dist_to_actor_le(6)} self, {-val_first_coming_valley_commander_send_guider !actor_enemy !actor_has_weapon} true, false
+allow_break = false
+trade_enable = false
+
+;
+
+[logic@val_b11_guarder_2]
+active = walker@guarder_2
+suitable = {=check_npc_name(sim_default_night_stalker) !surge_started -val_storyline_done} true
+prior = 100
+
+[walker@guarder_2]:walker@def_guarder
+path_walk = guard_2_walk
+path_look = guard_2_look
+on_info = {+val_b11_outpost_actor_checked =check_precond_timer(3000) =dist_to_actor_le(15)} remark@guarder_2, {-val_b11_outpost_actor_checked +val_b11_outpost_actor_captured} remark@guarder_2
+
+[remark@guarder_2]:remark@def_guarder
+on_info2 = {+val_b11_outpost_actor_checked !actor_has_weapon} walker@guarder_2 %-val_b11_outpost_guard%
+on_game_timer = 180|walker@guarder_2 %-val_b11_outpost_guard%
+
+;
+
+[logic@val_b11_guarder_3]
+active = walker@guarder_3
+suitable = {=check_npc_name(sim_default_night_stalker) !surge_started -val_storyline_done} true
+prior = 100
+
+[walker@guarder_3]:walker@def_guarder
+path_walk = guard_3_walk
+path_look = guard_3_look
+on_info = {+val_b11_outpost_actor_checked =check_precond_timer(3000) =dist_to_actor_le(15)} remark@guarder_3, {-val_b11_outpost_actor_checked +val_b11_outpost_actor_captured} remark@guarder_3
+
+[remark@guarder_3]:remark@def_guarder
+on_info2 = {+val_b11_outpost_actor_checked !actor_has_weapon} walker@guarder_3 %-val_b11_outpost_guard%
+on_game_timer = 180|walker@guarder_3 %-val_b11_outpost_guard%
+
+;
+
+[logic@val_b11_guarder_4]
+active = walker@guarder_4
+suitable = {=check_npc_name(sim_default_night_stalker) !surge_started -val_storyline_done} true
+prior = 100
+
+[walker@guarder_4]:walker@def_guarder
+path_walk = guard_4_walk
+path_look = guard_4_look
+on_info = {+val_b11_outpost_actor_checked =check_precond_timer(3000) =dist_to_actor_le(15)} remark@guarder_4, {-val_b11_outpost_actor_checked +val_b11_outpost_actor_captured} remark@guarder_4
+
+[remark@guarder_4]:remark@def_guarder
+on_info2 = {+val_b11_outpost_actor_checked !actor_has_weapon} walker@guarder_4 %-val_b11_outpost_guard%
+on_game_timer = 180|walker@guarder_4 %-val_b11_outpost_guard%
+
+;
+
+[logic@val_b11_guarder_5]
+active = walker@guarder_5
+suitable = {=check_npc_name(sim_default_night_stalker) !surge_started -val_storyline_done} true
+prior = 100
+
+[walker@guarder_5]:walker@def_guarder
+path_walk = guard_5_walk
+path_look = guard_5_look
+on_info = {+val_b11_outpost_actor_checked =check_precond_timer(3000) =dist_to_actor_le(15)} remark@guarder_5, {-val_b11_outpost_actor_checked +val_b11_outpost_actor_captured} remark@guarder_5
+
+[remark@guarder_5]:remark@def_guarder
+on_info2 = {+val_b11_outpost_actor_checked !actor_has_weapon} walker@guarder_5 %-val_b11_outpost_guard%
+on_game_timer = 180|walker@guarder_5 %-val_b11_outpost_guard%
+
+;
+
+[logic@val_b11_guarder_6]
+active = walker@guarder_6
+suitable = {=check_npc_name(sim_default_night_stalker) !surge_started -val_storyline_done} true
+prior = 100
+
+[walker@guarder_6]:walker@def_guarder
+path_walk = guard_6_walk
+path_look = guard_6_look
+on_info = {+val_b11_outpost_actor_checked =check_precond_timer(3000) =dist_to_actor_le(15)} remark@guarder_6, {-val_b11_outpost_actor_checked +val_b11_outpost_actor_captured} remark@guarder_6
+
+[remark@guarder_6]:remark@def_guarder
+on_info2 = {+val_b11_outpost_actor_checked !actor_has_weapon} walker@guarder_6 %-val_b11_outpost_guard%
+on_game_timer = 180|walker@guarder_6 %-val_b11_outpost_guard%
+
+;
+
+[logic@val_b11_guarder_7]
+active = walker@guarder_7
+suitable = {=check_npc_name(sim_default_night_stalker) !surge_started -val_storyline_done} true
+prior = 100
+
+[walker@guarder_7]:walker@def_guarder
+avail_speak = 15|wait|true
+path_walk = guard_7_walk
+path_look = guard_7_look
+on_info = {+val_b11_outpost_actor_checked =check_precond_timer(3000) =dist_to_actor_le(15)} remark@guarder_7, {-val_b11_outpost_actor_checked +val_b11_outpost_actor_captured} remark@guarder_7
+
+[remark@guarder_7]:remark@def_guarder
+on_info2 = {+val_b11_outpost_actor_checked !actor_has_weapon} walker@guarder_7 %-val_b11_outpost_guard%
+on_game_timer = 180|walker@guarder_7 %-val_b11_outpost_guard%
+
+;
+
+[logic@val_b11_guarder_8]
+active = walker@guarder_8
+suitable = {=check_npc_name(sim_default_night_stalker) !surge_started -val_storyline_done} true
+prior = 100
+
+[walker@guarder_8]:walker@def_guarder
+avail_speak = 21|wait|true
+path_walk = guard_8_walk
+path_look = guard_8_look
+on_info = {+val_b11_outpost_actor_checked =check_precond_timer(3000) =dist_to_actor_le(15)} remark@guarder_8, {-val_b11_outpost_actor_checked +val_b11_outpost_actor_captured} remark@guarder_8
+
+[remark@guarder_8]:remark@def_guarder
+on_info2 = {+val_b11_outpost_actor_checked !actor_has_weapon} walker@guarder_8 %-val_b11_outpost_guard%
+on_game_timer = 180|walker@guarder_8 %-val_b11_outpost_guard%
+
+;
+
+[logic@val_b11_guarder_9]
+active = walker@guarder_9
+suitable = {=check_npc_name(sim_default_night_stalker) !surge_started -val_storyline_done} true
+prior = 101
+
+[walker@guarder_9]:walker@def_guarder
+path_walk = walker_1_walk
+on_info = {+val_b11_outpost_actor_checked =check_precond_timer(3000) =dist_to_actor_le(15)} remark@guarder_9, {-val_b11_outpost_actor_checked +val_b11_outpost_actor_captured} remark@guarder_9
+
+[remark@guarder_9]:remark@def_guarder
+on_info2 = {+val_b11_outpost_actor_checked !actor_has_weapon} walker@guarder_9 %-val_b11_outpost_guard%
+on_game_timer = 80|walker@guarder_9 %-val_b11_outpost_guard%

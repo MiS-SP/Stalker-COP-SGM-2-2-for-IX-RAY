@@ -1,0 +1,10 @@
+;Зона в которой ГГ должен проверить антенну.
+
+[logic]
+active = sr_idle
+
+[sr_idle]
+on_info = {=actor_in_zone(val_lucas_antenna_1) +val_lucas_talking_antenna -val_lucas_antenna_1_done} sr_idle@in_place %=run_tutorial(val_lucas_quest_antenner_cheked_1) +val_spez_start_tutorial_1%
+
+[sr_idle@in_place]
+on_info = {!actor_in_zone(val_lucas_antenna_1) +val_spez_start_tutorial_1} sr_idle %-val_spez_start_tutorial_1 =stop_tutorial%

@@ -1,0 +1,8 @@
+;Рестриктор "Блокпост у фермы"
+
+[logic]
+active = sr_idle
+
+[sr_idle]
+on_info  = {+val_b14_outpost_alarm =squad_exist(val_b14_night_stalker_squad) !is_squad_enemy_to_actor(val_b14_night_stalker_squad)} %=set_squad_enemy_to_actor(val_b14_night_stalker_squad)%
+on_info2 = {-val_b14_outpost_alarm =squad_exist(val_b14_night_stalker_squad) =is_squad_enemy_to_actor(val_b14_night_stalker_squad)} %+val_b14_outpost_alarm%

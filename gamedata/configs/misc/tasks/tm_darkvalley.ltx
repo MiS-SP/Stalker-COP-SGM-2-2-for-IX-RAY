@@ -1,0 +1,140 @@
+;---------------------------------------------------------------------------------------;
+;                                Темная Долина                                          ;
+;---------------------------------------------------------------------------------------;
+;сюжетные задания 
+
+[val_first_coming_valley]
+icon = ui_inGame2_FirstComingValley
+prior = 100
+storyline = true
+title = {+val_first_coming_valley_talk_with_leader} val_first_coming_on_valley_title7, {+val_first_coming_valley_came_to_farm -val_first_coming_valley_talk_with_leader} val_first_coming_on_valley_title6, {+val_first_coming_valley_guider_escaped -val_first_coming_valley_came_to_farm} val_first_coming_on_valley_title5, {+val_first_coming_valley_talk_with_commander +val_first_coming_valley_guider_is_dead -val_first_coming_valley_came_to_farm} val_first_coming_on_valley_title4, {+val_first_coming_valley_guider_coming -val_first_coming_valley_guider_is_dead -val_first_coming_valley_came_to_farm} val_first_coming_on_valley_title3, {+val_first_coming_valley_talk_with_commander -val_first_coming_valley_guider_coming} val_first_coming_on_valley_title2, {+val_b11_outpost_actor_checked -val_first_coming_valley_talk_with_commander} val_first_coming_on_valley_title1, {-val_b11_outpost_actor_checked} val_first_coming_on_valley_title0
+descr = {+val_first_coming_valley_talk_with_leader} val_first_coming_on_valley_text7, {+val_first_coming_valley_came_to_farm -val_first_coming_valley_talk_with_leader} val_first_coming_on_valley_text6, {+val_first_coming_valley_guider_escaped -val_first_coming_valley_came_to_farm} val_first_coming_on_valley_text5, {+val_first_coming_valley_talk_with_commander +val_first_coming_valley_guider_is_dead -val_first_coming_valley_came_to_farm} val_first_coming_on_valley_text4, {+val_first_coming_valley_guider_coming -val_first_coming_valley_guider_is_dead -val_first_coming_valley_came_to_farm} val_first_coming_on_valley_text3, {+val_first_coming_valley_talk_with_commander -val_first_coming_valley_guider_coming} val_first_coming_on_valley_text2, {+val_b11_outpost_actor_checked -val_first_coming_valley_talk_with_commander} val_first_coming_on_valley_text1, {-val_b11_outpost_actor_checked} val_first_coming_on_valley_text0
+target = {+val_first_coming_valley_talk_with_leader} nil, {+val_first_coming_valley_came_to_farm -val_first_coming_valley_talk_with_leader} val_b2_base_leader, {+val_first_coming_valley_guider_escaped -val_first_coming_valley_came_to_farm} val_b2_base_spot, {+val_first_coming_valley_talk_with_commander +val_first_coming_valley_guider_is_dead -val_first_coming_valley_came_to_farm} val_b2_base_spot, {+val_first_coming_valley_guider_coming -val_first_coming_valley_guider_is_dead -val_first_coming_valley_came_to_farm} val_b2_accompany_guider, {+val_first_coming_valley_talk_with_commander -val_first_coming_valley_guider_coming} nil, {+val_b11_outpost_actor_checked -val_first_coming_valley_talk_with_commander} val_b11_outpost_commander, {-val_b11_outpost_actor_checked} nil
+condlist_0 = {+val_first_coming_valley_request_approved} complete
+condlist_1 = {+val_alt_storyline_commenced} fail
+on_fail = %+val_alt_storyline_commenced%
+on_complete = %+val_first_coming_valley_complete =add_actor_rank(1) =inc_faction_goodwill_to_actor(night_stalker:50) =increase_counter(stat_kvestov)%
+
+[val_kill_night_predator]
+icon = ui_inGame2_KillNightPredator
+prior = 101
+storyline = true
+title = {+val_kill_night_predator_chimera_defeated -val_kill_night_predator_talk_with_leader} val_kill_night_predator_title7, {+val_kill_night_predator_chimera_trapped -val_kill_night_predator_chimera_defeated} val_kill_night_predator_title6, {+val_kill_night_predator_go_to_hole -val_kill_night_predator_chimera_trapped} val_kill_night_predator_title5, {+val_kill_night_predator_setup_ambush -val_kill_night_predator_go_to_hole} val_kill_night_predator_title4, {+val_kill_night_predator_say_about_plan -val_kill_night_predator_setup_ambush} val_kill_night_predator_title3, {+val_kill_night_predator_chimera_shooted -val_kill_night_predator_say_about_plan} val_kill_night_predator_title2, {+val_kill_night_predator_check_hole -val_kill_night_predator_chimera_shooted} val_kill_night_predator_title1, {-val_kill_night_predator_check_hole} val_kill_night_predator_title0
+descr = {+val_kill_night_predator_chimera_defeated -val_kill_night_predator_talk_with_leader} val_kill_night_predator_text7, {+val_kill_night_predator_chimera_trapped -val_kill_night_predator_chimera_defeated} val_kill_night_predator_text6, {+val_kill_night_predator_go_to_hole -val_kill_night_predator_chimera_trapped} val_kill_night_predator_text5, {+val_kill_night_predator_setup_ambush -val_kill_night_predator_go_to_hole} val_kill_night_predator_text4, {+val_kill_night_predator_say_about_plan -val_kill_night_predator_setup_ambush} val_kill_night_predator_text3, {+val_kill_night_predator_chimera_shooted -val_kill_night_predator_say_about_plan} val_kill_night_predator_text2, {+val_kill_night_predator_check_hole -val_kill_night_predator_chimera_shooted} val_kill_night_predator_text1, {-val_kill_night_predator_check_hole} val_kill_night_predator_text0
+target = {+val_kill_night_predator_chimera_defeated -val_kill_night_predator_talk_with_leader} val_b2_base_leader, {+val_kill_night_predator_chimera_trapped -val_kill_night_predator_chimera_defeated} val_b14_night_predator, {+val_kill_night_predator_go_to_hole -val_kill_night_predator_chimera_trapped} val_b14_night_predator, {+val_kill_night_predator_setup_ambush -val_kill_night_predator_go_to_hole} val_b14_night_predator_hole_spot, {+val_kill_night_predator_say_about_plan -val_kill_night_predator_setup_ambush} val_b14_outpost_commander, {+val_kill_night_predator_chimera_shooted -val_kill_night_predator_say_about_plan} val_b2_base_leader, {+val_kill_night_predator_check_hole -val_kill_night_predator_chimera_shooted} val_b14_night_predator, {-val_kill_night_predator_check_hole} val_b14_night_predator_hole_spot
+condlist_0 = {+val_kill_night_predator_talk_with_leader} complete
+condlist_1 = {+val_alt_storyline_commenced} fail
+on_fail = %+val_alt_storyline_commenced%
+on_complete = %+val_kill_night_predator_complete =add_actor_rank(2) =inc_faction_goodwill_to_actor(night_stalker:60) =increase_counter(stat_kvestov)%
+
+[val_assault_factory]
+icon = ui_inGame2_AssaultFactory
+prior = 102
+storyline = true
+title = {+val_assault_factory_get_corpse_pda} val_assault_factory_title7, {+val_assault_factory_garrison_destroyed -val_assault_factory_get_corpse_pda} val_assault_factory_title6, {+val_assault_factory_garrison_alarmed -val_assault_factory_garrison_destroyed} val_assault_factory_title5, {+val_assault_factory_squad_passed_bridge -val_assault_factory_garrison_alarmed} val_assault_factory_title4, {+val_assault_factory_join_squad -val_assault_factory_squad_passed_bridge} val_assault_factory_title3, {+val_assault_factory_bridge_cleared -val_assault_factory_join_squad} val_assault_factory_title2, {-val_a6_snork_squad_death +val_a2_snork_squad_death} val_assault_factory_title1, {+val_a6_snork_squad_death -val_a2_snork_squad_death} val_assault_factory_title1, {-val_a6_snork_squad_death -val_a2_snork_squad_death} val_assault_factory_title0
+descr = {+val_assault_factory_get_corpse_pda} val_assault_factory_text7, {+val_assault_factory_garrison_destroyed -val_assault_factory_get_corpse_pda} val_assault_factory_text6, {+val_assault_factory_garrison_alarmed -val_assault_factory_garrison_destroyed} val_assault_factory_text5, {+val_assault_factory_squad_passed_bridge -val_assault_factory_garrison_alarmed} val_assault_factory_text4, {+val_assault_factory_join_squad -val_assault_factory_squad_passed_bridge} val_assault_factory_text3, {+val_assault_factory_bridge_cleared -val_assault_factory_join_squad} val_assault_factory_text2, {-val_a6_snork_squad_death +val_a2_snork_squad_death} val_assault_factory_text1, {+val_a6_snork_squad_death -val_a2_snork_squad_death} val_assault_factory_text1, {-val_a6_snork_squad_death -val_a2_snork_squad_death} val_assault_factory_text0
+target = {+val_assault_factory_get_corpse_pda} val_b2_base_leader, {+val_assault_factory_garrison_destroyed -val_assault_factory_get_corpse_pda} nil, {+val_assault_factory_garrison_alarmed -val_assault_factory_garrison_destroyed} val_b1_renegade_squad, {+val_assault_factory_squad_passed_bridge -val_assault_factory_garrison_alarmed} val_b1_courtyard_pipes_spot, {+val_assault_factory_join_squad -val_assault_factory_squad_passed_bridge} val_b2_assault_b1_commander, {+val_assault_factory_bridge_cleared -val_assault_factory_join_squad} val_b2_assault_b1_commander, {-val_a6_snork_squad_death +val_a2_snork_squad_death} val_a6_snork_squad, {+val_a6_snork_squad_death -val_a2_snork_squad_death} val_a2_snork_squad, {-val_a6_snork_squad_death -val_a2_snork_squad_death} val_a6_snork_squad
+condlist_0 = {+val_assault_factory_pda_brought} complete
+condlist_1 = {+val_alt_storyline_commenced} fail
+on_fail = %+val_alt_storyline_commenced =release_counter(val_assault_factory_stalker_counts:val_assault_factory_cover_1_done:val_assault_factory_cover_2_done)%
+on_complete = %+val_assault_factory_complete =add_actor_rank(3) =inc_faction_goodwill_to_actor(night_stalker:70) =increase_counter(stat_kvestov) =release_counter(val_assault_factory_stalker_counts:val_assault_factory_cover_1_done:val_assault_factory_cover_2_done)%
+
+[val_shade_of_time]
+icon = ui_inGame2_ShadeOfTime
+prior = 105
+storyline = true
+title = {+val_shade_of_time_card_received} val_shade_of_time_title6, {+val_shade_of_time_key_searched -val_shade_of_time_card_received} val_shade_of_time_title5, {+val_shade_of_time_renegade_help -val_shade_of_time_key_searched} val_shade_of_time_title4, {+val_shade_of_time_get_helped -val_shade_of_time_renegade_help} val_shade_of_time_title3_2, {+val_shade_of_time_door_is_locked +val_alt_storyline_commenced -val_shade_of_time_renegade_help} val_shade_of_time_title3_2, {+val_shade_of_time_door_is_locked -val_alt_storyline_commenced -val_shade_of_time_get_helped} val_shade_of_time_title2, {+val_shade_of_time_pda_is_found -val_shade_of_time_door_is_locked} val_shade_of_time_title1, {+val_alt_storyline_commenced -val_shade_of_time_pda_is_found} val_shade_of_time_title0_2, {-val_alt_storyline_commenced -val_shade_of_time_pda_is_found} val_shade_of_time_title0_1
+descr = {+val_shade_of_time_card_received} val_shade_of_time_text6, {+val_shade_of_time_key_searched -val_shade_of_time_card_received} val_shade_of_time_text5, {+val_shade_of_time_renegade_help -val_shade_of_time_key_searched} val_shade_of_time_text4, {+val_shade_of_time_get_helped -val_shade_of_time_renegade_help} val_shade_of_time_text3_2, {+val_shade_of_time_door_is_locked +val_alt_storyline_commenced -val_shade_of_time_renegade_help} val_shade_of_time_text3_2, {+val_shade_of_time_door_is_locked -val_alt_storyline_commenced -val_shade_of_time_get_helped} val_shade_of_time_text2, {+val_shade_of_time_pda_is_found -val_shade_of_time_door_is_locked} val_shade_of_time_text1, {+val_alt_storyline_commenced -val_shade_of_time_pda_is_found} val_shade_of_time_text0_2, {-val_alt_storyline_commenced -val_shade_of_time_pda_is_found} val_shade_of_time_text0_1
+target = {+val_shade_of_time_card_received} val_b1_x18_door_spot, {+val_shade_of_time_key_searched -val_shade_of_time_card_received} val_b3_safe, {+val_shade_of_time_renegade_help -val_shade_of_time_key_searched} val_b3_safe, {+val_shade_of_time_get_helped -val_shade_of_time_renegade_help} val_b3_area_spot, {+val_shade_of_time_door_is_locked +val_alt_storyline_commenced -val_shade_of_time_renegade_help} nil, {+val_shade_of_time_door_is_locked -val_alt_storyline_commenced -val_shade_of_time_get_helped} val_b2_base_leader, {+val_shade_of_time_pda_is_found -val_shade_of_time_door_is_locked} val_b1_x18_door_spot, {+val_alt_storyline_commenced -val_shade_of_time_pda_is_found} nil, {-val_alt_storyline_commenced -val_shade_of_time_pda_is_found} val_b4_baltazar_path_spot
+condlist_0 = {+val_shade_of_time_come_down} complete
+on_complete = %+val_shade_of_time_complete =add_actor_rank(5) =increase_counter(stat_kvestov)%
+
+[val_key_from_safe]
+icon = ui_inGame2_KeyFromSafe
+prior = 106
+storyline = true
+title = val_shade_of_time_title7
+descr = val_shade_of_time_text7
+target = nil
+condlist_0 = {+val_shade_of_time_key_searched} complete
+on_complete = %=add_actor_rank(2) =increase_counter(stat_kvestov)%
+
+[val_issue_secret_data]
+icon = ui_inGame2_IssueSecretData
+prior = 108
+storyline = true
+title = val_issue_secret_data_title0
+descr = val_issue_secret_data_text0
+target = pri_authorities_agent
+condlist_0 = {+val_issue_secret_data_was_sent} complete
+on_complete = %+val_issue_secret_data_complete =add_actor_rank(5) =increase_counter(stat_kvestov)%
+
+;второстепенные задания
+
+[val_brigand]
+icon = ui_inGame2_Brigand
+prior = 5
+storyline = false
+title = {+val_brigand_renegade_killed} val_brigand_title1, {-val_brigand_renegade_killed} val_brigand_title0
+descr = {+val_brigand_renegade_killed} val_brigand_text1, {-val_brigand_renegade_killed} val_brigand_text0
+target = {+val_brigand_renegade_killed} val_b2_leviafan, {-val_brigand_renegade_killed} val_b15_renegade_squad
+condlist_0 = {+val_brigand_award_is_received} complete
+condlist_1 = {+val_alt_storyline_commenced} fail
+condlist_2 = {=sid_thinks_actor_is_enemy(val_b2_leviafan)} fail
+on_complete = %+val_brigand_complete =add_actor_rank(3) =increase_counter(stat_kvestov)%
+
+[val_secret_development]
+icon = ui_inGame2_SecretDevelopment
+prior = 6
+storyline = false
+title = {+val_secret_development_gs67_founded} val_secret_development_title2, {+val_secret_development_is_x18 -val_secret_development_gs67_founded} val_secret_development_title1, {-val_secret_development_is_x18} val_secret_development_title0
+descr = {+val_secret_development_gs67_founded} val_secret_development_text2, {+val_secret_development_is_x18 -val_secret_development_gs67_founded} val_secret_development_text1, {-val_secret_development_is_x18} val_secret_development_text0
+target = {+val_secret_development_gs67_founded} val_b2_leviafan, {+val_secret_development_is_x18 -val_secret_development_gs67_founded} nil, {-val_secret_development_is_x18} val_b1_x18_door_spot
+condlist_0 = {+val_secret_development_reward} complete
+condlist_1 = {+val_alt_storyline_commenced} fail
+condlist_2 = {=sid_thinks_actor_is_enemy(val_b2_leviafan)} fail
+on_complete = %+val_secret_development_complete =add_actor_rank(3) =increase_counter(stat_kvestov)%
+on_fail = %+val_secret_development_fail%
+
+[geonezis_lucas_mistery_quest]
+icon = ui_inGame2_LucasMistery
+prior = 2
+storyline = false
+title = {+val_lucas_quests_point_2_checked} val_lucas_mistery_quest_title9, {+val_freedom_spez_agent_lucas_talking_go -val_lucas_quests_point_2_checked} val_lucas_mistery_quest_title8, {+val_beat_from_monsters_safely -val_freedom_spez_agent_lucas_talking_go} val_lucas_mistery_quest_title7, {+val_lucas_quests_point_1_checked -val_beat_from_monsters_safely} val_lucas_mistery_quest_title6, {+val_lucas_quests_tainiki_find -val_lucas_quests_point_1_checked} val_lucas_mistery_quest_title5, {+val_freedom_spez_agent_lucas_talking_all_dolg_dead -val_lucas_quests_tainiki_find} val_lucas_mistery_quest_title4, {+val_freedom_spez_agent_lucas_talking_dolg -val_freedom_spez_agent_lucas_talking_all_dolg_dead} val_lucas_mistery_quest_title3, {+val_lucas_all_antenna_done -val_freedom_spez_agent_lucas_talking_dolg} val_lucas_mistery_quest_title2, {+val_lucas_talking_antenna -val_lucas_all_antenna_done} val_lucas_mistery_quest_title1, {-val_lucas_talking_antenna} val_lucas_mistery_quest_title0
+descr = {+val_lucas_quests_point_2_checked} val_lucas_mistery_quest_text9, {+val_freedom_spez_agent_lucas_talking_go -val_lucas_quests_point_2_checked} val_lucas_mistery_quest_text8, {+val_beat_from_monsters_safely -val_freedom_spez_agent_lucas_talking_go} val_lucas_mistery_quest_text7, {+val_lucas_quests_point_1_checked -val_beat_from_monsters_safely} val_lucas_mistery_quest_text6, {+val_lucas_quests_tainiki_find -val_lucas_quests_point_1_checked} val_lucas_mistery_quest_text5, {+val_freedom_spez_agent_lucas_talking_all_dolg_dead -val_lucas_quests_tainiki_find} val_lucas_mistery_quest_text4, {+val_freedom_spez_agent_lucas_talking_dolg -val_freedom_spez_agent_lucas_talking_all_dolg_dead} val_lucas_mistery_quest_text3, {+val_lucas_all_antenna_done -val_freedom_spez_agent_lucas_talking_dolg} val_lucas_mistery_quest_text2, {+val_lucas_talking_antenna -val_lucas_all_antenna_done} val_lucas_mistery_quest_text1, {-val_lucas_talking_antenna} val_lucas_mistery_quest_text0
+target = {+val_lucas_quests_point_2_checked} val_night_zam_leader_kolmogor_2, {+val_freedom_spez_agent_lucas_talking_go -val_lucas_quests_point_2_checked} val_lucas_quest_third_spot, {+val_beat_from_monsters_safely -val_freedom_spez_agent_lucas_talking_go} val_freedom_spez_agent_lucas_2, {+val_lucas_quests_point_1_checked -val_beat_from_monsters_safely} nil, {+val_lucas_quests_tainiki_find -val_lucas_quests_point_1_checked} val_lucas_quest_second_spot, {+val_freedom_spez_agent_lucas_talking_all_dolg_dead -val_lucas_quests_tainiki_find} nil, {+val_freedom_spez_agent_lucas_talking_dolg -val_freedom_spez_agent_lucas_talking_all_dolg_dead} val_lucas_quest_first_spot, {+val_lucas_all_antenna_done -val_freedom_spez_agent_lucas_talking_dolg} val_freedom_spez_agent_lucas, {+val_lucas_talking_antenna -val_lucas_all_antenna_done} nil, {-val_lucas_talking_antenna} val_freedom_spez_agent_lucas
+condlist_0 = {+val_lucas_mistery_quest_complete} complete
+condlist_1 = {+val_freedom_spez_agent_lucas_2_dead} fail
+condlist_2 = {+val_freedom_spez_agent_lucas_1_dead} fail
+on_complete = %+val_lucas_mistery_quest_approved =add_actor_rank(3) =inc_faction_goodwill_to_actor(night_stalker:50) =inc_faction_goodwill_to_actor(freedom:150) =increase_counter(stat_kvestov)%
+on_fail = %=dec_faction_goodwill_to_actor(freedom:100) +val_lucas_mistery_quest_fail%
+
+[geonezis_lucas_mistery_quest_1] 
+icon = ui_inGame2_LucasMistery
+prior = 1 
+storyline = false 
+title = val_lucas_mistery_quest_title0_1
+descr = val_lucas_mistery_quest_text0_1
+target = val_lucas_quest_antenna_1_spot
+condlist_0 = {+val_lucas_antenna_1_done} complete
+on_complete = %=add_actor_rank(1)%
+
+[geonezis_lucas_mistery_quest_2] 
+icon = ui_inGame2_LucasMistery
+prior = 1 
+storyline = false 
+title = val_lucas_mistery_quest_title0_2
+descr = val_lucas_mistery_quest_text0_2
+target = val_lucas_quest_antenna_2_spot
+condlist_0 = {+val_lucas_antenna_2_done} complete
+on_complete = %=add_actor_rank(1)%
+
+[geonezis_lucas_mistery_quest_3] 
+icon = ui_inGame2_LucasMistery
+prior = 1 
+storyline = false 
+title = val_lucas_mistery_quest_title0_3
+descr = val_lucas_mistery_quest_text0_3
+target = val_lucas_quest_antenna_3_spot
+condlist_0 = {+val_lucas_antenna_3_done} complete
+on_complete = %=add_actor_rank(1)%

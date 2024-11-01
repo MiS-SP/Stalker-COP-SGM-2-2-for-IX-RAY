@@ -1,0 +1,82 @@
+[logic]
+active = move@waiting_actor
+
+[move@waiting_actor]
+move_dest_number       = 1034208
+move_look_subject      = actor
+move_state_when_center = hello
+move_state_when_move   = walk
+meet                   = meet
+on_info                = {+jup_mercenary_check_plant_go_left} move@we_leave %=play_s2d_sound(characters_voice\human_01\stalker\alife\attack\attack_begin_1)%
+
+[move@we_leave]
+move_dest_number       = 1007848
+move_state_when_center = hide
+move_state_when_move   = assault
+invulnerable           = {-jup_mercenary_check_plant_fail} true, false
+on_signal              = on_center|move@on_approach
+on_info                = {-jup_mercenary_check_plant_fail =actor_enemy} nil %+jup_mercenary_check_plant_fail%, {=dist_to_actor_ge(120) -jup_mercenary_check_plant_fail} nil %+jup_mercenary_check_plant_fail%
+
+[move@on_approach]
+move_dest_number       = 1137224
+move_state_when_center = hide
+move_state_when_move   = assault
+invulnerable           = {-jup_mercenary_check_plant_fail} true, false
+on_signal              = on_center|move@call_perimetr
+on_info                = {=dist_to_actor_ge(120) -jup_mercenary_check_plant_fail} nil %+jup_mercenary_check_plant_fail%
+
+[move@call_perimetr]
+move_dest_number       = 1141604
+move_look_subject      = actor
+move_state_when_center = hide
+move_state_when_move   = assault
+move_combat_disable    = true
+invulnerable           = {-jup_mercenary_check_plant_fail} true, false
+on_info                = {-jup_mercenary_check_plant_fail =actor_enemy} nil %+jup_mercenary_check_plant_fail%, {=dist_to_actor_ge(120) -jup_mercenary_check_plant_fail} nil %+jup_mercenary_check_plant_fail%
+on_info2               = {=jup_killer_first_squad_voshli -jup_mercenary_check_plant_near_perimetr} %+jup_mercenary_check_plant_near_perimetr%
+on_info3               = {+jup_mercenary_check_plant_near_perimetr =dist_to_actor_le(20)} move@entry_with_cleaning %=jup_ambush_zombied_spawner%
+
+[move@entry_with_cleaning]
+move_dest_number       = 1228600
+move_state_when_center = hide
+move_state_when_move   = assault
+invulnerable           = {-jup_mercenary_check_plant_fail} true, false
+on_info                = {-jup_mercenary_check_plant_fail =actor_enemy} nil %+jup_mercenary_check_plant_fail%
+on_info2               = {+jup_mercenary_check_plant_clear_perimetr} move@rise_on_floor %=play_s2d_sound(characters_voice\scenario\jupiter\jup_a12_merc_attack_started)%
+
+[move@rise_on_floor]
+move_dest_number       = 1242483
+move_state_when_center = hide
+move_state_when_move   = assault
+move_center_info       = jup_mercenary_check_plant_pos_preparate
+invulnerable           = {-jup_mercenary_check_plant_fail} true, false
+on_info                = {=dist_to_actor_le(5) +jup_mercenary_check_plant_pos_preparate} move@waiting_threats %+jup_mercenary_check_plant_restriction =play_s3d_sound(characters_voice\scenario\jupiter\jup_b1_stalkers_second_stay)%
+
+[move@waiting_threats]
+move_dest_number       = 1242483
+move_look_subject      = actor
+move_state_when_center = hide
+move_state_when_move   = assault
+move_combat_disable    = true
+invulnerable           = {-jup_mercenary_check_plant_fail} true, false
+combat_ignore_cond     = true
+combat_ignore_keep_when_attacked = true
+on_timer               = 5000|move@entry_mutation %=jup_killer_first_squad_controler =play_s3d_sound(characters_voice\scenario\jupiter\jup_b1_stalker_warning) +jup_mercenary_check_plant_waiting%
+on_info                = {+jup_mercenary_check_plant_waiting} move@entry_mutation %=jup_killer_first_squad_controler =play_s3d_sound(characters_voice\scenario\jupiter\jup_b1_stalker_warning)%
+
+[move@entry_mutation]
+move_dest_number       = 1242483
+move_look_subject      = actor
+move_state_when_center = psy_armed
+move_state_when_move   = assault
+move_combat_disable    = true
+invulnerable           = {-jup_mercenary_check_plant_fail} true, false
+combat_ignore_cond     = true
+combat_ignore_keep_when_attacked = true
+on_info                = {+jup_mercenary_check_plant_psi_atacked} nil %=release_npc%
+
+[meet]
+use             = {!actor_enemy} true, false
+allow_break     = false
+trade_enable    = false
+

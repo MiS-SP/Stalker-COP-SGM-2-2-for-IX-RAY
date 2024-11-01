@@ -1,0 +1,21 @@
+[logic]
+active = move@guard
+on_death = death
+
+[death]
+on_info = %+val_dolg_spez_quad_2_dead%
+
+[move@guard]
+scheme_type            = patrol
+patrol_count_path      = 2
+patrol_path_1          = 83165
+patrol_path_1_state    = patrol
+patrol_path_2          = 58670
+meet                   = meet
+
+[meet]
+abuse           = true
+use             = false
+allow_break     = true
+meet_on_talking = false
+

@@ -1,0 +1,15 @@
+[logic]
+active = ph_universal
+
+[ph_universal]
+scheme_type = script_object
+script_object_cond = {+zat_alfa_sabotage_scaner_available} true
+script_object_tip = st_render_innocuous_tip
+on_info = {+zat_alfa_sabotage_scaner_available -zat_alfa_sabotage_charge_all_innocuous =dist_to_actor_le(50)} %=set_spot_on_self(red_target_location:st_demolution_charge_spot_name)%
+on_info2 = {+zat_alfa_sabotage_scaner_available -zat_alfa_sabotage_charge_all_innocuous =dist_to_actor_ge(51)} %=delete_spot_on_self(red_target_location)%
+on_use = {+zat_alfa_sabotage_scaner_available} ph_universal@complete %=zat_alfa_sabotage_charge_update =delete_spot_on_self(red_target_location)%
+
+[ph_universal@complete]
+scheme_type = script_object
+script_object_cond = false
+on_info = {+zat_alfa_sabotage_charge_all_innocuous =dist_to_actor_ge(60)} %=release_object%

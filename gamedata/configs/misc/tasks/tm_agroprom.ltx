@@ -1,0 +1,46 @@
+;---------------------------------------------------------------------------------------;
+;                                     Агропром                                          ;
+;---------------------------------------------------------------------------------------;
+;сюжетные задания
+
+[agr_research_heli_1_crash]
+icon = ui_inGame2_Skat_1
+prior = 103
+storyline = true
+title = agr_research_heli_1_crash_title0
+descr = agr_research_heli_1_crash_text0
+target = agr_research_heli_1_crash
+condlist_0 = {+agr_research_heli_1_crash_done} complete
+on_complete = %+agr_research_heli_1_crash_complete =increase_counter(stat_kvestov)%
+
+[agr_research_heli_2_crash]
+icon = ui_inGame2_Skat_2
+prior = 104
+storyline = true
+title = agr_research_heli_2_crash_title0
+descr = agr_research_heli_2_crash_text0
+target = agr_research_heli_2_crash
+condlist_0 = {+agr_research_heli_2_crash_done} complete
+on_complete = %+agr_research_heli_2_crash_complete =increase_counter(stat_kvestov)%
+
+[agr_find_underground_way]
+icon = ui_inGame2_FindUndergroundWay
+prior = 100
+storyline = true
+title = {+agr_find_underground_way_agroprom} agr_find_underground_way_title2, {+agr_find_underground_way_zaton -agr_find_underground_way_agroprom} agr_find_underground_way_title1, {-agr_find_underground_way_zaton} agr_find_underground_way_title0
+descr = {+agr_find_underground_way_agroprom} agr_find_underground_way_text2, {+agr_find_underground_way_zaton -agr_find_underground_way_agroprom} agr_find_underground_way_text1, {-agr_find_underground_way_zaton} agr_find_underground_way_text0
+target = {+agr_find_underground_way_agroprom} agr_mod_level_changer_to_agroprom_underground, {+agr_find_underground_way_zaton -agr_find_underground_way_agroprom} zat_mod_level_changer_to_agroprom, {-agr_find_underground_way_zaton} zat_mod_level_changer_to_agroprom
+condlist_0 = {+level_change_to_agroprom_underground_from_agroprom} complete
+on_complete = %+agr_find_underground_way_complete =increase_counter(stat_kvestov)%
+
+[agr_deliver_secret_docks]
+icon = ui_inGame2_DeliverSecretDocks
+prior = 102
+storyline = true
+title = agr_deliver_secret_docks_title0
+descr = agr_deliver_secret_docks_text0
+target = agr_authorities_agent
+condlist_0 = {+agr_deliver_secret_docks_talk} complete
+on_complete = %+agr_deliver_secret_docks_complete =increase_counter(stat_kvestov)%
+
+;второстепенные задания

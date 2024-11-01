@@ -1,0 +1,53 @@
+#include "default_sections.ltx"
+
+[trader]
+buy_condition  = {+sgm_achievements_client =check_night_interval(22:5)} order_trader_buy_upgraded_hidden, {+sgm_achievements_client} order_trader_buy_upgraded, order_trader_buy
+sell_condition = {+sgm_achievements_client} order_trader_sell_upgraded, order_trader_sell
+buy_supplies   = {+esc_stalker_trader_colt1911 =check_trader_order_item(wpn_colt1911)} supplies_colt1911,{+esc_stalker_trader_wincheaster1300 =check_trader_order_item(wpn_wincheaster1300)} supplies_wincheaster1300,{+esc_stalker_trader_outfit =check_trader_order_item(outfit)} supplies_outfit,order_trader_supplies
+buy_item_condition_factor = {+sgm_achievements_client} 0.5, 0.7
+
+[order_trader_supplies]
+mp3_player                      = 1,0.99
+personal_marker                 = 1,0.20
+army_timer                      = 1,0.70
+personal_rukzak		        = 1,0.80
+detector_battery_1		= 5,0.99
+detector_battery_2		= 2,0.50
+antirad				= 2,0.60
+bandage				= 3,0.80
+psy_complex			= 1,0.99
+medkit				= 2,0.70
+bread				= 2,0.40
+kolbasa				= 2,0.40
+conserva			= 2,0.40
+vodka				= 3,0.40
+energy_drink			= 2,0.40
+grenade_rgd5                    = 2,0.50
+grenade_gd-05                   = 2,0.50
+ammo_9x18_fmj                   = 2,0.80
+ammo_9x19_fmj                   = 2,0.50
+ammo_12x70_buck                 = 3,0.50
+ammo_5.45x39_fmj                = 2,0.50
+ammo_11.43x23_fmj               = 2,0.40
+activate_knife_m1		= 1,0.90
+activate_binocular_m2		= 1,0.10
+
+[supplies_colt1911]:order_trader_supplies
+wpn_colt1911                    = 1,1.00
+
+[supplies_wincheaster1300]:order_trader_supplies
+wpn_wincheaster1300             = 1,1.00
+
+[supplies_outfit]:order_trader_supplies
+
+[order_trader_buy]:default_order_trader_buy
+[order_trader_buy_upgraded]:default_order_trader_buy_upgraded
+[order_trader_buy_upgraded_hidden]:default_order_trader_buy_upgraded_hidden
+
+[order_trader_sell]:default_order_trader_sell
+wpn_colt1911                    = 1,1.2
+wpn_wincheaster1300             = 1,1.2
+
+[order_trader_sell_upgraded]:default_order_trader_sell_upgraded
+wpn_colt1911                    = 1,1
+wpn_wincheaster1300             = 1,1

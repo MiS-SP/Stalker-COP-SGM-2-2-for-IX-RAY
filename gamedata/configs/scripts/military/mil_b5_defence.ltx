@@ -1,0 +1,9 @@
+;Зона запускающая волну мутантов на "Стоянке".
+
+[logic]
+active = sr_idle
+
+[sr_idle]
+on_info = {+mil_defence_b5_start -mil_defence_b5_allow =actor_in_zone(mil_b5_defence)} sr_idle@end %+mil_defence_b5_allow%
+
+[sr_idle@end]

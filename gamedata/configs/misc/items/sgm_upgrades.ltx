@@ -1,0 +1,912 @@
+;------------------------------------------------------------------------------------------;
+;                           Модернизированные предметы                                     ;
+;------------------------------------------------------------------------------------------;
+;---------------------------------------------------/==>
+;-------------------Детекторы----------------------/==>
+;-------------------------------------------------/==>
+
+[detector_simple_up]:detector_simple, detector_advanced_af_base
+$spawn		             = "devices\detector_simple_up"
+inv_name		     = st_detector1_up
+inv_name_short	             = st_detector1_up
+cost			     = 800
+af_radius		     = 35
+af_vis_radius		     = 6
+inv_weight		     = 0.3
+inv_grid_x	             = 22
+inv_grid_y	             = 23
+
+[detector_advanced_up]:detector_advanced, detector_elite_af_base
+$spawn		             = "devices\detector_advanced_up"
+inv_name		     = st_detector2_up
+inv_name_short	             = st_detector2_up
+cost			     = 1500
+af_radius		     = 35
+af_vis_radius		     = 8
+inv_weight		     = 0.3
+inv_grid_x	             = 23
+inv_grid_y	             = 23
+
+[detector_elite_up]:detector_elite
+$spawn		             = "devices\detector_elite_up"
+class			     = DET_SCIE
+inv_name		     = st_detector3_up
+inv_name_short	             = st_detector3_up
+cost			     = 2700
+af_radius		     = 35
+af_vis_radius		     = 12
+inv_weight		     = 0.3
+inv_grid_x	             = 24
+inv_grid_y	             = 23
+zone_class_1		     = zone_mine_acidic_weak
+zone_class_2		     = zone_mine_acidic_average
+zone_class_3		     = zone_mine_acidic_strong
+zone_class_4		     = zone_mine_electric_weak
+zone_class_5		     = zone_mine_electric_average
+zone_class_6		     = zone_mine_electric_strong
+zone_class_7		     = zone_mine_gravitational_weak
+zone_class_8		     = zone_mine_gravitational_average
+zone_class_9		     = zone_mine_gravitational_strong
+zone_class_10		     = zone_mine_thermal_weak
+zone_class_11		     = zone_mine_thermal_average
+zone_class_12		     = zone_mine_thermal_strong
+zone_class_13		     = zone_mine_steam_weak
+zone_class_14		     = zone_mine_steam_average
+zone_class_15		     = zone_mine_steam_strong
+zone_class_16		     = zone_mine_acidic_big
+zone_class_17		     = zone_mine_chemical_weak
+zone_class_18		     = zone_mine_chemical_average
+zone_class_19		     = zone_mine_chemical_strong
+zone_class_20		     = zone_buzz_weak
+zone_class_21		     = zone_buzz_average
+zone_class_22		     = zone_buzz_strong
+zone_class_23		     = zone_mine_static_weak
+zone_class_24		     = zone_mine_static_average
+zone_class_25		     = zone_mine_static_strong
+zone_class_26		     = zone_witches_galantine_weak
+zone_class_27		     = zone_witches_galantine_average
+zone_class_28		     = zone_witches_galantine_strong
+zone_class_29		     = zone_mine_gravitational_big
+zone_class_30		     = zone_gravi_zone
+zone_class_31		     = zone_zharka_static_weak
+zone_class_32		     = zone_zharka_static_average
+zone_class_33		     = zone_zharka_static_strong
+zone_class_34		     = sgm_acidic_field_weak
+zone_class_35		     = sgm_acidic_field_average
+zone_class_36		     = sgm_acidic_field_strong
+zone_class_37		     = sgm_psychic_field_weak
+zone_class_38		     = sgm_psychic_field_average
+zone_class_39		     = sgm_psychic_field_strong
+zone_class_40		     = sgm_thermal_field_weak
+zone_class_41		     = sgm_thermal_field_average
+zone_class_42		     = sgm_thermal_field_strong
+zone_class_43		     = sgm_thermal_streem_weak
+zone_class_44		     = sgm_thermal_streem_average
+zone_class_45		     = sgm_thermal_streem_strong
+zone_class_46		     = sgm_blue_thermal_streem_weak
+zone_class_47		     = sgm_blue_thermal_streem_average
+zone_class_48		     = sgm_blue_thermal_streem_strong
+zone_class_49		     = sgm_red_thermal_streem_weak
+zone_class_50		     = sgm_red_thermal_streem_average
+zone_class_51		     = sgm_red_thermal_streem_strong
+zone_class_52		     = sgm_gravitational_field_weak
+zone_class_53		     = sgm_gravitational_field_average
+zone_class_54		     = sgm_gravitational_field_strong
+zone_class_55		     = sgm_electric_field_weak
+zone_class_56		     = sgm_electric_field_average
+zone_class_57		     = sgm_electric_field_strong
+zone_freq_1     	     = 0.05, 2
+zone_freq_2		     = 0.05, 2
+zone_freq_3		     = 0.05, 2
+zone_freq_4		     = 0.05, 2
+zone_freq_5		     = 0.05, 2
+zone_freq_6		     = 0.05, 2
+zone_freq_7		     = 0.05, 2
+zone_freq_8		     = 0.05, 2
+zone_freq_9		     = 0.05, 2
+zone_freq_10		     = 0.05, 2
+zone_freq_11		     = 0.05, 2
+zone_freq_12		     = 0.05, 2
+zone_freq_13		     = 0.05, 2
+zone_freq_14		     = 0.05, 2
+zone_freq_15		     = 0.05, 2
+zone_freq_16		     = 0.05, 2
+zone_freq_17		     = 0.05, 2
+zone_freq_18		     = 0.05, 2
+zone_freq_19		     = 0.05, 2
+zone_freq_20		     = 0.05, 2
+zone_freq_21		     = 0.05, 2
+zone_freq_22		     = 0.05, 2
+zone_freq_23		     = 0.05, 2
+zone_freq_24		     = 0.05, 2
+zone_freq_25		     = 0.05, 2
+zone_freq_26		     = 0.05, 2
+zone_freq_27		     = 0.05, 2
+zone_freq_28		     = 0.05, 2
+zone_freq_29		     = 0.05, 2
+zone_freq_30		     = 0.05, 2
+zone_freq_31		     = 0.05, 2
+zone_freq_32		     = 0.05, 2
+zone_freq_33		     = 0.05, 2
+zone_freq_34		     = 0.05, 2
+zone_freq_35		     = 0.05, 2
+zone_freq_36		     = 0.05, 2
+zone_freq_37		     = 0.05, 2
+zone_freq_38		     = 0.05, 2
+zone_freq_39		     = 0.05, 2
+zone_freq_40		     = 0.05, 2
+zone_freq_41		     = 0.05, 2
+zone_freq_42		     = 0.05, 2
+zone_freq_43		     = 0.05, 2
+zone_freq_44		     = 0.05, 2
+zone_freq_45		     = 0.05, 2
+zone_freq_46		     = 0.05, 2
+zone_freq_47		     = 0.05, 2
+zone_freq_48		     = 0.05, 2
+zone_freq_49		     = 0.05, 2
+zone_freq_50		     = 0.05, 2
+zone_freq_51		     = 0.05, 2
+zone_freq_52		     = 0.05, 2
+zone_freq_53		     = 0.05, 2
+zone_freq_54		     = 0.05, 2
+zone_freq_55		     = 0.05, 2
+zone_freq_56		     = 0.05, 2
+zone_freq_57		     = 0.05, 2
+
+[detector_scientific_up]:detector_scientific
+$spawn		             = "devices\detector_scientific_up"
+inv_name		     = st_detector4_up
+inv_name_short	             = st_detector4_up
+cost			     = 15800
+af_radius		     = 35
+af_vis_radius		     = 14
+inv_weight		     = 0.2
+inv_grid_x	             = 25
+inv_grid_y	             = 23
+
+[detector_omega_up]:detector_omega
+$spawn		             = "devices\detector_omega_up"
+description		     = st_detector_omega_up_descr
+inv_name		     = st_detector_omega_up
+inv_name_short	             = st_detector_omega_up
+cost			     = 64000
+af_radius		     = 56
+af_vis_radius		     = 32
+radar_area                   = 100
+radar_accuracy               = true
+inv_weight		     = 0.4
+inv_grid_x	             = 26
+inv_grid_y	             = 23
+
+;---------------------------------------------------/==>
+;-------------------Артефакты----------------------/==>
+;-------------------------------------------------/==>
+
+[af_medusa_breeding_1]:af_medusa
+$spawn		             = "af\unique\af_medusa_1"
+inv_name	             = st_af_medusa_name_breeding_1
+inv_name_short	             = st_af_medusa_name_breeding_1
+inv_grid_x	             = 30
+inv_grid_y	             = 32
+radiation_restore_speed	     = -0.006
+inv_weight		     = 0.8
+[af_medusa_breeding_2]:af_medusa
+$spawn		             = "af\unique\af_medusa_2"
+inv_name	             = st_af_medusa_name_breeding_2
+inv_name_short	             = st_af_medusa_name_breeding_2
+inv_grid_x	             = 30
+inv_grid_y	             = 35
+additional_inventory_weight  = 10
+additional_inventory_weight2 = 10
+inv_weight		     = 0.8
+[af_medusa_breeding_3]:af_medusa
+$spawn		             = "af\unique\af_medusa_3"
+inv_name	             = st_af_medusa_name_breeding_3
+inv_name_short	             = st_af_medusa_name_breeding_3
+inv_grid_x	             = 30
+inv_grid_y	             = 38
+health_restore_speed	     = 0.0005
+power_restore_speed	     = 0.004
+inv_weight		     = 0.8
+
+[af_cristall_flower_breeding_1]:af_cristall_flower
+$spawn		             = "af\unique\af_cristall_flower_1"
+inv_name	             = st_af_cristall_flower_name_breeding_1
+inv_name_short	             = st_af_cristall_flower_name_breeding_1
+inv_grid_x	             = 29
+inv_grid_y	             = 32
+radiation_restore_speed	     = -0.003
+inv_weight		     = 0.8
+[af_cristall_flower_breeding_2]:af_cristall_flower
+$spawn		             = "af\unique\af_cristall_flower_2"
+inv_name	             = st_af_cristall_flower_name_breeding_2
+inv_name_short	             = st_af_cristall_flower_name_breeding_2
+inv_grid_x	             = 29
+inv_grid_y	             = 35
+additional_inventory_weight  = 10
+additional_inventory_weight2 = 10
+inv_weight		     = 0.8
+[af_cristall_flower_breeding_3]:af_cristall_flower
+$spawn		             = "af\unique\af_cristall_flower_3"
+inv_name	             = st_af_cristall_flower_name_breeding_3
+inv_name_short	             = st_af_cristall_flower_name_breeding_3
+inv_grid_x	             = 29
+inv_grid_y	             = 38
+health_restore_speed	     = 0.0005
+power_restore_speed	     = 0.004
+inv_weight		     = 0.8
+
+[af_night_star_breeding_1]:af_night_star
+$spawn		             = "af\unique\af_night_star_1"
+inv_name	             = st_af_night_star_name_breeding_1
+inv_name_short	             = st_af_night_star_name_breeding_1
+inv_grid_x	             = 28
+inv_grid_y	             = 32
+radiation_restore_speed	     = -0.003
+inv_weight		     = 0.8
+[af_night_star_breeding_2]:af_night_star
+$spawn		             = "af\unique\af_night_star_2"
+inv_name	             = st_af_night_star_name_breeding_2
+inv_name_short	             = st_af_night_star_name_breeding_2
+inv_grid_x	             = 28
+inv_grid_y	             = 35
+additional_inventory_weight  = 15
+additional_inventory_weight2 = 15
+inv_weight		     = 0.8
+[af_night_star_breeding_3]:af_night_star
+$spawn		             = "af\unique\af_night_star_3"
+inv_name	             = st_af_night_star_name_breeding_3
+inv_name_short	             = st_af_night_star_name_breeding_3
+inv_grid_x	             = 28
+inv_grid_y	             = 38
+health_restore_speed	     = 0.0005
+power_restore_speed	     = 0.004
+inv_weight		     = 0.8
+
+[af_vyvert_breeding_1]:af_vyvert
+$spawn		             = "af\unique\af_vyvert_1"
+inv_name	             = st_af_vyvert_name_breeding_1
+inv_name_short	             = st_af_vyvert_name_breeding_1
+inv_grid_x	             = 27
+inv_grid_y	             = 32
+radiation_restore_speed	     = -0.007
+inv_weight		     = 0.8
+[af_vyvert_breeding_2]:af_vyvert
+$spawn		             = "af\unique\af_vyvert_2"
+inv_name	             = st_af_vyvert_name_breeding_2
+inv_name_short	             = st_af_vyvert_name_breeding_2
+inv_grid_x	             = 27
+inv_grid_y	             = 35
+additional_inventory_weight  = 12
+additional_inventory_weight2 = 12
+inv_weight		     = 0.8
+[af_vyvert_breeding_3]:af_vyvert
+$spawn		             = "af\unique\af_vyvert_3"
+inv_name	             = st_af_vyvert_name_breeding_3
+inv_name_short	             = st_af_vyvert_name_breeding_3
+inv_grid_x	             = 27
+inv_grid_y	             = 38
+health_restore_speed	     = 0.0005
+power_restore_speed	     = 0.004
+inv_weight		     = 0.8
+
+[af_gravi_breeding_1]:af_gravi
+$spawn		             = "af\unique\af_gravi_1"
+inv_name	             = st_af_gravi_name_breeding_1
+inv_name_short	             = st_af_gravi_name_breeding_1
+inv_grid_x	             = 26
+inv_grid_y	             = 32
+radiation_restore_speed	     = -0.002
+inv_weight		     = 0.8
+[af_gravi_breeding_2]:af_gravi
+$spawn		             = "af\unique\af_gravi_2"
+inv_name	             = st_af_gravi_name_breeding_2
+inv_name_short	             = st_af_gravi_name_breeding_2
+inv_grid_x	             = 26
+inv_grid_y	             = 35
+additional_inventory_weight  = 20
+additional_inventory_weight2 = 20
+inv_weight		     = 0.8
+[af_gravi_breeding_3]:af_gravi
+$spawn		             = "af\unique\af_gravi_3"
+inv_name	             = st_af_gravi_name_breeding_3
+inv_name_short	             = st_af_gravi_name_breeding_3
+inv_grid_x	             = 26
+inv_grid_y	             = 38
+health_restore_speed	     = 0.0005
+power_restore_speed	     = 0.004
+inv_weight		     = 0.8
+
+[af_gold_fish_breeding_1]:af_gold_fish
+$spawn		             = "af\unique\af_gold_fish_1"
+inv_name	             = st_af_gold_fish_name_breeding_1
+inv_name_short	             = st_af_gold_fish_name_breeding_1
+inv_grid_x	             = 25
+inv_grid_y	             = 32
+radiation_restore_speed	     = -0.002
+inv_weight		     = 0.8
+[af_gold_fish_breeding_2]:af_gold_fish
+$spawn		             = "af\unique\af_gold_fish_2"
+inv_name	             = st_af_gold_fish_name_breeding_2
+inv_name_short	             = st_af_gold_fish_name_breeding_2
+inv_grid_x	             = 25
+inv_grid_y	             = 35
+additional_inventory_weight  = 30
+additional_inventory_weight2 = 30
+inv_weight		     = 0.8
+[af_gold_fish_breeding_3]:af_gold_fish
+$spawn		             = "af\unique\af_gold_fish_3"
+inv_name	             = st_af_gold_fish_name_breeding_3
+inv_name_short	             = st_af_gold_fish_name_breeding_3
+inv_grid_x	             = 25
+inv_grid_y	             = 38
+health_restore_speed	     = 0.0005
+power_restore_speed	     = 0.004
+inv_weight		     = 0.8
+
+[af_cristall_breeding_1]:af_cristall
+$spawn		             = "af\unique\af_cristall_1"
+inv_name	             = st_af_cristall_name_breeding_1
+inv_name_short	             = st_af_cristall_name_breeding_1
+inv_grid_x	             = 24
+inv_grid_y	             = 32
+radiation_restore_speed	     = -0.003
+inv_weight		     = 0.8
+[af_cristall_breeding_2]:af_cristall
+$spawn		             = "af\unique\af_cristall_2"
+inv_name	             = st_af_cristall_name_breeding_2
+inv_name_short	             = st_af_cristall_name_breeding_2
+inv_grid_x	             = 24
+inv_grid_y	             = 35
+additional_inventory_weight  = 11
+additional_inventory_weight2 = 11
+inv_weight		     = 0.8
+[af_cristall_breeding_3]:af_cristall
+$spawn		             = "af\unique\af_cristall_3"
+inv_name	             = st_af_cristall_name_breeding_3
+inv_name_short	             = st_af_cristall_name_breeding_3
+inv_grid_x	             = 24
+inv_grid_y	             = 38
+health_restore_speed	     = 0.0005
+power_restore_speed	     = 0.004
+inv_weight		     = 0.8
+
+[af_fireball_breeding_1]:af_fireball
+$spawn		             = "af\unique\af_fireball_1"
+inv_name	             = st_af_fireball_name_breeding_1
+inv_name_short	             = st_af_fireball_name_breeding_1
+inv_grid_x	             = 23
+inv_grid_y	             = 32
+radiation_restore_speed	     = -0.002
+inv_weight		     = 0.8
+[af_fireball_breeding_2]:af_fireball
+$spawn		             = "af\unique\af_fireball_2"
+inv_name	             = st_af_fireball_name_breeding_2
+inv_name_short	             = st_af_fireball_name_breeding_2
+inv_grid_x	             = 23
+inv_grid_y	             = 35
+additional_inventory_weight  = 11
+additional_inventory_weight2 = 11
+inv_weight		     = 0.8
+[af_fireball_breeding_3]:af_fireball
+$spawn		             = "af\unique\af_fireball_3"
+inv_name	             = st_af_fireball_name_breeding_3
+inv_name_short	             = st_af_fireball_name_breeding_3
+inv_grid_x	             = 23
+inv_grid_y	             = 38
+health_restore_speed	     = 0.0005
+power_restore_speed	     = 0.004
+inv_weight		     = 0.8
+
+[af_dummy_glassbeads_breeding_1]:af_dummy_glassbeads
+$spawn		             = "af\unique\af_dummy_glassbeads_1"
+inv_name	             = st_af_dummy_glassbeads_name_breeding_1
+inv_name_short	             = st_af_dummy_glassbeads_name_breeding_1
+inv_grid_x	             = 22
+inv_grid_y	             = 32
+radiation_restore_speed	     = -0.003
+inv_weight		     = 0.8
+[af_dummy_glassbeads_breeding_2]:af_dummy_glassbeads
+$spawn		             = "af\unique\af_dummy_glassbeads_2"
+inv_name	             = st_af_dummy_glassbeads_name_breeding_2
+inv_name_short	             = st_af_dummy_glassbeads_name_breeding_2
+inv_grid_x	             = 22
+inv_grid_y	             = 35
+additional_inventory_weight  = 13
+additional_inventory_weight2 = 12
+inv_weight		     = 0.8
+[af_dummy_glassbeads_breeding_3]:af_dummy_glassbeads
+$spawn		             = "af\unique\af_dummy_glassbeads_3"
+inv_name	             = st_af_dummy_glassbeads_name_breeding_3
+inv_name_short	             = st_af_dummy_glassbeads_name_breeding_3
+inv_grid_x	             = 22
+inv_grid_y	             = 38
+health_restore_speed	     = 0.0005
+power_restore_speed	     = 0.004
+inv_weight		     = 0.8
+
+[af_eye_breeding_1]:af_eye
+$spawn		             = "af\unique\af_eye_1"
+inv_name	             = st_af_eye_name_breeding_1
+inv_name_short	             = st_af_eye_name_breeding_1
+inv_grid_x	             = 21
+inv_grid_y	             = 32
+radiation_restore_speed	     = -0.002
+inv_weight		     = 0.8
+[af_eye_breeding_2]:af_eye
+$spawn		             = "af\unique\af_eye_2"
+inv_name	             = st_af_eye_name_breeding_2
+inv_name_short	             = st_af_eye_name_breeding_2
+inv_grid_x	             = 21
+inv_grid_y	             = 35
+additional_inventory_weight  = 10
+additional_inventory_weight2 = 10
+inv_weight		     = 0.8
+[af_eye_breeding_3]:af_eye
+$spawn		             = "af\unique\af_eye_3"
+inv_name	             = st_af_eye_name_breeding_3
+inv_name_short	             = st_af_eye_name_breeding_3
+inv_grid_x	             = 21
+inv_grid_y	             = 38
+health_restore_speed	     = 0.0005
+power_restore_speed	     = 0.004
+inv_weight		     = 0.8
+
+[af_fire_breeding_1]:af_fire
+$spawn		             = "af\unique\af_fire_1"
+inv_name	             = st_af_fire_name_breeding_1
+inv_name_short	             = st_af_fire_name_breeding_1
+inv_grid_x	             = 20
+inv_grid_y	             = 32
+radiation_restore_speed	     = -0.001
+inv_weight		     = 0.8
+[af_fire_breeding_2]:af_fire
+$spawn		             = "af\unique\af_fire_2"
+inv_name	             = st_af_fire_name_breeding_2
+inv_name_short	             = st_af_fire_name_breeding_2
+inv_grid_x	             = 20
+inv_grid_y	             = 35
+additional_inventory_weight  = 11
+additional_inventory_weight2 = 11
+inv_weight		     = 0.8
+[af_fire_breeding_3]:af_fire
+$spawn		             = "af\unique\af_fire_3"
+inv_name	             = st_af_fire_name_breeding_3
+inv_name_short	             = st_af_fire_name_breeding_3
+inv_grid_x	             = 20
+inv_grid_y	             = 38
+health_restore_speed	     = 0.0005
+power_restore_speed	     = 0.004
+inv_weight		     = 0.8
+
+[af_blood_breeding_1]:af_blood
+$spawn		             = "af\unique\af_blood_1"
+inv_name	             = st_af_blood_name_breeding_1
+inv_name_short	             = st_af_blood_name_breeding_1
+inv_grid_x	             = 19
+inv_grid_y	             = 32
+radiation_restore_speed	     = -0.003
+inv_weight		     = 0.8
+[af_blood_breeding_2]:af_blood
+$spawn		             = "af\unique\af_blood_2"
+inv_name	             = st_af_blood_name_breeding_2
+inv_name_short	             = st_af_blood_name_breeding_2
+inv_grid_x	             = 19
+inv_grid_y	             = 35
+additional_inventory_weight  = 10
+additional_inventory_weight2 = 10
+inv_weight		     = 0.8
+[af_blood_breeding_3]:af_blood
+$spawn		             = "af\unique\af_blood_3"
+inv_name	             = st_af_blood_name_breeding_3
+inv_name_short	             = st_af_blood_name_breeding_3
+inv_grid_x	             = 19
+inv_grid_y	             = 38
+health_restore_speed	     = 0.0005
+power_restore_speed	     = 0.004
+inv_weight		     = 0.8
+
+[af_mincer_meat_breeding_1]:af_mincer_meat
+$spawn		             = "af\unique\af_mincer_meat_1"
+inv_name	             = st_af_mincer_meat_name_breeding_1
+inv_name_short	             = st_af_mincer_meat_name_breeding_1
+inv_grid_x	             = 18
+inv_grid_y	             = 32
+radiation_restore_speed	     = -0.002
+inv_weight		     = 0.8
+[af_mincer_meat_breeding_2]:af_mincer_meat
+$spawn		             = "af\unique\af_mincer_meat_2"
+inv_name	             = st_af_mincer_meat_name_breeding_2
+inv_name_short	             = st_af_mincer_meat_name_breeding_2
+inv_grid_x	             = 18
+inv_grid_y	             = 35
+additional_inventory_weight  = 10
+additional_inventory_weight2 = 10
+inv_weight		     = 0.8
+[af_mincer_meat_breeding_3]:af_mincer_meat
+$spawn		             = "af\unique\af_mincer_meat_3"
+inv_name	             = st_af_mincer_meat_name_breeding_3
+inv_name_short	             = st_af_mincer_meat_name_breeding_3
+inv_grid_x	             = 18
+inv_grid_y	             = 38
+health_restore_speed	     = 0.0005
+power_restore_speed	     = 0.004
+inv_weight		     = 0.8
+
+[af_soul_breeding_1]:af_soul
+$spawn		             = "af\unique\af_soul_1"
+inv_name	             = st_af_soul_name_breeding_1
+inv_name_short	             = st_af_soul_name_breeding_1
+inv_grid_x	             = 17
+inv_grid_y	             = 32
+radiation_restore_speed	     = -0.002
+inv_weight		     = 0.8
+[af_soul_breeding_2]:af_soul
+$spawn		             = "af\unique\af_soul_2"
+inv_name	             = st_af_soul_name_breeding_2
+inv_name_short	             = st_af_soul_name_breeding_2
+inv_grid_x	             = 17
+inv_grid_y	             = 35
+additional_inventory_weight  = 10
+additional_inventory_weight2 = 10
+inv_weight		     = 0.8
+[af_soul_breeding_3]:af_soul
+$spawn		             = "af\unique\af_soul_3"
+inv_name	             = st_af_soul_name_breeding_3
+inv_name_short	             = st_af_soul_name_breeding_3
+inv_grid_x	             = 17
+inv_grid_y	             = 38
+health_restore_speed	     = 0.0008
+power_restore_speed	     = 0.004
+inv_weight		     = 0.8
+
+[af_fuzz_kolobok_breeding_1]:af_fuzz_kolobok
+$spawn		             = "af\unique\af_fuzz_kolobok_1"
+inv_name	             = st_af_fuzz_kolobok_name_breeding_1
+inv_name_short	             = st_af_fuzz_kolobok_name_breeding_1
+inv_grid_x	             = 16
+inv_grid_y	             = 32
+radiation_restore_speed	     = -0.002
+inv_weight		     = 0.8
+[af_fuzz_kolobok_breeding_2]:af_fuzz_kolobok
+$spawn		             = "af\unique\af_fuzz_kolobok_2"
+inv_name	             = st_af_fuzz_kolobok_name_breeding_2
+inv_name_short	             = st_af_fuzz_kolobok_name_breeding_2
+inv_grid_x	             = 16
+inv_grid_y	             = 35
+additional_inventory_weight  = 10
+additional_inventory_weight2 = 10
+inv_weight		     = 0.8
+[af_fuzz_kolobok_breeding_3]:af_fuzz_kolobok
+$spawn		             = "af\unique\af_fuzz_kolobok_3"
+inv_name	             = st_af_fuzz_kolobok_name_breeding_3
+inv_name_short	             = st_af_fuzz_kolobok_name_breeding_3
+inv_grid_x	             = 16
+inv_grid_y	             = 38
+health_restore_speed	     = 0.0009
+power_restore_speed	     = 0.004
+inv_weight		     = 0.8
+
+[af_baloon_breeding_1]:af_baloon
+$spawn		             = "af\unique\af_baloon_1"
+inv_name	             = st_af_baloon_name_breeding_1
+inv_name_short	             = st_af_baloon_name_breeding_1
+inv_grid_x	             = 15
+inv_grid_y	             = 32
+radiation_restore_speed	     = -0.009
+inv_weight		     = 0.8
+[af_baloon_breeding_2]:af_baloon
+$spawn		             = "af\unique\af_baloon_2"
+inv_name	             = st_af_baloon_name_breeding_2
+inv_name_short	             = st_af_baloon_name_breeding_2
+inv_grid_x	             = 15
+inv_grid_y	             = 35
+additional_inventory_weight  = 10
+additional_inventory_weight2 = 10
+inv_weight		     = 0.8
+[af_baloon_breeding_3]:af_baloon
+$spawn		             = "af\unique\af_baloon_3"
+inv_name	             = st_af_baloon_name_breeding_3
+inv_name_short	             = st_af_baloon_name_breeding_3
+inv_grid_x	             = 15
+inv_grid_y	             = 38
+health_restore_speed	     = 0.0005
+power_restore_speed	     = 0.004
+inv_weight		     = 0.8
+
+[af_glass_breeding_1]:af_glass
+$spawn		             = "af\unique\af_glass_1"
+inv_name	             = st_af_glass_name_breeding_1
+inv_name_short	             = st_af_glass_name_breeding_1
+inv_grid_x	             = 14
+inv_grid_y	             = 32
+radiation_restore_speed	     = -0.001
+inv_weight		     = 0.8
+[af_glass_breeding_2]:af_glass
+$spawn		             = "af\unique\af_glass_2"
+inv_name	             = st_af_glass_name_breeding_2
+inv_name_short	             = st_af_glass_name_breeding_2
+inv_grid_x	             = 14
+inv_grid_y	             = 35
+additional_inventory_weight  = 10
+additional_inventory_weight2 = 10
+inv_weight		     = 0.8
+[af_glass_breeding_3]:af_glass
+$spawn		             = "af\unique\af_glass_3"
+inv_name	             = st_af_glass_name_breeding_3
+inv_name_short	             = st_af_glass_name_breeding_3
+inv_grid_x	             = 14
+inv_grid_y	             = 38
+health_restore_speed	     = 0.0011
+power_restore_speed	     = 0.004
+inv_weight		     = 0.8
+
+[af_electra_sparkler_breeding_1]:af_electra_sparkler
+$spawn		             = "af\unique\af_electra_sparkler_1"
+inv_name	             = st_af_electra_sparkler_name_breeding_1
+inv_name_short	             = st_af_electra_sparkler_name_breeding_1
+inv_grid_x	             = 13
+inv_grid_y	             = 32
+radiation_restore_speed	     = -0.003
+inv_weight		     = 0.8
+[af_electra_sparkler_breeding_2]:af_electra_sparkler
+$spawn		             = "af\unique\af_electra_sparkler_2"
+inv_name	             = st_af_electra_sparkler_name_breeding_2
+inv_name_short	             = st_af_electra_sparkler_name_breeding_2
+inv_grid_x	             = 13
+inv_grid_y	             = 35
+additional_inventory_weight  = 10
+additional_inventory_weight2 = 10
+inv_weight		     = 0.8
+[af_electra_sparkler_breeding_3]:af_electra_sparkler
+$spawn		             = "af\unique\af_electra_sparkler_3"
+inv_name	             = st_af_electra_sparkler_name_breeding_3
+inv_name_short	             = st_af_electra_sparkler_name_breeding_3
+inv_grid_x	             = 13
+inv_grid_y	             = 38
+health_restore_speed	     = 0.0005
+power_restore_speed	     = 0.005
+inv_weight		     = 0.8
+
+[af_electra_flash_breeding_1]:af_electra_flash
+$spawn		             = "af\unique\af_electra_flash_1"
+inv_name	             = st_af_electra_flash_name_breeding_1
+inv_name_short	             = st_af_electra_flash_name_breeding_1
+inv_grid_x	             = 12
+inv_grid_y	             = 32
+radiation_restore_speed	     = -0.002
+inv_weight		     = 0.8
+[af_electra_flash_breeding_2]:af_electra_flash
+$spawn		             = "af\unique\af_electra_flash_2"
+inv_name	             = st_af_electra_flash_name_breeding_2
+inv_name_short	             = st_af_electra_flash_name_breeding_2
+inv_grid_x	             = 12
+inv_grid_y	             = 35
+additional_inventory_weight  = 10
+additional_inventory_weight2 = 10
+inv_weight		     = 0.8
+[af_electra_flash_breeding_3]:af_electra_flash
+$spawn		             = "af\unique\af_electra_flash_3"
+inv_name	             = st_af_electra_flash_name_breeding_3
+inv_name_short	             = st_af_electra_flash_name_breeding_3
+inv_grid_x	             = 12
+inv_grid_y	             = 38
+health_restore_speed	     = 0.0005
+power_restore_speed	     = 0.006
+inv_weight		     = 0.8
+
+[af_electra_moonlight_breeding_1]:af_electra_moonlight
+$spawn		             = "af\unique\af_electra_moonlight_1"
+inv_name	             = st_af_electra_moonlight_name_breeding_1
+inv_name_short	             = st_af_electra_moonlight_name_breeding_1
+inv_grid_x	             = 11
+inv_grid_y	             = 32
+radiation_restore_speed	     = -0.002
+inv_weight		     = 0.8
+[af_electra_moonlight_breeding_2]:af_electra_moonlight
+$spawn		             = "af\unique\af_electra_moonlight_2"
+inv_name	             = st_af_electra_moonlight_name_breeding_2
+inv_name_short	             = st_af_electra_moonlight_name_breeding_2
+inv_grid_x	             = 11
+inv_grid_y	             = 35
+additional_inventory_weight  = 11
+additional_inventory_weight2 = 11
+inv_weight		     = 0.8
+[af_electra_moonlight_breeding_3]:af_electra_moonlight
+$spawn		             = "af\unique\af_electra_moonlight_3"
+inv_name	             = st_af_electra_moonlight_name_breeding_3
+inv_name_short	             = st_af_electra_moonlight_name_breeding_3
+inv_grid_x	             = 11
+inv_grid_y	             = 38
+health_restore_speed	     = 0.0005
+power_restore_speed	     = 0.007
+inv_weight		     = 0.8
+
+[af_dummy_battery_breeding_1]:af_dummy_battery
+$spawn		             = "af\unique\af_dummy_battery_1"
+inv_name	             = st_af_dummy_battery_name_breeding_1
+inv_name_short	             = st_af_dummy_battery_name_breeding_1
+inv_grid_x	             = 10
+inv_grid_y	             = 32
+radiation_restore_speed	     = -0.004
+inv_weight		     = 0.8
+[af_dummy_battery_breeding_2]:af_dummy_battery
+$spawn		             = "af\unique\af_dummy_battery_2"
+inv_name	             = st_af_dummy_battery_name_breeding_2
+inv_name_short	             = st_af_dummy_battery_name_breeding_2
+inv_grid_x	             = 10
+inv_grid_y	             = 35
+additional_inventory_weight  = 14
+additional_inventory_weight2 = 14
+inv_weight		     = 0.8
+[af_dummy_battery_breeding_3]:af_dummy_battery
+$spawn		             = "af\unique\af_dummy_battery_3"
+inv_name	             = st_af_dummy_battery_name_breeding_3
+inv_name_short	             = st_af_dummy_battery_name_breeding_3
+inv_grid_x	             = 10
+inv_grid_y	             = 38
+health_restore_speed	     = 0.0005
+power_restore_speed	     = 0.005
+inv_weight		     = 0.8
+
+[af_dummy_dummy_breeding_1]:af_dummy_dummy
+$spawn		             = "af\unique\af_dummy_dummy_1"
+inv_name	             = st_af_dummy_dummy_name_breeding_1
+inv_name_short	             = st_af_dummy_dummy_name_breeding_1
+inv_grid_x	             = 9
+inv_grid_y	             = 32
+radiation_restore_speed	     = -0.002
+inv_weight		     = 0.8
+[af_dummy_dummy_breeding_2]:af_dummy_dummy
+$spawn		             = "af\unique\af_dummy_dummy_2"
+inv_name	             = st_af_dummy_dummy_name_breeding_2
+inv_name_short	             = st_af_dummy_dummy_name_breeding_2
+inv_grid_x	             = 9
+inv_grid_y	             = 35
+additional_inventory_weight  = 10
+additional_inventory_weight2 = 10
+inv_weight		     = 0.8
+[af_dummy_dummy_breeding_3]:af_dummy_dummy
+$spawn		             = "af\unique\af_dummy_dummy_3"
+inv_name	             = st_af_dummy_dummy_name_breeding_3
+inv_name_short	             = st_af_dummy_dummy_name_breeding_3
+inv_grid_x	             = 9
+inv_grid_y	             = 38
+health_restore_speed	     = 0.0005
+power_restore_speed	     = 0.007
+inv_weight		     = 0.8
+
+[af_ice_breeding_1]:af_ice
+$spawn		             = "af\unique\af_ice_1"
+inv_name	             = st_af_ice_name_breeding_1
+inv_name_short	             = st_af_ice_name_breeding_1
+inv_grid_x	             = 8
+inv_grid_y	             = 32
+radiation_restore_speed	     = -0.001
+inv_weight		     = 0.8
+[af_ice_breeding_2]:af_ice
+$spawn		             = "af\unique\af_ice_2"
+inv_name	             = st_af_ice_name_breeding_2
+inv_name_short	             = st_af_ice_name_breeding_2
+inv_grid_x	             = 8
+inv_grid_y	             = 35
+additional_inventory_weight  = 10
+additional_inventory_weight2 = 10
+inv_weight		     = 0.8
+[af_ice_breeding_3]:af_ice
+$spawn		             = "af\unique\af_ice_3"
+inv_name	             = st_af_ice_name_breeding_3
+inv_name_short	             = st_af_ice_name_breeding_3
+inv_grid_x	             = 8
+inv_grid_y	             = 38
+health_restore_speed	     = 0.0005
+power_restore_speed	     = 0.008
+inv_weight		     = 0.8
+
+[af_monolit_breeding_1]:af_monolit
+$spawn		             = "af\unique\af_monolit_1"
+inv_name	             = st_af_monolit_name_breeding_1
+inv_name_short	             = st_af_monolit_name_breeding_1
+inv_grid_x	             = 7
+inv_grid_y	             = 33
+radiation_restore_speed	     = 0.0
+inv_weight		     = 0.8
+[af_monolit_breeding_2]:af_monolit
+$spawn		             = "af\unique\af_monolit_2"
+inv_name	             = st_af_monolit_name_breeding_2
+inv_name_short	             = st_af_monolit_name_breeding_2
+inv_grid_x	             = 7
+inv_grid_y	             = 36
+additional_inventory_weight  = 20
+additional_inventory_weight2 = 20
+inv_weight		     = 0.8
+[af_monolit_breeding_3]:af_monolit
+$spawn		             = "af\unique\af_monolit_3"
+inv_name	             = st_af_monolit_name_breeding_3
+inv_name_short	             = st_af_monolit_name_breeding_3
+inv_grid_x	             = 7
+inv_grid_y	             = 39
+health_restore_speed	     = 0.0005
+power_restore_speed	     = 0.004
+inv_weight		     = 0.8
+
+[af_geliy_breeding_1]:af_geliy
+$spawn		             = "af\unique\af_geliy_1"
+inv_name	             = st_af_geliy_name_breeding_1
+inv_name_short	             = st_af_geliy_name_breeding_1
+inv_grid_x	             = 8
+inv_grid_y	             = 33
+radiation_restore_speed	     = 0.0
+inv_weight		     = 0.8
+[af_geliy_breeding_2]:af_geliy
+$spawn		             = "af\unique\af_geliy_2"
+inv_name	             = st_af_geliy_name_breeding_2
+inv_name_short	             = st_af_geliy_name_breeding_2
+inv_grid_x	             = 8
+inv_grid_y	             = 36
+additional_inventory_weight  = 22
+additional_inventory_weight2 = 22
+inv_weight		     = 0.8
+[af_geliy_breeding_3]:af_geliy
+$spawn		             = "af\unique\af_geliy_3"
+inv_name	             = st_af_geliy_name_breeding_3
+inv_name_short	             = st_af_geliy_name_breeding_3
+inv_grid_x	             = 8
+inv_grid_y	             = 39
+health_restore_speed	     = 0.0005
+power_restore_speed	     = 0.009
+inv_weight		     = 0.8
+
+[af_vaselisk_breeding_1]:af_vaselisk
+$spawn		             = "af\unique\af_vaselisk_1"
+inv_name	             = st_af_vaselisk_name_breeding_1
+inv_name_short	             = st_af_vaselisk_name_breeding_1
+inv_grid_x	             = 8
+inv_grid_y	             = 34
+radiation_restore_speed	     = -0.002
+inv_weight		     = 0.8
+[af_vaselisk_breeding_2]:af_vaselisk
+$spawn		             = "af\unique\af_vaselisk_2"
+inv_name	             = st_af_vaselisk_name_breeding_2
+inv_name_short	             = st_af_vaselisk_name_breeding_2
+inv_grid_x	             = 8
+inv_grid_y	             = 37
+additional_inventory_weight  = 12
+additional_inventory_weight2 = 12
+inv_weight		     = 0.8
+[af_vaselisk_breeding_3]:af_vaselisk
+$spawn		             = "af\unique\af_vaselisk_3"
+inv_name	             = st_af_vaselisk_name_breeding_3
+inv_name_short	             = st_af_vaselisk_name_breeding_3
+inv_grid_x	             = 8
+inv_grid_y	             = 40
+health_restore_speed	     = 0.0005
+power_restore_speed	     = 0.004
+inv_weight		     = 0.8
+
+[af_dragon_eye_breeding_1]:af_dragon_eye
+$spawn		             = "af\unique\af_dragon_eye_1"
+inv_name	             = st_af_dragon_eye_name_breeding_1
+inv_name_short	             = st_af_dragon_eye_name_breeding_1
+inv_grid_x	             = 20
+inv_grid_y	             = 33
+radiation_restore_speed	     = 0.0
+inv_weight		     = 0.8
+[af_dragon_eye_breeding_2]:af_dragon_eye
+$spawn		             = "af\unique\af_dragon_eye_2"
+inv_name	             = st_af_dragon_eye_name_breeding_2
+inv_name_short	             = st_af_dragon_eye_name_breeding_2
+inv_grid_x	             = 20
+inv_grid_y	             = 36
+additional_inventory_weight  = 60
+additional_inventory_weight2 = 60
+inv_weight		     = 1.5
+[af_dragon_eye_breeding_3]:af_dragon_eye
+$spawn		             = "af\unique\af_dragon_eye_3"
+inv_name	             = st_af_dragon_eye_name_breeding_3
+inv_name_short	             = st_af_dragon_eye_name_breeding_3
+inv_grid_x	             = 20
+inv_grid_y	             = 39
+health_restore_speed	     = 0.0006
+power_restore_speed	     = 0.005
+inv_weight		     = 0.8

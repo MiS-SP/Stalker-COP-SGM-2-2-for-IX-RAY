@@ -1,0 +1,675 @@
+;---------------------------------------------------------------------------------------;
+;                                   Военные Склады                                      ;
+;---------------------------------------------------------------------------------------;
+[mil_b1_renegade_squad]:online_offline_group
+faction = renegade
+npc = sim_default_renegade_1, sim_default_renegade_2, sim_default_renegade_3, sim_default_renegade_4, sim_default_renegade_3, sim_default_renegade_2, sim_default_renegade_3, sim_default_renegade_3, sim_default_renegade_4, sim_default_renegade_1, sim_default_renegade_2, sim_default_renegade_3, sim_default_renegade_4, sim_default_renegade_3
+target_smart = mil_smart_terrain_1
+spawn_point = mil_smart_terrain_1_spawn_point
+story_id = mil_b1_renegade_squad
+on_death = %+mil_b1_renegade_squad_death%
+spot = quest_enemy_squad_1_location|st_renegade_squad_spot_name|mil_dislodge_invaders_start
+
+[mil_b1_rasvet_squad]:online_offline_group
+faction = rasvet
+npc = sim_default_rasvet_4, sim_default_rasvet_3, sim_default_rasvet_2, sim_default_rasvet_1, sim_default_rasvet_2, sim_default_rasvet_4, sim_default_rasvet_4, sim_default_rasvet_3
+target_smart = mil_smart_terrain_1
+spawn_point = mil_smart_terrain_1_spawn_point
+story_id = mil_b1_rasvet_squad
+on_death = %+mil_b1_rasvet_squad_death%
+
+[mil_b1_rasvet_invaders_squad]:online_offline_group
+faction = rasvet
+assault_squad = true
+npc = sim_default_rasvet_4, sim_default_rasvet_3, sim_default_rasvet_2, sim_default_rasvet_1, sim_default_rasvet_2
+target_smart = mil_smart_terrain_1
+spawn_point = mil_smart_terrain_7_spawn_point
+story_id = mil_b1_rasvet_invaders_squad
+on_death = %+mil_b1_rasvet_invaders_squad_death%
+
+[mil_b1_monster_1_squad]:online_offline_group
+faction = monster
+npc = snork_normal, snork_strong, snork_normal, snork_strong, fracture_normal, fracture_strong, snork_normal, fracture_strong, snork_strong, snork_normal
+target_smart = mil_monster_burrow_27
+story_id = mil_b1_monster_1_squad
+on_death = %+mil_b1_monster_1_squad_death%
+spot = quest_enemy_squad_2_location|st_monster_spot_name
+
+[mil_b1_monster_2_squad]:online_offline_group
+faction = monster
+npc = boar_normal, boar_strong, flesh_normal, flesh_cruel, fracture_strong, boar_cruel, boar_strong, flesh_cruel, flesh_strong, fracture_strong
+target_smart = mil_monster_burrow_27
+story_id = mil_b1_monster_2_squad
+on_death = %+mil_b1_monster_2_squad_death%
+spot = quest_enemy_squad_2_location|st_monster_spot_name
+
+[mil_b1_monster_3_squad]:online_offline_group
+faction = monster
+npc = dog_weak, dog_strong, pseudodog_normal, pseudodog_normal, fracture_normal, dog_weak, dog_strong, pseudodog_normal, pseudodog_normal, psy_dog
+target_smart = mil_monster_burrow_27
+story_id = mil_b1_monster_3_squad
+on_death = %+mil_b1_monster_3_squad_death%
+spot = quest_enemy_squad_2_location|st_monster_spot_name
+
+[mil_b1_renegade_returned_squad]:online_offline_group
+faction = renegade
+npc = sim_default_renegade_1, sim_default_renegade_2, sim_default_renegade_3, sim_default_renegade_4, sim_default_renegade_3, sim_default_renegade_2
+target_smart = mil_smart_terrain_1
+spawn_point = mil_smart_terrain_1_spawn_point
+story_id = mil_b1_renegade_returned_squad
+on_death = %+mil_b1_renegade_returned_squad_death%
+spot = quest_enemy_squad_1_location|st_renegade_squad_spot_name|mil_bolted_influence_start
+
+[mil_b1_night_stalker_squad]:online_offline_group
+faction = night_stalker
+npc = sim_default_night_stalker_4, sim_default_night_stalker_3, sim_default_night_stalker_2, sim_default_night_stalker_1, sim_default_night_stalker_2, sim_default_night_stalker_1
+target_smart = mil_smart_terrain_1
+spawn_point = mil_smart_terrain_1_spawn_point
+story_id = mil_b1_night_stalker_squad
+on_death = %+mil_b1_night_stalker_squad_death%
+
+[mil_b1_night_stalker_invaders_squad]:online_offline_group
+faction = night_stalker
+assault_squad = true
+npc = sim_default_night_stalker_4, sim_default_night_stalker_3, sim_default_night_stalker_2, sim_default_night_stalker_1
+target_smart = mil_smart_terrain_1
+spawn_point = mil_smart_terrain_7_spawn_point
+story_id = mil_b1_night_stalker_invaders_squad
+on_death = %+mil_b1_night_stalker_invaders_squad_death%
+
+[mil_b2_renegade_squad]:online_offline_group
+faction = renegade
+npc = sim_default_renegade_1, sim_default_renegade_2, sim_default_renegade_3, sim_default_renegade_4, sim_default_renegade_3, sim_default_renegade_2, sim_default_renegade_3, sim_default_renegade_3, sim_default_renegade_4, sim_default_renegade_1, sim_default_renegade_2, sim_default_renegade_3, sim_default_renegade_1, sim_default_renegade_2, sim_default_renegade_3
+target_smart = mil_smart_terrain_2
+spawn_point = mil_smart_terrain_2_spawn_point
+story_id = mil_b2_renegade_squad
+on_death = %+mil_b2_renegade_squad_death%
+spot = quest_enemy_squad_1_location|st_renegade_squad_spot_name|mil_dislodge_invaders_b1_captured
+
+[mil_b2_rasvet_squad]:online_offline_group
+faction = rasvet
+npc = sim_default_rasvet_4, sim_default_rasvet_3, sim_default_rasvet_2, sim_default_rasvet_1, sim_default_rasvet_2, sim_default_rasvet_4, sim_default_rasvet_4, sim_default_rasvet_3, sim_default_rasvet_2
+target_smart = mil_smart_terrain_2
+spawn_point = mil_smart_terrain_2_spawn_point
+story_id = mil_b2_rasvet_squad
+on_death = %+mil_b2_rasvet_squad_death%
+
+[mil_b2_rasvet_invaders_squad]:online_offline_group
+faction = rasvet
+assault_squad = true
+npc = sim_default_rasvet_4, sim_default_rasvet_3, sim_default_rasvet_2, sim_default_rasvet_1, sim_default_rasvet_2
+target_smart = mil_smart_terrain_2
+spawn_point = mil_smart_terrain_7_spawn_point
+story_id = mil_b2_rasvet_invaders_squad
+on_death = %+mil_b2_rasvet_invaders_squad_death%
+
+[mil_b2_monster_1_squad]:online_offline_group
+faction = monster
+npc = bloodsucker_normal, bloodsucker_strong, fracture_normal, fracture_strong, snork_normal, snork_normal, snork_normal, fracture_strong, snork_normal, fracture_strong
+target_smart = mil_monster_burrow_28
+story_id = mil_b2_monster_1_squad
+on_death = %+mil_b2_monster_1_squad_death%
+spot = quest_enemy_squad_2_location|st_monster_spot_name
+
+[mil_b2_monster_2_squad]:online_offline_group
+faction = monster
+npc = dog_weak, dog_strong, pseudodog_normal, pseudodog_normal, fracture_normal, dog_weak, dog_strong, pseudodog_normal, pseudodog_normal, psy_dog
+target_smart = mil_monster_burrow_28
+story_id = mil_b2_monster_2_squad
+on_death = %+mil_b2_monster_2_squad_death%
+spot = quest_enemy_squad_2_location|st_monster_spot_name
+
+[mil_b2_monster_3_squad]:online_offline_group
+faction = monster
+npc = chimera_nightmare, snork_strong, snork_normal, snork_strong, fracture_normal, fracture_strong, snork_normal, fracture_strong, snork_strong, snork_normal
+target_smart = mil_monster_burrow_28
+story_id = mil_b2_monster_3_squad
+on_death = %+mil_b2_monster_3_squad_death%
+spot = quest_enemy_squad_2_location|st_monster_spot_name
+
+[mil_b2_renegade_returned_squad]:online_offline_group
+faction = renegade
+npc = sim_default_renegade_1, sim_default_renegade_2, sim_default_renegade_3, sim_default_renegade_4, sim_default_renegade_3, sim_default_renegade_2
+target_smart = mil_smart_terrain_2
+spawn_point = mil_smart_terrain_2_spawn_point
+story_id = mil_b2_renegade_returned_squad
+on_death = %+mil_b2_renegade_returned_squad_death%
+spot = quest_enemy_squad_1_location|st_renegade_squad_spot_name|mil_bolted_influence_b1_captured
+
+[mil_b2_night_stalker_squad]:online_offline_group
+faction = night_stalker
+npc = sim_default_night_stalker_4, sim_default_night_stalker_3, sim_default_night_stalker_2, sim_default_night_stalker_1, sim_default_night_stalker_2, sim_default_night_stalker_1
+target_smart = mil_smart_terrain_2
+spawn_point = mil_smart_terrain_2_spawn_point
+story_id = mil_b2_night_stalker_squad
+on_death = %+mil_b2_night_stalker_squad_death%
+
+[mil_b2_night_stalker_invaders_squad]:online_offline_group
+faction = night_stalker
+assault_squad = true
+npc = sim_default_night_stalker_4, sim_default_night_stalker_3, sim_default_night_stalker_2, sim_default_night_stalker_1
+target_smart = mil_smart_terrain_2
+spawn_point = mil_smart_terrain_7_spawn_point
+story_id = mil_b2_night_stalker_invaders_squad
+on_death = %+mil_b2_night_stalker_invaders_squad_death%
+
+[mil_b3_renegade_returned_squad]:online_offline_group
+faction = renegade
+npc = sim_default_renegade_1, sim_default_renegade_2, sim_default_renegade_3, sim_default_renegade_4, sim_default_renegade_3, sim_default_renegade_2
+target_smart = mil_smart_terrain_3
+spawn_point = mil_smart_terrain_3_spawn_point
+story_id = mil_b3_renegade_returned_squad
+on_death = %+mil_b3_renegade_returned_squad_death%
+spot = quest_enemy_squad_1_location|st_renegade_squad_spot_name|mil_bolted_influence_b2_captured
+
+[mil_b3_night_stalker_squad]:online_offline_group
+faction = night_stalker
+npc = sim_default_night_stalker_4, sim_default_night_stalker_3, sim_default_night_stalker_2, sim_default_night_stalker_1, sim_default_night_stalker_2, sim_default_night_stalker_1
+target_smart = mil_smart_terrain_3
+spawn_point = mil_smart_terrain_3_spawn_point
+story_id = mil_b3_night_stalker_squad
+on_death = %+mil_b3_night_stalker_squad_death%
+
+[mil_b3_night_stalker_invaders_squad]:online_offline_group
+faction = night_stalker
+assault_squad = true
+npc = sim_default_night_stalker_4, sim_default_night_stalker_3, sim_default_night_stalker_2, sim_default_night_stalker_1
+target_smart = mil_smart_terrain_3
+spawn_point = mil_smart_terrain_7_spawn_point
+story_id = mil_b3_night_stalker_invaders_squad
+on_death = %+mil_b3_night_stalker_invaders_squad_death%
+
+[mil_b3_renegade_squad]:online_offline_group
+faction = renegade
+npc = sim_default_renegade_1, sim_default_renegade_2, sim_default_renegade_3, sim_default_renegade_4, sim_default_renegade_3, sim_default_renegade_2, sim_default_renegade_3, sim_default_renegade_3
+target_smart = mil_smart_terrain_3
+spawn_point = mil_smart_terrain_3_spawn_point
+story_id = mil_b3_renegade_squad
+on_death = %+mil_b3_renegade_squad_death%
+spot = quest_enemy_squad_1_location|st_renegade_squad_spot_name|mil_dislodge_invaders_b2_captured
+
+[mil_b3_rasvet_squad]:online_offline_group
+faction = rasvet
+npc = sim_default_rasvet_4, sim_default_rasvet_3, sim_default_rasvet_2, sim_default_rasvet_1, sim_default_rasvet_2, sim_default_rasvet_4
+target_smart = mil_smart_terrain_3
+spawn_point = mil_smart_terrain_3_spawn_point
+story_id = mil_b3_rasvet_squad
+on_death = %+mil_b3_rasvet_squad_death%
+
+[mil_b3_rasvet_invaders_squad]:online_offline_group
+faction = rasvet
+assault_squad = true
+npc = sim_default_rasvet_4, sim_default_rasvet_3, sim_default_rasvet_2, sim_default_rasvet_1, sim_default_rasvet_2
+target_smart = mil_smart_terrain_3
+spawn_point = mil_smart_terrain_7_spawn_point
+story_id = mil_b3_rasvet_invaders_squad
+on_death = %+mil_b3_rasvet_invaders_squad_death%
+
+[mil_b3_monster_1_squad]:online_offline_group
+faction = monster
+npc = dog_weak, dog_strong, pseudodog_normal, pseudodog_normal, fracture_normal, dog_weak, dog_strong, pseudodog_normal
+target_smart = mil_monster_burrow_29
+story_id = mil_b3_monster_1_squad
+on_death = %+mil_b3_monster_1_squad_death%
+spot = quest_enemy_squad_2_location|st_monster_spot_name
+
+[mil_b3_monster_2_squad]:online_offline_group
+faction = monster
+npc = snork_normal, snork_strong, snork_normal, snork_strong, fracture_normal, fracture_strong, snork_normal, fracture_strong
+target_smart = mil_monster_burrow_29
+story_id = mil_b3_monster_2_squad
+on_death = %+mil_b3_monster_2_squad_death%
+spot = quest_enemy_squad_2_location|st_monster_spot_name
+
+[mil_b3_monster_3_squad]:online_offline_group
+faction = monster
+npc = boar_cruel, boar_strong, flesh_cruel, flesh_strong, fracture_strong, boar_normal, boar_strong, flesh_normal
+target_smart = mil_monster_burrow_29
+story_id = mil_b3_monster_3_squad
+on_death = %+mil_b3_monster_3_squad_death%
+spot = quest_enemy_squad_2_location|st_monster_spot_name
+
+[mil_b4_renegade_squad]:online_offline_group
+faction = renegade
+npc = sim_default_renegade_1, sim_default_renegade_2, sim_default_renegade_3, sim_default_renegade_1, sim_default_renegade_4, sim_default_renegade_3, sim_default_renegade_2, sim_default_renegade_3, sim_default_renegade_3
+target_smart = mil_smart_terrain_4
+spawn_point = mil_smart_terrain_4_spawn_point
+story_id = mil_b4_renegade_squad
+on_death = %+mil_b4_renegade_squad_death%
+spot = quest_enemy_squad_1_location|st_renegade_squad_spot_name|mil_dislodge_invaders_b3_captured
+
+[mil_b4_rasvet_squad]:online_offline_group
+faction = rasvet
+npc = sim_default_rasvet_4, sim_default_rasvet_3, sim_default_rasvet_2, sim_default_rasvet_1, sim_default_rasvet_2, sim_default_rasvet_4, sim_default_rasvet_4, sim_default_rasvet_3, sim_default_rasvet_2
+target_smart = mil_smart_terrain_4
+spawn_point = mil_smart_terrain_4_spawn_point
+story_id = mil_b4_rasvet_squad
+on_death = %+mil_b4_rasvet_squad_death%
+
+[mil_b4_rasvet_invaders_squad]:online_offline_group
+faction = rasvet
+assault_squad = true
+npc = sim_default_rasvet_4, sim_default_rasvet_3, sim_default_rasvet_2, sim_default_rasvet_1, sim_default_rasvet_2
+target_smart = mil_smart_terrain_4
+spawn_point = mil_smart_terrain_7_spawn_point
+story_id = mil_b4_rasvet_invaders_squad
+on_death = %+mil_b4_rasvet_invaders_squad_death%
+
+[mil_b4_monster_1_squad]:online_offline_group
+faction = monster
+npc = bloodsucker_2_nightmare, snork_strong, snork_normal, snork_strong, fracture_normal, fracture_strong, snork_normal, fracture_strong, snork_strong, snork_normal
+target_smart = mil_monster_burrow_30
+story_id = mil_b4_monster_1_squad
+on_death = %+mil_b4_monster_1_squad_death%
+spot = quest_enemy_squad_2_location|st_monster_spot_name
+
+[mil_b4_monster_2_squad]:online_offline_group
+faction = monster
+npc = boar_normal, boar_strong, flesh_cruel, flesh_strong, fracture_strong, boar_cruel, boar_strong, flesh_normal, flesh_strong, fracture_strong
+target_smart = mil_monster_burrow_30
+story_id = mil_b4_monster_2_squad
+on_death = %+mil_b4_monster_2_squad_death%
+spot = quest_enemy_squad_2_location|st_monster_spot_name
+
+[mil_b4_monster_3_squad]:online_offline_group
+faction = monster
+npc = dog_weak, dog_strong, pseudodog_normal, pseudodog_normal, fracture_normal, dog_weak, dog_strong, pseudodog_normal, pseudodog_normal, psy_dog
+target_smart = mil_monster_burrow_30
+story_id = mil_b4_monster_3_squad
+on_death = %+mil_b4_monster_3_squad_death%
+spot = quest_enemy_squad_2_location|st_monster_spot_name
+
+[mil_b4_hole_monsters_squad]:online_offline_group
+faction = monster
+npc = snork_normal, snork_strong, snork_strong, fracture_normal, fracture_strong, snork_strong, fracture_strong
+target_smart = mil_monster_burrow_14
+spawn_point = mil_monster_burrow_14_spawn_point
+story_id = mil_b4_hole_monsters_squad
+on_death = %+mil_b4_hole_monsters_squad_death +mil_smash_monster_hole_cleared%
+spot = quest_enemy_squad_2_location|st_monster_spot_name
+
+[mil_b4_renegade_returned_squad]:online_offline_group
+faction = renegade
+npc = sim_default_renegade_1, sim_default_renegade_2, sim_default_renegade_3, sim_default_renegade_4, sim_default_renegade_3, sim_default_renegade_2
+target_smart = mil_smart_terrain_4
+spawn_point = mil_smart_terrain_4_spawn_point
+story_id = mil_b4_renegade_returned_squad
+on_death = %+mil_b4_renegade_returned_squad_death%
+spot = quest_enemy_squad_1_location|st_renegade_squad_spot_name|mil_bolted_influence_b3_captured
+
+[mil_b4_night_stalker_squad]:online_offline_group
+faction = night_stalker
+npc = sim_default_night_stalker_4, sim_default_night_stalker_3, sim_default_night_stalker_2, sim_default_night_stalker_1, sim_default_night_stalker_2, sim_default_night_stalker_1
+target_smart = mil_smart_terrain_4
+spawn_point = mil_smart_terrain_4_spawn_point
+story_id = mil_b4_night_stalker_squad
+on_death = %+mil_b4_night_stalker_squad_death%
+
+[mil_b4_night_stalker_invaders_squad]:online_offline_group
+faction = night_stalker
+assault_squad = true
+npc = sim_default_night_stalker_4, sim_default_night_stalker_3, sim_default_night_stalker_2, sim_default_night_stalker_1
+target_smart = mil_smart_terrain_4
+spawn_point = mil_smart_terrain_7_spawn_point
+story_id = mil_b4_night_stalker_invaders_squad
+on_death = %+mil_b4_night_stalker_invaders_squad_death%
+
+[mil_b5_renegade_squad]:online_offline_group
+faction = renegade
+npc = sim_default_renegade_1, sim_default_renegade_2, sim_default_renegade_3, sim_default_renegade_4, sim_default_renegade_3, sim_default_renegade_2, sim_default_renegade_3, sim_default_renegade_3, sim_default_renegade_4
+target_smart = mil_smart_terrain_5
+spawn_point = mil_smart_terrain_5_spawn_point
+story_id = mil_b5_renegade_squad
+on_death = %+mil_b5_renegade_squad_death%
+spot = quest_enemy_squad_1_location|st_renegade_squad_spot_name|mil_dislodge_invaders_b4_captured
+
+[mil_b5_rasvet_squad]:online_offline_group
+faction = rasvet
+npc = sim_default_rasvet_4, sim_default_rasvet_3, sim_default_rasvet_2, sim_default_rasvet_1, sim_default_rasvet_2, sim_default_rasvet_4, sim_default_rasvet_4
+target_smart = mil_smart_terrain_5
+spawn_point = mil_smart_terrain_5_spawn_point
+story_id = mil_b5_rasvet_squad
+on_death = %+mil_b5_rasvet_squad_death%
+
+[mil_b5_rasvet_invaders_squad]:online_offline_group
+faction = rasvet
+assault_squad = true
+npc = sim_default_rasvet_4, sim_default_rasvet_3, sim_default_rasvet_2, sim_default_rasvet_1, sim_default_rasvet_2
+target_smart = mil_smart_terrain_5
+spawn_point = mil_smart_terrain_7_spawn_point
+story_id = mil_b5_rasvet_invaders_squad
+on_death = %+mil_b5_rasvet_invaders_squad_death%
+
+[mil_b5_monster_1_squad]:online_offline_group
+faction = monster
+npc = dog_weak, dog_strong, pseudodog_normal, pseudodog_normal, fracture_normal, dog_weak, dog_strong, pseudodog_normal, pseudodog_normal, psy_dog
+target_smart = mil_monster_burrow_31
+story_id = mil_b5_monster_1_squad
+on_death = %+mil_b5_monster_1_squad_death%
+spot = quest_enemy_squad_2_location|st_monster_spot_name
+
+[mil_b5_monster_2_squad]:online_offline_group
+faction = monster
+npc = boar_normal, boar_strong, flesh_normal, flesh_strong, fracture_strong, boar_cruel, boar_strong, flesh_cruel, flesh_strong, fracture_strong
+target_smart = mil_monster_burrow_31
+story_id = mil_b5_monster_2_squad
+on_death = %+mil_b5_monster_2_squad_death%
+spot = quest_enemy_squad_2_location|st_monster_spot_name
+
+[mil_b5_monster_3_squad]:online_offline_group
+faction = monster
+npc = bloodsucker_1_nightmare, snork_strong, chimera_nightmare, snork_strong, fracture_normal, fracture_strong, snork_normal, fracture_strong, snork_strong, snork_normal
+target_smart = mil_monster_burrow_31
+story_id = mil_b5_monster_3_squad
+on_death = %+mil_b5_monster_3_squad_death%
+spot = quest_enemy_squad_2_location|st_monster_spot_name
+
+[mil_b5_renegade_returned_squad]:online_offline_group
+faction = renegade
+npc = sim_default_renegade_1, sim_default_renegade_2, sim_default_renegade_3, sim_default_renegade_4, sim_default_renegade_3, sim_default_renegade_2
+target_smart = mil_smart_terrain_5
+spawn_point = mil_smart_terrain_5_spawn_point
+story_id = mil_b5_renegade_returned_squad
+on_death = %+mil_b5_renegade_returned_squad_death%
+spot = quest_enemy_squad_1_location|st_renegade_squad_spot_name|mil_bolted_influence_b4_captured
+
+[mil_b5_night_stalker_squad]:online_offline_group
+faction = night_stalker
+npc = sim_default_night_stalker_4, sim_default_night_stalker_3, sim_default_night_stalker_2, sim_default_night_stalker_1, sim_default_night_stalker_2, sim_default_night_stalker_1
+target_smart = mil_smart_terrain_5
+spawn_point = mil_smart_terrain_5_spawn_point
+story_id = mil_b5_night_stalker_squad
+on_death = %+mil_b5_night_stalker_squad_death%
+
+[mil_b5_night_stalker_invaders_squad]:online_offline_group
+faction = night_stalker
+assault_squad = true
+npc = sim_default_night_stalker_4, sim_default_night_stalker_3, sim_default_night_stalker_2, sim_default_night_stalker_1
+target_smart = mil_smart_terrain_5
+spawn_point = mil_smart_terrain_7_spawn_point
+story_id = mil_b5_night_stalker_invaders_squad
+on_death = %+mil_b5_night_stalker_invaders_squad_death%
+
+[mil_b6_renegade_squad]:online_offline_group
+faction = renegade
+npc = sim_default_renegade_1, sim_default_renegade_2, sim_default_renegade_3, sim_default_renegade_4, sim_default_renegade_3, sim_default_renegade_2, sim_default_renegade_3, sim_default_renegade_3, sim_default_renegade_4, sim_default_renegade_1, sim_default_renegade_2, sim_default_renegade_3
+target_smart = mil_smart_terrain_6
+spawn_point = mil_smart_terrain_6_spawn_point
+story_id = mil_b6_renegade_squad
+on_death = %+mil_b6_renegade_squad_death%
+spot = quest_enemy_squad_1_location|st_renegade_squad_spot_name|mil_dislodge_invaders_b5_captured
+
+[mil_b6_rasvet_squad]:online_offline_group
+faction = rasvet
+npc = sim_default_rasvet_4, sim_default_rasvet_3, sim_default_rasvet_2, sim_default_rasvet_1, sim_default_rasvet_2, sim_default_rasvet_4, sim_default_rasvet_4
+target_smart = mil_smart_terrain_6
+spawn_point = mil_smart_terrain_6_spawn_point
+story_id = mil_b6_rasvet_squad
+on_death = %+mil_b6_rasvet_squad_death%
+
+[mil_b6_rasvet_invaders_squad]:online_offline_group
+faction = rasvet
+assault_squad = true
+npc = sim_default_rasvet_4, sim_default_rasvet_3, sim_default_rasvet_2, sim_default_rasvet_1, sim_default_rasvet_2
+target_smart = mil_smart_terrain_6
+spawn_point = mil_smart_terrain_7_spawn_point
+story_id = mil_b6_rasvet_invaders_squad
+on_death = %+mil_b6_rasvet_invaders_squad_death%
+
+[mil_b6_monster_1_1_squad]:online_offline_group
+faction = monster
+npc = boar_cruel, boar_strong, flesh_cruel, flesh_strong, fracture_strong, boar_cruel, boar_cruel, flesh_cruel, flesh_strong, fracture_strong
+target_smart = mil_monster_burrow_32
+story_id = mil_b6_monster_1_1_squad
+on_death = %+mil_b6_monster_1_1_squad_death =mil_b6_wave_counter_dec%
+
+[mil_b6_monster_1_2_squad]:online_offline_group
+faction = monster
+npc = dog_weak, dog_strong, pseudodog_normal, pseudodog_normal, fracture_normal, dog_weak, dog_strong, pseudodog_normal, pseudodog_normal, psy_dog
+target_smart = mil_monster_burrow_32
+story_id = mil_b6_monster_1_2_squad
+on_death = %+mil_b6_monster_1_2_squad_death =mil_b6_wave_counter_dec%
+
+[mil_b6_monster_1_3_squad]:online_offline_group
+faction = monster
+npc = snork_normal, snork_cruel, snork_normal, snork_cruel, fracture_normal, fracture_strong, tushkano_normal, fracture_strong, snork_cruel, tushkano_normal
+target_smart = mil_monster_burrow_32
+story_id = mil_b6_monster_1_3_squad
+on_death = %+mil_b6_monster_1_3_squad_death =mil_b6_wave_counter_dec%
+
+[mil_b6_monster_1_4_squad]:online_offline_group
+faction = monster
+npc = burer_nightmare, gigant_cruel, controller_nightmare
+target_smart = mil_monster_burrow_32
+story_id = mil_b6_monster_1_4_squad
+on_death = %+mil_b6_monster_1_4_squad_death =mil_b6_wave_counter_dec%
+
+[mil_b6_monster_2_1_squad]:online_offline_group
+faction = monster
+npc = bloodsucker_cruel, snork_cruel, snork_normal, snork_cruel, bloodsucker_2_nightmare, snork_cruel, snork_cruel, snork_cruel, snork_cruel, snork_cruel
+target_smart = mil_monster_burrow_32
+story_id = mil_b6_monster_2_1_squad
+on_death = %+mil_b6_monster_2_1_squad_death =mil_b6_wave_counter_dec%
+
+[mil_b6_monster_2_2_squad]:online_offline_group
+faction = monster
+npc = bloodsucker_1_nightmare, snork_cruel, snork_normal, snork_cruel, bloodsucker_cruel, snork_cruel, snork_cruel, snork_cruel, snork_cruel, snork_cruel
+target_smart = mil_monster_burrow_32
+story_id = mil_b6_monster_2_2_squad
+on_death = %+mil_b6_monster_2_2_squad_death =mil_b6_wave_counter_dec%
+
+[mil_b6_monster_2_3_squad]:online_offline_group
+faction = monster
+npc = bloodsucker_cruel, snork_cruel, snork_normal, snork_cruel, bloodsucker_2_nightmare, snork_cruel, snork_cruel, snork_cruel, snork_cruel, snork_cruel
+target_smart = mil_monster_burrow_32
+story_id = mil_b6_monster_2_3_squad
+on_death = %+mil_b6_monster_2_3_squad_death =mil_b6_wave_counter_dec%
+
+[mil_b6_monster_2_4_squad]:online_offline_group
+faction = monster
+npc = bibliotekar_nightmare, controller_nightmare
+target_smart = mil_monster_burrow_32
+story_id = mil_b6_monster_2_4_squad
+on_death = %+mil_b6_monster_2_4_squad_death =mil_b6_wave_counter_dec%
+
+[mil_b6_monster_3_1_squad]:online_offline_group
+faction = monster
+npc = bloodsucker_1_nightmare, snork_cruel, snork_normal, snork_cruel, bloodsucker_2_nightmare, snork_cruel, snork_cruel, snork_cruel, snork_cruel, snork_cruel
+target_smart = mil_monster_burrow_32
+story_id = mil_b6_monster_3_1_squad
+on_death = %+mil_b6_monster_3_1_squad_death =mil_b6_wave_counter_dec%
+
+[mil_b6_monster_3_2_squad]:online_offline_group
+faction = monster
+npc = chimera_nightmare, snork_cruel, snork_normal, snork_cruel, chimera_normal, snork_cruel, snork_cruel, snork_cruel, snork_cruel, snork_cruel
+target_smart = mil_monster_burrow_32
+story_id = mil_b6_monster_3_2_squad
+on_death = %+mil_b6_monster_3_2_squad_death =mil_b6_wave_counter_dec%
+
+[mil_b6_monster_3_3_squad]:online_offline_group
+faction = monster
+npc = bloodsucker_1_nightmare, snork_cruel, snork_normal, snork_cruel, bloodsucker_2_nightmare, snork_cruel, snork_cruel, snork_cruel, snork_cruel, snork_cruel
+target_smart = mil_monster_burrow_32
+story_id = mil_b6_monster_3_3_squad
+on_death = %+mil_b6_monster_3_3_squad_death%
+
+[mil_b6_monster_3_4_squad]:online_offline_group
+faction = monster
+npc = burer_nightmare, gigant_normal
+target_smart = mil_monster_burrow_32
+story_id = mil_b6_monster_3_4_squad
+on_death = %+mil_b6_monster_3_4_squad_death =mil_b6_wave_counter_dec%
+
+[mil_b6_renegade_returned_squad]:online_offline_group
+faction = renegade
+npc = sim_default_renegade_1, sim_default_renegade_2, sim_default_renegade_3, sim_default_renegade_4, sim_default_renegade_3, sim_default_renegade_2
+target_smart = mil_smart_terrain_6
+spawn_point = mil_smart_terrain_6_spawn_point
+story_id = mil_b6_renegade_returned_squad
+on_death = %+mil_b6_renegade_returned_squad_death%
+spot = quest_enemy_squad_1_location|st_renegade_squad_spot_name|mil_bolted_influence_b5_captured
+
+[mil_b6_night_stalker_squad]:online_offline_group
+faction = night_stalker
+npc = sim_default_night_stalker_4, sim_default_night_stalker_3, sim_default_night_stalker_2, sim_default_night_stalker_1, sim_default_night_stalker_2, sim_default_night_stalker_1
+target_smart = mil_smart_terrain_6
+spawn_point = mil_smart_terrain_6_spawn_point
+story_id = mil_b6_night_stalker_squad
+on_death = %+mil_b6_night_stalker_squad_death%
+
+[mil_b6_night_stalker_invaders_squad]:online_offline_group
+faction = night_stalker
+assault_squad = true
+npc = sim_default_night_stalker_4, sim_default_night_stalker_3, sim_default_night_stalker_2, sim_default_night_stalker_1
+target_smart = mil_smart_terrain_6
+spawn_point = mil_smart_terrain_7_spawn_point
+story_id = mil_b6_night_stalker_invaders_squad
+on_death = %+mil_b6_night_stalker_invaders_squad_death%
+
+[mil_b7_rasvet_1_squad]:online_offline_group
+faction = rasvet
+npc = mil_b7_base_leader, sim_default_rasvet_3, sim_default_rasvet_2, sim_default_rasvet_1, sim_default_rasvet_4, sim_default_rasvet_2, sim_default_rasvet_3, sim_default_rasvet_2
+target_smart = mil_smart_terrain_7
+spawn_point = mil_smart_terrain_7_spawn_point
+story_id = mil_b7_rasvet_1_squad
+on_death = %+mil_b7_rasvet_1_squad_death%
+
+[mil_b7_rasvet_2_squad]:online_offline_group
+faction = rasvet
+npc = mil_b7_base_chief, sim_default_rasvet_4, sim_default_rasvet_3, sim_default_rasvet_2, sim_default_rasvet_2, sim_default_rasvet_4, sim_default_rasvet_3, sim_default_rasvet_4
+target_smart = mil_smart_terrain_7
+spawn_point = mil_smart_terrain_7_spawn_point
+story_id = mil_b7_rasvet_2_squad
+on_death = %+mil_b7_rasvet_2_squad_death%
+
+[mil_b7_rasvet_3_squad]:online_offline_group
+faction = rasvet
+npc = sim_default_rasvet_4, sim_default_rasvet_3, sim_default_rasvet_2, sim_default_rasvet_4, sim_default_rasvet_2, sim_default_rasvet_3, sim_default_rasvet_4, sim_default_rasvet_2
+target_smart = mil_smart_terrain_7
+spawn_point = mil_smart_terrain_7_spawn_point
+story_id = mil_b7_rasvet_3_squad
+on_death = %+mil_b7_rasvet_3_squad_death%
+
+[mil_b7_rasvet_4_squad]:online_offline_group
+faction = rasvet
+npc = sim_default_rasvet_4, sim_default_rasvet_3, sim_default_rasvet_2, sim_default_rasvet_4, sim_default_rasvet_2, sim_default_rasvet_3, sim_default_rasvet_4, sim_default_rasvet_2
+target_smart = mil_smart_terrain_7
+spawn_point = mil_smart_terrain_7_spawn_point
+story_id = mil_b7_rasvet_4_squad
+on_death = %+mil_b7_rasvet_4_squad_death%
+
+[mil_b7_rasvet_5_squad]:online_offline_group
+faction = rasvet
+npc = sim_default_rasvet_4, sim_default_rasvet_3, sim_default_rasvet_4, sim_default_rasvet_2, sim_default_rasvet_3, sim_default_rasvet_4, sim_default_rasvet_2, sim_default_rasvet_2, sim_default_rasvet_3
+target_smart = mil_smart_terrain_7
+spawn_point = mil_smart_terrain_7_spawn_point
+story_id = mil_b7_rasvet_5_squad
+on_death = %+mil_b7_rasvet_5_squad_death%
+
+[mil_b7_monster_1_1_squad]:online_offline_group
+faction = monster
+npc = boar_cruel, boar_strong, flesh_cruel, flesh_strong, fracture_strong, boar_cruel, boar_cruel, flesh_cruel, flesh_cruel, fracture_strong
+target_smart = mil_monster_burrow_33
+story_id = mil_b7_monster_1_1_squad
+on_death = %+mil_b7_monster_1_1_squad_death =mil_b7_wave_counter_dec%
+
+[mil_b7_monster_1_2_squad]:online_offline_group
+faction = monster
+npc = dog_weak, dog_strong, pseudodog_normal, pseudodog_normal, fracture_normal, dog_weak, dog_strong, pseudodog_normal, pseudodog_normal, psy_dog
+target_smart = mil_monster_burrow_33
+story_id = mil_b7_monster_1_2_squad
+on_death = %+mil_b7_monster_1_2_squad_death =mil_b7_wave_counter_dec%
+
+[mil_b7_monster_1_3_squad]:online_offline_group
+faction = monster
+npc = snork_normal, snork_cruel, snork_normal, snork_cruel, fracture_normal, fracture_strong, tushkano_normal, fracture_strong, snork_cruel, tushkano_normal
+target_smart = mil_monster_burrow_33
+story_id = mil_b7_monster_1_3_squad
+on_death = %+mil_b7_monster_1_3_squad_death =mil_b7_wave_counter_dec%
+
+[mil_b7_monster_1_4_squad]:online_offline_group
+faction = monster
+npc = burer_nightmare, gigant_cruel
+target_smart = mil_monster_burrow_33
+story_id = mil_b7_monster_1_4_squad
+on_death = %+mil_b7_monster_1_4_squad_death =mil_b7_wave_counter_dec%
+
+[mil_b7_monster_2_1_squad]:online_offline_group
+faction = monster
+npc = bloodsucker_1_nightmare, snork_cruel, snork_normal, snork_cruel, bloodsucker_2_nightmare, snork_cruel, snork_cruel, snork_cruel, snork_cruel, snork_cruel
+target_smart = mil_monster_burrow_33
+story_id = mil_b7_monster_2_1_squad
+on_death = %+mil_b7_monster_2_1_squad_death =mil_b7_wave_counter_dec%
+
+[mil_b7_monster_2_2_squad]:online_offline_group
+faction = monster
+npc = bloodsucker_1_nightmare, snork_cruel, snork_normal, snork_cruel, bloodsucker_2_nightmare, snork_cruel, snork_cruel, snork_cruel, snork_cruel, snork_cruel
+target_smart = mil_monster_burrow_33
+story_id = mil_b7_monster_2_2_squad
+on_death = %+mil_b7_monster_2_2_squad_death =mil_b7_wave_counter_dec%
+
+[mil_b7_monster_2_3_squad]:online_offline_group
+faction = monster
+npc = chimera_nightmare, snork_cruel, snork_normal, snork_cruel, chimera_normal, snork_cruel, snork_cruel, snork_cruel, snork_cruel, snork_cruel
+target_smart = mil_monster_burrow_33
+story_id = mil_b7_monster_2_3_squad
+on_death = %+mil_b7_monster_2_3_squad_death =mil_b7_wave_counter_dec%
+
+[mil_b7_monster_2_4_squad]:online_offline_group
+faction = monster
+npc = gigant_cruel, controller_nightmare
+target_smart = mil_monster_burrow_33
+story_id = mil_b7_monster_2_4_squad
+on_death = %+mil_b7_monster_2_4_squad_death =mil_b7_wave_counter_dec%
+
+[mil_b7_monster_3_1_squad]:online_offline_group
+faction = monster
+npc = bloodsucker_cruel, snork_cruel, snork_normal, snork_cruel, bloodsucker_cruel, snork_cruel, snork_cruel, snork_cruel, snork_cruel, snork_cruel
+target_smart = mil_monster_burrow_33
+story_id = mil_b7_monster_3_1_squad
+on_death = %+mil_b7_monster_3_1_squad_death =mil_b7_wave_counter_dec%
+
+[mil_b7_monster_3_2_squad]:online_offline_group
+faction = monster
+npc = chimera_nightmare, snork_cruel, snork_normal, snork_cruel, chimera_cruel, snork_cruel, snork_cruel, snork_cruel, snork_cruel, snork_cruel
+target_smart = mil_monster_burrow_33
+story_id = mil_b7_monster_3_2_squad
+on_death = %+mil_b7_monster_3_2_squad_death =mil_b7_wave_counter_dec%
+
+[mil_b7_monster_3_3_squad]:online_offline_group
+faction = monster
+npc = chimera_nightmare, snork_cruel, snork_normal, snork_cruel, chimera_cruel, snork_cruel, snork_cruel, snork_cruel, snork_cruel, snork_cruel
+target_smart = mil_monster_burrow_33
+story_id = mil_b7_monster_3_3_squad
+on_death = %+mil_b7_monster_3_3_squad_death =mil_b7_wave_counter_dec%
+
+[mil_b7_monster_3_4_squad]:online_offline_group
+faction = monster
+npc = bibliotekar_nightmare, gigant_cruel
+target_smart = mil_monster_burrow_33
+story_id = mil_b7_monster_3_4_squad
+on_death = %+mil_b7_monster_3_4_squad_death =mil_b7_wave_counter_dec%
+
+[mil_b7_night_stalker_1_squad]:online_offline_group
+faction = night_stalker
+npc = mil_b7_night_stalker_leader, sim_default_night_stalker_4, sim_default_night_stalker_3, sim_default_night_stalker_2, sim_default_night_stalker_1, sim_default_night_stalker_4
+target_smart = mil_smart_terrain_7
+spawn_point = mil_smart_terrain_7_spawn_point
+story_id = mil_b7_night_stalker_1_squad
+on_death = %+mil_b7_night_stalker_1_squad_death%
+
+[mil_b7_night_stalker_2_squad]:online_offline_group
+faction = night_stalker
+npc = sim_default_night_stalker_4, sim_default_night_stalker_3, sim_default_night_stalker_2, sim_default_night_stalker_1, sim_default_night_stalker_4, sim_default_night_stalker_3, sim_default_night_stalker_2, sim_default_night_stalker_1
+target_smart = mil_smart_terrain_7
+spawn_point = mil_smart_terrain_7_spawn_point
+story_id = mil_b7_night_stalker_2_squad
+on_death = %+mil_b7_night_stalker_2_squad_death%
+
+[mil_b7_night_stalker_3_squad]:online_offline_group
+faction = night_stalker
+npc = sim_default_night_stalker_4, sim_default_night_stalker_3, sim_default_night_stalker_2, sim_default_night_stalker_1, sim_default_night_stalker_4, sim_default_night_stalker_3, sim_default_night_stalker_2, sim_default_night_stalker_1
+target_smart = mil_smart_terrain_7
+spawn_point = mil_smart_terrain_7_spawn_point
+story_id = mil_b7_night_stalker_3_squad
+on_death = %+mil_b7_night_stalker_3_squad_death%

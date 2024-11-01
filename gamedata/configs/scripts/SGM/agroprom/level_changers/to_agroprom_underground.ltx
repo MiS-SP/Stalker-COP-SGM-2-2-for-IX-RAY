@@ -1,0 +1,14 @@
+[logic]
+active = sr_universal
+
+[sr_universal]
+scheme_type = level_change_zone
+level_change_cond         = {+agr_find_underground_way_start} true, false
+level_change_on_use       = %+level_change_to_agroprom_underground_from_agroprom%
+level_change_travel_coord = 49.70373916626,-4.1383495330811,-283.90390014648
+level_change_throw_coord  = 72.39525604248,-1.2451932430267,-257.7727355957,3.73
+level_change_travel_time  = 0,15
+level_change_spot         = level_change_down_location,st_level_change_to_agroprom_underground,false
+level_change_autosave     = st_save_travel_agroprom_to_agroprom_underground
+level_change_silent_travel = false
+level_change_hidden_mode  = true

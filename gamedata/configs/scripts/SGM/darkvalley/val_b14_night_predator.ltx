@@ -1,0 +1,35 @@
+[logic]
+active = mob_move@first_coming
+on_death = death
+on_hit = hit
+
+[hit]
+on_info = {+val_kill_night_predator_check_hole =present_hit_by_actor -val_kill_night_predator_chimera_shooted} %=increase_counter(val_night_predator_shooted)%
+
+[death]
+on_info = %+val_kill_night_predator_chimera_defeated +val_kill_night_predator_say_about_plan =scenario_autosave(st_save_val_kill_night_predator_is_killed)%
+
+[mob_move@first_coming]
+target_point   = {+val_kill_night_predator_check_hole -val_kill_night_predator_chimera_shooted} actor, 306880
+;invulnerable  = {-val_kill_night_predator_chimera_pecked -val_alt_storyline_commenced} true, false
+on_info        = {+val_kill_night_predator_check_hole =check_counter(val_night_predator_shooted:me:10)} %+val_kill_night_predator_chimera_shooted =release_counter(val_night_predator_shooted)%, {+val_alt_storyline_commenced} nil
+on_info2       = {-val_kill_night_predator_check_hole =dist_to_actor_le(20)} %+val_kill_night_predator_check_hole%
+on_info3       = {+val_kill_night_predator_setup_ambush} mob_move@second_coming %=teleport_npc_to_level_vertex(306880)%
+on_info4       = {+val_kill_night_predator_chimera_shooted -val_kill_night_predator_setup_ambush -val_kill_night_predator_chimera_teleported =dist_to_actor_ge(25)} %=teleport_npc_to_level_vertex(306880) +val_kill_night_predator_chimera_teleported%
+on_info5       = {+val_kill_night_predator_chimera_shooted -val_kill_night_predator_setup_ambush +val_kill_night_predator_chimera_teleported =dist_to_actor_le(25)} %-val_kill_night_predator_chimera_teleported%
+
+[mob_move@second_coming]
+target_point   = {+val_kill_night_predator_go_to_hole} actor, 324377
+;invulnerable  = {-val_alt_storyline_commenced} true, false
+on_info        = {-val_kill_night_predator_chimera_pecked =dist_to_actor_le(6)} mob_move@chase_actor %+val_kill_night_predator_chimera_pecked =scenario_autosave(st_save_val_kill_night_predator_is_searched)%, {+val_alt_storyline_commenced} nil
+on_info2       = {-val_kill_night_predator_go_to_hole =dist_to_actor_le(18)} %+val_kill_night_predator_go_to_hole%
+
+[mob_move@chase_actor]
+target_point   = actor
+;invulnerable  = {-val_kill_night_predator_chimera_trapped -val_alt_storyline_commenced} true, false
+on_info        = {=val_chimera_captured_trap_cond} mob_move@attack_base %+val_kill_night_predator_chimera_trapped%, {+val_alt_storyline_commenced} nil
+
+[mob_move@attack_base]
+target_point   = 41630
+on_info        = {+val_alt_storyline_commenced} nil
+

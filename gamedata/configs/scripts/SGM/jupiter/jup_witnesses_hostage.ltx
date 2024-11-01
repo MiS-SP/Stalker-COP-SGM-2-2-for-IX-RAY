@@ -1,0 +1,82 @@
+[logic]
+active = move@hostage_shackle
+
+[move@hostage_shackle]
+move_dest_number       = 1218457
+move_look_vertex       = 1209165
+move_state_when_center = prisoner
+move_state_when_move   = walk
+move_combat_disable    = true
+invulnerable           = true
+combat_ignore_cond     = true
+combat_ignore_keep_when_attacked = true
+approach_info          = jup_avoid_witnesses_podoshel|40|<
+on_info                = {+jup_avoid_witnesses_cleaned} move@hostage_purely, {+jup_avoid_witnesses_complete} move@hostage_free
+
+[move@hostage_purely]
+move_dest_number       = 1218457
+move_look_vertex       = 1209165
+move_state_when_center = hands_up
+move_state_when_move   = walk
+move_combat_disable    = true
+meet                   = meet_free
+invulnerable           = true
+combat_ignore_cond     = true
+combat_ignore_keep_when_attacked = true
+on_info                = {+jup_avoid_witnesses_opustit_ruki} move@hostage_opusk, {+jup_avoid_witnesses_init_travel} move@hostage_pursue
+
+[move@hostage_opusk]
+move_dest_number       = 1218457
+move_look_vertex       = 1209165
+move_state_when_center = guard
+move_state_when_move   = walk
+move_quick_animation   = false
+move_combat_disable    = true
+meet                   = meet_free
+invulnerable           = true
+combat_ignore_cond     = true
+combat_ignore_keep_when_attacked = true
+on_info                = {+jup_avoid_witnesses_init_travel} move@hostage_pursue
+
+[move@hostage_pursue]
+move_pursue_actor      = true
+invulnerable           = true
+on_info                = {+jup_avoid_witnesses_end_travel} move@hostage_need_actor
+
+[move@hostage_need_actor]
+move_dest_actor        = true
+move_look_subject      = actor
+move_state_when_center = guard
+move_state_when_move   = run
+move_stop_on_talk      = true
+meet                   = meet_pursue
+invulnerable           = true
+on_info                = {+jup_avoid_witnesses_complete} move@hostage_free
+
+[move@hostage_free]
+move_dest_number       = 707238
+move_look_vertex       = 713021
+move_state_when_center = sleep
+move_state_when_move   = walk
+move_combat_disable    = true
+move_stop_on_talk      = true
+meet                   = meet_free
+invulnerable           = true
+combat_ignore_cond     = true
+combat_ignore_keep_when_attacked = true
+on_info                = {=dist_to_actor_ge(80)} nil %=release_npc%
+
+[meet_free]
+abuse           = false
+use             = true
+allow_break     = false
+meet_on_talking = false
+trade_enable    = false
+
+[meet_pursue]
+abuse           = true
+use             = {=dist_to_actor_le(4) -jup_avoid_witnesses_safety} self, true
+allow_break     = false
+meet_on_talking = false
+trade_enable    = false
+

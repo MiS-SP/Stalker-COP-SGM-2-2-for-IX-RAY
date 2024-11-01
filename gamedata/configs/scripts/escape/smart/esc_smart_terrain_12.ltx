@@ -1,0 +1,22 @@
+[smart_terrain];esc_smart_terrain_12 (10 работ)
+squad_id = 12
+max_population = 3
+respawn_params = respawn@esc_smart_terrain_12
+arrive_dist = 15
+
+[respawn@esc_smart_terrain_12]
+spawn_stalker@novice
+spawn_stalker@advanced
+spawn_stalker@veteran
+
+[spawn_stalker@novice]
+spawn_squads = stalker_sim_squad_novice
+spawn_num = {+esc_storyline_done =check_actor_rank(0:40)} 1, 0
+
+[spawn_stalker@advanced]
+spawn_squads = stalker_sim_squad_advanced
+spawn_num = {+esc_storyline_done =check_actor_rank(40:100)} 1, 0
+
+[spawn_stalker@veteran]
+spawn_squads = stalker_sim_squad_veteran
+spawn_num = {+esc_storyline_done =check_actor_rank(100)} 1, 0

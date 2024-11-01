@@ -1,0 +1,545 @@
+[esc_employer_find_item_base]
+icon = ui_inGame2_Employer_1
+prior = 1
+storyline = false
+condlist_0 = {+employer_find_item_reward} complete
+condlist_1 = {=sid_thinks_actor_is_enemy(esc_stalker_employer)} fail
+condlist_2 = {!actor_on_level(escape)} fail
+on_fail = %=employer_quest_complete%
+on_complete = %+employer_find_item_complete =add_actor_rank(1) =employer_quest_complete%
+execution_time = 40
+
+[esc_employer_find_item_1]:esc_employer_find_item_base
+title = {=actor_has_item(esc_employer_item_1)} employer_find_item_title1, {!actor_has_item(esc_employer_item_1)} employer_find_item_title0
+descr = {=actor_has_item(esc_employer_item_1)} employer_find_item_text1, {!actor_has_item(esc_employer_item_1)} employer_find_item_text0
+target = {=actor_has_item(esc_employer_item_1)} esc_stalker_employer, {!actor_has_item(esc_employer_item_1)} esc_employer_item_1
+employer_target = esc_employer_item_1
+employer_place_1 = -204.33947753906,-16.973419189453,-160.41899108887,48856,1940
+employer_place_2 = 98.882690429688,-2.3778984546661,-13.666418075562,436957,1927
+employer_place_3 = 4.7002639770508,7.9545893669128,290.11459350586,308371,1933
+
+[esc_employer_find_item_2]:esc_employer_find_item_base
+title = {=actor_has_item(esc_employer_item_2)} employer_find_item_title1, {!actor_has_item(esc_employer_item_2)} employer_find_item_title0
+descr = {=actor_has_item(esc_employer_item_2)} employer_find_item_text1, {!actor_has_item(esc_employer_item_2)} employer_find_item_text0
+target = {=actor_has_item(esc_employer_item_2)} esc_stalker_employer, {!actor_has_item(esc_employer_item_2)} esc_employer_item_2
+employer_target = esc_employer_item_2
+employer_place_1 = -12.595218658447,5.9485273361206,70.352874755859,284953,1882
+employer_place_2 = 68.378936767578,21.460475921631,156.26794433594,390883,1970
+employer_place_3 = 347.15005493164,15.722150802612,247.1484375,617355,1878
+
+[esc_employer_find_item_3]:esc_employer_find_item_base
+title = {=actor_has_item(esc_employer_item_3)} employer_find_item_title1, {!actor_has_item(esc_employer_item_3)} employer_find_item_title0
+descr = {=actor_has_item(esc_employer_item_3)} employer_find_item_text1, {!actor_has_item(esc_employer_item_3)} employer_find_item_text0
+target = {=actor_has_item(esc_employer_item_3)} esc_stalker_employer, {!actor_has_item(esc_employer_item_3)} esc_employer_item_3
+employer_target = esc_employer_item_3
+employer_place_1 = 128.8670501709,3.3965911865234,342.05764770508,472755,2028
+employer_place_2 = 23.78556060791,18.030927658081,664.69683837891,335520,2054
+employer_place_3 = -114.95123291016,9.9223432540894,277.39163208008,130019,2065
+
+[zat_employer_find_item_base]
+icon = ui_inGame2_Employer_1
+prior = 1
+storyline = false
+condlist_0 = {+employer_find_item_reward} complete
+condlist_1 = {=sid_thinks_actor_is_enemy(zat_stalker_employer)} fail
+condlist_2 = {!actor_on_level(zaton)} fail
+on_fail = %=employer_quest_complete%
+on_complete = %+employer_find_item_complete =add_actor_rank(1) =employer_quest_complete%
+execution_time = 40
+
+[zat_employer_find_item_1]:zat_employer_find_item_base
+title = {=actor_has_item(zat_employer_item_1)} employer_find_item_title1, {!actor_has_item(zat_employer_item_1)} employer_find_item_title0
+descr = {=actor_has_item(zat_employer_item_1)} employer_find_item_text1, {!actor_has_item(zat_employer_item_1)} employer_find_item_text0
+target = {=actor_has_item(zat_employer_item_1)} zat_stalker_employer, {!actor_has_item(zat_employer_item_1)} zat_employer_item_1
+employer_target = zat_employer_item_1
+employer_place_1 = -423.22009277344,39.999843597412,-398.17913818359,142980,306
+employer_place_2 = 368.15899658203,25.573974609375,-326.1907043457,1594148,74
+employer_place_3 = 273.8962097168,19.128416061401,551.57843017578,1438310,287
+
+[zat_employer_find_item_2]:zat_employer_find_item_base
+title = {=actor_has_item(zat_employer_item_2)} employer_find_item_title1, {!actor_has_item(zat_employer_item_2)} employer_find_item_title0
+descr = {=actor_has_item(zat_employer_item_2)} employer_find_item_text1, {!actor_has_item(zat_employer_item_2)} employer_find_item_text0
+target = {=actor_has_item(zat_employer_item_2)} zat_stalker_employer, {!actor_has_item(zat_employer_item_2)} zat_employer_item_2
+employer_target = zat_employer_item_2
+employer_place_1 = -318.83547973633,10.699346542358,426.7756652832,313871,0
+employer_place_2 = -153.35174560547,-8.8151197433472,-179.32051086426,637090,307
+employer_place_3 = -396.14022827148,12.242175102234,-48.630275726318,183866,282
+
+[zat_employer_find_item_3]:zat_employer_find_item_base
+title = {=actor_has_item(zat_employer_item_3)} employer_find_item_title1, {!actor_has_item(zat_employer_item_3)} employer_find_item_title0
+descr = {=actor_has_item(zat_employer_item_3)} employer_find_item_text1, {!actor_has_item(zat_employer_item_3)} employer_find_item_text0
+target = {=actor_has_item(zat_employer_item_3)} zat_stalker_employer, {!actor_has_item(zat_employer_item_3)} zat_employer_item_3
+employer_target = zat_employer_item_3
+employer_place_1 = -185.97985839844,-3.474091053009,12.130735397339,566982,262
+employer_place_2 = 473.71994018555,37.119998931885,35.393001556396,1738272,293
+employer_place_3 = 414.00354003906,-0.95057809352875,231.73388671875,1637745,7
+
+[zat_employer_find_item_4]:zat_employer_find_item_base
+title = {=actor_has_item(zat_employer_item_4)} employer_find_item_title1, {!actor_has_item(zat_employer_item_4)} employer_find_item_title0
+descr = {=actor_has_item(zat_employer_item_4)} employer_find_item_text1, {!actor_has_item(zat_employer_item_4)} employer_find_item_text0
+target = {=actor_has_item(zat_employer_item_4)} zat_stalker_employer, {!actor_has_item(zat_employer_item_4)} zat_employer_item_4
+employer_target = zat_employer_item_4
+employer_place_1 = -134.93002319336,27.886993408203,-422.51037597656,671488,4
+employer_place_2 = -431.45092773438,2.8122298717499,6.5373315811157,133075,14
+employer_place_3 = 430.62561035156,34.303077697754,-234.31509399414,1676844,74
+
+[jup_employer_find_item_base]
+icon = ui_inGame2_Employer_1
+prior = 1
+storyline = false
+condlist_0 = {+employer_find_item_reward} complete
+condlist_1 = {=sid_thinks_actor_is_enemy(jup_dolg_employer)} fail
+condlist_2 = {!actor_on_level(jupiter)} fail
+on_fail = %=employer_quest_complete%
+on_complete = %+employer_find_item_complete =add_actor_rank(1) =employer_quest_complete%
+execution_time = 45
+
+[jup_employer_find_item_1]:jup_employer_find_item_base
+title = {=actor_has_item(jup_employer_item_1)} employer_find_item_title1, {!actor_has_item(jup_employer_item_1)} employer_find_item_title0
+descr = {=actor_has_item(jup_employer_item_1)} employer_find_item_text1, {!actor_has_item(jup_employer_item_1)} employer_find_item_text0
+target = {=actor_has_item(jup_employer_item_1)} jup_dolg_employer, {!actor_has_item(jup_employer_item_1)} jup_employer_item_1
+employer_target = jup_employer_item_1
+employer_place_1 = -446.37719726563,0.099983423948288,-377.78625488281,763,323
+employer_place_2 = 407.29333496094,39.340579986572,-224.75161743164,1358359,341
+employer_place_3 = 353.94595336914,28.249952316284,-362.85412597656,1281645,626
+
+[jup_employer_find_item_2]:jup_employer_find_item_base
+title = {=actor_has_item(jup_employer_item_2)} employer_find_item_title1, {!actor_has_item(jup_employer_item_2)} employer_find_item_title0
+descr = {=actor_has_item(jup_employer_item_2)} employer_find_item_text1, {!actor_has_item(jup_employer_item_2)} employer_find_item_text0
+target = {=actor_has_item(jup_employer_item_2)} jup_dolg_employer, {!actor_has_item(jup_employer_item_2)} jup_employer_item_2
+employer_target = jup_employer_item_2
+employer_place_1 = -141.14231872559,27.850662231445,-483.80389404297,481400,344
+employer_place_2 = 406.6741027832,6.0673069953918,-113.05464172363,1359616,531
+employer_place_3 = 364.48785400391,0.59925138950348,330.19964599609,1295514,352
+
+[jup_employer_find_item_3]:jup_employer_find_item_base
+title = {=actor_has_item(jup_employer_item_3)} employer_find_item_title1, {!actor_has_item(jup_employer_item_3)} employer_find_item_title0
+descr = {=actor_has_item(jup_employer_item_3)} employer_find_item_text1, {!actor_has_item(jup_employer_item_3)} employer_find_item_text0
+target = {=actor_has_item(jup_employer_item_3)} jup_dolg_employer, {!actor_has_item(jup_employer_item_3)} jup_employer_item_3
+employer_target = jup_employer_item_3
+employer_place_1 = -354.57473754883,4.2311267852783,389.82415771484,116545,435
+employer_place_2 = -382.52838134766,2.6374089717865,3.3936152458191,71315,374
+employer_place_3 = 172.96981811523,-5.497772693634,445.46887207031,1010935,514
+
+[jup_employer_find_item_4]:jup_employer_find_item_base
+title = {=actor_has_item(jup_employer_item_4)} employer_find_item_title1, {!actor_has_item(jup_employer_item_4)} employer_find_item_title0
+descr = {=actor_has_item(jup_employer_item_4)} employer_find_item_text1, {!actor_has_item(jup_employer_item_4)} employer_find_item_text0
+target = {=actor_has_item(jup_employer_item_4)} jup_dolg_employer, {!actor_has_item(jup_employer_item_4)} jup_employer_item_4
+employer_target = jup_employer_item_4
+employer_place_1 = 224.33436584473,-6.9437112808228,158.39231872559,1099907,507
+employer_place_2 = 399.25860595703,26.150819778442,362.89208984375,1345119,350
+employer_place_3 = -179.99890136719,-1.9405916929245,-252.74412536621,411702,558
+
+[pri_employer_find_item_base]
+icon = ui_inGame2_Employer_1
+prior = 1
+storyline = false
+condlist_0 = {+employer_find_item_reward} complete
+condlist_1 = {=sid_thinks_actor_is_enemy(pri_army_employer)} fail
+condlist_2 = {!actor_on_level(pripyat)} fail
+on_fail = %=employer_quest_complete%
+on_complete = %+employer_find_item_complete =add_actor_rank(1) =employer_quest_complete%
+execution_time = 40
+
+[pri_employer_find_item_1]:pri_employer_find_item_base
+title = {=actor_has_item(pri_employer_item_1)} employer_find_item_title1, {!actor_has_item(pri_employer_item_1)} employer_find_item_title0
+descr = {=actor_has_item(pri_employer_item_1)} employer_find_item_text1, {!actor_has_item(pri_employer_item_1)} employer_find_item_text0
+target = {=actor_has_item(pri_employer_item_1)} pri_army_employer, {!actor_has_item(pri_employer_item_1)} pri_employer_item_1
+employer_target = pri_employer_item_1
+employer_place_1 = -184.96844482422,0.7464337348938,-343.96185302734,31565,806
+employer_place_2 = -3.807196855545,4.5608310699463,284.32635498047,194837,712
+employer_place_3 = 276.58731079102,12.342135429382,311.62414550781,470434,678
+
+[pri_employer_find_item_2]:pri_employer_find_item_base
+title = {=actor_has_item(pri_employer_item_2)} employer_find_item_title1, {!actor_has_item(pri_employer_item_2)} employer_find_item_title0
+descr = {=actor_has_item(pri_employer_item_2)} employer_find_item_text1, {!actor_has_item(pri_employer_item_2)} employer_find_item_text0
+target = {=actor_has_item(pri_employer_item_2)} pri_army_employer, {!actor_has_item(pri_employer_item_2)} pri_employer_item_2
+employer_target = pri_employer_item_2
+employer_place_1 = 20.026927947998,4.8966670036316,403.30960083008,224651,794
+employer_place_2 = -54.254356384277,8.6477956771851,83.860534667969,134882,726
+employer_place_3 = -179.11923217773,0.95902860164642,-190.68933105469,35344,755
+
+[pri_employer_find_item_3]:pri_employer_find_item_base
+title = {=actor_has_item(pri_employer_item_3)} employer_find_item_title1, {!actor_has_item(pri_employer_item_3)} employer_find_item_title0
+descr = {=actor_has_item(pri_employer_item_3)} employer_find_item_text1, {!actor_has_item(pri_employer_item_3)} employer_find_item_text0
+target = {=actor_has_item(pri_employer_item_3)} pri_army_employer, {!actor_has_item(pri_employer_item_3)} pri_employer_item_3
+employer_target = pri_employer_item_3
+employer_place_1 = -109.97099304199,0.48969283699989,-258.48449707031,82111,676
+employer_place_2 = 208.78007507324,4.4492983818054,-24.803911209106,435365,666
+employer_place_3 = -104.64825439453,4.2124171257019,-88.902633666992,88129,735
+
+[pri_employer_find_item_4]:pri_employer_find_item_base
+title = {=actor_has_item(pri_employer_item_4)} employer_find_item_title1, {!actor_has_item(pri_employer_item_4)} employer_find_item_title0
+descr = {=actor_has_item(pri_employer_item_4)} employer_find_item_text1, {!actor_has_item(pri_employer_item_4)} employer_find_item_text0
+target = {=actor_has_item(pri_employer_item_4)} pri_army_employer, {!actor_has_item(pri_employer_item_4)} pri_employer_item_4
+employer_target = pri_employer_item_4
+employer_place_1 = 17.25825881958,4.4951610565186,259.66311645508,220446,713
+employer_place_2 = 314.99389648438,-0.46772274374962,159.08467102051,483093,681
+employer_place_3 = -167.68688964844,-0.45370405912399,-18.08473777771,42533,749
+
+[val_employer_find_item_base]
+icon = ui_inGame2_Employer_1
+prior = 1
+storyline = false
+condlist_0 = {+employer_find_item_reward} complete
+condlist_1 = {=sid_thinks_actor_is_enemy(val_b2_employer)} fail
+condlist_2 = {!actor_on_level(darkvalley)} fail
+on_fail = %=employer_quest_complete%
+on_complete = %+employer_find_item_complete =add_actor_rank(1) =employer_quest_complete%
+execution_time = 30
+
+[val_employer_find_item_1]:val_employer_find_item_base
+title = {=actor_has_item(val_employer_item_1)} employer_find_item_title1, {!actor_has_item(val_employer_item_1)} employer_find_item_title0
+descr = {=actor_has_item(val_employer_item_1)} employer_find_item_text1, {!actor_has_item(val_employer_item_1)} employer_find_item_text0
+target = {=actor_has_item(val_employer_item_1)} val_b2_employer, {!actor_has_item(val_employer_item_1)} val_employer_item_1
+employer_target = val_employer_item_1
+employer_place_1 = 107.0213470459,7.7416481971741,-5.6744675636292,275919,1014
+employer_place_2 = 11.380276679993,-6.4387211799622,8.2305002212524,175702,1045
+employer_place_3 = -4.7911109924316,5.6099214553833,-108.56767272949,178873,1040
+
+[val_employer_find_item_2]:val_employer_find_item_base
+title = {=actor_has_item(val_employer_item_2)} employer_find_item_title1, {!actor_has_item(val_employer_item_2)} employer_find_item_title0
+descr = {=actor_has_item(val_employer_item_2)} employer_find_item_text1, {!actor_has_item(val_employer_item_2)} employer_find_item_text0
+target = {=actor_has_item(val_employer_item_2)} val_b2_employer, {!actor_has_item(val_employer_item_2)} val_employer_item_2
+employer_target = val_employer_item_2
+employer_place_1 = -4.4494981765747,5.6138072013855,-180.69551086426,160724,942
+employer_place_2 = 147.23278808594,5.8327221870422,-243.57641601563,317808,1011
+employer_place_3 = 36.393394470215,-4.7436780929565,-364.4889831543,200122,958
+
+[val_employer_find_item_3]:val_employer_find_item_base
+title = {=actor_has_item(val_employer_item_3)} employer_find_item_title1, {!actor_has_item(val_employer_item_3)} employer_find_item_title0
+descr = {=actor_has_item(val_employer_item_3)} employer_find_item_text1, {!actor_has_item(val_employer_item_3)} employer_find_item_text0
+target = {=actor_has_item(val_employer_item_3)} val_b2_employer, {!actor_has_item(val_employer_item_3)} val_employer_item_3
+employer_target = val_employer_item_3
+employer_place_1 = 165.33793640137,0.1934629380703,-245.10984802246,337353,1008
+employer_place_2 = -137.57353210449,3.9879093170166,-21.441429138184,22405,946
+employer_place_3 = 18.461990356445,5.6885061264038,109.51065063477,183620,1023
+
+[val_employer_find_item_4]:val_employer_find_item_base
+title = {=actor_has_item(val_employer_item_4)} employer_find_item_title1, {!actor_has_item(val_employer_item_4)} employer_find_item_title0
+descr = {=actor_has_item(val_employer_item_4)} employer_find_item_text1, {!actor_has_item(val_employer_item_4)} employer_find_item_text0
+target = {=actor_has_item(val_employer_item_4)} val_b2_employer, {!actor_has_item(val_employer_item_4)} val_employer_item_4
+employer_target = val_employer_item_4
+employer_place_1 = 66.224937438965,0.30086943507195,-14.109045028687,230125,935
+employer_place_2 = 20.840866088867,0.43315413594246,-15.746593475342,186117,1045
+employer_place_3 = 130.76162719727,-4.568338394165,-225.71864318848,297361,1003
+
+[mil_employer_find_item_base]
+icon = ui_inGame2_Employer_1
+prior = 1
+storyline = false
+condlist_0 = {+employer_find_item_reward} complete
+condlist_1 = {=sid_thinks_actor_is_enemy(mil_b7_employer)} fail
+condlist_2 = {!actor_on_level(military)} fail
+on_fail = %=employer_quest_complete%
+on_complete = %+employer_find_item_complete =add_actor_rank(1) =employer_quest_complete%
+execution_time = 40
+
+[mil_employer_find_item_1]:mil_employer_find_item_base
+title = {=actor_has_item(mil_employer_item_1)} employer_find_item_title1, {!actor_has_item(mil_employer_item_1)} employer_find_item_title0
+descr = {=actor_has_item(mil_employer_item_1)} employer_find_item_text1, {!actor_has_item(mil_employer_item_1)} employer_find_item_text0
+target = {=actor_has_item(mil_employer_item_1)} mil_b7_employer, {!actor_has_item(mil_employer_item_1)} mil_employer_item_1
+employer_target = mil_employer_item_1
+employer_place_1 = -226.86407470703,-9.4328212738037,62.045146942139,95280,1370
+employer_place_2 = -13.422882080078,-2.668349981308,453.39477539063,277853,1303
+employer_place_3 = -287.01922607422,-21.042793273926,193.48672485352,52561,1301
+
+[mil_employer_find_item_2]:mil_employer_find_item_base
+title = {=actor_has_item(mil_employer_item_2)} employer_find_item_title1, {!actor_has_item(mil_employer_item_2)} employer_find_item_title0
+descr = {=actor_has_item(mil_employer_item_2)} employer_find_item_text1, {!actor_has_item(mil_employer_item_2)} employer_find_item_text0
+target = {=actor_has_item(mil_employer_item_2)} mil_b7_employer, {!actor_has_item(mil_employer_item_2)} mil_employer_item_2
+employer_target = mil_employer_item_2
+employer_place_1 = -144.29609680176,-4.9070110321045,225.42425537109,164477,1267
+employer_place_2 = -427.71258544922,-13.152926445007,381.51330566406,18,1232
+employer_place_3 = -225.77021789551,0.13992443680763,423.02185058594,96205,1389
+
+[mil_employer_find_item_3]:mil_employer_find_item_base
+title = {=actor_has_item(mil_employer_item_3)} employer_find_item_title1, {!actor_has_item(mil_employer_item_3)} employer_find_item_title0
+descr = {=actor_has_item(mil_employer_item_3)} employer_find_item_text1, {!actor_has_item(mil_employer_item_3)} employer_find_item_text0
+target = {=actor_has_item(mil_employer_item_3)} mil_b7_employer, {!actor_has_item(mil_employer_item_3)} mil_employer_item_3
+employer_target = mil_employer_item_3
+employer_place_1 = -333.1227722168,-3.1613485813141,130.61962890625,18652,1297
+employer_place_2 = 116.54347229004,-12.228354454041,221.95523071289,376424,1245
+employer_place_3 = -321.23974609375,-21.201335906982,238.05908203125,24633,1294
+
+[mil_employer_find_item_4]:mil_employer_find_item_base
+title = {=actor_has_item(mil_employer_item_4)} employer_find_item_title1, {!actor_has_item(mil_employer_item_4)} employer_find_item_title0
+descr = {=actor_has_item(mil_employer_item_4)} employer_find_item_text1, {!actor_has_item(mil_employer_item_4)} employer_find_item_text0
+target = {=actor_has_item(mil_employer_item_4)} mil_b7_employer, {!actor_has_item(mil_employer_item_4)} mil_employer_item_4
+employer_target = mil_employer_item_4
+employer_place_1 = -296.25830078125,-15.35000705719,-28.503791809082,43042,1373
+employer_place_2 = -88.960868835449,-8.5274229049683,409.76382446289,213013,1242
+employer_place_3 = -41.025253295898,-19.026103973389,365.40313720703,252732,1249
+
+[esc_employer_kill_stalker_base]
+icon = ui_inGame2_Employer_2
+prior = 1
+storyline = false
+condlist_0 = {+employer_kill_stalker_reward} complete
+condlist_1 = {=sid_thinks_actor_is_enemy(esc_stalker_employer)} fail
+condlist_2 = {!actor_on_level(escape)} fail
+on_fail = %=employer_quest_complete%
+on_complete = %+employer_kill_stalker_complete =add_actor_rank(2) =employer_quest_complete%
+execution_time = 45
+
+[esc_employer_kill_stalker_1]:esc_employer_kill_stalker_base
+title = {!is_alive(esc_employer_target_1)} employer_kill_stalker_title1, {=is_alive(esc_employer_target_1)} employer_kill_stalker_title0
+descr = {!is_alive(esc_employer_target_1)} employer_kill_stalker_text1, {=is_alive(esc_employer_target_1)} employer_kill_stalker_text0
+target = {!is_alive(esc_employer_target_1)} esc_stalker_employer, {=is_alive(esc_employer_target_1)} esc_employer_target_1
+employer_target = esc_employer_target_1
+employer_place_1 = -71.698265075684,25.190179824829,349.90377807617,207001,2025
+employer_place_2 = 105.26475524902,1.498303771019,519.23608398438,436036,2012
+employer_place_3 = 186.88558959961,1.9512416124344,362.0417175293,513852,2027
+
+[esc_employer_kill_stalker_2]:esc_employer_kill_stalker_base
+title = {!is_alive(esc_employer_target_2)} employer_kill_stalker_title1, {=is_alive(esc_employer_target_2)} employer_kill_stalker_title0
+descr = {!is_alive(esc_employer_target_2)} employer_kill_stalker_text1, {=is_alive(esc_employer_target_2)} employer_kill_stalker_text0
+target = {!is_alive(esc_employer_target_2)} esc_stalker_employer, {=is_alive(esc_employer_target_2)} esc_employer_target_2
+employer_target = esc_employer_target_2
+employer_place_1 = 284.26162719727,12.229663848877,267.27523803711,580546,2029
+employer_place_2 = 279.03833007813,18.844163894653,224.12652587891,577259,1878
+employer_place_3 = 181.27583312988,4.9118027687073,95.968116760254,509219,1887
+
+[esc_employer_kill_stalker_3]:esc_employer_kill_stalker_base
+title = {!is_alive(esc_employer_target_3)} employer_kill_stalker_title1, {=is_alive(esc_employer_target_3)} employer_kill_stalker_title0
+descr = {!is_alive(esc_employer_target_3)} employer_kill_stalker_text1, {=is_alive(esc_employer_target_3)} employer_kill_stalker_text0
+target = {!is_alive(esc_employer_target_3)} esc_stalker_employer, {=is_alive(esc_employer_target_3)} esc_employer_target_3
+employer_target = esc_employer_target_3
+employer_place_1 = 116.06805419922,1.6218119859695,61.371841430664,448267,2084
+employer_place_2 = -95.656112670898,2.4090476036072,68.064468383789,169587,1906
+employer_place_3 = 279.03833007813,18.844163894653,224.12652587891,577259,1878
+
+[zat_employer_kill_stalker_base]
+icon = ui_inGame2_Employer_2
+prior = 1
+storyline = false
+condlist_0 = {+employer_kill_stalker_reward} complete
+condlist_1 = {=sid_thinks_actor_is_enemy(zat_stalker_employer)} fail
+condlist_2 = {!actor_on_level(zaton)} fail
+on_fail = %=employer_quest_complete%
+on_complete = %+employer_kill_stalker_complete =add_actor_rank(2) =employer_quest_complete%
+execution_time = 45
+
+[zat_employer_kill_stalker_1]:zat_employer_kill_stalker_base
+title = {!is_alive(zat_employer_target_1)} employer_kill_stalker_title1, {=is_alive(zat_employer_target_1)} employer_kill_stalker_title0
+descr = {!is_alive(zat_employer_target_1)} employer_kill_stalker_text1, {=is_alive(zat_employer_target_1)} employer_kill_stalker_text0
+target = {!is_alive(zat_employer_target_1)} zat_stalker_employer, {=is_alive(zat_employer_target_1)} zat_employer_target_1
+employer_target = zat_employer_target_1
+employer_place_1 = -275.41744995117,15.727754592896,520.86462402344,394549,124
+employer_place_2 = 483.7434387207,14.183595657349,611.44360351563,1753292,28
+employer_place_3 = -254.64254760742,26.476945877075,-430.61032104492,433026,90
+
+[zat_employer_kill_stalker_2]:zat_employer_kill_stalker_base
+title = {!is_alive(zat_employer_target_2)} employer_kill_stalker_title1, {=is_alive(zat_employer_target_2)} employer_kill_stalker_title0
+descr = {!is_alive(zat_employer_target_2)} employer_kill_stalker_text1, {=is_alive(zat_employer_target_2)} employer_kill_stalker_text0
+target = {!is_alive(zat_employer_target_2)} zat_stalker_employer, {=is_alive(zat_employer_target_2)} zat_employer_target_2
+employer_target = zat_employer_target_2
+employer_place_1 = 451.78189086914,32.95121383667,103.25331115723,1705937,27
+employer_place_2 = -435.46380615234,13.044208526611,-161.43368530273,128167,39
+employer_place_3 = -54.497116088867,18.951448440552,-271.54788208008,835689,86
+
+[zat_employer_kill_stalker_3]:zat_employer_kill_stalker_base
+title = {!is_alive(zat_employer_target_3)} employer_kill_stalker_title1, {=is_alive(zat_employer_target_3)} employer_kill_stalker_title0
+descr = {!is_alive(zat_employer_target_3)} employer_kill_stalker_text1, {=is_alive(zat_employer_target_3)} employer_kill_stalker_text0
+target = {!is_alive(zat_employer_target_3)} zat_stalker_employer, {=is_alive(zat_employer_target_3)} zat_employer_target_3
+employer_target = zat_employer_target_3
+employer_place_1 = -223.2428894043,-6.0829982757568,174.82710266113,497676,143
+employer_place_2 = 246.984375,-7.0379104614258,-102.97134399414,1388141,173
+employer_place_3 = 606.01715087891,15.446907043457,-331.97198486328,1847248,46
+
+[zat_employer_kill_stalker_4]:zat_employer_kill_stalker_base
+title = {!is_alive(zat_employer_target_4)} employer_kill_stalker_title1, {=is_alive(zat_employer_target_4)} employer_kill_stalker_title0
+descr = {!is_alive(zat_employer_target_4)} employer_kill_stalker_text1, {=is_alive(zat_employer_target_4)} employer_kill_stalker_text0
+target = {!is_alive(zat_employer_target_4)} zat_stalker_employer, {=is_alive(zat_employer_target_4)} zat_employer_target_4
+employer_target = zat_employer_target_4
+employer_place_1 = 220.20762634277,25.222726821899,-451.19677734375,1339766,312
+employer_place_2 = -27.52003288269,19.389961242676,407.84945678711,891905,196
+employer_place_3 = 445.65328979492,32.955429077148,-115.3358001709,1697434,73
+
+[jup_employer_kill_stalker_base]
+icon = ui_inGame2_Employer_2
+prior = 1
+storyline = false
+condlist_0 = {+employer_kill_stalker_reward} complete
+condlist_1 = {=sid_thinks_actor_is_enemy(jup_dolg_employer)} fail
+condlist_2 = {!actor_on_level(jupiter)} fail
+on_fail = %=employer_quest_complete%
+on_complete = %+employer_kill_stalker_complete =add_actor_rank(2) =employer_quest_complete%
+execution_time = 45
+
+[jup_employer_kill_stalker_1]:jup_employer_kill_stalker_base
+title = {!is_alive(jup_employer_target_1)} employer_kill_stalker_title1, {=is_alive(jup_employer_target_1)} employer_kill_stalker_title0
+descr = {!is_alive(jup_employer_target_1)} employer_kill_stalker_text1, {=is_alive(jup_employer_target_1)} employer_kill_stalker_text0
+target = {!is_alive(jup_employer_target_1)} jup_dolg_employer, {=is_alive(jup_employer_target_1)} jup_employer_target_1
+employer_target = jup_employer_target_1
+employer_place_1 = 174.25274658203,23.963098526001,-239.80352783203,1012378,487
+employer_place_2 = -111.31636047363,26.795642852783,-463.37902832031,533498,344
+employer_place_3 = -220.47117614746,3.3441529273987,-387.11010742188,342766,480
+
+[jup_employer_kill_stalker_2]:jup_employer_kill_stalker_base
+title = {!is_alive(jup_employer_target_2)} employer_kill_stalker_title1, {=is_alive(jup_employer_target_2)} employer_kill_stalker_title0
+descr = {!is_alive(jup_employer_target_2)} employer_kill_stalker_text1, {=is_alive(jup_employer_target_2)} employer_kill_stalker_text0
+target = {!is_alive(jup_employer_target_2)} jup_dolg_employer, {=is_alive(jup_employer_target_2)} jup_employer_target_2
+employer_target = jup_employer_target_2
+employer_place_1 = -370.77673339844,7.6870150566101,71.174522399902,88481,440
+employer_place_2 = 336.38031005859,-3.4093873500824,398.09201049805,1254684,611
+employer_place_3 = -169.77969360352,-2.3843936920166,434.32800292969,429868,565
+
+[jup_employer_kill_stalker_3]:jup_employer_kill_stalker_base
+title = {!is_alive(jup_employer_target_3)} employer_kill_stalker_title1, {=is_alive(jup_employer_target_3)} employer_kill_stalker_title0
+descr = {!is_alive(jup_employer_target_3)} employer_kill_stalker_text1, {=is_alive(jup_employer_target_3)} employer_kill_stalker_text0
+target = {!is_alive(jup_employer_target_3)} jup_dolg_employer, {=is_alive(jup_employer_target_3)} jup_employer_target_3
+employer_target = jup_employer_target_3
+employer_place_1 = -132.50769042969,12.334184646606,-222.09478759766,496150,463
+employer_place_2 = 379.83016967773,27.550977706909,-202.8900604248,1317481,341
+employer_place_3 = 375.33938598633,-4.8830680847168,139.41468811035,1311010,545
+
+[jup_employer_kill_stalker_4]:jup_employer_kill_stalker_base
+title = {!is_alive(jup_employer_target_4)} employer_kill_stalker_title1, {=is_alive(jup_employer_target_4)} employer_kill_stalker_title0
+descr = {!is_alive(jup_employer_target_4)} employer_kill_stalker_text1, {=is_alive(jup_employer_target_4)} employer_kill_stalker_text0
+target = {!is_alive(jup_employer_target_4)} jup_dolg_employer, {=is_alive(jup_employer_target_4)} jup_employer_target_4
+employer_target = jup_employer_target_4
+employer_place_1 = -403.47149658203,19.104461669922,414.38940429688,40916,422
+employer_place_2 = 172.09306335449,20.420070648193,-124.74105072021,1009124,494
+employer_place_3 = 63.761451721191,24.56383895874,-327.02432250977,823688,485
+
+[pri_employer_kill_stalker_base]
+icon = ui_inGame2_Employer_2
+prior = 1
+storyline = false
+condlist_0 = {+employer_kill_stalker_reward} complete
+condlist_1 = {=sid_thinks_actor_is_enemy(pri_army_employer)} fail
+condlist_2 = {!actor_on_level(pripyat)} fail
+on_fail = %=employer_quest_complete%
+on_complete = %+employer_kill_stalker_complete =add_actor_rank(2) =employer_quest_complete%
+execution_time = 40
+
+[pri_employer_kill_stalker_1]:pri_employer_kill_stalker_base
+title = {!is_alive(pri_employer_target_1)} employer_kill_stalker_title1, {=is_alive(pri_employer_target_1)} employer_kill_stalker_title0
+descr = {!is_alive(pri_employer_target_1)} employer_kill_stalker_text1, {=is_alive(pri_employer_target_1)} employer_kill_stalker_text0
+target = {!is_alive(pri_employer_target_1)} pri_army_employer, {=is_alive(pri_employer_target_1)} pri_employer_target_1
+employer_target = pri_employer_target_1
+employer_place_1 = 221.25900268555,-0.36109951138496,79.500289916992,444319,843
+employer_place_2 = -82.71467590332,-0.42618143558502,-379.84893798828,106728,780
+employer_place_3 = -104.91426086426,-0.56793916225433,92.855712890625,87749,837
+
+[pri_employer_kill_stalker_2]:pri_employer_kill_stalker_base
+title = {!is_alive(pri_employer_target_2)} employer_kill_stalker_title1, {=is_alive(pri_employer_target_2)} employer_kill_stalker_title0
+descr = {!is_alive(pri_employer_target_2)} employer_kill_stalker_text1, {=is_alive(pri_employer_target_2)} employer_kill_stalker_text0
+target = {!is_alive(pri_employer_target_2)} pri_army_employer, {=is_alive(pri_employer_target_2)} pri_employer_target_2
+employer_target = pri_employer_target_2
+employer_place_1 = -2.335693359375,-0.50721418857574,106.16937255859,194590,757
+employer_place_2 = 112.43607330322,-0.29675060510635,145.79113769531,338429,790
+employer_place_3 = 98.423767089844,-0.41658854484558,282.69644165039,322654,692
+
+[pri_employer_kill_stalker_3]:pri_employer_kill_stalker_base
+title = {!is_alive(pri_employer_target_3)} employer_kill_stalker_title1, {=is_alive(pri_employer_target_3)} employer_kill_stalker_title0
+descr = {!is_alive(pri_employer_target_3)} employer_kill_stalker_text1, {=is_alive(pri_employer_target_3)} employer_kill_stalker_text0
+target = {!is_alive(pri_employer_target_3)} pri_army_employer, {=is_alive(pri_employer_target_3)} pri_employer_target_3
+employer_target = pri_employer_target_3
+employer_place_1 = -77.950981140137,-0.51127338409424,-168.30534362793,111942,784
+employer_place_2 = 189.21907043457,-1.0940233469009,274.69061279297,419468,767
+employer_place_3 = -168.93644714355,-0.50890415906906,-122.18198394775,41926,751
+
+[pri_employer_kill_stalker_4]:pri_employer_kill_stalker_base
+title = {!is_alive(pri_employer_target_4)} employer_kill_stalker_title1, {=is_alive(pri_employer_target_4)} employer_kill_stalker_title0
+descr = {!is_alive(pri_employer_target_4)} employer_kill_stalker_text1, {=is_alive(pri_employer_target_4)} employer_kill_stalker_text0
+target = {!is_alive(pri_employer_target_4)} pri_army_employer, {=is_alive(pri_employer_target_4)} pri_employer_target_4
+employer_target = pri_employer_target_4
+employer_place_1 = -112.31123352051,-0.5119115114212,-187.59901428223,81656,782
+employer_place_2 = 34.160587310791,-0.5305460691452,-44.330032348633,243185,815
+employer_place_3 = 107.90614318848,-0.42236250638962,66.231971740723,332729,689
+
+[val_employer_kill_stalker_base]
+icon = ui_inGame2_Employer_2
+prior = 1
+storyline = false
+condlist_0 = {+employer_kill_stalker_reward} complete
+condlist_1 = {=sid_thinks_actor_is_enemy(val_b2_employer)} fail
+condlist_2 = {!actor_on_level(darkvalley)} fail
+on_fail = %=employer_quest_complete%
+on_complete = %+employer_kill_stalker_complete =add_actor_rank(2) =employer_quest_complete%
+execution_time = 30
+
+[val_employer_kill_stalker_1]:val_employer_kill_stalker_base
+title = {!is_alive(val_employer_target_1)} employer_kill_stalker_title1, {=is_alive(val_employer_target_1)} employer_kill_stalker_title0
+descr = {!is_alive(val_employer_target_1)} employer_kill_stalker_text1, {=is_alive(val_employer_target_1)} employer_kill_stalker_text0
+target = {!is_alive(val_employer_target_1)} val_b2_employer, {=is_alive(val_employer_target_1)} val_employer_target_1
+employer_target = val_employer_target_1
+employer_place_1 = 177.4072265625,6.7025237083435,-361.70465087891,348984,1030
+employer_place_2 = 164.87838745117,-3.2579984664917,-100.68237304688,337539,938
+employer_place_3 = 115.55296325684,-1.3738353252411,56.460342407227,284995,1126
+
+[val_employer_kill_stalker_2]:val_employer_kill_stalker_base
+title = {!is_alive(val_employer_target_2)} employer_kill_stalker_title1, {=is_alive(val_employer_target_2)} employer_kill_stalker_title0
+descr = {!is_alive(val_employer_target_2)} employer_kill_stalker_text1, {=is_alive(val_employer_target_2)} employer_kill_stalker_text0
+target = {!is_alive(val_employer_target_2)} val_b2_employer, {=is_alive(val_employer_target_2)} val_employer_target_2
+employer_target = val_employer_target_2
+employer_place_1 = 38.661918640137,0.026821196079254,28.723735809326,202324,986
+employer_place_2 = -28.603542327881,-0.32370436191559,-7.1947603225708,138153,1046
+employer_place_3 = -9.5187425613403,1.1263076066971,-163.92636108398,156908,992
+
+[val_employer_kill_stalker_3]:val_employer_kill_stalker_base
+title = {!is_alive(val_employer_target_3)} employer_kill_stalker_title1, {=is_alive(val_employer_target_3)} employer_kill_stalker_title0
+descr = {!is_alive(val_employer_target_3)} employer_kill_stalker_text1, {=is_alive(val_employer_target_3)} employer_kill_stalker_text0
+target = {!is_alive(val_employer_target_3)} val_b2_employer, {=is_alive(val_employer_target_3)} val_employer_target_3
+employer_target = val_employer_target_3
+employer_place_1 = -66.979553222656,2.2208347320557,-52.600337982178,93917,1049
+employer_place_2 = -127.55155944824,4.4069199562073,-24.848497390747,31010,946
+employer_place_3 = -59.172504425049,0.3890692293644,45.799221038818,103172,1021
+
+[val_employer_kill_stalker_4]:val_employer_kill_stalker_base
+title = {!is_alive(val_employer_target_4)} employer_kill_stalker_title1, {=is_alive(val_employer_target_4)} employer_kill_stalker_title0
+descr = {!is_alive(val_employer_target_4)} employer_kill_stalker_text1, {=is_alive(val_employer_target_4)} employer_kill_stalker_text0
+target = {!is_alive(val_employer_target_4)} val_b2_employer, {=is_alive(val_employer_target_4)} val_employer_target_4
+employer_target = val_employer_target_4
+employer_place_1 = -20.319128036499,-4.1422772407532,-273.03427124023,146884,1064
+employer_place_2 = 81.291160583496,-4.0235319137573,-357.71005249023,246821,1099
+employer_place_3 = 103.48435211182,2.40110206604,-416.4169921875,271874,959
+
+[mil_employer_kill_stalker_base]
+icon = ui_inGame2_Employer_2
+prior = 1
+storyline = false
+condlist_0 = {+employer_kill_stalker_reward} complete
+condlist_1 = {=sid_thinks_actor_is_enemy(mil_b7_employer)} fail
+condlist_2 = {!actor_on_level(military)} fail
+on_fail = %=employer_quest_complete%
+on_complete = %+employer_kill_stalker_complete =add_actor_rank(2) =employer_quest_complete%
+execution_time = 40
+
+[mil_employer_kill_stalker_1]:mil_employer_kill_stalker_base
+title = {!is_alive(mil_employer_target_1)} employer_kill_stalker_title1, {=is_alive(mil_employer_target_1)} employer_kill_stalker_title0
+descr = {!is_alive(mil_employer_target_1)} employer_kill_stalker_text1, {=is_alive(mil_employer_target_1)} employer_kill_stalker_text0
+target = {!is_alive(mil_employer_target_1)} mil_b7_employer, {=is_alive(mil_employer_target_1)} mil_employer_target_1
+employer_target = mil_employer_target_1
+employer_place_1 = -97.615951538086,-16.00636100769,376.58831787109,205404,1299
+employer_place_2 = -274.19635009766,-6.9950728416443,344.80947875977,61377,1427
+employer_place_3 = -274.90814208984,-5.4962067604065,129.98124694824,60639,1280
+
+[mil_employer_kill_stalker_2]:mil_employer_kill_stalker_base
+title = {!is_alive(mil_employer_target_2)} employer_kill_stalker_title1, {=is_alive(mil_employer_target_2)} employer_kill_stalker_title0
+descr = {!is_alive(mil_employer_target_2)} employer_kill_stalker_text1, {=is_alive(mil_employer_target_2)} employer_kill_stalker_text0
+target = {!is_alive(mil_employer_target_2)} mil_b7_employer, {=is_alive(mil_employer_target_2)} mil_employer_target_2
+employer_target = mil_employer_target_2
+employer_place_1 = -102.87368011475,-12.121998786926,109.00231170654,200251,1254
+employer_place_2 = 125.90272521973,-11.229691505432,167.73361206055,378401,1287
+employer_place_3 = 8.6897010803223,-5.6755352020264,428.63555908203,298077,1303
+
+[mil_employer_kill_stalker_3]:mil_employer_kill_stalker_base
+title = {!is_alive(mil_employer_target_3)} employer_kill_stalker_title1, {=is_alive(mil_employer_target_3)} employer_kill_stalker_title0
+descr = {!is_alive(mil_employer_target_3)} employer_kill_stalker_text1, {=is_alive(mil_employer_target_3)} employer_kill_stalker_text0
+target = {!is_alive(mil_employer_target_3)} mil_b7_employer, {=is_alive(mil_employer_target_3)} mil_employer_target_3
+employer_target = mil_employer_target_3
+employer_place_1 = -310.61883544922,-11.564716339111,6.3469953536987,33181,1373
+employer_place_2 = -361.59197998047,-17.642185211182,190.43887329102,3708,1412
+employer_place_3 = -24.612623214722,-24.495342254639,271.09548950195,267243,1331
+
+[mil_employer_kill_stalker_4]:mil_employer_kill_stalker_base
+title = {!is_alive(mil_employer_target_4)} employer_kill_stalker_title1, {=is_alive(mil_employer_target_4)} employer_kill_stalker_title0
+descr = {!is_alive(mil_employer_target_4)} employer_kill_stalker_text1, {=is_alive(mil_employer_target_4)} employer_kill_stalker_text0
+target = {!is_alive(mil_employer_target_4)} mil_b7_employer, {=is_alive(mil_employer_target_4)} mil_employer_target_4
+employer_target = mil_employer_target_4
+employer_place_1 = -138.75299072266,-0.58680033683777,6.2989740371704,169025,1283
+employer_place_2 = -212.51733398438,-10.463159561157,303.04791259766,107664,1300
+employer_place_3 = -176.98919677734,-8.4483575820923,235.11218261719,135845,1271

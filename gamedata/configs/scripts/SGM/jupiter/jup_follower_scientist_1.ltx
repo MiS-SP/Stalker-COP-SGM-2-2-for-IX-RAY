@@ -1,0 +1,44 @@
+[logic]
+active = move@waiting
+on_death = death
+on_hit = hit
+
+[hit]
+on_info = {=present_hit_by_actor} %+jup_follower_scientist_actor_hit%
+
+[death]
+on_info = %+jup_follower_scientist_1_death =jup_follower_scientist_check =release_counter(jup_fw_scientists_deaths)%
+
+[move@waiting]
+move_dest_number       = 381464
+move_look_vertex       = 392950
+move_state_when_center = hello_wpn
+move_state_when_move   = walk
+meet                   = meet
+on_info                = {+jup_follow_scientists_nachinaem -jup_follow_scientists_way} move@fixed_place, {+jup_follow_scientists_way} move@repeat_probe, {+jup_follower_scientist_actor_hit !actor_enemy} nil %=actor_enemy +jup_follow_scientists_fail%
+
+[move@fixed_place]
+move_dest_number       = 619922
+move_look_vertex       = 602019
+move_state_when_center = choose
+move_state_when_move   = assault
+move_center_info       = jup_follow_scientists_prishli
+meet                   = meet
+approach_info          = jup_follow_scientists_fail|120|>
+on_info                = {+jup_follow_scientists_way} move@repeat_probe
+on_info2               = {+jup_follower_scientist_actor_hit !actor_enemy} nil %=actor_enemy +jup_follow_scientists_fail%
+
+[move@repeat_probe]
+move_dest_number       = 695523
+move_look_vertex       = 689956
+move_state_when_center = probe_stand
+move_state_when_move   = run
+meet                   = meet
+on_info                = {+jup_follower_scientist_actor_hit !actor_enemy} nil %=actor_enemy +jup_follow_scientists_fail%
+
+[meet]
+abuse           = true
+use             = {+jup_follow_scientists_nachinaem +jup_follow_scientists_prishli !actor_enemy} true,{-jup_follow_scientists_nachinaem !actor_enemy} true,false
+allow_break     = false
+meet_on_talking = false
+trade_enable    = false

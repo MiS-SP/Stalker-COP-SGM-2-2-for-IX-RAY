@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+<w>
+<background x="0" y="0" width="1024" height="768">
+	    <auto_static width="1024" height="768">
+	      <texture>ui_inGame2_background</texture>
+	    </auto_static>
+	    <auto_static x="0" y="0" width="613" height="651">
+	      <texture>ui_inGame2_save_load_wnd</texture>
+	    </auto_static>
+</background>
+<form x="0" y="0" width="1024" height="768">
+	<title x="108" y="189" width="405" height="20" complex_mode="0">
+		<text font="letterica18" align="c">st_mod_menu_optimization</text>
+	</title>
+	<btn_apply x="355" y="567" width="117" height="29">
+		<texture_e>ui_mod_button3_e</texture_e>
+		<texture_t>ui_mod_button3_t</texture_t>
+		<texture_h>ui_mod_button3_h</texture_h>
+		<text font="letterica16">st_mod_menu_apply</text>
+	</btn_apply>
+	<btn_exit x="479" y="567" width="117" height="29">
+		<texture_e>ui_mod_button3_e</texture_e>
+		<texture_t>ui_mod_button3_t</texture_t>
+		<texture_h>ui_mod_button3_h</texture_h>
+		<text font="letterica16">st_mod_menu_cancel</text>
+	</btn_exit>
+	<btn_hud x="479" y="535" width="117" height="29">
+		<texture_e>ui_mod_button3_e</texture_e>
+		<texture_t>ui_mod_button3_t</texture_t>
+		<texture_h>ui_mod_button3_h</texture_h>
+		<text font="letterica16">st_mod_menu_options_hud</text>
+	</btn_hud>
+        <options_field x="19" y="230" width="579" height="365">
+	    <opt_clean_anomaly x="4" y="4" width="181" height="22">
+		<texture_e>ui_mod_button6_e</texture_e>
+		<texture_t>ui_mod_button6_t</texture_t>
+		<texture_h>ui_mod_button6_h</texture_h>
+		<text font="letterica16">st_opt_clean_anomaly</text>
+	    </opt_clean_anomaly>
+	    <opt_clean_mines x="4" y="28" width="181" height="22">
+		<texture_e>ui_mod_button6_e</texture_e>
+		<texture_t>ui_mod_button6_t</texture_t>
+		<texture_h>ui_mod_button6_h</texture_h>
+		<text font="letterica16">st_opt_clean_mines</text>
+	    </opt_clean_mines>
+	    <opt_clean_monsters x="4" y="52" width="181" height="22">
+		<texture_e>ui_mod_button6_e</texture_e>
+		<texture_t>ui_mod_button6_t</texture_t>
+		<texture_h>ui_mod_button6_h</texture_h>
+		<text font="letterica16">st_opt_clean_monsters</text>
+	    </opt_clean_monsters>
+        </options_field>
+</form>
+</w>

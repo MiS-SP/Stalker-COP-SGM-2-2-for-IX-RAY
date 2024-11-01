@@ -1,0 +1,255 @@
+;------------------------------------------------------------------------------------------;
+;                                Физические обьекты                                        ;
+;------------------------------------------------------------------------------------------;
+[default_rukzak]:default_inventory_box
+$spawn 			= "devices\default_rukzak"
+visual			= dynamics\devices\dev_rukzak\dev_rukzak.ogf
+
+[default_instrument]:default_inventory_box
+$spawn 			= "devices\default_instrument"
+visual			= dynamics\devices\dev_instrument_1\dev_instrument_1.ogf
+
+[default_dinamit]:default_inventory_box
+$spawn 			= "devices\default_dinamit"
+visual			= dynamics\box\expl_dinamit.ogf
+
+[default_seif]:default_inventory_box
+$spawn 			= "devices\default_seif"
+visual			= dynamics\box\seif_01.ogf
+
+[secret_rukzak]:default_rukzak
+visual			= dynamics\devices\dev_secret_boxs\secret_rukzak.ogf
+
+[secret_instrument]:default_instrument
+visual			= dynamics\devices\dev_secret_boxs\secret_instrument.ogf
+
+[secret_dinamit]:default_dinamit
+visual			= dynamics\devices\dev_secret_boxs\secret_dinamit.ogf
+
+[secret_seif]:default_seif
+visual			= dynamics\devices\dev_secret_boxs\secret_seif.ogf
+
+[secret_sumka_1]:default_rukzak
+visual			= dynamics\devices\dev_sumka\sumka1.ogf
+
+[secret_sumka_2]:default_rukzak
+visual			= dynamics\devices\dev_sumka\sumka2.ogf
+
+[secret_sumka_3]:default_rukzak
+visual			= dynamics\devices\dev_sumka\sumka3.ogf
+
+[secret_sumka_4]:default_rukzak
+visual			= dynamics\devices\dev_sumka\sumka4.ogf
+
+[secret_sumka_5]:default_rukzak
+visual			= dynamics\devices\dev_sumka\sumka5.ogf
+
+[secret_sumka_6]:default_rukzak
+visual			= dynamics\devices\dev_sumka\sumka6.ogf
+
+[secret_sumka_7]:default_rukzak
+visual			= dynamics\devices\dev_sumka\sumka7.ogf
+
+[demolution_kanistra]:explosive_tank
+description		= st_demolution_kanistra_descr
+inv_name		= st_demolution_kanistra_name
+inv_name_short		= st_demolution_kanistra_name
+inv_weight		= 2.0
+inv_grid_width		= 2
+inv_grid_height		= 2
+inv_grid_x		= 25
+inv_grid_y		= 33
+cost			= 150
+can_take		= true
+blast			= 1.0
+blast_r			= 6
+frags			= 5
+frags_r			= 20
+frag_hit		= 0.60
+
+[demolution_ballon]:explosive_fuelcan
+description		= st_demolution_ballon_descr
+inv_name		= st_demolution_ballon_name
+inv_name_short		= st_demolution_ballon_name
+inv_weight		= 6.0
+inv_grid_width		= 1
+inv_grid_height		= 3
+inv_grid_x		= 31
+inv_grid_y		= 32
+cost			= 300
+can_take		= true
+blast			= 1.50
+blast_r			= 10
+frags			= 5
+frags_r			= 20
+frag_hit		= 0.80
+
+[demolution_barrel]:explosive_barrel_low
+description		= st_demolution_barrel_descr
+inv_name		= st_demolution_barrel_name
+inv_name_short		= st_demolution_barrel_name
+inv_weight		= 6.0
+inv_grid_width		= 2
+inv_grid_height		= 2
+inv_grid_x		= 23
+inv_grid_y		= 33
+cost			= 800
+can_take		= true
+blast			= 2.50
+blast_r			= 15
+frags			= 8
+frags_r			= 27
+frag_hit		= 1.00
+
+[detonation_charge_visible_big]:explosive_barrel_low
+description		= 
+inv_name		= 
+inv_name_short		= 
+inv_weight		= 6.0
+inv_grid_width		= 2
+inv_grid_height		= 2
+inv_grid_x		= 23
+inv_grid_y		= 33
+cost			= 800
+can_take		= false
+blast			= 2.50
+blast_r			= 15
+frags			= 8
+frags_r			= 27
+frag_hit		= 1.00
+visual                  = dynamics\devices\dev_mod_items\bomb_c4.ogf
+
+[detonation_charge_invisible_big]:detonation_charge_visible_big
+visual                  = dynamics\scene_objects\part\part_none.ogf
+
+[detonation_charge_visible_small]:detonation_charge_visible_big
+blast			= 2.60
+blast_r			= 8
+frags			= 10
+frags_r			= 17
+frag_hit		= 0.50
+explode_particles	= explosions\explosion_01
+
+[detonation_charge_invisible_small]:detonation_charge_visible_small
+visual                  = dynamics\scene_objects\part\part_none.ogf
+
+[remote_charge]:explosive_barrel_low
+description		= 
+inv_name		= 
+inv_name_short		= 
+inv_weight		= 5.0
+inv_grid_width		= 2
+inv_grid_height		= 2
+inv_grid_x		= 23
+inv_grid_y		= 33
+cost			= 800
+can_take		= false
+blast			= 5.00
+blast_r			= 25
+frags			= 15
+frags_r			= 30
+frag_hit		= 2.00
+visual                  = dynamics\devices\dev_mod_items\bomb_c4.ogf
+;explode_particles	= new_effects\explosion_c4
+
+[remote_marker]:detonation_charge_visible_big
+
+[chicken_rabua]:remote_charge
+visual                  = dynamics\another\chicken_rabua.ogf
+explode_particles	= new_effects\krovisha_main
+
+[chicken_rabua_activator]:physic_destroyable_object
+custom_data       	= scripts\SGM\generic\chicken_rabua.ltx
+visual                  = dynamics\another\chicken_rabua.ogf
+
+[test_object]:default_rukzak
+custom_data       	= scripts\SGM\test_object.ltx
+story_id                = test_object
+;------------------------------------------------------------------------------------------;
+;                                   Бомбы-ловушки                                          ;
+;------------------------------------------------------------------------------------------;
+[minetrap_charge]:explosive_barrel_low
+description		= 
+inv_name		= 
+inv_name_short		= 
+inv_weight		= 5.0
+inv_grid_width		= 2
+inv_grid_height		= 2
+inv_grid_x		= 23
+inv_grid_y		= 33
+cost			= 800
+can_take		= false
+visual                  = dynamics\scene_objects\part\part_none.ogf
+blast			= 25.00
+blast_r			= 8
+frags			= 15
+frags_r			= 10
+frag_hit		= 2.50
+
+[mar_mine_trap]:physic_destroyable_object
+visual                  = dynamics\weapons\wpn_grenades\wpn_minetrap.ogf
+custom_data       	= scripts\SGM\generic\minetrap_object.ltx
+
+[zat_mine_trap]:physic_destroyable_object
+visual                  = dynamics\weapons\wpn_grenades\wpn_minetrap.ogf
+custom_data       	= scripts\SGM\generic\minetrap_object.ltx
+
+[jup_mine_trap]:physic_destroyable_object
+visual                  = dynamics\weapons\wpn_grenades\wpn_minetrap.ogf
+custom_data       	= scripts\SGM\generic\minetrap_object.ltx
+
+[pri_mine_trap]:physic_destroyable_object
+visual                  = dynamics\weapons\wpn_grenades\wpn_minetrap.ogf
+custom_data       	= scripts\SGM\generic\minetrap_object.ltx
+;------------------------------------------------------------------------------------------;
+;                                Специальные обьекты                                       ;
+;------------------------------------------------------------------------------------------;
+[zat_informer_hiding]:default_rukzak
+visual			= dynamics\devices\dev_sumka\sumka5.ogf
+custom_data       	= scripts\SGM\zaton\inventory_boxs\zat_informer_hiding.ltx
+
+[zat_utilizator_box]:default_instrument
+visual			= dynamics\another\utilizator.ogf
+custom_data       	= scripts\SGM\zaton\inventory_boxs\zat_utilizator_box.ltx
+
+[jup_utilizator_box]:default_instrument
+visual			= dynamics\another\utilizator.ogf
+custom_data       	= scripts\SGM\jupiter\inventory_boxs\jup_utilizator_box.ltx
+
+[pri_utilizator_box]:default_instrument
+visual			= dynamics\another\utilizator.ogf
+custom_data       	= scripts\SGM\pripyat\inventory_boxs\pri_utilizator_box.ltx
+
+[zat_mechanic_box]:default_seif
+custom_data       	= scripts\SGM\zaton\inventory_boxs\zat_mechanic_box.ltx
+
+[jup_mechanic_box]:default_seif
+custom_data       	= scripts\SGM\jupiter\inventory_boxs\jup_mechanic_box.ltx
+
+[pri_mechanic_box]:default_seif
+custom_data       	= scripts\SGM\pripyat\inventory_boxs\pri_mechanic_box.ltx
+
+[esc_b2_radio]:physic_destroyable_object
+visual                  = dynamics\el_tehnika\priemnik_gorizont.ogf
+custom_data       	= scripts\SGM\escape\sound_objects\esc_b2_ph_radio.ltx
+
+[red_b1_radio]:esc_b2_radio
+custom_data       	= scripts\SGM\red_forest\sound_objects\red_b1_ph_radio.ltx
+
+[red_b2_radio]:esc_b2_radio
+custom_data       	= scripts\SGM\red_forest\sound_objects\red_b2_ph_radio.ltx
+
+[red_b5_radio]:esc_b2_radio
+custom_data       	= scripts\SGM\red_forest\sound_objects\red_b5_ph_radio.ltx
+
+[red_b6_radio]:esc_b2_radio
+custom_data       	= scripts\SGM\red_forest\sound_objects\red_b6_ph_radio.ltx
+
+[red_b7_radio_1]:esc_b2_radio
+custom_data       	= scripts\SGM\red_forest\sound_objects\red_b7_ph_radio_1.ltx
+
+[red_b7_radio_2]:esc_b2_radio
+custom_data       	= scripts\SGM\red_forest\sound_objects\red_b7_ph_radio_2.ltx
+
+[red_b8_radio]:esc_b2_radio
+custom_data       	= scripts\SGM\red_forest\sound_objects\red_b8_ph_radio.ltx

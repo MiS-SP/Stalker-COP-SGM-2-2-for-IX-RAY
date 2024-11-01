@@ -1,0 +1,41 @@
+[logic]
+active = move@with_rear
+on_death = death
+on_hit = hit
+
+[hit]
+on_info = {=present_hit_by_actor} %+zat_assault_bandit_base_fail%
+
+[death]
+on_info = %+zat_stalker_elbrus_friend6_death%
+
+[move@with_rear]
+move_dest_number       = 1697449
+move_look_vertex       = 1694106
+move_state_when_center = hide
+move_state_when_move   = assault
+invulnerable           = {!actor_enemy} true, false
+on_timer               = 10000|move@again_rear %+zat_assault_bandit_base_second_step%
+on_info                = {=zat_b5_stalker_task_hindrance_precond} nil %=release_npc%, {+zat_assault_bandit_base_fail} nil,{+zat_assault_bandit_base_bandits_lost} move@after_victory
+on_info2               = {+zat_assault_bandit_base_second_step -zat_assault_bandit_base_bandits_lost} move@again_rear
+
+[move@again_rear]
+move_dest_number       = 1697449
+move_look_vertex       = 1694106
+move_state_when_center = hide
+move_state_when_move   = assault
+on_info                = {+zat_assault_bandit_base_fail} nil,{+zat_assault_bandit_base_bandits_lost} move@after_victory
+
+[move@after_victory]
+move_dest_number       = 1689709
+move_look_vertex       = 1689690
+move_state_when_center = guard
+move_state_when_move   = walk
+meet                   = meet
+on_info                = {=zat_b5_stalker_task_hindrance_precond} nil %=release_npc%
+
+[meet]
+abuse           = false
+use             = {!actor_enemy} true, false
+allow_break     = true
+meet_on_talking = false

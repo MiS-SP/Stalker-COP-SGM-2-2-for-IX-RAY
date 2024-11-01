@@ -1,0 +1,39 @@
+[logic]
+active = move@playing_scene
+
+[move@playing_scene]
+move_avail_speak       = 15|wait|true|true
+move_dest_number       = 1271518
+move_look_vertex       = 1275019
+move_state_when_center = threat_fire
+move_state_when_move   = threat_fire
+move_combat_disable    = true
+on_timer               = 8100|{-zat_chimera_zagon_end} move@come_step_1 %=zat_chimera_zagon_final_tip +zat_chimera_zagon_end =play_s3d_sound(monsters\chimera\chimera_death_1)%
+on_info                = {+zat_chimera_zagon_end -zat_chimera_zagon_teleport} move@come_step_1, {+zat_chimera_zagon_end +zat_chimera_zagon_teleport} nil %=kill_npc%
+
+[move@come_step_1]
+move_avail_speak       = 15|wait|true|true
+move_dest_number       = 1245607
+move_state_when_center = guard
+move_state_when_move   = walk
+on_signal              = on_center|move@come_step_2
+
+[move@come_step_2]
+move_avail_speak       = 15|wait|true|true
+move_dest_number       = 1186487
+move_state_when_center = guard
+move_state_when_move   = walk
+on_signal              = on_center|move@go_to_lager %+zat_chimera_zagon_teleport =kill_npc%
+
+[move@go_to_lager]
+move_dest_number       = 1202671
+move_look_vertex       = 1198132
+move_state_when_center = sit_ass
+move_state_when_move   = walk
+meet                   = meet
+
+[meet]
+abuse           = false
+use             = {!actor_enemy} true, false
+allow_break     = true
+meet_on_talking = false

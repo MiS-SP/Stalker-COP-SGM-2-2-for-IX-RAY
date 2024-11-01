@@ -1,0 +1,14 @@
+[logic]
+active = sr_universal
+
+[sr_universal]
+scheme_type = level_change_zone
+level_change_cond         = {+pri_a28_actor_in_zone_stay} true, false
+level_change_on_use       = %+level_change_to_jupiter_from_zaton%
+level_change_travel_coord = 467.306,55.527,12.904
+level_change_throw_coord  = -304.545,40.427,-422.733,4.388
+level_change_travel_time  = 4,15
+level_change_spot         = level_change_left_location,st_level_change_to_jupiter,false
+level_change_autosave     = st_save_travel_zaton_to_jupiter
+level_change_silent_travel = false
+level_change_hidden_mode  = true

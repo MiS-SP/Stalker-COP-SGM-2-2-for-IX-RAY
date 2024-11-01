@@ -1,0 +1,14 @@
+[logic]
+active = sr_universal
+
+[sr_universal]
+scheme_type = level_change_zone
+level_change_cond         = {+pri_a17_military_base_commander_start_talk} true, false
+level_change_on_use       = %+level_change_to_jupiter_from_underground%
+level_change_travel_coord = -35.810,16.883,35.861
+level_change_throw_coord  = -48.770,8.057,429.852,3.130
+level_change_travel_time  = 0,18
+level_change_spot         = level_change_up_location,st_level_change_to_jupiter,true
+level_change_autosave     = st_save_travel_underground_to_jupiter
+level_change_silent_travel = false
+level_change_hidden_mode  = true

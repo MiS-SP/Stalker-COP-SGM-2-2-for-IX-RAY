@@ -1,0 +1,19 @@
+[logic]
+active = move@started
+on_death = death
+
+[death]
+on_info = %+jup_respawn1_random16_death =jup_respawn1_randoms_counter%
+
+[move@started]
+move_dest_number       = 806545
+move_state_when_center = sleep
+move_state_when_move   = walk
+move_look_vertex       = 805348
+meet                   = meet
+
+[meet]
+abuse           = true
+use             = {!actor_enemy} true, false
+allow_break     = true
+meet_on_talking = false

@@ -1,0 +1,437 @@
+        <!-----------------"Затон"------------------->
+	<string id="zat_postman_name">
+		<text>Петька Печкин</text>
+	</string>
+	<string id="zat_accompany_stalker_name">
+		<text>Вася</text>
+	</string>
+	<string id="zat_bandit_informer_name">
+		<text>Осведомитель</text>
+	</string>
+	<string id="zat_stalker_bodyguard_name">
+		<text>Фрегат</text>
+	</string>
+	<string id="zat_stalker_bankir_name">
+		<text>Маркович</text>
+	</string>
+	<string id="zat_stalker_trader_name">
+		<text>Жулябский</text>
+	</string>
+	<string id="zat_stalker_breeder_name">
+		<text>Доктор Маковецкий</text>
+	</string>
+	<string id="zat_stalker_member_name">
+		<text>Меч</text>
+	</string>
+	<string id="zat_stalker_elbrus_name">
+		<text>Эльбрус</text>
+	</string>
+	<string id="zat_stalker_avenger_name">
+		<text>Мститель</text>
+	</string>
+	<string id="zat_bandit_base_leader_name">
+		<text>Чапаев</text>
+	</string>
+	<string id="zat_bandit_trader_name">
+		<text>Кочюбей</text>
+	</string>
+	<string id="zat_bandit_bodyguard_name">
+		<text>Хан</text>
+	</string>
+	<string id="zat_bandit_base_guider_name">
+		<text>Гавр</text>
+	</string>
+	<string id="zat_wounded_monolith_name">
+		<text>Леон</text>
+	</string>
+	<string id="zat_killer_shakal_name">
+		<text>Шакал</text>
+	</string>
+	<string id="zat_duty_kanevskiy_name">
+		<text>Каневский</text>
+	</string>
+	<string id="zat_authorities_agent_name">
+		<text>Связной Корнилов</text>
+	</string>
+	<string id="zat_stalker_medic_name">
+		<text>Фельдшер</text>
+	</string>
+	<string id="zat_barge_commander_name">
+		<text>Давид</text>
+	</string>
+	<string id="zat_mad_dog_commander_name">
+		<text>Капитан Рогожин</text>
+	</string>
+	<string id="zat_stalker_employer_name">
+		<text>Лемур</text>
+	</string>
+	<string id="zat_stalker_quest_homsa_name">
+		<text>Хомса</text>
+	</string>
+	<string id="zat_rasvet_quest_homsa_leader_name">
+		<text>Шипач</text>
+	</string>
+	<string id="zat_quest_the_spez_ecolog_1_dead_1_name">
+		<text>Профессор фредерсон</text>
+	</string>
+	<string id="zat_quest_the_spez_ecolog_1_dead_2_name">
+		<text>Профессор Шарапов</text>
+	</string>
+	<string id="zat_quest_the_spez_ecolog_1_dead_3_name">
+		<text>Профессор Гусатский</text>
+	</string>
+        <string id="zat_quest_the_spez_killer_razvodayshi_name">
+		<text>Сёма</text>
+	</string>
+	<string id="zat_sultan_quest_lucian_name">
+		<text>Люциан</text>
+	</string>
+	<string id="zat_sultan_quest_bagir_name">
+		<text>Багир</text>
+	</string>
+	<string id="zat_sultan_quest_yakut_name">
+		<text>Якут</text>
+	</string>
+        <!-----------------"Юпитер"------------------->
+	<string id="jup_freedom_bodyguard_name">
+		<text>Наполеон</text>
+	</string>
+	<string id="jup_stalker_bankir_name">
+		<text>Фишер</text>
+	</string>
+	<string id="jup_freedom_trader_name">
+		<text>Неон</text>
+	</string>
+	<string id="jup_stalker_breeder_name">
+		<text>Доктор Брунько</text>
+	</string>
+	<string id="jup_ecolog_breeder_name">
+		<text>Професcор Божевский</text>
+	</string>
+	<string id="jup_army_bodyguard_name">
+		<text>Верещягин</text>
+	</string>
+	<string id="jup_stalker_gromoboy_name">
+		<text>Громобой</text>
+	</string>
+	<string id="jup_monolith_thief_name">
+		<text>Ворон</text>
+	</string>
+	<string id="jup_rasvet_base_leader_name">
+		<text>Назар</text>
+	</string>
+	<string id="jup_follower_scientist_1_name">
+		<text>Бондарь</text>
+	</string>
+	<string id="jup_follower_scientist_2_name">
+		<text>Богуцкий</text>
+	</string>
+	<string id="jup_follower_scientist_3_name">
+		<text>Михайлов</text>
+	</string>
+	<string id="jup_follower_scientist_4_name">
+		<text>Велесов</text>
+	</string>
+	<string id="jup_follower_scientist_5_name">
+		<text>Самсонов</text>
+	</string>
+	<string id="jup_rasvet_trader_name">
+		<text>Гордей</text>
+	</string>
+	<string id="jup_ecolog_trader_name">
+		<text>Савелий</text>
+	</string>
+	<string id="jup_witnesses_hostage_name">
+		<text>Агент Родзинский</text>
+	</string>
+	<string id="jup_authorities_agent_name">
+		<text>Связной Сидоренко</text>
+	</string>
+	<string id="jup_killer_trader_name">
+		<text>Муха</text>
+	</string>
+	<string id="jup_killer_base_leader_name">
+		<text>Мольфар</text>
+	</string>
+	<string id="jup_killer_bodyguard_name">
+		<text>Наган</text>
+	</string>
+	<string id="jup_killer_first_squad_commander_name">
+		<text>Цезарь</text>
+	</string>
+	<string id="jup_killer_second_squad_commander_name">
+		<text>Сармат</text>
+	</string>
+	<string id="jup_witnesses_leader_name">
+		<text>Черный</text>
+	</string>
+	<string id="jup_killer_base_chief_name">
+		<text>Ахилл</text>
+	</string>
+	<string id="jup_dolg_employer_name">
+		<text>Леопард</text>
+	</string>
+	<string id="jup_killer_caravan_commander_name">
+		<text>Ревизор</text>
+	</string>
+	<string id="jup_killer_lighthouse_commander_name">
+		<text>Варлорд</text>
+	</string>
+	<string id="jup_rasvet_polter_quest_skaut_name">
+		<text>Мигель</text>
+	</string>
+	<string id="jup_rasvet_patrol_leader_gudvin_name">
+		<text>Гудвин</text>
+	</string>
+	<string id="st_black_angel_unindification_name">
+		<text>Неидинтифицирован</text>
+	</string>
+	<string id="jup_a6_azat_quest_mechanik_kurier_name">
+		<text>Васян</text>
+	</string>
+	<string id="jup_a6_azat_quest_mechanik_killer_leader_name">
+		<text>Саид</text>
+	</string>
+	<string id="jup_scientific_workman_name">
+		<text>Профессор Иголкин</text>
+	</string>
+        <!----------------"Путепровод"----------------->
+	<string id="pas_hostage_miller_name">
+		<text>Мельник</text>
+	</string>
+        <!-----------------"Припять"------------------->
+	<string id="pri_army_bodyguard_name">
+		<text>Легионер</text>
+	</string>
+	<string id="pri_army_bankir_name">
+		<text>Иженко</text>
+	</string>
+	<string id="pri_army_trader_name">
+		<text>Крёстный отец</text>
+	</string>
+	<string id="pri_army_breeder_name">
+		<text>Доктор Кравченко</text>
+	</string>
+	<string id="pri_monolit_base_leader_name">
+		<text>Киборг</text>
+	</string>
+	<string id="pri_army_kasilov_name">
+		<text>Полковник Касилов</text>
+	</string>
+	<string id="pri_monolit_base_trader_name">
+		<text>Метрофан</text>
+	</string>
+	<string id="pri_monolit_base_chief_name">
+		<text>Каптилов</text>
+	</string>
+	<string id="pri_ecolog_briefing_name">
+		<text>Профессор Тягнибок</text>
+	</string>
+	<string id="pri_assault_squad_leader_name">
+		<text>Майор Сайга</text>
+	</string>
+	<string id="pri_monolith_brother_name">
+		<text>Изверг</text>
+	</string>
+	<string id="pri_monolith_zombied_name">
+		<text>Зомби</text>
+	</string>
+	<string id="pri_monolith_longshoremen_name">
+		<text>Альф</text>
+	</string>
+	<string id="pri_monolith_library_base_leader_name">
+		<text>Воланд</text>
+	</string>
+	<string id="pri_monolith_bodyguard_name">
+		<text>Архей</text>
+	</string>
+	<string id="pri_monolith_inquisitor_name">
+		<text>Инквизитор</text>
+	</string>
+	<string id="pri_monolith_inquisitor_deputy_1_name">
+		<text>Драбант</text>
+	</string>
+	<string id="pri_monolith_inquisitor_deputy_2_name">
+		<text>Геродот</text>
+	</string>
+	<string id="pri_army_fenix_name">
+		<text>Феникс</text>
+	</string>
+	<string id="pri_authorities_agent_name">
+		<text>Связной Чернышев</text>
+	</string>
+	<string id="pri_army_employer_name">
+		<text>Лейтенант Комаров</text>
+	</string>
+        <!-----------------"Темная Долина"------------------->
+	<string id="val_b1_base_commander_name">
+		<text>Бульдог</text>
+	</string>
+	<string id="val_b2_accompany_guider_name">
+		<text>Вальтер</text>
+	</string>
+	<string id="val_b2_base_leader_name">
+		<text>Акулов</text>
+	</string>
+	<string id="val_b2_assault_b1_commander_name">
+		<text>Тарас</text>
+	</string>
+	<string id="val_b2_leviafan_name">
+		<text>Левиафан</text>
+	</string>
+	<string id="val_b2_employer_name">
+		<text>Эльдар</text>
+	</string>
+	<string id="val_b2_trader_name">
+		<text>Капитошкин</text>
+	</string>
+	<string id="val_b3_base_commander_1_name">
+		<text>Реактор</text>
+	</string>
+	<string id="val_b3_base_commander_2_name">
+		<text>Бизон</text>
+	</string>
+	<string id="val_b3_base_commander_3_name">
+		<text>Кайзер</text>
+	</string>
+	<string id="val_b3_base_guard_chief_name">
+		<text>Цербер</text>
+	</string>
+	<string id="val_b4_baltazar_name">
+		<text>Балтазар</text>
+	</string>
+	<string id="val_b4_base_commander_name">
+		<text>Кувалда</text>
+	</string>
+	<string id="val_b11_outpost_commander_name">
+		<text>Куликов</text>
+	</string>
+	<string id="val_b12_outpost_commander_name">
+		<text>Жданов</text>
+	</string>
+	<string id="val_b14_outpost_commander_name">
+		<text>Леонид</text>
+	</string>
+	<string id="val_night_zam_leader_kolmogor_name">
+		<text>Колмогор</text>
+	</string>
+	<string id="val_freedom_spez_agent_lucas_name">
+		<text>Лукас</text>
+	</string>
+	<string id="val_dolg_spez_quad_1_name">
+		<text>Гурд</text>
+	</string>
+	<string id="val_dolg_spez_quad_2_name">
+		<text>Бурый</text>
+	</string>
+	<string id="val_dolg_spez_quad_3_name">
+		<text>Савчук</text>
+	</string>
+	<string id="val_dolg_spez_quad_4_name">
+		<text>Комбат</text>
+	</string>
+        <!-----------------"Военные Склады"------------------->
+	<string id="mil_b7_base_leader_name">
+		<text>Демиург</text>
+	</string>
+	<string id="mil_b7_base_chief_name">
+		<text>Рекс</text>
+	</string>
+	<string id="mil_b7_colonizer_commander_name">
+		<text>Влад Прототип</text>
+	</string>
+	<string id="mil_b7_night_stalker_leader_name">
+		<text>Мортен</text>
+	</string>
+	<string id="mil_b7_employer_name">
+		<text>Бригадир</text>
+	</string>
+	<string id="mil_b7_trader_name">
+		<text>Скряга</text>
+	</string>
+	<string id="mil_b7_bankir_name">
+		<text>Автандил</text>
+	</string>
+        <!-----------------"Агропром"------------------->
+	<string id="agr_b1_base_commander_name">
+		<text>Капитан Суворов</text>
+	</string>
+	<string id="agr_b2_base_commander_name">
+		<text>Майор Твёрдохлебов</text>
+	</string>
+	<string id="agr_authorities_agent_name">
+		<text>Связной Дмитренко</text>
+	</string>
+        <!------------"Подземелья Агропрома"------------>
+	<string id="agru_dead_ecolog_name">
+		<text>Профессор Воронов</text>
+	</string>
+        <!-----------------"Кордон"--------------------->
+	<string id="esc_b1_commander_name">
+		<text>Медведев</text>
+	</string>
+	<string id="esc_stalker_scout_name">
+		<text>Белоусов</text>
+	</string>
+	<string id="esc_b1_stalker_mechanic_name">
+		<text>Ермак</text>
+	</string>
+	<string id="esc_b2_tamerlan_name">
+		<text>Тамерлан</text>
+	</string>
+	<string id="esc_b2_commander_name">
+		<text>Булава</text>
+	</string>
+	<string id="esc_b3_attack_commander_name">
+		<text>Магомет</text>
+	</string>
+	<string id="esc_b3_commander_name">
+		<text>Рогач</text>
+	</string>
+	<string id="esc_b6_commander_name">
+		<text>Мазай</text>
+	</string>
+	<string id="esc_b7_commander_name">
+		<text>Динозавр</text>
+	</string>
+	<string id="esc_stalker_trader_name">
+		<text>Кривоухов</text>
+	</string>
+	<string id="esc_stalker_employer_name">
+		<text>Нейрон</text>
+	</string>
+        <!-----------------"Болота"--------------------->
+	<string id="mar_b1_commander_name">
+		<text>Багратион</text>
+	</string>
+	<string id="mar_b2_commander_name">
+		<text>Леопольд</text>
+	</string>
+	<string id="mar_b2_stalker_mechanic_name">
+		<text>Макаренко</text>
+	</string>
+	<string id="mar_b3_commander_name">
+		<text>Карась</text>
+	</string>
+	<string id="mar_b4_commander_name">
+		<text>Кащей</text>
+	</string>
+	<string id="mar_authorities_agent_name">
+		<text>Связной Тарасов</text>
+	</string>
+	<string id="mar_stalker_trader_name">
+		<text>Мармелюк</text>
+	</string>
+        <!---------------"Рыжий Лес"------------------->
+	<string id="red_psyho_security_corpse_name">
+		<text>Кореец</text>
+	</string>
+	<string id="red_psyho_ecolog_corpse_name">
+		<text>Профессор Лукьянов</text>
+	</string>
+	<string id="red_psyho_ecolog_corpse_1_name">
+		<text>Профессор Демидов</text>
+	</string>
+	<string id="red_psyho_ecolog_corpse_2_name">
+		<text>Профессор Шарапов</text>
+	</string>

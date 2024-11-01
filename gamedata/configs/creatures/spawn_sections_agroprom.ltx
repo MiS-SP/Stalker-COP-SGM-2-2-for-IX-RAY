@@ -1,0 +1,34 @@
+;---------------------------------------------------------------------------------------;
+;                                    Агропром                                           ;
+;---------------------------------------------------------------------------------------;
+[agr_b1_base_commander]:quest_stalker_heavy
+$spawn            = "respawn\agr_b1_base_commander"
+character_profile = agr_b1_base_commander
+story_id          = agr_b1_base_commander
+avail_release     = false
+corpse_money      = 1000
+spec_rank         = master
+community         = mercenary
+
+[agr_b2_base_commander]:quest_stalker_heavy
+$spawn            = "respawn\agr_b2_base_commander"
+character_profile = agr_b2_base_commander
+story_id          = agr_b2_base_commander
+avail_release     = false
+corpse_money      = 500
+spec_rank         = master
+community         = mercenary
+
+[agr_authorities_agent]:quest_stalker
+$spawn            = "respawn\agr_authorities_agent"
+character_profile = agr_authorities_agent
+spec_rank         = experienced
+community         = agent
+can_be_wounded    = false
+story_id          = agr_authorities_agent
+custom_data       = scripts\SGM\agroprom\agr_authorities_agent.ltx
+
+
+
+
+

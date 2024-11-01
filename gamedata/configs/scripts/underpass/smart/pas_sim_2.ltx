@@ -1,0 +1,11 @@
+[smart_terrain]
+squad_id = 10
+max_population = 3
+respawn_params = respawn@pas_sim_2
+
+[respawn@pas_sim_2]
+spawn_monsters
+
+[spawn_monsters]
+spawn_squads = simulation_snork, simulation_snork
+spawn_num = {+pri_rescue_underground_guide_complete -pri_rescue_underground_guide_fail} 2, {-pri_rescue_underground_guide_complete +pri_rescue_underground_guide_fail} 3, 0

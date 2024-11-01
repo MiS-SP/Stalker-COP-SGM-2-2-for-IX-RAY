@@ -1,0 +1,59 @@
+;------------------------------------------------------------------------------------------;
+;                               Уникальные тайники                                         ;
+;------------------------------------------------------------------------------------------;
+[zat_unique_treasure_1]:default_rukzak
+story_id    = zat_unique_treasure_1
+visual      = dynamics\devices\dev_sumka\sumka4.ogf
+custom_data = scripts\SGM\zaton\unique_treasures\zat_unique_treasure_1.ltx
+
+[zat_unique_treasure_2]:default_rukzak
+story_id    = zat_unique_treasure_2
+visual      = dynamics\devices\dev_sumka\sumka4.ogf
+custom_data = scripts\SGM\zaton\unique_treasures\zat_unique_treasure_2.ltx
+
+[jup_unique_treasure_1]:default_rukzak
+story_id    = jup_unique_treasure_1
+visual      = dynamics\devices\dev_sumka\sumka4.ogf
+custom_data = scripts\SGM\jupiter\unique_treasures\jup_unique_treasure_1.ltx
+
+[jup_unique_treasure_2]:default_rukzak
+story_id    = jup_unique_treasure_2
+visual      = dynamics\devices\dev_sumka\sumka4.ogf
+custom_data = scripts\SGM\jupiter\unique_treasures\jup_unique_treasure_2.ltx
+
+;------------------------------------------------------------------------------------------;
+;                                  Коды к ним                                              ;
+;------------------------------------------------------------------------------------------;
+[default_unique_treasure_card]:booster
+visual			        = dynamics\devices\dev_flash_2\dev_flash_2.ogf
+inv_name			= st_unique_treasure_card_name
+inv_name_short		        = st_unique_treasure_card_name
+description			= st_zat_unique_treasure_1_card_descr
+inv_weight			= 0.10
+inv_grid_width		        = 1
+inv_grid_height		        = 1
+inv_grid_x			= 7
+inv_grid_y			= 12
+cost				= 0
+can_trade			= false
+quest_item      	        = false
+
+[zat_unique_treasure_1_card]:default_unique_treasure_card
+description			= st_zat_unique_treasure_1_card_descr
+code_target                     = zat_unique_treasure_1
+code_id                         = 9682
+
+[zat_unique_treasure_2_card]:default_unique_treasure_card
+description			= st_zat_unique_treasure_2_card_descr
+code_target                     = zat_unique_treasure_2
+code_id                         = 3812
+
+[jup_unique_treasure_1_card]:default_unique_treasure_card
+description			= st_jup_unique_treasure_1_card_descr
+code_target                     = jup_unique_treasure_1
+code_id                         = 1275
+
+[jup_unique_treasure_2_card]:default_unique_treasure_card
+description			= st_jup_unique_treasure_2_card_descr
+code_target                     = jup_unique_treasure_2
+code_id                         = 8932

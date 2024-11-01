@@ -1,0 +1,263 @@
+#include "order_traders\default_sections.ltx"
+
+[trader]
+buy_condition = trade_generic_buy 
+sell_condition = trade_generic_sell
+discounts = {=counter_greater(jup_b1_sci_task_controller_count:6)} discount_2,{=counter_greater(jup_b1_sci_task_controller_count:3)} discount
+buy_supplies = {=trader_stage_interval(11)} supplies_stage_final,{=trader_stage_interval(6:11)} supplies_stage_hard,{=trader_stage_interval(2:6)} supplies_stage_middle,{=trader_stage_interval(1:2)} supplies_stage_easy,supplies_stage_start
+
+[discount]
+buy =  1
+sell = 0.75
+
+[discount_2]
+buy =  1
+sell = 0.6
+
+[supplies_stage_start]
+antirad			        = 5,0.90
+bandage		                = 6,0.90
+bio_bandage		        = 1,0.20
+psy_complex			= 2,0.90
+medkit				= 3,0.98
+
+[supplies_stage_easy]:supplies_stage_start
+antirad			        = 7,0.95
+bandage		                = 10,0.95
+bio_bandage		        = 5,0.50
+psy_complex			= 6,0.95
+medkit_scientic			= 4,0.45
+drug_booster			= 3,0.25
+drug_coagulant			= 3,0.25
+drug_antidot			= 3,0.25
+drug_radioprotector		= 3,0.25
+drug_cat_eye			= 1,0.25
+
+[supplies_stage_middle]:supplies_stage_easy
+antirad			        = 8,0.95
+bandage		                = 10,0.95
+bio_bandage		        = 5,0.70
+psy_complex			= 5,0.95
+medkit_scientic			= 4,0.55
+drug_booster			= 4,0.60
+drug_coagulant			= 3,0.40
+drug_antidot			= 3,0.40
+drug_radioprotector		= 3,0.40
+drug_psy_blockade		= 3,0.35
+drug_anabiotic		        = 3,0.35
+drug_cat_eye			= 1,0.60
+
+[supplies_stage_hard]:supplies_stage_middle
+antirad			        = 10,0.95
+bandage		                = 16,0.95
+bio_bandage		        = 8,0.90
+psy_complex			= 5,0.95
+medkit_scientic			= 5,0.70
+medkit_elite			= 1,0.20
+drug_booster			= 5,0.80
+drug_coagulant			= 4,0.80
+drug_antidot			= 4,0.80
+drug_radioprotector		= 4,0.80
+drug_psy_blockade		= 4,0.80
+drug_anabiotic		        = 4,0.80
+drug_engine		        = 4,0.30
+drug_cat_eye			= 2,0.70
+detector_elite		        = 1,0.50
+
+[supplies_stage_final]:supplies_stage_hard
+antirad			        = 10,0.99
+bandage		                = 20,0.99
+bio_bandage		        = 10,0.99
+psy_complex			= 10,0.99
+medkit_scientic			= 6,0.99
+medkit_elite			= 2,0.99
+drug_booster			= 5,0.99
+drug_coagulant			= 5,0.99
+drug_antidot			= 5,0.99
+drug_radioprotector		= 5,0.99
+drug_psy_blockade		= 5,0.99
+drug_anabiotic		        = 5,0.99
+drug_engine		        = 4,0.95
+
+[trade_generic_buy]:default_buy
+;---------------------Àðòåôàêòû------------------------>
+af_cristall			= 0.93,0.85
+af_fireball			= 0.93,0.85
+af_dummy_glassbeads		= 0.93,0.85
+af_eye				= 0.93,0.85
+af_fire				= 0.93,0.85
+af_medusa			= 0.93,0.85
+af_cristall_flower		= 0.93,0.85
+af_night_star			= 0.93,0.85
+af_vyvert			= 0.93,0.85
+af_gravi			= 0.93,0.85
+af_gold_fish			= 0.93,0.85
+af_blood			= 0.93,0.85
+af_mincer_meat			= 0.93,0.85
+af_soul				= 0.93,0.85
+af_fuzz_kolobok			= 0.93,0.85
+af_baloon			= 0.93,0.85
+af_glass			= 0.93,0.85
+af_electra_sparkler		= 0.93,0.85
+af_electra_flash		= 0.93,0.85
+af_electra_moonlight	        = 0.93,0.85
+af_dummy_battery		= 0.93,0.85
+af_dummy_dummy			= 0.93,0.85
+af_ice				= 0.93,0.85
+af_monolit			= 0.93,0.85
+af_geliy			= 0.93,0.85
+af_vaselisk		        = 0.93,0.85
+af_dragon_eye		        = 0.93,0.85
+;-------------------Ñåëåêöèÿ------------------------>
+af_medusa_breeding_1		= 0.93,0.85
+af_medusa_breeding_2		= 0.93,0.85
+af_medusa_breeding_3		= 0.93,0.85
+af_cristall_flower_breeding_1	= 0.93,0.85
+af_cristall_flower_breeding_2	= 0.93,0.85
+af_cristall_flower_breeding_3	= 0.93,0.85
+af_night_star_breeding_1	= 0.93,0.85
+af_night_star_breeding_2	= 0.93,0.85
+af_night_star_breeding_3	= 0.93,0.85
+af_vyvert_breeding_1		= 0.93,0.85
+af_vyvert_breeding_2		= 0.93,0.85
+af_vyvert_breeding_3		= 0.93,0.85
+af_gravi_breeding_1		= 0.93,0.85
+af_gravi_breeding_2		= 0.93,0.85
+af_gravi_breeding_3		= 0.93,0.85
+af_gold_fish_breeding_1		= 0.93,0.85
+af_gold_fish_breeding_2		= 0.93,0.85
+af_gold_fish_breeding_3		= 0.93,0.85
+af_cristall_breeding_1		= 0.93,0.85
+af_cristall_breeding_2		= 0.93,0.85
+af_cristall_breeding_3		= 0.93,0.85
+af_fireball_breeding_1		= 0.93,0.85
+af_fireball_breeding_2		= 0.93,0.85
+af_fireball_breeding_3		= 0.93,0.85
+af_dummy_glassbeads_breeding_1	= 0.93,0.85
+af_dummy_glassbeads_breeding_2	= 0.93,0.85
+af_dummy_glassbeads_breeding_3	= 0.93,0.85
+af_eye_breeding_1		= 0.93,0.85
+af_eye_breeding_2		= 0.93,0.85
+af_eye_breeding_3		= 0.93,0.85
+af_fire_breeding_1		= 0.93,0.85
+af_fire_breeding_2		= 0.93,0.85
+af_fire_breeding_3		= 0.93,0.85
+af_blood_breeding_1		= 0.93,0.85
+af_blood_breeding_2		= 0.93,0.85
+af_blood_breeding_3		= 0.93,0.85
+af_mincer_meat_breeding_1	= 0.93,0.85
+af_mincer_meat_breeding_2	= 0.93,0.85
+af_mincer_meat_breeding_3	= 0.93,0.85
+af_soul_breeding_1		= 0.93,0.85
+af_soul_breeding_2		= 0.93,0.85
+af_soul_breeding_3		= 0.93,0.85
+af_fuzz_kolobok_breeding_1	= 0.93,0.85
+af_fuzz_kolobok_breeding_2	= 0.93,0.85
+af_fuzz_kolobok_breeding_3	= 0.93,0.85
+af_baloon_breeding_1		= 0.93,0.85
+af_baloon_breeding_2		= 0.93,0.85
+af_baloon_breeding_3		= 0.93,0.85
+af_glass_breeding_1		= 0.93,0.85
+af_glass_breeding_2		= 0.93,0.85
+af_glass_breeding_3		= 0.93,0.85
+af_electra_sparkler_breeding_1	= 0.93,0.85
+af_electra_sparkler_breeding_2	= 0.93,0.85
+af_electra_sparkler_breeding_3	= 0.93,0.85
+af_electra_flash_breeding_1	= 0.93,0.85
+af_electra_flash_breeding_2	= 0.93,0.85
+af_electra_flash_breeding_3	= 0.93,0.85
+af_electra_moonlight_breeding_1	= 0.93,0.85
+af_electra_moonlight_breeding_2	= 0.93,0.85
+af_electra_moonlight_breeding_3	= 0.93,0.85
+af_dummy_battery_breeding_1	= 0.93,0.85
+af_dummy_battery_breeding_2	= 0.93,0.85
+af_dummy_battery_breeding_3	= 0.93,0.85
+af_dummy_dummy_breeding_1	= 0.93,0.85
+af_dummy_dummy_breeding_2	= 0.93,0.85
+af_dummy_dummy_breeding_3	= 0.93,0.85
+af_ice_breeding_1		= 0.93,0.85
+af_ice_breeding_2		= 0.93,0.85
+af_ice_breeding_3		= 0.93,0.85
+af_monolit_breeding_1		= 0.93,0.85
+af_monolit_breeding_2		= 0.93,0.85
+af_monolit_breeding_3		= 0.93,0.85
+af_geliy_breeding_1		= 0.93,0.85
+af_geliy_breeding_2		= 0.93,0.85
+af_geliy_breeding_3		= 0.93,0.85
+af_vaselisk_breeding_1          = 0.93,0.85
+af_vaselisk_breeding_2          = 0.93,0.85
+af_vaselisk_breeding_3          = 0.93,0.85
+af_dragon_eye_breeding_1        = 0.93,0.85
+af_dragon_eye_breeding_2        = 0.93,0.85
+af_dragon_eye_breeding_3        = 0.93,0.85
+;-------------Çàùèòíûå åëåìåíòû--------------------->
+cev_plastin_1			= 0.73,0.55
+cev_plastin_2			= 0.73,0.55
+cev_plastin_3			= 0.73,0.55
+cev_plastin_4			= 0.73,0.55
+cev_plastin_5			= 0.73,0.55
+;---------------------Áóñòåðû------------------------>
+drug_engine			= 0.73,0.55
+drug_cat_eye			= 0.73,0.55
+
+[buy_tier_2]:trade_generic_buy
+;---------------------Àðòåôàêòû------------------------>
+af_cristall			;ÍÅ ÏÐÎÄÀÅÒÑß/ÏÎÊÓÏÀÅÒÑß
+af_fireball			;ÍÅ ÏÐÎÄÀÅÒÑß/ÏÎÊÓÏÀÅÒÑß
+af_dummy_glassbeads		;ÍÅ ÏÐÎÄÀÅÒÑß/ÏÎÊÓÏÀÅÒÑß
+af_eye				;ÍÅ ÏÐÎÄÀÅÒÑß/ÏÎÊÓÏÀÅÒÑß
+af_fire				;ÍÅ ÏÐÎÄÀÅÒÑß/ÏÎÊÓÏÀÅÒÑß
+af_medusa			;ÍÅ ÏÐÎÄÀÅÒÑß/ÏÎÊÓÏÀÅÒÑß
+af_cristall_flower		;ÍÅ ÏÐÎÄÀÅÒÑß/ÏÎÊÓÏÀÅÒÑß
+af_night_star			;ÍÅ ÏÐÎÄÀÅÒÑß/ÏÎÊÓÏÀÅÒÑß
+af_vyvert			;ÍÅ ÏÐÎÄÀÅÒÑß/ÏÎÊÓÏÀÅÒÑß
+af_gravi			;ÍÅ ÏÐÎÄÀÅÒÑß/ÏÎÊÓÏÀÅÒÑß
+af_gold_fish			;ÍÅ ÏÐÎÄÀÅÒÑß/ÏÎÊÓÏÀÅÒÑß
+af_blood			;ÍÅ ÏÐÎÄÀÅÒÑß/ÏÎÊÓÏÀÅÒÑß
+af_mincer_meat			;ÍÅ ÏÐÎÄÀÅÒÑß/ÏÎÊÓÏÀÅÒÑß
+af_soul				;ÍÅ ÏÐÎÄÀÅÒÑß/ÏÎÊÓÏÀÅÒÑß
+af_fuzz_kolobok			;ÍÅ ÏÐÎÄÀÅÒÑß/ÏÎÊÓÏÀÅÒÑß
+af_baloon			;ÍÅ ÏÐÎÄÀÅÒÑß/ÏÎÊÓÏÀÅÒÑß
+af_glass			;ÍÅ ÏÐÎÄÀÅÒÑß/ÏÎÊÓÏÀÅÒÑß
+af_electra_sparkler		;ÍÅ ÏÐÎÄÀÅÒÑß/ÏÎÊÓÏÀÅÒÑß
+af_electra_flash		;ÍÅ ÏÐÎÄÀÅÒÑß/ÏÎÊÓÏÀÅÒÑß
+af_electra_moonlight	        ;ÍÅ ÏÐÎÄÀÅÒÑß/ÏÎÊÓÏÀÅÒÑß
+af_dummy_battery		;ÍÅ ÏÐÎÄÀÅÒÑß/ÏÎÊÓÏÀÅÒÑß
+af_dummy_dummy			;ÍÅ ÏÐÎÄÀÅÒÑß/ÏÎÊÓÏÀÅÒÑß
+af_ice				;ÍÅ ÏÐÎÄÀÅÒÑß/ÏÎÊÓÏÀÅÒÑß
+af_monolit			;ÍÅ ÏÐÎÄÀÅÒÑß/ÏÎÊÓÏÀÅÒÑß
+af_geliy			;ÍÅ ÏÐÎÄÀÅÒÑß/ÏÎÊÓÏÀÅÒÑß
+af_vaselisk		        ;ÍÅ ÏÐÎÄÀÅÒÑß/ÏÎÊÓÏÀÅÒÑß
+af_dragon_eye		        ;ÍÅ ÏÐÎÄÀÅÒÑß/ÏÎÊÓÏÀÅÒÑß
+
+[trade_generic_sell]:default_sell
+;---------------------Ìåäèêàìåíòû------------------------>
+antirad				= 1,2.2
+bandage				= 1,2.2
+bio_bandage			= 1,2.2
+psy_complex			= 1,2.2
+medkit				= 1,2.2
+medkit_scientic			= 1,2.2
+medkit_army			= 1,2.2
+medkit_elite			= 1,2.2
+medkit_used			= 1,2.2
+medkit_army_used		= 1,2.2
+medkit_scientic_used		= 1,2.2
+medkit_elite_used		= 1,2.2
+;---------------------Áóñòåðû------------------------>
+drug_booster			= 1,2.2
+drug_coagulant			= 1,2.2
+drug_psy_blockade		= 1,2.2
+drug_antidot			= 1,2.2
+drug_radioprotector		= 1,2.2
+drug_anabiotic			= 1,2.2
+drug_engine			= 1,2.2
+drug_cat_eye			= 1,2.2
+;---------------------Ïðåäìåòû------------------------>
+detector_elite			= 1,2.2
+
+
+
+
+
+                                                                                                                                                                                                                                                                                                                    

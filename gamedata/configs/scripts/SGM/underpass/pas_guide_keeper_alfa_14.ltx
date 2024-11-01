@@ -1,0 +1,20 @@
+[logic]
+active = move@alfa_keeper
+on_death = death
+on_hit = hit
+
+[hit]
+on_info = {=present_hit_by_actor -pri_rescue_underground_guide_approached_to_miller} %+pri_rescue_underground_guide_approached_to_miller%
+
+[death]
+on_info = %=pass_guide_keeper_alfa_update%
+
+[move@alfa_keeper]
+move_dest_number       = 23612
+move_look_vertex       = 17139
+move_state_when_center = wait
+move_state_when_move   = walk
+move_quick_animation   = false
+combat_ignore_cond     = {=check_enemy_name(pass_hostage_miller)} true
+on_info                = {!actor_enemy} %=actor_enemy%
+

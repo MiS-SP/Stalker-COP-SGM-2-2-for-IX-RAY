@@ -1,0 +1,27 @@
+[logic]
+active = move@walking
+on_death = death
+
+[death]
+on_info = {=killed_by_actor} %+jup_killer_base_actor_hit +jup_killer_base_patrol_7_death%, %+jup_killer_base_patrol_7_death%
+
+[move@walking]
+surge_hide_point    = 1129957
+scheme_type         = patrol
+patrol_count_path   = 5
+patrol_path_1       = 1049053
+patrol_path_2       = 1090494
+patrol_path_3       = 1086844
+patrol_path_4       = 1057726
+patrol_path_5       = 1050327
+patrol_countdown    = false
+patrol_no_reaction  = false
+meet                = meet
+on_info             = {!actor_enemy +jup_killer_base_actor_hit} %=actor_enemy%
+
+[meet]
+abuse           = true
+use             = false
+allow_break     = true
+meet_on_talking = false
+

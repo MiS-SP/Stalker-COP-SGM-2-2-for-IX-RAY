@@ -9,8 +9,7 @@ $npc					= on						; option for Level Editor
 $prefetch 				= 16
 visual					= monsters\burer\burer
 corpse_visual			= monsters\burer\burer_dead
-MaxHealthValue		    = 100						; range [0..200]
-icon				= ui_npc_monster_burer
+MaxHealthValue		    = 300						; range [0..200]
 
 Spawn_Inventory_Item_Section = mutant_burer_hand
 Spawn_Inventory_Item_Probability = 0.0
@@ -41,7 +40,7 @@ radiation_pp_highest_at		= 	0.02
 ;------------------------------------------------------------------------
 Scheduled				= on						; option for ALife Simulator
 Human		     		= off						; option for ALife Simulator
-Health					= 400						; option for ALife Simulator
+Health					= 500						; option for ALife Simulator
 MinSpeed				= 1.0						; option for ALife Simulator
 MaxSpeed				= 5.0						; option for ALife Simulator
 going_speed				= 3;4.5                      	; option for ALife Simulator
@@ -339,9 +338,20 @@ shock_immunity			= 1.0
 wound_immunity			= 0.2
 radiation_immunity		= 0.0
 telepatic_immunity		= 1.0
-chemical_burn_immunity	= 1.0
-explosion_immunity		= 0.5
-fire_wound_immunity		= 0.7
+chemical_burn_immunity	        = 1.0
+explosion_immunity		= 0.71
+fire_wound_immunity		= 0.55
+
+[burer_immunities_strong]
+burn_immunity			= 1.0
+strike_immunity			= 1.0
+shock_immunity			= 1.0
+wound_immunity			= 0.1
+radiation_immunity		= 0.0
+telepatic_immunity		= 1.0
+chemical_burn_immunity	        = 1.0
+explosion_immunity		= 0.55
+fire_wound_immunity		= 0.40
 
 
 
@@ -469,5 +479,7 @@ time_release		= 0.85		; fade out
 $spawn				= "monsters\burer\burer_normal"
 visual				= monsters\burer\burer
 corpse_visual			= monsters\burer\burer_dead
+icon				= ui_npc_monster_burer
 rank				= 19
 spec_rank			= normal
+community			= burer

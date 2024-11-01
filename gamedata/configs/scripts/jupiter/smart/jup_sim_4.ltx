@@ -1,0 +1,31 @@
+[smart_terrain]
+squad_id = 42
+max_population = 2
+respawn_params = respawn@jup_alfa_sim_4
+
+[respawn@jup_alfa_sim_4]
+jup_alfa_force_novice
+jup_alfa_force_regular
+jup_alfa_force_experienced
+jup_alfa_force_veteran
+jup_alfa_force_master
+
+[jup_alfa_force_novice]
+spawn_squads = jup_alfa_squad_1_novice
+spawn_num = {+opt_activate_alfa_force =check_actor_rank(0:100)} 1, 0
+
+[jup_alfa_force_regular]
+spawn_squads = jup_alfa_squad_1_regular
+spawn_num = {+opt_activate_alfa_force =check_actor_rank(100:200)} 1, 0
+
+[jup_alfa_force_experienced]
+spawn_squads = jup_alfa_squad_1_experienced
+spawn_num = {+opt_activate_alfa_force =check_actor_rank(200:350)} 1, 0
+
+[jup_alfa_force_veteran]
+spawn_squads = jup_alfa_squad_1_veteran
+spawn_num = {+opt_activate_alfa_force =check_actor_rank(350:600)} 1, 0
+
+[jup_alfa_force_master]
+spawn_squads = jup_alfa_squad_1_master
+spawn_num = {+opt_activate_alfa_force =check_actor_rank(600)} 1, 0

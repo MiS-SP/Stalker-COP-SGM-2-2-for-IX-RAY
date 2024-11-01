@@ -1,0 +1,9 @@
+;Рестриктор "Основная сюжетная линия"
+
+[logic]
+active = sr_idle
+
+[sr_idle]
+on_info  = {-val_first_coming_valley_start =game_is_loaded} %+val_first_coming_valley_start =give_task(val_first_coming_valley)%
+on_info2 = {+val_first_coming_valley_talk_with_leader -val_kill_night_predator_start} %+val_kill_night_predator_start =give_task(val_kill_night_predator)%
+on_info3 = {+val_first_coming_valley_assault_factory -val_assault_factory_start} %+val_assault_factory_start =give_task(val_assault_factory)%

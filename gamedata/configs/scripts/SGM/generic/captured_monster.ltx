@@ -1,0 +1,10 @@
+[logic]
+active = mob_move
+on_hit = hit
+
+[hit]
+on_info = {=present_hit_by_actor} %=captured_monster_hitted%
+
+[mob_move]
+captured_actor = true
+combat_ignore_cond = {=captured_monster_ignore_precond} true

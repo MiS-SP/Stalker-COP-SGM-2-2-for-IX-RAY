@@ -1,0 +1,354 @@
+;---------------------------------------------------------------------------------------;
+;                               Новые монстры                                           ;
+;---------------------------------------------------------------------------------------;
+
+[burer_nightmare]:burer_normal
+$spawn		             = "monsters\burer_nightmare"
+visual			     = monsters\burer\burer_nightmare
+corpse_visual	             = monsters\burer\burer_nightmare_dead
+
+[controller_nightmare]:m_controller_normal
+$spawn		             = "monsters\controller_nightmare"
+visual			     = monsters\controller\controller_nightmare
+
+[bibliotekar_nightmare]:bibliotekar
+$spawn		             = "monsters\bibliotekar_nightmare"
+
+[chimera_nightmare]:chimera_normal
+$spawn		             = "monsters\chimera_nightmare"
+visual			     = monsters\chimera\chimera_nightmare
+corpse_visual	             = monsters\chimera\chimera_nightmare_dead
+
+[bloodsucker_1_nightmare]:bloodsucker_strong
+$spawn		             = "monsters\bloodsucker_1_nightmare"
+visual			     = monsters\krovosos\krovosos_nightmare_1
+corpse_visual	             = monsters\krovosos\krovosos_nightmare_1_dead
+
+[bloodsucker_2_nightmare]:bloodsucker_strong
+$spawn		             = "monsters\bloodsucker_2_nightmare"
+visual			     = monsters\krovosos\krovosos_nightmare_2
+corpse_visual	             = monsters\krovosos\krovosos_nightmare_2_dead
+
+;---------------------------------------------------------------------------------------;
+;                          Завербованные мутанты                                        ;
+;---------------------------------------------------------------------------------------;
+
+[captured_monster]
+radiation_max_distance = 0
+satiety_v 	       = 0.0
+satiety_threshold      = 0.4
+custom_data            = scripts\SGM\generic\captured_monster.ltx
+
+[captured_pseudodog]:pseudodog_normal,captured_monster
+
+[captured_boar]:boar_normal,captured_monster
+
+[captured_dog]:dog_strong,captured_monster
+
+[captured_flesh]:flesh_strong,captured_monster
+
+[captured_snork]:snork_normal,captured_monster
+
+[captured_tushkano]:tushkano_normal,captured_monster
+
+[captured_gigant]:gigant_normal,captured_monster
+
+[captured_chimera]:chimera_normal,captured_monster
+
+;---------------------------------------------------------------------------------------;
+;                               Мёртвые мутанты                                         ;
+;---------------------------------------------------------------------------------------;
+
+[monster_dead_body]
+custom_data = scripts\SGM\generic\monster_dead_body.ltx
+
+[chimera_dead_body]:chimera_normal,monster_dead_body
+
+[boar_dead_body]:boar_normal,monster_dead_body
+
+[flesh_dead_body]:flesh_normal,monster_dead_body
+
+[dog_dead_body]:dog_normal,monster_dead_body
+
+[pseudodog_dead_body]:pseudodog_normal,monster_dead_body
+
+[gigant_dead_body]:gigant_normal,monster_dead_body
+
+[controller_dead_body]:m_controller_normal,monster_dead_body
+
+[burer_dead_body]:burer_normal,monster_dead_body
+
+[bloodsucker_dead_body]:bloodsucker_strong,monster_dead_body
+
+[snork_dead_body]:snork_strong,monster_dead_body
+
+[tushkano_dead_body]:tushkano_normal,monster_dead_body
+
+[burer_nightmare_dead_body]:burer_nightmare,monster_dead_body
+
+[controller_nightmare_dead_body]:controller_nightmare,monster_dead_body
+
+[bloodsucker_1_nightmare_dead_body]:bloodsucker_1_nightmare,monster_dead_body
+
+[bloodsucker_2_nightmare_dead_body]:bloodsucker_2_nightmare,monster_dead_body
+
+[chimera_nightmare_dead_body]:chimera_nightmare,monster_dead_body
+
+[fracture_dead_body]:fracture_normal,monster_dead_body
+
+[cat_dead_body]:cat_normal,monster_dead_body
+
+[zombie_dead_body]:zombie_normal,monster_dead_body
+
+;---------------------------------------------------------------------------------------;
+;                              Охотники за ГГ                                           ;
+;---------------------------------------------------------------------------------------;
+
+[monster_hunter]
+custom_data = scripts\SGM\generic\monster_actor_hunter.ltx
+
+[boar_normal_hunter]:boar_normal,monster_hunter
+
+[boar_strong_hunter]:boar_strong,monster_hunter
+
+[burer_normal_hunter]:burer_normal,monster_hunter
+
+[chimera_normal_hunter]:chimera_normal,monster_hunter
+
+[controller_normal_hunter]:m_controller_normal,monster_hunter
+
+[dog_weak_hunter]:dog_weak,monster_hunter
+
+[dog_normal_hunter]:dog_normal,monster_hunter
+
+[dog_strong_hunter]:dog_strong,monster_hunter
+
+[bloodsucker_weak_hunter]:bloodsucker_weak,monster_hunter
+
+[bloodsucker_normal_hunter]:bloodsucker_normal,monster_hunter
+
+[bloodsucker_strong_hunter]:bloodsucker_strong,monster_hunter
+
+[flesh_normal_hunter]:flesh_normal,monster_hunter
+
+[flesh_strong_hunter]:flesh_strong,monster_hunter
+
+[gigant_normal_hunter]:gigant_normal,monster_hunter
+
+[snork_weak_hunter]:gigant_normal,monster_hunter
+
+[snork_normal_hunter]:snork_normal,monster_hunter
+
+[snork_strong_hunter]:snork_strong,monster_hunter
+
+[tushkano_normal_hunter]:tushkano_normal,monster_hunter
+
+[pseudodog_normal_hunter]:pseudodog_normal,monster_hunter
+
+[fracture_normal_hunter]:fracture_normal,monster_hunter
+
+[fracture_strong_hunter]:fracture_strong,monster_hunter
+
+[cat_normal_hunter]:cat_normal,monster_hunter
+
+[zombie_normal_hunter]:zombie_normal,monster_hunter
+
+[zombie_strong_hunter]:zombie_strong,monster_hunter
+
+[burer_nightmare_hunter]:burer_nightmare,monster_hunter
+
+[controller_nightmare_hunter]:controller_nightmare,monster_hunter
+
+[bibliotekar_nightmare_hunter]:bibliotekar_nightmare,monster_hunter
+
+[chimera_nightmare_hunter]:chimera_nightmare,monster_hunter
+
+[bloodsucker_1_nightmare_hunter]:bloodsucker_1_nightmare,monster_hunter
+
+[bloodsucker_2_nightmare_hunter]:bloodsucker_2_nightmare,monster_hunter
+
+;---------------------------------------------------------------------------------------;
+;                             Монстры-боссы                                             ;
+;---------------------------------------------------------------------------------------;
+
+[boss_controller_weak]:controller_nightmare
+$spawn                       = "monsters\boss_controller"
+protections_sect             = controller_boss_weak_protections
+immunities_sect	             = controller_immunities_strong
+Health		             = 600
+MaxHealthValue	             = 400
+radiation_max_distance	     = 3
+radiation_max_power	     = 0.01
+radiation_linear_factor	     = 1
+radiation_quadratic_factor   = 1
+radiation_pp_effector_name   = postprocess_rad
+radiation_pp_highest_at	     = 0.02
+aura_inactivity_active       = true ; Использовать ли ауру бездействия.
+aura_inactivity_radius       = 12   ; Радиус воздействия ауры.
+aura_inactivity_frequency    = 1000 ; Чем меньше, тем быстрее и эффективнее работает аура.
+aura_inactivity_effector     = true ; Использовать ли визуальные эффекты воздействия ауры.
+
+[boss_controller_normal]:controller_nightmare
+$spawn                       = "monsters\boss_controller"
+protections_sect             = controller_boss_normal_protections
+immunities_sect	             = controller_immunities_strong
+Health		             = 700
+MaxHealthValue	             = 500
+radiation_max_distance	     = 4
+radiation_max_power	     = 0.02
+radiation_linear_factor	     = 1
+radiation_quadratic_factor   = 1
+radiation_pp_effector_name   = postprocess_rad
+radiation_pp_highest_at	     = 0.02
+aura_inactivity_active       = true ; Использовать ли ауру бездействия.
+aura_inactivity_radius       = 20   ; Радиус воздействия ауры.
+aura_inactivity_frequency    = 900  ; Чем меньше, тем быстрее и эффективнее работает аура.
+aura_inactivity_effector     = true ; Использовать ли визуальные эффекты воздействия ауры.
+
+[boss_controller_strong]:controller_nightmare
+$spawn                       = "monsters\boss_controller"
+protections_sect             = controller_boss_strong_protections
+immunities_sect	             = controller_immunities_strong
+Health		             = 800
+MaxHealthValue	             = 600
+radiation_max_distance	     = 5
+radiation_max_power	     = 0.03
+radiation_linear_factor	     = 1
+radiation_quadratic_factor   = 1
+radiation_pp_effector_name   = postprocess_rad
+radiation_pp_highest_at	     = 0.02
+aura_inactivity_active       = true ; Использовать ли ауру бездействия.
+aura_inactivity_radius       = 30   ; Радиус воздействия ауры.
+aura_inactivity_frequency    = 800  ; Чем меньше, тем быстрее и эффективнее работает аура.
+aura_inactivity_effector     = true ; Использовать ли визуальные эффекты воздействия ауры.
+
+[controller_boss_weak_protections]
+skin_armor                   = 0.6
+hit_fraction_monster         = 0.35
+[controller_boss_normal_protections]
+skin_armor                   = 0.7
+hit_fraction_monster         = 0.30
+[controller_boss_strong_protections]
+skin_armor                   = 0.8
+hit_fraction_monster         = 0.25
+
+[boss_burer_weak]:burer_nightmare
+$spawn		             = "monsters\boss_burer"
+protections_sect             = burer_boss_weak_protections
+immunities_sect	             = burer_immunities_strong
+Health		             = 600
+MaxHealthValue	             = 400
+radiation_max_distance	     = 2
+radiation_max_power	     = 0.01
+radiation_linear_factor	     = 1
+radiation_quadratic_factor   = 1
+radiation_pp_effector_name   = postprocess_rad
+radiation_pp_highest_at	     = 0.02
+aura_inactivity_active       = true ; Использовать ли ауру бездействия.
+aura_inactivity_radius       = 10   ; Радиус воздействия ауры.
+aura_inactivity_frequency    = 1000 ; Чем меньше, тем быстрее и эффективнее работает аура.
+aura_inactivity_effector     = true ; Использовать ли визуальные эффекты воздействия ауры.
+
+[boss_burer_normal]:burer_nightmare
+$spawn		             = "monsters\boss_burer"
+protections_sect             = burer_boss_normal_protections
+immunities_sect	             = burer_immunities_strong
+Health		             = 700
+MaxHealthValue	             = 500
+radiation_max_distance	     = 4
+radiation_max_power	     = 0.02
+radiation_linear_factor	     = 1
+radiation_quadratic_factor   = 1
+radiation_pp_effector_name   = postprocess_rad
+radiation_pp_highest_at	     = 0.02
+aura_inactivity_active       = true ; Использовать ли ауру бездействия.
+aura_inactivity_radius       = 20   ; Радиус воздействия ауры.
+aura_inactivity_frequency    = 900  ; Чем меньше, тем быстрее и эффективнее работает аура.
+aura_inactivity_effector     = true ; Использовать ли визуальные эффекты воздействия ауры.
+
+[boss_burer_strong]:burer_nightmare
+$spawn		             = "monsters\boss_burer"
+protections_sect             = burer_boss_strong_protections
+immunities_sect	             = burer_immunities_strong
+Health		             = 800
+MaxHealthValue	             = 600
+radiation_max_distance	     = 5
+radiation_max_power	     = 0.03
+radiation_linear_factor	     = 1
+radiation_quadratic_factor   = 1
+radiation_pp_effector_name   = postprocess_rad
+radiation_pp_highest_at	     = 0.02
+aura_inactivity_active       = true ; Использовать ли ауру бездействия.
+aura_inactivity_radius       = 30   ; Радиус воздействия ауры.
+aura_inactivity_frequency    = 800  ; Чем меньше, тем быстрее и эффективнее работает аура.
+aura_inactivity_effector     = true ; Использовать ли визуальные эффекты воздействия ауры.
+
+[burer_boss_weak_protections]
+skin_armor                   = 0.6
+hit_fraction_monster         = 0.18
+[burer_boss_normal_protections]
+skin_armor                   = 0.7
+hit_fraction_monster         = 0.16
+[burer_boss_strong_protections]
+skin_armor                   = 0.8
+hit_fraction_monster         = 0.14
+
+[boss_gigant_weak]:gigant_normal
+$spawn		             = "monsters\boss_gigant"
+protections_sect             = giant_boss_weak_protections
+Health		             = 700
+MaxHealthValue	             = 500
+radiation_max_distance	     = 10
+radiation_max_power	     = 0.04
+radiation_linear_factor	     = 1
+radiation_quadratic_factor   = 1
+radiation_pp_effector_name   = postprocess_rad
+radiation_pp_highest_at	     = 0.02
+aura_inactivity_active       = true ; Использовать ли ауру бездействия.
+aura_inactivity_radius       = 12   ; Радиус воздействия ауры.
+aura_inactivity_frequency    = 1000 ; Чем меньше, тем быстрее и эффективнее работает аура.
+aura_inactivity_effector     = true ; Использовать ли визуальные эффекты воздействия ауры.
+
+[boss_gigant_normal]:gigant_normal
+$spawn		             = "monsters\boss_gigant"
+protections_sect             = giant_boss_normal_protections
+Health		             = 800
+MaxHealthValue	             = 600
+radiation_max_distance	     = 10
+radiation_max_power	     = 0.05
+radiation_linear_factor	     = 1
+radiation_quadratic_factor   = 1
+radiation_pp_effector_name   = postprocess_rad
+radiation_pp_highest_at	     = 0.02
+aura_inactivity_active       = true ; Использовать ли ауру бездействия.
+aura_inactivity_radius       = 20   ; Радиус воздействия ауры.
+aura_inactivity_frequency    = 800  ; Чем меньше, тем быстрее и эффективнее работает аура.
+aura_inactivity_effector     = true ; Использовать ли визуальные эффекты воздействия ауры.
+
+[boss_gigant_strong]:gigant_normal
+$spawn		             = "monsters\boss_gigant"
+protections_sect             = giant_boss_strong_protections
+Health		             = 900
+MaxHealthValue	             = 700
+radiation_max_distance	     = 10
+radiation_max_power	     = 0.06
+radiation_linear_factor	     = 1
+radiation_quadratic_factor   = 1
+radiation_pp_effector_name   = postprocess_rad
+radiation_pp_highest_at	     = 0.02
+aura_inactivity_active       = true ; Использовать ли ауру бездействия.
+aura_inactivity_radius       = 32   ; Радиус воздействия ауры.
+aura_inactivity_frequency    = 600  ; Чем меньше, тем быстрее и эффективнее работает аура.
+aura_inactivity_effector     = true ; Использовать ли визуальные эффекты воздействия ауры.
+
+[giant_boss_weak_protections]
+skin_armor                   = 0.7
+hit_fraction_monster         = 0.16
+[giant_boss_normal_protections]
+skin_armor                   = 0.8
+hit_fraction_monster         = 0.14
+[giant_boss_strong_protections]
+skin_armor                   = 0.9
+hit_fraction_monster         = 0.10
+
+

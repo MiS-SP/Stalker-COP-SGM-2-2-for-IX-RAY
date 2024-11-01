@@ -1,0 +1,39 @@
+[logic]
+active = move@wait_help
+on_death = death
+
+[death]
+on_info = %+zat_wounded_monolith_death%
+
+[move@wait_help]
+move_dest_number       = {=global_pattern_is_one} 1679151, 1481088
+move_look_vertex       = 1677979
+move_state_when_center = wounded_heavy
+move_state_when_move   = walk
+move_combat_disable    = true
+meet                   = meet
+wounded                = wounded@monolith
+on_info                = {+zat_deliver_monolith_case_nepomog =dist_to_actor_ge(60)} %=kill_npc%
+on_info2               = {+zat_deliver_monolith_case_start =dist_to_actor_ge(30)} %=kill_npc%
+
+[wounded@monolith]
+hp_state               = 100|wounded_heavy@help_heavy
+hp_state_see           = 100|wounded_heavy@help_heavy
+hp_victim              = 100|nil
+hp_cover               = 100|false
+hp_fight               = 100|false
+autoheal               = false
+not_for_help           = true
+enable_talk            = true
+on_info                = {+zat_deliver_monolith_case_nepomog =dist_to_actor_ge(60)} %=kill_npc%
+on_info2               = {+zat_deliver_monolith_case_start =dist_to_actor_ge(30)} %=kill_npc%
+
+[meet]
+abuse           = false
+use             = true
+allow_break     = true
+meet_on_talking = false
+trade_enable    = false
+
+
+

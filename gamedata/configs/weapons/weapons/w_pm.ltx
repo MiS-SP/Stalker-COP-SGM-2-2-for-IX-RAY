@@ -1,0 +1,179 @@
+;---------------------------------------------------------------------------------------;
+;                                     ПМм                                               ;
+;---------------------------------------------------------------------------------------;
+[wpn_pm]:identity_immunities,weapon_probability,default_weapon_params,mod_pm,mod_pm_damage,mod_pm_sounds,mod_pistol2_particles,cost_wpn_pm
+GroupControlSection	= spawn_group
+$spawn                  = "weapons\pm"		
+$npc			= on							
+$prefetch 		= 8
+scheduled         	= off              		
+cform                   = skeleton
+class                   = WP_PM
+ef_weapon_type		= 5
+;-----------[Главные параметры]----------------;
+inv_weight		= 0.5
+inv_name		= st_wpn_pm
+inv_name_short		= st_wpn_pm
+description		= st_wpn_pm_descr
+inv_grid_width		= 1
+inv_grid_height	        = 1
+inv_grid_x		= 4
+inv_grid_y		= 26
+upgr_icon_x		= 830
+upgr_icon_y		= 8
+upgr_icon_width	        = 133
+upgr_icon_height   	= 118
+ammo_elapsed		= 8
+ammo_mag_size		= 8
+ammo_class		= ammo_9x18_fmj, ammo_9x18_pmm
+;-------------[Модернизация]-------------------;
+upgrades                = up_gr_firstab_pm, up_gr_firstc_pm, up_gr_firstd_pm, up_gr_firstef_pm, up_gr_seconab_pm, up_gr_seconcd_pm, up_gr_thirdab_pm, up_gr_thirdc_pm, up_gr_thirdd_pm, up_gr_fourtab_pm, up_gr_fourtcd_pm, up_gr_fifthab_pm, up_gr_fifthcd_pm, up_gr_change_components_pm
+installed_upgrades      =
+upgrade_scheme          = upgrade_scheme_pm
+scope_status		= 0
+silencer_status		= 2
+grenade_launcher_status	= 0
+zoom_enabled		= true
+zoom_rotate_time	= 0.25
+scope_zoom_factor	= 55
+silencer_name  		= wpn_addon_silencer
+silencer_x 		= 39	
+silencer_y 		= -16
+;--------------[Дисперсия]---------------------;
+fire_dispersion_base	= 0.25 
+control_inertion_factor = 1.0
+crosshair_inertion	= 3
+cam_return		= 0
+cam_relax_speed         = 8				
+cam_relax_speed_ai      = 360
+cam_dispersion          = 0.75				
+cam_dispersion_inc	= 0.75				
+cam_dispersion_frac	= 1.0				
+cam_max_angle		= 5.0			
+cam_max_angle_horz	= 5.0				
+cam_step_angle_horz	= 1.0				
+fire_dispersion_condition_factor = 11
+;--------[Держания ствола в руках НПС]---------;
+position                = -0.021, -0.085, 0.0
+orientation             = 0, 0, 0
+;-----------[Другие параметры]-----------------;
+use_aim_bullet		= false	
+time_to_aim		= 1.0
+hud                     = wpn_pm_hud
+misfire_start_condition	= 0.6
+misfire_end_condition	= 0.1
+misfire_start_prob	= 0.007
+misfire_end_prob	= 0.07
+condition_shot_dec      = 0.003
+condition_queue_shot_dec= 0.003
+hand_dependence		= 1
+single_handed		= 1
+PDM_disp_base 		= 0.5
+PDM_disp_vel_factor 	= 1.1
+PDM_disp_accel_factor 	= 1.1
+PDM_disp_crouch	 	= 1
+PDM_disp_crouch_no_acc 	= 1
+misfire_probability     = 0.005
+zoom_dof		= -1000, 1.0, 1000
+reload_dof		= 0.0, 0.5, 5, 1.7
+holder_range_modifier	= 1.0               
+holder_fov_modifier	= 1.0 
+min_radius              = 0
+max_radius              = 30
+slot 			= 1
+animation_slot		= 1									
+default_to_ruck		= false
+sprint_allowed		= true
+control_inertion_factor	= 1
+kill_msg_x		= 227
+kill_msg_y		= 82
+kill_msg_width		= 27
+kill_msg_height		= 23
+visual                  = dynamics\weapons\wpn_pm\wpn_pm.ogf
+fire_point              = 0.0, 0.133, 0.161
+shell_point		= 0.0, 0.133, 0.047
+shell_dir		= 0.0, 0.0, 0.4
+light_color		= 0.6,0.5,0.3
+light_range		= 3.0
+light_var_color		= 0.05
+light_var_range		= 0.5
+light_time 	        = 0.2
+ph_mass			= 1
+silencer_light_color	= 0.6,0.5,0.3
+silencer_light_range	= 0.01
+silencer_light_var_color= 0.05
+silencer_light_var_range= 0.5
+silencer_light_time 	= 0.2
+
+[wpn_pm_hud]:hud_base
+zoom_hide_crosshair	= true
+hands_position		= -0.021000,-0.160000,0.002500
+hands_orientation	= -0.500000,1.000000,1.149999
+hands_position_16x9	= 0.033000,-0.189500,0.039000
+hands_orientation_16x9	= 2.349998,2.749999,2.849998
+item_position		= 0.000481,-0.000050,-0.004011
+item_orientation	= 1.239378,-0.134046,-2.052052
+item_visual             = dynamics\weapons\wpn_pm\wpn_pm_hud.ogf
+attach_place_idx	= 0
+shell_point		= 0.013,0.046,0.463
+shell_bone              = wpn_body
+fire_point		= 0,0.045,0.142
+fire_bone               = wpn_body
+anm_show		= pm_draw
+anm_show_empty		= pm_draw, pm_opened
+anm_hide             	= pm_holster
+anm_hide_empty          = pm_holster
+anm_idle             	= pm_idle
+anm_idle_empty          = pm_idle, pm_opened
+anm_shots		= pm_shoot
+anm_shot_l		= pm_shoot, pm_open
+anm_idle_aim		= pm_idle_aim
+anm_idle_aim_empty	= pm_idle_aim, pm_opened
+anm_reload		= pm_reload
+anm_reload_empty	= pm_reload, pm_close
+anm_idle_moving 	= pm_idle_moving
+anm_idle_moving_empty 	= pm_idle_moving, pm_opened
+anm_idle_sprint		= pm_idle_sprint
+anm_idle_sprint_empty	= pm_idle_sprint, pm_opened
+anm_bore		= pm_idle_bore
+anm_bore_empty		= pm_idle_bore, pm_opened
+aim_hud_offset_pos	= -0.106000,0.036500,0.000000
+aim_hud_offset_rot	= -0.002500,0.005000,-0.035000
+gl_hud_offset_pos	= 0,0,0
+gl_hud_offset_rot	= 0,0,0
+lean_hud_offset_pos	= 0,0,0
+lean_hud_offset_rot	= 0,0,0
+aim_hud_offset_pos_16x9	= -0.165000,0.075000,-0.001500
+aim_hud_offset_rot_16x9	= 0.032500,0.055000,-0.025000
+
+;---------------------------------------------------------------------------------------;
+;                                  Модификации                                          ;
+;---------------------------------------------------------------------------------------;
+
+[wpn_pm_actor]:wpn_pm,cost_wpn_pm_actor
+$spawn                  = "weapons\pm_actor"	
+inv_name                = st_wpn_pm_actor
+description		= st_wpn_pm_actor_descr
+upgrades                = up_gr_firstab_pm, up_gr_firstc_pm, up_gr_firstd_pm, up_gr_firstef_pm, up_gr_seconab_pm, up_gr_seconcd_pm, up_gr_thirdab_pm, up_gr_thirdc_pm, up_gr_thirdd_pm, up_gr_fourtab_pm, up_gr_fourtcd_pm, up_gr_fifthab_pm, up_gr_fifthcd_pm, up_gr_change_components_pm
+installed_upgrades      = up_firste_pm,up_seconc_pm
+upgrade_scheme          = upgrade_scheme_pm
+condition_shot_dec      = 0.0015
+condition_queue_shot_dec= 0.0015
+
+[wpn_pm_m1]:wpn_pm,cost_wpn_pm_m1
+$spawn		        = "weapons\wpn_pm_m1"
+inv_name          	= st_wpn_pm_m1
+inv_name_short          = st_wpn_pm_m1
+installed_upgrades      = up_firsta_pm,up_firste_pm
+
+[wpn_pm_m2]:wpn_pm,cost_wpn_pm_m2
+$spawn		        = "weapons\wpn_pm_m2"
+inv_name          	= st_wpn_pm_m2
+inv_name_short          = st_wpn_pm_m2
+installed_upgrades      = up_fourtc_pm,up_fourta_pm
+
+[wpn_pm_m3]:wpn_pm,cost_wpn_pm_m3
+$spawn		        = "weapons\wpn_pm_m3"
+inv_name          	= st_wpn_pm_m3
+inv_name_short          = st_wpn_pm_m3
+installed_upgrades      = up_fiftha_pm,up_thirdd_pm,up_secona_pm

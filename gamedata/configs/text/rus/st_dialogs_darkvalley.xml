@@ -1,0 +1,207 @@
+	<string id="val_night_zam_leader_kolmogor_quest_1_first_dialog_00">
+		<text>Майор, есть одно дело - не желаешь оказать содействие нашей группировке?</text>
+	</string>
+	<string id="val_night_zam_leader_kolmogor_quest_1_first_dialog_0">
+		<text>А ты кто вообще такой? И в чем суть дела?</text>
+	</string>
+	<string id="val_night_zam_leader_kolmogor_quest_1_first_dialog_1">
+		<text>Второй вопрос мне больше нравиться - он дает надежду на положительный ответ. Но начну попорядку. Я Колмогор, заместитель лидера Ночных Сталкеров. Наша группировка сейчас контролирует Южную часть Темной долины. Где-то два года назад все эти места находились под контролем клана Свободы. Сейчас же, один из их лидеров прислал сюда, в долину, своего проверенного человечка для расследования одного дела минувших лет. И он попросил нас оказать содействие Свободе в решение их проблемы...</text>
+	</string>
+	<string id="val_night_zam_leader_kolmogor_quest_1_first_dialog_2">
+		<text>И вы решили не распыляться своими людьми, а также привлечь для этого дела человека со стороны, то бишь меня? И что же необходимо будет предпринимать?</text>
+	</string>
+	<string id="val_night_zam_leader_kolmogor_quest_1_first_dialog_3">
+		<text>Необходимо будет следовать указаниям которые ты получишь от свободовского агента. Не думаю, что это дело будет решаться так просто, однако ты имеешь более чем необходимую подготовку, в отличие от моих людей. Все инструкции, получанные тобой у свободовца будут сводиться к сбору каких-то сведений об их бывшей базе в Темной долине, а также он про какие-то антенны вроде говорил... Ну как, идет тебе такая работа?</text>
+	</string>
+	<string id="val_night_zam_leader_kolmogor_quest_1_first_dialog_4">
+		<text>Хорошо, я согласен. Возможно это действительно ценные сведения.</text>
+	</string>
+	<string id="val_night_zam_leader_kolmogor_quest_1_first_dialog_5">
+		<text>Отлично, вот его координаты. Наши люди на блокпосту сообщили мне, что он уже прибыл со стороны Свалки и ждет прибытия моего человека, посему потарапливайся. А то его сожрут мутанты и обломится вся наша малина.</text>
+	</string>
+	<string id="val_night_zam_leader_kolmogor_quest_1_first_dialog_76">
+		<text>Выступаю.</text>
+	</string>
+	<string id="val_night_zam_leader_kolmogor_quest_1_first_dialog_44">
+		<text>Нет, да ну их, этих свободовцев - пусть сами в своем дерьме прошлого колупаются.</text>
+	</string>
+	<string id="val_night_zam_leader_kolmogor_quest_1_first_dialog_55">
+		<text>Жаль, второго шанса, если передумаешь у тебя не будет. Ко мне, ни с какими просьбами можешь даже не обращаться.</text>
+	</string>
+	<string id="val_night_zam_leader_kolmogor_quest_1_first_dialog_56">
+		<text>Ой, напугал.</text>
+	</string>
+	<string id="val_night_zam_leader_kolmogor_quest_1_first_dialog_6">
+		<text>Что тебе лично известно про эту свободовкую загадку прошлого? И какие гарантии, что это не подствава?</text>
+	</string>
+	<string id="val_night_zam_leader_kolmogor_quest_1_first_dialog_7">
+		<text>Гарантии - ну вроде у нас с ними мир, я не думаю, что они захотят портить с нами отношения. Да и это дело важно прежде всего Свободе, а не нам. Кстати, твоя доля - половина от всей суммы. А лично я считаю, что скорее всего свободовцы хотят получить некоторые документы хранящиеся на их старой базе, вот только почему они не сделают это сами - мне неведомо.</text>
+	</string>
+	<string id="val_freedom_lucas_quest_first_dialog_00">
+		<text>Ты от Ночных?</text>
+	</string>
+	<string id="val_freedom_lucas_quest_first_dialog_0">
+		<text>Да, меня нанял Колмогор - для оказания содействия тебе в поиске каких-то сведений и сборе показаний какого-то сигнала...</text>
+	</string>
+	<string id="val_freedom_lucas_quest_first_dialog_1">
+		<text>Все верно, сведения нужно моему командиру Умнику. Это касается нашего прошлого Свободы, когда мы контролировали здесь эти места. Было время, когда еще нас возглавлял Чехов - тогда-то со Свободой больше считались, нежели чем сейчас. Но мы найдем способ вернуть авторитет клана, подорванный после провала штурма ЧАЭС. И ты нам в этом поможешь.</text>
+	</string>
+	<string id="val_freedom_lucas_quest_first_dialog_2">
+		<text>Какова моя основная задача?</text>
+	</string>
+	<string id="val_freedom_lucas_quest_first_dialog_22">
+		<text>Нам придется осуществить несколько поставленных моим командованием задач. Но начну попорядку: недавно наши технари зафиксировали мощное излучение сигнала неизвестной природы. Он исходит как раз отсюда - из долины. Им не удалось его перехватить и расшифровать. Поэтому я здесь. Единственными мощными излучателями в долине являются наши старый ретрансляционные антенны. Но почему они вдруг ни с того, ни с сего начали снова работать и предавать закодированнный сигнал - неясно. Мне поручено выяснить это. Ты же поможешь провести необходимые замеры, а потом, если все пойдет удачно перейдем к другой задаче...</text>
+	</string>
+	<string id="val_freedom_lucas_quest_first_dialog_222">
+		<text>С помощью чего мне снимать показания сигнала?</text>
+	</string>
+	<string id="val_freedom_lucas_quest_first_dialog_2222">
+		<text>Вот, возьми. Это мой персональный сканер. Он фиксирует показатели частоты исходящих импульсов. Имея их, наши техники смогут расшифровать его природу и понять, кто мог заново заставить работать эти передатчики...Координаты месторасположения антеннн я тебе загрузил.</text>
+	</string>
+	<string id="val_freedom_lucas_quest_first_dialog_22222">
+		<text>Я понял, отправлюсь.</text>
+	</string>
+	<string id="val_freedom_lucas_quest_first_dialog_202">
+		<text>Ну что, снял показатели?</text>
+	</string>
+	<string id="val_freedom_lucas_quest_first_dialog_2021">
+		<text>Еще нет, работаю над этим.</text>
+	</string>
+	<string id="val_freedom_lucas_quest_first_dialog_2022">
+		<text>Да, все показатели, со всех трех антенн зафиксированы твоим сканером.</text>
+	</string>
+	<string id="val_freedom_lucas_quest_first_dialog_20222">
+		<text>Отлично, давай его сюда.</text>
+	</string>
+	<string id="val_freedom_lucas_quest_first_dialog_202222">
+		<text>Забирай. Что дальше?</text>
+	</string>
+	<string id="val_freedom_lucas_quest_first_dialog_3">
+		<text>Так, вторая цель моей миссии - это отыскать тайники и оставшиеся сведения о группировке, расположенные на территории бывшей базы. По свидетельству очевидцев тех дней, прежде чем наш клан укрипился на военных складах, Чехов и тогдашний его зам, а в последствии лидер клана - Лукаш, спрятали здесь информацию о клане и данные, касаемые проводимых в Зоне эксперементов и существующей неподалеку закрытой секретной лаборатории. Всего этих тайников три и тебе нужно будет отыскать их все, но прежде ты должен устранить возможных конкурентов.</text>
+	</string>
+	<string id="val_freedom_lucas_quest_first_dialog_4">
+		<text>О каких конкурентах идет речь?</text>
+	</string>
+        <string id="val_freedom_lucas_quest_first_dialog_5">
+		<text>Майор, наша группировка сейчас еще очень слаба, надежных людей практически нет. Произошла утечка информации о нашей операции. Теперь о ее проведении и целях известно Долгу. Воронин уже отправил в долину отряд диверсантов с целью пресечения моей деятельности. Мне удалось их вычислить, они будут ждать когда я или ты сунемся на базу, и после того как отыщим документы заманят нас в ловушку. Посему ты должен сначала устранить их, а уж потом преступать к основной задаче. Я же буду координировать твои действия.</text>
+	</string>
+        <string id="val_freedom_lucas_quest_first_dialog_6">
+		<text>Хорошо, где эти долговцы?</text>
+	</string>
+        <string id="val_freedom_lucas_quest_first_dialog_7">
+		<text>Отряд расположился неподалеку от базы, уничтожь их, после чего получишь дополнительные указания.</text>
+	</string>
+        <string id="val_freedom_lucas_quest_first_dialog_8">
+		<text>Договорились.</text>
+	</string>
+	<string id="val_freedom_lucas_quest_second_dialog_00">
+		<text>Ты выжил. Отлично. Эти мутанты, откуда они только поперли..</text>
+	</string>
+	<string id="val_freedom_lucas_quest_second_dialog_0">
+		<text>Это меня уже меньше всего волнует. Какого черта ты делал? Ждал пока меня сожрут, а уж потом с тепленькой тушки забрать документы и преспокойненько утюлепать, не заплатив...</text>
+	</string>
+	<string id="val_freedom_lucas_quest_second_dialog_1">
+		<text>Ты не прав, о чем ты вообще? Я не мог вмешаться. Да и зверье не оставило бы ничего ни от тебя, ни от документов, если бы им удалось тебя убить...</text>
+	</string>
+	<string id="val_freedom_lucas_quest_second_dialog_2">
+		<text>Это ты своим соратникам потом рассказывать будешь, без предоплаты ты не получишь свои документы.</text>
+	</string>
+	<string id="val_freedom_lucas_quest_second_dialog_3">
+		<text>Так я тебе и поверил. И что же помешало прийти мне на помощь?</text>
+	</string>
+	<string id="val_freedom_lucas_quest_second_dialog_4">
+		<text>Ладно, как видешь я жив. Ничего страшного не случилось. Что дальше?</text>
+	</string>
+        <string id="val_freedom_lucas_quest_second_dialog_22">
+		<text>Ты еще что, меня шантажировать вздумал? Хотя в чем-то ты прав. Риск должен быть оправдан. Но не в таком тоне тебе требовать от Свободы уступок.</text>
+	</string>
+        <string id="val_freedom_lucas_quest_second_dialog_222">
+		<text>Послушай, если ты не заплатишь, то я вообще больше не скажу ни слова, а просто прострелю тебе башку, твой труп растворю в ближайшей газировке, отдам документы Колмагору и скажу что мол Зона, брат. Не повезло другу Лукасу, когда на нас мутанты напали. Как тебе такой тон?</text>
+	</string>
+        <string id="val_freedom_lucas_quest_second_dialog_2222">
+		<text>Ну ладно, ладно. Вот твои деньги, за непредвиденные трудности. Доволен теперь? Дальше еще помочь нужно.</text>
+	</string>
+        <string id="val_freedom_lucas_quest_second_dialog_22222">
+		<text>Вполне. Что еще тебе нужно? Документы свои заберешь?</text>
+	</string>
+	<string id="val_freedom_lucas_quest_second_dialog_33">
+		<text>Струсил я. Банально струсил. Не могу я вынести когда на тебя несется стая монстров. Один, два - еще куда не шло. Но не более...</text>
+	</string>
+        <string id="val_freedom_lucas_quest_second_dialog_333">
+		<text>Во как. И как же ты тогда агентом фрименским стал. Со своими-то недостатками?</text>
+	</string>
+        <string id="val_freedom_lucas_quest_second_dialog_3333">
+		<text>Да как стал. Людей у нас в группировке, после того штурма ЧАЭС осталось по пальцам пересчитать. Никого лучше все-равно не нашлось. Ну так как поможешь мне еще?</text>
+	</string>
+        <string id="val_freedom_lucas_quest_second_dialog_33333">
+		<text>Ну что еще? Документы свои, кстати, забери.</text>
+	</string>
+	<string id="val_freedom_lucas_quest_second_dialog_44">
+		<text>Да что дальше. Колмогор выходил на связь. Он предупреждал о странной активности тварей в этом районе долины. Короче выбираться следует.</text>
+	</string>
+        <string id="val_freedom_lucas_quest_second_dialog_444">
+		<text>Забирай свои документы. Куда нам отсюда получше убраться?</text>
+	</string>
+        <string id="val_freedom_lucas_quest_second_dialog_5">
+		<text>Нужно уходить к дальнему блокпосту у фермы. Колмогор будет ждать нас там. С ним будут еще несколько людей из Свободы. Оттуда я смогу перейти на Кордон.</text>
+	</string>
+        <string id="val_freedom_lucas_quest_second_dialog_6">
+		<text>Как насчет моей доли?</text>
+	</string>
+	<string id="val_freedom_lucas_quest_second_dialog_7">
+		<text>Дальше с тобой расчитается Колмогор. Ты только доведи меня до их блокпоста живым.</text>
+	</string>
+	<string id="val_freedom_lucas_quest_second_dialog_8">
+		<text>Тогда выдвигаемся.</text>
+	</string>
+	<string id="val_night_zam_leader_kolmogor_quest_1_second_dialog_00">
+		<text>Здорово, майор. Вижу ты выполнил уговор. Похвально. документы с бывшей свободовской базы найдены?</text>
+	</string>
+	<string id="val_night_zam_leader_kolmogor_quest_1_second_dialog_0">
+		<text>Да, Лукасу было оказано содействие с моей стороны. Теперь что насчет моей доли?</text>
+	</string>
+	<string id="val_night_zam_leader_kolmogor_quest_1_second_dialog_1">
+		<text>Ну, ты сразу о деньгах. Ладно не будем тянять резину. Вот твои честно заработанные. Кстати могу предложить еще кое-что сверх этого. Только тебе самому придется выбрать награду.</text>
+	</string>
+	<string id="val_night_zam_leader_kolmogor_quest_1_second_dialog_2">
+		<text>Ты о чем? Недопонимаю.</text>
+	</string>
+	<string id="val_night_zam_leader_kolmogor_quest_1_second_dialog_3">
+		<text>Ну, вообщем ты сейчас куда путь держать собрался? Вот от твоего выбора и зависит какую дополнительную награду, а точнее наводку на нее получишь. Ну что, решение за тобой. Практически ничем не рискуешь. Только в одном месте может и не оказаться ничего стоящего.</text>
+	</string>
+	<string id="val_night_zam_leader_kolmogor_quest_1_second_dialog_4">
+		<text>На север пойду.</text>
+	</string>
+	<string id="val_night_zam_leader_kolmogor_quest_1_second_dialog_5">
+		<text>На запад двину.</text>
+	</string>
+	<string id="val_night_zam_leader_kolmogor_quest_1_second_dialog_6">
+		<text>Эх, на восток ведет моя дорога.</text>
+	</string>	
+	<string id="val_night_zam_leader_kolmogor_quest_1_second_dialog_44">
+		<text>Коли на север пойдешь, у моста будешь. Радиация там похлеще чем в Припяти бывает зашкаливает. Только не везде. Так ты вниз оглянуться не забудь, и будет тебе счастье. Ну, ступай.</text>
+	</string>
+	<string id="val_night_zam_leader_kolmogor_quest_1_second_dialog_444">
+		<text>Да уж, хороший совет. Загляну и вниз тоже.</text>
+	</string>	
+	<string id="val_night_zam_leader_kolmogor_quest_1_second_dialog_55">
+		<text>На запад вся Россия двинула, и ты туда же. Ну, ну. Как ферму обойдешь от забора напротив будки, немного прямо. Клондайк свой не упустишь. Ступай.</text>
+	</string>
+	<string id="val_night_zam_leader_kolmogor_quest_1_second_dialog_555">
+		<text>Лучше уж на запад, нежели чем на восток. Посмотрю, что за клондайк ты там припрятал..</text>
+	</string>	
+	<string id="val_night_zam_leader_kolmogor_quest_1_second_dialog_66">
+		<text>Эх, восток дело тонкое и хитрое, майор. Там, за высоким холмом, за камнями большими, совсем мало чего растет. Оттого и не пройдешь мимо. Удачи, сталкер.</text>
+	</string>
+	<string id="val_night_zam_leader_kolmogor_quest_1_second_dialog_666">
+		<text>Посмотрим, как там все хитро. Бывай.</text>
+	</string>	
+	<string id="val_night_zam_leader_kolmogor_quest_1_second_dialog_7">
+		<text>Да ну тебя, в аномалию, с таким выбором. Деньги ты мне заплатил, а искать непойми что и где я не собираюсь.</text>
+	</string>
+	<string id="val_night_zam_leader_kolmogor_quest_1_second_dialog_77">
+		<text>Ну как хочешь. Моя предложить, твоя отказаться. Удачи, сталкер.</text>
+	</string>
+	<string id="val_night_zam_leader_kolmogor_quest_1_second_dialog_777">
+		<text>И тебе не хворать.</text>
+	</string>

@@ -592,7 +592,7 @@ function se_smart_terrain:select_npc_job(npc_info)
 	-- Назначаем работу
 	if selected_job_id ~= npc_info.job_id and selected_job_link ~= nil then
 		-- Установить себе выбранную работу
-		--printf("NPC %s FOUND JOB %s SECTION %s", npc_info.se_obj:name(), selected_job_id, self.job_data[selected_job_link.job_id].section)
+		printf("NPC %s FOUND JOB %s SECTION %s", npc_info.se_obj:name(), selected_job_id, self.job_data[selected_job_link.job_id].section)
 		-- Если НПС был на работе - выгоняем его с нее.
 		if npc_info.job_link ~= nil then
 			self.npc_by_job_section[self.job_data[npc_info.job_link.job_id].section] = nil
@@ -617,11 +617,17 @@ function se_smart_terrain:select_npc_job(npc_info)
 
 	if npc_info.begin_job ~= true then
 		-- Проверяем, дошел ли персонаж до работы (то есть может ли он начать ее выполнение)
-		-- todo исправить ошибку
+		-- todo job_data будет nil если по какой-то причине сталкеру не нужна работа или её не было???
+		-- ! Сделаю пока проверку на nil а там посмотрим на поведение
 		local job_data = self.job_data[npc_info.job_id]
+		if job_data ~= nil then
 		-- Начинаем выполнять работу
 		printf("[smart_terrain %s] gulag: beginJob: obj=%s job= %s", self:name(), npc_info.se_obj:name(),
 			job_data.section)
+		end
+		if job_data == nil then
+			printf("[smart_terrain %s] gulag: beginJob: obj=%s Contain error. Job not found(nil)", self:name(), npc_info.se_obj:name())
+		end
 		-- Смена работы, очищаем память для оффлайнового обьекта.
 		db.offline_objects[npc_info.se_obj.id] = {}
 		npc_info.begin_job = true

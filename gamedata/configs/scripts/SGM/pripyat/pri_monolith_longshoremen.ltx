@@ -1,0 +1,51 @@
+[logic]
+active = move@longshoremen_start
+on_death = death
+
+[death]
+on_info = %+pri_monolith_longshoremen_death%
+
+[move@longshoremen_start]
+move_dest_number       = 44148
+move_look_subject      = actor
+move_state_when_center = guard
+move_state_when_move   = patrol
+move_combat_disable    = true
+move_stop_on_talk      = true
+invulnerable           = true
+meet                   = meet
+on_info                = {+pri_expiation_sin_3_repair_completed} nil %=release_npc%, {+pri_expiation_sin_3_fail} nil
+on_info2               = {+pri_expiation_sin_3_install !actor_talking} move@longshoremen_repair0
+
+[move@longshoremen_repair0]
+move_dest_number       = 38981
+move_state_when_center = guard
+move_state_when_move   = run
+move_combat_disable    = true
+on_signal              = on_center|move@longshoremen_repair1
+on_info                = {+pri_expiation_sin_3_repair_completed} nil %=release_npc%, {+pri_expiation_sin_3_fail} nil
+
+[move@longshoremen_repair1]
+move_dest_number       = 36488
+move_look_vertex       = 38153
+move_state_when_center = sit
+move_state_when_move   = walk
+move_combat_disable    = true
+on_timer               = 10000|move@longshoremen_repair2 %=play_s3d_sound(characters_voice\human_01\monolith\states\loot\loot_good_3)%
+on_info                = {+pri_expiation_sin_3_repair_completed} nil %=release_npc%, {+pri_expiation_sin_3_fail} nil
+
+[move@longshoremen_repair2]
+move_dest_number       = 36488
+move_look_vertex       = 38153
+move_state_when_center = sit_ass
+move_state_when_move   = walk
+move_combat_disable    = true
+on_timer               = 10000|move@longshoremen_repair1 %=play_s3d_sound(characters_voice\human_01\monolith\states\idle\idle_6)%
+on_info                = {+pri_expiation_sin_3_repair_completed} nil %=release_npc%, {+pri_expiation_sin_3_fail} nil
+
+[meet]
+abuse           = false
+use             = {!actor_enemy} true, false
+allow_break     = false
+meet_on_talking = false
+trade_enable    = false

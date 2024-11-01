@@ -1,0 +1,25 @@
+[logic]
+active = move@informer
+
+[move@informer]
+move_dest_number       = 1649845
+move_look_vertex       = 1649837
+move_state_when_center = ward_noweap
+move_state_when_move   = patrol
+meet                   = meet
+on_actor_dist_le_nvis  = 4|{-actor_entry_in_bandit} move@informer_threat %=play_s3d_sound(characters_voice\human_03\bandit\threat\back_off\backoff_:1:8)%
+
+[move@informer_threat]
+move_dest_number       = 1649845
+move_look_subject      = actor
+move_state_when_center = threat
+move_state_when_move   = patrol
+meet                   = meet
+on_actor_dist_ge_nvis  = 4|move@informer
+
+[meet]
+abuse           = false
+use             = {-actor_entry_in_bandit} false, {!actor_enemy} true, false
+allow_break     = true
+meet_on_talking = false
+trade_enable    = false

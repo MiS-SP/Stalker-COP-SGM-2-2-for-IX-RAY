@@ -1,0 +1,17 @@
+[dont_spawn_loot]
+
+[dont_spawn_character_supplies]
+
+[logic]
+active = animpoint
+
+
+[animpoint]
+cover_name = zat_b22_sc_cop_dead
+avail_animations = zat_b38_cop_dead
+reach_distance = 0.5
+on_info = {=animpoint_reached +zat_b38_cop_dead} %+zat_b22_trick_done%
+on_info2 = {+zat_b22_actor_can_hurt} %=kill_npc +zat_b38_cop_already_dead%
+on_info3 = {+zat_b38_cop_already_dead -zat_dv_spawn} %=spawn_object_in(dv_stalker_gluhar_case:zat_b38_stalker_cop_dead) +zat_dv_spawn%
+out_restr = zat_b22_stalker_medic_identified
+show_spot = false

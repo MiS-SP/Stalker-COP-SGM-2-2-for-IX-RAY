@@ -1,0 +1,11 @@
+[logic]
+active = mob_move
+on_death = death
+
+[death]
+on_info = %=jup_rasvet_attacked_update%
+
+[mob_move]
+target_point = 128515
+combat_ignore_cond = {=is_enemy_pertains(monster)} true
+

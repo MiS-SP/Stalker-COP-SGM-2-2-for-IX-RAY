@@ -1,0 +1,26 @@
+[logic]
+active = sr_idle@task
+
+[sr_idle@task]
+on_info  = {+jup_b212_jupiter_chimera_hunt_started -jup_b212_jupiter_chimera_hunt_give} sr_idle@center %=give_task(jup_b212_jupiter_chimera_hunt) +jup_b212_jupiter_chimera_hunt_give%
+on_info2 = {+jup_mercenary_check_plant_psi_atacked +jup_b212_jupiter_chimera_hunt_give} sr_idle@end
+on_info3 = {+jup_mercenary_check_plant_restriction -jup_mercenary_check_plant_psi_play} %+jup_mercenary_check_plant_psi_play =play_s2d_sound(ambient\fx2)%
+on_info4 = {+jup_mercenary_check_plant_waiting -jup_mercenary_check_plant_psi_atacked} sr_idle@psi_level_start
+
+[sr_idle@center]
+on_info  = {+jup_b212_jupiter_chimera_hunt_started -jup_b212_jupiter_chimera_hunt_give} %=give_task(jup_b212_jupiter_chimera_hunt) +jup_b212_jupiter_chimera_hunt_give%
+on_info2 = {+jup_mercenary_check_plant_psi_atacked +jup_b212_jupiter_chimera_hunt_give} sr_idle@end
+on_info3 = {+jup_mercenary_check_plant_restriction -jup_mercenary_check_plant_psi_play} %+jup_mercenary_check_plant_psi_play =play_s2d_sound(ambient\fx2)%
+on_info4 = {+jup_mercenary_check_plant_waiting -jup_mercenary_check_plant_psi_atacked} sr_idle@psi_level_start
+
+[sr_idle@psi_level_start]
+on_info  = {+jup_b212_jupiter_chimera_hunt_started -jup_b212_jupiter_chimera_hunt_give} %=give_task(jup_b212_jupiter_chimera_hunt) +jup_b212_jupiter_chimera_hunt_give%
+on_timer = 5000| sr_idle@psi_level_began %=play_s2d_sound(monsters\controller\controller_presence_l)%
+[sr_idle@psi_level_began]
+on_info  = {+jup_b212_jupiter_chimera_hunt_started -jup_b212_jupiter_chimera_hunt_give} %=give_task(jup_b212_jupiter_chimera_hunt) +jup_b212_jupiter_chimera_hunt_give%
+on_timer = 4500|sr_idle@psi_level_end %=jup_start_psi_sleep%
+[sr_idle@psi_level_end]
+on_info  = {+jup_b212_jupiter_chimera_hunt_started -jup_b212_jupiter_chimera_hunt_give} %=give_task(jup_b212_jupiter_chimera_hunt) +jup_b212_jupiter_chimera_hunt_give%
+on_timer = 1000|sr_idle@task %+jup_mercenary_check_plant_psi_atacked%
+
+[sr_idle@end]

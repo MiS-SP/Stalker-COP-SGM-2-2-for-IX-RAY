@@ -1,0 +1,15 @@
+[logic]
+active = move@bandit_sleep
+on_hit = hit
+
+[hit]
+on_info = {=hit_by_actor} %+zat_bandit_alkashi_hit%
+
+[move@bandit_sleep]
+move_dest_number       = 65618
+move_look_vertex       = 55816
+move_state_when_center = sleep
+move_state_when_move   = walk
+move_combat_disable    = true
+on_info                = {+zat_bandit_alkashi_hit} nil %=play_s3d_sound(characters_voice\human_02\bandit\fight\danger_sound\danger_7) =actor_enemy%
+on_info2               = {!actor_enemy =dist_to_actor_le(4)} %=actor_enemy +zat_bandit_alkashi_hit%

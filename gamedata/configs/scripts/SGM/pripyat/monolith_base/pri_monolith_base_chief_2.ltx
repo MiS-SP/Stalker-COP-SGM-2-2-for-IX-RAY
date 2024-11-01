@@ -1,0 +1,45 @@
+[logic]
+active = move@chief_ward
+on_death = death
+on_hit = hit
+
+[hit]
+on_info = {=present_hit_by_actor} %+pri_monolit_base_actor_hit +pri_monolit_base_hit%, %+pri_monolit_base_hit%
+
+[death]
+on_info = {=killed_by_actor} %+pri_monolit_base_alarm +pri_monolit_base_actor_hit%, %+pri_monolit_base_hit%
+
+[move@chief_ward]
+move_dest_number       = 199721
+move_look_vertex       = 190106
+move_state_when_center = guard
+move_state_when_move   = walk
+meet                   = meet
+on_actor_dist_le_nvis  = 6|{-actor_marked_by_zone_3_times} move@chief_threat %=play_s3d_sound(characters_voice\human_01\monolith\threat\back_off\backoff_:1:5)%
+on_info                = {!actor_enemy +pri_monolit_base_alarm} %=actor_enemy%
+on_info2               = {+actor_marked_by_zone_3_times} move@chief_pass
+on_info3               = {+pri_assault_monolith_base_sneak_move} nil %=release_npc%
+
+[move@chief_threat]
+move_dest_number       = 199721
+move_look_subject      = actor
+move_state_when_center = threat
+move_state_when_move   = walk
+meet                   = meet
+on_actor_dist_ge_nvis  = 6|move@chief_ward
+on_info                = {+actor_marked_by_zone_3_times} move@chief_pass
+on_info2               = {!actor_enemy +pri_monolit_base_alarm} %=actor_enemy =play_s3d_sound(characters_voice\human_01\monolith\fight\enemy\enemy_7)%
+
+[move@chief_pass]
+move_dest_number       = 224637
+move_look_vertex       = 210487
+move_state_when_center = sit
+move_state_when_move   = walk
+on_actor_dist_ge_nvis  = 100|nil %=release_npc%
+
+[meet]
+abuse           = true
+use             = {+actor_marked_by_zone_3_times} false, {+pri_monolit_base_chief_2_talk !actor_enemy !has_enemy} true, {-pri_monolit_base_chief_2_talk =dist_to_actor_le(3) !actor_enemy !has_enemy} self, false
+allow_break     = false
+meet_on_talking = false
+trade_enable    = false

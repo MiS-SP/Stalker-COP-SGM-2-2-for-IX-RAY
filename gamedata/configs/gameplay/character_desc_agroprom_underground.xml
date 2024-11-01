@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding="windows-1251"?>
+<xml>
+<!-----------------------------------======================----------------------------------------------->
+<!-----------------------------------'Подземелья Агропрома'----------------------------------------------->
+<!-----------------------------------======================----------------------------------------------->
+<specific_character id="agru_dead_ecolog" team_default="1">
+		<name>agru_dead_ecolog_name</name>
+		<icon>ui_inGame2_ecolog_military</icon>
+		<map_icon x="1" y="0">
+		</map_icon>
+		<bio></bio>
+		<class>agru_dead_ecolog</class>
+		<community>ecolog</community>
+		<terrain_sect>stalker_terrain</terrain_sect>
+		<snd_config>characters_voice\human_01\dolg\</snd_config>
+		<rank>230</rank>
+		<reputation>0</reputation>
+		<money min="5000" max="10300" infinitive="0" />
+		<visual>actors\stalker_special\stalker_breeder</visual>
+		<supplies>
+                 [spawn] \n
+#include "gameplay\character_items_nd.xml"
+#include "gameplay\character_food.xml"
+#include "gameplay\character_drugs.xml"
+             	</supplies>
+		<actor_dialog>actor_break_dialog</actor_dialog>
+#include "gameplay\character_criticals_4.xml"
+                #include "gameplay\character_dialogs.xml"
+</specific_character>
+<!-------------------------------------------------------------------------------------------------------->
+</xml>

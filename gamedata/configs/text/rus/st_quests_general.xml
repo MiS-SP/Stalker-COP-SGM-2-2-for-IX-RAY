@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+<string_table>
+	<string id="hide_from_surge_message">
+		<text>Внимание! До выброса осталось</text>
+	</string>
+	<string id="hide_from_surge_descr_1_a">
+		<text>Необходимо срочно бежать к ближайшему укрытию и спрятаться от выброса.</text>
+	</string>
+	<string id="hide_from_surge_descr_2_a">
+		<text>Во время выброса ни в коем случае нельзя покидать укрытие.</text>
+	</string>
+	<string id="hide_from_surge_name_1">
+		<text>Выброс: найти укрытие</text>
+	</string>
+	<string id="hide_from_surge_name_2">
+		<text>Выброс: переждать в укрытии</text>
+	</string>
+	<string id="val_lucas_mistery_quest_title0">
+		<text>Загадка Прошлого: встретьтесь со свободовским агентом.</text>
+	</string>
+	<string id="val_lucas_mistery_quest_text0">
+		<text>Зам. лидера ночных сталкеров Колмогор нанял вас для оказания помощи группировке Свобода. Отправляйтесь к указанному месту для встречи с их агентом.</text>
+	</string>
+	<string id="val_lucas_mistery_quest_title1">
+		<text>Загадка Прошлого: зафиксируйте сигнал, предаваемый с установленных антенн.</text>
+	</string>
+	<string id="val_lucas_mistery_quest_text1">
+		<text>Свободовский агент поручил провести сбор показаний для последующей расшифровки странного сигнала, который по непонятной им причине до сих пор продолжает транслироваться с трех старых, установленных еще во времена Войны кланов антенн...Снимите показания частоты сигнала с антенн, используя специальный сканер.</text>
+	</string>
+	<string id="val_lucas_mistery_quest_title2">
+		<text>Загадка Прошлого: передайте полученные данные Лукасу.</text>
+	</string>
+	<string id="val_lucas_mistery_quest_text2">
+		<text>Показатели частот и других параметров сигнала были успешно зафиксированы сканером во всех трех точках. Передайте Лукасу сканер с собранной информацией.</text>
+	</string>	
+	<string id="val_lucas_mistery_quest_title0_1">
+		<text>Загадка Прошлого: следуйте к первой антенне.</text>
+	</string>
+	<string id="val_lucas_mistery_quest_text0_1">
+		<text>Снимите показатели сигнала передаваемые с антенны около радиоактивного озера.</text>
+	</string>
+	<string id="val_lucas_mistery_quest_title0_2">
+		<text>Загадка Прошлого: следуйте ко второй антенне.</text>
+	</string>
+	<string id="val_lucas_mistery_quest_text0_2">
+		<text>Снимите показатели сигнала предаваемые с антенны находящейся на старой ферме.</text>
+	</string>
+	<string id="val_lucas_mistery_quest_title0_3">
+		<text>Загадка Прошлого: следуйте к третьей антенне.</text>
+	</string>
+	<string id="val_lucas_mistery_quest_text0_3">
+		<text>Снимите показатели сигнала предаваемые с антенны находящейся на бывшей свободовской базе.</text>
+	</string>	
+	<string id="val_lucas_mistery_quest_title3">
+		<text>Загадка Прошлого: уничтожьте отряд диверсантов долга.</text>
+	</string>
+	<string id="val_lucas_mistery_quest_text3">
+		<text>Свободовский агент Лукас поручил вам устранить конкурентов в вашем задании - сталкеров из группировки Долг.</text>
+	</string>
+        <string id="val_lucas_mistery_quest_title4">
+		<text>Загадка Прошлого: найдите тайники на территории бывшей свободовской базы.</text>
+	</string>
+	<string id="val_lucas_mistery_quest_text4">
+		<text>Долговские конкуренты за ценными сведениями уничтожены. Лукас получил точные данные о числе тайников. Необходимо отыскать три тайника, оставленные бывшими лидерами группировки Свобода.</text>
+	</string>
+        <string id="val_lucas_mistery_quest_title5">
+		<text>Загадка Прошлого: займите указанную точку для встpечи со свободовским агентом.</text>
+	</string>
+	<string id="val_lucas_mistery_quest_text5">
+		<text>Документы найдены. Дождитесь появления Лукаса.</text>
+	</string>
+        <string id="val_lucas_mistery_quest_title6">
+		<text>Загадка Прошлого: отбейте гон мутантов</text>
+	</string>
+	<string id="val_lucas_mistery_quest_text6">
+		<text>Документы найдены. Неожиданно территория базы была атакована мутантами. Уничтожьте их всех, чтобы появилась возможность передать найденные бумаги Лукасу.</text>
+	</string>
+        <string id="val_lucas_mistery_quest_title7">
+		<text>Загадка Прошлого: следуйте к свободовскому агенту</text>
+	</string>
+	<string id="val_lucas_mistery_quest_text7">
+		<text>Мутанты уничтожены. Лукас не решился вмешиваться и ожидал завершение гона в стороне. Найдите его.</text>
+	</string>
+        <string id="val_lucas_mistery_quest_title8">
+		<text>Загадка Прошлого: сопроводите Лукаса до южного блокпоста</text>
+	</string>
+	<string id="val_lucas_mistery_quest_text8">
+		<text>Все найденные документы переданы заказчику. Необходимо обеспечить ему прикрытие и сопроводить живым к южному блокпосту.</text>
+	</string>
+        <string id="val_lucas_mistery_quest_title9">
+		<text>Загадка Прошлого: получите у Колмогора награду</text>
+	</string>
+	<string id="val_lucas_mistery_quest_text9">
+		<text>Лукас в безопасности. Ваша задача выполнена. осталось лишь забрать награду.</text>
+	</string>
+</string_table>

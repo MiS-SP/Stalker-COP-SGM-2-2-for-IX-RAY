@@ -1,0 +1,774 @@
+<!----------------------=========---------------------->
+<!----------------------'Вопросы'---------------------->
+<!----------------------=========---------------------->
+	<string id="st_q_z_cell_1_descr">
+		<text>Какой из этих праздников бывает чаще — Новый год или 8 Марта?</text>
+	</string>
+	<string id="st_q_z_cell_1_a">
+		<text>Новый год</text>
+	</string>
+	<string id="st_q_z_cell_1_b">
+		<text>8 Марта</text>
+	</string>
+	<string id="st_q_z_cell_1_c">
+		<text>Когда как</text>
+	</string>
+	<string id="st_q_z_cell_1_d">
+		<text>Одинаково</text>
+	</string>
+	<string id="st_q_z_cell_2_descr">
+		<text>Как называется игра в ответы на вопросы, обычно объединенные общей тематикой?</text>
+	</string>
+	<string id="st_q_z_cell_2_a">
+		<text>Игорина</text>
+	</string>
+	<string id="st_q_z_cell_2_b">
+		<text>Викторина</text>
+	</string>
+	<string id="st_q_z_cell_2_c">
+		<text>Дмитровина</text>
+	</string>
+	<string id="st_q_z_cell_2_d">
+		<text>Георгина</text>
+	</string>
+	<string id="st_q_z_cell_3_descr">
+		<text>У какого из этих транспортных средств имеется стоп-кран?</text>
+	</string>
+	<string id="st_q_z_cell_3_a">
+		<text>Самолет</text>
+	</string>
+	<string id="st_q_z_cell_3_b">
+		<text>Вертолет</text>
+	</string>
+	<string id="st_q_z_cell_3_c">
+		<text>Автобус</text>
+	</string>
+	<string id="st_q_z_cell_3_d">
+		<text>Поезд</text>
+	</string>
+	<string id="st_q_z_cell_4_descr">
+		<text>В каком виде спорта участника могут снять с соревнований из-за рассечения брови?</text>
+	</string>
+	<string id="st_q_z_cell_4_a">
+		<text>Лыжи</text>
+	</string>
+	<string id="st_q_z_cell_4_b">
+		<text>Плавание</text>
+	</string>
+	<string id="st_q_z_cell_4_c">
+		<text>Фехтование</text>
+	</string>
+	<string id="st_q_z_cell_4_d">
+		<text>Бокс</text>
+	</string>
+	<string id="st_q_z_cell_5_descr">
+		<text>Какая игра зародилась в 1895 году в США?</text>
+	</string>
+	<string id="st_q_z_cell_5_a">
+		<text>Баскетбол</text>
+	</string>
+	<string id="st_q_z_cell_5_b">
+		<text>Волейбол</text>
+	</string>
+	<string id="st_q_z_cell_5_c">
+		<text>Бейсбол</text>
+	</string>
+	<string id="st_q_z_cell_5_d">
+		<text>Футбол</text>
+	</string>
+	<string id="st_q_z_cell_6_descr">
+		<text>Представитель какой профессии занимался в старину перевозкой и продажей соли?</text>
+	</string>
+	<string id="st_q_z_cell_6_a">
+		<text>Бортник</text>
+	</string>
+	<string id="st_q_z_cell_6_b">
+		<text>Коваль</text>
+	</string>
+	<string id="st_q_z_cell_6_c">
+		<text>Бондарь</text>
+	</string>
+	<string id="st_q_z_cell_6_d">
+		<text>Чумак</text>
+	</string>
+	<string id="st_q_z_cell_7_descr">
+		<text>Этого девятого номера называют "Зубастиком"?</text>
+	</string>
+	<string id="st_q_z_cell_7_a">
+		<text>Роналдо</text>
+	</string>
+	<string id="st_q_z_cell_7_b">
+		<text>Зидан</text>
+	</string>
+	<string id="st_q_z_cell_7_c">
+		<text>Рональдиньо</text>
+	</string>
+	<string id="st_q_z_cell_7_d">
+		<text>Рауль</text>
+	</string>
+	<string id="st_q_z_cell_8_descr">
+		<text>Какой порядковый номер буквы "Ы" в алфавите?</text>
+	</string>
+	<string id="st_q_z_cell_8_a">
+		<text>25</text>
+	</string>
+	<string id="st_q_z_cell_8_b">
+		<text>27</text>
+	</string>
+	<string id="st_q_z_cell_8_c">
+		<text>29</text>
+	</string>
+	<string id="st_q_z_cell_8_d">
+		<text>31</text>
+	</string>
+	<string id="st_q_z_cell_9_descr">
+		<text>Эти братья считаются создателями первого самолета?</text>
+	</string>
+	<string id="st_q_z_cell_9_a">
+		<text>Гримм</text>
+	</string>
+	<string id="st_q_z_cell_9_b">
+		<text>Одинаковы</text>
+	</string>
+	<string id="st_q_z_cell_9_c">
+		<text>Райт</text>
+	</string>
+	<string id="st_q_z_cell_9_d">
+		<text>Вайт</text>
+	</string>
+	<string id="st_q_z_cell_10_descr">
+		<text>Столица этой страны построена в форме самолета?</text>
+	</string>
+	<string id="st_q_z_cell_10_a">
+		<text>Бразилия</text>
+	</string>
+	<string id="st_q_z_cell_10_b">
+		<text>Монголия</text>
+	</string>
+	<string id="st_q_z_cell_10_c">
+		<text>Англия</text>
+	</string>
+	<string id="st_q_z_cell_10_d">
+		<text>Америка</text>
+	</string>
+	<string id="st_q_z_cell_11_descr">
+		<text>Как называются китайские чиновники?</text>
+	</string>
+	<string id="st_q_z_cell_11_a">
+		<text>Персики</text>
+	</string>
+	<string id="st_q_z_cell_11_b">
+		<text>Сливы</text>
+	</string>
+	<string id="st_q_z_cell_11_c">
+		<text>Апельсины</text>
+	</string>
+	<string id="st_q_z_cell_11_d">
+		<text>Мандарины</text>
+	</string>
+	<string id="st_q_z_cell_12_descr">
+		<text>Лидером какой музыкальной группы был Фред Меркьюри?</text>
+	</string>
+	<string id="st_q_z_cell_12_a">
+		<text>Дип Перпл</text>
+	</string>
+	<string id="st_q_z_cell_12_b">
+		<text>Роллинг Стоунз</text>
+	</string>
+	<string id="st_q_z_cell_12_c">
+		<text>Куин</text>
+	</string>
+	<string id="st_q_z_cell_12_d">
+		<text>Эй-Си-Ди-Си</text>
+	</string>
+	<string id="st_q_z_cell_13_descr">
+		<text>У Мамеда 10 овец. Все, кроме 9 сдохли. Сколько осталось овец?</text>
+	</string>
+	<string id="st_q_z_cell_13_a">
+		<text>1 овца</text>
+	</string>
+	<string id="st_q_z_cell_13_b">
+		<text>9 овец</text>
+	</string>
+	<string id="st_q_z_cell_13_c">
+		<text>10 овец</text>
+	</string>
+	<string id="st_q_z_cell_13_d">
+		<text>11 овец</text>
+	</string>
+	<string id="st_q_z_cell_14_descr">
+		<text>Первый поезд идёт из Киева в Донецк, а второй - из Донецка в Киев. Вышли они одновременно, но скорость первого в три раза больше скорости второго. Какой поезд будет дальше от Киева в момент встречи?</text>
+	</string>
+	<string id="st_q_z_cell_14_a">
+		<text>Первый</text>
+	</string>
+	<string id="st_q_z_cell_14_b">
+		<text>Второй</text>
+	</string>
+	<string id="st_q_z_cell_14_c">
+		<text>Третий</text>
+	</string>
+	<string id="st_q_z_cell_14_d">
+		<text>Одинаково</text>
+	</string>
+	<string id="st_q_z_cell_15_descr">
+		<text>Сколько цифр 7 в ряду чисел от "1" до "100"?</text>
+	</string>
+	<string id="st_q_z_cell_15_a">
+		<text>11</text>
+	</string>
+	<string id="st_q_z_cell_15_b">
+		<text>10</text>
+	</string>
+	<string id="st_q_z_cell_15_c">
+		<text>21</text>
+	</string>
+	<string id="st_q_z_cell_15_d">
+		<text>20</text>
+	</string>
+	<string id="st_q_z_cell_16_descr">
+		<text>Горело 14 свечей. Восемь погасло. Сколько осталось свечей?</text>
+	</string>
+	<string id="st_q_z_cell_16_a">
+		<text>6</text>
+	</string>
+	<string id="st_q_z_cell_16_b">
+		<text>7</text>
+	</string>
+	<string id="st_q_z_cell_16_c">
+		<text>8</text>
+	</string>
+	<string id="st_q_z_cell_16_d">
+		<text>14</text>
+	</string>
+	<string id="st_q_z_cell_17_descr">
+		<text>Кирпич весит 1 килограмм плюс ещё полкирпича. Сколько весит кирпич?</text>
+	</string>
+	<string id="st_q_z_cell_17_a">
+		<text>1 кг</text>
+	</string>
+	<string id="st_q_z_cell_17_b">
+		<text>1.5 кг</text>
+	</string>
+	<string id="st_q_z_cell_17_c">
+		<text>2 кг</text>
+	</string>
+	<string id="st_q_z_cell_17_d">
+		<text>2.5 кг</text>
+	</string>
+	<string id="st_q_z_cell_18_descr">
+		<text>Кто и когда высадился на Луне первым?</text>
+	</string>
+	<string id="st_q_z_cell_18_a">
+		<text>СССР в 1961 году</text>
+	</string>
+	<string id="st_q_z_cell_18_b">
+		<text>США в 1957 году</text>
+	</string>
+	<string id="st_q_z_cell_18_c">
+		<text>СССР в 1945 году</text>
+	</string>
+	<string id="st_q_z_cell_18_d">
+		<text>США в 1969 году</text>
+	</string>
+	<string id="st_q_z_cell_19_descr">
+		<text>Какой футболист в СССР первым получил золотой мяч?</text>
+	</string>
+	<string id="st_q_z_cell_19_a">
+		<text>Блохин</text>
+	</string>
+	<string id="st_q_z_cell_19_b">
+		<text>Беланов</text>
+	</string>
+	<string id="st_q_z_cell_19_c">
+		<text>Бессонов</text>
+	</string>
+	<string id="st_q_z_cell_19_d">
+		<text>Яшин</text>
+	</string>
+	<string id="st_q_z_cell_20_descr">
+		<text>На какой территории нашей планеты можно увидеть Солнце в северном направлении от горизонта?</text>
+	</string>
+	<string id="st_q_z_cell_20_a">
+		<text>Нигде</text>
+	</string>
+	<string id="st_q_z_cell_20_b">
+		<text>Летом в России</text>
+	</string>
+	<string id="st_q_z_cell_20_c">
+		<text>На экваторе</text>
+	</string>
+	<string id="st_q_z_cell_20_d">
+		<text>В южном полушарии</text>
+	</string>
+	<string id="st_q_z_cell_21_descr">
+		<text>За какой временной промежуток свет проходит расстояние от Земли до Луны и обратно?</text>
+	</string>
+	<string id="st_q_z_cell_21_a">
+		<text>За 3 секунды</text>
+	</string>
+	<string id="st_q_z_cell_21_b">
+		<text>За час</text>
+	</string>
+	<string id="st_q_z_cell_21_c">
+		<text>За 8 минут</text>
+	</string>
+	<string id="st_q_z_cell_21_d">
+		<text>За 3 наносекунды</text>
+	</string>
+	<string id="st_q_z_cell_22_descr">
+		<text>Где придумали майонез?</text>
+	</string>
+	<string id="st_q_z_cell_22_a">
+		<text>В Швейцарии</text>
+	</string>
+	<string id="st_q_z_cell_22_b">
+		<text>Во Франции</text>
+	</string>
+	<string id="st_q_z_cell_22_c">
+		<text>В Италии</text>
+	</string>
+	<string id="st_q_z_cell_22_d">
+		<text>В Испании</text>
+	</string>
+	<string id="st_q_z_cell_23_descr">
+		<text>Сколько углов в тетраэдре?</text>
+	</string>
+	<string id="st_q_z_cell_23_a">
+		<text>2</text>
+	</string>
+	<string id="st_q_z_cell_23_b">
+		<text>3</text>
+	</string>
+	<string id="st_q_z_cell_23_c">
+		<text>4</text>
+	</string>
+	<string id="st_q_z_cell_23_d">
+		<text>5</text>
+	</string>
+	<string id="st_q_z_cell_24_descr">
+		<text>Как зовут известного тирана?</text>
+	</string>
+	<string id="st_q_z_cell_24_a">
+		<text>Аттила</text>
+	</string>
+	<string id="st_q_z_cell_24_b">
+		<text>Аристотель</text>
+	</string>
+	<string id="st_q_z_cell_24_c">
+		<text>Кант</text>
+	</string>
+	<string id="st_q_z_cell_24_d">
+		<text>Йоханнсен</text>
+	</string>
+	<string id="st_q_z_cell_25_descr">
+		<text>Когда случилась авария на Чернобыльской АЭС?</text>
+	</string>
+	<string id="st_q_z_cell_25_a">
+		<text>26 марта 1986</text>
+	</string>
+	<string id="st_q_z_cell_25_b">
+		<text>30 июля 1999</text>
+	</string>
+	<string id="st_q_z_cell_25_c">
+		<text>5 ноября 1990</text>
+	</string>
+	<string id="st_q_z_cell_25_d">
+		<text>26 апреля 1986</text>
+	</string>
+	<string id="st_q_z_cell_26_descr">
+		<text>Когда Туманность Ориона видна на небе?</text>
+	</string>
+	<string id="st_q_z_cell_26_a">
+		<text>Зимой в Нижегородской области</text>
+	</string>
+	<string id="st_q_z_cell_26_b">
+		<text>Летом в Нижегородской области</text>
+	</string>
+	<string id="st_q_z_cell_26_c">
+		<text>В южном полушарии</text>
+	</string>
+	<string id="st_q_z_cell_26_d">
+		<text>На северном полюсе</text>
+	</string>
+	<string id="st_q_z_cell_27_descr">
+		<text>Сколько костей в теле взрослого человека?</text>
+	</string>
+	<string id="st_q_z_cell_27_a">
+		<text>206</text>
+	</string>
+	<string id="st_q_z_cell_27_b">
+		<text>350</text>
+	</string>
+	<string id="st_q_z_cell_27_c">
+		<text>244</text>
+	</string>
+	<string id="st_q_z_cell_27_d">
+		<text>254</text>
+	</string>
+	<string id="st_q_z_cell_28_descr">
+		<text>В каком году появилось цветное телевидение?</text>
+	</string>
+	<string id="st_q_z_cell_28_a">
+		<text>1939</text>
+	</string>
+	<string id="st_q_z_cell_28_b">
+		<text>1928</text>
+	</string>
+	<string id="st_q_z_cell_28_c">
+		<text>1925</text>
+	</string>
+	<string id="st_q_z_cell_28_d">
+		<text>1947</text>
+	</string>
+	<string id="st_q_z_cell_29_descr">
+		<text>Какую стартовую скорость гепард набирает за 2 секунды?</text>
+	</string>
+	<string id="st_q_z_cell_29_a">
+		<text>70 км/час</text>
+	</string>
+	<string id="st_q_z_cell_29_b">
+		<text>65 км/час</text>
+	</string>
+	<string id="st_q_z_cell_29_c">
+		<text>56км/час</text>
+	</string>
+	<string id="st_q_z_cell_29_d">
+		<text>85км/час</text>
+	</string>
+	<string id="st_q_z_cell_30_descr">
+		<text>Какие музыкальные инструменты были созданы человеком раньше?</text>
+	</string>
+	<string id="st_q_z_cell_30_a">
+		<text>Духовые</text>
+	</string>
+	<string id="st_q_z_cell_30_b">
+		<text>Клавишные</text>
+	</string>
+	<string id="st_q_z_cell_30_c">
+		<text>Ударные</text>
+	</string>
+	<string id="st_q_z_cell_30_d">
+		<text>Струнные</text>
+	</string>
+	<string id="st_q_z_cell_31_descr">
+		<text>С какой скоростью должна бежать собака, чтобы не слышать звона сковородки, привязанной к ее хвосту?</text>
+	</string>
+	<string id="st_q_z_cell_31_a">
+		<text>100 км/час</text>
+	</string>
+	<string id="st_q_z_cell_31_b">
+		<text>50 км/час</text>
+	</string>
+	<string id="st_q_z_cell_31_c">
+		<text>1 км/час</text>
+	</string>
+	<string id="st_q_z_cell_31_d">
+		<text>0 км/час</text>
+	</string>
+	<string id="st_q_z_cell_32_descr">
+		<text>Сколько очков получает гонщик Формулы-1 за первое место?</text>
+	</string>
+	<string id="st_q_z_cell_32_a">
+		<text>10</text>
+	</string>
+	<string id="st_q_z_cell_32_b">
+		<text>15</text>
+	</string>
+	<string id="st_q_z_cell_32_c">
+		<text>20</text>
+	</string>
+	<string id="st_q_z_cell_32_d">
+		<text>25</text>
+	</string>
+	<string id="st_q_z_cell_33_descr">
+		<text>Когда появился интернет?</text>
+	</string>
+	<string id="st_q_z_cell_33_a">
+		<text>13 января 1983 года</text>
+	</string>
+	<string id="st_q_z_cell_33_b">
+		<text>30 января 1983 года</text>
+	</string>
+	<string id="st_q_z_cell_33_c">
+		<text>1 января 1983 года</text>
+	</string>
+	<string id="st_q_z_cell_33_d">
+		<text>21 января 1983 года</text>
+	</string>
+	<string id="st_q_z_cell_34_descr">
+		<text>Где изобрели макаронные изделия?</text>
+	</string>
+	<string id="st_q_z_cell_34_a">
+		<text>Франция</text>
+	</string>
+	<string id="st_q_z_cell_34_b">
+		<text>Италия</text>
+	</string>
+	<string id="st_q_z_cell_34_c">
+		<text>Испания</text>
+	</string>
+	<string id="st_q_z_cell_34_d">
+		<text>Китай</text>
+	</string>
+	<string id="st_q_z_cell_35_descr">
+		<text>При какой температуре закипает вода в чайнике?</text>
+	</string>
+	<string id="st_q_z_cell_35_a">
+		<text>70°С</text>
+	</string>
+	<string id="st_q_z_cell_35_b">
+		<text>85°С</text>
+	</string>
+	<string id="st_q_z_cell_35_c">
+		<text>100°С</text>
+	</string>
+	<string id="st_q_z_cell_35_d">
+		<text>120°С</text>
+	</string>
+	<string id="st_q_z_cell_36_descr">
+		<text>В каком году началась первая мировая война?</text>
+	</string>
+	<string id="st_q_z_cell_36_a">
+		<text>1912</text>
+	</string>
+	<string id="st_q_z_cell_36_b">
+		<text>1913</text>
+	</string>
+	<string id="st_q_z_cell_36_c">
+		<text>1914</text>
+	</string>
+	<string id="st_q_z_cell_36_d">
+		<text>1915</text>
+	</string>
+	<string id="st_q_z_cell_37_descr">
+		<text>В каком году началась вторая мировая война?</text>
+	</string>
+	<string id="st_q_z_cell_37_a">
+		<text>1941</text>
+	</string>
+	<string id="st_q_z_cell_37_b">
+		<text>1939</text>
+	</string>
+	<string id="st_q_z_cell_37_c">
+		<text>1945</text>
+	</string>
+	<string id="st_q_z_cell_37_d">
+		<text>1914</text>
+	</string>
+	<string id="st_q_z_cell_38_descr">
+		<text>8+8*8=?</text>
+	</string>
+	<string id="st_q_z_cell_38_a">
+		<text>54</text>
+	</string>
+	<string id="st_q_z_cell_38_b">
+		<text>64</text>
+	</string>
+	<string id="st_q_z_cell_38_c">
+		<text>72</text>
+	</string>
+	<string id="st_q_z_cell_38_d">
+		<text>128</text>
+	</string>
+	<string id="st_q_z_cell_39_descr">
+		<text>Когда СССР официально распался?</text>
+	</string>
+	<string id="st_q_z_cell_39_a">
+		<text>21 июня 1990 года</text>
+	</string>
+	<string id="st_q_z_cell_39_b">
+		<text>8 декабря 1991 года</text>
+	</string>
+	<string id="st_q_z_cell_39_c">
+		<text>19 августа 1991 года</text>
+	</string>
+	<string id="st_q_z_cell_39_d">
+		<text>21 августа 1991 года</text>
+	</string>
+	<string id="st_q_z_cell_40_descr">
+		<text>Каким российским государем была продана Аляска Соединенным Штатам Америки?</text>
+	</string>
+	<string id="st_q_z_cell_40_a">
+		<text>Петром I</text>
+	</string>
+	<string id="st_q_z_cell_40_b">
+		<text>Екатериной II</text>
+	</string>
+	<string id="st_q_z_cell_40_c">
+		<text>Николаем I</text>
+	</string>
+	<string id="st_q_z_cell_40_d">
+		<text>Александром II</text>
+	</string>
+	<string id="st_q_z_cell_41_descr">
+		<text>Крик какого существа никогда не повторяет эхо?</text>
+	</string>
+	<string id="st_q_z_cell_41_a">
+		<text>Волка</text>
+	</string>
+	<string id="st_q_z_cell_41_b">
+		<text>Гиппопотама</text>
+	</string>
+	<string id="st_q_z_cell_41_c">
+		<text>Утки</text>
+	</string>
+	<string id="st_q_z_cell_41_d">
+		<text>Охотника</text>
+	</string>
+	<string id="st_q_z_cell_42_descr">
+		<text>Какое домашнее животное ни разу не упоминается в Библии?</text>
+	</string>
+	<string id="st_q_z_cell_42_a">
+		<text>Лошадь</text>
+	</string>
+	<string id="st_q_z_cell_42_b">
+		<text>Овца</text>
+	</string>
+	<string id="st_q_z_cell_42_c">
+		<text>Кошка</text>
+	</string>
+	<string id="st_q_z_cell_42_d">
+		<text>Вол</text>
+	</string>
+	<string id="st_q_z_cell_43_descr">
+		<text>Какой орган растет в течение всей жизни человека?</text>
+	</string>
+	<string id="st_q_z_cell_43_a">
+		<text>Ухо</text>
+	</string>
+	<string id="st_q_z_cell_43_b">
+		<text>Нос</text>
+	</string>
+	<string id="st_q_z_cell_43_c">
+		<text>Рот</text>
+	</string>
+	<string id="st_q_z_cell_43_d">
+		<text>Аппендикс</text>
+	</string>
+	<string id="st_q_z_cell_44_descr">
+		<text>Каких архитектурных элементов никогда не бывает в казино?</text>
+	</string>
+	<string id="st_q_z_cell_44_a">
+		<text>Окон</text>
+	</string>
+	<string id="st_q_z_cell_44_b">
+		<text>Дверей</text>
+	</string>
+	<string id="st_q_z_cell_44_c">
+		<text>Пилястр</text>
+	</string>
+	<string id="st_q_z_cell_44_d">
+		<text>Балюстрад</text>
+	</string>
+	<string id="st_q_z_cell_45_descr">
+		<text>Сколько букв в Русском алфавите?</text>
+	</string>
+	<string id="st_q_z_cell_45_a">
+		<text>31</text>
+	</string>
+	<string id="st_q_z_cell_45_b">
+		<text>32</text>
+	</string>
+	<string id="st_q_z_cell_45_c">
+		<text>33</text>
+	</string>
+	<string id="st_q_z_cell_45_d">
+		<text>34</text>
+	</string>
+	<string id="st_q_z_cell_46_descr">
+		<text>Что невозможно сделать с открытыми глазами?</text>
+	</string>
+	<string id="st_q_z_cell_46_a">
+		<text>Икнуть</text>
+	</string>
+	<string id="st_q_z_cell_46_b">
+		<text>Чихнуть</text>
+	</string>
+	<string id="st_q_z_cell_46_c">
+		<text>Зевнуть</text>
+	</string>
+	<string id="st_q_z_cell_46_d">
+		<text>Поспать</text>
+	</string>
+	<string id="st_q_z_cell_47_descr">
+		<text>Какая самая сильная мышца в человеческом организме?</text>
+	</string>
+	<string id="st_q_z_cell_47_a">
+		<text>Сердце</text>
+	</string>
+	<string id="st_q_z_cell_47_b">
+		<text>Бицепс</text>
+	</string>
+	<string id="st_q_z_cell_47_c">
+		<text>Трицепс</text>
+	</string>
+	<string id="st_q_z_cell_47_d">
+		<text>Язык</text>
+	</string>
+	<string id="st_q_z_cell_48_descr">
+		<text>Какое слово в китайском языке обозначается таким же иероглифом, как слово "бодрость"?</text>
+	</string>
+	<string id="st_q_z_cell_48_a">
+		<text>Кофе</text>
+	</string>
+	<string id="st_q_z_cell_48_b">
+		<text>Водка</text>
+	</string>
+	<string id="st_q_z_cell_48_c">
+		<text>Чай</text>
+	</string>
+	<string id="st_q_z_cell_48_d">
+		<text>Морс</text>
+	</string>
+	<string id="st_q_z_cell_49_descr">
+		<text>Без какого блюда невозможен обед на Руси?</text>
+	</string>
+	<string id="st_q_z_cell_49_a">
+		<text>Хлеб</text>
+	</string>
+	<string id="st_q_z_cell_49_b">
+		<text>Картошка</text>
+	</string>
+	<string id="st_q_z_cell_49_c">
+		<text>Борщ</text>
+	</string>
+	<string id="st_q_z_cell_49_d">
+		<text>Пельмени</text>
+	</string>
+	<string id="st_q_z_cell_50_descr">
+		<text>Сколько патронов вмещает в себя магазин от автомата АК102?</text>
+	</string>
+	<string id="st_q_z_cell_50_a">
+		<text>29</text>
+	</string>
+	<string id="st_q_z_cell_50_b">
+		<text>30</text>
+	</string>
+	<string id="st_q_z_cell_50_c">
+		<text>31</text>
+	</string>
+	<string id="st_q_z_cell_50_d">
+		<text>32</text>
+	</string>
+<!----------------------=========-------------------->
+<!----------------------'Наводки'-------------------->
+<!----------------------=========-------------------->
+	<string id="st_a_z_cell_1_descr">
+		<text>Место схрона: Скадовск. Дополнительная информация: позади Коряги, за решеткой.</text>
+	</string>
+	<string id="st_a_z_cell_2_descr">
+		<text>Место схрона: Скадовск. Дополнительная информация: за спиной у Мстителя.</text>
+	</string>
+	<string id="st_a_z_cell_3_descr">
+		<text>Место схрона: Скадовск. Дополнительная информация: в комнате, что напротив телохранителя.</text>
+	</string>
+	<string id="st_a_z_cell_4_descr">
+		<text>Место схрона: Шевченко. Дополнительная информация: в контейнере.</text>
+	</string>
+	<string id="st_a_z_cell_5_descr">
+		<text>Место схрона: Аномалия "Железный Лес". Дополнительная информация: в кузове ЗИЛа.</text>
+	</string>
+	<string id="st_a_z_cell_6_descr">
+		<text>Место схрона: Портовые Краны. Дополнительная информация: в кузове ЗИЛа.</text>
+	</string>

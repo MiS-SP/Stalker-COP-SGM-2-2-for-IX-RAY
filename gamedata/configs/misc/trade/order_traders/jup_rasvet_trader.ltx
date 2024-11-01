@@ -1,0 +1,44 @@
+#include "default_sections.ltx"
+
+[trader]
+buy_condition  = {+sgm_achievements_client =check_night_interval(22:5)} order_trader_buy_upgraded_hidden, {+sgm_achievements_client} order_trader_buy_upgraded, order_trader_buy
+sell_condition = {+sgm_achievements_client} order_trader_sell_upgraded, order_trader_sell
+buy_supplies   = {+jup_rasvet_trader_weapon =check_trader_order_item(wpn_weapon)} supplies_weapon,{+jup_rasvet_trader_cs_specnaz_outfit =check_trader_order_item(cs_specnaz_outfit)} supplies_cs_specnaz_outfit,{+jup_rasvet_trader_csky_exo_outfit =check_trader_order_item(csky_exo_outfit)} supplies_csky_exo_outfit,order_trader_supplies
+buy_item_condition_factor = {+sgm_achievements_client} 0.5, 0.6
+
+[order_trader_supplies]
+minetrap_detector               = 1,0.80
+mp3_player                      = 1,0.99
+personal_marker                 = 1,0.60
+army_timer                      = 1,0.99
+personal_rukzak		        = 2,0.99
+repair_arms_box	                = 1,0.70
+repair_outfit_box	        = 1,0.70
+detector_battery_1		= 2,0.99
+detector_battery_2		= 2,0.70
+detector_battery_3		= 2,0.50
+demolution_ballon		= 1,0.80
+demolution_kanistra		= 3,0.80
+demolution_barrel		= 1,0.80
+ammo_box_10_vog			= 1,0.50
+ammo_box_10_m209		= 1,0.50
+activate_knife_m4		= 1,0.99
+
+[supplies_weapon]:order_trader_supplies
+
+[supplies_cs_specnaz_outfit]:order_trader_supplies
+cs_specnaz_outfit		= 1,1.0
+[supplies_csky_exo_outfit]:order_trader_supplies
+csky_exo_outfit		        = 1,1.0
+
+[order_trader_buy]:default_order_trader_buy
+[order_trader_buy_upgraded]:default_order_trader_buy_upgraded
+[order_trader_buy_upgraded_hidden]:default_order_trader_buy_upgraded_hidden
+
+[order_trader_sell]:default_order_trader_sell
+cs_specnaz_outfit		= 1,1.3
+csky_exo_outfit		        = 1,1.4
+
+[order_trader_sell_upgraded]:default_order_trader_sell_upgraded
+cs_specnaz_outfit		= 1,1
+csky_exo_outfit			= 1,1

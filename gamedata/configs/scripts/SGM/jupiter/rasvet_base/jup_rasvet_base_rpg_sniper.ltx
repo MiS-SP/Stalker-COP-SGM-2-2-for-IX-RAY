@@ -1,0 +1,23 @@
+[logic]
+active = move@tunnel_rpg
+
+[move@tunnel_rpg]
+scheme_type         = shooter
+shooter_pos         = 204130
+shooter_fire_look   = 273975,269270
+shooter_idle_look   = 273975
+shooter_clip        = 50
+shooter_reload      = 500
+shooter_type_wpn    = grenade_launcher
+shooter_move_state  = assault
+shooter_idle_state  = threat
+shooter_fire_state  = threat_fire
+shooter_avail_cond  = {+jup_beat_from_monsters_rpg_allow} true, false
+death_cleaning      = true|weapon
+combat_ignore_cond  = true
+combat_ignore_keep_when_attacked = true
+on_info             = {+jup_beat_from_monsters_rpg_off} nil, {+jup_beat_from_monsters_safely} nil, {+jup_beat_from_monsters_fail} nil
+
+
+
+

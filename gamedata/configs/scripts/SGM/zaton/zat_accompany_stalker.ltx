@@ -1,0 +1,77 @@
+[logic]
+active = move@vagrant_walking_one
+on_death = death
+on_hit = hit
+post_combat_time = 5,10
+
+[hit]
+on_info = %+zat_accompany_stalker_hit%
+
+[death]
+on_info = {-zat_accompany_to_boat_start} %+zat_accompany_stalker_death%,{+zat_accompany_to_boat_start -zat_accompany_to_boat_daleko} %+zat_accompany_stalker_death +zat_accompany_to_boat_i_am_alone%
+
+[move@vagrant_walking_one]
+move_avail_speak       = 15|wait|true|true
+move_dest_number       = 311389
+move_state_when_center = guard
+move_state_when_move   = patrol
+move_stop_on_talk      = true
+on_signal              = on_center|move@vagrant_walking_two
+on_info                = {+zat_accompany_to_boat_start -zat_accompany_to_boat_complete} move@accompany_pursue
+meet                   = meet
+
+[move@vagrant_walking_two]
+move_avail_speak       = 15|wait|true|true
+move_dest_number       = 290834
+move_state_when_center = guard
+move_state_when_move   = patrol
+move_stop_on_talk      = true
+on_signal              = on_center|move@vagrant_walking_one
+on_info                = {+zat_accompany_to_boat_start -zat_accompany_to_boat_complete} move@accompany_pursue
+meet                   = meet
+
+[move@accompany_pursue]
+scheme_type            = patrol
+patrol_count_path      = 15
+patrol_path_1          = 393388
+patrol_path_1_state    = rush
+patrol_path_2          = 517628
+patrol_path_2_state    = rush
+patrol_path_3          = 597306
+patrol_path_3_state    = rush
+patrol_path_4          = 690040
+patrol_path_4_state    = rush
+patrol_path_5          = 786661
+patrol_path_5_state    = rush
+patrol_path_6          = 859798
+patrol_path_6_state    = rush
+patrol_path_7          = 918418
+patrol_path_7_state    = rush
+patrol_path_8          = 980374
+patrol_path_8_state    = rush
+patrol_path_9          = 1020355
+patrol_path_9_state    = rush
+patrol_path_10         = 1107292
+patrol_path_10_state   = rush
+patrol_path_11         = 1117039
+patrol_path_11_state   = rush
+patrol_path_12         = 1133012
+patrol_path_12_state   = rush
+patrol_path_13         = 1161336
+patrol_path_13_state   = rush
+patrol_path_14         = 1169728
+patrol_path_14_state   = run
+approach_state         = hide_na|18|>
+on_patrol_path         = 14|move@vagrant_walking_two %=send_tip(zat_accompany_final_text:portrait_neutral_1:zat_accompany_stalker_title:5000)%
+on_info                = {+zat_accompany_to_boat_start -zat_accompany_to_boat_complete -zat_accompany_to_boat_daleko =dist_to_actor_ge(90)} move@vagrant_walking_two %+zat_accompany_to_boat_daleko =release_npc%, {+zat_accompany_to_boat_complete} move@vagrant_walking_two
+on_info2               = {=zat_accompany_stalker_ambush_cond -zat_accompany_to_boat_ambush} %+zat_accompany_to_boat_ambush =zat_accompany_stalker_ambush_action%
+
+[on_corpse_use]
+run_action           = zat_accompany_to_boat
+
+[meet]
+abuse                = true
+use                  = {=dist_to_actor_le(3) -zat_accompany_to_boat_start -zat_accompany_to_boat_sam !actor_enemy !has_enemy} self, false
+allow_break          = false
+meet_on_talking      = false
+trade_enable         = false

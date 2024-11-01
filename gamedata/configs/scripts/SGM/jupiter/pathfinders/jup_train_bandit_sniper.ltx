@@ -1,0 +1,20 @@
+[logic]
+active = move@sniper
+
+[move@sniper]
+scheme_type         = shooter
+shooter_pos         = 564533
+shooter_fire_look   = enemy
+shooter_idle_look   = actor
+shooter_clip        = -1
+shooter_reload      = 1
+shooter_type_wpn    = rifle
+shooter_need_see    = true
+shooter_need_dist   = 80
+shooter_move_state  = walk
+shooter_idle_state  = threat
+shooter_fire_state  = threat_fire
+combat_ignore_cond  = true
+combat_ignore_keep_when_attacked = true
+on_info             = {!actor_enemy} %=actor_enemy%
+on_info2            = {=dist_to_actor_le(15)} nil

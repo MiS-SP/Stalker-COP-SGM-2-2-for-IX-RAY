@@ -1,0 +1,13 @@
+[logic]
+active = move@battle
+on_death = death
+
+[death]
+on_info = %+jup_killer_caravan_commander_death =jup_killer_caravan_update%
+
+[move@battle]
+move_dest_number       = 559366
+move_look_vertex       = 572029
+move_state_when_center = hide
+move_state_when_move   = patrol
+on_info                = {-jup_killer_caravan_commander_death +jup_examine_caravan_giant_killed} nil %=kill_npc%

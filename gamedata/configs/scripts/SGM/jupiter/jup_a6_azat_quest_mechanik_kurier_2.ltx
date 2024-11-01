@@ -1,0 +1,37 @@
+[logic]
+active = move@wait_help
+on_death = death
+
+[death]
+on_info = %+jup_a6_azot_quest_mech_kutier_2_dead%
+
+
+[move@wait_help]
+move_dest_number	= 1358134
+move_look_vertex	= 1359300
+move_state_when_center	= wounded_heavy
+move_state_when_move	= walk
+move_combat_disable	= true
+meet			= meet
+wounded			= wounded@freedom
+on_info			= {+jup_a6_azot_quest_mech_kutier_2 =dist_to_actor_ge(30)}  %=jup_a6_azot_quest_mech_kutier_2_charge%
+
+[wounded@freedom]
+hp_state               = 100|wounded_heavy@help_heavy
+hp_state_see           = 100|wounded_heavy@help_heavy
+hp_victim              = 100|nil
+hp_cover               = 100|false
+hp_fight               = 100|false
+autoheal               = false
+not_for_help           = true
+enable_talk            = true
+
+[meet]
+abuse           = false
+use             = true
+allow_break     = true
+meet_on_talking = false
+trade_enable    = false
+
+
+

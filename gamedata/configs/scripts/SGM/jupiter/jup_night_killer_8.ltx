@@ -1,0 +1,75 @@
+[logic]
+active = move@night_killer_leader
+on_death = death
+on_hit = hit
+
+[hit]
+on_info = {=present_hit_by_actor} %+jup_destroy_night_killers_f_hit%
+
+[death]
+on_info = %+jup_night_killer_8_death =jup_night_killers_check =autosave_game(save_jup_destroy_night_killers_overtaken)%
+
+[move@night_killer_leader]
+scheme_type            = shooter
+shooter_pos            = 1154748
+shooter_fire_look      = enemy
+shooter_idle_look      = actor
+shooter_clip           = 10000
+shooter_reload         = 600
+shooter_type_wpn       = sniper
+shooter_need_see       = true
+shooter_need_dist      = 100
+shooter_move_state     = walk
+shooter_idle_state     = threat
+shooter_fire_state     = threat_fire
+shooter_avail_cond     = {+jup_destroy_night_killers_prishol} true, false
+invulnerable           = true
+combat_ignore_cond     = true
+combat_ignore_keep_when_attacked = true
+approach_info          = jup_destroy_night_killers_pobeg|20|<
+on_info                = {-jup_destroy_night_killers_podskazka +jup_destroy_night_killers_f_hit} %+jup_destroy_night_killers_podskazka =run_tutorial(jup_night_runner_armor)%
+on_info2               = {!actor_enemy} %=actor_enemy%, {+jup_destroy_night_killers_nabegalsa} nil
+on_info3               = {-jup_destroy_night_killers_nabegalsa +jup_destroy_night_killers_polputi} move@pobeg_2
+on_info4               = {+jup_destroy_night_killers_pobeg -jup_destroy_night_killers_polputi} move@pobeg_0 %=autosave_game(save_jup_destroy_night_killers_sprint)%
+
+[move@pobeg_0]
+move_dest_number       = 1319937
+move_state_when_center = guard
+move_state_when_move   = sprint
+move_combat_disable    = true
+invulnerable           = true
+combat_ignore_cond     = true
+combat_ignore_keep_when_attacked = true
+on_signal              = on_center|move@pobeg_1
+
+[move@pobeg_1]
+move_dest_number       = 1388983
+move_state_when_center = guard
+move_state_when_move   = sprint
+move_combat_disable    = true
+invulnerable           = true
+combat_ignore_cond     = true
+combat_ignore_keep_when_attacked = true
+on_signal              = on_center|move@pobeg_2 %+jup_destroy_night_killers_polputi%
+
+[move@pobeg_2]
+move_dest_number       = 1339269
+move_state_when_center = guard
+move_state_when_move   = sprint
+move_combat_disable    = true
+invulnerable           = true
+combat_ignore_cond     = true
+combat_ignore_keep_when_attacked = true
+on_signal              = on_center|move@pobeg_3
+
+[move@pobeg_3]
+move_dest_number       = 1369399
+move_state_when_center = idle
+move_state_when_move   = sprint
+move_combat_disable    = true
+invulnerable           = true
+combat_ignore_cond     = true
+combat_ignore_keep_when_attacked = true
+on_signal              = on_center|nil %+jup_destroy_night_killers_nabegalsa%
+
+

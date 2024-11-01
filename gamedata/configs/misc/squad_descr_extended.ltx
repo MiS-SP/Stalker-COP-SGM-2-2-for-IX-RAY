@@ -1,0 +1,530 @@
+[smart_checker_squad]:online_offline_group
+faction      = stalker
+npc          = sim_default_stalker_0, sim_default_stalker_1, sim_default_stalker_2
+target_smart = zat_sim_15:zat_sim_16:loop
+
+[community_war_squad]:online_offline_group
+assault_squad = true
+community_war_squad = true
+;---------------------------------------------------------------------------------------;
+;                                      Затон                                            ;
+;---------------------------------------------------------------------------------------;
+[zat_mad_dog_squad]:online_offline_group
+faction      = alfa_force
+npc          = zat_mad_dog_commander,alfa_novice_specnaz1,alfa_novice_specnaz2,alfa_novice_sniper1,alfa_novice_sniper2,alfa_novice_shotgunner
+story_id     = zat_mad_dog_squad
+target_smart = zat_b100
+on_death     = %+zat_mad_dog_squad_death =scenario_autosave(st_save_zat_mad_dog_is_destroyed)%
+
+[zat_alfa_squad_1_novice]:online_offline_group
+faction      = alfa_force
+npc          = alfa_novice_commander,alfa_novice_specnaz1,alfa_novice_specnaz2,alfa_novice_sniper1,alfa_novice_sniper2,alfa_novice_shotgunner
+story_id     = zat_alfa_squad_1_novice
+target_smart = zat_sim_9:zat_sim_10:zat_sim_15:zat_sim_16:zat_sim_21:zat_sim_24:zat_sim_14:loop
+
+[zat_alfa_squad_1_regular]:online_offline_group
+faction      = alfa_force
+npc          = alfa_regular_commander,alfa_regular_specnaz1,alfa_regular_specnaz2,alfa_regular_sniper1,alfa_regular_sniper2,alfa_regular_shotgunner
+story_id     = zat_alfa_squad_1_regular
+target_smart = zat_sim_9:zat_sim_10:zat_sim_15:zat_sim_16:zat_sim_21:zat_sim_24:zat_sim_14:loop
+
+[zat_alfa_squad_1_experienced]:online_offline_group
+faction      = alfa_force
+npc          = alfa_experienced_commander,alfa_experienced_specnaz1,alfa_experienced_specnaz2,alfa_experienced_sniper1,alfa_experienced_sniper2,alfa_experienced_shotgunner
+story_id     = zat_alfa_squad_1_experienced
+target_smart = zat_sim_9:zat_sim_10:zat_sim_15:zat_sim_16:zat_sim_21:zat_sim_24:zat_sim_14:loop
+
+[zat_alfa_squad_1_veteran]:online_offline_group
+faction      = alfa_force
+npc          = alfa_veteran_commander,alfa_veteran_specnaz1,alfa_veteran_specnaz2,alfa_veteran_sniper1,alfa_veteran_sniper2,alfa_veteran_shotgunner
+story_id     = zat_alfa_squad_1_veteran
+target_smart = zat_sim_9:zat_sim_10:zat_sim_15:zat_sim_16:zat_sim_21:zat_sim_24:zat_sim_14:loop
+
+[zat_alfa_squad_1_master]:online_offline_group
+faction      = alfa_force
+npc          = alfa_master_commander,alfa_master_specnaz1,alfa_master_specnaz2,alfa_master_sniper1,alfa_master_sniper2,alfa_master_shotgunner
+story_id     = zat_alfa_squad_1_master
+target_smart = zat_sim_9:zat_sim_10:zat_sim_15:zat_sim_16:zat_sim_21:zat_sim_24:zat_sim_14:loop
+
+[zat_alfa_squad_2_novice]:online_offline_group
+faction      = alfa_force
+npc          = alfa_novice_commander,alfa_novice_specnaz1,alfa_novice_specnaz2,alfa_novice_sniper1,alfa_novice_sniper2,alfa_novice_shotgunner
+story_id     = zat_alfa_squad_2_novice
+target_smart = zat_sim_10:zat_sim_21:zat_sim_14:zat_sim_24:zat_sim_9:zat_sim_16:zat_sim_15:loop
+
+[zat_alfa_squad_2_regular]:online_offline_group
+faction      = alfa_force
+npc          = alfa_regular_commander,alfa_regular_specnaz1,alfa_regular_specnaz2,alfa_regular_sniper1,alfa_regular_sniper2,alfa_regular_shotgunner
+story_id     = zat_alfa_squad_2_regular
+target_smart = zat_sim_10:zat_sim_21:zat_sim_14:zat_sim_24:zat_sim_9:zat_sim_16:zat_sim_15:loop
+
+[zat_alfa_squad_2_experienced]:online_offline_group
+faction      = alfa_force
+npc          = alfa_experienced_commander,alfa_experienced_specnaz1,alfa_experienced_specnaz2,alfa_experienced_sniper1,alfa_experienced_sniper2,alfa_experienced_shotgunner
+story_id     = zat_alfa_squad_2_experienced
+target_smart = zat_sim_10:zat_sim_21:zat_sim_14:zat_sim_24:zat_sim_9:zat_sim_16:zat_sim_15:loop
+
+[zat_alfa_squad_2_veteran]:online_offline_group
+faction      = alfa_force
+npc          = alfa_veteran_commander,alfa_veteran_specnaz1,alfa_veteran_specnaz2,alfa_veteran_sniper1,alfa_veteran_sniper2,alfa_veteran_shotgunner
+story_id     = zat_alfa_squad_2_veteran
+target_smart = zat_sim_10:zat_sim_21:zat_sim_14:zat_sim_24:zat_sim_9:zat_sim_16:zat_sim_15:loop
+
+[zat_alfa_squad_2_master]:online_offline_group
+faction      = alfa_force
+npc          = alfa_master_commander,alfa_master_specnaz1,alfa_master_specnaz2,alfa_master_sniper1,alfa_master_sniper2,alfa_master_shotgunner
+story_id     = zat_alfa_squad_2_master
+target_smart = zat_sim_10:zat_sim_21:zat_sim_14:zat_sim_24:zat_sim_9:zat_sim_16:zat_sim_15:loop
+
+[zat_alfa_squad_3_novice]:online_offline_group
+faction      = alfa_force
+npc          = alfa_novice_commander,alfa_novice_specnaz1,alfa_novice_specnaz2,alfa_novice_sniper1,alfa_novice_sniper2,alfa_novice_shotgunner
+story_id     = zat_alfa_squad_3_novice
+target_smart = zat_sim_14:zat_sim_15:zat_sim_16:zat_sim_9:zat_sim_21:zat_sim_24:zat_sim_10:loop
+
+[zat_alfa_squad_3_regular]:online_offline_group
+faction      = alfa_force
+npc          = alfa_regular_commander,alfa_regular_specnaz1,alfa_regular_specnaz2,alfa_regular_sniper1,alfa_regular_sniper2,alfa_regular_shotgunner
+story_id     = zat_alfa_squad_3_regular
+target_smart = zat_sim_14:zat_sim_15:zat_sim_16:zat_sim_9:zat_sim_21:zat_sim_24:zat_sim_10:loop
+
+[zat_alfa_squad_3_experienced]:online_offline_group
+faction      = alfa_force
+npc          = alfa_experienced_commander,alfa_experienced_specnaz1,alfa_experienced_specnaz2,alfa_experienced_sniper1,alfa_experienced_sniper2,alfa_experienced_shotgunner
+story_id     = zat_alfa_squad_3_experienced
+target_smart = zat_sim_14:zat_sim_15:zat_sim_16:zat_sim_9:zat_sim_21:zat_sim_24:zat_sim_10:loop
+
+[zat_alfa_squad_3_veteran]:online_offline_group
+faction      = alfa_force
+npc          = alfa_veteran_commander,alfa_veteran_specnaz1,alfa_veteran_specnaz2,alfa_veteran_sniper1,alfa_veteran_sniper2,alfa_veteran_shotgunner
+story_id     = zat_alfa_squad_3_veteran
+target_smart = zat_sim_14:zat_sim_15:zat_sim_16:zat_sim_9:zat_sim_21:zat_sim_24:zat_sim_10:loop
+
+[zat_alfa_squad_3_master]:online_offline_group
+faction      = alfa_force
+npc          = alfa_master_commander,alfa_master_specnaz1,alfa_master_specnaz2,alfa_master_sniper1,alfa_master_sniper2,alfa_master_shotgunner
+story_id     = zat_alfa_squad_3_master
+target_smart = zat_sim_14:zat_sim_15:zat_sim_16:zat_sim_9:zat_sim_21:zat_sim_24:zat_sim_10:loop
+
+[zat_alfa_squad_4_novice]:online_offline_group
+faction      = alfa_force
+npc          = alfa_novice_commander,alfa_novice_specnaz1,alfa_novice_specnaz2,alfa_novice_sniper1,alfa_novice_sniper2,alfa_novice_shotgunner
+story_id     = zat_alfa_squad_4_novice
+target_smart = zat_sim_15:zat_sim_10:zat_sim_9:zat_sim_14:zat_sim_24:zat_sim_16:zat_sim_21:loop
+
+[zat_alfa_squad_4_regular]:online_offline_group
+faction      = alfa_force
+npc          = alfa_regular_commander,alfa_regular_specnaz1,alfa_regular_specnaz2,alfa_regular_sniper1,alfa_regular_sniper2,alfa_regular_shotgunner
+story_id     = zat_alfa_squad_4_regular
+target_smart = zat_sim_15:zat_sim_10:zat_sim_9:zat_sim_14:zat_sim_24:zat_sim_16:zat_sim_21:loop
+
+[zat_alfa_squad_4_experienced]:online_offline_group
+faction      = alfa_force
+npc          = alfa_experienced_commander,alfa_experienced_specnaz1,alfa_experienced_specnaz2,alfa_experienced_sniper1,alfa_experienced_sniper2,alfa_experienced_shotgunner
+story_id     = zat_alfa_squad_4_experienced
+target_smart = zat_sim_15:zat_sim_10:zat_sim_9:zat_sim_14:zat_sim_24:zat_sim_16:zat_sim_21:loop
+
+[zat_alfa_squad_4_veteran]:online_offline_group
+faction      = alfa_force
+npc          = alfa_veteran_commander,alfa_veteran_specnaz1,alfa_veteran_specnaz2,alfa_veteran_sniper1,alfa_veteran_sniper2,alfa_veteran_shotgunner
+story_id     = zat_alfa_squad_4_veteran
+target_smart = zat_sim_15:zat_sim_10:zat_sim_9:zat_sim_14:zat_sim_24:zat_sim_16:zat_sim_21:loop
+
+[zat_alfa_squad_4_master]:online_offline_group
+faction      = alfa_force
+npc          = alfa_master_commander,alfa_master_specnaz1,alfa_master_specnaz2,alfa_master_sniper1,alfa_master_sniper2,alfa_master_shotgunner
+story_id     = zat_alfa_squad_4_master
+target_smart = zat_sim_15:zat_sim_10:zat_sim_9:zat_sim_14:zat_sim_24:zat_sim_16:zat_sim_21:loop
+
+[zat_alfa_squad_5_novice]:online_offline_group
+faction      = alfa_force
+npc          = alfa_novice_commander,alfa_novice_specnaz1,alfa_novice_specnaz2,alfa_novice_sniper1,alfa_novice_sniper2,alfa_novice_shotgunner
+story_id     = zat_alfa_squad_5_novice
+target_smart = zat_sim_16:zat_sim_14:zat_sim_21:zat_sim_10:zat_sim_15:zat_sim_9:zat_sim_24:loop
+
+[zat_alfa_squad_5_regular]:online_offline_group
+faction      = alfa_force
+npc          = alfa_regular_commander,alfa_regular_specnaz1,alfa_regular_specnaz2,alfa_regular_sniper1,alfa_regular_sniper2,alfa_regular_shotgunner
+story_id     = zat_alfa_squad_5_regular
+target_smart = zat_sim_16:zat_sim_14:zat_sim_21:zat_sim_10:zat_sim_15:zat_sim_9:zat_sim_24:loop
+
+[zat_alfa_squad_5_experienced]:online_offline_group
+faction      = alfa_force
+npc          = alfa_experienced_commander,alfa_experienced_specnaz1,alfa_experienced_specnaz2,alfa_experienced_sniper1,alfa_experienced_sniper2,alfa_experienced_shotgunner
+story_id     = zat_alfa_squad_5_experienced
+target_smart = zat_sim_16:zat_sim_14:zat_sim_21:zat_sim_10:zat_sim_15:zat_sim_9:zat_sim_24:loop
+
+[zat_alfa_squad_5_veteran]:online_offline_group
+faction      = alfa_force
+npc          = alfa_veteran_commander,alfa_veteran_specnaz1,alfa_veteran_specnaz2,alfa_veteran_sniper1,alfa_veteran_sniper2,alfa_veteran_shotgunner
+story_id     = zat_alfa_squad_5_veteran
+target_smart = zat_sim_16:zat_sim_14:zat_sim_21:zat_sim_10:zat_sim_15:zat_sim_9:zat_sim_24:loop
+
+[zat_alfa_squad_5_master]:online_offline_group
+faction      = alfa_force
+npc          = alfa_master_commander,alfa_master_specnaz1,alfa_master_specnaz2,alfa_master_sniper1,alfa_master_sniper2,alfa_master_shotgunner
+story_id     = zat_alfa_squad_5_master
+target_smart = zat_sim_16:zat_sim_14:zat_sim_21:zat_sim_10:zat_sim_15:zat_sim_9:zat_sim_24:loop
+
+[zat_alfa_squad_6_novice]:online_offline_group
+faction      = alfa_force
+npc          = alfa_novice_commander,alfa_novice_specnaz1,alfa_novice_specnaz2,alfa_novice_sniper1,alfa_novice_sniper2,alfa_novice_shotgunner
+story_id     = zat_alfa_squad_6_novice
+target_smart = zat_sim_21:zat_sim_24:zat_sim_10:zat_sim_15:zat_sim_9:zat_sim_14:zat_sim_16:loop
+
+[zat_alfa_squad_6_regular]:online_offline_group
+faction      = alfa_force
+npc          = alfa_regular_commander,alfa_regular_specnaz1,alfa_regular_specnaz2,alfa_regular_sniper1,alfa_regular_sniper2,alfa_regular_shotgunner
+story_id     = zat_alfa_squad_6_regular
+target_smart = zat_sim_21:zat_sim_24:zat_sim_10:zat_sim_15:zat_sim_9:zat_sim_14:zat_sim_16:loop
+
+[zat_alfa_squad_6_experienced]:online_offline_group
+faction      = alfa_force
+npc          = alfa_experienced_commander,alfa_experienced_specnaz1,alfa_experienced_specnaz2,alfa_experienced_sniper1,alfa_experienced_sniper2,alfa_experienced_shotgunner
+story_id     = zat_alfa_squad_6_experienced
+target_smart = zat_sim_21:zat_sim_24:zat_sim_10:zat_sim_15:zat_sim_9:zat_sim_14:zat_sim_16:loop
+
+[zat_alfa_squad_6_veteran]:online_offline_group
+faction      = alfa_force
+npc          = alfa_veteran_commander,alfa_veteran_specnaz1,alfa_veteran_specnaz2,alfa_veteran_sniper1,alfa_veteran_sniper2,alfa_veteran_shotgunner
+story_id     = zat_alfa_squad_6_veteran
+target_smart = zat_sim_21:zat_sim_24:zat_sim_10:zat_sim_15:zat_sim_9:zat_sim_14:zat_sim_16:loop
+
+[zat_alfa_squad_6_master]:online_offline_group
+faction      = alfa_force
+npc          = alfa_master_commander,alfa_master_specnaz1,alfa_master_specnaz2,alfa_master_sniper1,alfa_master_sniper2,alfa_master_shotgunner
+story_id     = zat_alfa_squad_6_master
+target_smart = zat_sim_21:zat_sim_24:zat_sim_10:zat_sim_15:zat_sim_9:zat_sim_14:zat_sim_16:loop
+
+[zat_alfa_squad_7_novice]:online_offline_group
+faction      = alfa_force
+npc          = alfa_novice_commander,alfa_novice_specnaz1,alfa_novice_specnaz2,alfa_novice_sniper1,alfa_novice_sniper2,alfa_novice_shotgunner
+story_id     = zat_alfa_squad_7_novice
+target_smart = zat_sim_24:zat_sim_9:zat_sim_14:zat_sim_21:zat_sim_10:zat_sim_15:zat_sim_9:loop
+
+[zat_alfa_squad_7_regular]:online_offline_group
+faction      = alfa_force
+npc          = alfa_regular_commander,alfa_regular_specnaz1,alfa_regular_specnaz2,alfa_regular_sniper1,alfa_regular_sniper2,alfa_regular_shotgunner
+story_id     = zat_alfa_squad_7_regular
+target_smart = zat_sim_24:zat_sim_9:zat_sim_14:zat_sim_21:zat_sim_10:zat_sim_15:zat_sim_9:loop
+
+[zat_alfa_squad_7_experienced]:online_offline_group
+faction      = alfa_force
+npc          = alfa_experienced_commander,alfa_experienced_specnaz1,alfa_experienced_specnaz2,alfa_experienced_sniper1,alfa_experienced_sniper2,alfa_experienced_shotgunner
+story_id     = zat_alfa_squad_7_experienced
+target_smart = zat_sim_24:zat_sim_9:zat_sim_14:zat_sim_21:zat_sim_10:zat_sim_15:zat_sim_9:loop
+
+[zat_alfa_squad_7_veteran]:online_offline_group
+faction      = alfa_force
+npc          = alfa_veteran_commander,alfa_veteran_specnaz1,alfa_veteran_specnaz2,alfa_veteran_sniper1,alfa_veteran_sniper2,alfa_veteran_shotgunner
+story_id     = zat_alfa_squad_7_veteran
+target_smart = zat_sim_24:zat_sim_9:zat_sim_14:zat_sim_21:zat_sim_10:zat_sim_15:zat_sim_9:loop
+
+[zat_alfa_squad_7_master]:online_offline_group
+faction      = alfa_force
+npc          = alfa_master_commander,alfa_master_specnaz1,alfa_master_specnaz2,alfa_master_sniper1,alfa_master_sniper2,alfa_master_shotgunner
+story_id     = zat_alfa_squad_7_master
+target_smart = zat_sim_24:zat_sim_9:zat_sim_14:zat_sim_21:zat_sim_10:zat_sim_15:zat_sim_9:loop
+;---------------------------------------------------------------------------------------;
+;                                     Юпитер                                            ;
+;---------------------------------------------------------------------------------------;
+[jup_alfa_squad_1_novice]:online_offline_group
+faction      = alfa_force
+npc          = alfa_novice_commander,alfa_novice_specnaz1,alfa_novice_specnaz2,alfa_novice_sniper1,alfa_novice_sniper2,alfa_novice_shotgunner
+story_id     = jup_alfa_squad_1_novice
+target_smart = jup_sim_4:jup_sim_13:jup_sim_7:jup_sim_14:loop
+
+[jup_alfa_squad_1_regular]:online_offline_group
+faction      = alfa_force
+npc          = alfa_regular_commander,alfa_regular_specnaz1,alfa_regular_specnaz2,alfa_regular_sniper1,alfa_regular_sniper2,alfa_regular_shotgunner
+story_id     = jup_alfa_squad_1_regular
+target_smart = jup_sim_4:jup_sim_13:jup_sim_7:jup_sim_14:loop
+
+[jup_alfa_squad_1_experienced]:online_offline_group
+faction      = alfa_force
+npc          = alfa_experienced_commander,alfa_experienced_specnaz1,alfa_experienced_specnaz2,alfa_experienced_sniper1,alfa_experienced_sniper2,alfa_experienced_shotgunner
+story_id     = jup_alfa_squad_1_experienced
+target_smart = jup_sim_4:jup_sim_13:jup_sim_7:jup_sim_14:loop
+
+[jup_alfa_squad_1_veteran]:online_offline_group
+faction      = alfa_force
+npc          = alfa_veteran_commander,alfa_veteran_specnaz1,alfa_veteran_specnaz2,alfa_veteran_sniper1,alfa_veteran_sniper2,alfa_veteran_shotgunner
+story_id     = jup_alfa_squad_1_veteran
+target_smart = jup_sim_4:jup_sim_13:jup_sim_7:jup_sim_14:loop
+
+[jup_alfa_squad_1_master]:online_offline_group
+faction      = alfa_force
+npc          = alfa_master_commander,alfa_master_specnaz1,alfa_master_specnaz2,alfa_master_sniper1,alfa_master_sniper2,alfa_master_shotgunner
+story_id     = jup_alfa_squad_1_master
+target_smart = jup_sim_4:jup_sim_13:jup_sim_7:jup_sim_14:loop
+
+[jup_alfa_squad_2_novice]:online_offline_group
+faction      = alfa_force
+npc          = alfa_novice_commander,alfa_novice_specnaz1,alfa_novice_specnaz2,alfa_novice_sniper1,alfa_novice_sniper2,alfa_novice_shotgunner
+story_id     = jup_alfa_squad_2_novice
+target_smart = jup_sim_7:jup_sim_14:jup_sim_13:jup_sim_4:loop
+
+[jup_alfa_squad_2_regular]:online_offline_group
+faction      = alfa_force
+npc          = alfa_regular_commander,alfa_regular_specnaz1,alfa_regular_specnaz2,alfa_regular_sniper1,alfa_regular_sniper2,alfa_regular_shotgunner
+story_id     = jup_alfa_squad_2_regular
+target_smart = jup_sim_7:jup_sim_14:jup_sim_13:jup_sim_4:loop
+
+[jup_alfa_squad_2_experienced]:online_offline_group
+faction      = alfa_force
+npc          = alfa_experienced_commander,alfa_experienced_specnaz1,alfa_experienced_specnaz2,alfa_experienced_sniper1,alfa_experienced_sniper2,alfa_experienced_shotgunner
+story_id     = jup_alfa_squad_2_experienced
+target_smart = jup_sim_7:jup_sim_14:jup_sim_13:jup_sim_4:loop
+
+[jup_alfa_squad_2_veteran]:online_offline_group
+faction      = alfa_force
+npc          = alfa_veteran_commander,alfa_veteran_specnaz1,alfa_veteran_specnaz2,alfa_veteran_sniper1,alfa_veteran_sniper2,alfa_veteran_shotgunner
+story_id     = jup_alfa_squad_2_veteran
+target_smart = jup_sim_7:jup_sim_14:jup_sim_13:jup_sim_4:loop
+
+[jup_alfa_squad_2_master]:online_offline_group
+faction      = alfa_force
+npc          = alfa_master_commander,alfa_master_specnaz1,alfa_master_specnaz2,alfa_master_sniper1,alfa_master_sniper2,alfa_master_shotgunner
+story_id     = jup_alfa_squad_2_master
+target_smart = jup_sim_7:jup_sim_14:jup_sim_13:jup_sim_4:loop
+
+[jup_alfa_squad_3_novice]:online_offline_group
+faction      = alfa_force
+npc          = alfa_novice_commander,alfa_novice_specnaz1,alfa_novice_specnaz2,alfa_novice_sniper1,alfa_novice_sniper2,alfa_novice_shotgunner
+story_id     = jup_alfa_squad_3_novice
+target_smart = jup_sim_13:jup_sim_4:jup_sim_14:jup_sim_7:loop
+
+[jup_alfa_squad_3_regular]:online_offline_group
+faction      = alfa_force
+npc          = alfa_regular_commander,alfa_regular_specnaz1,alfa_regular_specnaz2,alfa_regular_sniper1,alfa_regular_sniper2,alfa_regular_shotgunner
+story_id     = jup_alfa_squad_3_regular
+target_smart = jup_sim_13:jup_sim_4:jup_sim_14:jup_sim_7:loop
+
+[jup_alfa_squad_3_experienced]:online_offline_group
+faction      = alfa_force
+npc          = alfa_experienced_commander,alfa_experienced_specnaz1,alfa_experienced_specnaz2,alfa_experienced_sniper1,alfa_experienced_sniper2,alfa_experienced_shotgunner
+story_id     = jup_alfa_squad_3_experienced
+target_smart = jup_sim_13:jup_sim_4:jup_sim_14:jup_sim_7:loop
+
+[jup_alfa_squad_3_veteran]:online_offline_group
+faction      = alfa_force
+npc          = alfa_veteran_commander,alfa_veteran_specnaz1,alfa_veteran_specnaz2,alfa_veteran_sniper1,alfa_veteran_sniper2,alfa_veteran_shotgunner
+story_id     = jup_alfa_squad_3_veteran
+target_smart = jup_sim_13:jup_sim_4:jup_sim_14:jup_sim_7:loop
+
+[jup_alfa_squad_3_master]:online_offline_group
+faction      = alfa_force
+npc          = alfa_master_commander,alfa_master_specnaz1,alfa_master_specnaz2,alfa_master_sniper1,alfa_master_sniper2,alfa_master_shotgunner
+story_id     = jup_alfa_squad_3_master
+target_smart = jup_sim_13:jup_sim_4:jup_sim_14:jup_sim_7:loop
+
+[jup_alfa_squad_4_novice]:online_offline_group
+faction      = alfa_force
+npc          = alfa_novice_commander,alfa_novice_specnaz1,alfa_novice_specnaz2,alfa_novice_sniper1,alfa_novice_sniper2,alfa_novice_shotgunner
+story_id     = jup_alfa_squad_4_novice
+target_smart = jup_sim_14:jup_sim_7:jup_sim_4:jup_sim_13:loop
+
+[jup_alfa_squad_4_regular]:online_offline_group
+faction      = alfa_force
+npc          = alfa_regular_commander,alfa_regular_specnaz1,alfa_regular_specnaz2,alfa_regular_sniper1,alfa_regular_sniper2,alfa_regular_shotgunner
+story_id     = jup_alfa_squad_4_regular
+target_smart = jup_sim_14:jup_sim_7:jup_sim_4:jup_sim_13:loop
+
+[jup_alfa_squad_4_experienced]:online_offline_group
+faction      = alfa_force
+npc          = alfa_experienced_commander,alfa_experienced_specnaz1,alfa_experienced_specnaz2,alfa_experienced_sniper1,alfa_experienced_sniper2,alfa_experienced_shotgunner
+story_id     = jup_alfa_squad_4_experienced
+target_smart = jup_sim_14:jup_sim_7:jup_sim_4:jup_sim_13:loop
+
+[jup_alfa_squad_4_veteran]:online_offline_group
+faction      = alfa_force
+npc          = alfa_veteran_commander,alfa_veteran_specnaz1,alfa_veteran_specnaz2,alfa_veteran_sniper1,alfa_veteran_sniper2,alfa_veteran_shotgunner
+story_id     = jup_alfa_squad_4_veteran
+target_smart = jup_sim_14:jup_sim_7:jup_sim_4:jup_sim_13:loop
+
+[jup_alfa_squad_4_master]:online_offline_group
+faction      = alfa_force
+npc          = alfa_master_commander,alfa_master_specnaz1,alfa_master_specnaz2,alfa_master_sniper1,alfa_master_sniper2,alfa_master_shotgunner
+story_id     = jup_alfa_squad_4_master
+target_smart = jup_sim_14:jup_sim_7:jup_sim_4:jup_sim_13:loop
+
+[jup_rasvet_snorks_squad]:online_offline_group
+faction      = monster
+npc          = m_poltergeist_normal_tele,m_poltergeist_normal_tele,m_poltergeist_normal_tele,m_poltergeist_normal_flame,m_poltergeist_normal_flame,m_poltergeist_normal_flame,m_poltergeist_normal_flame
+target_smart = jup_b202
+story_id     = jup_rasvet_snorks_squad
+on_death     = %+jup_rasvet_destroy_snorks_killed =autosave_game(save_jup_rasvet_destroy_snorks_destroyed)%
+
+[jup_rasvet_polter_squad]:online_offline_group
+faction      = monster
+npc          = m_poltergeist_normal_tele,m_poltergeist_normal_tele,m_poltergeist_normal_tele,m_poltergeist_normal_flame,m_poltergeist_normal_flame,m_poltergeist_normal_flame,m_poltergeist_normal_flame
+target_smart = jup_b200
+story_id     = jup_rasvet_polter_squad
+on_death     = %+jup_rasvet_polter_squad_killed%
+
+[jup_rasvet_monsters_1_hole_squad]:online_offline_group
+faction      = monster
+npc          = chimera_normal,snork_normal,snork_normal,snork_normal
+target_smart = jup_sim_20
+story_id     = jup_rasvet_monsters_1_hole_squad
+on_death     = %+jup_rasvet_eliminate_burrows_1_hole_death =jup_rasvet_eliminate_burrows_hole_2_launch%
+
+[jup_rasvet_monsters_2_hole_squad]:online_offline_group
+faction      = monster
+npc          = psy_dog_normal,pseudodog_normal,pseudodog_normal,pseudodog_normal,dog_strong,dog_strong,dog_cute,dog_cute,dog_cute
+target_smart = jup_sim_19
+story_id     = jup_rasvet_monsters_2_hole_squad
+on_death     = %+jup_rasvet_eliminate_burrows_2_hole_death =jup_rasvet_eliminate_burrows_hole_3_launch%
+
+[jup_rasvet_monsters_3_hole_squad]:online_offline_group
+faction      = monster
+npc          = m_controller_normal,boar_strong,boar_strong,boar_strong,boar_strong,boar_strong,boar_normal,flesh_strong,flesh_strong,flesh_strong,flesh_strong
+target_smart = jup_sim_10
+story_id     = jup_rasvet_monsters_3_hole_squad
+on_death     = %+jup_rasvet_eliminate_burrows_3_hole_death =jup_rasvet_eliminate_burrows_hole_4_launch%
+
+[jup_rasvet_monsters_4_hole_squad]:online_offline_group
+faction      = monster
+npc          = boss_burer_normal,tushkano_normal,tushkano_normal,tushkano_normal,tushkano_normal,tushkano_normal,tushkano_normal,tushkano_normal,tushkano_normal,tushkano_normal,tushkano_normal,tushkano_normal,tushkano_normal,tushkano_normal,tushkano_normal
+target_smart = jup_sim_1
+story_id     = jup_rasvet_monsters_4_hole_squad
+on_death     = %+jup_rasvet_eliminate_burrows_4_hole_death =autosave_game(save_jup_rasvet_monsters_hole_4_destroyed)%
+
+[jup_rasvet_monsters_5_hole_squad]:online_offline_group
+faction      = monster
+npc          = boss_gigant_normal,snork_strong,snork_strong,snork_strong,snork_strong,snork_strong,snork_strong
+target_smart = jup_sim_16
+story_id     = jup_rasvet_monsters_5_hole_squad
+on_death     = %+jup_rasvet_eliminate_burrows_5_hole_death =jup_rasvet_eliminate_burrows_hole_5_victory =autosave_game(save_jup_rasvet_monsters_hole_5_destroyed)%
+
+[jup_zveroboy_quest_bloadsucker_1]:online_offline_group
+faction      = monster
+npc          = bloodsucker_strong,bloodsucker_strong,bloodsucker_strong,bloodsucker_strong,bloodsucker_strong
+target_smart = jup_b200
+story_id     = jup_zveroboy_quest_bloadsucker_1
+on_death     = %+jup_zveroboy_quest_bloadsucker_1_killed%
+
+[jup_b220_trapper_snorks_squad_1]:online_offline_group
+faction      = monster
+npc          = snork_strong,snork_strong,snork_strong,snork_strong,snork_strong
+target_smart = jup_sim_1
+story_id     = jup_b220_trapper_snorks_squad_1
+on_death     = %+jup_b220_trapper_snorks_squad_1_killed%
+
+[jup_b220_trapper_snorks_squad_2]:online_offline_group
+faction      = monster
+npc          = snork_strong,snork_strong,snork_strong,snork_strong,snork_strong
+target_smart = jup_sim_7
+story_id     = jup_b220_trapper_snorks_squad_2
+on_death     = %+jup_b220_trapper_snorks_squad_2_killed%
+
+[jup_b220_trapper_snorks_squad_3]:online_offline_group
+faction      = monster
+npc          = snork_strong,snork_strong,snork_strong,snork_strong,snork_strong
+target_smart = jup_sim_11
+story_id     = jup_b220_trapper_snorks_squad_3
+on_death     = %+jup_b220_trapper_snorks_squad_3_killed%
+
+[jup_b220_trapper_snorks_squad_4]:online_offline_group
+faction      = monster
+npc          = snork_strong,snork_strong,snork_strong,snork_strong,snork_strong
+target_smart = jup_sim_20
+story_id     = jup_b220_trapper_snorks_squad_4
+on_death     = %+jup_b220_trapper_snorks_squad_4_killed%
+;---------------------------------------------------------------------------------------;
+;                                   Путепровод                                          ;
+;---------------------------------------------------------------------------------------;
+[pas_territory_patrol_1_squad]:online_offline_group
+faction      = stalker
+npc_random   = sim_default_stalker_2, sim_default_stalker_2, sim_default_stalker_3, sim_default_stalker_3, sim_default_stalker_4
+npc_in_squad = 3, 3
+target_smart = pas_sim_6:pas_sim_2:pas_sim_3:pas_sim_4:pas_sim_5:pas_sim_7:pas_sim_8:pas_sim_9:loop
+
+[pas_territory_patrol_2_squad]:online_offline_group
+faction      = stalker
+npc_random   = sim_default_stalker_2, sim_default_stalker_2, sim_default_stalker_3, sim_default_stalker_3, sim_default_stalker_4
+npc_in_squad = 3, 3
+target_smart = pas_sim_7:pas_sim_1:pas_sim_9:pas_sim_2:pas_sim_3:pas_sim_4:pas_sim_5:pas_sim_6:loop
+;---------------------------------------------------------------------------------------;
+;                                     Припять                                           ;
+;---------------------------------------------------------------------------------------;
+[pri_alfa_squad_1_novice]:online_offline_group
+faction      = alfa_force
+npc          = alfa_novice_commander,alfa_novice_specnaz1,alfa_novice_specnaz2,alfa_novice_sniper1,alfa_novice_sniper2,alfa_novice_shotgunner
+story_id     = pri_alfa_squad_1_novice
+target_smart = pri_sim_3:pri_sim_11:pri_sim_5:pri_sim_6:pri_sim_12:loop
+
+[pri_alfa_squad_1_regular]:online_offline_group
+faction      = alfa_force
+npc          = alfa_regular_commander,alfa_regular_specnaz1,alfa_regular_specnaz2,alfa_regular_sniper1,alfa_regular_sniper2,alfa_regular_shotgunner
+story_id     = pri_alfa_squad_1_regular
+target_smart = pri_sim_3:pri_sim_11:pri_sim_5:pri_sim_6:pri_sim_12:loop
+
+[pri_alfa_squad_1_experienced]:online_offline_group
+faction      = alfa_force
+npc          = alfa_experienced_commander,alfa_experienced_specnaz1,alfa_experienced_specnaz2,alfa_experienced_sniper1,alfa_experienced_sniper2,alfa_experienced_shotgunner
+story_id     = pri_alfa_squad_1_experienced
+target_smart = pri_sim_3:pri_sim_11:pri_sim_5:pri_sim_6:pri_sim_12:loop
+
+[pri_alfa_squad_1_veteran]:online_offline_group
+faction      = alfa_force
+npc          = alfa_veteran_commander,alfa_veteran_specnaz1,alfa_veteran_specnaz2,alfa_veteran_sniper1,alfa_veteran_sniper2,alfa_veteran_shotgunner
+story_id     = pri_alfa_squad_1_veteran
+target_smart = pri_sim_3:pri_sim_11:pri_sim_5:pri_sim_6:pri_sim_12:loop
+
+[pri_alfa_squad_1_master]:online_offline_group
+faction      = alfa_force
+npc          = alfa_master_commander,alfa_master_specnaz1,alfa_master_specnaz2,alfa_master_sniper1,alfa_master_sniper2,alfa_master_shotgunner
+story_id     = pri_alfa_squad_1_master
+target_smart = pri_sim_3:pri_sim_11:pri_sim_5:pri_sim_6:pri_sim_12:loop
+
+[pri_alfa_squad_2_novice]:online_offline_group
+faction      = alfa_force
+npc          = alfa_novice_commander,alfa_novice_specnaz1,alfa_novice_specnaz2,alfa_novice_sniper1,alfa_novice_sniper2,alfa_novice_shotgunner
+story_id     = pri_alfa_squad_2_novice
+target_smart = pri_sim_5:pri_sim_4:pri_sim_8:pri_sim_9:pri_sim_10:loop
+
+[pri_alfa_squad_2_regular]:online_offline_group
+faction      = alfa_force
+npc          = alfa_regular_commander,alfa_regular_specnaz1,alfa_regular_specnaz2,alfa_regular_sniper1,alfa_regular_sniper2,alfa_regular_shotgunner
+story_id     = pri_alfa_squad_2_regular
+target_smart = pri_sim_5:pri_sim_4:pri_sim_8:pri_sim_9:pri_sim_10:loop
+
+[pri_alfa_squad_2_experienced]:online_offline_group
+faction      = alfa_force
+npc          = alfa_experienced_commander,alfa_experienced_specnaz1,alfa_experienced_specnaz2,alfa_experienced_sniper1,alfa_experienced_sniper2,alfa_experienced_shotgunner
+story_id     = pri_alfa_squad_2_experienced
+target_smart = pri_sim_5:pri_sim_4:pri_sim_8:pri_sim_9:pri_sim_10:loop
+
+[pri_alfa_squad_2_veteran]:online_offline_group
+faction      = alfa_force
+npc          = alfa_veteran_commander,alfa_veteran_specnaz1,alfa_veteran_specnaz2,alfa_veteran_sniper1,alfa_veteran_sniper2,alfa_veteran_shotgunner
+story_id     = pri_alfa_squad_2_veteran
+target_smart = pri_sim_5:pri_sim_4:pri_sim_8:pri_sim_9:pri_sim_10:loop
+
+[pri_alfa_squad_2_master]:online_offline_group
+faction      = alfa_force
+npc          = alfa_master_commander,alfa_master_specnaz1,alfa_master_specnaz2,alfa_master_sniper1,alfa_master_sniper2,alfa_master_shotgunner
+story_id     = pri_alfa_squad_2_master
+target_smart = pri_sim_5:pri_sim_4:pri_sim_8:pri_sim_9:pri_sim_10:loop
+
+[pri_inquisitor_squad_1]:online_offline_group
+faction      = monolith
+npc          = pri_monolith_inquisitor_deputy_1, sim_default_monolith_1, sim_default_monolith_2, sim_default_monolith_3, sim_default_monolith_4, sim_default_monolith_0
+story_id     = pri_inquisitor_squad_1
+target_smart = pri_b302:pri_sim_12:loop
+on_death     = %+pri_inquisitor_squad_1_death%
+
+[pri_inquisitor_squad_2]:online_offline_group
+faction      = monolith
+npc          = pri_monolith_inquisitor_deputy_2, sim_default_monolith_1, sim_default_monolith_2, sim_default_monolith_3, sim_default_monolith_4, sim_default_monolith_0
+story_id     = pri_inquisitor_squad_2
+target_smart = pri_sim_3:pri_sim_7:pri_sim_9:loop
+on_death     = %+pri_inquisitor_squad_2_death%
+
+[pri_inquisitor_squad_3]:online_offline_group
+faction      = monolith
+npc          = pri_monolith_inquisitor, sim_default_monolith_2, sim_default_monolith_3, sim_default_monolith_4, sim_default_monolith_4, sim_default_monolith_3
+story_id     = pri_inquisitor_squad_3
+target_smart = pri_sim_11:pri_sim_8:pri_sim_5:loop
+on_death     = %+pri_inquisitor_squad_3_death +pri_fenix_vendetta_inquisitor_dead =scenario_autosave(st_save_pri_fenix_vendetta_is_killed)%

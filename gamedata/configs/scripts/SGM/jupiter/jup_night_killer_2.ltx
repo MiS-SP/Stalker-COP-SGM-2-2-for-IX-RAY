@@ -1,0 +1,25 @@
+[logic]
+active = move@night_sniper
+on_death = death
+
+[death]
+on_info = %+jup_night_killer_2_death =jup_night_killers_check%
+
+[move@night_sniper]
+scheme_type         = shooter
+shooter_pos         = 1096311
+shooter_fire_look   = enemy
+shooter_idle_look   = actor
+shooter_clip        = 100000
+shooter_reload      = 600
+shooter_type_wpn    = sniper
+shooter_need_see    = true
+shooter_need_dist   = 120
+shooter_move_state  = walk
+shooter_idle_state  = threat
+shooter_fire_state  = threat_fire
+shooter_avail_cond  = {+jup_destroy_night_killers_prishol} true, false
+combat_ignore_cond  = true
+combat_ignore_keep_when_attacked = true
+approach_info       = jup_destroy_night_killers_prishol|140|<
+on_info             = {!actor_enemy} %=actor_enemy%

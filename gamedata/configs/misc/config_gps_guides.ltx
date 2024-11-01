@@ -1,0 +1,400 @@
+;---------------------------------------------------------------------------------------;
+;                               Список GPS проводников                                  ;
+;---------------------------------------------------------------------------------------;
+[gps_guides_zaton]
+z_gps_guide_1
+z_gps_guide_2
+z_gps_guide_3
+z_gps_guide_4
+z_gps_guide_5
+z_gps_guide_6
+
+[gps_guides_jupiter]
+j_gps_guide_1
+j_gps_guide_2
+j_gps_guide_3
+j_gps_guide_4
+j_gps_guide_5
+j_gps_guide_6
+
+[gps_guides_pripyat]
+p_gps_guide_1
+p_gps_guide_2
+p_gps_guide_3
+p_gps_guide_4
+p_gps_guide_5
+p_gps_guide_6
+
+[gps_guide]:gps_guides_zaton, gps_guides_jupiter, gps_guides_pripyat
+;---------------------------------------------------------------------------------------;
+;                                 GPS проводники: Затон                                 ;
+;---------------------------------------------------------------------------------------;
+[z_gps_guide_1]
+point_1 = 121.51229858398,1.0875259637833,127.48738098145,1178082,184
+point_2 = 403.94909667969,-4.8184742927551,447.31442260742,1629655,242
+point_num = 2
+
+[z_gps_guide_2]
+point_1 = -56.279293060303,8.6681680679321,237.23872375488,807650,36
+point_2 = -460.7214050293,11.538276672363,-18.040616989136,102807,51
+point_num = 2
+
+[z_gps_guide_3]
+point_1 = -405.1555480957,39.525039672852,-291.73318481445,169940,304
+point_2 = -144.23672485352,14.732358932495,-161.55474853516,642854,307
+point_num = 2
+
+[z_gps_guide_4]
+point_1 = 468.99472045898,32.272453308105,-424.14929199219,1731802,74
+point_2 = 380.11755371094,35.618137359619,-38.51725769043,1595455,294
+point_num = 2
+
+[z_gps_guide_5]
+point_1 = -125.82544708252,24.179094314575,-436.919921875,688867,89
+point_2 = -272.39819335938,-5.9870324134827,45.052227020264,397849,109
+point_num = 2
+
+[z_gps_guide_6]
+point_1 = -2.4998638629913,-0.5151184797287,40.55744934082,938448,19
+point_2 = 529.04412841797,18.318943023682,291.48254394531,1809344,66
+point_num = 2
+;---------------------------------------------------------------------------------------;
+;                               GPS проводники: Юпитер                                  ;
+;---------------------------------------------------------------------------------------;
+[j_gps_guide_1]
+point_1 = -370.28680419922,5.1472783088684,382.67456054688,111766,435
+point_2 = 389.68286132813,7.4606881141663,318.29351806641,1331608,351
+point_num = 2
+
+[j_gps_guide_2]
+point_1 = 344.36499023438,29.876379013062,-403.53338623047,1264261,554
+point_2 = 336.59143066406,27.690359115601,-296.82061767578,1260184,370
+point_num = 2
+
+[j_gps_guide_3]
+point_1 = -455.61904907227,0.28608575463295,-353.84729003906,65,323
+point_2 = -114.6379776001,26.868057250977,-413.75201416016,527340,468
+point_num = 2
+
+[j_gps_guide_4]
+point_1 = 28.118175506592,24.236173629761,-201.50253295898,763005,356
+point_2 = -396.545959, 11.416666, 10.463511,49691,376
+point_num = 2
+
+[j_gps_guide_5]
+point_1 = -412.50549316406,-2.8563768863678,162.33381652832,28708,644
+point_2 = 268.668396,-29.918320,77.074120,1161732,345
+point_num = 2
+
+[j_gps_guide_6]
+point_1 = 416.260,15.236,-83.352,1370569,527
+point_2 = 176.29515075684,-5.627697467804,442.54348754883,1016814,514
+point_num = 2
+;---------------------------------------------------------------------------------------;
+;                               GPS проводники: Припять                                 ;
+;---------------------------------------------------------------------------------------;
+[p_gps_guide_1]
+point_1 = -247.51499938965,-2.1922466754913,-138.70304870605,460,847
+point_2 = -244.49801635742,-0.42807984352112,-103.81895446777,856,847
+point_num = 2
+
+[p_gps_guide_2]
+point_1 = 243.32284545898,-0.23753613233566,74.441429138184,457207,843
+point_2 = -96.483764648438,-2.8972284793854,-164.59480285645,95816,784
+point_num = 2
+
+[p_gps_guide_3]
+point_1 = -195.89001464844,-2.5651540756226,-47.505592346191,26107,749
+point_2 = -77.1591796875,18.849431991577,83.787475585938,115391,721
+point_num = 2
+
+[p_gps_guide_4]
+point_1 = 73.04776763916,5.3063735961914,123.11949920654,292556,832
+point_2 = 4.825325012207,4.6041903495789,271.2805480957,204178,713
+point_num = 2
+
+[p_gps_guide_5]
+point_1 = 59.408115386963,-0.49044781923294,431.18774414063,275309,695
+point_2 = 283.18646240234,-0.0054721832275391,255.00553894043,472074,682
+point_num = 2
+
+[p_gps_guide_6]
+point_1 = 132.24000549316,0.79016876220703,-43.559604644775,358140,836
+point_2 = 182.88026428223,-0.29477849602699,-278.80953979492,413313,732
+point_num = 2
+;---------------------------------------------------------------------------------------;
+;                       Доступные точки в GPS проводниках: Затон                        ;
+;---------------------------------------------------------------------------------------;
+[z_point_1]
+cond = {+zat_a2_spot} true
+
+[z_point_2]
+cond = {+zat_b5_spot} true
+
+[z_point_3]
+cond = {+zat_b40_spot} true
+
+[z_point_4]
+cond = {+zat_b103_spot} true
+
+[z_point_5]
+cond = {+zat_b7_spot} true
+
+[z_point_6]
+cond = {+zat_b18_spot} true
+
+[z_point_7]
+cond = {+zat_b52_spot} true
+
+[z_point_8]
+cond = {+zat_b20_spot} true
+
+[z_point_9]
+cond = {+zat_b100_spot} true
+
+[z_point_10]
+cond = {+zat_b53_spot} true
+
+[z_point_11]
+cond = {+zat_b14_spot} true
+
+[z_point_12]
+cond = {+zat_b106_spot} true
+
+[z_point_13]
+cond = {+zat_b104_spot} true
+
+[z_point_14]
+cond = {+zat_b38_spot} true
+
+[z_point_15]
+cond = {+zat_b33_spot} true
+;---------------------------------------------------------------------------------------;
+;                       Доступные точки в GPS проводниках: Юпитер                       ;
+;---------------------------------------------------------------------------------------;
+[j_point_1]
+cond = {+jup_b6_spot} true
+
+[j_point_2]
+cond = {+jup_b206_spot} true
+
+[j_point_3]
+cond = {+jup_a10_spot} true
+
+[j_point_4]
+cond = {+jup_b6_spot} true
+
+[j_point_5]
+cond = {+jup_b208_spot} true
+
+[j_point_6]
+cond = {+jup_a12_spot} true
+
+[j_point_7]
+cond = {+jup_b25_spot} true
+
+[j_point_8]
+cond = {+jup_b19_spot} true
+
+[j_point_9]
+cond = {+jup_b205_spot} true
+
+[j_point_10]
+cond = {+jup_b9_spot} true
+
+[j_point_11]
+cond = {+jup_b212_spot} true
+
+[j_point_12]
+cond = {+jup_b200_spot} true
+
+[j_point_13]
+cond = {+jup_b202_spot} true
+
+[j_point_14]
+cond = {+jup_b46_spot} true
+
+[j_point_15]
+cond = {+jup_b32_spot} true
+
+[j_point_16]
+cond = {+jup_a9_spot} true
+;---------------------------------------------------------------------------------------;
+;                       Доступные точки в GPS проводниках: Припять                      ;
+;---------------------------------------------------------------------------------------;
+[p_point_1]
+cond = {+pri_a16_spot} true
+
+[p_point_2]
+cond = {+pri_b304_spot} true
+
+[p_point_3]
+cond = {+pri_a18_spot} true
+
+[p_point_4]
+cond = {+pri_a21_spot} true
+
+[p_point_5]
+cond = {+pri_a25_spot} true
+
+[p_point_6]
+cond = {+pri_b306_spot} true
+
+[p_point_7]
+cond = {+pri_b301_spot} true
+
+[p_point_8]
+cond = {+pri_b303_spot} true
+
+[p_point_9]
+cond = {+pri_a28_spot} true
+
+[p_point_10]
+cond = {+pri_b36_spot} true
+
+[p_point_11]
+cond = {+pri_a17_spot} true
+;---------------------------------------------------------------------------------------;
+;                       Доступные точки в GPS проводниках: Темная Долина                ;
+;---------------------------------------------------------------------------------------;
+[d_point_1]
+cond = {+val_storyline_done +val_region_1_spot} true
+
+[d_point_2]
+cond = {+val_storyline_done +val_region_4_spot} true
+
+[d_point_3]
+cond = {+val_storyline_done +val_region_2_spot} true
+
+[d_point_4]
+cond = {+val_storyline_done +val_region_11_spot} true
+
+[d_point_5]
+cond = {+val_storyline_done +val_region_5_spot} true
+;---------------------------------------------------------------------------------------;
+;                       Доступные точки в GPS проводниках: Военные Склады               ;
+;---------------------------------------------------------------------------------------;
+[m_point_1]
+cond = {+mil_storyline_done +mil_region_1_spot} true
+
+[m_point_2]
+cond = {+mil_storyline_done +mil_region_2_spot} true
+
+[m_point_3]
+cond = {+mil_storyline_done +mil_region_3_spot} true
+
+[m_point_4]
+cond = {+mil_storyline_done +mil_region_4_spot} true
+
+[m_point_5]
+cond = {+mil_storyline_done +mil_region_5_spot} true
+
+[m_point_6]
+cond = {+mil_storyline_done +mil_region_6_spot} true
+
+[m_point_7]
+cond = {+mil_storyline_done +mil_region_7_spot} true
+;---------------------------------------------------------------------------------------;
+;                       Доступные точки в GPS проводниках: Агропром                     ;
+;---------------------------------------------------------------------------------------;
+[a_point_1]
+cond = {+agr_research_heli_1_crash_complete +agr_research_heli_2_crash_complete} true
+
+[a_point_2]
+cond = {+agr_research_heli_1_crash_complete +agr_research_heli_2_crash_complete} true
+
+[a_point_3]
+cond = {+agr_research_heli_1_crash_complete +agr_research_heli_2_crash_complete} true
+
+[a_point_4]
+cond = {+agr_research_heli_1_crash_complete +agr_research_heli_2_crash_complete} true
+
+[a_point_5]
+cond = {+agr_research_heli_1_crash_complete +agr_research_heli_2_crash_complete} true
+
+[a_point_6]
+cond = {+agr_research_heli_1_crash_complete +agr_research_heli_2_crash_complete} true
+
+[a_point_7]
+cond = {+agr_research_heli_1_crash_complete +agr_research_heli_2_crash_complete} true
+
+[a_point_8]
+cond = {+agr_research_heli_1_crash_complete +agr_research_heli_2_crash_complete} true
+
+[a_point_9]
+cond = {+agr_research_heli_1_crash_complete +agr_research_heli_2_crash_complete} true
+;---------------------------------------------------------------------------------------;
+;                       Доступные точки в GPS проводниках: Кордон                       ;
+;---------------------------------------------------------------------------------------;
+[e_point_1]
+cond = {+esc_storyline_done} true
+
+[e_point_2]
+cond = {+esc_storyline_done} true
+
+[e_point_3]
+cond = {+esc_storyline_done} true
+
+[e_point_4]
+cond = {+esc_storyline_done} true
+
+[e_point_5]
+cond = {+esc_storyline_done} true
+
+[e_point_6]
+cond = {+esc_storyline_done} true
+;---------------------------------------------------------------------------------------;
+;                       Доступные точки в GPS проводниках: Болота                       ;
+;---------------------------------------------------------------------------------------;
+[b_point_1]
+cond = {+mar_storyline_done} true
+
+[b_point_2]
+cond = {+mar_storyline_done} true
+
+[b_point_3]
+cond = {+mar_storyline_done} true
+
+[b_point_4]
+cond = {+mar_storyline_done} true
+
+[b_point_5]
+cond = {+mar_storyline_done} true
+
+[b_point_6]
+cond = {+mar_storyline_done} true
+
+[b_point_7]
+cond = {+mar_storyline_done} true
+
+[b_point_8]
+cond = {+mar_storyline_done} true
+;---------------------------------------------------------------------------------------;
+;                      Доступные точки в GPS проводниках: Рыжий Лес                     ;
+;---------------------------------------------------------------------------------------;
+[r_point_1]
+cond = {+red_storyline_done +red_region_1_spot} true
+
+[r_point_2]
+cond = {+red_storyline_done +red_region_2_spot} true
+
+[r_point_3]
+cond = {+red_storyline_done +red_region_3_spot} true
+
+[r_point_4]
+cond = {+red_storyline_done +red_region_4_spot} true
+
+[r_point_5]
+cond = {+red_storyline_done +red_region_5_spot} true
+
+[r_point_6]
+cond = {+red_storyline_done +red_region_6_spot} true
+
+[r_point_7]
+cond = {+red_storyline_done +red_region_7_spot} true
+
+[r_point_8]
+cond = {+red_storyline_done +red_region_8_spot} true
+
+[r_point_9]
+cond = {+red_storyline_done +red_region_9_spot} true

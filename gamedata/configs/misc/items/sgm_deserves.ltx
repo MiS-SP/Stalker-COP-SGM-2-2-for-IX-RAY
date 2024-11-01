@@ -1,0 +1,771 @@
+;------------------------------------------------------------------------------------------;
+;                                 Персональные флешки                                      ;
+;------------------------------------------------------------------------------------------;
+[deserve_case]:booster
+GroupControlSection	= spawn_group
+discovery_dependency    =
+$spawn 			= "devices\deserve_case"
+class			= O_INVBOX
+cform			= skeleton
+visual			= dynamics\devices\dev_rukzak\dev_rukzak.ogf
+script_binding          = bind_physic_object.init
+radius                  = 3
+inv_grid_width		= 1
+inv_grid_height		= 1
+inv_grid_x		= 7
+inv_grid_y		= 26
+cost			= 1000
+can_take		= true
+inv_weight		= 0.14
+description		= st_
+inv_name		= st_
+inv_name_short		= st_
+can_trade	        = false
+
+[deserve_flash]:deserve_case
+$prefetch 		= 32
+class			= II_ANTIR
+visual			= dynamics\devices\dev_flash_2\dev_flash_2.ogf
+eat_health              = 0
+eat_satiety             = 0
+eat_power               = 0
+eat_radiation           = 0
+wounds_heal_perc        = 0
+eat_portions_num        = 1
+animation_slot		= 4
+cost			= 1000
+inv_weight		= 0.14
+hud                     = wpn_vodka_hud
+can_trade	        = false
+;------------------------------------------------------------------------------------------;
+;                                        Затон                                             ;
+;------------------------------------------------------------------------------------------;
+[dv_bandit_kastet_case]:deserve_flash,identity_immunities
+$spawn 			= "devices\bandit_kastet_case"
+inv_name		= st_bandit_kastet_case_title
+inv_name_short		= st_bandit_kastet_case_title
+description		= st_bandit_kastet_case_descr
+create_deserve_x        = 409.258
+create_deserve_y        = 34.826
+create_deserve_z        = -392.183
+create_deserve_lv       = 1636132
+create_deserve_gv       = 74
+deserve_title           = st_bandit_kastet_unpack_title
+deserve_descr           = st_bandit_kastet_unpack_descr
+deserve_items           = drug_antidot,grenade_f1,3,wpn_addon_scope_susat,bag_medkit_2,conserva,3,vodka,5,remote_explosive_charge,money_meshochek_1000_1500
+[dv_bandit_kastet_case_unpack]:deserve_case
+inventory_use_info=sgm_deserve_1_searched
+
+[dv_stalker_noy_case]:deserve_flash,identity_immunities
+$spawn 			= "devices\stalker_noy_case"
+inv_name		= st_stalker_noy_case_title
+inv_name_short		= st_stalker_noy_case_title
+description		= st_stalker_noy_case_descr
+create_deserve_x        = 426.186
+create_deserve_y        = 4.708
+create_deserve_z        = 530.914
+create_deserve_lv       = 1665039
+create_deserve_gv       = 242
+deserve_title           = st_stalker_noy_unpack_title
+deserve_descr           = st_stalker_noy_unpack_descr
+deserve_items           = drug_radioprotector,novice_outfit,af_vyvert,wpn_addon_silencer_9x19,money_meshochek_2000_3000
+[dv_stalker_noy_case_unpack]:deserve_case
+inventory_use_info=sgm_deserve_2_searched
+
+[dv_bandit_port_leader_case]:deserve_flash,identity_immunities
+$spawn 			= "devices\bandit_port_leader_case"
+inv_name		= st_bandit_port_leader_case_title
+inv_name_short		= st_bandit_port_leader_case_title
+description		= st_bandit_port_leader_case_descr
+create_deserve_x        = -48.979
+create_deserve_y        = 24.646
+create_deserve_z        = 328.659
+create_deserve_lv       = 852201
+create_deserve_gv       = 60
+deserve_title           = st_bandit_port_leader_unpack_title
+deserve_descr           = st_bandit_port_leader_unpack_descr
+deserve_items           = drug_coagulant,af_cristall_flower,af_cristall
+[dv_bandit_port_leader_case_unpack]:deserve_case
+inventory_use_info=sgm_deserve_3_searched
+
+[dv_killer_kruk_case]:deserve_flash,identity_immunities
+$spawn 			= "devices\killer_kruk_case"
+inv_name		= st_killer_kruk_case_title
+inv_name_short		= st_killer_kruk_case_title
+description		= st_killer_kruk_case_descr
+create_deserve_x        = -18.595
+create_deserve_y        = -7.001
+create_deserve_z        = 542.769
+create_deserve_lv       = 907887
+create_deserve_gv       = 47
+deserve_title           = st_killer_kruk_unpack_title
+deserve_descr           = st_killer_kruk_unpack_descr
+deserve_items           = af_blood,ammo_9x19_pbp,90,money_meshochek_1500_2000
+[dv_killer_kruk_case_unpack]:deserve_case
+inventory_use_info=sgm_deserve_4_searched
+
+[dv_stalker_barga_case]:deserve_flash,identity_immunities
+$spawn 			= "devices\stalker_barga_case"
+inv_name		= st_stalker_barga_case_title
+inv_name_short		= st_stalker_barga_case_title
+description		= st_stalker_barga_case_descr
+create_deserve_x        = -199.375
+create_deserve_y        = -1.922
+create_deserve_z        = 26.892
+create_deserve_lv       = 543656
+create_deserve_gv       = 262
+deserve_title           = st_stalker_barga_unpack_title
+deserve_descr           = st_stalker_barga_unpack_descr
+deserve_items           = helm_hardhat,bag_medkit_1,personal_rukzak,money_meshochek_1500_2000
+[dv_stalker_barga_case_unpack]:deserve_case
+inventory_use_info=sgm_deserve_5_searched
+
+[dv_stalker_petruha_case]:deserve_flash,identity_immunities
+$spawn 			= "devices\stalker_petruha_case"
+inv_name		= st_stalker_petruha_case_title
+inv_name_short		= st_stalker_petruha_case_title
+description		= st_stalker_petruha_case_descr
+create_deserve_x        = -171.821
+create_deserve_y        = 7.847
+create_deserve_z        = 143.030
+create_deserve_lv       = 598098
+create_deserve_gv       = 11
+deserve_title           = st_stalker_petruha_unpack_title
+deserve_descr           = st_stalker_petruha_unpack_descr
+deserve_items           = af_electra_sparkler,money_meshochek_3000_4000,grenade_f1,5,wpn_addon_scope,bag_medkit_1
+[dv_stalker_petruha_case_unpack]:deserve_case
+inventory_use_info=sgm_deserve_6_searched
+
+[dv_dolg_morgan_case]:deserve_flash,identity_immunities
+$spawn 			= "devices\dolg_morgan_case"
+inv_name		= st_dolg_morgan_case_title
+inv_name_short		= st_dolg_morgan_case_title
+description		= st_dolg_morgan_case_descr
+create_deserve_x        = -451.801
+create_deserve_y        = -5.691
+create_deserve_z        = 181.103
+create_deserve_lv       = 110702
+create_deserve_gv       = 16
+deserve_title           = st_dolg_morgan_unpack_title
+deserve_descr           = st_dolg_morgan_unpack_descr
+deserve_items           = wpn_addon_silencer,ammo_12x76_zhekan,50,wpn_addon_grenade_launcher,af_mincer_meat
+[dv_dolg_morgan_case_unpack]:deserve_case
+inventory_use_info=sgm_deserve_7_searched
+
+[dv_stalker_spartak_case]:deserve_flash,identity_immunities
+$spawn 			= "devices\stalker_spartak_case"
+inv_name		= st_stalker_spartak_case_title
+inv_name_short		= st_stalker_spartak_case_title
+description		= st_stalker_spartak_case_descr
+create_deserve_x        = -350.615
+create_deserve_y        = 18.401
+create_deserve_z        = 353.257
+create_deserve_lv       = 255147
+create_deserve_gv       = 118
+deserve_title           = st_stalker_spartak_unpack_title
+deserve_descr           = st_stalker_spartak_unpack_descr
+deserve_items           = antirad,3,bag_medkit_1,bandage,3,wpn_pb,repair_outfit_box,money_meshochek_3000_4000
+[dv_stalker_spartak_case_unpack]:deserve_case
+inventory_use_info=sgm_deserve_8_searched
+
+[dv_killer_tesak_case]:deserve_flash,identity_immunities
+$spawn 			= "devices\killer_tesak_case"
+inv_name		= st_killer_tesak_case_title
+inv_name_short		= st_killer_tesak_case_title
+description		= st_killer_tesak_case_descr
+create_deserve_x        = 413.981
+create_deserve_y        = -0.949
+create_deserve_z        = 231.635
+create_deserve_lv       = 1643764
+create_deserve_gv       = 7
+deserve_title           = st_killer_tesak_unpack_title
+deserve_descr           = st_killer_tesak_unpack_descr
+deserve_items           = wpn_wincheaster1300,bag_medkit_2,wpn_sig220_m1,money_meshochek_3000_4000
+[dv_killer_tesak_case_unpack]:deserve_case
+inventory_use_info=sgm_deserve_9_searched
+
+[dv_stalker_mayron_case]:deserve_flash,identity_immunities
+$spawn 			= "devices\stalker_mayron_case"
+inv_name		= st_stalker_mayron_case_title
+inv_name_short		= st_stalker_mayron_case_title
+description		= st_stalker_mayron_case_descr
+create_deserve_x        = -384.589
+create_deserve_y        = 6.900
+create_deserve_z        = -17.214
+create_deserve_lv       = 201575
+create_deserve_gv       = 52
+deserve_title           = st_stalker_mayron_unpack_title
+deserve_descr           = st_stalker_mayron_unpack_descr
+deserve_items           = svoboda_light_outfit,medkit_scientic,drug_anabiotic,energy_drink,3,money_meshochek_2000_3000
+[dv_stalker_mayron_case_unpack]:deserve_case
+inventory_use_info=sgm_deserve_10_searched
+
+[dv_stalker_crab_case]:deserve_flash,identity_immunities
+$spawn 			= "devices\stalker_crab_case"
+inv_name		= st_stalker_crab_case_title
+inv_name_short		= st_stalker_crab_case_title
+description		= st_stalker_crab_case_descr
+create_deserve_x        = -137.788
+create_deserve_y        = 24.175
+create_deserve_z        = -393.505
+create_deserve_lv       = 666287
+create_deserve_gv       = 4
+deserve_title           = st_stalker_crab_unpack_title
+deserve_descr           = st_stalker_crab_unpack_descr
+deserve_items           = drug_coagulant,energy_drink,5,wpn_l85,vodka,conserva,5,repair_arms_box,money_meshochek_1000_1500
+[dv_stalker_crab_case_unpack]:deserve_case
+inventory_use_info=sgm_deserve_11_searched
+
+[dv_stalker_gluhar_case]:deserve_flash,identity_immunities
+$spawn 			= "devices\stalker_gluhar_case"
+inv_name		= st_stalker_gluhar_case_title
+inv_name_short		= st_stalker_gluhar_case_title
+description		= st_stalker_gluhar_case_descr
+create_deserve_x        = -155.993
+create_deserve_y        = 19.937
+create_deserve_z        = -155.172
+create_deserve_lv       = 629569
+create_deserve_gv       = 57
+deserve_title           = st_stalker_gluhar_unpack_title
+deserve_descr           = st_stalker_gluhar_unpack_descr
+deserve_items           = af_medusa,medkit_army,wpn_pm,drug_antidot,money_meshochek_3000_4000
+[dv_stalker_gluhar_case_unpack]:deserve_case
+inventory_use_info=sgm_deserve_12_searched
+
+[dv_stalker_commander_case]:deserve_flash,identity_immunities
+$spawn 			= "devices\stalker_commander_case"
+inv_name		= st_stalker_commander_case_title
+inv_name_short		= st_stalker_commander_case_title
+description		= st_stalker_commander_case_descr
+create_deserve_x        = 405.375
+create_deserve_y        = 39.447
+create_deserve_z        = -18.682
+create_deserve_lv       = 1632416
+create_deserve_gv       = 293
+deserve_title           = st_stalker_commander_unpack_title
+deserve_descr           = st_stalker_commander_unpack_descr
+deserve_items           = wpn_lr300,wpn_addon_scope_susat,grenade_f1,3,personal_rukzak,repair_outfit_box,money_meshochek_2000_3000
+[dv_stalker_commander_case_unpack]:deserve_case
+inventory_use_info=sgm_deserve_13_searched
+
+[dv_army_smoliak_case]:deserve_flash,identity_immunities
+$spawn 			= "devices\army_smoliak_case"
+inv_name		= st_army_smoliak_case_title
+inv_name_short		= st_army_smoliak_case_title
+description		= st_army_smoliak_case_descr
+create_deserve_x        = 322.875
+create_deserve_y        = 41.820
+create_deserve_z        = -403.584
+create_deserve_lv       = 1507608
+create_deserve_gv       = 1
+deserve_title           = st_army_smoliak_unpack_title
+deserve_descr           = st_army_smoliak_unpack_descr
+deserve_items           = wpn_addon_silencer_5.56x45,ammo_m209,6,medkit_army,10,wpn_beretta,bag_medkit_2,money_meshochek_1000_1500
+[dv_army_smoliak_case_unpack]:deserve_case
+inventory_use_info=sgm_deserve_14_searched
+
+[dv_bandit_chapaev_case]:deserve_flash,identity_immunities
+$spawn 			= "devices\bandit_chapaev_case"
+inv_name		= st_bandit_chapaev_case_title
+inv_name_short		= st_bandit_chapaev_case_title
+description		= st_bandit_chapaev_case_descr
+create_deserve_x        = 224.341
+create_deserve_y        = 6.977
+create_deserve_z        = -34.910
+create_deserve_lv       = 1346673
+create_deserve_gv       = 55
+deserve_title           = st_bandit_chapaev_unpack_title
+deserve_descr           = st_bandit_chapaev_unpack_descr
+deserve_items           = cev_plastin_1,wpn_addon_scope_susat_custom,bag_medkit_2,medkit_army
+[dv_bandit_chapaev_case_unpack]:deserve_case
+inventory_use_info=sgm_deserve_15_searched
+
+[dv_stalker_elbrus_case]:deserve_flash,identity_immunities
+$spawn 			= "devices\stalker_elbrus_case"
+inv_name		= st_stalker_elbrus_case_title
+inv_name_short		= st_stalker_elbrus_case_title
+description		= st_stalker_elbrus_case_descr
+create_deserve_x        = -147.528
+create_deserve_y        = 23.582
+create_deserve_z        = -431.097
+create_deserve_lv       = 646854
+create_deserve_gv       = 4
+deserve_title           = st_stalker_elbrus_unpack_title
+deserve_descr           = st_stalker_elbrus_unpack_descr
+deserve_items           = bag_medkit_2,repair_arms_box,money_meshochek_1500_2000
+[dv_stalker_elbrus_case_unpack]:deserve_case
+inventory_use_info=sgm_deserve_16_searched
+
+[dv_stalker_vobla_case]:deserve_flash,identity_immunities
+$spawn 			= "devices\stalker_vobla_case"
+inv_name		= st_stalker_vobla_case_title
+inv_name_short		= st_stalker_vobla_case_title
+description		= st_stalker_vobla_case_descr
+create_deserve_x        = -118.439
+create_deserve_y        = 24.595
+create_deserve_z        = -382.962
+create_deserve_lv       = 706239
+create_deserve_gv       = 4
+deserve_title           = st_stalker_vobla_unpack_title
+deserve_descr           = st_stalker_vobla_unpack_descr
+deserve_items           = ammo_dumdum,10,conventer_grenade_box,repair_outfit_box,remote_explosive_charge,money_meshochek_1000_1500
+[dv_stalker_vobla_case_unpack]:deserve_case
+inventory_use_info=sgm_deserve_17_searched
+
+[dv_duty_kanevskiy_case]:deserve_flash,identity_immunities
+$spawn 			= "devices\duty_kanevskiy_case"
+inv_name		= st_duty_kanevskiy_case_title
+inv_name_short		= st_duty_kanevskiy_case_title
+description		= st_duty_kanevskiy_case_descr
+create_deserve_x        = -366.142
+create_deserve_y        = 18.114
+create_deserve_z        = 353.154
+create_deserve_lv       = 229829
+create_deserve_gv       = 118
+deserve_title           = st_duty_kanevskiy_unpack_title
+deserve_descr           = st_duty_kanevskiy_unpack_descr
+deserve_items           = af_mincer_meat,remote_explosive_charge,money_meshochek_1000_1500
+[dv_duty_kanevskiy_case_unpack]:deserve_case
+inventory_use_info=sgm_deserve_18_searched
+;------------------------------------------------------------------------------------------;
+;                                      Юпитер                                              ;
+;------------------------------------------------------------------------------------------;
+[dv_bandit_valet_case]:deserve_flash,identity_immunities
+$spawn 			= "devices\bandit_valet_case"
+inv_name		= st_bandit_valet_case_title
+inv_name_short		= st_bandit_valet_case_title
+description		= st_bandit_valet_case_descr
+create_deserve_x        = 76.058
+create_deserve_y        = 2.406
+create_deserve_z        = 202.705
+create_deserve_lv       = 845122
+create_deserve_gv       = 508
+deserve_title           = st_bandit_valet_unpack_title
+deserve_descr           = st_bandit_valet_unpack_descr
+deserve_items           = scientific_outfit,bag_medkit_2,money_meshochek_1500_2000
+[dv_bandit_valet_case_unpack]:deserve_case
+inventory_use_info=sgm_deserve_19_searched
+
+[dv_stalker_vano_case]:deserve_flash,identity_immunities
+$spawn 			= "devices\stalker_vano_case"
+inv_name		= st_stalker_vano_case_title
+inv_name_short		= st_stalker_vano_case_title
+description		= st_stalker_vano_case_descr
+create_deserve_x        = 472.158
+create_deserve_y        = 24.598
+create_deserve_z        = -406.196
+create_deserve_lv       = 1462743
+create_deserve_gv       = 630
+deserve_title           = st_stalker_vano_unpack_title
+deserve_descr           = st_stalker_vano_unpack_descr
+deserve_items           = wpn_protecta,bag_medkit_2,2,wpn_addon_scope_susat_night,remote_explosive_charge
+[dv_stalker_vano_case_unpack]:deserve_case
+inventory_use_info=sgm_deserve_20_searched
+
+[dv_bandit_shishak_case]:deserve_flash,identity_immunities
+$spawn 			= "devices\bandit_shishak_case"
+inv_name		= st_bandit_shishak_case_title
+inv_name_short		= st_bandit_shishak_case_title
+description		= st_bandit_shishak_case_descr
+create_deserve_x        = -203.160
+create_deserve_y        = 5.068
+create_deserve_z        = -428.289
+create_deserve_lv       = 370354
+create_deserve_gv       = 480
+deserve_title           = st_bandit_shishak_unpack_title
+deserve_descr           = st_bandit_shishak_unpack_descr
+deserve_items           = medkit_scientic,5,money_meshochek_3000_4000,medkit_scientic
+[dv_bandit_shishak_case_unpack]:deserve_case
+inventory_use_info=sgm_deserve_21_searched
+
+[dv_bandit_gnom_case]:deserve_flash,identity_immunities
+$spawn 			= "devices\bandit_gnom_case"
+inv_name		= st_bandit_gnom_case_title
+inv_name_short		= st_bandit_gnom_case_title
+description		= st_bandit_gnom_case_descr
+create_deserve_x        = -157.439
+create_deserve_y        = 3.336
+create_deserve_z        = -46.977
+create_deserve_lv       = 455150
+create_deserve_gv       = 391
+deserve_title           = st_bandit_gnom_unpack_title
+deserve_descr           = st_bandit_gnom_unpack_descr
+deserve_items           = drug_anabiotic,wpn_ak74,personal_rukzak
+[dv_bandit_gnom_case_unpack]:deserve_case
+inventory_use_info=sgm_deserve_22_searched
+
+[dv_killer_grif_case]:deserve_flash,identity_immunities
+$spawn 			= "devices\killer_grif_case"
+inv_name		= st_killer_grif_case_title
+inv_name_short		= st_killer_grif_case_title
+description		= st_killer_grif_case_descr
+create_deserve_x        = -381.727
+create_deserve_y        = 15.567
+create_deserve_z        = 360.582
+create_deserve_lv       = 73772
+create_deserve_gv       = 422
+deserve_title           = st_killer_grif_unpack_title
+deserve_descr           = st_killer_grif_unpack_descr
+deserve_items           = af_mincer_meat,grenade_f1,5,energy_drink,2,conserva,3,remote_explosive_charge,money_meshochek_2000_3000
+[dv_killer_grif_case_unpack]:deserve_case
+inventory_use_info=sgm_deserve_23_searched
+
+[dv_freedom_gaiduk_case]:deserve_flash,identity_immunities
+$spawn 			= "devices\freedom_gaiduk_case"
+inv_name		= st_freedom_gaiduk_case_title
+inv_name_short		= st_freedom_gaiduk_case_title
+description		= st_freedom_gaiduk_case_descr
+create_deserve_x        = 382.764
+create_deserve_y        = 26.151
+create_deserve_z        = 361.740
+create_deserve_lv       = 1321945
+create_deserve_gv       = 350
+deserve_title           = st_freedom_gaiduk_unpack_title
+deserve_descr           = st_freedom_gaiduk_unpack_descr
+deserve_items           = medkit_scientic,bag_medkit_1,2,energy_drink,10,antirad,3,repair_arms_box
+[dv_freedom_gaiduk_case_unpack]:deserve_case
+inventory_use_info=sgm_deserve_24_searched
+
+[dv_monolit_brodiaga_case]:deserve_flash,identity_immunities
+$spawn 			= "devices\monolit_brodiaga_case"
+inv_name		= st_monolit_brodiaga_case_title
+inv_name_short		= st_monolit_brodiaga_case_title
+description		= st_monolit_brodiaga_case_descr
+create_deserve_x        = 439.850
+create_deserve_y        = 28.347
+create_deserve_z        = -471.224
+create_deserve_lv       = 1414962
+create_deserve_gv       = 555
+deserve_title           = st_monolit_brodiaga_unpack_title
+deserve_descr           = st_monolit_brodiaga_unpack_descr
+deserve_items           = money_meshochek_4000_5000,repair_outfit_box,af_night_star
+[dv_monolit_brodiaga_case_unpack]:deserve_case
+inventory_use_info=sgm_deserve_25_searched
+
+[dv_stalker_zulus_case]:deserve_flash,identity_immunities
+$spawn 			= "devices\stalker_zulus_case"
+inv_name		= st_stalker_zulus_case_title
+inv_name_short		= st_stalker_zulus_case_title
+description		= st_stalker_zulus_case_descr
+create_deserve_x        = 332.312
+create_deserve_y        = 39.452
+create_deserve_z        = -231.473
+create_deserve_lv       = 1247568
+create_deserve_gv       = 549
+deserve_title           = st_stalker_zulus_unpack_title
+deserve_descr           = st_stalker_zulus_unpack_descr
+deserve_items           = af_dummy_glassbeads,bag_medkit_4,wpn_ak74
+[dv_stalker_zulus_case_unpack]:deserve_case
+inventory_use_info=sgm_deserve_26_searched
+
+[dv_stalker_koriaga_case]:deserve_flash,identity_immunities
+$spawn 			= "devices\stalker_koriaga_case"
+inv_name		= st_stalker_koriaga_case_title
+inv_name_short		= st_stalker_koriaga_case_title
+description		= st_stalker_koriaga_case_descr
+create_deserve_x        = 56.864
+create_deserve_y        = 28.502
+create_deserve_z        = -175.322
+create_deserve_lv       = 810239
+create_deserve_gv       = 356
+deserve_title           = st_stalker_koriaga_unpack_title
+deserve_descr           = st_stalker_koriaga_unpack_descr
+deserve_items           = wpn_addon_grenade_launcher_m203,bag_medkit_3,repair_outfit_box,money_meshochek_3000_4000
+[dv_stalker_koriaga_case_unpack]:deserve_case
+inventory_use_info=sgm_deserve_27_searched
+
+[dv_killer_cherep_case]:deserve_flash,identity_immunities
+$spawn 			= "devices\killer_cherep_case"
+inv_name		= st_killer_cherep_case_title
+inv_name_short		= st_killer_cherep_case_title
+description		= st_killer_cherep_case_descr
+create_deserve_x        = -65.928
+create_deserve_y        = -0.375
+create_deserve_z        = -146.882
+create_deserve_lv       = 610029
+create_deserve_gv       = 588
+deserve_title           = st_killer_cherep_unpack_title
+deserve_descr           = st_killer_cherep_unpack_descr
+deserve_items           = wpn_addon_silencer_9x39,cev_plastin_2,ammo_m209,3,repair_arms_box,money_meshochek_2000_3000
+[dv_killer_cherep_case_unpack]:deserve_case
+inventory_use_info=sgm_deserve_28_searched
+
+[dv_rasvet_nazar_case]:deserve_flash,identity_immunities
+$spawn 			= "devices\rasvet_nazar_case"
+inv_name		= st_rasvet_nazar_case_title
+inv_name_short		= st_rasvet_nazar_case_title
+description		= st_rasvet_nazar_case_descr
+create_deserve_x        = 406.352
+create_deserve_y        = 5.948
+create_deserve_z        = -118.637
+create_deserve_lv       = 1357309
+create_deserve_gv       = 531
+deserve_title           = st_rasvet_nazar_unpack_title
+deserve_descr           = st_rasvet_nazar_unpack_descr
+deserve_items           = wpn_sig550,ammo_dumdum,20,af_night_star,drug_engine,money_meshochek_1000_5000
+[dv_rasvet_nazar_case_unpack]:deserve_case
+inventory_use_info=sgm_deserve_29_searched
+
+[dv_killer_molfar_case]:deserve_flash,identity_immunities
+$spawn 			= "devices\killer_molfar_case"
+inv_name		= st_killer_molfar_case_title
+inv_name_short		= st_killer_molfar_case_title
+description		= st_killer_molfar_case_descr
+create_deserve_x        = -350.770
+create_deserve_y        = -1.908
+create_deserve_z        = 267.639
+create_deserve_lv       = 123641
+create_deserve_gv       = 646
+deserve_title           = st_killer_molfar_unpack_title
+deserve_descr           = st_killer_molfar_unpack_descr
+deserve_items           = ammo_dumdum,30,bag_medkit_4,drug_engine,grenade_f1_double,money_meshochek_1000_5000
+[dv_killer_molfar_case_unpack]:deserve_case
+inventory_use_info=sgm_deserve_31_searched
+
+[dv_killer_revizor_case]:deserve_flash,identity_immunities
+$spawn 			= "devices\killer_revizor_case"
+inv_name		= st_killer_revizor_case_title
+inv_name_short		= st_killer_revizor_case_title
+description		= st_killer_revizor_case_descr
+create_deserve_x        = -400.623
+create_deserve_y        = 18.616
+create_deserve_z        = 398.875
+create_deserve_lv       = 45152
+create_deserve_gv       = 422
+deserve_title           = st_killer_revizor_unpack_title
+deserve_descr           = st_killer_revizor_unpack_descr
+deserve_items           = repair_outfit_box,ammo_gauss,drug_cat_eye
+[dv_killer_revizor_case_unpack]:deserve_case
+inventory_use_info=sgm_deserve_34_searched
+
+[dv_killer_warlord_case]:deserve_flash,identity_immunities
+$spawn 			= "devices\killer_warlord_case"
+inv_name		= st_killer_warlord_case_title
+inv_name_short		= st_killer_warlord_case_title
+description		= st_killer_warlord_case_descr
+create_deserve_x        = 377.904
+create_deserve_y        = -3.146
+create_deserve_z        = 428.464
+create_deserve_lv       = 1318258
+create_deserve_gv       = 563
+deserve_title           = st_killer_warlord_unpack_title
+deserve_descr           = st_killer_warlord_unpack_descr
+deserve_items           = ammo_dumdum,repair_arms_box,remote_explosive_charge,medkit_scientic,3
+[dv_killer_warlord_case_unpack]:deserve_case
+inventory_use_info=sgm_deserve_35_searched
+;------------------------------------------------------------------------------------------;
+;                                      Припять                                             ;
+;------------------------------------------------------------------------------------------;
+[dv_monolit_kiborg_case]:deserve_flash,identity_immunities
+$spawn 			= "devices\monolit_kiborg_case"
+inv_name		= st_monolit_kiborg_case_title
+inv_name_short		= st_monolit_kiborg_case_title
+description		= st_monolit_kiborg_case_descr
+create_deserve_x        = 276.575
+create_deserve_y        = 12.337
+create_deserve_z        = 311.808
+create_deserve_lv       = 470434
+create_deserve_gv       = 678
+deserve_title           = st_monolit_kiborg_unpack_title
+deserve_descr           = st_monolit_kiborg_unpack_descr
+deserve_items           = repair_outfit_box,repair_arms_box,ammo_box_10_m209,10,af_dragon_eye,drug_engine,money_meshochek_1000_5000
+[dv_monolit_kiborg_case_unpack]:deserve_case
+inventory_use_info=sgm_deserve_30_searched
+
+[dv_monolit_voland_case]:deserve_flash,identity_immunities
+$spawn 			= "devices\monolit_voland_case"
+inv_name		= st_monolit_voland_case_title
+inv_name_short		= st_monolit_voland_case_title
+description		= st_monolit_voland_case_descr
+create_deserve_x        = 182.689
+create_deserve_y        = 0.746
+create_deserve_z        = 52.318
+create_deserve_lv       = 413585
+create_deserve_gv       = 668
+deserve_title           = st_monolit_voland_unpack_title
+deserve_descr           = st_monolit_voland_unpack_descr
+deserve_items           = money_meshochek_5000_10000,drug_engine,ammo_dumdum,20,af_monolit
+[dv_monolit_voland_case_unpack]:deserve_case
+inventory_use_info=sgm_deserve_32_searched
+
+[dv_monolith_inquisitor_case]:deserve_flash,identity_immunities
+$spawn 			= "devices\monolith_inquisitor_case"
+inv_name		= st_monolith_inquisitor_case_title
+inv_name_short		= st_monolith_inquisitor_case_title
+description		= st_monolith_inquisitor_case_descr
+create_deserve_x        = 236.710
+create_deserve_y        = -2.519
+create_deserve_z        = 62.149
+create_deserve_lv       = 453131
+create_deserve_gv       = 843
+deserve_title           = st_monolith_inquisitor_unpack_title
+deserve_descr           = st_monolith_inquisitor_unpack_descr
+deserve_items           = pri_fenix_brother_medallion,repair_arms_box,drug_cat_eye,money_meshochek_1000_5000
+[dv_monolith_inquisitor_case_unpack]:deserve_case
+inventory_use_info=sgm_deserve_33_searched
+;------------------------------------------------------------------------------------------;
+;                                    Агропром                                              ;
+;------------------------------------------------------------------------------------------;
+[dv_mercenary_suvorov_case]:deserve_flash,identity_immunities
+$spawn 			= "devices\mercenary_suvorov_case"
+inv_name		= st_mercenary_suvorov_case_title
+inv_name_short		= st_mercenary_suvorov_case_title
+description		= st_mercenary_suvorov_case_descr
+create_deserve_x        = 256.94821166992
+create_deserve_y        = 21.066242218018
+create_deserve_z        = -75.090667724609
+create_deserve_lv       = 362833
+create_deserve_gv       = 1566
+deserve_title           = st_mercenary_suvorov_unpack_title
+deserve_descr           = st_mercenary_suvorov_unpack_descr
+deserve_items           = medkit_army,5,psy_complex,drug_engine,wpn_addon_silencer_9x39,wpn_groza_m3,ammo_9x39_ap,100
+[dv_mercenary_suvorov_case_unpack]:deserve_case
+inventory_use_info=sgm_deserve_36_searched
+
+[dv_mercenary_tverdohlebov_case]:deserve_flash,identity_immunities
+$spawn 			= "devices\mercenary_tverdohlebov_case"
+inv_name		= st_mercenary_tverdohlebov_case_title
+inv_name_short		= st_mercenary_tverdohlebov_case_title
+description		= st_mercenary_tverdohlebov_case_descr
+create_deserve_x        = 190.56770324707
+create_deserve_y        = 21.027267456055
+create_deserve_z        = 150.24020385742
+create_deserve_lv       = 311760
+create_deserve_gv       = 1443
+deserve_title           = st_mercenary_tverdohlebov_unpack_title
+deserve_descr           = st_mercenary_tverdohlebov_unpack_descr
+deserve_items           = medkit_army,2,detector_elite,antirad,psy_complex,drug_cat_eye,ammo_9x39_ap,50
+[dv_mercenary_tverdohlebov_case_unpack]:deserve_case
+inventory_use_info=sgm_deserve_37_searched
+;------------------------------------------------------------------------------------------;
+;                                    Кордон                                                ;
+;------------------------------------------------------------------------------------------;
+[dv_bandit_bulava_case]:deserve_flash,identity_immunities
+$spawn 			= "devices\bandit_bulava_case"
+inv_name		= st_bandit_bulava_case_title
+inv_name_short		= st_bandit_bulava_case_title
+description		= st_bandit_bulava_case_descr
+create_deserve_x        = 393.54000854492
+create_deserve_y        = 20.17098236084
+create_deserve_z        = 289.93029785156
+create_deserve_lv       = 624913
+create_deserve_gv       = 2029
+deserve_title           = st_bandit_bulava_unpack_title
+deserve_descr           = st_bandit_bulava_unpack_descr
+deserve_items           = bag_medkit_1,antirad,2,psy_complex,ammo_9x19_pbp,50
+[dv_bandit_bulava_case_unpack]:deserve_case
+inventory_use_info=sgm_deserve_38_searched
+
+[dv_bandit_rogach_case]:deserve_flash,identity_immunities
+$spawn 			= "devices\bandit_rogach_case"
+inv_name		= st_bandit_rogach_case_title
+inv_name_short		= st_bandit_rogach_case_title
+description		= st_bandit_rogach_case_descr
+create_deserve_x        = -106.01488494873
+create_deserve_y        = 28.202564239502
+create_deserve_z        = 346.9455871582
+create_deserve_lv       = 157227
+create_deserve_gv       = 2065
+deserve_title           = st_bandit_rogach_unpack_title
+deserve_descr           = st_bandit_rogach_unpack_descr
+deserve_items           = af_electra_flash,personal_rukzak,bag_medkit_2,ammo_5.45x39_ap,30
+[dv_bandit_rogach_case_unpack]:deserve_case
+inventory_use_info=sgm_deserve_39_searched
+
+[dv_bandit_mazay_case]:deserve_flash,identity_immunities
+$spawn 			= "devices\bandit_mazay_case"
+inv_name		= st_bandit_mazay_case_title
+inv_name_short		= st_bandit_mazay_case_title
+description		= st_bandit_mazay_case_descr
+create_deserve_x        = 75.266822814941
+create_deserve_y        = 8.6884775161743
+create_deserve_z        = 602.09826660156
+create_deserve_lv       = 401468
+create_deserve_gv       = 1896
+deserve_title           = st_bandit_mazay_unpack_title
+deserve_descr           = st_bandit_mazay_unpack_descr
+deserve_items           = af_cristall_flower,drug_antidot,medkit_army,2,remote_explosive_charge
+[dv_bandit_mazay_case_unpack]:deserve_case
+inventory_use_info=sgm_deserve_40_searched
+
+[dv_bandit_dinozavr_case]:deserve_flash,identity_immunities
+$spawn 			= "devices\bandit_dinozavr_case"
+inv_name		= st_bandit_dinozavr_case_title
+inv_name_short		= st_bandit_dinozavr_case_title
+description		= st_bandit_dinozavr_case_descr
+create_deserve_x        = -81.244598388672
+create_deserve_y        = -1.343190908432
+create_deserve_z        = 150.89210510254
+create_deserve_lv       = 191309
+create_deserve_gv       = 2077
+deserve_title           = st_bandit_dinozavr_unpack_title
+deserve_descr           = st_bandit_dinozavr_unpack_descr
+deserve_items           = detector_battery_3,psy_complex,bag_medkit_2
+[dv_bandit_dinozavr_case_unpack]:deserve_case
+inventory_use_info=sgm_deserve_41_searched
+
+[dv_stalker_magomet_case]:deserve_flash,identity_immunities
+$spawn 			= "devices\stalker_magomet_case"
+inv_name		= st_stalker_magomet_case_title
+inv_name_short		= st_stalker_magomet_case_title
+description		= st_stalker_magomet_case_descr
+create_deserve_x        = -23.537279129028
+create_deserve_y        = 1.5002487897873
+create_deserve_z        = 269.47869873047
+create_deserve_lv       = 268834
+create_deserve_gv       = 2109
+deserve_title           = st_stalker_magomet_unpack_title
+deserve_descr           = st_stalker_magomet_unpack_descr
+deserve_items           = bag_medkit_1,drug_coagulant,energy_drink
+[dv_stalker_magomet_case_unpack]:deserve_case
+inventory_use_info=sgm_deserve_42_searched
+
+[dv_stalker_tamerlan_case]:deserve_flash,identity_immunities
+$spawn 			= "devices\stalker_tamerlan_case"
+inv_name		= st_stalker_tamerlan_case_title
+inv_name_short		= st_stalker_tamerlan_case_title
+description		= st_stalker_tamerlan_case_descr
+create_deserve_x        = -264.88299560547
+create_deserve_y        = -21.63515663147
+create_deserve_z        = -278.8440246582
+create_deserve_lv       = 5414
+create_deserve_gv       = 1844
+deserve_title           = st_stalker_tamerlan_unpack_title
+deserve_descr           = st_stalker_tamerlan_unpack_descr
+deserve_items           = medkit,drug_cat_eye,money_meshochek_500_1000
+[dv_stalker_tamerlan_case_unpack]:deserve_case
+inventory_use_info=sgm_deserve_43_searched
+;------------------------------------------------------------------------------------------;
+;                                    Болота                                                ;
+;------------------------------------------------------------------------------------------;
+[dv_bandit_karas_case]:deserve_flash,identity_immunities
+$spawn 			= "devices\bandit_karas_case"
+inv_name		= st_bandit_karas_case_title
+inv_name_short		= st_bandit_karas_case_title
+description		= st_bandit_karas_case_descr
+create_deserve_x        = -276.27938842773
+create_deserve_y        = 15.161685943604
+create_deserve_z        = 21.413997650146
+create_deserve_lv       = 7971
+create_deserve_gv       = 1750
+deserve_title           = st_bandit_karas_unpack_title
+deserve_descr           = st_bandit_karas_unpack_descr
+deserve_items           = bag_medkit_2,ammo_12x76_zhekan,20,ammo_5.45x39_ap,50
+[dv_bandit_karas_case_unpack]:deserve_case
+inventory_use_info=sgm_deserve_44_searched
+
+[dv_bandit_kaschey_case]:deserve_flash,identity_immunities
+$spawn 			= "devices\bandit_kaschey_case"
+inv_name		= st_bandit_kaschey_case_title
+inv_name_short		= st_bandit_kaschey_case_title
+description		= st_bandit_kaschey_case_descr
+create_deserve_x        = 527.12512207031
+create_deserve_y        = 4.2780222892761
+create_deserve_z        = -163.37519836426
+create_deserve_lv       = 497307
+create_deserve_gv       = 1660
+deserve_title           = st_bandit_kaschey_unpack_title
+deserve_descr           = st_bandit_kaschey_unpack_descr
+deserve_items           = bag_medkit_3,af_fireball,money_meshochek_1000_5000,ammo_5.45x39_ap,100
+[dv_bandit_kaschey_case_unpack]:deserve_case
+inventory_use_info=sgm_deserve_45_searched

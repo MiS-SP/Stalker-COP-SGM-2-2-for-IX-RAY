@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+<game_dialogs>
+<!-------------------------------------------==========--------------------------------------------------->
+<!-------------------------------------------'Агропром'--------------------------------------------------->
+<!-------------------------------------------==========--------------------------------------------------->
+<dialog id="agr_authorities_agent_start_dialog">
+        <precondition>sgm_dialogs.mod_dialog_precond</precondition>
+        <dont_has_info>agr_deliver_secret_docks_talk</dont_has_info>
+        <phrase_list>
+            <phrase id="0">
+                <text />
+                <next>100</next>
+            </phrase>
+            <phrase id="100">
+                <text />
+                <next>101</next>
+            </phrase>
+            <phrase id="101">
+                <text>agr_authorities_agent_dialog_1</text>
+                <next>102</next>
+            </phrase>
+            <phrase id="102">
+                <text>agr_authorities_agent_dialog_2</text>
+                <action>sgm_dialogs.agr_deliver_secret_docks_bring</action>
+                <next>103</next>
+            </phrase>
+            <phrase id="103">
+                <text>agr_authorities_agent_dialog_3</text>
+                <give_info>agr_deliver_secret_docks_talk</give_info>
+                <action>sgm_dialogs.agr_deliver_secret_docks_reward</action>
+                <next>104</next>
+            </phrase>
+            <phrase id="104">
+                <text>agr_authorities_agent_dialog_4</text>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+        </phrase_list>
+</dialog>
+</game_dialogs>

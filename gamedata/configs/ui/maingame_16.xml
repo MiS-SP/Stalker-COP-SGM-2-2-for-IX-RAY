@@ -17,13 +17,6 @@
 	<weapon_jammed_static x="0" y="0" width="53" height="64" stretch="1">
 		<texture>ui_hud_icon_weapon</texture>
 	</weapon_jammed_static>
-	
-	<icon_microphone x="808" y="714" width="27" height="36" stretch="1">
-		<texture>ui_microphone_icon</texture>
-	</icon_microphone>
-	<voice_distance x="822" y="737" width="24" height="20" stretch="1">
-		<text align="c" font="letterica16" color="white"/>
-	</voice_distance>
 
     <indicator_starvation x="980" y="350" width="26" height="35" stretch="1"/>
     <indicator_helmet_broken x="980" y="390" width="26" height="35" stretch="1"/>
@@ -33,28 +26,28 @@
     <indicator_radiation x="980" y="550" width="26" height="35" stretch="1"/>
     <indicator_bleeding x="980" y="590" width="26" height="35" stretch="1"/>
 
-    <indicator_booster_psy x="16" y="660" width="24" height="41" stretch="1">
+    <indicator_booster_psy x="16" y="640" width="24" height="41" stretch="1">
 		<texture>ui_inGame2_shield_Psy</texture>
 	</indicator_booster_psy>
-    <indicator_booster_radia x="49" y="660" width="24" height="41" stretch="1">
+    <indicator_booster_radia x="49" y="640" width="24" height="41" stretch="1">
 		<texture>ui_inGame2_shield_Radiation</texture>
 	</indicator_booster_radia>
-    <indicator_booster_chem x="83" y="660" width="24" height="41" stretch="1">
+    <indicator_booster_chem x="83" y="640" width="24" height="41" stretch="1">
 		<texture>ui_inGame2_shield_biological</texture>
 	</indicator_booster_chem>
-    <indicator_booster_wound x="116" y="660" width="24" height="41" stretch="1">
+    <indicator_booster_wound x="116" y="640" width="24" height="41" stretch="1">
 		<texture>ui_inGame2_shield_blood</texture>
 	</indicator_booster_wound>
-    <indicator_booster_weight x="150" y="660" width="24" height="41" stretch="1">
+    <indicator_booster_weight x="150" y="640" width="24" height="41" stretch="1">
 		<texture>ui_inGame2_shield_force</texture>
 	</indicator_booster_weight>
-    <indicator_booster_health x="184" y="660" width="24" height="41" stretch="1">
+    <indicator_booster_health x="184" y="640" width="24" height="41" stretch="1">
 		<texture>ui_inGame2_shield_health</texture>
 	</indicator_booster_health>
-    <indicator_booster_power x="217" y="660" width="24" height="41" stretch="1">
+    <indicator_booster_power x="217" y="640" width="24" height="41" stretch="1">
 		<texture>ui_inGame2_shield_stamina</texture>
 	</indicator_booster_power>
-    <indicator_booster_rad x="251" y="660" width="24" height="41" stretch="1">
+    <indicator_booster_rad x="251" y="640" width="24" height="41" stretch="1">
 		<texture>ui_inGame2_shield_radiation_cleanup</texture>
 	</indicator_booster_rad>
 <!--
@@ -109,7 +102,7 @@
 
 	<new_contact_snd>detectors\contact_1</new_contact_snd>
 
-    <quick_slot0 x="16" y="710" width="33" height="40" stretch="1">
+    <quick_slot0 x="30016" y="710" width="33" height="40" stretch="1">
 	    <counter x="1" y="1" width="23" height="16" stretch="1">
 			<window_name>counter</window_name>
 	        <texture a="200">ui_item_count_back</texture>
@@ -119,7 +112,7 @@
 			<texture>ui_inGame2_Patroni_HUD_active_items_icon</texture>
         </auto_frameline>
     </quick_slot0>
-    <quick_slot1 x="56" y="710" width="33" height="41" stretch="1">
+    <quick_slot1 x="30056" y="710" width="33" height="41" stretch="1">
 	    <counter x="1" y="1" width="23" height="16" stretch="1">
 			<window_name>counter</window_name>
 	        <texture a="200">ui_item_count_back</texture>
@@ -129,7 +122,7 @@
 			<texture>ui_inGame2_Patroni_HUD_active_items_icon</texture>
         </auto_frameline>
     </quick_slot1>
-    <quick_slot2 x="96" y="710" width="33" height="41" stretch="1">
+    <quick_slot2 x="30096" y="710" width="33" height="41" stretch="1">
 	    <counter x="1" y="1" width="23" height="16" stretch="1">
 			<window_name>counter</window_name>
 	        <texture a="200">ui_item_count_back</texture>
@@ -139,7 +132,7 @@
 			<texture>ui_inGame2_Patroni_HUD_active_items_icon</texture>
         </auto_frameline>
     </quick_slot2>
-    <quick_slot3 x="136" y="710" width="33" height="41" stretch="1">
+    <quick_slot3 x="300136" y="710" width="33" height="41" stretch="1">
 	    <counter x="1" y="1" width="23" height="16" stretch="1">
 			<window_name>counter</window_name>
 	        <texture a="200">ui_item_count_back</texture>
@@ -149,16 +142,16 @@
 			<texture>ui_inGame2_Patroni_HUD_active_items_icon</texture>
         </auto_frameline>
     </quick_slot3>
-    <quick_slot0_text x="33" y="747" width="17" height="13">
+    <quick_slot0_text x="30033" y="747" width="17" height="13">
         <text align="c" vert_align="c" font="letterica16">quick_use_str_1</text>
     </quick_slot0_text>
-    <quick_slot1_text x="73" y="747" width="17" height="13">
+    <quick_slot1_text x="30073" y="747" width="17" height="13">
         <text align="c" vert_align="c" font="letterica16">quick_use_str_2</text>
     </quick_slot1_text>
-    <quick_slot2_text x="113" y="747" width="17" height="13">
+    <quick_slot2_text x="300113" y="747" width="17" height="13">
         <text align="c" vert_align="c" font="letterica16">quick_use_str_3</text>
     </quick_slot2_text>
-    <quick_slot3_text x="153" y="747" width="17" height="13">
+    <quick_slot3_text x="300153" y="747" width="17" height="13">
         <text align="c" vert_align="c" font="letterica16">quick_use_str_4</text>
     </quick_slot3_text>
 
@@ -184,28 +177,26 @@
 			<texture r="255" g="255" b="0" a="255">ui_inGame2_radiation_icon_part_3</texture>
 		</radiation_level_3>
 -->
-		<indik_rad x="24" y="230" width="29" height="33" stretch="1"/>
-		<indik_fire x="60" y="230" width="29" height="33" stretch="1"/>
-		<indik_psi x="96" y="230" width="29" height="33" stretch="1"/>
-		<indik_acid x="132" y="230" width="29" height="33" stretch="1"/>
+		<indik_rad x="24" y="250" width="29" height="33" stretch="1"/>
+		<indik_fire x="60" y="250" width="29" height="33" stretch="1"/>
+		<indik_psi x="96" y="250" width="29" height="33" stretch="1"/>
+		<indik_acid x="132" y="250" width="29" height="33" stretch="1"/>
 
 		<back x="841" y="635" width="178" height="121" stretch="1">
 			<texture>ui_inGame2_Patroni_HUD_main_window</texture>
 		</back>
 
-		<progress_bar_health x="885" y="648" width="113" height="16" horz="1" min="0" max="1" pos="0"
-		expression="floor(fltPlayerHealth * 55.0) / 55.0">
-			<progress><!-- light_anim="ui_blinking_1" la_cyclic="0" la_texture="1" la_text="0" la_alpha="1" stretch="1"-->
+		<progress_bar_health x="888" y="653" width="108" height="8" horz="1" min="0" max="100" pos="0">
+			<progress>
 				<texture>ui_inGame2_Patroni_HUD_red_bar</texture>
 			</progress>
 		</progress_bar_health>
 
-	    <progress_bar_stamina x="885" y="670" width="113" height="10" horz="1" min="0" max="1" pos="0"
-		expression="floor(fltPlayerPower * 55.0) / 55.0">
-	        <progress><!-- light_anim="ui_blinking_1" la_cyclic="0" la_texture="1" la_text="0" la_alpha="1" stretch="1"-->
-		        <texture>ui_inGame2_Patroni_HUD_blue_bar</texture>
-	        </progress>
-	    </progress_bar_stamina>
+	        <progress_bar_stamina x="888" y="674" width="108" height="8" horz="1" min="0" max="100" pos="0">
+	                <progress>
+		                <texture>ui_inGame2_Patroni_HUD_blue_bar</texture>
+	                </progress>
+	        </progress_bar_stamina>
 
 		<static_cur_ammo x="887" y="690" width="54" height="37">
 			<text complex_mode="0" font="graffiti32" color="ui_7" align="c" vert_align="c">ammo</text>

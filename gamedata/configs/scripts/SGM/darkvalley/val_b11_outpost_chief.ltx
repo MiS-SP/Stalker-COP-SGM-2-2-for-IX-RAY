@@ -1,0 +1,35 @@
+[logic]
+active = move@chief_idle
+on_death = death
+post_combat_time = 3,6
+
+[death]
+on_info = {=killed_by_actor} %+val_b11_outpost_alarm%
+
+[move@chief_idle]
+move_avail_speak       = 15|wait|false|true
+move_dest_number       = {+val_b11_outpost_actor_checked} 7574, 7567
+move_look_vertex       = {+val_b11_outpost_actor_checked} 4931, 6585
+move_state_when_center = {+val_b11_outpost_actor_checked} guard_chasovoy, guard
+move_state_when_move   = {+val_b11_outpost_actor_checked =dist_to_actor_ge(4)} run, patrol
+on_info                = {+val_b11_outpost_actor_captured -val_b11_outpost_actor_checked} move@chief_go_actor %=play_s2d_sound(characters_voice\scenario\darkvalley\val_b11_blockpost_cheaf_stop)%
+on_info2               = {+val_b11_outpost_actor_checked =dist_to_actor_ge(120)} nil %=release_npc%
+on_info3               = {+val_b11_outpost_alarm !actor_enemy} %=actor_enemy%
+
+[move@chief_go_actor]
+precond_timer          = {=actor_has_weapon} true, false
+precond_action         = 8500|{-val_b11_outpost_alarm} %+val_b11_outpost_alarm%
+move_avail_cond        = {=actor_has_weapon} false, true
+move_approach_actor    = 1.9
+move_state_when_center = {+val_b11_outpost_actor_checked} wait, threat
+move_state_when_move   = raid
+on_info                = {+val_b11_outpost_actor_checked !npc_talking} move@chief_idle %=play_s2d_sound(characters_voice\scenario\darkvalley\val_b11_blockpost_cheaf_after_check)%
+on_info2               = {-val_b11_outpost_cheaf_stand_still =dist_to_actor_le(7)} %+val_b11_outpost_cheaf_stand_still =play_s2d_sound(characters_voice\scenario\darkvalley\val_b11_blockpost_cheaf_stand_still)%
+on_info3               = {+val_b11_outpost_alarm !actor_enemy} %=actor_enemy%
+meet                   = meet@b11_chief
+
+[meet@b11_chief]
+abuse                = true
+use                  = {-val_b11_outpost_actor_checked !actor_enemy =dist_to_actor_le(2)} self, false
+allow_break          = false
+trade_enable         = false

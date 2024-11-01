@@ -1,0 +1,11 @@
+[logic]
+active = ph_idle@locked
+
+[ph_idle@locked]
+nonscript_usable = false
+tips = st_safe_is_locked_need_key
+on_info = {+val_shade_of_time_key_searched} ph_idle@opened
+
+[ph_idle@opened]
+nonscript_usable = true
+tips = st_safe_check_descr

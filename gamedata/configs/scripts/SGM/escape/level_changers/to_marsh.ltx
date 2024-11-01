@@ -1,0 +1,15 @@
+[logic]
+active = sr_universal
+
+[sr_universal]
+scheme_type = level_change_zone
+level_change_cond         = {+esc_key_from_gate_founded} true, false
+level_change_on_use       = %+level_change_to_marsh_from_escape%
+level_change_travel_coord = 15.017832756042,19.779502868652,712.16851806641
+level_change_throw_coord  = 18.188539505005,16.269477844238,676.32806396484,3.187,esc_key_from_gate_needed
+level_change_travel_time  = 2,30
+level_change_spot         = level_change_up_location,st_level_change_to_marsh,false
+level_change_autosave     = st_save_travel_escape_to_marsh
+level_change_silent_travel = false
+level_change_hidden_mode  = {+esc_uncoupling_halt_searched} false, true
+level_change_message_impossible = st_level_change_zone_ok_need_key_text

@@ -1,0 +1,14 @@
+[logic]
+active = sr_universal
+
+[sr_universal]
+scheme_type = level_change_zone
+level_change_cond         = {+actor_come_to_red_forest} true, false
+level_change_on_use       = %+level_change_to_red_forest_from_military%
+level_change_travel_coord = 152.88208007813,-0.65500164031982,404.70962524414
+level_change_throw_coord  = -395.0146484375,-14.14755153656,403.92742919922,4.408
+level_change_travel_time  = 1,30
+level_change_spot         = level_change_left_location,st_level_change_to_red_forest,false
+level_change_autosave     = st_save_travel_military_to_red_forest
+level_change_silent_travel = false
+level_change_hidden_mode  = true

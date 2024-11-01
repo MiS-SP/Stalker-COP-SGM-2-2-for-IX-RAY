@@ -1,0 +1,31 @@
+[smart_terrain];zat_sim_9
+squad_id = 2
+max_population = 2
+respawn_params = respawn@zat_alfa_sim_9
+
+[respawn@zat_alfa_sim_9]
+zat_alfa_force_novice
+zat_alfa_force_regular
+zat_alfa_force_experienced
+zat_alfa_force_veteran
+zat_alfa_force_master
+
+[zat_alfa_force_novice]
+spawn_squads = zat_alfa_squad_1_novice
+spawn_num = {+opt_activate_alfa_force =check_actor_rank(0:100)} 1, 0
+
+[zat_alfa_force_regular]
+spawn_squads = zat_alfa_squad_1_regular
+spawn_num = {+opt_activate_alfa_force =check_actor_rank(100:200)} 1, 0
+
+[zat_alfa_force_experienced]
+spawn_squads = zat_alfa_squad_1_experienced
+spawn_num = {+opt_activate_alfa_force =check_actor_rank(200:350)} 1, 0
+
+[zat_alfa_force_veteran]
+spawn_squads = zat_alfa_squad_1_veteran
+spawn_num = {+opt_activate_alfa_force =check_actor_rank(350:600)} 1, 0
+
+[zat_alfa_force_master]
+spawn_squads = zat_alfa_squad_1_master
+spawn_num = {+opt_activate_alfa_force =check_actor_rank(600)} 1, 0

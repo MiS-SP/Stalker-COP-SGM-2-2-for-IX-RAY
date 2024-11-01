@@ -1,0 +1,12 @@
+[logic]
+active = sr_universal
+
+[sr_universal]
+scheme_type = level_change_zone
+level_change_cond         = true
+level_change_on_use       = %+level_change_to_agroprom_from_zaton_bubble%
+level_change_travel_coord = 353.89483642578,24.243249893188,-483.4108581543
+level_change_travel_time  = 0,30
+level_change_silent_travel = true
+level_change_hidden_mode  = true
+on_info                   = {-zat_spatial_bladder_founded =dist_to_actor_le(65)} %+zat_spatial_bladder_founded =set_spot_on_self(spatial_bladder_location:st_bubble_spot_name)%

@@ -1,0 +1,129 @@
+	<string id="st_about_agroprom_underground_danger_text">
+		<text>Внимание, подсказка! Если сейчас в опциях игры установлено не "статическое" освещение, то может произойти вылет на рабочий стол. Рекомендую на время прохождения "подземелья агропрома" перебраться на "статическое освещение".</text>
+	</string>
+	<string id="st_about_unique_treasure_offline_text">
+		<text>Карта доступа не может быть активирована на этой местности.</text>
+	</string>
+	<string id="st_about_critical_toxicity_text">
+		<text>Обнаружено критическое содержание токсинов в крови. Требуется приём препарата "Психоделин" либо визит к медику.</text>
+	</string>
+	<string id="st_about_critical_pstor_text">
+		<text>Внимание! Произошла критическая ошибка. Сохранение, сделанное вами только что - полетело кувырком. Продолжение игры невозможно. Попробуйте загрузиться с более раннего сохранения и пройти текущий момент другим порядком.</text>
+	</string>
+	<string id="st_about_remote_limit_text">
+		<text>Больше трёх зарядов установить нельзя, потому как пульт управления не поддерживает одновременную детонацию четырёх и более зарядов.</text>
+	</string>
+	<string id="st_about_actor_is_sleep_text">
+		<text>К сожалению сейчас уснуть невозможно. ГГ уже спал.</text>
+	</string>
+	<string id="st_about_actor_no_sleep_text">
+		<text>К сожалению сейчас уснуть невозможно, ГГ еще не устал. Обычное время сна ГГ: с 21:00 до 6:00</text>
+	</string>
+	<string id="st_about_dont_sleep_place_text">
+		<text>ГГ не может здесь заночевать, слишком опасное место. Необходимо найти специальное место для ночлега.</text>
+	</string>
+	<string id="st_about_utilizator_box_text">
+		<text>Вы только что воспользовались персональным утилизатором. Теперь при наличии положенных вами предметов в утилизаторе, некоторые сталкеры будут заглядывать в этот ящик. Если сталкерам прийдется по душе содержимое ящика, они его заберут, а вам оставят деньги.</text>
+	</string>
+	<string id="st_about_mechanic_stripping_text">
+		<text>Для пополнения запаса запчастей, необходимо положить в сейф: оружие, броню, или артефакт. И после, поговорить с механиком. Состояние положенного особой роли не играет, но если вы положите предмет с состоянием прочности более 90%, механик получит больше запчастей.</text>
+	</string>
+	<string id="st_about_guidebook_no_use_text">
+		<text>GPS-проводник не работает на этой местности.</text>
+	</string>
+	<string id="st_about_capture_meal_used_text">
+		<text>Препарат X8П25 уже используется.</text>
+	</string>
+	<string id="st_storyline_no_heli_key_text">
+		<text>Сбой системы управления дверьми - погорела вся электроника. Нужен специальный ключ.</text>
+	</string>
+	<string id="st_jup_night_runner_armor_text">
+		<text>У этого бандита сильная защита от пулевых ранений, попробуйте подобраться поближе.</text>
+	</string>
+	<string id="st_pri_monolith_use_temple_text">
+		<text>Говорить с монолитом ($$ACTION_USE$$)</text>
+	</string>
+	<string id="st_inventory_box_is_locked">
+		<text>Ящик заперт.</text>
+	</string>
+	<string id="st_taynik_check_descr">
+		<text>Проверить тайник ($$ACTION_USE$$)</text>
+	</string>
+	<string id="st_taynik_check2_descr">
+		<text>Обыскать ($$ACTION_USE$$)</text>
+	</string>
+	<string id="st_taynik_installed_descr">
+		<text>Тайник установлен</text>
+	</string>
+	<string id="st_take_retranslator">
+		<text>Поднять ретранслятор ($$ACTION_USE$$)</text>
+	</string>
+	<string id="st_retranslator_is_heavy">
+		<text>Ретранслятор слишком тяжелый</text>
+	</string>
+	<string id="st_safe_check_descr">
+		<text>Проверить сейф ($$ACTION_USE$$)</text>
+	</string>
+	<string id="st_safe_is_locked_need_key">
+		<text>Сейф заперт. Необходим ключ.</text>
+	</string>
+	<string id="st_setup_bomb_descr">
+		<text>Установить взрывчатку ($$ACTION_USE$$)</text>
+	</string>
+	<string id="st_kran_press_descr">
+		<text>Повернуть вентиль ($$ACTION_USE$$)</text>
+	</string>
+	<string id="st_utilizator_box_check_descr">
+		<text>Проверить утилизатор ($$ACTION_USE$$)</text>
+	</string>
+	<string id="st_mechanic_box_check_descr">
+		<text>Проверить сейф механика ($$ACTION_USE$$)</text>
+	</string>
+        <string id="st_shron_check_descr">
+		<text>Укомплектовать схрон ($$ACTION_USE$$)</text>
+        </string>
+        <string id="st_shron_installed_descr">
+		<text>Схрон заложен</text>
+        </string>
+	<string id="st_hiding_check_descr">
+		<text>Проверить схрон ($$ACTION_USE$$)</text>
+	</string>
+	<string id="st_use_chicken_rabua">
+		<text>Использовать курицу ($$ACTION_USE$$)</text>
+	</string>
+	<string id="val_lucas_quest_antenner_tips">
+		<text>Зафиксировать сигнал ($$ACTION_USE$$)</text>
+        </string>
+	<string id="jup_a6_azot_quest_cheked">
+		<text>Разблокировать электронный модуль ($$ACTION_USE$$)</text>
+        </string>
+	<string id="st_ph_universal_default">
+		<text>Использовать ($$ACTION_USE$$)</text>
+	</string>
+	<string id="st_set_radio_on">
+		<text>Включить радио ($$ACTION_USE$$)</text>
+	</string>
+	<string id="st_set_radio_off">
+		<text>Выключить радио ($$ACTION_USE$$)</text>
+	</string>
+	<string id="st_esc_trader_door_tip">
+		<text>Попытаться открыть дверь ($$ACTION_USE$$)</text>
+	</string>
+	<string id="st_examine_object_tip">
+		<text>Осмотреть ($$ACTION_USE$$)</text>
+	</string>
+	<string id="st_render_innocuous_tip">
+		<text>Обезвредить ($$ACTION_USE$$)</text>
+	</string>
+	<string id="st_explosive_object_activate_tip">
+		<text>Активировать заряд ($$ACTION_USE$$)</text>
+	</string>
+	<string id="st_script_object_code_tip">
+		<text>Ввести код доступа ($$ACTION_USE$$)</text>
+	</string>
+	<string id="st_treasure_object_use_tip">
+		<text>Проверить тайник ($$ACTION_USE$$)</text>
+	</string>
+	<string id="st_treasure_object_code_tip">
+		<text>Ввести код доступа ($$ACTION_USE$$)</text>
+	</string>

@@ -646,7 +646,6 @@
     <item>
       <length_sec>1</length_sec>
       <guard_key>any</guard_key>
-      <function_on_start>ixray_effects.start_game_effect</function_on_start>
       <grab_input>1</grab_input>
       <main_wnd>
 
@@ -665,53 +664,18 @@
 			<texture>intro\intro_back</texture>
 		</auto_static>
 	</global_wnd>
-		<play_each_item>1</play_each_item>
-<!-- GSC GAMEWORLD -->
-	<item type="video">
-		<sound>video\intro_gsc</sound>
-		<delay>1</delay>
-		<pause_state>on</pause_state>
-		<video_wnd x="0" y="0" width="1024" height="768" stretch="1" alignment="c">
-			<texture x="1" y="1" width="795" height="355">intro\intro_gsc</texture>
-		</video_wnd>
+	<item>
+                <pause_state>on</pause_state>
+                <!--<sound>sound_effects\intro_sound</sound>-->
+		<length_sec>2</length_sec>
+      		<main_wnd>
+		 	<auto_static  start_time="0" length_sec="2" x="0" y="0" width="1024" height="768" stretch="1">
+          		<widescreen_rect width="1024" height="768"/>
+          		<texture width="1024" height="1024">intro\sgm_intro</texture>
+   			</auto_static>
+		</main_wnd>
+		<grab_input>0</grab_input>
 	</item>
-<!-- GSC WORLD PUBLISHING - FOR RUSSIAN ONLY !!!-->
-		<item type="video">
-			<delay>1</delay>
-			<pause_state>on</pause_state>
-			<sound>video\intro_gsc_wp</sound>
-			<video_wnd x="0" y="0" width="1024" height="768" stretch="1">
-				<texture x="0" y="1" width="800" height="358">intro\intro_gsc-wp</texture>
-			</video_wnd>
-		</item>
-<!-- bitComposer - SCOP FOREIGN PUBLISHER --
-		<item type="video">
-			<delay>1</delay>
-			<pause_state>on</pause_state>
-			<sound>video\bitComposer</sound>
-			<video_wnd x="0" y="0" width="1024" height="768" stretch="1">
-				<texture x="0" y="1" width="640" height="368">intro\bitComposer</texture>
-			</video_wnd>
-		</item>
--->
-<!-- ATI -->
-		<item type="video">
-			<delay>1</delay>
-			<pause_state>on</pause_state>
-			<sound>video\ATI_Radeon_1920x1080</sound>
-			<video_wnd x="0" y="0" width="1024" height="768" stretch="1">
-				<texture x="0" y="1" width="640" height="368">intro\ATI_Radeon_1920x1080</texture>
-			</video_wnd>
-		</item>
-<!-- AMD -->
-		<item type="video">
-			<delay>1</delay>
-			<pause_state>on</pause_state>
-			<sound>video\AMD_fusion_final_720</sound>
-			<video_wnd x="0" y="0" width="1024" height="768" stretch="1">
-				<texture x="0" y="1" width="640" height="368">intro\AMD_fusion_final_720</texture>
-			</video_wnd>
-		</item>
 </intro_logo>
 
 
@@ -1171,4 +1135,487 @@
 		</item>
 	</tutorial_sleep>
 
+        <!-------------------->
+        <!-- Туториалы мода -->
+        <!-------------------->
+
+	<show_sleep_zone>
+		<global_wnd/>
+		<item>
+			<disabled_key>quit</disabled_key>
+			<length_sec/>
+			<action id="use" finalize="1">xr_effects.sleep_zone_activate</action>
+			<guard_key>use</guard_key>
+			<disabled_key>quit</disabled_key>
+			<grab_input>0</grab_input>
+			<main_wnd>
+				<auto_static start_time="0" length_sec="5000" x="512" y="660" width="300" height="60" alignment="c" stretch="1"
+							la_cyclic="1" la_texture="1" la_alpha="1">
+					<text font="graffiti22" r="225" g="225" b="250" a="255" align="c">sleep_zone_tip</text>
+				</auto_static>
+			</main_wnd>
+		</item>
+	</show_sleep_zone>
+
+	<about_detector_accum_need>
+		<global_wnd/>
+		<item>
+		<length_sec>6</length_sec>
+		<pause_state>off</pause_state>
+		<guard_key/>
+		<sound>device\pda\pda_news</sound>
+		<cursor_pos/>
+		<pda_section/>
+		<grab_input>0</grab_input>
+		<main_wnd>
+		<auto_static start_time="0" length_sec="5000" x="10" y="275" width="400" height="150" alignment="l" stretch="1" light_anim="" la_cyclic="1" la_texture="1" la_alpha="1">
+			<window_name>w1</window_name>
+			<text font="graffiti22" r="225" g="225" b="250" a="255">st_about_detector_accum_need_text</text>
+		</auto_static>
+		</main_wnd>
+		</item>
+	</about_detector_accum_need>
+
+	<about_detector_accum_exhausted>
+		<global_wnd/>
+		<item>
+		<length_sec>6</length_sec>
+		<pause_state>off</pause_state>
+		<guard_key/>
+		<sound>device\pda\pda_news</sound>
+		<cursor_pos/>
+		<pda_section/>
+		<grab_input>0</grab_input>
+		<main_wnd>
+		<auto_static start_time="0" length_sec="5000" x="10" y="275" width="400" height="150" alignment="l" stretch="1" light_anim="" la_cyclic="1" la_texture="1" la_alpha="1">
+			<window_name>w1</window_name>
+			<text font="graffiti22" r="225" g="225" b="250" a="255">st_about_detector_accum_exhausted_text</text>
+		</auto_static>
+		</main_wnd>
+		</item>
+	</about_detector_accum_exhausted>
+
+	<about_actor_no_sleep>
+		<global_wnd/>
+		<item>
+		<length_sec>6</length_sec>
+		<pause_state>off</pause_state>
+		<guard_key/>
+		<sound>device\pda\pda_news</sound>
+		<cursor_pos/>
+		<pda_section/>
+		<grab_input>0</grab_input>
+		<main_wnd>
+		<auto_static start_time="0" length_sec="5000" x="10" y="275" width="400" height="150" alignment="l" stretch="1" light_anim="" la_cyclic="1" la_texture="1" la_alpha="1">
+			<window_name>w1</window_name>
+			<text font="graffiti22" r="225" g="225" b="250" a="255">st_about_actor_no_sleep_text</text>
+		</auto_static>
+		</main_wnd>
+		</item>
+	</about_actor_no_sleep>
+
+	<about_sleep_limited>
+		<global_wnd/>
+		<item>
+		<length_sec>6</length_sec>
+		<pause_state>off</pause_state>
+		<guard_key/>
+		<sound>device\pda\pda_news</sound>
+		<cursor_pos/>
+		<pda_section/>
+		<grab_input>0</grab_input>
+		<main_wnd>
+		<auto_static start_time="0" length_sec="5000" x="10" y="275" width="400" height="150" alignment="l" stretch="1" light_anim="" la_cyclic="1" la_texture="1" la_alpha="1">
+			<window_name>w1</window_name>
+			<text font="graffiti22" r="225" g="225" b="250" a="255">st_warning_sleep_limited_text</text>
+		</auto_static>
+		</main_wnd>
+		</item>
+	</about_sleep_limited>
+
+	<about_guidebook_lock_use>
+		<global_wnd/>
+		<item>
+		<length_sec>9</length_sec>
+		<pause_state>off</pause_state>
+		<guard_key/>
+		<sound>device\pda\pda_news</sound>
+		<cursor_pos/>
+		<pda_section/>
+		<grab_input>0</grab_input>
+		<main_wnd>
+		<auto_static start_time="0" length_sec="8000" x="10" y="275" width="400" height="150" alignment="l" stretch="1" light_anim="" la_cyclic="1" la_texture="1" la_alpha="1">
+			<window_name>w1</window_name>
+			<text font="graffiti22" r="225" g="225" b="250" a="255">st_about_guidebook_no_use_text</text>
+		</auto_static>
+		</main_wnd>
+		</item>
+	</about_guidebook_lock_use>
+
+	<about_disk_breaking>
+		<global_wnd/>
+		<item>
+		<length_sec>12</length_sec>
+		<pause_state>off</pause_state>
+		<guard_key/>
+		<sound>device\pda\pda_news</sound>
+		<cursor_pos/>
+		<pda_section/>
+		<grab_input>0</grab_input>
+		<main_wnd>
+		<auto_static start_time="0" length_sec="11000" x="10" y="275" width="400" height="150" alignment="l" stretch="1" light_anim="" la_cyclic="1" la_texture="1" la_alpha="1">
+			<window_name>w1</window_name>
+			<text font="graffiti22" r="225" g="225" b="250" a="255">st_disk_breaking_loaded_text</text>
+		</auto_static>
+		</main_wnd>
+		</item>
+	</about_disk_breaking>
+
+	<about_remote_limit>
+		<global_wnd/>
+		<item>
+		<length_sec>7</length_sec>
+		<pause_state>off</pause_state>
+		<guard_key/>
+		<sound>device\pda\pda_news</sound>
+		<cursor_pos/>
+		<pda_section/>
+		<grab_input>0</grab_input>
+		<main_wnd>
+		<auto_static start_time="0" length_sec="6000" x="10" y="275" width="400" height="150" alignment="l" stretch="1" light_anim="" la_cyclic="1" la_texture="1" la_alpha="1">
+			<window_name>w1</window_name>
+			<text font="graffiti22" r="225" g="225" b="250" a="255">st_about_remote_limit_text</text>
+		</auto_static>
+		</main_wnd>
+		</item>
+	</about_remote_limit>
+
+	<about_utilizator_box>
+		<global_wnd/>
+		<item>
+		<length_sec>15</length_sec>
+		<pause_state>off</pause_state>
+		<guard_key/>
+		<sound>device\pda\pda_news</sound>
+		<cursor_pos/>
+		<pda_section/>
+		<grab_input>0</grab_input>
+		<main_wnd>
+		<auto_static start_time="0" length_sec="14000" x="10" y="275" width="400" height="150" alignment="l" stretch="1" light_anim="" la_cyclic="1" la_texture="1" la_alpha="1">
+			<window_name>w1</window_name>
+			<text font="graffiti22" r="225" g="225" b="250" a="255">st_about_utilizator_box_text</text>
+		</auto_static>
+		</main_wnd>
+		</item>
+	</about_utilizator_box>
+
+	<about_mechanic_stripping>
+		<global_wnd/>
+		<item>
+		<length_sec>14</length_sec>
+		<pause_state>off</pause_state>
+		<guard_key/>
+		<sound>device\pda\pda_news</sound>
+		<cursor_pos/>
+		<pda_section/>
+		<grab_input>0</grab_input>
+		<main_wnd>
+		<auto_static start_time="0" length_sec="13000" x="10" y="275" width="400" height="150" alignment="l" stretch="1" light_anim="" la_cyclic="1" la_texture="1" la_alpha="1">
+			<window_name>w1</window_name>
+			<text font="graffiti22" r="225" g="225" b="250" a="255">st_about_mechanic_stripping_text</text>
+		</auto_static>
+		</main_wnd>
+		</item>
+	</about_mechanic_stripping>
+
+	<about_capture_meal_used>
+		<global_wnd/>
+		<item>
+		<length_sec>5</length_sec>
+		<pause_state>off</pause_state>
+		<guard_key/>
+		<sound>device\pda\pda_news</sound>
+		<cursor_pos/>
+		<pda_section/>
+		<grab_input>0</grab_input>
+		<main_wnd>
+		<auto_static start_time="0" length_sec="4000" x="10" y="275" width="400" height="150" alignment="l" stretch="1" light_anim="" la_cyclic="1" la_texture="1" la_alpha="1">
+			<window_name>w1</window_name>
+			<text font="graffiti22" r="225" g="225" b="250" a="255">st_about_capture_meal_used_text</text>
+		</auto_static>
+		</main_wnd>
+		</item>
+	</about_capture_meal_used>
+
+	<storyline_no_heli_key>
+		<global_wnd/>
+		<item>
+		<length_sec>7</length_sec>
+		<pause_state>off</pause_state>
+		<guard_key/>
+		<sound>device\pda\pda_news</sound>
+		<cursor_pos/>
+		<pda_section/>
+		<grab_input>0</grab_input>
+		<main_wnd>
+		<auto_static start_time="0" length_sec="6000" x="10" y="275" width="400" height="150" alignment="l" stretch="1" light_anim="" la_cyclic="1" la_texture="1" la_alpha="1">
+			<window_name>w1</window_name>
+			<text font="graffiti22" r="225" g="225" b="250" a="255">st_storyline_no_heli_key_text</text>
+		</auto_static>
+		</main_wnd>
+		</item>
+	</storyline_no_heli_key>
+
+	<jup_night_runner_armor>
+		<global_wnd/>
+		<item>
+		<length_sec>7</length_sec>
+		<pause_state>off</pause_state>
+		<guard_key/>
+		<sound>device\pda\pda_news</sound>
+		<cursor_pos/>
+		<pda_section/>
+		<grab_input>0</grab_input>
+		<main_wnd>
+		<auto_static start_time="0" length_sec="6000" x="10" y="275" width="400" height="150" alignment="l" stretch="1" light_anim="" la_cyclic="1" la_texture="1" la_alpha="1">
+			<window_name>w1</window_name>
+			<text font="graffiti22" r="225" g="225" b="250" a="255">st_jup_night_runner_armor_text</text>
+		</auto_static>
+		</main_wnd>
+		</item>
+	</jup_night_runner_armor>
+
+	<pri_monolith_use_temple>
+		<global_wnd/>
+		<item>
+			<disabled_key>quit</disabled_key>
+			<length_sec/>
+			<action id="use" finalize="1">xr_effects.pri_monolith_use_temple</action>
+			<guard_key>use</guard_key>
+			<grab_input>0</grab_input>
+			<main_wnd>
+				<auto_static start_time="0" length_sec="5000" x="512" y="660" width="300" height="60" alignment="c" stretch="1" la_cyclic="1" la_texture="1" la_alpha="1">
+					<text font="graffiti22" r="225" g="225" b="250" a="255" align="c">st_pri_monolith_use_temple_text</text>
+				</auto_static>
+			</main_wnd>
+		</item>
+	</pri_monolith_use_temple>
+
+	<mil_b4_hole_bomb_placed>
+		<global_wnd/>
+		<item>
+			<disabled_key>quit</disabled_key>
+			<length_sec/>
+			<action id="use" finalize="1">xr_effects.mil_b4_place_hole_bomb</action>
+			<guard_key>use</guard_key>
+			<grab_input>0</grab_input>
+			<main_wnd>
+				<auto_static start_time="0" length_sec="3000" x="512" y="660" width="300" height="60" alignment="c" stretch="1"
+							la_cyclic="1" la_texture="1" la_alpha="1">
+					<text font="graffiti22" r="225" g="225" b="250" a="255" align="c">st_setup_bomb_descr</text>
+				</auto_static>
+			</main_wnd>
+		</item>
+	</mil_b4_hole_bomb_placed>
+
+	<esc_b2_bomb_placed>
+		<global_wnd/>
+		<item>
+			<disabled_key>quit</disabled_key>
+			<length_sec/>
+			<action id="use" finalize="1">xr_effects.esc_b2_place_bomb</action>
+			<guard_key>use</guard_key>
+			<grab_input>0</grab_input>
+			<main_wnd>
+				<auto_static start_time="0" length_sec="3000" x="512" y="660" width="300" height="60" alignment="c" stretch="1"
+							la_cyclic="1" la_texture="1" la_alpha="1">
+					<text font="graffiti22" r="225" g="225" b="250" a="255" align="c">st_setup_bomb_descr</text>
+				</auto_static>
+			</main_wnd>
+		</item>
+	</esc_b2_bomb_placed>
+
+	<val_lucas_quest_antenner_cheked_1>
+		<global_wnd/>
+
+		<item>
+			<disabled_key>quit</disabled_key>
+			<length_sec/>
+			<action id="use" finalize="1">xr_effects.val_lucas_quest_antenner_1</action>
+			<guard_key>use</guard_key>
+			<grab_input>0</grab_input>
+			<main_wnd>
+				<auto_static start_time="0" length_sec="5000" x="512" y="660" width="300" height="60" alignment="c" stretch="1"
+							la_cyclic="1" la_texture="1" la_alpha="1">
+					<text font="graffiti22" r="225" g="225" b="250" a="255" align="c">val_lucas_quest_antenner_tips</text>
+				</auto_static>
+			</main_wnd>
+		</item>
+	</val_lucas_quest_antenner_cheked_1>
+	
+	<val_lucas_quest_antenner_cheked_2>
+		<global_wnd/>
+
+		<item>
+			<disabled_key>quit</disabled_key>
+			<length_sec/>
+			<action id="use" finalize="1">xr_effects.val_lucas_quest_antenner_2</action>
+			<guard_key>use</guard_key>
+			<grab_input>0</grab_input>
+			<main_wnd>
+				<auto_static start_time="0" length_sec="5000" x="512" y="660" width="300" height="60" alignment="c" stretch="1"
+							la_cyclic="1" la_texture="1" la_alpha="1">
+					<text font="graffiti22" r="225" g="225" b="250" a="255" align="c">val_lucas_quest_antenner_tips</text>
+				</auto_static>
+			</main_wnd>
+		</item>
+	</val_lucas_quest_antenner_cheked_2>
+	
+	<val_lucas_quest_antenner_cheked_3>
+		<global_wnd/>
+
+		<item>
+			<disabled_key>quit</disabled_key>
+			<length_sec/>
+			<action id="use" finalize="1">xr_effects.val_lucas_quest_antenner_3</action>
+			<guard_key>use</guard_key>
+			<grab_input>0</grab_input>
+			<main_wnd>
+				<auto_static start_time="0" length_sec="5000" x="512" y="660" width="300" height="60" alignment="c" stretch="1"
+							la_cyclic="1" la_texture="1" la_alpha="1">
+					<text font="graffiti22" r="225" g="225" b="250" a="255" align="c">val_lucas_quest_antenner_tips</text>
+				</auto_static>
+			</main_wnd>
+		</item>
+	</val_lucas_quest_antenner_cheked_3>
+
+	<about_critical_pstor>
+		<global_wnd/>
+		<item>
+		<length_sec>95</length_sec>
+		<pause_state>off</pause_state>
+		<guard_key/>
+		<sound>device\pda\pda_news</sound>
+		<cursor_pos/>
+		<pda_section/>
+		<grab_input>0</grab_input>
+		<main_wnd>
+		<auto_static start_time="0" length_sec="95000" x="10" y="275" width="400" height="150" alignment="l" stretch="1" light_anim="" la_cyclic="1" la_texture="1" la_alpha="1">
+			<window_name>w1</window_name>
+			<text font="graffiti22" r="225" g="59" b="50" a="255">st_about_critical_pstor_text</text>
+		</auto_static>
+		</main_wnd>
+		</item>
+	</about_critical_pstor>
+
+	<jup_a6_azot_cheked_plant_1>
+		<global_wnd/>
+
+		<item>
+			<disabled_key>quit</disabled_key>
+			<length_sec/>
+			<action id="use" finalize="1">xr_effects.jup_a6_azot_quest_cheked_plant_1</action>
+			<guard_key>use</guard_key>
+			<grab_input>0</grab_input>
+			<main_wnd>
+				<auto_static start_time="0" length_sec="5000" x="512" y="660" width="300" height="60" alignment="c" stretch="1"
+							la_cyclic="1" la_texture="1" la_alpha="1">
+					<text font="graffiti22" r="225" g="225" b="250" a="255" align="c">jup_a6_azot_quest_cheked</text>
+				</auto_static>
+			</main_wnd>
+		</item>
+	</jup_a6_azot_cheked_plant_1>
+	
+	<jup_a6_azot_cheked_plant_2>
+		<global_wnd/>
+
+		<item>
+			<disabled_key>quit</disabled_key>
+			<length_sec/>
+			<action id="use" finalize="1">xr_effects.jup_a6_azot_quest_cheked_plant_2</action>
+			<guard_key>use</guard_key>
+			<grab_input>0</grab_input>
+			<main_wnd>
+				<auto_static start_time="0" length_sec="5000" x="512" y="660" width="300" height="60" alignment="c" stretch="1"
+							la_cyclic="1" la_texture="1" la_alpha="1">
+					<text font="graffiti22" r="225" g="225" b="250" a="255" align="c">jup_a6_azot_quest_cheked</text>
+				</auto_static>
+			</main_wnd>
+		</item>
+	</jup_a6_azot_cheked_plant_2>
+	
+	<jup_a6_azot_cheked_plant_3>
+		<global_wnd/>
+
+		<item>
+			<disabled_key>quit</disabled_key>
+			<length_sec/>
+			<action id="use" finalize="1">xr_effects.jup_a6_azot_quest_cheked_plant_3</action>
+			<guard_key>use</guard_key>
+			<grab_input>0</grab_input>
+			<main_wnd>
+				<auto_static start_time="0" length_sec="5000" x="512" y="660" width="300" height="60" alignment="c" stretch="1"
+							la_cyclic="1" la_texture="1" la_alpha="1">
+					<text font="graffiti22" r="225" g="225" b="250" a="255" align="c">jup_a6_azot_quest_cheked</text>
+				</auto_static>
+			</main_wnd>
+		</item>
+	</jup_a6_azot_cheked_plant_3>
+
+	<about_critical_toxicity>
+		<global_wnd/>
+		<item>
+		<length_sec>6</length_sec>
+		<pause_state>off</pause_state>
+		<guard_key/>
+		<sound>device\pda\pda_news</sound>
+		<cursor_pos/>
+		<pda_section/>
+		<grab_input>0</grab_input>
+		<main_wnd>
+		<auto_static start_time="0" length_sec="5000" x="10" y="275" width="400" height="150" alignment="l" stretch="1" light_anim="" la_cyclic="1" la_texture="1" la_alpha="1">
+			<window_name>w1</window_name>
+			<text font="graffiti22" r="225" g="225" b="250" a="255">st_about_critical_toxicity_text</text>
+		</auto_static>
+		</main_wnd>
+		</item>
+	</about_critical_toxicity>
+
+	<about_unique_treasure_offline>
+		<global_wnd/>
+		<item>
+		<length_sec>6</length_sec>
+		<pause_state>off</pause_state>
+		<guard_key/>
+		<sound>device\pda\pda_news</sound>
+		<cursor_pos/>
+		<pda_section/>
+		<grab_input>0</grab_input>
+		<main_wnd>
+		<auto_static start_time="0" length_sec="5000" x="10" y="275" width="400" height="150" alignment="l" stretch="1" light_anim="" la_cyclic="1" la_texture="1" la_alpha="1">
+			<window_name>w1</window_name>
+			<text font="graffiti22" r="225" g="225" b="250" a="255">st_about_unique_treasure_offline_text</text>
+		</auto_static>
+		</main_wnd>
+		</item>
+	</about_unique_treasure_offline>
+
+	<about_agroprom_underground_danger>
+		<global_wnd/>
+		<item>
+		<length_sec>16</length_sec>
+		<pause_state>off</pause_state>
+		<guard_key/>
+		<sound>device\pda\pda_news</sound>
+		<cursor_pos/>
+		<pda_section/>
+		<grab_input>0</grab_input>
+		<main_wnd>
+		<auto_static start_time="0" length_sec="15000" x="10" y="275" width="400" height="150" alignment="l" stretch="1" light_anim="" la_cyclic="1" la_texture="1" la_alpha="1">
+			<window_name>w1</window_name>
+			<text font="graffiti22" r="225" g="225" b="250" a="255">st_about_agroprom_underground_danger_text</text>
+		</auto_static>
+		</main_wnd>
+		</item>
+	</about_agroprom_underground_danger>
 </window>

@@ -1,0 +1,7 @@
+<w>
+   <file name="ui\ui_mod_widescreen">
+	<texture id="ui_mod_left_widepanel_1" x="0" y="0" width="128" height="768" />
+	<texture id="ui_mod_right_widepanel_1" x="128" y="0" width="128" height="768" />
+        <texture id="wpn_crosshair_add_space" x="406" y="0" width="102" height="768" />
+    </file>
+</w>

@@ -1,0 +1,17 @@
+;---------------------------------------------------------------------------------------;
+;                                    Рыжий Лес                                          ;
+;---------------------------------------------------------------------------------------;
+;сюжетные задания 
+
+
+;второстепенные задания
+
+[red_psyho]
+icon = ui_inGame2_Psyho
+prior = 20
+storyline = false
+title = {+red_psyho_cave_examined} red_psyho_title13, {+red_psyho_controller_destroyed -red_psyho_cave_examined} red_psyho_title12, {+red_psyho_halt_3_founded -red_psyho_controller_destroyed} red_psyho_title11, {+red_psyho_halt_2_founded -red_psyho_halt_3_founded} red_psyho_title10, {+red_psyho_halt_1_founded -red_psyho_halt_2_founded} red_psyho_title9, {+red_psyho_back_to_forest -red_psyho_halt_1_founded} red_psyho_title8, {+red_psyho_preparation -red_psyho_back_to_forest} red_psyho_title7, {+red_psyho_talk -red_psyho_preparation} red_psyho_title6, {+red_psyho_back_to_jup -red_psyho_talk} red_psyho_title5, {+red_psyho_brainstorming -red_psyho_back_to_jup} red_psyho_title4, {+red_psyho_place_experiment -red_psyho_brainstorming} red_psyho_title3, {+actor_come_to_red_forest -red_psyho_place_experiment} red_psyho_title2, {+red_psyho_meeting -actor_come_to_red_forest} red_psyho_title1, red_psyho_title0
+descr = {+red_psyho_cave_examined} red_psyho_text13, {+red_psyho_controller_destroyed -red_psyho_cave_examined} red_psyho_text12, {+red_psyho_halt_3_founded -red_psyho_controller_destroyed} red_psyho_text11, {+red_psyho_halt_2_founded -red_psyho_halt_3_founded} red_psyho_text10, {+red_psyho_halt_1_founded -red_psyho_halt_2_founded} red_psyho_text9, {+red_psyho_back_to_forest -red_psyho_halt_1_founded} red_psyho_text8, {+red_psyho_preparation -red_psyho_back_to_forest} red_psyho_text7, {+red_psyho_talk -red_psyho_preparation} red_psyho_text6, {+red_psyho_back_to_jup -red_psyho_talk} red_psyho_text5, {+red_psyho_brainstorming -red_psyho_back_to_jup} red_psyho_text4, {+red_psyho_place_experiment -red_psyho_brainstorming} red_psyho_text3, {+actor_come_to_red_forest -red_psyho_place_experiment} red_psyho_text2, {+red_psyho_meeting -actor_come_to_red_forest} red_psyho_text1, red_psyho_text0
+target = {+red_psyho_cave_examined} jup_scientific_workman, {+red_psyho_controller_destroyed -red_psyho_cave_examined} red_psyho_controller_cave_spot, {+red_psyho_halt_3_founded -red_psyho_controller_destroyed} red_psyho_controller, {+red_psyho_halt_2_founded -red_psyho_halt_3_founded} red_psyho_halt_place_3_spot, {+red_psyho_halt_1_founded -red_psyho_halt_2_founded} red_psyho_halt_place_2_spot, {+red_psyho_back_to_forest -red_psyho_halt_1_founded} red_psyho_halt_place_1_spot, {+red_psyho_preparation -red_psyho_back_to_forest} jup_mod_level_changer_to_red_forest, {+red_psyho_talk -red_psyho_preparation} nil, {+red_psyho_back_to_jup -red_psyho_talk} jup_scientific_workman, {+red_psyho_brainstorming -red_psyho_back_to_jup} red_mod_level_changer_to_jupiter, {+red_psyho_place_experiment -red_psyho_brainstorming} red_psyho_experiment_place_spot, {+actor_come_to_red_forest -red_psyho_place_experiment} red_psyho_scientific_halt_spot, {+red_psyho_meeting -actor_come_to_red_forest} jup_mod_level_changer_to_red_forest, jup_scientific_workman
+condlist_0 = {+red_psyho_reward} complete
+on_complete = %+red_psyho_complete =increase_counter(stat_kvestov)%

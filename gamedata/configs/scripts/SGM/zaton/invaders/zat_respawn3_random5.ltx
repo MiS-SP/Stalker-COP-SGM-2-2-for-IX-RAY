@@ -1,0 +1,27 @@
+[logic]
+active = move@started
+on_death = death
+
+[death]
+on_info = %+zat_respawn3_random5_death =zat_respawn3_randoms_counter%
+
+[move@started]
+scheme_type         = patrol
+patrol_count_path   = 8
+patrol_path_1       = 356335
+patrol_path_2       = 353583
+patrol_path_3       = 308325
+patrol_path_4       = 215691
+patrol_path_5       = 204894
+patrol_path_6       = 206992
+patrol_path_7       = 281854
+patrol_path_8       = 346942
+patrol_countdown    = false
+patrol_no_reaction  = false
+meet                = meet
+
+[meet]
+abuse           = true
+use             = {!actor_enemy} true, false
+allow_break     = true
+meet_on_talking = false

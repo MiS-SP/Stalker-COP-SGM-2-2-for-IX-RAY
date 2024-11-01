@@ -1,0 +1,22 @@
+[logic]
+active = move@sentry
+on_death = death
+
+[death]
+on_info = {=killed_by_actor} %+jup_killer_base_actor_hit +jup_killer_base_sentry_9_death%, %+jup_killer_base_sentry_9_death%
+
+[move@sentry]
+surge_hide_point       = 972365
+move_dest_number       = 1033019
+move_look_vertex       = 1045301
+move_state_when_center = sit_ass
+move_state_when_move   = walk
+meet                   = meet
+on_info                = {!actor_enemy +jup_killer_base_actor_hit} %=actor_enemy%
+
+[meet]
+abuse           = true
+use             = false
+allow_break     = true
+meet_on_talking = false
+

@@ -1,0 +1,47 @@
+[logic]
+active = move@walking
+on_death = death
+on_hit = hit
+
+[hit]
+on_info = {=present_hit_by_actor} %+pri_monolit_base_actor_hit +pri_monolit_base_hit%, %+pri_monolit_base_hit%
+
+[death]
+on_info = {=killed_by_actor} %+pri_monolit_base_alarm +pri_monolit_base_actor_hit +pri_monolit_base_guard_3_death%, %+pri_monolit_base_guard_3_death +pri_monolit_base_hit%
+
+[move@walking]
+surge_hide_point       = 281328
+scheme_type            = patrol
+patrol_count_path      = 7
+patrol_path_1          = 212182
+patrol_path_1_state    = patrol
+patrol_path_2          = 280413
+patrol_path_2_state    = patrol
+patrol_path_3          = 296706
+patrol_path_3_state    = patrol
+patrol_path_4          = 347458
+patrol_path_4_state    = patrol
+patrol_path_5          = 346813
+patrol_path_5_state    = patrol
+patrol_path_6          = 299126
+patrol_path_6_state    = patrol
+patrol_path_7          = 243797
+patrol_path_7_state    = patrol
+meet                   = meet
+on_info                = {+pri_assault_monolith_base_on_firepos -pri_assault_monolith_base_fail -pri_assault_monolith_base_enemy_destroyed} move@base_defence
+on_info2               = {!actor_enemy +pri_monolit_base_alarm} %=actor_enemy%
+
+[move@base_defence]
+move_dest_number       = 231268
+move_look_vertex       = 240757
+move_state_when_center = hide
+move_state_when_move   = assault
+on_signal              = on_center|nil
+on_info                = {+pri_assault_monolith_base_fail} move@walking
+on_info2               = {!actor_enemy} %=actor_enemy%
+
+[meet]
+abuse           = true
+use             = false
+allow_break     = true
+meet_on_talking = false

@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding="windows-1251"?>
+<xml>
+<!-------------------------------------------==========--------------------------------------------------->
+<!-------------------------------------------'Агропром'--------------------------------------------------->
+<!-------------------------------------------==========--------------------------------------------------->
+<specific_character id="agr_b1_base_commander" team_default = "1">
+                <name>agr_b1_base_commander_name</name>
+                <icon>ui_inGame2_Soldier_4</icon>
+                <map_icon x="1" y="0"></map_icon>
+                <bio>Опытный сталкер. Детальная информация отсутствует.</bio>
+                <class>agr_b1_base_commander</class>
+                <community>mercenary</community> <terrain_sect>stalker_terrain</terrain_sect>
+                <snd_config>characters_voice\human_03\military\</snd_config>
+                <rank>500</rank>
+                <reputation>0</reputation>
+                <visual>actors\stalker_mercenary\stalker_mercenary_1_helm</visual>
+                <supplies>
+                [spawn] \n
+      		wpn_sig550 \n
+		ammo_5.56x45_ap = 1 \n
+      		wpn_desert_eagle \n
+		ammo_11.43x23_hydro = 1 \n
+      		grenade_f1 = 4 \n
+                dv_mercenary_suvorov_case \n
+#include "gameplay\character_items_nd.xml"
+#include "gameplay\character_food.xml"
+#include "gameplay\character_drugs.xml"
+		</supplies>
+#include "gameplay\character_criticals_4.xml"
+#include "gameplay\character_dialogs.xml"
+</specific_character>
+
+<specific_character id="agr_b2_base_commander" team_default = "1">
+                <name>agr_b2_base_commander_name</name>
+                <icon>ui_inGame2_Soldier_4</icon>
+                <map_icon x="1" y="0"></map_icon>
+                <bio>Опытный сталкер. Детальная информация отсутствует.</bio>
+                <class>agr_b2_base_commander</class>
+                <community>mercenary</community> <terrain_sect>stalker_terrain</terrain_sect>
+                <snd_config>characters_voice\human_03\military\</snd_config>
+                <rank>500</rank>
+                <reputation>0</reputation>
+                <visual>actors\stalker_mercenary\stalker_mercenary_1_helm</visual>
+                <supplies>
+                [spawn] \n
+      		wpn_g36 \n
+		ammo_5.56x45_ap = 1 \n
+      		wpn_desert_eagle \n
+		ammo_11.43x23_hydro = 1 \n
+      		grenade_f1 = 4 \n
+                dv_mercenary_tverdohlebov_case \n
+#include "gameplay\character_items_nd.xml"
+#include "gameplay\character_food.xml"
+#include "gameplay\character_drugs.xml"
+		</supplies>
+#include "gameplay\character_criticals_4.xml"
+#include "gameplay\character_dialogs.xml"
+</specific_character>
+
+<specific_character id="agr_authorities_agent" team_default="1">
+		<name>agr_authorities_agent_name</name>
+		<icon>ui_inGame2_Soldier_4</icon>
+		<map_icon x="1" y="0">
+		</map_icon>
+		<bio>Агент СБУ.</bio>
+		<class>agr_authorities_agent</class>
+		<community>agent</community>
+		<terrain_sect>stalker_terrain</terrain_sect>
+		<snd_config>characters_voice\human_03\military\</snd_config>
+		<rank>999</rank>
+		<reputation>0</reputation>
+		<money min="480000" max="480000" infinitive="1" />
+		<visual>actors\stalker_soldier\stalker_soldier_4_1</visual>
+		<supplies>
+                 [spawn] \n
+	         device_torch \n
+                 wpn_vintorez \n
+                 ammo_9x39_ap = 1 \n
+                 wpn_fort = 1 \n
+                 ammo_9x18_fmj = 1 \n
+#include "gameplay\character_items_nd.xml"
+#include "gameplay\character_food.xml"
+#include "gameplay\character_drugs.xml"
+             	</supplies>   	
+                <start_dialog>agr_authorities_agent_start_dialog</start_dialog> 
+                <actor_dialog>about_story_dialog</actor_dialog>
+		<actor_dialog>actor_break_dialog</actor_dialog>
+#include "gameplay\character_criticals_4.xml"
+                #include "gameplay\character_dialogs.xml"
+</specific_character>
+<!-------------------------------------------------------------------------------------------------------->
+</xml>

@@ -1,0 +1,95 @@
+#include "default_sections.ltx"
+
+[trader]
+buy_condition  = {+sgm_achievements_client =check_night_interval(22:5)} order_trader_buy_upgraded_hidden, {+sgm_achievements_client} order_trader_buy_upgraded, order_trader_buy
+sell_condition = {+sgm_achievements_client} order_trader_sell_upgraded, order_trader_sell
+buy_supplies   = {+jup_ecolog_trader_weapon =check_trader_order_item(wpn_weapon)} supplies_weapon,{+jup_ecolog_trader_ecolog_military_outfit =check_trader_order_item(ecolog_military_outfit)} supplies_ecolog_military_outfit,order_trader_supplies
+buy_item_condition_factor = {+sgm_achievements_client} 0.8, 0.9
+
+[order_trader_supplies]
+minetrap_detector               = 1,0.80
+mp3_player                      = 1,0.99
+personal_marker                 = 1,0.60
+army_timer                      = 1,0.99
+personal_rukzak		        = 2,0.99
+repair_arms_box	                = 1,0.70
+repair_outfit_box	        = 1,0.70
+detector_battery_1		= 2,0.99
+detector_battery_2		= 2,0.70
+detector_battery_3		= 2,0.50
+demolution_ballon		= 1,0.80
+demolution_kanistra		= 3,0.80
+demolution_barrel		= 1,0.80
+ammo_box_10_vog			= 1,0.50
+ammo_box_10_m209		= 1,0.50
+ecolog_regular_outfit           = 1,0.99
+geiger_counter                  = 1,0.25
+capture_meal_chimera		= 1,0.35
+capture_meal_gigant		= 1,0.35
+capture_meal_boar		= 1,0.40
+capture_meal_dog		= 1,0.40
+capture_meal_flesh		= 1,0.40
+capture_meal_tushkano		= 1,0.40
+capture_meal_pseudodog		= 1,0.40
+capture_meal_snork		= 1,0.40
+drug_cat_eye			= 2,0.45
+activate_knife_m4		= 1,0.80
+
+[supplies_weapon]:order_trader_supplies
+
+[supplies_ecolog_military_outfit]:order_trader_supplies
+ecolog_military_outfit	        = 1,1.0
+
+[order_trader_buy]:default_order_trader_buy
+capture_meal_chimera            = 0.6,0.4
+capture_meal_gigant             = 0.6,0.4
+capture_meal_boar               = 0.6,0.4
+capture_meal_dog                = 0.6,0.4
+capture_meal_flesh              = 0.6,0.4
+capture_meal_tushkano           = 0.6,0.4
+capture_meal_pseudodog          = 0.6,0.4
+capture_meal_snork              = 0.6,0.4
+
+[order_trader_buy_upgraded]:default_order_trader_buy_upgraded
+capture_meal_chimera            = 0.7,0.5
+capture_meal_gigant             = 0.7,0.5
+capture_meal_boar               = 0.7,0.5
+capture_meal_dog                = 0.7,0.5
+capture_meal_flesh              = 0.7,0.5
+capture_meal_tushkano           = 0.7,0.5
+capture_meal_pseudodog          = 0.7,0.5
+capture_meal_snork              = 0.7,0.5
+
+[order_trader_buy_upgraded_hidden]:default_order_trader_buy_upgraded_hidden
+capture_meal_chimera            = 0.8,0.6
+capture_meal_gigant             = 0.8,0.6
+capture_meal_boar               = 0.8,0.6
+capture_meal_dog                = 0.8,0.6
+capture_meal_flesh              = 0.8,0.6
+capture_meal_tushkano           = 0.8,0.6
+capture_meal_pseudodog          = 0.8,0.6
+capture_meal_snork              = 0.8,0.6
+
+[order_trader_sell]:default_order_trader_sell
+capture_meal_chimera            = 1,1
+capture_meal_gigant             = 1,1
+capture_meal_boar               = 1,1
+capture_meal_dog                = 1,1
+capture_meal_flesh              = 1,1
+capture_meal_tushkano           = 1,1
+capture_meal_pseudodog          = 1,1
+capture_meal_snork              = 1,1
+ecolog_regular_outfit           = 1,1.5
+ecolog_military_outfit          = 1,1.5
+
+[order_trader_sell_upgraded]:default_order_trader_sell_upgraded
+capture_meal_chimera            = 1,1
+capture_meal_gigant             = 1,1
+capture_meal_boar               = 1,1
+capture_meal_dog                = 1,1
+capture_meal_flesh              = 1,1
+capture_meal_tushkano           = 1,1
+capture_meal_pseudodog          = 1,1
+capture_meal_snork              = 1,1
+ecolog_regular_outfit           = 1,1.1
+ecolog_military_outfit          = 1,1.1

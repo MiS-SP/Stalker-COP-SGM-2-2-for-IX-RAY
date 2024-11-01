@@ -1,0 +1,28 @@
+[logic]
+active = move@waiting
+
+[move@waiting]
+move_dest_number       = 533451
+move_look_subject      = actor
+move_state_when_center = claim
+move_state_when_move   = walk
+meet                   = meet
+invulnerable           = true
+on_info                = {+jup_night_agent_meeting_talk} move@waiting_offline
+on_info2               = {-jup_night_agent_meeting_start !npc_talking} nil %=release_npc +jup_night_agent_meeting_offline%
+
+[move@waiting_offline]
+move_dest_number       = 533451
+move_look_vertex       = 523495
+move_state_when_center = sit
+move_state_when_move   = walk
+meet                   = meet
+invulnerable           = true
+on_info                = {=dist_to_actor_ge(80)} nil %=release_npc%
+
+[meet]
+abuse           = false
+use             = {=dist_to_actor_le(7) -jup_night_agent_meeting_talk} self,true
+allow_break     = false
+meet_on_talking = false
+trade_enable    = false

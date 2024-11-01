@@ -1,0 +1,18 @@
+[logic]
+active = move@alfa_soldier
+on_death = death
+on_hit = hit
+
+[hit]
+on_info = {=present_hit_by_actor} %+zat_alfa_sabotage_alfa_founded%
+
+[death]
+on_info = %=zat_alfa_sabotage_squad_update%
+
+[move@alfa_soldier]
+move_dest_number       = 141029
+move_look_vertex       = 141033
+move_state_when_center = guard
+move_state_when_move   = patrol
+on_info                = {!actor_enemy} %=actor_enemy%
+

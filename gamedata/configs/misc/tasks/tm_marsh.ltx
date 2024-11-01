@@ -1,0 +1,52 @@
+;---------------------------------------------------------------------------------------;
+;                                    Болота                                             ;
+;---------------------------------------------------------------------------------------;
+;сюжетные задания 
+
+[mar_find_army_squad]
+icon = ui_inGame2_FindArmySquad
+prior = 100
+storyline = true
+title = mar_find_army_squad_title0
+descr = mar_find_army_squad_text0
+target = nil
+condlist_0 = {+mar_find_army_squad_talk} complete
+on_complete = %+mar_find_army_squad_complete =increase_counter(stat_kvestov)%
+
+[mar_army_cargo]
+icon = ui_inGame2_ArmyCargo
+prior = 101
+storyline = true
+title = {+mar_army_cargo_sent_agent} mar_army_cargo_title8, {+mar_army_cargo_found_cargo -mar_army_cargo_sent_agent} mar_army_cargo_title7, {+mar_army_cargo_online_cargo -mar_army_cargo_found_cargo} mar_army_cargo_title6, {+mar_army_cargo_georadar_received -mar_army_cargo_online_cargo} mar_army_cargo_title6, {+mar_army_cargo_order_performed -mar_army_cargo_georadar_received} mar_army_cargo_title5, {+mar_army_cargo_talk_mechanic -mar_army_cargo_order_performed} mar_army_cargo_title4, {+mar_army_cargo_talk_commander -mar_army_cargo_talk_mechanic} mar_army_cargo_title3, {+mar_army_cargo_nothing_found -mar_army_cargo_talk_commander} mar_army_cargo_title2, {+mar_army_cargo_b4_cleared -mar_army_cargo_nothing_found} mar_army_cargo_title1_2, {+mar_mine_detector_talk -mar_army_cargo_b4_cleared} mar_army_cargo_title1, mar_army_cargo_title0
+descr = {+mar_army_cargo_sent_agent} mar_army_cargo_text8, {+mar_army_cargo_found_cargo -mar_army_cargo_sent_agent} mar_army_cargo_text7, {+mar_army_cargo_online_cargo -mar_army_cargo_found_cargo} mar_army_cargo_text6, {+mar_army_cargo_georadar_received -mar_army_cargo_online_cargo} mar_army_cargo_text6, {+mar_army_cargo_order_performed -mar_army_cargo_georadar_received} mar_army_cargo_text5, {+mar_army_cargo_talk_mechanic -mar_army_cargo_order_performed} mar_army_cargo_text4, {+mar_army_cargo_talk_commander -mar_army_cargo_talk_mechanic} mar_army_cargo_text3, {+mar_army_cargo_nothing_found -mar_army_cargo_talk_commander} mar_army_cargo_text2, {+mar_army_cargo_b4_cleared -mar_army_cargo_nothing_found} mar_army_cargo_text1_2, {+mar_mine_detector_talk -mar_army_cargo_b4_cleared} mar_army_cargo_text1, mar_army_cargo_text0
+target = {+mar_army_cargo_sent_agent} mar_mod_level_changer_to_zaton, {+mar_army_cargo_found_cargo -mar_army_cargo_sent_agent} mar_authorities_agent, {+mar_army_cargo_online_cargo -mar_army_cargo_found_cargo} mar_army_cargo, {+mar_army_cargo_georadar_received -mar_army_cargo_online_cargo} nil, {+mar_army_cargo_order_performed -mar_army_cargo_georadar_received} mar_b2_stalker_mechanic, {+mar_army_cargo_talk_mechanic -mar_army_cargo_order_performed} nil, {+mar_army_cargo_talk_commander -mar_army_cargo_talk_mechanic} mar_b2_stalker_mechanic, {+mar_army_cargo_nothing_found -mar_army_cargo_talk_commander} mar_b1_commander, {+mar_army_cargo_b4_cleared -mar_army_cargo_nothing_found} mar_region_7_spot, {+mar_mine_detector_talk -mar_army_cargo_b4_cleared} mar_region_7_spot, nil
+condlist_0 = {+actor_come_to_zaton} complete
+condlist_1 = {=sid_thinks_actor_is_enemy(mar_b1_commander)} fail
+on_fail = %+mar_alt_storyline_commenced%
+on_complete = %+mar_army_cargo_complete =mar_destroy_mines =increase_counter(stat_kvestov)%
+
+[mar_capture_church]
+icon = ui_inGame2_CaptureChurch
+prior = 102
+storyline = true
+title = {+mar_capture_church_captured} mar_capture_church_title1, mar_capture_church_title0
+descr = {+mar_capture_church_captured} mar_capture_church_text1, mar_capture_church_text0
+target = {+mar_capture_church_captured} mar_b1_commander, mar_region_4_spot
+condlist_0 = {+mar_capture_church_talk} complete
+condlist_1 = {=sid_thinks_actor_is_enemy(mar_b1_commander)} fail
+on_fail = %+mar_alt_storyline_commenced%
+on_complete = %+mar_capture_church_complete =increase_counter(stat_kvestov)%
+
+[mar_mine_detector]
+icon = ui_inGame2_MineDetector
+prior = 103
+storyline = true
+title = {+mar_mine_detector_device_done} mar_mine_detector_title4, {+mar_mine_detector_device_developed -mar_mine_detector_device_done} mar_mine_detector_title3, {+mar_mine_detector_sensor_founded -mar_mine_detector_device_developed} mar_mine_detector_title2, {+mar_mine_detector_need_sensor -mar_mine_detector_sensor_founded} mar_mine_detector_title1, mar_mine_detector_title0
+descr = {+mar_mine_detector_device_done} mar_mine_detector_text4, {+mar_mine_detector_device_developed -mar_mine_detector_device_done} mar_mine_detector_text3, {+mar_mine_detector_sensor_founded -mar_mine_detector_device_developed} mar_mine_detector_text2, {+mar_mine_detector_need_sensor -mar_mine_detector_sensor_founded} mar_mine_detector_text1, mar_mine_detector_text0
+target = {+mar_mine_detector_device_done} esc_b1_stalker_mechanic, {+mar_mine_detector_device_developed -mar_mine_detector_device_done} nil, {+mar_mine_detector_sensor_founded -mar_mine_detector_device_developed} esc_b1_stalker_mechanic, {+mar_mine_detector_need_sensor -mar_mine_detector_sensor_founded} mar_mine_sensor, esc_b1_stalker_mechanic
+condlist_0 = {+mar_mine_detector_talk} complete
+condlist_1 = {=sid_thinks_actor_is_enemy(mar_b1_commander)} fail
+on_fail = %+mar_alt_storyline_commenced%
+on_complete = %+mar_mine_detector_complete =increase_counter(stat_kvestov)%
+
+;второстепенные задания

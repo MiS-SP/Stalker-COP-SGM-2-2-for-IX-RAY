@@ -1,0 +1,34 @@
+[logic]
+active = move@guard
+on_death = death
+on_hit = hit
+
+[hit]
+on_info = %+jup_rasvet_base_hit%
+
+[death]
+on_info = {=killed_by_actor} %+jup_rasvet_base_alarm +jup_rasvet_base_actor_hit +jup_rasvet_base_guard_7_death%, %+jup_rasvet_base_hit +jup_rasvet_base_guard_7_death%
+
+[move@guard]
+move_avail_speak       = 15|wait|false|true
+move_dest_number       = 179379
+move_look_vertex       = 188916
+move_state_when_center = guard
+move_state_when_move   = walk
+meet                   = meet
+on_info                = {-jup_beat_from_monsters_safely +jup_beat_from_monsters_start} move@base_defence
+on_info2               = {!actor_enemy +jup_rasvet_base_alarm} %=actor_enemy%
+
+[move@base_defence]
+move_dest_number       = 230191
+move_look_vertex       = 318634
+move_state_when_center = hide
+move_state_when_move   = assault
+on_info                = {+jup_beat_from_monsters_safely} move@guard
+
+[meet]
+abuse           = true
+use             = false
+allow_break     = true
+meet_on_talking = false
+

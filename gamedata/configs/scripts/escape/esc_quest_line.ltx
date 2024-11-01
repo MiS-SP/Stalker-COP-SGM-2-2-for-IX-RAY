@@ -1,0 +1,10 @@
+;Рестриктор "Основная сюжетная линия"
+
+[logic]
+active = sr_idle
+
+[sr_idle]
+on_info  = {-esc_introduction_kordon_start =game_is_loaded} sr_idle@esc_introduction_kordon %=damage_actor_items_on_start =scenario_autosave(st_save_zat_a1_game_start)%
+
+[sr_idle@esc_introduction_kordon]
+on_timer = 5000|sr_idle %+esc_introduction_kordon_start =give_task(esc_introduction_kordon)%

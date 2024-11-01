@@ -1,0 +1,37 @@
+[logic]
+active = move@guard
+
+[move@guard]
+move_dest_number       = 18853
+move_look_vertex       = 17527
+move_state_when_center = hide
+move_state_when_move   = walk
+move_stop_on_talk      = true
+invulnerable           = true
+meet                   = no_meet
+on_info                = {+zat_rassvet_homsa_ready_to_attack} move@guard_no_talking
+
+
+[move@guard_no_talking]
+move_dest_number       = 18853
+move_look_vertex       = 17527
+move_state_when_center = hide
+move_state_when_move   = assault
+invulnerable           = false
+move_stop_on_talk      = true
+meet                   = no_meet
+on_info                = {+zat_b106_stalker_gonta_b52_about_hunters_homsa_dialog_talking} %=kill_npc%
+
+
+[meet]
+abuse           = true
+use             = true
+allow_break     = false
+meet_on_talking = true
+trade_enable    = false
+
+[no_meet]
+abuse           = true
+use             = false
+allow_break     = true
+meet_on_talking = false

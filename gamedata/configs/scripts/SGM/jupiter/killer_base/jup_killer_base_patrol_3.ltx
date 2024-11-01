@@ -1,0 +1,54 @@
+[logic]
+active = move@walking
+on_death = death
+
+[death]
+on_info = {=killed_by_actor} %+jup_killer_base_actor_hit +jup_killer_base_patrol_3_death%, %+jup_killer_base_patrol_3_death%
+
+[move@walking]
+surge_hide_point    = 1124909
+scheme_type         = patrol
+patrol_count_path   = 14
+patrol_path_1       = 1128929
+patrol_path_2       = 1116263
+patrol_path_3       = 1115119
+patrol_path_3_state = sneak_no_wpn
+patrol_path_4       = 1121902
+patrol_path_4_state = sneak_no_wpn
+patrol_path_4_wait  = 15000
+patrol_path_4_look  = 1129942
+patrol_path_4_anim  = probe_crouch
+patrol_path_5       = 1119628
+patrol_path_5_state = sneak_no_wpn
+patrol_path_6       = 1115091
+patrol_path_7       = 1116205
+patrol_path_7_wait  = 16000
+patrol_path_7_look  = 1126822
+patrol_path_7_anim  = probe_stand
+patrol_path_8       = 1057705
+patrol_path_9       = 1028125
+patrol_path_10      = 1010967
+patrol_path_10_wait = 7000
+patrol_path_10_look = 1002732
+patrol_path_10_anim = guard_chasovoy
+patrol_path_11      = 1023121
+patrol_path_11_wait = 10000
+patrol_path_11_look = 1049223
+patrol_path_11_anim = binocular
+patrol_path_12      = 1099176
+patrol_path_12_wait = 6000
+patrol_path_12_look = 1107146
+patrol_path_12_anim = choose
+patrol_path_13      = 1120778
+patrol_path_14      = 1129943
+patrol_countdown    = false
+patrol_no_reaction  = false
+meet                = meet
+on_info             = {!actor_enemy +jup_killer_base_actor_hit} %=actor_enemy%
+
+[meet]
+abuse           = true
+use             = false
+allow_break     = true
+meet_on_talking = false
+

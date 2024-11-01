@@ -1,0 +1,51 @@
+[logic]
+active = move@specnaz_wait
+on_death = death
+
+[death]
+on_info = %+pri_assault_monolith_base_squad_soldier2_death%
+
+[move@specnaz_wait]
+move_dest_number       = 360363
+move_look_vertex       = 359531
+move_state_when_center = hide
+move_state_when_move   = assault
+on_info                = {+pri_assault_monolith_base_fail} nil, {+pri_assault_monolith_base_reward} %=release_npc%
+on_info2               = {+pri_assault_monolith_base_follow_leader2} move@specnaz_pursue
+
+[move@specnaz_pursue]
+move_pursue_sid        = pri_assault_squad_leader|true
+move_pursue_range      = 7|35
+move_pursue_formation  = around
+invulnerable           = {!actor_enemy} true, false
+on_info                = {+pri_assault_monolith_base_fail} nil
+on_info2               = {+pri_assault_monolith_base_sneak_move} move@specnaz_firepos
+
+[move@specnaz_firepos]
+move_dest_number       = 255747
+move_look_vertex       = 251733
+move_state_when_center = hide
+move_state_when_move   = sneak
+move_combat_disable    = true
+combat_ignore_cond     = true
+combat_ignore_keep_when_attacked = true
+invulnerable           = {!actor_enemy} true, false
+on_info                = {+pri_assault_monolith_base_we_begin} move@specnaz_assault
+on_info2               = {+pri_assault_monolith_base_fail} nil
+
+[move@specnaz_assault]
+move_dest_number       = 224588
+move_state_when_center = hide
+move_state_when_move   = assault
+on_info                = {+pri_assault_monolith_base_enemy_destroyed} move@specnaz_after
+on_info2               = {+pri_assault_monolith_base_fail} nil
+
+[move@specnaz_after]
+move_dest_number       = 201562
+move_look_vertex       = 205187
+move_state_when_center = hide
+move_state_when_move   = assault
+on_info                = {+pri_assault_monolith_base_reward} %=release_npc%
+on_info2               = {+pri_assault_monolith_base_teleport} nil, {+pri_assault_monolith_base_fail} nil
+
+

@@ -1,0 +1,25 @@
+[smart_terrain];agr_smart_terrain_2 (49 работ)
+squad_id = 2
+max_population = 4
+respawn_params = respawn@agr_smart_terrain_2
+arrive_dist = 80
+
+[respawn@agr_smart_terrain_2]
+spawn_mercenary@novice
+spawn_mercenary@advanced
+spawn_mercenary@veteran
+
+[spawn_mercenary@novice]
+spawn_squads = mercenary_sim_squad_novice
+spawn_num = {+actor_come_to_agroprom =check_actor_rank(0:100)} 1, 0
+
+[spawn_mercenary@advanced]
+spawn_squads = mercenary_sim_squad_advanced
+spawn_num = {+actor_come_to_agroprom =check_actor_rank(100:400)} 1, 0
+
+[spawn_mercenary@veteran]
+spawn_squads = mercenary_sim_squad_veteran
+spawn_num = {+actor_come_to_agroprom =check_actor_rank(400)} 1, 0
+
+[exclusive]
+agr_b2_commander = agroprom\agr_b2_logic.ltx

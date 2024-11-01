@@ -1,0 +1,56 @@
+[smart_terrain];esc_smart_terrain_1 (30 работ)
+squad_id = 1
+max_population = 8
+respawn_params = respawn@esc_smart_terrain_1
+arrive_dist = 40
+
+[respawn@esc_smart_terrain_1]
+spawn_stalker@novice
+spawn_stalker@advanced
+spawn_stalker@veteran
+
+[spawn_stalker@novice]
+spawn_squads = stalker_sim_squad_novice
+spawn_num = {+esc_storyline_done =check_actor_rank(0:40)} 1, 0
+
+[spawn_stalker@advanced]
+spawn_squads = stalker_sim_squad_advanced
+spawn_num = {+esc_storyline_done =check_actor_rank(40:100)} 1, 0
+
+[spawn_stalker@veteran]
+spawn_squads = stalker_sim_squad_veteran
+spawn_num = {+esc_storyline_done =check_actor_rank(100)} 1, 0
+
+[exclusive]
+esc_b1_commander = escape\esc_b1_logic.ltx
+esc_b1_chief     = escape\esc_b1_logic.ltx
+esc_b1_guarder_1 = escape\esc_b1_logic.ltx
+esc_b1_guarder_2 = escape\esc_b1_logic.ltx
+esc_b1_guarder_3 = escape\esc_b1_logic.ltx
+esc_b1_guarder_4 = escape\esc_b1_logic.ltx
+esc_b1_guarder_5 = escape\esc_b1_logic.ltx
+esc_b1_guarder_6 = escape\esc_b1_logic.ltx
+esc_b1_guarder_7 = escape\esc_b1_logic.ltx
+esc_b1_guarder_8 = escape\esc_b1_logic.ltx
+esc_b1_guarder_9 = escape\esc_b1_logic.ltx
+esc_b1_guarder_10 = escape\esc_b1_logic.ltx
+esc_b1_guarder_11 = escape\esc_b1_logic.ltx
+esc_b1_guarder_12 = escape\esc_b1_logic.ltx
+esc_b1_guarder_13 = escape\esc_b1_logic.ltx
+esc_b1_guarder_14 = escape\esc_b1_logic.ltx
+esc_b1_guarder_15 = escape\esc_b1_logic.ltx
+esc_b1_guarder_16 = escape\esc_b1_logic.ltx
+esc_b1_guarder_17 = escape\esc_b1_logic.ltx
+esc_b1_guarder_18 = escape\esc_b1_logic.ltx
+esc_b1_guarder_19 = escape\esc_b1_logic.ltx
+esc_b1_guarder_20 = escape\esc_b1_logic.ltx
+esc_b1_guarder_21 = escape\esc_b1_logic.ltx
+esc_b1_guarder_22 = escape\esc_b1_logic.ltx
+esc_b1_guarder_23 = escape\esc_b1_logic.ltx
+esc_b1_guarder_24 = escape\esc_b1_logic.ltx
+esc_b1_guarder_25 = escape\esc_b1_logic.ltx
+esc_b1_guarder_26 = escape\esc_b1_logic.ltx
+esc_b1_guarder_27 = escape\esc_b1_logic.ltx
+esc_b1_guarder_28 = escape\esc_b1_logic.ltx
+esc_b1_guarder_29 = escape\esc_b1_logic.ltx
+esc_b1_guarder_30 = escape\esc_b1_logic.ltx

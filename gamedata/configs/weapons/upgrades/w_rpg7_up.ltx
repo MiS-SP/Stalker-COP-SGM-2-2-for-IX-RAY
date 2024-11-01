@@ -1,0 +1,115 @@
+[up_sect_optika_rpg7]
+cost		      	= 1600
+scope_alive_detector    = scope_detector
+scope_zoom_factor       = -5
+scope_dynamic_zoom      = on
+
+[up_sect_kurok_rpg7]
+cost		      	= 2800
+crosshair_inertion      = -4
+PDM_disp_base 		= -0.2
+PDM_disp_vel_factor 	= -0.75
+PDM_disp_accel_factor 	= -0.75
+inv_weight  		= -3
+sprint_allowed		= true
+
+[up_sect_truba_rpg7]
+cost		      	= 4000
+bullet_speed		= +150
+rpm			= +3
+fire_dispersion_base	= -0.5
+cam_dispersion          = -3.0
+launch_speed	        = 8
+hit_impulse		= 150
+
+[up_sect_body_rpg7]
+cost		      	= 8000
+hit_impulse		= 250
+launch_speed	        = 12
+fire_dispersion_base	= -0.5
+cam_dispersion          = -3.0
+rpm			= +3
+bullet_speed		= +100
+inv_weight  		= -1
+crosshair_inertion      = -1
+PDM_disp_base 		= -0.05
+PDM_disp_vel_factor 	= -0.05
+PDM_disp_accel_factor 	= -0.05
+hit_power       	= 5.00
+
+[up_optika_rpg7]
+scheme_index            = 0, 0
+effects                 = up_gr_body_rpg7
+section                 = up_sect_optika_rpg7
+property                = prop_rpg7_optika
+known                   = 1
+precondition_functor    = inventory_upgrades.precondition_functor_a
+precondition_parameter  = a & b
+effect_functor          = inventory_upgrades.effect_functor_a
+effect_parameter        = something_here
+prereq_functor          = inventory_upgrades.prereq_functor_a
+prereq_tooltip_functor  = inventory_upgrades.prereq_tooltip_functor_a
+prereq_params           = 
+name                    = st_upgrade_rpg7_optika_name
+description             = st_upgrade_rpg7_optika_descr
+icon                    = ui_upgrade_rpg_optika
+
+[up_kurok_rpg7]
+scheme_index            = 0, 1
+effects                 = up_gr_body_rpg7
+section                 = up_sect_kurok_rpg7
+property                = prop_rpg7_kurok
+known                   = 1
+precondition_functor    = inventory_upgrades.precondition_functor_a
+precondition_parameter  = a & b
+effect_functor          = inventory_upgrades.effect_functor_a
+effect_parameter        = something_here
+prereq_functor          = inventory_upgrades.prereq_functor_a
+prereq_tooltip_functor  = inventory_upgrades.prereq_tooltip_functor_a
+prereq_params           = 
+name                    = st_upgrade_rpg7_kurok_name
+description             = st_upgrade_rpg7_kurok_descr
+icon                    = ui_upgrade_rpg_kurok
+
+[up_truba_rpg7]
+scheme_index            = 0, 2
+effects                 = up_gr_body_rpg7
+section                 = up_sect_truba_rpg7
+property                = prop_rpg7_truba
+known                   = 1
+precondition_functor    = inventory_upgrades.precondition_functor_a
+precondition_parameter  = a & b
+effect_functor          = inventory_upgrades.effect_functor_a
+effect_parameter        = something_here
+prereq_functor          = inventory_upgrades.prereq_functor_a
+prereq_tooltip_functor  = inventory_upgrades.prereq_tooltip_functor_a
+prereq_params           = 
+name                    = st_upgrade_rpg7_truba_name
+description             = st_upgrade_rpg7_truba_descr
+icon                    = ui_upgrade_rpg_truba
+
+[up_body_rpg7]
+scheme_index            = 1, 0
+effects                 =
+section                 = up_sect_body_rpg7
+property                = prop_rpg7_body
+known                   = 1
+precondition_functor    = inventory_upgrades.precondition_functor_a
+precondition_parameter  = a & b
+effect_functor          = inventory_upgrades.effect_functor_a
+effect_parameter        = something_here
+prereq_functor          = inventory_upgrades.prereq_functor_a
+prereq_tooltip_functor  = inventory_upgrades.prereq_tooltip_functor_a
+prereq_params           = 
+name                    = st_upgrade_rpg7_body_name
+description             = st_upgrade_rpg7_body_descr
+icon                    = ui_upgrade_rpg_body
+
+[up_gr_optika_rpg7]
+elements                = up_optika_rpg7
+[up_gr_kurok_rpg7]
+elements                = up_kurok_rpg7
+[up_gr_truba_rpg7]
+elements                = up_truba_rpg7
+[up_gr_body_rpg7]
+elements                = up_body_rpg7

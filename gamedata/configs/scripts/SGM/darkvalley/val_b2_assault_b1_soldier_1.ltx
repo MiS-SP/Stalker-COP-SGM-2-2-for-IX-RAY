@@ -1,0 +1,55 @@
+[logic]
+active = move@soldier
+on_death = death
+
+[death]
+on_info = {=killed_by_actor +val_assault_factory_start -val_assault_factory_squad_in_assault -val_alt_storyline_commenced} %+val_alt_storyline_commenced =decrease_counter(val_assault_factory_stalker_counts)%, {+val_assault_factory_start -val_assault_factory_squad_in_assault -val_alt_storyline_commenced} %=decrease_counter(val_assault_factory_stalker_counts)%
+
+[c_i]
+combat_ignore_cond = {-val_assault_factory_squad_in_assault =check_enemy_name(renegade)} true
+
+[move@soldier]
+move_dest_number       = 101622
+move_look_vertex       = 93395
+move_state_when_center = guard
+move_state_when_move   = patrol
+on_info                = {+val_assault_factory_squad_in_move} move@crossing_bridge, {+val_alt_storyline_commenced} nil %=actor_enemy%
+
+[move@crossing_bridge]:c_i
+move_pursue_sid        = val_b2_assault_b1_commander|true
+move_pursue_range      = 5|35
+move_pursue_formation  = back
+on_info                = {+val_assault_factory_squad_passed_bridge} move@factory_cover_one
+
+[move@factory_cover_one]:c_i
+move_dest_number       = 208663
+move_look_vertex       = 290156
+move_state_when_center = hide
+move_state_when_move   = sneak_run
+move_center_action     = %=increase_counter(val_assault_factory_cover_1_done)%
+on_info                = {=check_difference_counter(val_assault_factory_stalker_counts:val_assault_factory_cover_1_done)} move@factory_cover_two %+val_assault_factory_squad_in_sneak%
+on_info2               = {+val_assault_factory_garrison_alarmed} move@factory_assault %+val_assault_factory_squad_in_assault%
+on_info3               = {+val_alt_storyline_commenced} nil %=actor_enemy%
+
+[move@factory_cover_two]:c_i
+move_dest_number       = 273396
+move_look_vertex       = 290156
+move_state_when_center = hide
+move_state_when_move   = sneak
+move_center_action     = %=increase_counter(val_assault_factory_cover_2_done)%
+on_info                = {+val_assault_factory_squad_signal =check_difference_counter(val_assault_factory_stalker_counts:val_assault_factory_cover_2_done)} move@factory_assault %+val_assault_factory_squad_in_assault%
+on_info2               = {+val_assault_factory_garrison_alarmed} move@factory_assault %+val_assault_factory_squad_in_assault%
+on_info3               = {+val_alt_storyline_commenced} nil %=actor_enemy%
+
+[move@factory_assault]
+move_dest_number       = 315299
+move_state_when_center = guard
+move_state_when_move   = assault
+on_info                = {+val_assault_factory_garrison_destroyed} move@factory_occupy %=actor_friend%, {+val_alt_storyline_commenced} nil %=actor_enemy%
+
+[move@factory_occupy]
+move_dest_number       = 311974
+move_look_vertex       = 294658
+move_state_when_center = guard
+move_state_when_move   = patrol
+on_info                = {+val_alt_storyline_commenced} nil %=actor_enemy%

@@ -1,0 +1,12 @@
+[smart_terrain];val_monster_burrow_12
+squad_id = 27
+max_population = 2
+respawn_only_smart = true
+respawn_params = respawn@val_monster_burrow_12
+
+[respawn@val_monster_burrow_12]
+spawn_monsters
+
+[spawn_monsters]
+spawn_squads = simulation_pseudodog
+spawn_num = {+val_storyline_done} 1, 0

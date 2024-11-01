@@ -1,0 +1,26 @@
+[logic]
+active = move@elevator_sniper
+on_hit = hit
+
+[hit]
+on_info = {=present_hit_by_actor} %+zat_b14_actor_enemy%
+
+[move@elevator_sniper]
+scheme_type         = shooter
+shooter_pos         = 1645736
+shooter_fire_look   = enemy
+shooter_idle_look   = actor
+shooter_clip        = -1
+shooter_reload      = 1
+shooter_type_wpn    = rifle
+shooter_need_see    = true
+shooter_need_dist   = 100
+shooter_move_state  = walk
+shooter_idle_state  = threat
+shooter_fire_state  = threat_fire
+shooter_avail_cond  = {+zat_b14_actor_enemy} true, false
+death_cleaning      = true|weapon
+combat_ignore_cond  = true
+combat_ignore_keep_when_attacked = true
+on_info             = {!actor_enemy +zat_b14_actor_enemy} %=actor_enemy%
+on_info2            = {=dist_to_actor_le(12)} nil, {+zat_b14_stalkers_bandits_free} nil, {+zat_b14_robbery_give_artefact} nil, {+zat_b14_give_item_stalker} nil

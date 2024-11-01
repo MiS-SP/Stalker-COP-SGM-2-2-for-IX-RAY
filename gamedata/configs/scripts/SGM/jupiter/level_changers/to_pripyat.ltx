@@ -1,0 +1,14 @@
+[logic]
+active = sr_universal
+
+[sr_universal]
+scheme_type = level_change_zone
+level_change_cond         = {+pri_a28_actor_in_zone_stay} true, false
+level_change_on_use       = %+level_change_to_pripyat_from_jupiter%
+level_change_travel_coord = -16.323,14.484,142.785
+level_change_throw_coord  = 432.821,27.674,-161.905,1.595
+level_change_travel_time  = 4,38
+level_change_spot         = level_change_right_location,st_level_change_to_prypiat,false
+level_change_autosave     = st_save_travel_jupiter_to_pripyat
+level_change_silent_travel = false
+level_change_hidden_mode  = true

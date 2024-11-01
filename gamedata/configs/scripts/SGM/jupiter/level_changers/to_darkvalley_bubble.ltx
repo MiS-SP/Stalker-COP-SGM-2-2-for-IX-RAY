@@ -1,0 +1,12 @@
+[logic]
+active = sr_universal
+
+[sr_universal]
+scheme_type = level_change_zone
+level_change_cond         = {+jup_spatial_bladder_create} true, false
+level_change_on_use       = %+level_change_to_darkvalley_from_jupiter_bubble%
+level_change_travel_coord = -472.172,-0.440,-325.038
+level_change_travel_time  = 3,22
+level_change_silent_travel = true
+level_change_hidden_mode  = true
+on_info                   = {+jup_spatial_bladder_create -jup_spatial_bladder_founded =dist_to_actor_le(70)} %+jup_spatial_bladder_founded =set_spot_on_self(spatial_bladder_location:st_bubble_spot_name)%

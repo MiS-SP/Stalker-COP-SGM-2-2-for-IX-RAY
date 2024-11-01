@@ -1,0 +1,10 @@
+;Зона в которой ГГ должен проверить установки.
+
+[logic]
+active = sr_idle
+
+[sr_idle]
+on_info = {=actor_in_zone(jup_a6_azot_restr_plant_3) +jup_b206_modul_restr_2_searched -jup_b206_modul_restr_3_searched} sr_idle@in_place %=run_tutorial(jup_a6_azot_cheked_plant_3) +jup_a6_azot_restr_start_tutorial_3%
+
+[sr_idle@in_place]
+on_info = {!actor_in_zone(jup_a6_azot_restr_plant_3) +jup_a6_azot_restr_start_tutorial_3} sr_idle %-jup_a6_azot_restr_start_tutorial_3 =stop_tutorial%

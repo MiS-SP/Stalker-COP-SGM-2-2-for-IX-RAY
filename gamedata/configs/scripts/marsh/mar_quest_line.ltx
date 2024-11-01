@@ -1,0 +1,10 @@
+;Рестриктор "Основная сюжетная линия"
+
+[logic]
+active = sr_idle
+
+[sr_idle]
+on_info  = {-mar_find_army_squad_start =game_is_loaded} sr_idle@mar_find_army_squad
+
+[sr_idle@mar_find_army_squad]
+on_timer = 5000|sr_idle %+mar_find_army_squad_start =mar_create_army_wounded =give_task(mar_find_army_squad)%

@@ -1,0 +1,86 @@
+;Логика "Лагерь на холме"
+
+[walker@def_guarder]
+use_camp = false
+gather_items_enabled = false
+help_wounded_enabled = true
+corpse_detection_enabled = false
+invulnerable = {-val_alt_storyline_commenced -val_assault_factory_squad_passed_bridge} true, false
+combat_ignore_cond = {+val_alt_storyline_commenced} false, {-val_assault_factory_squad_passed_bridge} false, {+val_assault_factory_squad_passed_bridge -val_assault_factory_garrison_alarmed -val_assault_factory_squad_in_assault} true
+
+;
+
+[logic@val_b10_guarder_1]
+active = walker@guarder_1
+suitable = {=check_npc_name(sim_default_renegade) !surge_started -val_storyline_done} true
+prior = 90
+
+[walker@guarder_1]:walker@def_guarder
+path_walk = guard_1_walk
+path_look = guard_1_look
+
+;
+
+[logic@val_b10_guarder_2]
+active = walker@guarder_2
+suitable = {=check_npc_name(sim_default_renegade) !surge_started -val_storyline_done} true
+prior = 90
+
+[walker@guarder_2]:walker@def_guarder
+path_walk = guard_2_walk
+path_look = guard_2_look
+
+;
+
+[logic@val_b10_guarder_3]
+active = walker@guarder_3
+suitable = {=check_npc_name(sim_default_renegade) !surge_started -val_storyline_done} true
+prior = 90
+
+[walker@guarder_3]:walker@def_guarder
+path_walk = guard_3_walk
+path_look = guard_3_look
+
+;
+
+[logic@val_b10_guarder_4]
+active = walker@guarder_4
+suitable = {=check_npc_name(sim_default_renegade) !surge_started -val_storyline_done} true
+prior = 90
+
+[walker@guarder_4]:walker@def_guarder
+path_walk = guard_4_walk
+path_look = guard_4_look
+
+;
+
+[logic@val_b10_guarder_5]
+active = walker@guarder_5
+suitable = {=check_npc_name(sim_default_renegade) !surge_started -val_storyline_done} true
+prior = 90
+
+[walker@guarder_5]:walker@def_guarder
+path_walk = guard_5_walk
+path_look = guard_5_look
+
+;
+
+[logic@val_b10_guarder_6]
+active = walker@guarder_6
+suitable = {=check_npc_name(sim_default_renegade) !surge_started -val_storyline_done} true
+prior = 90
+
+[walker@guarder_6]:walker@def_guarder
+path_walk = guard_6_walk
+path_look = guard_6_look
+
+;
+
+[logic@val_b10_guarder_7]
+active = walker@guarder_7
+suitable = {=check_npc_name(sim_default_renegade) !surge_started -val_storyline_done} true
+prior = 90
+
+[walker@guarder_7]:walker@def_guarder
+path_walk = guard_7_walk
+path_look = guard_7_look

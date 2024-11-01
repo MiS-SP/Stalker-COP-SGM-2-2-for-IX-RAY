@@ -1,0 +1,276 @@
+	<string id="red_forest">
+		<text>Рыжий Лес</text>
+	</string>
+	<string id="marsh">
+		<text>Болота</text>
+	</string>
+	<string id="escape">
+		<text>Кордон</text>
+	</string>
+	<string id="agroprom">
+		<text>Агропром</text>
+	</string>
+	<string id="agroprom_underground">
+		<text>Подземелья Агропрома</text>
+	</string>
+	<string id="military">
+		<text>Военные Склады</text>
+	</string>
+	<string id="darkvalley">
+		<text>Темная Долина</text>
+	</string>
+	<string id="l04u_labx18">
+		<text>Лаборатория Х18</text>
+	</string>
+	<string id="st_val_region_1_name">
+		<text>Завод</text>
+	</string>
+	<string id="st_val_region_2_name">
+		<text>Ферма</text>
+	</string>
+	<string id="st_val_region_3_name">
+		<text>Заброшенная база</text>
+	</string>
+	<string id="st_val_region_4_name">
+		<text>Остров</text>
+	</string>
+	<string id="st_val_region_5_name">
+		<text>Старая бензоколонка</text>
+	</string>
+	<string id="st_val_region_6_name">
+		<text>Блокпост у фермы</text>
+	</string>
+	<string id="st_val_region_7_name">
+		<text>Аномалия «Раскол»</text>
+	</string>
+	<string id="st_val_region_8_name">
+		<text>Блокпост у элеватора</text>
+	</string>
+	<string id="st_val_region_9_name">
+		<text>Вагончик на холме</text>
+	</string>
+	<string id="st_val_region_10_name">
+		<text>Форпост</text>
+	</string>
+	<string id="st_val_region_11_name">
+		<text>Южный блокпост</text>
+	</string>
+	<string id="st_val_region_12_name">
+		<text>Северный блокпост</text>
+	</string>
+	<string id="st_val_region_13_name">
+		<text>Диспетчерская АЗС</text>
+	</string>
+	<string id="st_val_region_14_name">
+		<text>Лагерь у бензоколонки</text>
+	</string>
+	<string id="st_val_region_15_name">
+		<text>Остановка</text>
+	</string>
+	<string id="st_val_region_16_name">
+		<text>Лагерь под оврагом</text>
+	</string>
+	<string id="st_val_region_17_name">
+		<text>Лагерь на холме</text>
+	</string>
+	<string id="st_val_region_18_name">
+		<text>Баррикада у моста</text>
+	</string>
+	<string id="st_val_region_19_name">
+		<text>Лагерь среди камней</text>
+	</string>
+	<string id="st_val_smart_terrain_1_go">
+		<text>Направляюсь в сторону завода, который за мостом.</text>
+	</string>
+	<string id="st_val_smart_terrain_2_go">
+		<text>Двигаюсь на ферму, это к югу от моста.</text>
+	</string>
+	<string id="st_val_smart_terrain_3_go">
+		<text>Двигаюсь в сторону заброшенной базе.</text>
+	</string>
+	<string id="st_val_smart_terrain_4_go">
+		<text>Следую в диспетчерскую АЗС.</text>
+	</string>
+	<string id="st_val_smart_terrain_5_go">
+		<text>Иду в лагерь у бензоколонки.</text>
+	</string>
+	<string id="st_val_smart_terrain_6_go">
+		<text>Собираюсь идти на блокпост у элеватора.</text>
+	</string>
+	<string id="st_val_smart_terrain_7_go">
+		<text>Иду на остановку, напротив завода.</text>
+	</string>
+	<string id="st_val_smart_terrain_8_go">
+		<text>Следую в лагерь под оврагом.</text>
+	</string>
+	<string id="st_val_smart_terrain_9_go">
+		<text>Передвигаюсь к вагончику на холме.</text>
+	</string>
+	<string id="st_val_smart_terrain_10_go">
+		<text>Собираюсь идти в лагерь на холме.</text>
+	</string>
+	<string id="st_val_smart_terrain_11_go">
+		<text>Собираюсь идти на южный блокпост.</text>
+	</string>
+	<string id="st_val_smart_terrain_12_go">
+		<text>Передвигаюсь к северному блокпосту.</text>
+	</string>
+	<string id="st_val_smart_terrain_13_go">
+		<text>Следую к баррикадам у моста.</text>
+	</string>
+	<string id="st_val_smart_terrain_14_go">
+		<text>Двигаюсь на блокпост у фермы.</text>
+	</string>
+	<string id="st_val_smart_terrain_15_go">
+		<text>Направляюсь в лагерь среди камней.</text>
+	</string>
+	<string id="st_mil_region_1_name">
+		<text>Хутор</text>
+	</string>
+	<string id="st_mil_region_2_name">
+		<text>Деревня</text>
+	</string>
+	<string id="st_mil_region_3_name">
+		<text>Западная застава</text>
+	</string>
+	<string id="st_mil_region_4_name">
+		<text>Посёлок</text>
+	</string>
+	<string id="st_mil_region_5_name">
+		<text>Стоянка</text>
+	</string>
+	<string id="st_mil_region_6_name">
+		<text>Восточная застава</text>
+	</string>
+	<string id="st_mil_region_7_name">
+		<text>База</text>
+	</string>
+	<string id="st_agr_region_1_name">
+		<text>Избушка</text>
+	</string>
+	<string id="st_agr_region_2_name">
+		<text>Плато</text>
+	</string>
+	<string id="st_agr_region_3_name">
+		<text>Восточный блокпост</text>
+	</string>
+	<string id="st_agr_region_4_name">
+		<text>Автобусная остановка</text>
+	</string>
+	<string id="st_agr_region_5_name">
+		<text>Военная база</text>
+	</string>
+	<string id="st_agr_region_6_name">
+		<text>Привал на холме</text>
+	</string>
+	<string id="st_agr_region_7_name">
+		<text>Форпост</text>
+	</string>
+	<string id="st_agr_region_8_name">
+		<text>Штаб</text>
+	</string>
+	<string id="st_agr_region_9_name">
+		<text>Валуны</text>
+	</string>
+	<string id="st_esc_region_1_name">
+		<text>Южный блокпост</text>
+	</string>
+	<string id="st_esc_region_2_name">
+		<text>Деревня</text>
+	</string>
+	<string id="st_esc_region_3_name">
+		<text>АТП</text>
+	</string>
+	<string id="st_esc_region_4_name">
+		<text>Мост</text>
+	</string>
+	<string id="st_esc_region_5_name">
+		<text>База</text>
+	</string>
+	<string id="st_esc_region_6_name">
+		<text>Северный блокпост</text>
+	</string>
+	<string id="st_mar_region_1_name">
+		<text>Аванпост</text>
+	</string>
+	<string id="st_mar_region_2_name">
+		<text>Насосная станция</text>
+	</string>
+	<string id="st_mar_region_3_name">
+		<text>Рыбацкий хутор</text>
+	</string>
+	<string id="st_mar_region_4_name">
+		<text>Старая церковь</text>
+	</string>
+	<string id="st_mar_region_5_name">
+		<text>Посёлок</text>
+	</string>
+	<string id="st_mar_region_6_name">
+		<text>Сгоревший хутор</text>
+	</string>
+	<string id="st_mar_region_7_name">
+		<text>Механизаторский двор</text>
+	</string>
+	<string id="st_mar_region_8_name">
+		<text>Посёлок</text>
+	</string>
+	<string id="st_mar_region_9_name">
+		<text>Посёлок</text>
+	</string>
+	<string id="st_esc_smart_terrain_1_go">
+		<text>Направляюсь на южный блокпост.</text>
+	</string>
+	<string id="st_esc_smart_terrain_2_go">
+		<text>Держу курс на деревню.</text>
+	</string>
+	<string id="st_esc_smart_terrain_3_go">
+		<text>Иду на АТП.</text>
+	</string>
+	<string id="st_esc_smart_terrain_5_go">
+		<text>Двигаюсь к мосту.</text>
+	</string>
+	<string id="st_esc_smart_terrain_6_go">
+		<text>Собираюсь идти на базу.</text>
+	</string>
+	<string id="st_esc_smart_terrain_7_go">
+		<text>Следую на северный блокпост.</text>
+	</string>
+	<string id="st_mar_smart_terrain_1_go">
+		<text>Собираюсь на рыбацкий хутор.</text>
+	</string>
+	<string id="st_mar_smart_terrain_2_go">
+		<text>Направляюсь к насосной станции.</text>
+	</string>
+	<string id="st_mar_smart_terrain_3_go">
+		<text>Следую в церковь.</text>
+	</string>
+	<string id="st_mar_smart_terrain_4_go">
+		<text>Иду на механизаторский двор.</text>
+	</string>
+	<string id="st_red_region_1_name">
+		<text>Блокпост</text>
+	</string>
+	<string id="st_red_region_2_name">
+		<text>Чёртова стоянка</text>
+	</string>
+	<string id="st_red_region_3_name">
+		<text>Лихая тропа</text>
+	</string>
+	<string id="st_red_region_4_name">
+		<text>Аномалия «Ведьмин круг»</text>
+	</string>
+	<string id="st_red_region_5_name">
+		<text>Казармы в шахте</text>
+	</string>
+	<string id="st_red_region_6_name">
+		<text>Лагерь у дороги</text>
+	</string>
+	<string id="st_red_region_7_name">
+		<text>Лагерь у капера</text>
+	</string>
+	<string id="st_red_region_8_name">
+		<text>Автобусная остановка</text>
+	</string>
+	<string id="st_red_region_9_name">
+		<text>Ангар</text>
+	</string>

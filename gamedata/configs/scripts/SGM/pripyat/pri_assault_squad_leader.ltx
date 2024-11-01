@@ -1,0 +1,74 @@
+[logic]
+active = move@leader_wait
+on_death = death
+
+[death]
+on_info = %+pri_assault_monolith_base_squad_leader_death%
+
+[move@leader_wait]
+move_dest_number       = 355556
+move_look_subject      = actor
+move_state_when_center = choose
+move_state_when_move   = patrol
+meet                   = meet
+invulnerable           = {!actor_enemy} true, false
+on_info                = {+pri_assault_monolith_base_fail} nil, {+pri_assault_monolith_base_reward} nil %=release_npc%
+on_info2               = {+pri_assault_monolith_base_follow_leader2 -pri_assault_monolith_base_reward} move@leader_going %=play_s3d_sound(characters_voice\human_01\military\alife\attack\attack_begin_1)%
+
+[move@leader_going]
+scheme_type            = patrol
+patrol_count_path      = 7
+patrol_path_1_state    = assault
+patrol_path_1          = 353256
+patrol_path_2_state    = assault
+patrol_path_2          = 315056
+patrol_path_3_state    = assault
+patrol_path_3          = 347968
+patrol_path_4_state    = assault
+patrol_path_4          = 330283
+patrol_path_5_state    = assault
+patrol_path_5          = 305358
+patrol_path_6_state    = assault
+patrol_path_6          = 299687
+patrol_path_7_state    = assault
+patrol_path_7          = 269074
+patrol_countdown       = false
+patrol_no_reaction     = false
+invulnerable           = true
+on_patrol_path         = 7|move@leader_firepos %+pri_assault_monolith_base_sneak_move =play_s3d_sound(characters_voice\human_01\military\alife\attack\attack_ready_3)%
+on_info                = {+pri_assault_monolith_base_fail} nil
+
+[move@leader_firepos]
+move_dest_number       = 184815
+move_look_vertex       = 192922
+move_state_when_center = hide
+move_state_when_move   = sneak
+move_combat_disable    = true
+combat_ignore_cond     = true
+combat_ignore_keep_when_attacked = true
+invulnerable           = {!actor_enemy} true, false
+on_info                = {+pri_assault_monolith_base_we_begin} move@leader_assault %=play_s3d_sound(characters_voice\human_01\military\alife\attack\start_fight_3)%
+on_info2               = {+pri_assault_monolith_base_fail} nil
+
+[move@leader_assault]
+move_dest_number       = 224588
+move_state_when_center = hide
+move_state_when_move   = assault
+on_info                = {+pri_assault_monolith_base_enemy_destroyed} move@leader_after %=play_s3d_sound(characters_voice\human_01\military\fight\post_combat_wait\relax_2)%
+on_info2               = {+pri_assault_monolith_base_fail} nil
+
+[move@leader_after]
+move_dest_number       = 204283
+move_look_vertex       = 205190
+move_state_when_center = guard
+move_state_when_move   = assault
+meet                   = meet
+on_info                = {+pri_assault_monolith_base_reward} nil %=release_npc%
+on_info2               = {+pri_assault_monolith_base_teleport} nil, {+pri_assault_monolith_base_fail} nil
+
+[meet]
+abuse           = true
+use             = {!actor_enemy} true, false
+allow_break     = false
+meet_on_talking = false
+trade_enable    = false

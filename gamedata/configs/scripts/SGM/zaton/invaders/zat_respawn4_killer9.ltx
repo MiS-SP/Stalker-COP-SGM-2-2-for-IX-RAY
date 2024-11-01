@@ -1,0 +1,19 @@
+[logic]
+active = move@started
+on_death = death
+
+[death]
+on_info = %=zat_respawn4_killers_counter%
+
+[move@started]
+move_dest_number       = 168225
+move_state_when_center = guard
+move_state_when_move   = walk
+move_look_vertex       = 170335
+meet                   = meet
+
+[meet]
+abuse           = true
+use             = {!actor_enemy} true, false
+allow_break     = true
+meet_on_talking = false

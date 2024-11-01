@@ -1,0 +1,11 @@
+[logic]
+active = mob_move
+on_death = death
+
+[death]
+on_info = %+jup_after_fight_snork_5_death =jup_psi_controller_check%
+
+[mob_move]
+target_point = actor
+combat_ignore_cond = {=is_enemy_pertains(monster)} true
+

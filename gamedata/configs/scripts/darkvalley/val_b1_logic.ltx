@@ -1,0 +1,327 @@
+;Логика "Завод"
+
+[walker@def_guarder]
+use_camp = false
+gather_items_enabled = false
+help_wounded_enabled = true
+corpse_detection_enabled = false
+invulnerable = {-val_alt_storyline_commenced -val_assault_factory_squad_passed_bridge} true, false
+combat_ignore_cond = {+val_alt_storyline_commenced} false, {-val_assault_factory_squad_passed_bridge} false, {+val_assault_factory_squad_passed_bridge -val_assault_factory_garrison_alarmed -val_assault_factory_squad_in_assault} true
+
+[logic@def]
+on_hit = hit
+on_death = death
+
+[hit]
+on_info = {+val_assault_factory_squad_passed_bridge} %+val_assault_factory_garrison_alarmed%
+
+[death]
+on_info = %+val_assault_factory_garrison_alarmed%
+
+;
+
+[logic@val_b1_commander]:logic@def
+active = walker@commander
+suitable = {=check_npc_name(val_b1_base_commander) !surge_started -val_storyline_done} true, {=check_npc_name(sim_default_night_stalker) !surge_started -val_storyline_done} true
+prior = 200
+
+[walker@commander]:walker@def_guarder
+path_walk = commander_walk
+path_look = commander_look
+
+;
+
+[logic@val_b1_guarder_1]:logic@def
+active = walker@guarder_1
+suitable = {=check_npc_name(sim_default_renegade) !surge_started -val_storyline_done} true, {=check_npc_name(sim_default_night_stalker) !surge_started -val_storyline_done} true
+prior = 90
+
+[walker@guarder_1]:walker@def_guarder
+path_walk = guard_1_walk
+path_look = guard_1_look
+
+;
+
+[logic@val_b1_guarder_2]:logic@def
+active = walker@guarder_2
+suitable = {=check_npc_name(sim_default_renegade) !surge_started -val_storyline_done} true, {=check_npc_name(sim_default_night_stalker) !surge_started -val_storyline_done} true
+prior = 90
+
+[walker@guarder_2]:walker@def_guarder
+path_walk = guard_2_walk
+path_look = guard_2_look
+
+;
+
+[logic@val_b1_guarder_3]:logic@def
+active = walker@guarder_3
+suitable = {=check_npc_name(sim_default_renegade) !surge_started -val_storyline_done} true, {=check_npc_name(sim_default_night_stalker) !surge_started -val_storyline_done} true
+prior = 90
+
+[walker@guarder_3]:walker@def_guarder
+path_walk = guard_3_walk
+path_look = guard_3_look
+
+;
+
+[logic@val_b1_guarder_4]:logic@def
+active = walker@guarder_4
+suitable = {=check_npc_name(sim_default_renegade) !surge_started -val_storyline_done} true, {=check_npc_name(sim_default_night_stalker) !surge_started -val_storyline_done} true
+prior = 90
+
+[walker@guarder_4]:walker@def_guarder
+path_walk = guard_4_walk
+path_look = guard_4_look
+
+;
+
+[logic@val_b1_guarder_5]:logic@def
+active = walker@guarder_5
+suitable = {=check_npc_name(sim_default_renegade) !surge_started -val_storyline_done} true, {=check_npc_name(sim_default_night_stalker) !surge_started -val_storyline_done} true
+prior = 90
+
+[walker@guarder_5]:walker@def_guarder
+path_walk = guard_5_walk
+path_look = guard_5_look
+
+;
+
+[logic@val_b1_guarder_6]:logic@def
+active = walker@guarder_6
+suitable = {=check_npc_name(sim_default_renegade) !surge_started -val_storyline_done} true, {=check_npc_name(sim_default_night_stalker) !surge_started -val_storyline_done} true
+prior = 90
+
+[walker@guarder_6]:walker@def_guarder
+path_walk = guard_6_walk
+path_look = guard_6_look
+
+;
+
+[logic@val_b1_guarder_7]:logic@def
+active = walker@guarder_7
+suitable = {=check_npc_name(sim_default_renegade) !surge_started -val_storyline_done} true, {=check_npc_name(sim_default_night_stalker) !surge_started -val_storyline_done} true
+prior = 90
+
+[walker@guarder_7]:walker@def_guarder
+path_walk = guard_7_walk
+path_look = guard_7_look
+
+;
+
+[logic@val_b1_guarder_8]:logic@def
+active = walker@guarder_8
+suitable = {=check_npc_name(sim_default_renegade) !surge_started -val_storyline_done} true, {=check_npc_name(sim_default_night_stalker) !surge_started -val_storyline_done} true
+prior = 90
+
+[walker@guarder_8]:walker@def_guarder
+path_walk = guard_8_walk
+path_look = guard_8_look
+
+;
+
+[logic@val_b1_guarder_9]:logic@def
+active = walker@guarder_9
+suitable = {=check_npc_name(val_b1_renegade_1) !surge_started -val_storyline_done} true, {=check_npc_name(sim_default_night_stalker) !surge_started -val_storyline_done} true
+prior = 100
+
+[walker@guarder_9]:walker@def_guarder
+path_walk = guard_9_walk
+path_look = guard_9_look
+on_info = {=health_le(0.5)} corpse@guarder_9
+
+[corpse@guarder_9]
+suicide_mode = true,4.0,100
+on_info = {!health_le(0.5)} walker@guarder_9
+
+;
+
+[logic@val_b1_guarder_10]:logic@def
+active = walker@guarder_10
+suitable = {=check_npc_name(sim_default_renegade) !surge_started -val_storyline_done} true, {=check_npc_name(sim_default_night_stalker) !surge_started -val_storyline_done} true
+prior = 90
+
+[walker@guarder_10]:walker@def_guarder
+path_walk = guard_10_walk
+path_look = guard_10_look
+
+;
+
+[logic@val_b1_guarder_11]:logic@def
+active = walker@guarder_11
+suitable = {=check_npc_name(sim_default_renegade) !surge_started -val_storyline_done} true, {=check_npc_name(sim_default_night_stalker) !surge_started -val_storyline_done} true
+prior = 90
+
+[walker@guarder_11]:walker@def_guarder
+path_walk = guard_11_walk
+path_look = guard_11_look
+
+;
+
+[logic@val_b1_guarder_12]:logic@def
+active = walker@guarder_12
+suitable = {=check_npc_name(sim_default_renegade) !surge_started -val_storyline_done} true, {=check_npc_name(sim_default_night_stalker) !surge_started -val_storyline_done} true
+prior = 90
+
+[walker@guarder_12]:walker@def_guarder
+path_walk = guard_12_walk
+path_look = guard_12_look
+
+;
+
+[logic@val_b1_guarder_13]:logic@def
+active = walker@guarder_13
+suitable = {=check_npc_name(sim_default_renegade) !surge_started -val_storyline_done} true, {=check_npc_name(sim_default_night_stalker) !surge_started -val_storyline_done} true
+prior = 90
+
+[walker@guarder_13]:walker@def_guarder
+path_walk = guard_13_walk
+path_look = guard_13_look
+
+;
+
+[logic@val_b1_guarder_14]:logic@def
+active = walker@guarder_14
+suitable = {=check_npc_name(sim_default_renegade) !surge_started -val_storyline_done} true, {=check_npc_name(sim_default_night_stalker) !surge_started -val_storyline_done} true
+prior = 90
+
+[walker@guarder_14]:walker@def_guarder
+path_walk = guard_14_walk
+path_look = guard_14_look
+
+;
+
+[logic@val_b1_guarder_15]:logic@def
+active = walker@guarder_15
+suitable = {=check_npc_name(sim_default_renegade) !surge_started -val_storyline_done} true, {=check_npc_name(sim_default_night_stalker) !surge_started -val_storyline_done} true
+prior = 90
+
+[walker@guarder_15]:walker@def_guarder
+path_walk = guard_15_walk
+path_look = guard_15_look
+
+;
+
+[logic@val_b1_guarder_16]:logic@def
+active = walker@guarder_16
+suitable = {=check_npc_name(sim_default_renegade) !surge_started -val_storyline_done} true, {=check_npc_name(sim_default_night_stalker) !surge_started -val_storyline_done} true
+prior = 90
+
+[walker@guarder_16]:walker@def_guarder
+path_walk = guard_16_walk
+path_look = guard_16_look
+
+;
+
+[logic@val_b1_guarder_17]:logic@def
+active = walker@guarder_17
+suitable = {=check_npc_name(val_b1_renegade_2) !surge_started -val_storyline_done} true, {=check_npc_name(sim_default_night_stalker) !surge_started -val_storyline_done} true
+prior = 100
+
+[walker@guarder_17]:walker@def_guarder
+path_walk = walker_1_walk
+on_info = {=health_le(0.5)} corpse@guarder_17
+
+[corpse@guarder_17]
+suicide_mode = true,4.0,100
+on_info = {!health_le(0.5)} walker@guarder_17
+
+;
+
+[logic@val_b1_guarder_18]:logic@def
+active = walker@guarder_18
+suitable = {=check_npc_name(sim_default_renegade) !surge_started -val_storyline_done} true, {=check_npc_name(sim_default_night_stalker) !surge_started -val_storyline_done} true
+prior = 95
+
+[walker@guarder_18]:walker@def_guarder
+path_walk = walker_2_walk
+
+;
+
+[logic@val_b1_guarder_19]:logic@def
+active = walker@guarder_19
+suitable = {=check_npc_name(sim_default_renegade) !surge_started -val_storyline_done} true, {=check_npc_name(sim_default_night_stalker) !surge_started -val_storyline_done} true
+prior = 95
+
+[walker@guarder_19]:walker@def_guarder
+path_walk = walker_3_walk
+
+;
+
+[logic@val_b1_guarder_20]:logic@def
+active = walker@guarder_20
+suitable = {=check_npc_name(sim_default_renegade) !surge_started -val_storyline_done} true, {=check_npc_name(sim_default_night_stalker) !surge_started -val_storyline_done} true
+prior = 95
+
+[walker@guarder_20]:walker@def_guarder
+path_walk = walker_4_walk
+
+;
+
+[logic@val_b1_guarder_21]:logic@def
+active = walker@guarder_21
+suitable = {=check_npc_name(val_b1_renegade_3) !surge_started -val_storyline_done} true, {=check_npc_name(sim_default_night_stalker) !surge_started -val_storyline_done} true
+prior = 100
+
+[walker@guarder_21]:walker@def_guarder
+path_walk = walker_5_walk
+on_info = {=health_le(0.5)} corpse@guarder_21
+
+[corpse@guarder_21]
+suicide_mode = true,4.0,100
+on_info = {!health_le(0.5)} walker@guarder_21
+
+;
+
+[logic@val_b1_guarder_22]:logic@def
+active = camper@guarder_22
+suitable = {=check_npc_name(sim_default_renegade) !surge_started -val_storyline_done} true, {=check_npc_name(sim_default_night_stalker) !surge_started -val_storyline_done} true
+prior = 98
+
+[camper@guarder_22]:walker@def_guarder
+path_walk = sniper_1_walk
+path_look = sniper_1_look
+def_state_campering = guard
+def_state_campering_fire = threat_fire
+sniper = true
+
+;
+
+[logic@val_b1_guarder_23]:logic@def
+active = camper@guarder_23
+suitable = {=check_npc_name(sim_default_renegade) !surge_started -val_storyline_done} true, {=check_npc_name(sim_default_night_stalker) !surge_started -val_storyline_done} true
+prior = 98
+
+[camper@guarder_23]:walker@def_guarder
+path_walk = sniper_2_walk
+path_look = sniper_2_look
+def_state_campering = guard
+def_state_campering_fire = threat_fire
+sniper = true
+
+;
+
+[logic@val_b1_guarder_24]:logic@def
+active = camper@guarder_24
+suitable = {=check_npc_name(sim_default_renegade) !surge_started -val_storyline_done} true, {=check_npc_name(sim_default_night_stalker) !surge_started -val_storyline_done} true
+prior = 98
+
+[camper@guarder_24]:walker@def_guarder
+path_walk = sniper_3_walk
+path_look = sniper_3_look
+def_state_campering = guard
+def_state_campering_fire = threat_fire
+sniper = true
+
+;
+
+[logic@val_b1_guarder_25]:logic@def
+active = camper@guarder_25
+suitable = {=check_npc_name(sim_default_renegade) !surge_started -val_storyline_done} true, {=check_npc_name(sim_default_night_stalker) !surge_started -val_storyline_done} true
+prior = 98
+
+[camper@guarder_25]:walker@def_guarder
+path_walk = sniper_4_walk
+path_look = sniper_4_look
+def_state_campering = guard
+def_state_campering_fire = threat_fire
+sniper = true

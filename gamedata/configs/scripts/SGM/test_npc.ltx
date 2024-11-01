@@ -1,0 +1,10 @@
+[logic]
+active = move
+
+[move]
+move_free_behaviour   = true
+move_free_anim_c      = {=show_anims_counter(0)} threat, {=show_anims_counter(1)} threat_fire,{=show_anims_counter(2)} animpoint_stay_table,{=show_anims_counter(3)} pri_a21_sentry_madness,{=show_anims_counter(4)} jup_b41_novikov_stand,{=show_anims_counter(5)} threat
+move_combat_disable   = true
+combat_ignore_cond    = true
+combat_ignore_keep_when_attacked = true
+on_info               = {=actor_enemy} %=actor_friend%

@@ -1,0 +1,90 @@
+        <string id="no_community">
+		<text>Отсутствует</text>
+	</string>
+	<string id="trader">
+		<text>Торговец</text>
+	</string>
+	<string id="bodyguard_a">
+		<text>«Телохранитель»</text>
+	</string>	
+        <string id="bodyguard_b">
+		<text>«Телохранитель»</text>
+	</string>	
+        <string id="bodyguard_c">
+		<text>«Телохранитель»</text>
+	</string>	
+        <string id="bodyguard_d">
+		<text>«Телохранитель»</text>
+	</string>	
+        <string id="bodyguard_e">
+		<text>«Телохранитель»</text>
+	</string>
+        <string id="bodyguard_f">
+		<text>«Телохранитель»</text>
+	</string>
+        <string id="actor_bandit">
+		<text>«Бандиты»</text>
+	</string>
+	<string id="actor_monolit">
+		<text>«Монолит»</text>
+	</string>
+	<string id="actor_killer">
+		<text>«Наёмники»</text>
+	</string>
+	<string id="actor_rasvet">
+		<text>«Рассвет»</text>
+	</string>
+	<string id="actor_freedom">
+		<text>«Свобода»</text>
+	</string>
+	<string id="actor_dolg">
+		<text>«Долг»</text>
+	</string>
+        <string id="monolith_alies">
+		<text>«Монолит»</text>
+	</string>
+        <string id="bandit_alies">
+		<text>«Бандиты»</text>
+	</string>
+	<string id="rasvet">
+		<text>«Рассвет»</text>
+	</string>
+	<string id="agent">
+		<text>«СБУ»</text>
+	</string>
+	<string id="feuding">
+		<text>«Преступники»</text>
+	</string>
+	<string id="defending">
+		<text>«Беззащитные»</text>
+	</string>
+	<string id="killer_enemy">
+		<text>«Наёмники»</text>
+	</string>
+	<string id="killer_alies">
+		<text>«Наёмники»</text>
+	</string>
+	<string id="stalker_alies">
+		<text>«Вольный сталкер»</text>
+	</string>
+	<string id="killer_bunker">
+		<text>«Наёмники»</text>
+	</string>
+	<string id="army_alies">
+		<text>«Военный»</text>
+	</string>
+	<string id="alfa_force">
+		<text>Отряд «Альфа»</text>
+	</string>
+	<string id="renegade">
+		<text>«Ренегаты»</text>
+	</string>
+	<string id="night_stalker">
+		<text>«Ночные сталкеры»</text>
+	</string>
+	<string id="mercenary">
+		<text>«Наёмный спецназ»</text>
+	</string>
+        <string id="bandit_enemy">
+		<text>«Бандиты»</text>
+	</string>

@@ -1,0 +1,27 @@
+[logic]
+active = move@waiting
+
+[move@waiting]
+move_dest_number       = {=global_pattern_is_one} 138096, 133074
+move_look_subject      = actor
+move_state_when_center = hello
+move_state_when_move   = walk
+invulnerable           = true
+meet                   = meet
+on_info                = {+zat_meet_authorities_agent_after} move@waiting_release
+
+[move@waiting_release]
+move_dest_number       = {=global_pattern_is_one} 138096, 133074
+move_look_vertex       = {=global_pattern_is_one} 142979, 125205
+move_state_when_center = guard
+move_state_when_move   = walk
+invulnerable           = true
+meet                   = meet
+on_info                = {=dist_to_actor_ge(80)} nil %=release_npc%
+
+[meet]
+abuse           = false
+use             = true
+allow_break     = false
+meet_on_talking = false
+trade_enable    = false

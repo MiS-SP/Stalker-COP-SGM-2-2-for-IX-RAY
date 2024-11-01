@@ -1,0 +1,8 @@
+[logic]
+active = ph_universal
+
+[ph_universal]
+scheme_type = script_object
+script_object_cond = {+actor_come_to_agroprom} true
+script_object_tip = st_search_helicopter
+on_use = {+actor_come_to_agroprom} nil %+agr_research_heli_1_crash_done%

@@ -1,0 +1,36 @@
+[logic]
+active = move@guard
+
+[move@guard]
+move_dest_number       = 434990
+move_look_vertex       = 432456
+move_state_when_center = guard
+move_state_when_move   = walk
+move_stop_on_talk      = true
+meet                   = meet
+invulnerable           = true
+on_info                = {+jup_a6_azot_quest_mech_kutier_1} move@guard_no_talking
+
+
+[move@guard_no_talking]
+move_dest_number       = 434990
+move_look_vertex       = 432456
+move_state_when_center = sit_ass
+move_state_when_move   = walk
+move_stop_on_talk      = true
+invulnerable           = false
+meet                   = no_meet
+on_info                = {=dist_to_actor_ge(60) +jup_a6_azot_quest_mech_kutier_1} %=release_npc%
+
+[meet]
+abuse           = true
+use             = true
+allow_break     = false
+meet_on_talking = true
+trade_enable    = false
+
+[no_meet]
+abuse           = true
+use             = false
+allow_break     = true
+meet_on_talking = false

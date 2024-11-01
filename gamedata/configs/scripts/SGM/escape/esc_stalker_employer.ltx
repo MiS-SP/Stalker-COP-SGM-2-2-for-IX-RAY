@@ -1,0 +1,20 @@
+[logic]
+active = move@employer
+
+[move@employer]
+move_dest_number       = 80819
+move_look_vertex       = 79991
+move_state_when_center = ward_noweap
+move_state_when_move   = walk
+move_combat_disable    = true
+meet                   = meet
+invulnerable           = {!actor_enemy} true, false
+combat_ignore_cond     = true
+combat_ignore_keep_when_attacked = true
+
+[meet]
+abuse           = false
+use             = {!actor_enemy} true, false
+allow_break     = false
+meet_on_talking = false
+trade_enable    = false

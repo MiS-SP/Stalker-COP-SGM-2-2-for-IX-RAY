@@ -1,0 +1,42 @@
+[logic]
+active = move@waiting_actor
+on_death = death
+on_hit = hit
+
+[hit]
+on_info = {=present_hit_by_actor -zat_danger_parcel_otdano} %+zat_duty_kanevskiy_hit%
+
+[death]
+on_info = %+zat_danger_parcel_fail%
+
+[move@waiting_actor]
+move_dest_number       = {=global_pattern_is_one} 1841060, 149220
+move_look_vertex       = {=global_pattern_is_one} 1841240, 154386
+move_state_when_center = sit_ass
+move_state_when_move   = walk
+move_combat_disable    = false
+meet                   = meet
+approach_info          = zat_danger_parcel_podoshel|30|<
+invulnerable           = {-zat_danger_parcel_otdano !actor_enemy} true, false
+on_info                = {+zat_danger_parcel_kamekaze} move@preparate_explosive %=zat_duty_kanevskiy_charge%
+on_info2               = {!actor_enemy +zat_duty_kanevskiy_hit} nil %=actor_enemy +zat_danger_parcel_fail%
+
+[move@preparate_explosive]
+move_avail_speak       = 2|%=play_s3d_sound(characters_voice\human_01\dolg\reactions\music\reaction_music_2)%|false|false
+move_dest_number       = {=global_pattern_is_one} 1841060, 149220
+move_look_vertex       = {=global_pattern_is_one} 1841240, 154386
+move_state_when_center = search
+move_state_when_move   = walk
+move_combat_disable    = false
+meet                   = meet
+approach_info          = zat_danger_parcel_podoshel|30|<
+invulnerable           = {-zat_danger_parcel_otdano !actor_enemy} true, false
+on_info                = {=dist_to_actor_ge(10)} nil %+zat_danger_parcel_vzriv%
+on_info2               = {!actor_enemy +zat_duty_kanevskiy_hit} nil %=actor_enemy +zat_danger_parcel_fail%
+
+[meet]
+abuse           = false
+use             = {-zat_danger_parcel_kamekaze} true, false
+allow_break     = false
+meet_on_talking = false
+trade_enable    = false

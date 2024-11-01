@@ -1,0 +1,387 @@
+	<string id="st_save_travel_militaty_to_red_forest">
+		<text>переход с Военных Складов в Рыжий Лес</text>
+	</string>
+	<string id="st_save_travel_red_forest_to_militaty">
+		<text>переход с Рыжего Леса на Военные Склады</text>
+	</string>
+	<string id="st_save_travel_jupiter_to_red_forest">
+		<text>переход с Юпитера в Рыжий Лес</text>
+	</string>
+	<string id="st_save_travel_red_forest_to_jupiter">
+		<text>переход с Рыжего Леса на Юпитер</text>
+	</string>
+	<string id="st_save_travel_escape_to_marsh">
+		<text>переход с Кордона на Болота</text>
+	</string>
+	<string id="st_save_travel_marsh_to_escape">
+		<text>переход с Болот на Кордон</text>
+	</string>
+	<string id="st_save_travel_marsh_to_zaton">
+		<text>переход с Болот на Затон</text>
+	</string>
+	<string id="st_save_travel_zaton_to_marsh">
+		<text>переход с Затона на Болота</text>
+	</string>
+	<string id="st_save_travel_agroprom_underground_to_agroprom">
+		<text>переход с подземелий Агропрома в Агропром</text>
+	</string>
+	<string id="st_save_travel_agroprom_to_agroprom_underground">
+		<text>переход с Агропрома на подземелья Агропрома</text>
+	</string>
+	<string id="st_save_travel_zaton_to_agroprom">
+		<text>переход с Затона на Агропром</text>
+	</string>
+	<string id="st_save_travel_agroprom_to_zaton">
+		<text>переход с Агропрома на Затон</text>
+	</string>
+	<string id="st_save_travel_darkvalley_to_x18">
+		<text>переход с Темной Долины в лабораторию X18</text>
+	</string>
+	<string id="st_save_travel_x18_to_darkvalley">
+		<text>переход с лаборатории X18 в Темную Долину</text>
+	</string>
+	<string id="st_save_travel_darkvalley_to_jupiter">
+		<text>переход с Темной Долины на Юпитер</text>
+	</string>
+	<string id="st_save_travel_darkvalley_to_military">
+		<text>переход с Темной Долины на Военные Склады</text>
+	</string>
+	<string id="st_save_travel_military_to_darkvalley">
+		<text>переход с Военных Складов в Темную Долину</text>
+	</string>
+	<string id="st_save_travel_jupiter_to_darkvalley">
+		<text>переход с Юпитера в Темную Долину</text>
+	</string>
+	<string id="st_save_travel_darkvalley_to_zaton">
+		<text>переход с Темной Долины на Затон</text>
+	</string>
+	<string id="st_save_travel_zaton_to_darkvalley">
+		<text>переход с Затона в Темную Долину</text>
+	</string>
+	<string id="st_save_travel_zaton_to_jupiter">
+		<text>переход с Затона на Юпитер</text>
+	</string>
+	<string id="st_save_travel_zaton_to_pripyat">
+		<text>переход с Затона на Припять</text>
+	</string>
+	<string id="st_save_travel_jupiter_to_zaton">
+		<text>переход с Юпитера на Затон</text>
+	</string>
+	<string id="st_save_travel_jupiter_to_pripyat">
+		<text>переход с Юпитера на Припять</text>
+	</string>
+	<string id="st_save_travel_jupiter_to_underground">
+		<text>переход с Юпитера на Путепровод</text>
+	</string>
+	<string id="st_save_travel_underground_to_jupiter">
+		<text>переход с Путепровода на Юпитер</text>
+	</string>
+	<string id="st_save_travel_underground_to_pripyat">
+		<text>переход с Путепровода на Припять</text>
+	</string>
+	<string id="st_save_travel_pripyat_to_zaton">
+		<text>переход из Припяти на Затон</text>
+	</string>
+	<string id="st_save_travel_pripyat_to_jupiter">
+		<text>переход из Припяти на Юпитер</text>
+	</string>
+        <string id="st_save_travel_pripyat_to_underground">
+		<text>переход из Припяти на Путепровод</text>
+	</string>
+	<string id="st_save_shustriy_find_got_1">
+		<text>найден трофейный «Ingram M10»</text>
+	</string>
+	<string id="st_save_shustriy_find_got_2">
+		<text>найден трофейный «АК-47»</text>
+	</string>
+	<string id="st_save_shustriy_find_got_3">
+		<text>найден трофейный «Mossberg 590Mk.L»</text>
+	</string>
+	<string id="st_save_shustriy_find_got_4">
+		<text>найден трофейный «Steyr AUG SS190»</text>
+	</string>
+	<string id="st_save_esc_village_annex_b2_captured">
+		<text>Деревня захвачена</text>
+	</string>
+	<string id="st_save_esc_atp_annex_b3_assault">
+		<text>Начало штурма АТП</text>
+	</string>
+	<string id="st_save_esc_atp_annex_b3_captured">
+		<text>АТП захвачен</text>
+	</string>
+	<string id="st_save_esc_spy_meeting">
+		<text>Встреча с Белоусовым</text>
+	</string>
+	<string id="st_save_mar_mine_detector_received">
+		<text>Получен миноискатель</text>
+	</string>
+	<string id="st_save_mar_army_cargo_georadar_received">
+		<text>Получен георадар</text>
+	</string>
+	<string id="st_save_zat_breeder_job_executed">
+		<text>найден артефакт «Кислотный инфузорий»</text>
+	</string>
+	<string id="st_save_zat_bring_flash_light_got">
+		<text>найден фонарь с оптикой «Messler»</text>
+	</string>
+	<string id="st_save_zat_bring_drink_beylis_got">
+		<text>найден напиток «Бейлиз»</text>
+	</string>
+	<string id="st_save_zat_bring_sharpshooter_bino_got">
+		<text>найден бинокль «Следопыт»</text>
+	</string>
+	<string id="st_save_zat_monsters_1st_wave_end">
+		<text>первая волна мутантов уничтожена</text>
+	</string>
+	<string id="st_save_zat_monsters_2nd_wave_end">
+		<text>вторая волна мутантов уничтожена</text>
+	</string>
+	<string id="st_save_zat_monsters_3rd_wave_end">
+		<text>третья волна мутантов уничтожена</text>
+	</string>
+	<string id="st_save_zat_deliver_monolith_case_lifted">
+		<text>поднят кейс монолитовца</text>
+	</string>
+	<string id="st_save_zat_bandit_kill_shakal_fw_got">
+		<text>получена именная «Beretta92FS»</text>
+	</string>
+	<string id="st_save_zat_meet_authorities_agent_letter">
+		<text>получена записка от связного СБУ</text>
+	</string>
+	<string id="st_save_zat_danger_parcel_referred">
+		<text>посылка отдана Каневскому</text>
+	</string>
+	<string id="st_save_zat_deliver_monolith_case_bring">
+		<text>кейс монолитовца отдан</text>
+	</string>
+	<string id="st_save_zat_assault_bandit_base_wait_signal">
+		<text>группа «Эльбруса» ждет сигнала</text>
+	</string>
+	<string id="st_save_zat_assault_bandit_base_destroyed">
+		<text>главнокомандующий базы бандитов повержен</text>
+	</string>
+	<string id="st_save_zat_bandit_kill_shakal_search">
+		<text>поиск наёмника «Шакала»</text>
+	</string>
+	<string id="st_save_jup_bring_detector_kit_got">
+		<text>найдены инструменты для работы с детекторами</text>
+	</string>
+	<string id="st_save_jup_find_gromoboy_vintar_voron">
+		<text>найдено КПК «Ворона»</text>
+	</string>
+	<string id="st_save_jup_find_gromoboy_vintar_got">
+		<text>найден «Именной Винтарь»</text>
+	</string>
+	<string id="st_save_jup_bring_heavy_medkits_got">
+		<text>найден медкомплект «CCA72»</text>
+	</string>
+	<string id="st_save_jup_bring_photo_device_got">
+		<text>найден фотоаппарат «Suzanna»</text>
+	</string>
+	<string id="st_save_jup_bring_arms_case_got">
+		<text>найден кейс с «Ruger GP100»</text>
+	</string>
+	<string id="st_save_jup_mercenary_check_plant_psy_kit_otdani">
+		<text>розданы четыре препарата «Психоделин»</text>
+	</string>
+	<string id="st_save_jup_avoid_witnesses_rescued">
+		<text>освобожден пленный агент СБУ</text>
+	</string>
+	<string id="st_save_jup_arrive_on_bunker_meeting">
+		<text>встреча с выжившим пилотом</text>
+	</string>
+	<string id="st_save_jup_beat_from_monsters_need_help">
+		<text>защита туннеля</text>
+	</string>
+	<string id="st_save_jup_return_zaton_travel">
+		<text>возвращение на Затон</text>
+	</string>
+	<string id="st_save_jup_destroy_night_killers_sprint">
+		<text>погоня за бандитом</text>
+	</string>
+	<string id="st_save_jup_destroy_night_killers_overtaken">
+		<text>бандит-беглец повержен</text>
+	</string>
+	<string id="st_save_jup_follow_scientists_init">
+		<text>сопровождение ученых</text>
+	</string>
+	<string id="st_save_jup_night_agent_meeting_talked">
+		<text>встреча со связным СБУ состоялась</text>
+	</string>
+	<string id="st_save_jup_rasvet_destroy_snorks_destroyed">
+		<text>полтергейсты уничтожены</text>
+	</string>
+	<string id="st_save_jup_rasvet_monsters_hole_1_destroyed">
+		<text>первая нора уничтожена</text>
+	</string>
+	<string id="st_save_jup_rasvet_monsters_hole_2_destroyed">
+		<text>вторая нора уничтожена</text>
+	</string>
+	<string id="st_save_jup_rasvet_monsters_hole_3_destroyed">
+		<text>третья нора уничтожена</text>
+	</string>
+	<string id="st_save_jup_rasvet_monsters_hole_4_destroyed">
+		<text>четвертая нора уничтожена</text>
+	</string>
+	<string id="st_save_jup_rasvet_monsters_hole_5_destroyed">
+		<text>пятая нора уничтожена</text>
+	</string>
+	<string id="st_save_jup_mercenary_check_plant_sector_clear">
+		<text>периметр зачищен</text>
+	</string>
+	<string id="st_save_jup_mercenary_check_plant_need_exit">
+		<text>поиск выхода</text>
+	</string>
+	<string id="st_save_pri_bloodsucker_vaccine_got">
+		<text>куплена вакцина NG-7</text>
+	</string>
+	<string id="st_save_pri_find_science_briefing_got">
+		<text>получен «Научный брифинг №1264»</text>
+	</string>
+	<string id="st_save_pri_necessary_kill_kasilov_got">
+		<text>получено КПК «Касилова»</text>
+	</string>
+	<string id="st_save_pri_zone_cleaning_end">
+		<text>зона очищена от зомбированных</text>
+	</string>
+	<string id="st_save_pri_expiation_sin_3_retranslator_got">
+		<text>найден подпространственный ретранслятор</text>
+	</string>
+	<string id="st_save_pri_expiation_sin_1_water_got">
+		<text>найдена живая вода</text>
+	</string>
+	<string id="st_save_pri_assault_monolith_base_began">
+		<text>начало операции «Вулкан»</text>
+	</string>
+	<string id="st_save_pri_assault_monolith_base_on_position">
+		<text>огневая позиция на «КБО» занята</text>
+	</string>
+	<string id="st_save_pri_assault_monolith_base_destroyed">
+		<text>скопления «Монолита» уничтожены</text>
+	</string>
+	<string id="st_save_pri_expiation_sin_2_places_installed">
+		<text>все тайники «Монолита» заполнены</text>
+	</string>
+	<string id="st_save_pri_expiation_sin_3_retranslator_gather_info">
+		<text>получена информация о ретрансляторе</text>
+	</string>
+	<string id="st_save_pri_expiation_sin_3_follow_to_squad">
+		<text>сопровожение отряда монолитовцев</text>
+	</string>
+	<string id="st_save_pri_expiation_sin_3_began_attack">
+		<text>начало атаки на магазин «Книги»</text>
+	</string>
+	<string id="st_save_pri_expiation_sin_3_market_destroyed">
+		<text>зачищен магазин «Книги»</text>
+	</string>
+	<string id="st_save_pri_expiation_sin_3_repair_finished">
+		<text>окончен ремонт антенны</text>
+	</string>
+	<string id="st_save_pri_rescue_guide_approached_to_miller">
+		<text>найден Мельник</text>
+	</string>
+	<string id="st_save_pri_rescue_guide_terrain_is_secured">
+		<text>Мельник в безопасности</text>
+	</string>
+	<string id="st_save_zat_wisdom_books_is_founded">
+		<text>Книги мудрости найдены</text>
+	</string>
+	<string id="st_save_zat_mad_dog_is_destroyed">
+		<text>Отряд Альфа ликвидирован</text>
+	</string>
+	<string id="st_save_jup_darkvalley_travel_bubble">
+		<text>Новое задание СБУ</text>
+	</string>
+	<string id="st_save_pri_fenix_vendetta_is_killed">
+		<text>Инквизитор нейтрализирован</text>
+	</string>
+	<string id="st_save_val_first_coming_on_valley_on_base">
+		<text>База «Ночных Сталкеров»</text>
+	</string>
+	<string id="st_save_val_kill_night_predator_is_searched">
+		<text>Серая химера на крючке</text>
+	</string>
+	<string id="st_save_val_kill_night_predator_is_killed">
+		<text>Серая химера повержена</text>
+	</string>
+	<string id="st_save_val_assault_factory_snorks_is_cleared">
+		<text>Снорки уничтожены</text>
+	</string>
+	<string id="st_save_val_assault_factory_bridge_is_passed">
+		<text>Начало осады</text>
+	</string>
+	<string id="st_save_val_assault_factory_is_captured">
+		<text>Завод захвачен</text>
+	</string>
+	<string id="st_save_val_shade_of_time_need_key">
+		<text>Поиск ключа</text>
+	</string>
+	<string id="st_save_val_issue_secret_data">
+		<text>Секретные документы переданы</text>
+	</string>
+	<string id="st_save_x18_abyss_docks_is_founded">
+		<text>Найдены секретные документы</text>
+	</string>
+	<string id="st_save_mil_dislodge_invaders_b1_captured">
+		<text>Захвачен Хутор</text>
+	</string>
+	<string id="st_save_mil_dislodge_invaders_b2_captured">
+		<text>Захвачена Деревня</text>
+	</string>
+	<string id="st_save_mil_dislodge_invaders_b3_captured">
+		<text>Захвачена Западная Застава</text>
+	</string>
+	<string id="st_save_mil_dislodge_invaders_b4_captured">
+		<text>Захвачен Посёлок</text>
+	</string>
+	<string id="st_save_mil_dislodge_invaders_b5_captured">
+		<text>Захвачена Стоянка</text>
+	</string>
+	<string id="st_save_mil_dislodge_invaders_b6_captured">
+		<text>Захвачена Восточная Застава</text>
+	</string>
+	<string id="st_save_mil_defence_b1_done">
+		<text>Нападение на Хутор отражено</text>
+	</string>
+	<string id="st_save_mil_defence_b2_done">
+		<text>Нападение на Деревню отражено</text>
+	</string>
+	<string id="st_save_mil_defence_b3_done">
+		<text>Нападение на Западную Заставу отражено</text>
+	</string>
+	<string id="st_save_mil_defence_b4_done">
+		<text>Нападение на Посёлок отражено</text>
+	</string>
+	<string id="st_save_mil_defence_b5_done">
+		<text>Нападение на Стоянку отражено</text>
+	</string>
+	<string id="st_save_mil_defence_b6_fail">
+		<text>Восточная застава сметена</text>
+	</string>
+	<string id="st_save_mil_defence_b7_fail">
+		<text>База группировки Рассвет разбита</text>
+	</string>
+	<string id="st_save_mil_smash_monster_hole_done">
+		<text>Нора около Посёлка уничтожена</text>
+	</string>
+	<string id="st_save_mil_conduct_night_stalkers_done">
+		<text>Отряд Акулова занял базу</text>
+	</string>
+	<string id="st_save_mil_bolted_influence_b1_captured">
+		<text>Оккупирован Хутор</text>
+	</string>
+	<string id="st_save_mil_bolted_influence_b2_captured">
+		<text>Оккупирована Деревня</text>
+	</string>
+	<string id="st_save_mil_bolted_influence_b3_captured">
+		<text>Оккупирована Западная Застава</text>
+	</string>
+	<string id="st_save_mil_bolted_influence_b4_captured">
+		<text>Оккупирован Посёлок</text>
+	</string>
+	<string id="st_save_mil_bolted_influence_b5_captured">
+		<text>Оккупирована Стоянка</text>
+	</string>
+	<string id="st_save_mil_bolted_influence_b6_captured">
+		<text>Оккупирована Восточная Застава</text>
+	</string>

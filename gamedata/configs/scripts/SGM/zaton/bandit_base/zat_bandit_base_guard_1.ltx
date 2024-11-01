@@ -1,0 +1,38 @@
+[logic]
+active = move@walking
+on_death = death
+on_hit = hit
+
+[hit]
+on_info = {=hit_by_actor +zat_assault_bandit_base_elbrus} %+zat_assault_bandit_base_alarm%, %+zat_bandit_base_hit%
+
+[death]
+on_info = {=killed_by_actor +zat_assault_bandit_base_elbrus} %+zat_assault_bandit_base_alarm +zat_bandit_base_patrol_1_death%,{=killed_by_actor -zat_assault_bandit_base_elbrus} %+zat_bandit_base_actor_hit +zat_bandit_base_patrol_1_death%, %+zat_bandit_base_hit +zat_bandit_base_guard_1_death%
+
+[move@walking]
+scheme_type         = patrol
+surge_hide_point    = 1636526
+patrol_count_path   = 7
+patrol_path_1       = 1737251
+patrol_path_1_state = patrol
+patrol_path_2       = 1712022
+patrol_path_2_state = patrol
+patrol_path_3       = 1708931
+patrol_path_3_state = patrol
+patrol_path_4       = 1682980
+patrol_path_4_state = patrol
+patrol_path_5       = 1593315
+patrol_path_5_state = patrol
+patrol_path_6       = 1606239
+patrol_path_6_state = patrol
+patrol_path_7       = 1719009
+patrol_path_7_state = patrol
+meet                = meet
+on_info             = {!actor_enemy +zat_assault_bandit_base_alarm} %=actor_enemy%, {!actor_enemy +zat_bandit_base_actor_hit} %=actor_enemy%
+on_info2            = {=zat_b5_stalker_task_hindrance_precond} nil %=kill_npc%
+
+[meet]
+abuse           = true
+use             = false
+allow_break     = true
+meet_on_talking = false

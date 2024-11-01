@@ -1,0 +1,119 @@
+;---------------------------------------------------------------------------------------;
+;                                  Новые аномалии                                       ;
+;---------------------------------------------------------------------------------------;
+[sgm_acidic_field_weak]:zone_field_acidic_weak
+idle_particles		= zones\zone_acidic_idle
+max_start_power		= 0.20
+[sgm_acidic_field_average]:zone_field_acidic_weak
+idle_particles		= zones\zone_acidic_idle
+max_start_power		= 0.40
+[sgm_acidic_field_strong]:zone_field_acidic_weak
+idle_particles		= zones\zone_acidic_idle
+max_start_power		= 0.80
+
+[sgm_psychic_field_weak]:zone_field_psychic_weak
+max_start_power		= 0.25
+[sgm_psychic_field_average]:zone_field_psychic_weak
+max_start_power		= 0.40
+[sgm_psychic_field_strong]:zone_field_psychic_weak
+max_start_power		= 0.80
+
+[sgm_radioactive_field_weak]:zone_field_radioactive_weak
+max_start_power		= 0.025
+[sgm_radioactive_field_average]:zone_field_radioactive_weak
+max_start_power		= 0.040
+[sgm_radioactive_field_strong]:zone_field_radioactive_weak
+max_start_power		= 0.080
+
+[sgm_thermal_field_weak]:zone_field_thermal_weak
+idle_particles		= zones\zone_thermal_idle
+max_start_power		= 0.20
+[sgm_thermal_field_average]:zone_field_thermal_weak
+idle_particles		= zones\zone_thermal_idle
+max_start_power		= 0.40
+[sgm_thermal_field_strong]:zone_field_thermal_weak
+idle_particles		= zones\zone_thermal_idle
+max_start_power		= 0.80
+
+[sgm_thermal_streem_weak]:zone_mine_thermal_weak
+max_start_power		= 0.20
+[sgm_thermal_streem_average]:zone_mine_thermal_weak
+max_start_power		= 0.40
+[sgm_thermal_streem_strong]:zone_mine_thermal_weak
+max_start_power		= 0.80
+
+[sgm_blue_thermal_streem_weak]:zone_mine_steam_weak
+max_start_power		= 0.20
+[sgm_blue_thermal_streem_average]:zone_mine_steam_weak
+max_start_power		= 0.40
+[sgm_blue_thermal_streem_strong]:zone_mine_steam_weak
+max_start_power		= 0.60
+
+[sgm_red_thermal_streem_weak]:zone_mine_thermal_weak
+max_start_power		= 0.20
+[sgm_red_thermal_streem_average]:zone_mine_thermal_weak
+max_start_power		= 0.40
+[sgm_red_thermal_streem_strong]:zone_mine_thermal_weak
+max_start_power		= 0.60
+
+[sgm_gravitational_field_weak]:zone_mine_gravitational_weak
+max_start_power		= 0.85
+[sgm_gravitational_field_average]:zone_mine_gravitational_weak
+max_start_power		= 1.10
+[sgm_gravitational_field_strong]:zone_mine_gravitational_weak
+max_start_power		= 1.60
+
+[sgm_electric_field_weak]:zone_mine_electric_weak
+max_start_power		= 0.8
+[sgm_electric_field_average]:zone_mine_electric_weak
+max_start_power		= 1.0
+[sgm_electric_field_strong]:zone_mine_electric_weak
+max_start_power		= 1.5
+
+[sgm_throw_field]:zone_base
+GroupControlSection	= spawn_group_zone
+$def_sphere             = 15
+class			= ZS_RADIO
+hit_impulse_scale	= .01
+effective_radius	= 1.00
+postprocess		= postprocess_psi
+ef_anomaly_type		= 3
+ef_weapon_type		= 15
+max_start_power		= 0
+attenuation		= 0.5
+idle_particles		= anomaly2\teleport_idle
+idle_particles_dont_stop= true
+idle_sound		= anomaly\teleport_idle
+blowout_sound		= anomaly\teleport_work_2
+hit_sound		= anomaly\anomaly_gravy_hit1
+body_tearing_sound	= anomaly\gravity_entrance
+entrance_sound		= anomaly\gravi_idle01
+hit_type		= telepatic
+disable_time		= -1
+disable_time_small	= -1
+disable_idle_time	= -1
+ignore_nonalive		= true
+ignore_small		= false
+ignore_artefacts	= true
+blowout_light		= off
+idle_light		= off
+awaking_time		= 100
+blowout_time		= 2500
+accamulate_time		= 100
+blowout_wind		= off
+shape_transp_color	= 200, 200, 0, 60
+shape_edge_color	= 32, 32, 32, 255
+
+[sgm_spatial_bladder_for_zat]:sgm_throw_field
+idle_particles		= anomaly2\anomaly_teleport
+
+[sgm_spatial_bladder_for_jup]:sgm_throw_field
+idle_particles		= anomaly2\anomaly_teleport
+
+[sgm_mar_mine_field]:zone_mine_field
+
+[sgm_red_psyho_zone]:zone_field_psychic_weak
+max_start_power		= 0.99
+
+[sgm_red_psyho_zone_2]:zone_field_psychic_weak
+max_start_power		= 0.10

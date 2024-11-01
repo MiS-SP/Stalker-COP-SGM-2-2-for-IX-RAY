@@ -1,0 +1,131 @@
+#include "default_sections.ltx"
+
+[trader]
+buy_condition  = {+sgm_achievements_client =check_night_interval(22:5)} order_trader_buy_upgraded_hidden, {+sgm_achievements_client} order_trader_buy_upgraded, order_trader_buy
+sell_condition = {+sgm_achievements_client} order_trader_sell_upgraded, order_trader_sell
+buy_supplies   = {+pri_army_trader_weapon =check_trader_order_item(wpn_weapon)} supplies_weapon,{+pri_army_trader_army_exo_outfit =check_trader_order_item(army_exo_outfit)} supplies_army_exo_outfit,{+pri_army_trader_military_outfit =check_trader_order_item(military_outfit)} supplies_military_outfit,order_trader_supplies
+buy_item_condition_factor = {+sgm_achievements_client} 0.7, 0.9
+
+[order_trader_supplies]
+antirad				= 5,0.99
+bandage				= 10,0.99
+bio_bandage			= 5,0.60
+psy_complex			= 4,0.99
+medkit				= 4,0.99
+medkit_army			= 3,0.80
+medkit_elite			= 1,0.30
+drug_coagulant			= 3,0.90
+drug_antidot			= 3,0.90
+drug_radioprotector		= 3,0.90
+drug_psy_blockade		= 3,0.90
+drug_anabiotic			= 1,0.80
+drug_engine                     = 1,0.10
+bread				= 2,0.99
+kolbasa				= 2,0.99
+conserva			= 2,0.99
+vodka				= 3,0.99
+energy_drink			= 2,0.99
+nuts				= 2,0.19
+sardina				= 2,0.19
+wild_drink			= 3,0.19
+olivki				= 2,0.19
+cheese				= 2,0.19
+galet				= 2,0.19
+shokolad			= 2,0.19
+batonchik			= 2,0.19
+beer				= 2,0.19
+juice				= 3,0.19
+personal_rukzak		        = 2,0.95
+minetrap_detector               = 1,0.50
+minetrap_elite_detector         = 1,0.50
+remote_explosive_charge         = 2,0.55
+repair_arms_box	                = 1,0.65
+repair_outfit_box	        = 1,0.65
+personal_marker                 = 2,0.90
+army_timer                      = 1,0.85
+mp3_player                      = 1,0.80
+detector_battery_1		= 2,0.99
+detector_battery_2		= 2,0.70
+detector_battery_3		= 2,0.50
+demolution_ballon		= 1,0.60
+demolution_kanistra		= 3,0.60
+demolution_barrel		= 1,0.60
+grenade_rgd5                    = 5,0.90
+grenade_f1                      = 5,0.90
+grenade_gd-05                   = 5,0.90
+ammo_5.45x39_ap                 = 8,0.80
+ammo_5.45x39_fmj                = 8,0.80
+ammo_9x39_ap                    = 8,0.80
+ammo_9x39_pab9                  = 8,0.80
+ammo_7.62x54_7h1                = 2,0.80
+ammo_pkm_100                    = 2,0.80
+ammo_vog-25                     = 5,0.80
+ammo_m209                       = 5,0.80
+ammo_og-7b                      = 2,0.80
+ammo_box_10_vog			= 1,0.60
+ammo_box_10_m209		= 1,0.60
+mobile_tool                     = 1,0.99
+activate_knife_m8		= 1,0.99
+activate_binocular_m3           = 1,0.99
+
+[supplies_weapon]:order_trader_supplies
+
+[supplies_military_outfit]:order_trader_supplies
+military_outfit		        = 1,1.0
+[supplies_army_exo_outfit]:order_trader_supplies
+army_exo_outfit		        = 1,1.0
+
+[order_trader_buy]:default_order_trader_buy
+device_pda_alfa_commander_novice = 1.0,0.99
+device_pda_alfa_commander_regular = 1.0,0.99
+device_pda_alfa_commander_experienced = 1.0,0.99
+device_pda_alfa_commander_veteran = 1.0,0.99
+device_pda_alfa_commander_master = 1.0,0.99
+device_pda_b1_commander = 1.0,0.99
+device_pda_b1_renegade_1 = 1.0,0.99
+device_pda_b1_renegade_2 = 1.0,0.99
+device_pda_b1_renegade_3 = 1.0,0.99
+
+[order_trader_buy_upgraded]:default_order_trader_buy_upgraded
+device_pda_alfa_commander_novice = 1.0,0.99
+device_pda_alfa_commander_regular = 1.0,0.99
+device_pda_alfa_commander_experienced = 1.0,0.99
+device_pda_alfa_commander_veteran = 1.0,0.99
+device_pda_alfa_commander_master = 1.0,0.99
+device_pda_b1_commander = 1.0,0.99
+device_pda_b1_renegade_1 = 1.0,0.99
+device_pda_b1_renegade_2 = 1.0,0.99
+device_pda_b1_renegade_3 = 1.0,0.99
+
+[order_trader_buy_upgraded_hidden]:default_order_trader_buy_upgraded_hidden
+device_pda_alfa_commander_novice = 1.0,0.99
+device_pda_alfa_commander_regular = 1.0,0.99
+device_pda_alfa_commander_experienced = 1.0,0.99
+device_pda_alfa_commander_veteran = 1.0,0.99
+device_pda_alfa_commander_master = 1.0,0.99
+device_pda_b1_commander = 1.0,0.99
+device_pda_b1_renegade_1 = 1.0,0.99
+device_pda_b1_renegade_2 = 1.0,0.99
+device_pda_b1_renegade_3 = 1.0,0.99
+
+[order_trader_sell]:default_order_trader_sell
+drug_booster			= 1,2
+drug_coagulant			= 1,2
+drug_psy_blockade		= 1,2
+drug_antidot			= 1,2
+drug_radioprotector		= 1,2
+drug_anabiotic			= 1,2
+drug_engine			= 1,2
+military_outfit			= 1,1.35
+army_exo_outfit                 = 1,1.1
+
+[order_trader_sell_upgraded]:default_order_trader_sell_upgraded
+drug_booster			= 1,1.6
+drug_coagulant			= 1,1.6
+drug_psy_blockade		= 1,1.6
+drug_antidot			= 1,1.6
+drug_radioprotector		= 1,1.6
+drug_anabiotic			= 1,1.6
+drug_engine			= 1,1.6
+military_outfit			= 1,1
+army_exo_outfit                 = 1,1

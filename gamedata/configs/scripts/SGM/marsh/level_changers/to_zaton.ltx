@@ -1,0 +1,14 @@
+[logic]
+active = sr_universal
+
+[sr_universal]
+scheme_type = level_change_zone
+level_change_cond         = {+mar_army_cargo_sent_agent} true, false
+level_change_on_use       = %+level_change_to_zaton_from_marsh%
+level_change_travel_coord = 157.54817199707,6.0122513771057,690.11309814453
+level_change_throw_coord  = 174.34533691406,10.287963867188,572.93188476563,3.157
+level_change_travel_time  = 2,30
+level_change_spot         = level_change_up_location,st_level_change_to_zaton,false
+level_change_autosave     = st_save_travel_marsh_to_zaton
+level_change_silent_travel = false
+level_change_hidden_mode  = {+mar_army_cargo_sent_agent} false, true

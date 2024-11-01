@@ -1,0 +1,14 @@
+[logic]
+active = sr_universal
+
+[sr_universal]
+scheme_type = level_change_zone
+level_change_cond         = {+val_issue_secret_data_complete} true, false
+level_change_on_use       = %+level_change_to_military_from_darkvalley%
+level_change_travel_coord = -42.601566314697,0.43426820635796,-574.81781005859
+level_change_throw_coord  = -43.686912536621,0.43464687466621,-531.14837646484,0.04
+level_change_travel_time  = 0,30
+level_change_spot         = level_change_down_location,st_level_change_to_military,false
+level_change_autosave     = st_save_travel_darkvalley_to_military
+level_change_silent_travel = false
+level_change_hidden_mode  = true

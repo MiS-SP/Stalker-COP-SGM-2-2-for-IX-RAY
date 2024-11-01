@@ -1,0 +1,26 @@
+[logic]
+active = move@intercept_defender
+on_hit = hit
+
+[hit]
+on_info = {=present_hit_by_actor} %+zat_killer_shakal_hit +zat_b103_merc_fight%
+
+[move@intercept_defender]
+scheme_type         = shooter
+shooter_pos         = 643965
+shooter_fire_look   = actor
+shooter_idle_look   = actor
+shooter_clip        = 100000
+shooter_reload      = 1
+shooter_type_wpn    = rifle
+shooter_need_see    = true
+shooter_need_dist   = 50
+shooter_move_state  = walk
+shooter_idle_state  = threat
+shooter_fire_state  = threat_fire
+shooter_avail_cond  = {+zat_killer_shakal_hit} true, false
+combat_ignore_cond  = true
+combat_ignore_keep_when_attacked = true
+on_info             = {+zat_b103_merc_fight -zat_killer_shakal_hit} %+zat_killer_shakal_hit%
+on_info2            = {=actor_enemy -zat_killer_shakal_hit} %=actor_neutral%
+on_info3            = {!actor_enemy +zat_killer_shakal_hit} %=actor_enemy%

@@ -1,0 +1,9 @@
+;Рестриктор "Южный блокпост"
+
+[logic]
+active = sr_idle
+
+[sr_idle]
+on_info  = {+val_b11_outpost_alarm =squad_exist(val_b11_night_stalker_squad) !is_squad_enemy_to_actor(val_b11_night_stalker_squad)} %=set_squad_enemy_to_actor(val_b11_night_stalker_squad)%
+on_info2 = {-val_b11_outpost_alarm =squad_exist(val_b11_night_stalker_squad) =is_squad_enemy_to_actor(val_b11_night_stalker_squad)} %+val_b11_outpost_alarm%
+on_info3 = {+val_b11_outpost_alarm -val_b11_outpost_alarm_snd} %+val_b11_outpost_alarm_snd =play_s2d_sound(characters_voice\scenario\darkvalley\val_b11_blockpost_cheaf_kill_actor)%

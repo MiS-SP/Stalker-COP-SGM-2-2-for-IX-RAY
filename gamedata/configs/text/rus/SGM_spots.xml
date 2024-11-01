@@ -1,0 +1,114 @@
+	<string id="st_level_change_to_zaton">
+		<text>На Затон</text>
+	</string>
+	<string id="st_level_change_to_jupiter">
+		<text>На Юпитер</text>
+	</string>
+	<string id="st_level_change_to_underground">
+		<text>На Путепровод</text>
+	</string>
+	<string id="st_level_change_to_prypiat">
+		<text>На Припять</text>
+	</string>
+	<string id="st_level_change_to_darkvalley">
+		<text>На Темную Долину</text>
+	</string>
+	<string id="st_level_change_to_x18">
+		<text>На X18</text>
+	</string>
+	<string id="st_level_change_to_military">
+		<text>На Военные Склады</text>
+	</string>
+	<string id="st_level_change_to_agroprom">
+		<text>На Агропром</text>
+	</string>
+	<string id="st_level_change_to_agroprom_underground">
+		<text>В подземелья Агропрома</text>
+	</string>
+	<string id="st_level_change_to_escape">
+		<text>На Кордон</text>
+	</string>
+	<string id="st_level_change_to_marsh">
+		<text>На Болота</text>
+	</string>
+	<string id="st_level_change_to_red_forest">
+		<text>В Рыжий Лес</text>
+	</string>
+	<string id="st_minetrap_name">
+		<text>Мина-ловушка</text>
+	</string>
+	<string id="st_mine_field_name">
+		<text>Мина</text>
+	</string>
+	<string id="st_bodyguard_name">
+		<text>Телохранитель</text>
+	</string>
+	<string id="st_bankir_name">
+		<text>Сберегатель</text>
+	</string>
+	<string id="st_captured_monster_name">
+		<text>Завербованный мутант</text>
+	</string>
+	<string id="st_trader_name">
+		<text>Средний ассортимент</text>
+	</string>
+	<string id="st_trader_up_name">
+		<text>Богатый ассортимент</text>
+	</string>
+	<string id="st_breeder_name">
+		<text>Селекционер</text>
+	</string>
+	<string id="st_employer_name">
+		<text>Работодатель</text>
+	</string>
+	<string id="st_informer_name">
+		<text>Информатор</text>
+	</string>
+	<string id="st_base_boss_name">
+		<text>Главнокомандующий</text>
+	</string>
+	<string id="st_main_npc_name">
+		<text>Квестовый персонаж</text>
+	</string>
+	<string id="st_base_treasure_name">
+		<text>Хабар группировки</text>
+	</string>
+	<string id="st_personal_marker_name">
+		<text>Радиомаяк</text>
+	</string>
+        <string id="st_treasure_rukzak_name">
+		<text>«Персональный рюкзак»</text>
+        </string>
+	<string id="st_generic_af">
+		<text>«Артефакт»</text>
+	</string>
+	<string id="st_taynik_name">
+		<text>Тайник SGM</text>
+	</string>
+	<string id="st_rasvet_base_name">
+		<text>База группировки «Рассвет»</text>
+	</string>
+	<string id="st_killer_base_name">
+		<text>База группировки «Наёмники»</text>
+	</string>
+	<string id="st_simply_instruments_name">
+		<text>«Набор инструментов»</text>
+	</string>
+	<string id="st_military_instruments_name">
+		<text>«Военные инструменты»</text>
+	</string>
+	<string id="st_monster_spot_name">
+		<text>Мутант</text>
+	</string>
+	<string id="st_renegade_squad_spot_name">
+		<text>Отряд Ренегатов</text>
+	</string>
+	<string id="st_bubble_spot_name">
+		<text>Пространственная аномалия</text>
+	</string>
+	<string id="st_help_point_spot_name">
+		<text>Подсказка</text>
+	</string>
+	<string id="st_demolution_charge_spot_name">
+		<text>Взрывчатка</text>
+	</string>

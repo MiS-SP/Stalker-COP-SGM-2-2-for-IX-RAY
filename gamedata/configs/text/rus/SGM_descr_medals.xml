@@ -1,0 +1,84 @@
+      <string id="st_medal_50_title">
+		<text>Первенство «Новичка»</text>
+      </string>
+      <string id="st_medal_50_descr">
+		<text>Награда за достижение ранга. Выдается, если текущий ранг более 50. Для преобразования в капитал - необходимо использовать.</text>
+      </string>
+      <string id="st_medal_100_title">
+		<text>Первенство «Следопыта»</text>
+      </string>
+      <string id="st_medal_100_descr">
+		<text>Награда за достижение ранга. Выдается, если текущий ранг более 100. Для преобразования в капитал - необходимо использовать.</text>
+      </string>
+      <string id="st_medal_250_title">
+		<text>Первенство «Сталкера»</text>
+      </string>
+      <string id="st_medal_250_descr">
+		<text>Награда за достижение ранга. Выдается, если текущий ранг более 250. Для преобразования в капитал - необходимо использовать.</text>
+      </string>
+      <string id="st_medal_500_title">
+		<text>Первенство «Опытного»</text>
+      </string>
+      <string id="st_medal_500_descr">
+		<text>Награда за достижение ранга. Выдается, если текущий ранг более 500. Для преобразования в капитал - необходимо использовать.</text>
+      </string>
+      <string id="st_medal_750_title">
+		<text>Первенство «Ветерана»</text>
+      </string>
+      <string id="st_medal_750_descr">
+		<text>Награда за достижение ранга. Выдается, если текущий ранг более 750. Для преобразования в капитал - необходимо использовать.</text>
+      </string>
+      <string id="st_medal_1000_title">
+		<text>Первенство «Мастера»</text>
+      </string>
+      <string id="st_medal_1000_descr">
+		<text>Награда за достижение ранга. Выдается, если текущий ранг более 1000. Для преобразования в капитал - необходимо использовать.</text>
+      </string>
+      <string id="st_medal_1250_title">
+		<text>Первенство «Элитария»</text>
+      </string>
+      <string id="st_medal_1250_descr">
+		<text>Награда за достижение ранга. Выдается, если текущий ранг более 1250. Для преобразования в капитал - необходимо использовать.</text>
+      </string>
+      <string id="st_medal_1500_title">
+		<text>Первенство «Героя зоны»</text>
+      </string>
+      <string id="st_medal_1500_descr">
+		<text>Награда за достижение ранга. Выдается, если текущий ранг более 1500. Для преобразования в капитал - необходимо использовать.</text>
+      </string>
+      <string id="st_medal_1750_title">
+		<text>Первенство «Величайшего сталкера»</text>
+      </string>
+      <string id="st_medal_1750_descr">
+		<text>Награда за достижение ранга. Выдается, если текущий ранг более 1750. Для преобразования в капитал - необходимо использовать.</text>
+      </string>
+      <string id="st_medal_2000_title">
+		<text>Первенство «Зова Припяти»</text>
+      </string>
+      <string id="st_medal_2000_descr">
+		<text>Награда за достижение ранга. Выдается, если текущий ранг более 2000. Для преобразования в капитал - необходимо использовать.</text>
+      </string>
+      <string id="st_silver_coin_descr">
+        	<text>Старинный серебряный русский рубль. За пределами Зоны имел бы хорошую цену.</text>
+      </string>
+      <string id="st_gold_ten_coin_descr">
+        	<text>Старинный золотой червонец. Найден в пещере...</text>
+      </string>
+      <string id="st_medallion_strelka_descr">
+        	<text>Золотой медальон на серебряной цепочке, принадлежащий Стрелку.</text>
+      </string>
+      <string id="st_zheton_stalker_descr">
+        	<text>Жетон сталкера:\n Имя: Стрелок\n Группировка: Монолит\n Ранг: 1200\n Репутация: 900</text>
+      </string>
+      <string id="st_silver_coin_title">
+        	<text>«Серебряный рубль»</text>
+      </string>
+      <string id="st_gold_ten_coin_title">
+        	<text>«Золотой червонец»</text>
+      </string>
+      <string id="st_medallion_strelka_title">
+        	<text>Медальон «Стрелка»</text>
+      </string>
+      <string id="st_zheton_stalker_title">
+        	<text>Жетон «С.Т.А.Л.К.Е.Р»</text>
+      </string>

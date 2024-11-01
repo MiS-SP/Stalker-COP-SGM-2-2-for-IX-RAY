@@ -1,0 +1,35 @@
+[logic]
+active = move@chief
+on_death = death
+
+[death]
+on_info = %+pri_monolit_base_chief_death +zat_deliver_monolith_case_fail%
+
+[move@chief]
+move_dest_number       = 299076
+move_look_vertex       = 299070
+move_state_when_center = ward_noweap
+move_state_when_move   = walk
+move_combat_disable    = true
+meet                   = meet
+combat_ignore_cond     = true
+combat_ignore_keep_when_attacked = true
+approach_info          = zat_deliver_monolith_case_doshol|50|<
+on_info                = {+zat_deliver_monolith_case_doklad} move@go_to_free
+
+[move@go_to_free]
+move_dest_number       = 223665
+move_look_vertex       = 218722
+move_state_when_center = sit
+move_state_when_move   = walk
+move_combat_disable    = true
+combat_ignore_cond     = true
+combat_ignore_keep_when_attacked = true
+on_info                = {=dist_to_actor_ge(120)} nil %=release_npc%
+
+[meet]
+abuse           = false
+use             = {+zat_deliver_monolith_case_otdal !actor_enemy !has_enemy} true, {!actor_enemy =dist_to_actor_le(3) -zat_deliver_monolith_case_otdal !has_enemy} self, false    
+allow_break     = false
+meet_on_talking = false
+trade_enable    = false

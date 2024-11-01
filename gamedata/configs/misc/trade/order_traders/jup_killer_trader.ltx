@@ -1,0 +1,50 @@
+#include "default_sections.ltx"
+
+[trader]
+buy_condition  = {+sgm_achievements_client =check_night_interval(21:6)} order_trader_buy_upgraded_hidden, {+sgm_achievements_client} order_trader_buy_upgraded, order_trader_buy
+sell_condition = {+sgm_achievements_client} order_trader_sell_upgraded, order_trader_sell
+buy_supplies   = {+jup_killer_trader_weapon =check_trader_order_item(wpn_weapon)} supplies_weapon,{+jup_killer_trader_helm_mercenary =check_trader_order_item(helm_mercenary)} supplies_helm_mercenary,{+jup_killer_trader_killer_outfit =check_trader_order_item(killer_outfit)} supplies_killer_outfit,{+jup_killer_trader_killer_exo_outfit =check_trader_order_item(killer_exo_outfit)} supplies_killer_exo_outfit,order_trader_supplies
+buy_item_condition_factor = {+sgm_achievements_client} 0.25, 0.4
+
+[order_trader_supplies]
+minetrap_detector               = 1,0.80
+mp3_player                      = 1,0.99
+personal_marker                 = 1,0.60
+army_timer                      = 1,0.99
+personal_rukzak		        = 2,0.99
+repair_arms_box	                = 1,0.70
+repair_outfit_box	        = 1,0.70
+detector_battery_1		= 2,0.99
+detector_battery_2		= 2,0.70
+detector_battery_3		= 2,0.50
+demolution_ballon		= 1,0.80
+demolution_kanistra		= 3,0.80
+demolution_barrel		= 1,0.80
+ammo_box_10_vog			= 1,0.50
+ammo_box_10_m209		= 1,0.50
+ammo_5.56x45_ap                 = 4,0.90
+mobile_tool                     = 1,0.80
+activate_knife_m7		= 1,0.80
+
+[supplies_weapon]:order_trader_supplies
+
+[supplies_helm_mercenary]:order_trader_supplies
+helm_mercenary		        = 1,1.0
+[supplies_killer_outfit]:order_trader_supplies
+killer_outfit		        = 1,1.0
+[supplies_killer_exo_outfit]:order_trader_supplies
+killer_exo_outfit	        = 1,1.0
+
+[order_trader_buy]:default_order_trader_buy
+[order_trader_buy_upgraded]:default_order_trader_buy_upgraded
+[order_trader_buy_upgraded_hidden]:default_order_trader_buy_upgraded_hidden
+
+[order_trader_sell]:default_order_trader_sell
+killer_outfit                   = 1,1.2
+killer_exo_outfit               = 1,1.2
+helm_mercenary			= 1,1.2
+
+[order_trader_sell_upgraded]:default_order_trader_sell_upgraded
+killer_outfit                   = 1,1
+killer_exo_outfit               = 1,1
+helm_mercenary			= 1,1

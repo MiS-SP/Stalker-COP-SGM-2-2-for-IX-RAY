@@ -1,0 +1,12 @@
+[smart_terrain]
+squad_id = 30
+max_population = 3
+respawn_only_smart = true
+respawn_params = respawn@agr_monster_burrow_10
+
+[respawn@agr_monster_burrow_10]
+spawn_monsters
+
+[spawn_monsters]
+spawn_squads = simulation_snork
+spawn_num = {+actor_come_to_agroprom} 1, 0

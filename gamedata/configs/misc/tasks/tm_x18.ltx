@@ -1,0 +1,16 @@
+;---------------------------------------------------------------------------------------;
+;                                 Лаборатория Х18                                       ;
+;---------------------------------------------------------------------------------------;
+;сюжетные задания 
+
+[x18_abyss]
+icon = ui_inGame2_Abyss
+prior = 107
+storyline = true
+title = {=check_counter(x18_secret_docks_founded:me:3)} x18_abyss_title3, {=check_counter(x18_secret_docks_founded:is:2)} x18_abyss_title2, {=check_counter(x18_secret_docks_founded:is:1)} x18_abyss_title1, x18_abyss_title0
+descr = {=check_counter(x18_secret_docks_founded:me:3)} x18_abyss_text3, {=check_counter(x18_secret_docks_founded:is:2)} x18_abyss_text2, {=check_counter(x18_secret_docks_founded:is:1)} x18_abyss_text1, x18_abyss_text0
+target = {=check_counter(x18_secret_docks_founded:me:3)} nil, {=check_counter(x18_secret_docks_founded:is:2)} nil, {=check_counter(x18_secret_docks_founded:is:1)} nil, nil
+condlist_0 = {+x18_abyss_chosen_on_surface} complete
+on_complete = %+x18_abyss_complete +val_storyline_done =add_actor_rank(5) =increase_counter(stat_kvestov)%
+
+;второстепенные задания

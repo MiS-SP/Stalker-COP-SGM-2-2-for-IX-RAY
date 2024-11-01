@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+<w>
+<background x="0" y="0" width="1024" height="768">
+	<texture x="0" y="0" width="1024" height="768">ui\ui_static_mm_back_05</texture>
+</background>
+<modes_form x="360" y="240" width="349" height="290">
+        <texture>ui_mod_modes_wnd</texture>
+	<btn_back x="190" y="200" width="117" height="29">
+		<texture_e>ui_mod_button3_e</texture_e>
+		<texture_t>ui_mod_button3_t</texture_t>
+		<texture_h>ui_mod_button3_h</texture_h>
+		<text font="letterica16">st_mod_menu_back</text>
+	</btn_back>
+	<btn_apply x="70" y="200" width="117" height="29">
+		<texture_e>ui_mod_button3_e</texture_e>
+		<texture_t>ui_mod_button3_t</texture_t>
+		<texture_h>ui_mod_button3_h</texture_h>
+		<text font="letterica16">st_mod_menu_apply</text>
+	</btn_apply>
+	<btn_activate_immortal x="35" y="60" width="30" height="21">
+		<options_item entry="activate_immortal" group="mod_modes"/>
+		<text font="letterica16" r="115" g="114" b="112"  complex_mode="0">st_mod_menu_modes_immortal</text>
+	</btn_activate_immortal>
+	<btn_activate_power x="45" y="95" width="30" height="21">
+		<options_item entry="activate_power" group="mod_modes"/>
+		<text font="letterica16" r="115" g="114" b="112"  complex_mode="0">st_mod_menu_modes_powerfull</text>
+	</btn_activate_power>
+	<btn_activate_bleeding x="185" y="60" width="30" height="21">
+		<options_item entry="activate_bleeding" group="mod_modes"/>
+		<text font="letterica16" r="115" g="114" b="112"  complex_mode="0">st_mod_menu_modes_bleeding</text>
+	</btn_activate_bleeding>
+	<btn_activate_repair x="175" y="95" width="30" height="21">
+		<options_item entry="activate_repair" group="mod_modes"/>
+		<text font="letterica16" r="115" g="114" b="112"  complex_mode="0">st_mod_menu_modes_autorepair</text>
+	</btn_activate_repair>
+	<btn_activate_ammo x="110" y="122" width="30" height="21">
+		<options_item entry="activate_ammo" group="mod_modes"/>
+		<text font="letterica16" r="115" g="114" b="112"  complex_mode="0">st_mod_menu_modes_ammo</text>
+	</btn_activate_ammo>
+</modes_form>
+</w>

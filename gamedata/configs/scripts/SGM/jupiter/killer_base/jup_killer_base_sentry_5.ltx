@@ -1,0 +1,33 @@
+[logic]
+active = move@sentry
+on_death = death
+
+[death]
+on_info = {=killed_by_actor} %+jup_killer_base_actor_hit +jup_killer_base_sentry_5_death%, %+jup_killer_base_sentry_5_death%
+
+[move@sentry]
+surge_hide_point       = 998067
+move_dest_number       = 1008689
+move_look_vertex       = 1020620
+move_state_when_center = guard_chasovoy
+move_state_when_move   = walk
+meet                   = meet
+on_info                = {!actor_enemy +jup_killer_base_actor_hit} %=actor_enemy%
+on_info2               = {+jup_mercenary_check_plant_hero_entry} move@sentry_proyti
+;on_info3              = {=dist_to_actor_le(6) !get_actor_used_item(killer_outfit:outfit) -jup_killer_base_chief_payment -jup_mercenary_check_plant_complete -jup_killer_base_actor_hit} %+jup_killer_base_actor_hit%
+
+[move@sentry_proyti]
+surge_hide_point       = 998067
+move_dest_number       = 1002725
+move_look_vertex       = 1008685
+move_state_when_center = sit
+move_state_when_move   = walk
+meet                   = meet
+on_info                = {!actor_enemy +jup_killer_base_actor_hit} %=actor_enemy%
+
+[meet]
+abuse           = true
+use             = false
+allow_break     = true
+meet_on_talking = false
+

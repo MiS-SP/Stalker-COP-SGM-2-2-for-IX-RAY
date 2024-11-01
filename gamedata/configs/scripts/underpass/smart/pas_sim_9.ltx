@@ -1,0 +1,11 @@
+[smart_terrain]
+squad_id = 16
+max_population = 2
+respawn_params = respawn@pas_sim_9
+
+[respawn@pas_sim_9]
+spawn_monsters
+
+[spawn_monsters]
+spawn_squads = simulation_tushkano, simulation_tushkano
+spawn_num = {+pri_rescue_underground_guide_start -pri_rescue_underground_guide_fail} 1, {-pri_rescue_underground_guide_start +pri_rescue_underground_guide_fail} 1, 0

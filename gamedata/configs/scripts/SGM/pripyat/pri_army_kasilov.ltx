@@ -1,0 +1,53 @@
+[logic]
+active = move@wait_actor
+on_death = death
+on_hit = hit
+
+[hit]
+on_info = {=hit_by_actor} %+pri_army_kasilov_hit%
+
+[death]
+on_info = %+pri_army_kasilov_death +pri_necessary_kill_kasilov_kill%
+
+[move@wait_actor]
+move_dest_number       = 412041
+move_look_vertex       = 414114
+move_state_when_center = dynamite
+move_state_when_move   = assault
+move_combat_disable    = true
+move_home_teleport     = true
+invulnerable           = true
+approach_info          = pri_necessary_kill_kasilov_in_zone|60|<
+on_info                = {+pri_army_kasilov_hit !actor_enemy} %=actor_enemy%
+on_info2               = {+pri_army_kasilov_hit -pri_necessary_kill_kasilov_pochti_ushol} move@run_away_start
+on_info3               = {+pri_necessary_kill_kasilov_pochti_ushol} move@run_away_finish
+
+[move@run_away_start]
+move_dest_number       = 310936
+move_state_when_center = guard
+move_state_when_move   = sprint
+move_combat_disable    = true
+invulnerable           = true
+combat_ignore_cond     = true
+combat_ignore_keep_when_attacked = true
+on_signal              = on_center|move@run_away_middle
+
+[move@run_away_middle]
+move_dest_number       = 83775
+move_state_when_center = guard
+move_state_when_move   = sprint
+move_combat_disable    = true
+invulnerable           = true
+combat_ignore_cond     = true
+combat_ignore_keep_when_attacked = true
+on_signal              = on_center|move@run_away_finish %+pri_necessary_kill_kasilov_pochti_ushol%
+
+[move@run_away_finish]
+move_dest_number       = 41744
+move_look_subject      = actor
+move_state_when_center = hide
+move_state_when_move   = sprint
+move_combat_disable    = true
+combat_ignore_cond     = true
+combat_ignore_keep_when_attacked = true
+on_signal              = on_center|nil %=actor_enemy%

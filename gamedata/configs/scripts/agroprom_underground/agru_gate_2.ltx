@@ -1,0 +1,18 @@
+; Вторая преграда.
+
+[logic]
+active = ph_button@closed
+
+[ph_button@closed]
+anim_blend = true
+anim = idle_down
+on_info = {+agru_gate_2_open} ph_button@opening
+
+[ph_button@opening]
+anim_blend = true
+anim = move_up
+on_game_timer = 3|ph_button@opened
+
+[ph_button@opened]
+anim_blend = true
+anim = idle_up

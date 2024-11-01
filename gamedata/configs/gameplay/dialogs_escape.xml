@@ -1,0 +1,769 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+<game_dialogs>
+<!-------------------------------------------========----------------------------------------------------->
+<!-------------------------------------------'Кордон'----------------------------------------------------->
+<!-------------------------------------------========----------------------------------------------------->
+<dialog id="esc_b1_stalker_commander_start_dialog">
+        <dont_has_info>esc_atp_annex_talk</dont_has_info>
+        <phrase_list>
+            <phrase id="0">
+                <text />
+                <next>100</next>
+                <next>200</next>
+                <next>300</next>
+                <next>400</next>
+                <next>500</next>
+            </phrase>
+            <phrase id="100">
+                <text />
+                <dont_has_info>esc_introduction_kordon_talk</dont_has_info>
+                <next>101</next>
+            </phrase>
+            <phrase id="101">
+                <text>esc_b1_stalker_commander_dialog_1</text>
+                <give_info>esc_introduction_kordon_talk</give_info>
+                <next>102</next>
+            </phrase>
+            <phrase id="102">
+                <text>esc_b1_stalker_commander_dialog_2</text>
+                <next>103</next>
+            </phrase>
+            <phrase id="103">
+                <text>esc_b1_stalker_commander_dialog_3</text>
+                <next>104</next>
+            </phrase>
+            <phrase id="104">
+                <text>esc_b1_stalker_commander_dialog_4</text>
+                <next>105</next>
+            </phrase>
+            <phrase id="105">
+                <text>esc_b1_stalker_commander_dialog_5</text>
+                <next>106</next>
+            </phrase>
+            <phrase id="106">
+                <text>esc_b1_stalker_commander_dialog_6</text>
+                <next>107</next>
+            </phrase>
+            <phrase id="107">
+                <text>esc_b1_stalker_commander_dialog_7</text>
+                <action>sgm_dialogs.esc_renew_spares</action>
+                <give_info>esc_renew_spares_start</give_info>
+                <next>108</next>
+            </phrase>
+            <phrase id="108">
+                <text>esc_b1_stalker_commander_dialog_8</text>
+				<action>dialogs.break_dialog</action>
+            </phrase>
+            <phrase id="200">
+                <text />
+                <has_info>esc_renew_spares_ammunition</has_info>
+                <dont_has_info>esc_renew_spares_talk</dont_has_info>
+                <next>201</next>
+            </phrase>
+            <phrase id="201">
+                <text>esc_b1_stalker_commander_dialog_9</text>
+                <give_info>esc_renew_spares_talk</give_info>
+                <next>202</next>
+            </phrase>
+            <phrase id="202">
+                <text>esc_b1_stalker_commander_dialog_10</text>
+                <action>sgm_dialogs.esc_village_annex</action>
+                <give_info>esc_village_annex_start</give_info>
+                <next>203</next>
+            </phrase>
+            <phrase id="203">
+                <text>esc_b1_stalker_commander_dialog_11</text>
+                <next>204</next>
+            </phrase>
+            <phrase id="204">
+                <text>esc_b1_stalker_commander_dialog_12</text>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+            <phrase id="300">
+                <text />
+                <has_info>esc_village_annex_defence_end</has_info>
+                <dont_has_info>esc_village_annex_talk</dont_has_info>
+                <next>301</next>
+            </phrase>
+            <phrase id="301">
+                <text>esc_b1_stalker_commander_dialog_13</text>
+                <next>302</next>
+            </phrase>
+            <phrase id="302">
+                <text>esc_b1_stalker_commander_dialog_14</text>
+                <action>sgm_dialogs.esc_village_annex_bring</action>
+                <next>303</next>
+            </phrase>
+            <phrase id="303">
+                <text>esc_b1_stalker_commander_dialog_15</text>
+                <give_info>esc_village_annex_talk</give_info>
+                <next>304</next>
+            </phrase>
+            <phrase id="304">
+                <text>esc_b1_stalker_commander_dialog_16</text>
+                <next>305</next>
+            </phrase>
+            <phrase id="305">
+                <text>esc_b1_stalker_commander_dialog_17</text>
+                <action>sgm_dialogs.esc_atp_annex</action>
+                <give_info>esc_atp_annex_start</give_info>
+                <next>306</next>
+            </phrase>
+            <phrase id="306">
+                <text>esc_b1_stalker_commander_dialog_18</text>
+                <next>307</next>
+            </phrase>
+            <phrase id="307">
+                <text>esc_b1_stalker_commander_dialog_19</text>
+                <action>sgm_dialogs.esc_lull_before_borax</action>
+                <give_info>esc_lull_before_borax_start</give_info>
+                <next>308</next>
+            </phrase>
+            <phrase id="308">
+                <text>esc_b1_stalker_commander_dialog_20</text>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+            <phrase id="400">
+                <text />
+                <has_info>esc_atp_annex_safe_searched</has_info>
+                <dont_has_info>esc_atp_annex_talk</dont_has_info>
+                <next>401</next>
+            </phrase>
+            <phrase id="401">
+                <text>esc_b1_stalker_commander_dialog_21</text>
+                <next>402</next>
+            </phrase>
+            <phrase id="402">
+                <text>esc_b1_stalker_commander_dialog_22</text>
+                <action>sgm_dialogs.esc_atp_annex_bring</action>
+				<action>sgm_dialogs.esc_atp_annex_reward</action>
+                <next>403</next>
+            </phrase>
+            <phrase id="403">
+                <text>esc_b1_stalker_commander_dialog_23</text>
+                <give_info>esc_atp_annex_talk</give_info>
+                <next>404</next>
+            </phrase>
+            <phrase id="404">
+                <text>esc_b1_stalker_commander_dialog_24</text>
+                <next>405</next>
+            </phrase>
+            <phrase id="405">
+                <text>esc_b1_stalker_commander_dialog_25</text>
+                <next>406</next>
+            </phrase>
+            <phrase id="406">
+                <text>esc_b1_stalker_commander_dialog_26</text>
+                <next>407</next>
+            </phrase>
+            <phrase id="407">
+                <text>esc_b1_stalker_commander_dialog_27</text>
+                <action>sgm_dialogs.esc_spy_meeting</action>
+                <give_info>esc_spy_meeting_start</give_info>
+                <next>408</next>
+            </phrase>
+            <phrase id="408">
+                <text>esc_b1_stalker_commander_dialog_28</text>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+            <phrase id="500">
+                <text />
+                <has_info>esc_lull_before_borax_boar_done</has_info>
+                <dont_has_info>esc_lull_before_borax_talk</dont_has_info>
+                <next>501</next>
+            </phrase>
+            <phrase id="501">
+                <text>esc_b1_stalker_commander_dialog_2</text>
+                <next>502</next>
+            </phrase>
+            <phrase id="502">
+                <text>esc_b1_stalker_commander_dialog_30</text>
+                <next>503</next>
+            </phrase>
+            <phrase id="503">
+                <text>esc_b1_stalker_commander_dialog_31</text>
+                <action>sgm_dialogs.esc_lull_before_borax_reward</action>
+                <give_info>esc_lull_before_borax_talk</give_info>
+                <next>504</next>
+            </phrase>
+            <phrase id="504">
+                <text>esc_b1_stalker_commander_dialog_32</text>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+        </phrase_list>
+</dialog>
+
+<dialog id="esc_stalker_scout_start_dialog">
+        <dont_has_info>esc_spy_meeting_talk</dont_has_info>
+        <phrase_list>
+            <phrase id="0">
+                <text />
+                <next>100</next>
+            </phrase>
+            <phrase id="100">
+                <text />
+                <next>101</next>
+            </phrase>
+            <phrase id="101">
+                <text>esc_stalker_scout_dialog_1</text>
+                <next>102</next>
+            </phrase>
+            <phrase id="102">
+                <text>esc_stalker_scout_dialog_2</text>
+                <next>103</next>
+            </phrase>
+            <phrase id="103">
+                <text>esc_stalker_scout_dialog_3</text>
+                <give_info>esc_spy_meeting_talk</give_info>
+                <action>sgm_dialogs.esc_uncoupling</action>
+                <give_info>esc_uncoupling_start</give_info>
+                <next>104</next>
+            </phrase>
+            <phrase id="104">
+                <text>esc_stalker_scout_dialog_4</text>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+        </phrase_list>
+</dialog>
+
+<dialog id="esc_b1_stalker_mechanic_start_dialog">
+        <phrase_list>
+            <phrase id="0">
+                <text />
+                <next>100</next>
+                <next>200</next>
+                <next>300</next>
+                <next>400</next>
+                <next>500</next>
+                <next>600</next>
+                <next>700</next>
+            </phrase>
+            <phrase id="100">
+                <text />
+                <dont_has_info>esc_uncoupling_talk</dont_has_info>
+                <next>101</next>
+            </phrase>
+            <phrase id="101">
+                <text>esc_b1_stalker_mechanic_dialog_1</text>
+                <next>102</next>
+            </phrase>
+            <phrase id="102">
+                <text>esc_b1_stalker_mechanic_dialog_2</text>
+                <next>103</next>
+            </phrase>
+            <phrase id="103">
+                <text>esc_b1_stalker_mechanic_dialog_3</text>
+                <next>104</next>
+            </phrase>
+            <phrase id="104">
+                <text>esc_b1_stalker_mechanic_dialog_4</text>
+                <next>105</next>
+            </phrase>
+            <phrase id="105">
+                <text>esc_b1_stalker_mechanic_dialog_5</text>
+                <next>106</next>
+            </phrase>
+            <phrase id="106">
+                <text>esc_b1_stalker_mechanic_dialog_6</text>
+                <next>107</next>
+            </phrase>
+            <phrase id="107">
+                <text>esc_b1_stalker_mechanic_dialog_7</text>
+                <give_info>esc_uncoupling_talk</give_info>
+                <action>sgm_dialogs.esc_army_halt</action>
+                <give_info>esc_army_halt_1_start</give_info>
+                <give_info>esc_army_halt_2_start</give_info>
+                <give_info>esc_army_halt_3_start</give_info>
+                <next>108</next>
+            </phrase>
+            <phrase id="108">
+                <text>esc_b1_stalker_mechanic_dialog_8</text>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+            <phrase id="200">
+                <text />
+                <has_info>esc_uncoupling_talk</has_info>
+                <dont_has_info>mar_capture_church_talk</dont_has_info>
+                <next>201</next>
+            </phrase>
+            <phrase id="201">
+                <text>esc_b1_stalker_mechanic_dialog_9</text>
+                <next>202</next>
+            </phrase>
+            <phrase id="202">
+                <text>esc_b1_stalker_mechanic_dialog_10</text>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+            <phrase id="300">
+                <text />
+                <has_info>mar_capture_church_talk</has_info>
+                <dont_has_info>mar_mine_detector_need_sensor</dont_has_info>
+                <next>301</next>
+            </phrase>
+            <phrase id="301">
+                <text>esc_b1_stalker_mechanic_dialog_11</text>
+                <next>302</next>
+            </phrase>
+            <phrase id="302">
+                <text>esc_b1_stalker_mechanic_dialog_12</text>
+                <next>303</next>
+            </phrase>
+            <phrase id="303">
+                <text>esc_b1_stalker_mechanic_dialog_13</text>
+                <action>sgm_dialogs.mar_mine_detector_sensor</action>
+                <give_info>mar_mine_detector_need_sensor</give_info>
+                <next>304</next>
+            </phrase>
+            <phrase id="304">
+                <text>esc_b1_stalker_mechanic_dialog_14</text>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+            <phrase id="400">
+                <text />
+                <has_info>mar_mine_detector_need_sensor</has_info>
+                <dont_has_info>mar_mine_detector_device_developed</dont_has_info>
+                <next>401</next>
+            </phrase>
+            <phrase id="401">
+                <text>esc_b1_stalker_mechanic_dialog_15</text>
+                <next>403</next>
+                <next>402</next>
+            </phrase>
+            <phrase id="402">
+                <dont_has_info>mar_mine_detector_sensor_founded</dont_has_info>
+                <text>esc_b1_stalker_mechanic_dialog_16</text>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+            <phrase id="403">
+                <has_info>mar_mine_detector_sensor_founded</has_info>
+                <text>esc_b1_stalker_mechanic_dialog_17</text>
+                <action>sgm_dialogs.mar_mine_detector_bring</action>
+                <next>404</next>
+            </phrase>
+            <phrase id="404">
+                <text>esc_b1_stalker_mechanic_dialog_18</text>
+                <give_info>mar_mine_detector_device_developed</give_info>
+                <next>405</next>
+            </phrase>
+            <phrase id="405">
+                <text>esc_b1_stalker_mechanic_dialog_19</text>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+            <phrase id="500">
+                <text />
+                <has_info>mar_mine_detector_device_developed</has_info>
+                <dont_has_info>mar_mine_detector_device_done</dont_has_info>
+                <next>501</next>
+            </phrase>
+            <phrase id="501">
+                <text>esc_b1_stalker_mechanic_dialog_20</text>
+                <next>502</next>
+            </phrase>
+            <phrase id="502">
+                <text>esc_b1_stalker_mechanic_dialog_21</text>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+            <phrase id="600">
+                <text />
+                <has_info>mar_mine_detector_device_done</has_info>
+                <dont_has_info>mar_mine_detector_talk</dont_has_info>
+                <next>601</next>
+            </phrase>
+            <phrase id="601">
+                <text>esc_b1_stalker_mechanic_dialog_22</text>
+                <next>602</next>
+                <next>609</next>
+            </phrase>
+            <phrase id="609">
+                <precondition>sgm_dialogs.actor_less_10000_money</precondition>
+                <text>esc_b1_stalker_mechanic_dialog_23</text>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+            <phrase id="602">
+                <precondition>sgm_dialogs.actor_have_10000_money</precondition>
+                <text>esc_b1_stalker_mechanic_dialog_24</text>
+                <action>sgm_dialogs.actor_give_10000_money</action>
+                <next>603</next>
+            </phrase>
+            <phrase id="603">
+                <text>esc_b1_stalker_mechanic_dialog_25</text>
+                <action>sgm_dialogs.mar_mine_detector_give</action>
+                <give_info>mar_mine_detector_talk</give_info>
+                <next>604</next>
+            </phrase>
+            <phrase id="604">
+                <text>esc_b1_stalker_mechanic_dialog_26</text>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+            <phrase id="700">
+                <text />
+                <has_info>mar_mine_detector_talk</has_info>
+                <next>701</next>
+            </phrase>
+            <phrase id="701">
+                <text>esc_b1_stalker_mechanic_dialog_27</text>
+                <next>702</next>
+            </phrase>
+            <phrase id="702">
+                <text>esc_b1_stalker_mechanic_dialog_28</text>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+        </phrase_list>
+</dialog>
+
+<dialog id="esc_b3_attack_commander_start_dialog">
+        <dont_has_info>esc_atp_annex_signal</dont_has_info>
+        <phrase_list>
+            <phrase id="0">
+                <text />
+                <next>100</next>
+            </phrase>
+            <phrase id="100">
+                <text />
+                <next>101</next>
+            </phrase>
+            <phrase id="101">
+                <text>esc_b3_attack_commander_dialog_1</text>
+                <next>102</next>
+                <next>103</next>
+            </phrase>
+            <phrase id="102">
+                <text>esc_b3_attack_commander_dialog_2</text>
+                <give_info>esc_atp_annex_signal</give_info>
+                <next>104</next>
+            </phrase>
+            <phrase id="104">
+                <text>esc_b3_attack_commander_dialog_3</text>
+                <action>sgm_dialogs.esc_atp_annex_give_night_vision</action>
+                <next>105</next>
+            </phrase>
+            <phrase id="105">
+                <text>esc_b3_attack_commander_dialog_4</text>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+            <phrase id="103">
+                <text>esc_b3_attack_commander_dialog_5</text>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+        </phrase_list>
+</dialog>
+
+<dialog id="esc_stalker_trader_start_dialog">
+        <precondition>sgm_dialogs.mod_dialog_precond</precondition>
+        <phrase_list>
+            <phrase id="5100">
+                <has_info>esc_lull_before_borax_complete</has_info>
+                <dont_has_info>esc_whimsical_artefact_start</dont_has_info>
+                <text>esc_stalker_trader_job_dialog_1</text>
+                <next>5101</next>
+            </phrase>
+            <phrase id="5101">
+                <text>esc_stalker_trader_job_dialog_2</text>
+                <next>5102</next>
+                <next>5109</next>
+            </phrase>
+            <phrase id="5109">
+                <text>esc_stalker_trader_job_dialog_3</text>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+            <phrase id="5102">
+                <text>esc_stalker_trader_job_dialog_4</text>
+                <next>5103</next>
+            </phrase>
+            <phrase id="5103">
+                <text>esc_stalker_trader_job_dialog_5</text>
+                <action>sgm_dialogs.esc_whimsical_artefact</action>
+                <give_info>esc_whimsical_artefact_start</give_info>
+                <next>5104</next>
+            </phrase>
+            <phrase id="5104">
+                <text>esc_stalker_trader_job_dialog_6</text>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+            <phrase id="5110">
+                <has_info>esc_whimsical_artefact_start</has_info>
+                <dont_has_info>esc_whimsical_artefact_reward</dont_has_info>
+                <dont_has_info>esc_whimsical_artefact_fail</dont_has_info>
+                <text>esc_stalker_trader_job_dialog_7</text>
+                <next>5111</next>
+            </phrase>
+            <phrase id="5111">
+                <text>esc_stalker_trader_job_dialog_8</text>
+                <next>5112</next>
+                <next>5119</next>
+                <next>5120</next>
+            </phrase>
+            <phrase id="5112">
+                <precondition>sgm_dialogs.esc_whimsical_artefact_has</precondition>
+                <text>esc_stalker_trader_job_dialog_9</text>
+                <action>sgm_dialogs.esc_whimsical_artefact_bring</action>
+                <next>5113</next>
+            </phrase>
+            <phrase id="5113">
+                <text>esc_stalker_trader_job_dialog_10</text>
+                <action>sgm_dialogs.esc_whimsical_artefact_reward</action>
+                <give_info>esc_whimsical_artefact_reward</give_info>
+                <next>5114</next>
+            </phrase>
+            <phrase id="5114">
+                <text>esc_stalker_trader_job_dialog_11</text>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+            <phrase id="5119">
+                <text>esc_stalker_trader_job_dialog_12</text>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+            <phrase id="5120">
+                <text>esc_stalker_trader_job_dialog_13</text>
+                <next>5121</next>
+            </phrase>
+            <phrase id="5121">
+                <text>esc_stalker_trader_job_dialog_14</text>
+                <next>5122</next>
+                <next>5123</next>
+            </phrase>
+            <phrase id="5122">
+                <text>esc_stalker_trader_job_dialog_15</text>
+                <give_info>esc_whimsical_artefact_fail</give_info>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+            <phrase id="5123">
+                <text>esc_stalker_trader_job_dialog_16</text>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+            <phrase id="0">
+                <text />
+                <next>100</next>
+            </phrase>
+            <phrase id="100">
+                <text />
+                <next>101</next>
+                <next>101002</next>
+            </phrase>
+            <phrase id="101">
+                <precondition>sgm_dialogs.trader_order_is_not_executed</precondition>
+                <text>esc_stalker_trader_dialog_1</text>
+                <next>110</next>
+                <next>5100</next>
+                <next>5110</next>
+                <next>120</next>
+                <next>130</next>
+                <next>140</next>
+            </phrase>
+            <phrase id="101002">
+                <precondition>sgm_dialogs.trader_order_is_executed</precondition>
+                <text>esc_stalker_trader_dialog_1_2</text>
+                <next>110</next>
+                <next>5100</next>
+                <next>5110</next>
+                <next>120</next>
+                <next>130</next>
+                <next>140</next>
+            </phrase>
+            <phrase id="110">
+                <text>esc_stalker_trader_dialog_2</text>
+                <action>sgm_dialogs.switch_to_trade</action>
+                <next>111</next>
+            </phrase>
+            <phrase id="111">
+                <text>esc_stalker_trader_dialog_3</text>
+                <next>110</next>
+                <next>5100</next>
+                <next>5110</next>
+                <next>120</next>
+                <next>130</next>
+                <next>140</next>
+            </phrase>
+            <phrase id="130">
+                <text>esc_stalker_trader_dialog_12</text>
+                <has_info>esc_stalker_trader_order</has_info>
+                <next>131</next>
+            </phrase>
+            <phrase id="131">
+                <text>esc_stalker_trader_dialog_9</text>
+                <next>132</next>
+                <next>13999</next>
+            </phrase>
+            <phrase id="132">
+                <precondition>sgm_dialogs.order_recoil_have_money</precondition>
+                <text>esc_stalker_trader_dialog_10</text>
+                <action>sgm_dialogs.order_recoil_give_money</action>
+                <disable_info>esc_stalker_trader_order</disable_info>
+                <disable_info>esc_stalker_trader_colt1911</disable_info>
+                <disable_info>esc_stalker_trader_wincheaster1300</disable_info>
+                <disable_info>esc_stalker_trader_outfit</disable_info>
+                <next>133</next>
+            </phrase>
+            <phrase id="133">
+                <text>esc_stalker_trader_dialog_11</text>
+                <next>12901</next>
+            <!--<next>12903</next>-->
+                <next>12888</next>
+            </phrase>
+            <phrase id="140">
+                <text>esc_stalker_trader_dialog_4</text>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+            <phrase id="12888">
+                <text>esc_stalker_trader_dialog_5</text>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+            <phrase id="13999">
+                <text>esc_stalker_trader_dialog_6</text>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+            <phrase id="12005">
+                <text>esc_stalker_trader_dialog_7</text>
+                <next>12006</next>
+            </phrase>
+            <phrase id="12006">
+                <text>esc_stalker_trader_dialog_8</text>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+            <phrase id="120">
+                <text>esc_stalker_trader_dialog_18</text>
+                <dont_has_info>esc_stalker_trader_order</dont_has_info>
+                <next>1210</next>
+            </phrase>
+            <phrase id="1210">
+                <text>esc_stalker_trader_dialog_19</text>
+                <next>12901</next>
+            <!--<next>12903</next>-->
+                <next>12888</next>
+            </phrase>
+            --[Арсенал]
+            <phrase id="12105">
+                <text>esc_stalker_trader_dialog_7</text>
+                <next>12106</next>
+            </phrase>
+            <phrase id="12106">
+                <text>esc_stalker_trader_dialog_8</text>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+            <phrase id="12901">
+                <text>esc_stalker_trader_dialog_20</text>
+                <next>12902</next>
+            </phrase>
+            <phrase id="12902">
+                <text>esc_stalker_trader_dialog_17</text>
+                <next>1200000</next>
+                <next>1200100</next>
+                <next>12888</next>
+            </phrase>
+            <phrase id="831209900">
+                <text>zat_trader_back_phrase</text>
+                <next>12902</next>
+            </phrase>
+            --[А1]
+            <phrase id="1200000">
+                <text>esc_stalker_trader_dialog_22</text>
+                <action>sgm_dialogs.esc_s_trader_w_1</action>
+                <next>1200002</next>
+            </phrase>
+            <phrase id="1200002">
+                <text>esc_stalker_trader_dialog_16</text>
+                <action>sgm_dialogs.show_order_costs</action>
+                <next>831209900</next>
+                <next>1200003</next>
+                <next>1200004</next>
+                <next>1200007</next>
+            </phrase>
+            <phrase id="1200007">
+                <precondition>sgm_dialogs.order_has_money</precondition>
+                <text>esc_stalker_trader_dialog_14</text>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+            <phrase id="1200004">
+                <precondition>sgm_dialogs.order_agree_less_money</precondition>
+                <text>esc_stalker_trader_dialog_13</text>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+            <phrase id="1200003">
+                <precondition>sgm_dialogs.order_has_money</precondition>
+                <text>esc_stalker_trader_dialog_15</text>
+                <action>sgm_dialogs.order_agree_give_money</action>
+                <give_info>esc_stalker_trader_order</give_info>
+                <give_info>esc_stalker_trader_colt1911</give_info>
+                <next>12005</next>
+            </phrase>
+            --[А2]
+            <phrase id="1200100">
+                <text>esc_stalker_trader_dialog_23</text>
+                <action>sgm_dialogs.esc_s_trader_w_2</action>
+                <next>1200102</next>
+            </phrase>
+            <phrase id="1200102">
+                <text>esc_stalker_trader_dialog_16</text>
+                <action>sgm_dialogs.show_order_costs</action>
+                <next>831209900</next>
+                <next>1200103</next>
+                <next>1200104</next>
+                <next>1200107</next>
+            </phrase>
+            <phrase id="1200107">
+                <precondition>sgm_dialogs.order_has_money</precondition>
+                <text>esc_stalker_trader_dialog_14</text>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+            <phrase id="1200104">
+                <precondition>sgm_dialogs.order_agree_less_money</precondition>
+                <text>esc_stalker_trader_dialog_13</text>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+            <phrase id="1200103">
+                <precondition>sgm_dialogs.order_has_money</precondition>
+                <text>esc_stalker_trader_dialog_15</text>
+                <action>sgm_dialogs.order_agree_give_money</action>
+                <give_info>esc_stalker_trader_order</give_info>
+                <give_info>esc_stalker_trader_wincheaster1300</give_info>
+                <next>12005</next>
+            </phrase>
+            --[Броники]
+            <phrase id="12903">
+                <text>esc_stalker_trader_dialog_21</text>
+                <next>12904</next>
+            </phrase>
+            <phrase id="12904">
+                <text>esc_stalker_trader_dialog_17</text>
+                <next>1210000</next>
+                <next>12888</next>
+            </phrase>
+            <phrase id="831209910">
+                <text>zat_trader_back_phrase</text>
+                <next>12904</next>
+            </phrase>
+            --[Б1]
+            <phrase id="1210000">
+                <text>esc_stalker_trader_dialog_23</text>
+                <action>sgm_dialogs.esc_s_trader_o_1</action>
+                <next>1210001</next>
+            </phrase>
+            <phrase id="1210001">
+                <text>esc_stalker_trader_dialog_16</text>
+                <action>sgm_dialogs.show_order_costs</action>
+                <next>831209910</next>
+                <next>1210003</next>
+                <next>1210004</next>
+                <next>1210007</next>
+            </phrase>
+            <phrase id="1210007">
+                <precondition>sgm_dialogs.order_has_money</precondition>
+                <text>esc_stalker_trader_dialog_14</text>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+            <phrase id="1210004">
+                <precondition>sgm_dialogs.order_agree_less_money</precondition>
+                <text>esc_stalker_trader_dialog_13</text>
+                <action>dialogs.break_dialog</action>
+            </phrase>
+            <phrase id="1210003">
+                <precondition>sgm_dialogs.order_has_money</precondition>
+                <text>esc_stalker_trader_dialog_15</text>
+                <action>sgm_dialogs.order_agree_give_money</action>
+                <give_info>esc_stalker_trader_order</give_info>
+                <give_info>esc_stalker_trader_outfit</give_info>
+                <next>12105</next>
+            </phrase>
+        </phrase_list>
+</dialog>
+</game_dialogs>

@@ -1,0 +1,173 @@
+;---------------------------------------------------------------------------------------;
+;                                   Темная Долина                                       ;
+;---------------------------------------------------------------------------------------;
+[val_a2_snork_squad]:online_offline_group
+faction = monster
+npc = snork_normal, snork_normal, snork_normal, snork_normal, snork_normal, snork_normal, snork_normal, snork_normal, snork_normal, snork_normal
+target_smart = val_monster_burrow_2
+spawn_point = val_monster_burrow_2_spawn_point
+story_id = val_a2_snork_squad
+on_death = {+val_a6_snork_squad_death} %+val_a2_snork_squad_death +val_assault_factory_bridge_cleared =scenario_autosave(st_save_val_assault_factory_snorks_is_cleared)%, %+val_a2_snork_squad_death%
+
+[val_a6_snork_squad]:online_offline_group
+faction = monster
+npc = snork_strong, snork_strong, snork_strong, snork_strong, snork_strong, snork_strong, snork_strong, snork_strong, snork_strong, snork_strong
+target_smart = val_monster_burrow_6
+spawn_point = val_monster_burrow_6_spawn_point
+story_id = val_a6_snork_squad
+on_death = {+val_a2_snork_squad_death} %+val_a6_snork_squad_death +val_assault_factory_bridge_cleared =scenario_autosave(st_save_val_assault_factory_snorks_is_cleared)%, %+val_a6_snork_squad_death%
+
+[val_b1_renegade_squad]:online_offline_group
+faction = renegade
+npc = val_b1_base_commander, val_b1_renegade_1, val_b1_renegade_2, val_b1_renegade_3, sim_default_renegade_1, sim_default_renegade_2, sim_default_renegade_3, sim_default_renegade_4, sim_default_renegade_3, sim_default_renegade_2, sim_default_renegade_3, sim_default_renegade_3, sim_default_renegade_4, sim_default_renegade_1, sim_default_renegade_2, sim_default_renegade_3, sim_default_renegade_4, sim_default_renegade_1, sim_default_renegade_2, sim_default_renegade_3, sim_default_renegade_4, sim_default_renegade_3
+target_smart = val_smart_terrain_1
+spawn_point = val_smart_terrain_1_spawn_point
+story_id = val_b1_renegade_squad
+on_death = %+val_assault_factory_garrison_destroyed =scenario_autosave(st_save_val_assault_factory_is_captured)%
+online_cond = {+val_assault_factory_start} true
+
+[val_b1_night_stalker_squad]:online_offline_group
+faction = night_stalker
+npc = sim_default_night_stalker_3, sim_default_night_stalker_2, sim_default_night_stalker_1, sim_default_night_stalker_2
+target_smart = val_smart_terrain_1
+spawn_point = val_smart_terrain_1_spawn_point
+story_id = val_b1_night_stalker_squad
+on_death = %+val_b1_night_stalker_squad_death%
+
+[val_b2_night_stalker_1_squad]:online_offline_group
+faction = night_stalker
+npc = val_b2_base_leader, sim_default_night_stalker_3, sim_default_night_stalker_2, sim_default_night_stalker_1, sim_default_night_stalker_2, sim_default_night_stalker_2
+target_smart = val_smart_terrain_2
+spawn_point = val_smart_terrain_2_spawn_point
+story_id = val_b2_night_stalker_1_squad
+on_death = %+val_b2_night_stalker_1_squad_death%
+
+[val_b2_night_stalker_2_squad]:online_offline_group
+faction = night_stalker
+npc = sim_default_night_stalker_4, sim_default_night_stalker_3, sim_default_night_stalker_2, sim_default_night_stalker_2, sim_default_night_stalker_2, sim_default_night_stalker_3
+target_smart = val_smart_terrain_2
+spawn_point = val_smart_terrain_2_spawn_point
+story_id = val_b2_night_stalker_2_squad
+on_death = %+val_b2_night_stalker_2_squad_death%
+
+[val_b2_night_stalker_3_squad]:online_offline_group
+faction = night_stalker
+npc = sim_default_night_stalker_4, sim_default_night_stalker_3, sim_default_night_stalker_2, sim_default_night_stalker_2, sim_default_night_stalker_2, sim_default_night_stalker_3
+target_smart = val_smart_terrain_2
+spawn_point = val_smart_terrain_2_spawn_point
+story_id = val_b2_night_stalker_3_squad
+on_death = %+val_b2_night_stalker_3_squad_death%
+
+[val_b3_renegade_squad_1]:online_offline_group
+faction = renegade
+npc = val_b3_base_commander_1, sim_default_renegade_1, sim_default_renegade_2, sim_default_renegade_3, sim_default_renegade_4, sim_default_renegade_3
+target_smart = val_smart_terrain_3
+spawn_point = val_smart_terrain_3_spawn_point
+story_id = val_b3_renegade_squad_1
+on_death = %+val_b3_renegade_squad_1_death%
+online_cond = {+val_shade_of_time_door_is_locked} true
+
+[val_b3_renegade_squad_2]:online_offline_group
+faction = renegade
+npc = val_b3_base_commander_2, sim_default_renegade_1, sim_default_renegade_2, sim_default_renegade_3, sim_default_renegade_4, sim_default_renegade_3
+target_smart = val_smart_terrain_3
+spawn_point = val_smart_terrain_3_spawn_point
+story_id = val_b3_renegade_squad_2
+on_death = %+val_b3_renegade_squad_2_death%
+online_cond = {+val_shade_of_time_door_is_locked} true
+
+[val_b3_renegade_squad_3]:online_offline_group
+faction = renegade
+npc = val_b3_base_commander_3, sim_default_renegade_1, sim_default_renegade_2, sim_default_renegade_3, sim_default_renegade_4, sim_default_renegade_3
+target_smart = val_smart_terrain_3
+spawn_point = val_smart_terrain_3_spawn_point
+story_id = val_b3_renegade_squad_3
+on_death = %+val_b3_renegade_squad_3_death%
+online_cond = {+val_shade_of_time_door_is_locked} true
+
+[val_b3_renegade_chief_squad]:online_offline_group
+faction = renegade
+npc = val_b3_base_guard_chief, sim_default_renegade_3, sim_default_renegade_4, sim_default_renegade_3
+target_smart = val_smart_terrain_3
+spawn_point = val_smart_terrain_3_spawn_point
+story_id = val_b3_renegade_chief_squad
+on_death = %+val_b3_renegade_chief_squad_death%
+
+[val_b3_renegade_collector_squad]:online_offline_group
+faction = renegade
+npc = val_b3_collector, sim_default_renegade_4, sim_default_renegade_4, sim_default_renegade_4, sim_default_renegade_4
+target_smart = val_smart_terrain_10:val_smart_terrain_4:val_smart_terrain_6:val_smart_terrain_7:loop
+story_id = val_b3_renegade_collector_squad
+on_death = %+val_b3_renegade_collector_squad_death%
+
+[val_b4_renegade_squad]:online_offline_group
+faction = renegade
+npc = val_b4_base_commander, sim_default_renegade_1, sim_default_renegade_2, sim_default_renegade_3, sim_default_renegade_4, sim_default_renegade_3, sim_default_renegade_2, sim_default_renegade_3
+target_smart = val_smart_terrain_4
+spawn_point = val_smart_terrain_4_spawn_point
+story_id = val_b4_renegade_squad
+on_death = %+val_b4_renegade_squad_death%
+
+[val_b6_renegade_squad]:online_offline_group
+faction = renegade
+npc = sim_default_renegade_1, sim_default_renegade_2, sim_default_renegade_3, sim_default_renegade_4
+target_smart = val_smart_terrain_6
+spawn_point = val_smart_terrain_6_spawn_point
+story_id = val_b6_renegade_squad
+on_death = %+val_b6_renegade_squad_death%
+
+[val_b7_renegade_squad]:online_offline_group
+faction = renegade
+npc = sim_default_renegade_3, sim_default_renegade_2, sim_default_renegade_3, sim_default_renegade_4
+target_smart = val_smart_terrain_6
+spawn_point = val_smart_terrain_6_spawn_point
+story_id = val_b6_renegade_squad
+on_death = %+val_b6_renegade_squad_death%
+
+[val_b10_renegade_squad]:online_offline_group
+faction = renegade
+npc = sim_default_renegade_1, sim_default_renegade_2, sim_default_renegade_3, sim_default_renegade_4
+target_smart = val_smart_terrain_10
+spawn_point = val_smart_terrain_10_spawn_point
+story_id = val_b10_renegade_squad
+on_death = %+val_b10_renegade_squad_death%
+
+[val_b11_night_stalker_squad]:online_offline_group
+faction = night_stalker
+npc = val_b11_outpost_commander, sim_default_night_stalker_3, sim_default_night_stalker_2, sim_default_night_stalker_1, sim_default_night_stalker_2, sim_default_night_stalker_2, sim_default_night_stalker_3, sim_default_night_stalker_2, sim_default_night_stalker_3
+target_smart = val_smart_terrain_11
+spawn_point = val_smart_terrain_11_spawn_point
+story_id = val_b11_night_stalker_squad
+on_death = %+val_b11_night_stalker_squad_death%
+
+[val_b12_night_stalker_squad]:online_offline_group
+faction = night_stalker
+npc = val_b12_outpost_commander, sim_default_night_stalker_3, sim_default_night_stalker_2, sim_default_night_stalker_1, sim_default_night_stalker_2, sim_default_night_stalker_2, sim_default_night_stalker_3
+target_smart = val_smart_terrain_12
+spawn_point = val_smart_terrain_12_spawn_point
+story_id = val_b12_night_stalker_squad
+on_death = %+val_b12_night_stalker_squad_death%
+
+[val_b13_night_stalker_squad]:online_offline_group
+faction = night_stalker
+npc = sim_default_night_stalker_3, sim_default_night_stalker_2, sim_default_night_stalker_1, sim_default_night_stalker_2, sim_default_night_stalker_2, sim_default_night_stalker_3
+target_smart = val_smart_terrain_13
+spawn_point = val_smart_terrain_13_spawn_point
+story_id = val_b13_night_stalker_squad
+on_death = %+val_b13_night_stalker_squad_death%
+
+[val_b14_night_stalker_squad]:online_offline_group
+faction = night_stalker
+npc = val_b14_outpost_commander, sim_default_night_stalker_3, sim_default_night_stalker_2, sim_default_night_stalker_1, sim_default_night_stalker_2, sim_default_night_stalker_2, sim_default_night_stalker_3, sim_default_night_stalker_2, sim_default_night_stalker_3
+target_smart = val_smart_terrain_14
+spawn_point = val_smart_terrain_14_spawn_point
+story_id = val_b14_night_stalker_squad
+on_death = %+val_b14_night_stalker_squad_death%
+
+[val_b15_renegade_squad]:online_offline_group
+faction = renegade
+npc = sim_default_renegade_1, sim_default_renegade_2, sim_default_renegade_3, sim_default_renegade_4, sim_default_renegade_3, sim_default_renegade_2
+story_id = val_b15_renegade_squad
+target_smart = val_smart_terrain_15
+spawn_point = val_smart_terrain_15_spawn_point
+on_death = %+val_b15_renegade_squad_death +val_brigand_renegade_killed%

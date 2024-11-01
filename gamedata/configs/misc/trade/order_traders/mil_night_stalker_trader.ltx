@@ -1,0 +1,89 @@
+#include "default_sections.ltx"
+
+[trader]
+buy_condition  = {+sgm_achievements_client =check_night_interval(22:5)} order_trader_buy_upgraded_hidden, {+sgm_achievements_client} order_trader_buy_upgraded, order_trader_buy
+sell_condition = {+sgm_achievements_client} order_trader_sell_upgraded, order_trader_sell
+buy_supplies   = {+mil_night_stalker_trader_weapon =check_trader_order_item(wpn_weapon)} supplies_weapon,{+mil_night_stalker_trader_stalker_reinforced_outfit =check_trader_order_item(stalker_reinforced_outfit)} supplies_stalker_reinforced_outfit,{+mil_night_stalker_trader_army_nauchniy_outfit =check_trader_order_item(army_nauchniy_outfit)} supplies_army_nauchniy_outfit,order_trader_supplies
+buy_item_condition_factor = {+sgm_achievements_client} 0.4, 0.6
+
+[order_trader_supplies]
+mp3_player                      = 1,0.99
+personal_marker                 = 1,0.60
+army_timer                      = 1,0.99
+personal_rukzak		        = 2,0.99
+repair_arms_box	                = 1,0.70
+repair_outfit_box	        = 1,0.70
+detector_battery_1		= 2,0.99
+detector_battery_2		= 2,0.70
+detector_battery_3		= 2,0.50
+demolution_ballon		= 1,0.80
+demolution_kanistra		= 3,0.80
+demolution_barrel		= 1,0.80
+ammo_box_10_vog			= 1,0.50
+ammo_box_10_m209		= 1,0.50
+antirad				= 5,0.99
+bandage				= 10,0.99
+bio_bandage			= 5,0.60
+psy_complex			= 4,0.99
+medkit				= 4,0.99
+medkit_army			= 3,0.80
+medkit_elite			= 1,0.30
+drug_coagulant			= 3,0.90
+drug_antidot			= 3,0.90
+drug_radioprotector		= 3,0.90
+drug_psy_blockade		= 3,0.90
+drug_anabiotic			= 1,0.80
+drug_engine                     = 1,0.10
+bread				= 2,0.99
+kolbasa				= 2,0.99
+conserva			= 2,0.99
+vodka				= 3,0.99
+energy_drink			= 2,0.99
+nuts				= 2,0.19
+sardina				= 2,0.19
+wild_drink			= 3,0.19
+olivki				= 2,0.19
+cheese				= 2,0.19
+galet				= 2,0.19
+shokolad			= 2,0.19
+batonchik			= 2,0.19
+beer				= 2,0.19
+juice				= 3,0.19
+grenade_rgd5                    = 5,0.90
+grenade_f1                      = 5,0.90
+grenade_gd-05                   = 5,0.90
+ammo_12x70_buck                 = 8,0.80
+ammo_5.45x39_ap                 = 8,0.80
+ammo_5.45x39_fmj                = 8,0.80
+ammo_5.56x45_ap		        = 8,0.80
+ammo_9x39_ap                    = 8,0.80
+ammo_9x39_pab9                  = 8,0.80
+ammo_7.62x54_7h1                = 2,0.80
+ammo_pkm_100                    = 2,0.80
+ammo_vog-25                     = 5,0.80
+ammo_m209                       = 5,0.80
+ammo_og-7b                      = 2,0.80
+mobile_tool                     = 1,0.99
+activate_knife_m8		= 1,0.99
+activate_binocular_m1           = 1,0.99
+activate_binocular_m2           = 1,0.99
+activate_binocular_m3           = 1,0.99
+
+[supplies_weapon]:order_trader_supplies
+
+[supplies_army_nauchniy_outfit]:order_trader_supplies
+army_nauchniy_outfit		= 1,1.0
+[supplies_stalker_reinforced_outfit]:order_trader_supplies
+stalker_reinforced_outfit	= 1,1.0
+
+[order_trader_buy]:default_order_trader_buy
+[order_trader_buy_upgraded]:default_order_trader_buy_upgraded
+[order_trader_buy_upgraded_hidden]:default_order_trader_buy_upgraded_hidden
+
+[order_trader_sell]:default_order_trader_sell
+army_nauchniy_outfit		= 1,1.3
+stalker_reinforced_outfit	= 1,1.2
+
+[order_trader_sell_upgraded]:default_order_trader_sell_upgraded
+army_nauchniy_outfit		= 1,1
+stalker_reinforced_outfit	= 1,1

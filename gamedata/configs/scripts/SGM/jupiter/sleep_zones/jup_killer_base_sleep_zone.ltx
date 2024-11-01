@@ -1,0 +1,14 @@
+[story_object]
+story_id = jup_killer_base_sleep_zone
+
+[logic]
+active = sr_idle@wait
+
+[sr_idle@wait]
+on_actor_inside = {+jup_mercenary_check_plant_hero_entry -jup_killer_base_leader_death} sr_idle@run %=run_tutorial(show_sleep_zone)%
+on_info = %=sleep_place_spot_control(ui_pda2_actor_sleep_location:st_ui_pda_sleep_place:jup_mercenary_check_plant_hero_entry:jup_killer_base_leader_death)%
+
+[sr_idle@run]
+on_info = {+tutorial_sleep} %-tutorial_sleep =run_tutorial(show_sleep_zone)%
+on_actor_outside = {+tutorial_sleep} sr_idle@wait, sr_idle@wait %=stop_tutorial%
+on_info2 = {!has_active_tutorial -sleep_active} sr_idle@wait

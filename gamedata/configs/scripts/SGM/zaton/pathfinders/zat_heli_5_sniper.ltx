@@ -1,0 +1,22 @@
+[logic]
+active = move@skat_5_pathfinder
+
+[move@skat_5_pathfinder]
+scheme_type         = shooter
+shooter_pos         = 115302
+shooter_fire_look   = enemy
+shooter_idle_look   = 116112
+shooter_clip        = -1
+shooter_reload      = 1
+shooter_type_wpn    = rifle
+shooter_need_see    = true
+shooter_need_dist   = 102
+shooter_move_state  = walk
+shooter_idle_state  = threat
+shooter_fire_state  = threat_fire
+shooter_avail_cond  = {+zat_heli5_ambush_allow} true, false
+combat_ignore_cond  = true
+combat_ignore_keep_when_attacked = true
+on_info             = {!actor_in_zone(zat_b101_heli_5) +zat_b101_heli_5_searching -zat_heli5_ambush_allow} %+zat_heli5_ambush_allow%
+on_info2            = {!actor_enemy} %=actor_enemy%
+on_info3            = {=dist_to_actor_le(10)} nil

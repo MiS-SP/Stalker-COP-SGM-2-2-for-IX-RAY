@@ -1,0 +1,258 @@
+	<string id="st_unique_treasure_spot_descr">
+		<text>Тайник. Код доступа</text>
+	</string>
+	<string id="st_question_game_reward_advice">
+		<text>Заработан совет:</text>
+	</string>
+	<string id="st_question_game_reward_money">
+		<text>Получены дополнительные деньги:</text>
+	</string>
+	<string id="st_remote_charge_delay_deactivated">
+		<text>Таймер: отключён</text>
+	</string>
+	<string id="st_remote_charge_delay_timer">
+		<text>Таймер:</text>
+	</string>
+	<string id="st_remote_charge_delay_value">
+		<text>сек.</text>
+	</string>
+	<string id="st_remote_charge_spot">
+		<text>Заряд РС-15</text>
+	</string>
+	<string id="st_21_point_your_card_value">
+		<text>Вы:</text>
+	</string>
+	<string id="st_21_point_enemy_card_value">
+		<text>Враг:</text>
+	</string>
+	<string id="st_21_point_rate_field">
+		<text>Ваша ставка на выиграш:</text>
+	</string>
+	<string id="st_21_point_infoline_1">
+		<text>В вашем рюкзаке денег:</text>
+	</string>
+	<string id="st_21_point_infoline_2">
+		<text>Минимальная ставка - 50, максимальная ставка -</text>
+	</string>
+	<string id="st_21_point_money">
+		<text>рублей.</text>
+	</string>
+	<string id="st_21_point_info_about_your">
+		<text>Дегтярёв: ставка</text>
+	</string>
+	<string id="st_21_point_info_about_enemy">
+		<text>: ставка</text>
+	</string>
+	<string id="st_21_point_web_money">
+		<text>электронных рублей.</text>
+	</string>
+	<string id="st_21_point_winner_your_1">
+		<text>Вы выиграли. Выиграш составил -</text>
+	</string>
+	<string id="st_21_point_winner_your_2">
+		<text>рублей. Сумма очков: вы -</text>
+	</string>
+	<string id="st_21_point_winner_your_3">
+		<text>, противник -</text>
+	</string>
+	<string id="st_21_point_winner_enemy_1">
+		<text>Вы проиграли. Проиграш составил -</text>
+	</string>
+	<string id="st_21_point_winner_enemy_2">
+		<text>рублей. Сумма очков: вы -</text>
+	</string>
+	<string id="st_21_point_winner_enemy_3">
+		<text>, противник -</text>
+	</string>
+	<string id="st_21_point_winner_equally_1">
+		<text>Победила дружба. Сумма очков: вы -</text>
+	</string>
+	<string id="st_21_point_winner_equally_2">
+		<text>, противник -</text>
+	</string>
+	<string id="st_help_wounded_payment">
+		<text>Получены деньги за спасение</text>
+	</string>
+	<string id="st_mechanic_stripping_count">
+		<text>Кол-во кор. с деталями</text>
+	</string>
+	<string id="st_rank_event_present">
+		<text>Ранг повышен</text>
+	</string>
+	<string id="st_bankir_web_money_course_1">
+		<text>Курс обмена:</text>
+	</string>
+	<string id="st_bankir_web_money_course_2">
+		<text>Ваши электронные деньги:</text>
+	</string>
+	<string id="st_bankir_web_money_course_3">
+		<text>1 электронный рубль -</text>
+	</string>
+	<string id="st_bankir_web_money_course_4">
+		<text>копеек наличными рублями.</text>
+	</string>
+	<string id="st_bankir_web_money_course_5">
+		<text>рублей.</text>
+	</string>
+	<string id="st_event_headshot">
+		<text>Вы заработали хедшот</text>
+	</string>
+	<string id="st_event_iam_find">
+		<text>Вы нашли</text>
+	</string>
+	<string id="st_event_find_secret">
+		<text>-й по счету SGM тайник.</text>
+	</string>
+	<string id="st_event_find_deserve">
+		<text>-й персональный тайник.</text>
+	</string>
+	<string id="st_custom_goods_need_rank">
+		<text>Требуемый ранг:</text>
+	</string>
+	<string id="st_booty_count">
+		<text>Количество трофеев</text>
+	</string>
+	<string id="st_booty_costs">
+		<text>На сумму:</text>
+	</string>
+	<string id="st_add_damage">
+		<text>к урону</text>
+	</string>
+	<string id="st_booty_shtuk">
+		<text>шт.</text>
+	</string>
+	<string id="st_need_rank">
+		<text>необходим ранг >=</text>
+	</string>
+	<string id="st_currert_rank">
+		<text>текущий ранг:</text>
+	</string>
+	<string id="st_af_type_1">
+		<text>Поддерживает: 1-й тип аномальности</text>
+	</string>
+	<string id="st_af_type_2">
+		<text>Поддерживает: 2-й тип аномальности</text>
+	</string>
+	<string id="st_af_type_3">
+		<text>Поддерживает: 3-й тип аномальности</text>
+	</string>
+	<string id="st_af_type_all">
+		<text>Поддерживает: 1-й, 2-й, и 3-й типы аномальности</text>
+	</string>
+	<string id="st_bodyguard_price">
+		<text>Стоимость услуг:</text>
+	</string>
+	<string id="st_bankir_deposit_title">
+		<text>Сумма на депозите: </text>
+	</string>
+	<string id="st_bankir_percent_title">
+		<text>Доход от депозита: </text>
+	</string>
+	<string id="st_bankir_money">
+		<text>В вашем рюкзаке денег =</text>
+	</string>
+	<string id="st_bankir_counter">
+		<text>Сберегательный счет :</text>
+	</string>
+	<string id="st_bankir_counter2">
+		<text>Депозитный счет :</text>
+	</string>
+	<string id="st_bankir_ru">
+		<text>рублей</text>
+	</string>
+	<string id="st_bankir_last">
+		<text>Последний внесенный капитал :</text>
+	</string>
+	<string id="st_bankir_result">
+		<text>Всего =</text>
+	</string>
+	<string id="st_bankir_percent">
+		<text>Общий процент завтра :</text>
+	</string>
+	<string id="st_bankir_percent_today">
+		<text>Общий процент сегодня :</text>
+	</string>
+	<string id="st_trader_order_count">
+		<text>Товаров в наличии: </text>
+	</string>
+	<string id="st_order_cost">
+		<text>Цена заказа:</text>
+	</string>
+	<string id="st_statistic_value_of">
+		<text>из</text>
+	</string>
+	<string id="st_weapon_damage">
+		<text>Наносимый урон </text>
+	</string>
+	<string id="st_weapon_distance">
+		<text>Дальность </text>
+	</string>
+	<string id="st_detonation_radius">
+		<text>Радиус взрыва </text>
+	</string>
+	<string id="st_detonation_scraps">
+		<text>Разлет осколков </text>
+	</string>
+	<string id="st_def_meters">
+		<text>м</text>
+	</string>
+	<string id="st_detonation_time">
+		<text>Время действия </text>
+	</string>
+	<string id="st_def_second">
+		<text>с</text>
+	</string>
+	<string id="st_actor_box_currert_weight">
+		<text>объем вещей в личном ящике составляет =</text>
+	</string>
+	<string id="st_actor_box_currert_mass">
+		<text>объем =</text>
+	</string>
+	<string id="st_actor_box_transportation_cost">
+		<text>|  Стоимость =</text>
+	</string>
+	<string id="st_mod_version_title">
+		<text>Версия</text>
+	</string>
+	<string id="st_sigerous_mod_successfully_started">
+		<text>Sigerous Mod успешно загружен...</text>
+	</string>
+        <string id="st_pri_zone_cleaning_add">
+		<text>Зомбированных осталось:</text>
+	</string>
+	<string id="st_pri_zone_cleaning_add2">
+		<text>человек</text>
+	</string>
+	<string id="st_task_execution_time_add1">
+		<text>(осталось</text>
+	</string>
+	<string id="st_task_execution_time_add2">
+		<text>минут)</text>
+	</string>
+	<string id="st_task_execution_time_add3">
+		<text>бонусных минут)</text>
+	</string>
+	<string id="st_get_employer_kill_stalker">
+		<text>сталкера</text>
+	</string>
+	<string id="st_get_employer_kill_bandit">
+		<text>бандита</text>
+	</string>
+	<string id="st_get_employer_kill_merc">
+		<text>наёмника</text>
+	</string>
+	<string id="st_get_employer_kill_army">
+		<text>военного</text>
+	</string>
+	<string id="st_get_employer_kill_monolith">
+		<text>монолитовца</text>
+	</string>
+	<string id="st_get_employer_kill_dolg">
+		<text>долговца</text>
+	</string>
+	<string id="st_get_employer_kill_freedom">
+		<text>свободовца</text>
+	</string>
+	<string id="st_get_employer_kill_renegade">
+		<text>ренегата</text>
+	</string>

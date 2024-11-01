@@ -1,0 +1,103 @@
+<?xml version='1.0' encoding="windows-1251"?>
+<xml>
+<!-----------------------------------------===========---------------------------------------------------->
+<!-----------------------------------------'Рыжий Лес'---------------------------------------------------->
+<!-----------------------------------------===========---------------------------------------------------->
+<specific_character id="red_psyho_security_corpse" team_default="1">
+		<name>red_psyho_security_corpse_name</name>
+		<icon>ui_inGame2_merc_4</icon>
+		<map_icon x="1" y="0">
+		</map_icon>
+		<bio></bio>
+		<class>red_psyho_security_corpse</class>
+		<community>killer</community>
+		<terrain_sect>stalker_terrain</terrain_sect>
+		<snd_config>characters_voice\human_03\killer\</snd_config>
+		<rank>500</rank>
+		<reputation>0</reputation>
+		<money min="5000" max="10300" infinitive="0" />
+		<visual>actors\stalker_merc\stalker_merc_4</visual>
+		<supplies>
+                [spawn] \n
+#include "gameplay\character_items_nd.xml"
+#include "gameplay\character_food.xml"
+#include "gameplay\character_drugs.xml"
+             	</supplies>
+		<actor_dialog>actor_break_dialog</actor_dialog>
+#include "gameplay\character_criticals_4.xml"
+                #include "gameplay\character_dialogs.xml"
+</specific_character>
+<specific_character id="red_psyho_ecolog_corpse" team_default="1">
+		<name>red_psyho_ecolog_corpse_name</name>
+		<icon>ui_inGame2_ecolog_military</icon>
+		<map_icon x="1" y="0">
+		</map_icon>
+		<bio></bio>
+		<class>red_psyho_ecolog_corpse</class>
+		<community>ecolog</community>
+		<terrain_sect>stalker_terrain</terrain_sect>
+		<snd_config>characters_voice\human_01\dolg\</snd_config>
+		<rank>30</rank>
+		<reputation>0</reputation>
+		<money min="5000" max="10300" infinitive="0" />
+		<visual>actors\stalker_special\stalker_breeder</visual>
+		<supplies>
+                [spawn] \n
+#include "gameplay\character_items_nd.xml"
+#include "gameplay\character_food.xml"
+#include "gameplay\character_drugs.xml"
+             	</supplies>
+		<actor_dialog>actor_break_dialog</actor_dialog>
+#include "gameplay\character_criticals_4.xml"
+                #include "gameplay\character_dialogs.xml"
+</specific_character>
+<specific_character id="red_psyho_ecolog_corpse_1" team_default="1">
+		<name>red_psyho_ecolog_corpse_1_name</name>
+		<icon>ui_inGame2_ecolog_military</icon>
+		<map_icon x="1" y="0">
+		</map_icon>
+		<bio></bio>
+		<class>red_psyho_ecolog_corpse_1</class>
+		<community>ecolog</community>
+		<terrain_sect>stalker_terrain</terrain_sect>
+		<snd_config>characters_voice\human_01\dolg\</snd_config>
+		<rank>200</rank>
+		<reputation>0</reputation>
+		<money min="5000" max="10000" infinitive="0" />
+		<visual>actors\stalker_ecolog\ecolog_silver</visual>
+		<supplies>
+                [spawn] \n
+#include "gameplay\character_items_nd.xml"
+#include "gameplay\character_food.xml"
+#include "gameplay\character_drugs.xml"
+             	</supplies>
+		<actor_dialog>actor_break_dialog</actor_dialog>
+#include "gameplay\character_criticals_4.xml"
+                #include "gameplay\character_dialogs.xml"
+</specific_character>
+<specific_character id="red_psyho_ecolog_corpse_2" team_default="1">
+		<name>red_psyho_ecolog_corpse_2_name</name>
+		<icon>ui_inGame2_ecolog_military</icon>
+		<map_icon x="1" y="0">
+		</map_icon>
+		<bio></bio>
+		<class>red_psyho_ecolog_corpse_2</class>
+		<community>ecolog</community>
+		<terrain_sect>stalker_terrain</terrain_sect>
+		<snd_config>characters_voice\human_01\dolg\</snd_config>
+		<rank>30</rank>
+		<reputation>0</reputation>
+		<money min="5000" max="10300" infinitive="0" />
+		<visual>actors\stalker_special\stalker_breeder</visual>
+		<supplies>
+                [spawn] \n
+#include "gameplay\character_items_nd.xml"
+#include "gameplay\character_food.xml"
+#include "gameplay\character_drugs.xml"
+             	</supplies>
+		<actor_dialog>actor_break_dialog</actor_dialog>
+#include "gameplay\character_criticals_4.xml"
+                #include "gameplay\character_dialogs.xml"
+</specific_character>
+<!-------------------------------------------------------------------------------------------------------->
+</xml>

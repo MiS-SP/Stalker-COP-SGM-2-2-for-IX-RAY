@@ -1,0 +1,14 @@
+[logic]
+active = sr_universal
+
+[sr_universal]
+scheme_type = level_change_zone
+level_change_cond         = {+agr_find_underground_way_start} true, false
+level_change_on_use       = %+level_change_to_agroprom_from_zaton%
+level_change_travel_coord = 353.89483642578,24.243249893188,-483.4108581543
+level_change_throw_coord  = 240.90315246582,27.670108795166,-452.6930847168,0.85
+level_change_travel_time  = 1,30
+level_change_spot         = level_change_right_location,st_level_change_to_agroprom,false
+level_change_autosave     = st_save_travel_zaton_to_agroprom
+level_change_silent_travel = false
+level_change_hidden_mode  = true

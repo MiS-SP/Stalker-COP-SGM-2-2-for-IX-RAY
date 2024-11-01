@@ -1,0 +1,12 @@
+[logic]
+active = move@brothers_wait
+
+[move@brothers_wait]
+move_dest_number       = 247895
+move_look_vertex       = 248959
+move_state_when_center = sit
+move_state_when_move   = patrol
+move_combat_disable    = true
+combat_ignore_cond     = true
+combat_ignore_keep_when_attacked = true
+on_info                = {+pri_expiation_sin_1_bring_all} nil %=release_npc%, {+pri_expiation_sin_1_fail} nil

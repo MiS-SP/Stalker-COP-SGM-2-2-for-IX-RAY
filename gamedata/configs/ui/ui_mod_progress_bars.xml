@@ -1,0 +1,91 @@
+<window>
+	<weapon_state_bar_slot1 x="0" y="0" width="5" height="58" horz="0" min="0" max="100">
+		<progress>
+			<texture>ui_mod_wpn_state_bar</texture>
+		</progress>
+	</weapon_state_bar_slot1>
+
+	<weapon_state_bar_slot2 x="0" y="0" width="5" height="58" horz="0" min="0" max="100">
+		<progress>
+			<texture>ui_mod_wpn_state_bar</texture>
+		</progress>
+	</weapon_state_bar_slot2>
+
+	<boss_health_bar x="39" y="5" width="130" height="17" horz="1" min="0" max="100">
+		<progress>
+			<texture>ui_mod_boss_bar</texture>
+		</progress>
+	</boss_health_bar>
+
+	<geiger_counter_bar x="28" y="7" width="133" height="8" horz="1" min="0" max="100">
+		<progress>
+			<texture>ui_mod_geiger_bar</texture>
+		</progress>
+	</geiger_counter_bar>
+
+	<capture_bar_chimera x="30" y="56" width="133" height="8" horz="1" min="0" max="30">
+		<progress>
+			<texture>ui_mod_monster_capture_bar</texture>
+		</progress>
+	</capture_bar_chimera>
+
+	<capture_bar_gigant x="30" y="56" width="133" height="8" horz="1" min="0" max="40">
+		<progress>
+			<texture>ui_mod_monster_capture_bar</texture>
+		</progress>
+	</capture_bar_gigant>
+
+	<capture_bar_boar x="30" y="56" width="133" height="8" horz="1" min="0" max="20">
+		<progress>
+			<texture>ui_mod_monster_capture_bar</texture>
+		</progress>
+	</capture_bar_boar>
+
+	<capture_bar_dog x="30" y="56" width="133" height="8" horz="1" min="0" max="12">
+		<progress>
+			<texture>ui_mod_monster_capture_bar</texture>
+		</progress>
+	</capture_bar_dog>
+
+	<capture_bar_flesh x="30" y="56" width="133" height="8" horz="1" min="0" max="15">
+		<progress>
+			<texture>ui_mod_monster_capture_bar</texture>
+		</progress>
+	</capture_bar_flesh>
+
+	<capture_bar_tushkano x="30" y="56" width="133" height="8" horz="1" min="0" max="10">
+		<progress>
+			<texture>ui_mod_monster_capture_bar</texture>
+		</progress>
+	</capture_bar_tushkano>
+
+	<capture_bar_pseudodog x="30" y="56" width="133" height="8" horz="1" min="0" max="15">
+		<progress>
+			<texture>ui_mod_monster_capture_bar</texture>
+		</progress>
+	</capture_bar_pseudodog>
+
+	<capture_bar_snork x="30" y="56" width="133" height="8" horz="1" min="0" max="18">
+		<progress>
+			<texture>ui_mod_monster_capture_bar</texture>
+		</progress>
+	</capture_bar_snork>
+
+	<battery_power_1_bar x="8" y="4" width="58" height="5" horz="1" min="0" max="120">
+		<progress>
+			<texture>ui_mod_battery_power_bar</texture>
+		</progress>
+	</battery_power_1_bar>
+
+	<battery_power_2_bar x="8" y="4" width="58" height="5" horz="1" min="0" max="240">
+		<progress>
+			<texture>ui_mod_battery_power_bar</texture>
+		</progress>
+	</battery_power_2_bar>
+
+	<battery_power_3_bar x="8" y="4" width="58" height="5" horz="1" min="0" max="480">
+		<progress>
+			<texture>ui_mod_battery_power_bar</texture>
+		</progress>
+	</battery_power_3_bar>
+</window>

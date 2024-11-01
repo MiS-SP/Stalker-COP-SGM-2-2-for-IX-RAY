@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+<w>
+<background x="0" y="0" width="1024" height="768">
+	    <auto_static x="102" y="0" width="819" height="768" stretch="1">
+	      <texture>ui_inGame2_background</texture>
+	    </auto_static>
+	    <auto_static x="-2" y="0" width="104" height="768" stretch="1">
+		    <texture>ui_mod_left_widepanel_1</texture>
+	    </auto_static>
+	    <auto_static x="920" y="0" width="104" height="768" stretch="1">
+		    <texture>ui_mod_right_widepanel_1</texture>
+	    </auto_static>
+		<auto_static x="102" y="0" width="490" height="651" stretch="1">
+			<texture>ui_inGame2_save_load_wnd</texture>
+		</auto_static>
+</background>
+<hud_form x="104" y="0" width="1024" height="768">
+	<title x="54" y="189" width="405" height="20" complex_mode="0">
+		<text font="letterica18" align="c">st_mod_hud_options_title</text>
+	</title>
+	<btn_back x="355" y="567" width="117" height="29">
+		<texture_e>ui_mod_button3_e</texture_e>
+		<texture_t>ui_mod_button3_t</texture_t>
+		<texture_h>ui_mod_button3_h</texture_h>
+		<text font="letterica16">st_mod_menu_back</text>
+	</btn_back>
+	<btn_apply x="231" y="567" width="117" height="29">
+		<texture_e>ui_mod_button3_e</texture_e>
+		<texture_t>ui_mod_button3_t</texture_t>
+		<texture_h>ui_mod_button3_h</texture_h>
+		<text font="letterica16">st_mod_menu_apply</text>
+	</btn_apply>
+        <options_field x="19" y="230" width="579" height="365">
+	   <btn_disable_hud_wpn x="8" y="3" width="30" height="21" hint="st_mod_option_hide_weapon_info_descr">
+		<options_item entry="disable_hud_wpn" group="mod_hud"/>
+		<text font="letterica16" r="115" g="114" b="112"  complex_mode="0">st_mod_option_hide_weapon_part1</text>
+	   </btn_disable_hud_wpn>
+           <text_disable_hud_wpn x="8" y="23" width="10" height="10" complex_mode="0">
+		<text font="letterica16" r="115" g="114" b="112">st_mod_option_hide_weapon_part2</text>
+	   </text_disable_hud_wpn>
+	   <btn_disable_shock_hits x="8" y="48" width="30" height="21" hint="st_mod_option_shock_hits_descr">
+		<options_item entry="disable_shock_hits" group="mod_hud"/>
+		<text font="letterica16" r="115" g="114" b="112"  complex_mode="0">st_mod_option_shock_hits</text>
+	   </btn_disable_shock_hits>
+	   <btn_disable_actor_vertigo x="8" y="73" width="30" height="21" hint="st_mod_option_actor_vertigo_descr">
+		<options_item entry="disable_actor_vertigo" group="mod_hud"/>
+		<text font="letterica16" r="115" g="114" b="112"  complex_mode="0">st_mod_option_actor_vertigo</text>
+	   </btn_disable_actor_vertigo>
+	   <btn_activate_shock_motion x="8" y="98" width="30" height="21" hint="st_mod_option_shock_motion_descr">
+		<options_item entry="activate_shock_motion" group="mod_hud"/>
+		<text font="letterica16" r="115" g="114" b="112"  complex_mode="0">st_mod_option_shock_motion</text>
+	   </btn_activate_shock_motion>
+	   <btn_show_rank_counter x="8" y="123" width="30" height="21" hint="st_mod_option_rank_counter_descr">
+		<options_item entry="show_rank_counter" group="mod_options"/>
+		<text font="letterica16" r="115" g="114" b="112"  complex_mode="0">st_mod_option_rank_counter</text>
+	   </btn_show_rank_counter>
+	   <btn_disable_hit_marks x="8" y="148" width="30" height="21" hint="st_mod_option_hit_marks_descr">
+		<options_item entry="disable_hit_marks" group="mod_options"/>
+		<text font="letterica16" r="115" g="114" b="112"  complex_mode="0">st_mod_option_hit_marks</text>
+	   </btn_disable_hit_marks>
+	   <btn_activate_carrying_hud x="8" y="173" width="30" height="21" hint="st_mod_option_carrying_hud_descr">
+		<options_item entry="activate_carrying_hud" group="mod_options"/>
+		<text font="letterica16" r="115" g="114" b="112"  complex_mode="0">st_mod_option_carrying_hud</text>
+	   </btn_activate_carrying_hud>
+	   <btn_activate_carrying_breathing x="8" y="198" width="30" height="21" hint="st_mod_option_carrying_breathing_descr">
+		<options_item entry="activate_carrying_breathing" group="mod_options"/>
+		<text font="letterica16" r="115" g="114" b="112"  complex_mode="0">st_mod_option_carrying_breathing</text>
+	   </btn_activate_carrying_breathing>
+	   <btn_disable_statistic_event x="8" y="223" width="30" height="21" hint="st_mod_option_statistic_event_descr">
+		<options_item entry="disable_statistic_event" group="mod_options"/>
+		<text font="letterica16" r="115" g="114" b="112"  complex_mode="0">st_mod_option_statistic_event</text>
+	   </btn_disable_statistic_event>
+	   <descr_disable_hud_wpn x="120" y="18" width="15" height="15">
+		<texture_e>ui_mod_help_e</texture_e>
+		<texture_t>ui_mod_help_t</texture_t>
+		<texture_h>ui_mod_help_h</texture_h>
+	   </descr_disable_hud_wpn>d
+	   <descr_disable_shock_hits x="212" y="50" width="15" height="15">
+		<texture_e>ui_mod_help_e</texture_e>
+		<texture_t>ui_mod_help_t</texture_t>
+		<texture_h>ui_mod_help_h</texture_h>
+	   </descr_disable_shock_hits>
+	   <descr_disable_actor_vertigo x="170" y="75" width="15" height="15">
+		<texture_e>ui_mod_help_e</texture_e>
+		<texture_t>ui_mod_help_t</texture_t>
+		<texture_h>ui_mod_help_h</texture_h>
+	   </descr_disable_actor_vertigo>
+	   <descr_activate_shock_motion x="200" y="100" width="15" height="15">
+		<texture_e>ui_mod_help_e</texture_e>
+		<texture_t>ui_mod_help_t</texture_t>
+		<texture_h>ui_mod_help_h</texture_h>
+	   </descr_activate_shock_motion>
+	   <descr_show_rank_counter x="180" y="125" width="15" height="15">
+		<texture_e>ui_mod_help_e</texture_e>
+		<texture_t>ui_mod_help_t</texture_t>
+		<texture_h>ui_mod_help_h</texture_h>
+	   </descr_show_rank_counter>
+	   <descr_disable_hit_marks x="205" y="150" width="15" height="15">
+		<texture_e>ui_mod_help_e</texture_e>
+		<texture_t>ui_mod_help_t</texture_t>
+		<texture_h>ui_mod_help_h</texture_h>
+	   </descr_disable_hit_marks>
+	   <descr_activate_carrying_hud x="200" y="175" width="15" height="15">
+		<texture_e>ui_mod_help_e</texture_e>
+		<texture_t>ui_mod_help_t</texture_t>
+		<texture_h>ui_mod_help_h</texture_h>
+	   </descr_activate_carrying_hud>
+	   <descr_activate_carrying_breathing x="160" y="200" width="15" height="15">
+		<texture_e>ui_mod_help_e</texture_e>
+		<texture_t>ui_mod_help_t</texture_t>
+		<texture_h>ui_mod_help_h</texture_h>
+	   </descr_activate_carrying_breathing>
+	   <descr_disable_statistic_event x="185" y="225" width="15" height="15">
+		<texture_e>ui_mod_help_e</texture_e>
+		<texture_t>ui_mod_help_t</texture_t>
+		<texture_h>ui_mod_help_h</texture_h>
+	   </descr_disable_statistic_event>
+        </options_field>
+</hud_form>
+</w>

@@ -1,0 +1,152 @@
+[abandoned_zaton]
+zat_abandoned_respawn1
+zat_abandoned_respawn2
+zat_abandoned_respawn3
+zat_abandoned_respawn4
+zat_abandoned_respawn5
+zat_abandoned_respawn6
+zat_abandoned_respawn7
+
+[abandoned_jupiter]
+jup_abandoned_respawn1
+jup_abandoned_respawn2
+jup_abandoned_respawn3
+jup_abandoned_respawn4
+
+[abandoned]:abandoned_zaton, abandoned_jupiter
+;---------------------------------------------------------------------------------------;
+;                                    Затон                                              ;
+;---------------------------------------------------------------------------------------;
+[zat_abandoned_respawn1] ;--/Станция переработки отходов
+  cond = {+zat_b40_notebook_saled} true, false
+  target_smart = zat_b40_smart_terrain
+  sections = zat_respawn1_killer1,zat_respawn1_killer2,zat_respawn1_killer3,zat_respawn1_killer4,zat_respawn1_killer5,zat_respawn1_killer6,zat_respawn1_killer7,zat_respawn1_killer8,zat_respawn1_killer9,zat_respawn1_killer10,zat_respawn1_killer11,zat_respawn1_killer12
+  time_of_the_day = night
+  respawn_radius = 7
+  place = 324.415,33.231,-396.303,1509422,1
+  born_info = zat_abandoned_respawn1_spawned
+  reload_info = zat_respawn1_all_deaths
+
+[zat_abandoned_respawn2] ;--/Цеха подстанции
+  target_smart = zat_b103_merc_smart
+  sections = zat_respawn2_killer1,zat_respawn2_killer2,zat_respawn2_killer3,zat_respawn2_killer4,zat_respawn2_killer5,zat_respawn2_killer6,zat_respawn2_killer7,zat_respawn2_killer8,zat_respawn2_killer9,zat_respawn2_killer10,zat_respawn2_killer11
+  time_of_the_day = night
+  respawn_radius = 6
+  place = -135.001,24.566,-412.472,671502,4
+  born_info = zat_abanddoned_respawn2_spawned
+  reload_info = zat_respawn2_all_deaths
+
+[zat_abandoned_respawn3] ;--/Лесопилка
+  cond = {+zat_breeder_talk_and_job_start} true, false
+  target_smart = zat_b104_zombied
+  section_layers = 2
+  sections_1 = zat_respawn3_killer1,zat_respawn3_killer2,zat_respawn3_killer3,zat_respawn3_killer4,zat_respawn3_killer5,zat_respawn3_killer6,zat_respawn3_killer7,zat_respawn3_killer8,zat_respawn3_killer9,zat_respawn3_killer10,zat_respawn3_killer11,zat_respawn3_killer12,zat_respawn3_killer13,zat_respawn3_killer14,zat_respawn3_killer15,zat_respawn3_killer16,zat_respawn3_killer17
+  sections_2 = zat_respawn3_bandit1,zat_respawn3_bandit2,zat_respawn3_bandit3,zat_respawn3_bandit4,zat_respawn3_bandit5,zat_respawn3_bandit6,zat_respawn3_bandit7,zat_respawn3_bandit8,zat_respawn3_bandit9,zat_respawn3_bandit10,zat_respawn3_bandit11,zat_respawn3_bandit12,zat_respawn3_bandit13,zat_respawn3_bandit14,zat_respawn3_bandit15,zat_respawn3_bandit16,zat_respawn3_bandit17
+  backup_deaths = %=zat_respawn3_release_counter%
+  time_of_the_day = day
+  respawn_radius = 8
+  place = -330.352,17.996,348.321,290642,121
+  born_info = zat_abandoned_respawn3_spawned
+  reload_info = zat_respawn3_all_deaths
+
+[zat_abandoned_respawn4] ;--/ВНЗ «Круг»
+  cond = {+zat_b57_bloodsucker_lair_clear} true, false
+  target_smart = zat_b38
+  sections = zat_respawn4_killer1,zat_respawn4_killer2,zat_respawn4_killer3,zat_respawn4_killer4,zat_respawn4_killer5,zat_respawn4_killer6,zat_respawn4_killer7,zat_respawn4_killer8,zat_respawn4_killer9,zat_respawn4_killer10,zat_respawn4_killer11,zat_respawn4_killer12,zat_respawn4_killer13,zat_respawn4_killer14
+  time_of_the_day = day
+  respawn_radius = 5
+  place = -406.263,10.999,-6.817,169224,51
+  born_info = zat_abandoned_respawn4_spawned
+  reload_info = zat_respawn4_all_deaths
+
+[zat_abandoned_respawn5] ;--/Земснаряд
+  cond = {+zat_b14_smart_terrain_open} true, false
+  target_smart = zat_b14_smart_terrain
+  section_layers = 2
+  sections_1 = zat_respawn5_stalker1,zat_respawn5_stalker2,zat_respawn5_stalker3,zat_respawn5_stalker4,zat_respawn5_stalker5,zat_respawn5_stalker6,zat_respawn5_stalker7,zat_respawn5_stalker8
+  sections_2 = zat_respawn5_bandit1,zat_respawn5_bandit2,zat_respawn5_bandit3,zat_respawn5_bandit4,zat_respawn5_bandit5,zat_respawn5_bandit6,zat_respawn5_bandit7,zat_respawn5_bandit8
+  backup_deaths = %=zat_respawn5_release_counter%
+  time_of_the_day = day
+  respawn_radius = 5
+  place = 399.021,-5.702,230.992,1622906,7
+  born_info = zat_abandoned_respawn5_spawned
+  reload_info = zat_respawn5_all_deaths
+
+[zat_abandoned_respawn6] ;--/Заправка
+  cond = {+zat_b52_reputation_task_open} true, false
+  target_smart = zat_b33
+  section_layers = 2
+  sections_1 = zat_respawn6_killer1,zat_respawn6_killer2,zat_respawn6_killer3,zat_respawn6_killer4,zat_respawn6_killer5,zat_respawn6_killer6,zat_respawn6_killer7,zat_respawn6_killer8,zat_respawn6_killer9,zat_respawn6_killer10
+  sections_2 = zat_respawn6_bandit1,zat_respawn6_bandit2,zat_respawn6_bandit3,zat_respawn6_bandit4,zat_respawn6_bandit5,zat_respawn6_bandit6,zat_respawn6_bandit7,zat_respawn6_bandit8,zat_respawn6_bandit9,zat_respawn6_bandit10
+  backup_deaths = %=zat_respawn6_release_counter%
+  time_of_the_day = day
+  respawn_radius = 5
+  place = -187.749,19.579,-163.349,566790,203
+  born_info = zat_abandoned_respawn6_spawned
+  reload_info = zat_respawn6_all_deaths
+
+[zat_abandoned_respawn7] ;--/Аномалия «Железный лес»
+  cond = {+zat_check_sbu_cell_searched} true, false
+  ;target_smart = zat_b100
+  section_layers = 2
+  sections_1 = zat_respawn7_bandit1,zat_respawn7_bandit2,zat_respawn7_bandit3,zat_respawn7_bandit4,zat_respawn7_bandit5,zat_respawn7_bandit6,zat_respawn7_bandit7,zat_respawn7_bandit8
+  sections_2 = zat_respawn7_killer1,zat_respawn7_killer2,zat_respawn7_killer3,zat_respawn7_killer4,zat_respawn7_killer5,zat_respawn7_killer6,zat_respawn7_killer7,zat_respawn7_killer8
+  backup_deaths = %=zat_respawn7_release_counter%
+  time_of_the_day = day
+  respawn_radius = 5
+  place = -305.571,40.730,-432.702,335185,202
+  born_info = zat_abandoned_respawn7_spawned
+  reload_info = zat_respawn7_all_deaths
+;---------------------------------------------------------------------------------------;
+;                                    Юпитер                                             ;
+;---------------------------------------------------------------------------------------;
+[jup_abandoned_respawn1] ;--/КПП
+  cond = {+jup_a10_vano_give_task_end} true, false
+  target_smart = jup_a10_smart_terrain
+  section_layers = 2
+  sections_1 = jup_respawn1_dolg1,jup_respawn1_dolg2,jup_respawn1_dolg3,jup_respawn1_dolg4,jup_respawn1_dolg5,jup_respawn1_dolg6,jup_respawn1_dolg7,jup_respawn1_dolg8,jup_respawn1_dolg9,jup_respawn1_dolg10,jup_respawn1_dolg11,jup_respawn1_dolg12,jup_respawn1_dolg13,jup_respawn1_dolg14,jup_respawn1_dolg15,jup_respawn1_dolg16,jup_respawn1_dolg17,jup_respawn1_dolg18,jup_respawn1_dolg19,jup_respawn1_dolg20
+  sections_2 = jup_respawn1_freedom1,jup_respawn1_freedom2,jup_respawn1_freedom3,jup_respawn1_freedom4,jup_respawn1_freedom5,jup_respawn1_freedom6,jup_respawn1_freedom7,jup_respawn1_freedom8,jup_respawn1_freedom9,jup_respawn1_freedom10,jup_respawn1_freedom11,jup_respawn1_freedom12,jup_respawn1_freedom13,jup_respawn1_freedom14,jup_respawn1_freedom15,jup_respawn1_freedom16,jup_respawn1_freedom17,jup_respawn1_freedom18,jup_respawn1_freedom19,jup_respawn1_freedom20
+  backup_deaths = %=jup_respawn1_release_counter%
+  time_of_the_day = day
+  respawn_radius = 5
+  place = 43.883,23.970,-193.509,789566,356
+  born_info = jup_abandoned_respawn1_spawned
+  reload_info = jup_respawn1_all_deaths
+
+[jup_abandoned_respawn2] ;--/ЗРК «Волхов»
+  target_smart = jup_b205_smart_terrain
+  section_layers = 2
+  sections_1 = jup_respawn2_killer1,jup_respawn2_killer2,jup_respawn2_killer3,jup_respawn2_killer4,jup_respawn2_killer5,jup_respawn2_killer6,jup_respawn2_killer7,jup_respawn2_killer8,jup_respawn2_killer9,jup_respawn2_killer10,jup_respawn2_killer11,jup_respawn2_killer12,jup_respawn2_killer13,jup_respawn2_killer14,jup_respawn2_killer15,jup_respawn2_killer16,jup_respawn2_killer17,jup_respawn2_killer18,jup_respawn2_killer19,jup_respawn2_killer20,jup_respawn2_killer21,jup_respawn2_killer22,jup_respawn2_killer23,jup_respawn2_killer24,jup_respawn2_killer25,jup_respawn2_killer26,jup_respawn2_killer27,jup_respawn2_killer28,jup_respawn2_killer29
+  sections_2 = jup_respawn2_bandit1,jup_respawn2_bandit2,jup_respawn2_bandit3,jup_respawn2_bandit4,jup_respawn2_bandit5,jup_respawn2_bandit6,jup_respawn2_bandit7,jup_respawn2_bandit8,jup_respawn2_bandit9,jup_respawn2_bandit10,jup_respawn2_bandit11,jup_respawn2_bandit12,jup_respawn2_bandit13,jup_respawn2_bandit14,jup_respawn2_bandit15,jup_respawn2_bandit16,jup_respawn2_bandit17,jup_respawn2_bandit18,jup_respawn2_bandit19,jup_respawn2_bandit20,jup_respawn2_bandit21,jup_respawn2_bandit22,jup_respawn2_bandit23,jup_respawn2_bandit24,jup_respawn2_bandit25,jup_respawn2_bandit26,jup_respawn2_bandit27,jup_respawn2_bandit28,jup_respawn2_bandit29
+  backup_deaths = %=jup_respawn2_release_counter%
+  time_of_the_day = night
+  respawn_radius = 10
+  place = -359.855,11.371,-1.264,107604,441
+  born_info = jup_abandoned_respawn2_spawned
+  reload_info = jup_respawn2_all_deaths
+
+[jup_abandoned_respawn3] ;--/Градирня
+  cond = {+jup_b46_task_done} true, false
+  ;target_smart = jup_b46
+  section_layers = 2
+  sections_1 = jup_respawn3_dolg1,jup_respawn3_dolg2,jup_respawn3_dolg3,jup_respawn3_dolg4,jup_respawn3_dolg5,jup_respawn3_dolg6
+  sections_2 = jup_respawn3_freedom1,jup_respawn3_freedom2,jup_respawn3_freedom3,jup_respawn3_freedom4,jup_respawn3_freedom5,jup_respawn3_freedom6
+  backup_deaths = %=jup_respawn3_release_counter%
+  time_of_the_day = night
+  respawn_radius = 5
+  place = -152.633,3.016,404.552,461720,428
+  born_info = jup_abandoned_respawn3_spawned
+  reload_info = jup_respawn3_all_deaths
+
+[jup_abandoned_respawn4] ;--/Склад контейнеров
+  cond = {+jup_a12_task_done} true, false
+  target_smart = jup_a12
+  section_layers = 2
+  sections_1 = jup_respawn4_stalker1,jup_respawn4_stalker2,jup_respawn4_stalker3,jup_respawn4_stalker4,jup_respawn4_stalker5,jup_respawn4_stalker6,jup_respawn4_stalker7,jup_respawn4_stalker8,jup_respawn4_stalker9,jup_respawn4_stalker10,jup_respawn4_stalker11,jup_respawn4_stalker12,jup_respawn4_stalker13,jup_respawn4_stalker14,jup_respawn4_stalker15
+  sections_2 = jup_respawn4_bandit1,jup_respawn4_bandit2,jup_respawn4_bandit3,jup_respawn4_bandit4,jup_respawn4_bandit5,jup_respawn4_bandit6,jup_respawn4_bandit7,jup_respawn4_bandit8,jup_respawn4_bandit9,jup_respawn4_bandit10,jup_respawn4_bandit11,jup_respawn4_bandit12,jup_respawn4_bandit13,jup_respawn4_bandit14,jup_respawn4_bandit15
+  backup_deaths = %=jup_respawn4_release_counter%
+  time_of_the_day = day
+  respawn_radius = 10
+  place = -407.076,-0.013,-344.358,33892,323
+  born_info = jup_abandoned_respawn4_spawned
+  reload_info = jup_respawn4_all_deaths

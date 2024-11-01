@@ -1,0 +1,38 @@
+[logic]
+active = move@guard
+on_death = death
+
+[death]
+on_info = %+val_freedom_spez_agent_lucas_1_dead%
+
+[move@guard]
+move_dest_number       = 8283
+move_look_vertex       = 11187
+move_state_when_center = guard
+move_state_when_move   = walk
+move_stop_on_talk      = true
+meet                   = meet
+on_info                = {+val_freedom_spez_agent_lucas_talking_dolg} move@guard_no_talking %=play_s3d_sound(characters_voice\scenario\jupiter\jup_a6_freedom_leader_farewell_1)%
+
+[move@guard_no_talking]
+move_dest_number       = 8283
+move_look_vertex       = 11187
+move_state_when_center = sit_knee
+move_state_when_move   = walk
+move_stop_on_talk      = true
+invulnerable           = true
+meet                   = no_meet
+on_info                = {+val_freedom_spez_agent_lucas_talking_all_dolg_dead} %=release_npc%
+
+
+[meet]
+abuse           = false
+use             = true
+allow_break     = false
+meet_on_talking = false
+
+[no_meet]
+abuse           = true
+use             = false
+allow_break     = true
+meet_on_talking = false

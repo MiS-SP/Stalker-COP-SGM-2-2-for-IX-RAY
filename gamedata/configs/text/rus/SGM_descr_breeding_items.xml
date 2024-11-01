@@ -1,0 +1,243 @@
+	<string id="st_af_medusa_name_breeding_1">
+		<text>«Медуза» (Селекция 1-го типа)</text>
+	</string>
+	<string id="st_af_cristall_flower_name_breeding_1">
+		<text>«Каменный цветок» (Селекция 1-го типа)</text>
+	</string>
+	<string id="st_af_night_star_name_breeding_1">
+		<text>«Ночная звезда» (Селекция 1-го типа)</text>
+	</string>
+	<string id="st_af_vyvert_name_breeding_1">
+		<text>«Выверт» (Селекция 1-го типа)</text>
+	</string>
+	<string id="st_af_gravi_name_breeding_1">
+		<text>«Грави» (Селекция 1-го типа)</text>
+	</string>
+	<string id="st_af_gold_fish_name_breeding_1">
+		<text>«Золотая рыбка» (Селекция 1-го типа)</text>
+	</string>
+	<string id="st_af_blood_name_breeding_1">
+		<text>«Кровь камня» (Селекция 1-го типа)</text>
+	</string>
+	<string id="st_af_mincer_meat_name_breeding_1">
+		<text>«Ломоть мяса» (Селекция 1-го типа)</text>
+	</string>
+	<string id="st_af_soul_name_breeding_1">
+		<text>«Душа» (Селекция 1-го типа)</text>
+	</string>
+	<string id="st_af_fuzz_kolobok_name_breeding_1">
+		<text>«Колобок» (Селекция 1-го типа)</text>
+	</string>
+	<string id="st_af_baloon_name_breeding_1">
+		<text>«Пузырь» (Селекция 1-го типа)</text>
+	</string>
+	<string id="st_af_glass_name_breeding_1">
+		<text>«Светляк» (Селекция 1-го типа)</text>
+	</string>
+	<string id="st_af_fireball_name_breeding_1">
+		<text>«Огненный шар» (Селекция 1-го типа)</text>
+	</string>
+	<string id="st_af_cristall_name_breeding_1">
+		<text>«Кристалл» (Селекция 1-го типа)</text>
+	</string>
+	<string id="st_af_dummy_glassbeads_name_breeding_1">
+		<text>«Мамины бусы» (Селекция 1-го типа)</text>
+	</string>
+	<string id="st_af_eye_name_breeding_1">
+		<text>«Глаз» (Селекция 1-го типа)</text>
+	</string>
+	<string id="st_af_fire_name_breeding_1">
+		<text>«Пламя» (Селекция 1-го типа)</text>
+	</string>
+	<string id="st_af_electra_sparkler_name_breeding_1">
+		<text>«Бенгальский огонь» (Селекция 1-го типа)</text>
+	</string>
+	<string id="st_af_electra_flash_name_breeding_1">
+		<text>«Вспышка» (Селекция 1-го типа)</text>
+	</string>
+	<string id="st_af_electra_moonlight_name_breeding_1">
+		<text>«Лунный свет» (Селекция 1-го типа)</text>
+	</string>
+	<string id="st_af_dummy_battery_name_breeding_1">
+		<text>«Батарейка» (Селекция 1-го типа)</text>
+	</string>
+	<string id="st_af_dummy_dummy_name_breeding_1">
+		<text>«Пустышка» (Селекция 1-го типа)</text>
+	</string>
+	<string id="st_af_ice_name_breeding_1">
+		<text>«Снежинка» (Селекция 1-го типа)</text>
+	</string>
+	<string id="st_af_medusa_name_breeding_2">
+		<text>«Медуза» (Селекция 2-го типа)</text>
+	</string>
+	<string id="st_af_cristall_flower_name_breeding_2">
+		<text>«Каменный цветок» (Селекция 2-го типа)</text>
+	</string>
+	<string id="st_af_night_star_name_breeding_2">
+		<text>«Ночная звезда» (Селекция 2-го типа)</text>
+	</string>
+	<string id="st_af_vyvert_name_breeding_2">
+		<text>«Выверт» (Селекция 2-го типа)</text>
+	</string>
+	<string id="st_af_gravi_name_breeding_2">
+		<text>«Грави» (Селекция 2-го типа)</text>
+	</string>
+	<string id="st_af_gold_fish_name_breeding_2">
+		<text>«Золотая рыбка» (Селекция 2-го типа)</text>
+	</string>
+	<string id="st_af_blood_name_breeding_2">
+		<text>«Кровь камня» (Селекция 2-го типа)</text>
+	</string>
+	<string id="st_af_mincer_meat_name_breeding_2">
+		<text>«Ломоть мяса» (Селекция 2-го типа)</text>
+	</string>
+	<string id="st_af_soul_name_breeding_2">
+		<text>«Душа» (Селекция 2-го типа)</text>
+	</string>
+	<string id="st_af_fuzz_kolobok_name_breeding_2">
+		<text>«Колобок» (Селекция 2-го типа)</text>
+	</string>
+	<string id="st_af_baloon_name_breeding_2">
+		<text>«Пузырь» (Селекция 2-го типа)</text>
+	</string>
+	<string id="st_af_glass_name_breeding_2">
+		<text>«Светляк» (Селекция 2-го типа)</text>
+	</string>
+	<string id="st_af_fireball_name_breeding_2">
+		<text>«Огненный шар» (Селекция 2-го типа)</text>
+	</string>
+	<string id="st_af_cristall_name_breeding_2">
+		<text>«Кристалл» (Селекция 2-го типа)</text>
+	</string>
+	<string id="st_af_dummy_glassbeads_name_breeding_2">
+		<text>«Мамины бусы» (Селекция 2-го типа)</text>
+	</string>
+	<string id="st_af_eye_name_breeding_2">
+		<text>«Глаз» (Селекция 2-го типа)</text>
+	</string>
+	<string id="st_af_fire_name_breeding_2">
+		<text>«Пламя» (Селекция 2-го типа)</text>
+	</string>
+	<string id="st_af_electra_sparkler_name_breeding_2">
+		<text>«Бенгальский огонь» (Селекция 2-го типа)</text>
+	</string>
+	<string id="st_af_electra_flash_name_breeding_2">
+		<text>«Вспышка» (Селекция 2-го типа)</text>
+	</string>
+	<string id="st_af_electra_moonlight_name_breeding_2">
+		<text>«Лунный свет» (Селекция 2-го типа)</text>
+	</string>
+	<string id="st_af_dummy_battery_name_breeding_2">
+		<text>«Батарейка» (Селекция 2-го типа)</text>
+	</string>
+	<string id="st_af_dummy_dummy_name_breeding_2">
+		<text>«Пустышка» (Селекция 2-го типа)</text>
+	</string>
+	<string id="st_af_ice_name_breeding_2">
+		<text>«Снежинка» (Селекция 2-го типа)</text>
+	</string>
+	<string id="st_af_medusa_name_breeding_3">
+		<text>«Медуза» (Селекция 3-го типа)</text>
+	</string>
+	<string id="st_af_cristall_flower_name_breeding_3">
+		<text>«Каменный цветок» (Селекция 3-го типа)</text>
+	</string>
+	<string id="st_af_night_star_name_breeding_3">
+		<text>«Ночная звезда» (Селекция 3-го типа)</text>
+	</string>
+	<string id="st_af_vyvert_name_breeding_3">
+		<text>«Выверт» (Селекция 3-го типа)</text>
+	</string>
+	<string id="st_af_gravi_name_breeding_3">
+		<text>«Грави» (Селекция 3-го типа)</text>
+	</string>
+	<string id="st_af_gold_fish_name_breeding_3">
+		<text>«Золотая рыбка» (Селекция 3-го типа)</text>
+	</string>
+	<string id="st_af_blood_name_breeding_3">
+		<text>«Кровь камня» (Селекция 3-го типа)</text>
+	</string>
+	<string id="st_af_mincer_meat_name_breeding_3">
+		<text>«Ломоть мяса» (Селекция 3-го типа)</text>
+	</string>
+	<string id="st_af_soul_name_breeding_3">
+		<text>«Душа» (Селекция 3-го типа)</text>
+	</string>
+	<string id="st_af_fuzz_kolobok_name_breeding_3">
+		<text>«Колобок» (Селекция 3-го типа)</text>
+	</string>
+	<string id="st_af_baloon_name_breeding_3">
+		<text>«Пузырь» (Селекция 3-го типа)</text>
+	</string>
+	<string id="st_af_glass_name_breeding_3">
+		<text>«Светляк» (Селекция 3-го типа)</text>
+	</string>
+	<string id="st_af_fireball_name_breeding_3">
+		<text>«Огненный шар» (Селекция 3-го типа)</text>
+	</string>
+	<string id="st_af_cristall_name_breeding_3">
+		<text>«Кристалл» (Селекция 3-го типа)</text>
+	</string>
+	<string id="st_af_dummy_glassbeads_name_breeding_3">
+		<text>«Мамины бусы» (Селекция 3-го типа)</text>
+	</string>
+	<string id="st_af_eye_name_breeding_3">
+		<text>«Глаз» (Селекция 3-го типа)</text>
+	</string>
+	<string id="st_af_fire_name_breeding_3">
+		<text>«Пламя» (Селекция 3-го типа)</text>
+	</string>
+	<string id="st_af_electra_sparkler_name_breeding_3">
+		<text>«Бенгальский огонь» (Селекция 3-го типа)</text>
+	</string>
+	<string id="st_af_electra_flash_name_breeding_3">
+		<text>«Вспышка» (Селекция 3-го типа)</text>
+	</string>
+	<string id="st_af_electra_moonlight_name_breeding_3">
+		<text>«Лунный свет» (Селекция 3-го типа)</text>
+	</string>
+	<string id="st_af_dummy_battery_name_breeding_3">
+		<text>«Батарейка» (Селекция 3-го типа)</text>
+	</string>
+	<string id="st_af_dummy_dummy_name_breeding_3">
+		<text>«Пустышка» (Селекция 3-го типа)</text>
+	</string>
+	<string id="st_af_ice_name_breeding_3">
+		<text>«Снежинка» (Селекция 3-го типа)</text>
+	</string>
+	<string id="st_af_geliy_name_breeding_1">
+		<text>«Гелий» (Селекция 1-го типа)</text>
+	</string>
+	<string id="st_af_monolit_name_breeding_1">
+		<text>«Монолит» (Селекция 1-го типа)</text>
+	</string>
+	<string id="st_af_geliy_name_breeding_2">
+		<text>«Гелий» (Селекция 2-го типа)</text>
+	</string>
+	<string id="st_af_monolit_name_breeding_2">
+		<text>«Монолит» (Селекция 2-го типа)</text>
+	</string>
+	<string id="st_af_geliy_name_breeding_3">
+		<text>«Гелий» (Селекция 3-го типа)</text>
+	</string>
+	<string id="st_af_monolit_name_breeding_3">
+		<text>«Монолит» (Селекция 3-го типа)</text>
+	</string>
+	<string id="st_af_vaselisk_name_breeding_1">
+		<text>«Василиск» (Селекция 1-го типа)</text>
+	</string>
+	<string id="st_af_dragon_eye_name_breeding_1">
+		<text>«Глаз дракона» (Селекция 1-го типа)</text>
+	</string>
+	<string id="st_af_vaselisk_name_breeding_2">
+		<text>«Василиск» (Селекция 2-го типа)</text>
+	</string>
+	<string id="st_af_dragon_eye_name_breeding_2">
+		<text>«Глаз дракона» (Селекция 2-го типа)</text>
+	</string>
+	<string id="st_af_vaselisk_name_breeding_3">
+		<text>«Василиск» (Селекция 3-го типа)</text>
+	</string>
+	<string id="st_af_dragon_eye_name_breeding_3">
+		<text>«Глаз дракона» (Селекция 3-го типа)</text>
+	</string>

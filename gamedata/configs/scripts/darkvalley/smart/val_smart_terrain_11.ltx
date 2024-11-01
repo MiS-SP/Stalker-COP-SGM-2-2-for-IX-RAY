@@ -1,0 +1,33 @@
+[smart_terrain];val_smart_terrain_11 (9 работ)
+squad_id = 11
+max_population = 4
+respawn_params = respawn@val_smart_terrain_11
+arrive_dist = 40
+
+[respawn@val_smart_terrain_11]
+spawn_night_stalker@novice
+spawn_night_stalker@advanced
+spawn_night_stalker@veteran
+
+[spawn_night_stalker@novice]
+spawn_squads = night_stalker_sim_squad_novice
+spawn_num = {+val_storyline_done =check_actor_rank(0:1000)} 1, 0
+
+[spawn_night_stalker@advanced]
+spawn_squads = night_stalker_sim_squad_advanced
+spawn_num = {+val_storyline_done =check_actor_rank(1000:1500)} 1, 0
+
+[spawn_night_stalker@veteran]
+spawn_squads = night_stalker_sim_squad_veteran
+spawn_num = {+val_storyline_done =check_actor_rank(1500)} 1, 0
+
+[exclusive]
+val_b11_guarder_1 = darkvalley\val_b11_logic.ltx
+val_b11_guarder_2 = darkvalley\val_b11_logic.ltx
+val_b11_guarder_3 = darkvalley\val_b11_logic.ltx
+val_b11_guarder_4 = darkvalley\val_b11_logic.ltx
+val_b11_guarder_5 = darkvalley\val_b11_logic.ltx
+val_b11_guarder_6 = darkvalley\val_b11_logic.ltx
+val_b11_guarder_7 = darkvalley\val_b11_logic.ltx
+val_b11_guarder_8 = darkvalley\val_b11_logic.ltx
+val_b11_guarder_9 = darkvalley\val_b11_logic.ltx

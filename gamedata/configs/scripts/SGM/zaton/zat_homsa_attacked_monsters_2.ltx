@@ -1,0 +1,11 @@
+[logic]
+active = mob_move
+on_death = death
+
+[death]
+on_info = %=zat_homsa_attacked_update_2%
+
+[mob_move]
+target_point = 20348
+combat_ignore_cond = {=is_enemy_pertains(monster)} true
+

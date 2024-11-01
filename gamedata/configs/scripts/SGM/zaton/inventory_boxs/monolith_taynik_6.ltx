@@ -1,0 +1,11 @@
+[logic]
+active = ph_idle@pustoy
+
+[ph_idle@pustoy]
+nonscript_usable = true
+tips = st_taynik_check_descr
+on_info = {+pri_expiation_sin_2_taynik_6_zalogen} ph_idle@ustanovlen
+
+[ph_idle@ustanovlen]
+nonscript_usable = false
+tips = st_taynik_installed_descr

@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+<w>
+<background x="0" y="0" width="1024" height="768">
+	    <auto_static x="102" y="0" width="819" height="768" stretch="1">
+	      <texture>ui_inGame2_background</texture>
+	    </auto_static>
+	    <auto_static x="-2" y="0" width="104" height="768" stretch="1">
+		    <texture>ui_mod_left_widepanel_1</texture>
+	    </auto_static>
+	    <auto_static x="920" y="0" width="104" height="768" stretch="1">
+		    <texture>ui_mod_right_widepanel_1</texture>
+	    </auto_static>
+		<auto_static x="102" y="0" width="490" height="651" stretch="1">
+			<texture>ui_inGame2_save_load_wnd</texture>
+		</auto_static>
+</background>
+<form x="104" y="0" width="1024" height="768">
+	<title x="54" y="189" width="405" height="20" complex_mode="0">
+		<text font="letterica18" align="c">st_mod_main_options_title</text>
+	</title>
+	<btn_apply x="109" y="567" width="117" height="29">
+		<texture_e>ui_mod_button3_e</texture_e>
+		<texture_t>ui_mod_button3_t</texture_t>
+		<texture_h>ui_mod_button3_h</texture_h>
+		<text font="letterica16">st_mod_menu_apply</text>
+	</btn_apply>
+	<btn_return x="231" y="567" width="117" height="29">
+		<texture_e>ui_mod_button3_e</texture_e>
+		<texture_t>ui_mod_button3_t</texture_t>
+		<texture_h>ui_mod_button3_h</texture_h>
+		<text font="letterica16">st_mod_menu_default</text>
+	</btn_return>
+	<btn_exit x="355" y="567" width="117" height="29">
+		<texture_e>ui_mod_button3_e</texture_e>
+		<texture_t>ui_mod_button3_t</texture_t>
+		<texture_h>ui_mod_button3_h</texture_h>
+		<text font="letterica16">st_mod_menu_cancel</text>
+	</btn_exit>
+	<btn_hud x="355" y="535" width="117" height="29">
+		<texture_e>ui_mod_button3_e</texture_e>
+		<texture_t>ui_mod_button3_t</texture_t>
+		<texture_h>ui_mod_button3_h</texture_h>
+		<text font="letterica16">st_mod_menu_options_hud</text>
+	</btn_hud>
+	<btn_optimization x="231" y="535" width="117" height="29">
+		<texture_e>ui_mod_button3_e</texture_e>
+		<texture_t>ui_mod_button3_t</texture_t>
+		<texture_h>ui_mod_button3_h</texture_h>
+		<text font="letterica16">st_mod_menu_optimization</text>
+	</btn_optimization>
+        <options_field x="19" y="230" width="579" height="365">
+	   <btn_activate_automatic_use x="8" y="3" width="30" height="21" hint="st_mod_option_automatic_use_descr">
+		<options_item entry="activate_automatic_use" group="mod_options"/>
+		<text font="letterica16" r="115" g="114" b="112">st_mod_option_automatic_use</text>
+	   </btn_activate_automatic_use>
+	   <btn_activate_auto_energy x="8" y="28" width="30" height="21" hint="st_mod_option_auto_energy_descr">
+		<options_item entry="activate_auto_energy" group="mod_options"/>
+		<text font="letterica16" r="115" g="114" b="112">st_mod_option_auto_energy</text>
+	   </btn_activate_auto_energy>
+	   <btn_deactivate_no_wpn x="8" y="53" width="30" height="21" hint="st_mod_option_no_hide_weapon_descr">
+		<options_item entry="deactivate_no_wpn" group="mod_options"/>
+		<text font="letterica16" r="115" g="114" b="112">st_mod_option_no_hide_weapon</text>
+	   </btn_deactivate_no_wpn>
+	   <btn_deactivate_vibros x="8" y="78" width="30" height="21" hint="st_mod_option_deactivate_vibros_descr">
+		<options_item entry="deactivate_vibros" group="mod_options"/>
+		<text font="letterica16" r="115" g="114" b="112">st_mod_option_deactivate_vibros</text>
+	   </btn_deactivate_vibros>
+	   <btn_deactivate_blackday x="8" y="103" width="30" height="21" hint="st_mod_option_deactivate_blackday_descr">
+		<options_item entry="deactivate_blackday" group="mod_options"/>
+		<text font="letterica16" r="115" g="114" b="112"  complex_mode="0">st_mod_option_deactivate_blackday</text>
+	   </btn_deactivate_blackday>
+	   <btn_deactivate_minetrap x="8" y="128" width="30" height="21" hint="st_mod_option_deactivate_minetrap_descr">
+		<options_item entry="deactivate_minetrap" group="mod_options"/>
+		<text font="letterica16" r="115" g="114" b="112"  complex_mode="0">st_mod_option_deactivate_minetrap</text>
+	   </btn_deactivate_minetrap>
+	   <btn_more_monsters x="8" y="153" width="30" height="21" hint="st_mod_option_create_more_monsters_descr">
+		<options_item entry="more_monsters" group="mod_options"/>
+		<text font="letterica16" r="115" g="114" b="112"  complex_mode="0">st_mod_option_create_more_monsters</text>
+	   </btn_more_monsters>
+	   <btn_marauder_container x="8" y="178" width="30" height="21" hint="st_mod_option_gather_outfits_descr">
+		<options_item entry="marauder_container" group="mod_options"/>
+		<text font="letterica16" r="115" g="114" b="112"  complex_mode="0">st_mod_option_gather_outfits</text>
+	   </btn_marauder_container>
+	   <btn_disable_ai_granade x="8" y="203" width="30" height="21" hint="st_mod_option_ai_granade_descr">
+		<options_item entry="disable_ai_granade" group="mod_options"/>
+		<text font="letterica16" r="115" g="114" b="112"  complex_mode="0">st_mod_option_ai_granade</text>
+	   </btn_disable_ai_granade>
+	   <btn_disable_abandoned x="8" y="228" width="30" height="21" hint="st_mod_option_abandoned_descr">
+		<options_item entry="disable_abandoned" group="mod_options"/>
+		<text font="letterica16" r="115" g="114" b="112"  complex_mode="0">st_mod_option_abandoned</text>
+	   </btn_disable_abandoned>
+	   <btn_activate_alfa_force x="8" y="253" width="30" height="21" hint="st_mod_option_alfa_force_descr">
+		<options_item entry="activate_alfa_force" group="mod_options"/>
+		<text font="letterica16" r="115" g="114" b="112"  complex_mode="0">st_mod_option_alfa_force</text>
+	   </btn_activate_alfa_force>
+	   <descr_activate_automatic_use x="187" y="5" width="15" height="15">
+		<texture_e>ui_mod_help_e</texture_e>
+		<texture_t>ui_mod_help_t</texture_t>
+		<texture_h>ui_mod_help_h</texture_h>
+	   </descr_activate_automatic_use>
+	   <descr_activate_auto_energy x="178" y="30" width="15" height="15">
+		<texture_e>ui_mod_help_e</texture_e>
+		<texture_t>ui_mod_help_t</texture_t>
+		<texture_h>ui_mod_help_h</texture_h>
+	   </descr_activate_auto_energy>
+	   <descr_deactivate_no_wpn x="178" y="55" width="15" height="15">
+		<texture_e>ui_mod_help_e</texture_e>
+		<texture_t>ui_mod_help_t</texture_t>
+		<texture_h>ui_mod_help_h</texture_h>
+	   </descr_deactivate_no_wpn>
+	   <descr_deactivate_vibros x="136" y="80" width="15" height="15">
+		<texture_e>ui_mod_help_e</texture_e>
+		<texture_t>ui_mod_help_t</texture_t>
+		<texture_h>ui_mod_help_h</texture_h>
+	   </descr_deactivate_vibros>
+	   <descr_deactivate_blackday x="138" y="105" width="15" height="15">
+		<texture_e>ui_mod_help_e</texture_e>
+		<texture_t>ui_mod_help_t</texture_t>
+		<texture_h>ui_mod_help_h</texture_h>
+	   </descr_deactivate_blackday>
+	   <descr_deactivate_minetrap x="175" y="130" width="15" height="15">
+		<texture_e>ui_mod_help_e</texture_e>
+		<texture_t>ui_mod_help_t</texture_t>
+		<texture_h>ui_mod_help_h</texture_h>
+	   </descr_deactivate_minetrap>
+	   <descr_more_monsters x="173" y="155" width="15" height="15">
+		<texture_e>ui_mod_help_e</texture_e>
+		<texture_t>ui_mod_help_t</texture_t>
+		<texture_h>ui_mod_help_h</texture_h>
+	   </descr_more_monsters>
+	   <descr_marauder_container x="170" y="180" width="15" height="15">
+		<texture_e>ui_mod_help_e</texture_e>
+		<texture_t>ui_mod_help_t</texture_t>
+		<texture_h>ui_mod_help_h</texture_h>
+	   </descr_marauder_container>
+	   <descr_disable_ai_granade x="175" y="205" width="15" height="15">
+		<texture_e>ui_mod_help_e</texture_e>
+		<texture_t>ui_mod_help_t</texture_t>
+		<texture_h>ui_mod_help_h</texture_h>
+	   </descr_disable_ai_granade>
+	   <descr_disable_abandoned x="190" y="230" width="15" height="15">
+		<texture_e>ui_mod_help_e</texture_e>
+		<texture_t>ui_mod_help_t</texture_t>
+		<texture_h>ui_mod_help_h</texture_h>
+	   </descr_disable_abandoned>
+	   <descr_activate_alfa_force x="150" y="255" width="15" height="15">
+		<texture_e>ui_mod_help_e</texture_e>
+		<texture_t>ui_mod_help_t</texture_t>
+		<texture_h>ui_mod_help_h</texture_h>
+	   </descr_activate_alfa_force>
+        </options_field>
+</form>
+</w>

@@ -1,0 +1,82 @@
+[logic]
+active = move@brothers_wait
+on_death = death
+
+[death]
+on_info = %+pri_monolit_brother_member1_death%
+
+[move@brothers_wait]
+move_avail_speak       = 15|wait|false|true
+move_dest_number       = 246816
+move_look_vertex       = 235980
+move_state_when_center = sit_ass
+move_state_when_move   = patrol
+meet                   = meet
+on_info                = {+pri_expiation_sin_3_repair_completed} nil %=release_npc%, {+pri_expiation_sin_3_fail} nil
+on_info2               = {+pri_expiation_sin_3_enemy_destroyed} move@settled_on_base
+on_info3               = {+pri_expiation_sin_3_punitive_squad_go !actor_talking} move@checkpoint_1
+
+[move@checkpoint_1]
+move_dest_number       = 378998
+move_look_vertex       = 389633
+move_state_when_center = hide
+move_state_when_move   = assault
+on_info                = {+pri_expiation_sin_3_fail} nil
+on_info2               = {+pri_expiation_sin_3_logic_path_1} move@path_1
+;on_info3              = {=dist_to_story_obj_ge(pri_monolit_brother_leader:30)} move@follow_to_leader
+
+[move@path_1]
+scheme_type             = patrol
+patrol_count_path       = 4
+patrol_path_1           = 432375
+patrol_path_1_state     = assault
+patrol_path_2           = 314259
+patrol_path_2_state     = assault
+patrol_path_3           = 162818
+patrol_path_3_state     = assault
+patrol_path_4           = 216170
+patrol_path_4_state     = assault
+on_patrol_path          = 4|move@checkpoint_2
+on_info                 = {+pri_expiation_sin_3_logic_checkpoint_2} move@checkpoint_2
+;on_info2               = {=dist_to_story_obj_ge(pri_monolit_brother_leader:30)} move@follow_to_leader
+
+[move@checkpoint_2]
+move_dest_number        = 218759
+move_look_vertex        = 108357
+move_state_when_center  = hide
+move_state_when_move    = assault
+on_info                 = {+pri_expiation_sin_3_fail} nil
+on_info2                = {+pri_expiation_sin_3_logic_assault_magazine} move@assault_magazine %=play_s3d_sound(characters_voice\human_01\monolith\fight\attack\attack_many_8)% 
+;on_info3               = {=dist_to_story_obj_ge(pri_monolit_brother_leader:30)} move@follow_to_leader
+
+[move@assault_magazine]
+move_dest_number        = 31984
+move_look_vertex        = 38150
+move_state_when_center  = hide
+move_state_when_move    = assault
+on_info                 = {+pri_expiation_sin_3_fail} nil
+on_info2                = {+pri_expiation_sin_3_enemy_destroyed} move@settled_on_base
+
+[move@settled_on_base]
+move_avail_speak        = 15|wait|false|true
+move_dest_number        = 31984
+move_look_vertex        = 38150
+move_state_when_center  = guard
+move_state_when_move    = assault
+meet                    = meet
+on_info                 = {+pri_expiation_sin_3_repair_completed} nil %=release_npc%, {+pri_expiation_sin_3_fail} nil
+
+[move@follow_to_leader]
+move_pursue_sid         = pri_monolit_brother_leader
+move_pursue_state_move  = assault
+move_pursue_state_stand = hide
+on_info                 = {+pri_expiation_sin_3_logic_checkpoint_2 =dist_to_story_obj_le(pri_monolit_brother_leader:30)} move@checkpoint_2
+on_info2                = {+pri_expiation_sin_3_logic_path_1 =dist_to_story_obj_le(pri_monolit_brother_leader:30)} move@path_1
+on_info3                = {+pri_expiation_sin_3_logic_checkpoint_1 =dist_to_story_obj_le(pri_monolit_brother_leader:30)} move@checkpoint_1
+
+[meet]
+abuse           = false
+use             = {!actor_enemy} true, false
+allow_break     = true
+meet_on_talking = false
+trade_enable    = false

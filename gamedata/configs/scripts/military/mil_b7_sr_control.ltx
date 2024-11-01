@@ -1,0 +1,8 @@
+;Рестриктор "База группировки Рассвет"
+
+[logic]
+active = sr_idle
+
+[sr_idle]
+on_info  = {+mil_b7_base_alarm =squad_exist(mil_b7_rasvet_1_squad) !is_squad_enemy_to_actor(mil_b7_rasvet_1_squad)} %=set_squad_enemy_to_actor(mil_b7_rasvet_1_squad)%, {+mil_b7_base_alarm =squad_exist(mil_b7_rasvet_2_squad) !is_squad_enemy_to_actor(mil_b7_rasvet_2_squad)} %=set_squad_enemy_to_actor(mil_b7_rasvet_2_squad)%, {+mil_b7_base_alarm =squad_exist(mil_b7_rasvet_3_squad) !is_squad_enemy_to_actor(mil_b7_rasvet_3_squad)} %=set_squad_enemy_to_actor(mil_b7_rasvet_3_squad)%, {+mil_b7_base_alarm =squad_exist(mil_b7_rasvet_4_squad) !is_squad_enemy_to_actor(mil_b7_rasvet_4_squad)} %=set_squad_enemy_to_actor(mil_b7_rasvet_4_squad)%, {+mil_b7_base_alarm =squad_exist(mil_b7_rasvet_5_squad) !is_squad_enemy_to_actor(mil_b7_rasvet_5_squad)} %=set_squad_enemy_to_actor(mil_b7_rasvet_5_squad)%
+on_info2 = {-mil_b7_base_alarm =squad_exist(mil_b7_rasvet_1_squad) =is_squad_enemy_to_actor(mil_b7_rasvet_1_squad)} %+mil_b7_base_alarm%, {-mil_b7_base_alarm =squad_exist(mil_b7_rasvet_2_squad) =is_squad_enemy_to_actor(mil_b7_rasvet_2_squad)} %+mil_b7_base_alarm%, {-mil_b7_base_alarm =squad_exist(mil_b7_rasvet_3_squad) =is_squad_enemy_to_actor(mil_b7_rasvet_3_squad)} %+mil_b7_base_alarm%, {-mil_b7_base_alarm =squad_exist(mil_b7_rasvet_4_squad) =is_squad_enemy_to_actor(mil_b7_rasvet_4_squad)} %+mil_b7_base_alarm%, {-mil_b7_base_alarm =squad_exist(mil_b7_rasvet_5_squad) =is_squad_enemy_to_actor(mil_b7_rasvet_5_squad)} %+mil_b7_base_alarm%

@@ -1,0 +1,52 @@
+;------------------------------------------------------------------------------------------;
+;                               Сокровища группировок                                      ;
+;------------------------------------------------------------------------------------------;
+[zat_bandit_base_treasure]:default_instrument
+visual		   = dynamics\devices\dev_sumka\sumka4.ogf
+story_id           = zat_bandit_base_treasure
+self_community     = bandit_alies
+need_community     = actor_bandit
+base_items         = ammo_dumdum,money_meshochek_1500_2000,wpn_beretta_m1,ammo_9x39_ap,2,bag_medkit_1
+take_items_info    = zat_bandit_base_actor_hit
+first_search_info  = nil
+base_treasure_spot = nil
+
+[jup_rasvet_base_treasure]:default_instrument
+visual		   = dynamics\devices\dev_sumka\sumka7.ogf
+story_id           = jup_rasvet_base_treasure
+self_community     = rasvet
+need_community     = actor_rasvet
+base_items         = ammo_pkm_100,grenade_f1,4,personal_rukzak,money_meshochek_2000_3000,bag_medkit_2
+take_items_info    = jup_rasvet_base_actor_hit
+first_search_info  = jup_search_treasure_proveril
+base_treasure_spot = nil
+
+[jup_killer_base_treasure]:default_instrument
+visual		   = dynamics\devices\dev_sumka\sumka4.ogf
+story_id           = jup_killer_base_treasure
+self_community     = killer_alies
+need_community     = actor_killer
+base_items         = money_meshochek_3000_4000,bag_medkit_3,medkit_scientic,wpn_spas12_m1
+take_items_info    = jup_killer_base_actor_hit
+first_search_info  = nil
+base_treasure_spot = nil
+
+[jup_witnesses_lager_treasure]:default_instrument
+visual		   = dynamics\devices\dev_sumka\sumka4.ogf
+story_id           = jup_witnesses_lager_treasure
+self_community     = killer_enemy
+need_community     = killer_enemy
+base_items         = mutant_krovosos_booty,money_meshochek_3000_4000,bag_medkit_2
+take_items_info    = jup_avoid_witnesses_alarm
+first_search_info  = nil
+base_treasure_spot = nil
+
+[pri_monolit_base_treasure]:default_instrument
+visual		   = dynamics\devices\dev_sumka\sumka7.ogf
+story_id           = pri_monolit_base_treasure
+self_community     = monolith
+need_community     = actor_monolit
+base_items         = ammo_dumdum,5,conventer_grenade_box,3,repair_arms_box,repair_outfit_box,personal_rukzak,2,medkit_elite,2,bag_medkit_4,2,money_meshochek_4000_5000,ammo_gauss,2,ammo_gauss_cardan
+take_items_info    = pri_monolith_base_enemy_actor
+first_search_info  = nil
+base_treasure_spot = nil

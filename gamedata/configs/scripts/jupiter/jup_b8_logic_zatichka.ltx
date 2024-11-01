@@ -1,0 +1,16 @@
+[logic]
+active = sr_idle
+
+[sr_idle]
+on_info  = {+jup_b8_start_zatichka -zat_b101_one_heli_info} %+zat_b101_heli_5_searching +zat_b101_one_heli_info%, {+jup_beat_from_monsters_wave_1 -jup_beat_from_monsters_wave_2} sr_idle@wave1, {+jup_beat_from_monsters_wave_2 -jup_beat_from_monsters_wave_3} sr_idle@wave2, {+jup_beat_from_monsters_wave_3} sr_idle@wave3
+
+[sr_idle@wave1]
+on_timer = 28000 | sr_idle@wave2 %+jup_beat_from_monsters_wave_2 -jup_beat_from_monsters_rpg_off +jup_beat_from_monsters_rpg_allow%
+on_info  = {+jup_b8_start_zatichka -zat_b101_one_heli_info} %+zat_b101_heli_5_searching +zat_b101_one_heli_info%
+
+[sr_idle@wave2]
+on_info  = {+jup_b8_start_zatichka -zat_b101_one_heli_info} %+zat_b101_heli_5_searching +zat_b101_one_heli_info%
+on_timer = 50000 | sr_idle@wave3 %+jup_beat_from_monsters_wave_3 -jup_beat_from_monsters_rpg_off +jup_beat_from_monsters_rpg_allow%
+
+[sr_idle@wave3]
+on_info  = {+jup_b8_start_zatichka -zat_b101_one_heli_info} %+zat_b101_heli_5_searching +zat_b101_one_heli_info%

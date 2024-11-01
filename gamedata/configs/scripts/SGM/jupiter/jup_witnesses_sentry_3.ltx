@@ -1,0 +1,27 @@
+[logic]
+active = move@sentry_init
+on_death = death
+on_hit = hit
+
+[hit]
+on_info = {=present_hit_by_actor} %+jup_avoid_witnesses_alarm%
+
+[death]
+on_info = %+jup_avoid_witnesses_alarm =jup_witnesses_members_update%
+
+[move@sentry_init]
+move_dest_number       = 1229703
+move_look_vertex       = 1245687
+move_state_when_center = guard
+move_state_when_move   = walk
+meet                   = meet
+on_info                = {=actor_enemy -jup_avoid_witnesses_alarm} %=actor_neutral%, {!actor_enemy +jup_avoid_witnesses_alarm} %=actor_enemy%
+on_info2               = {=dist_to_actor_le(10) !get_actor_used_item(killer_outfit:outfit) !get_actor_used_item(killer_exo_outfit:outfit) -jup_avoid_witnesses_alarm} %+jup_avoid_witnesses_alarm%
+
+[meet]
+abuse           = true
+use             = {!actor_enemy} true, false
+allow_break     = true
+meet_on_talking = false
+trade_enable    = false
+
