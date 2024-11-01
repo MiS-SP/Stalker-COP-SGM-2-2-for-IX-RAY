@@ -46,48 +46,41 @@ function actor_menu_mode(mode)
 end
 
 function inventory_wnd_opened()
-	printf("---:>Inventory opened")
+	sgm_actor_menu.inventory_wnd_opened()
 end
 
 function inventory_wnd_closed()
-	printf("---:>Inventory closed")
+    sgm_actor_menu.inventory_wnd_closed()
 end
 
 function trade_wnd_opened()
-	xr_meet_dialog_closed = false
-	printf("---:>Trade opened")
+	sgm_actor_menu.inventory_wnd_closed()
 end
 
 function trade_wnd_closed()
-	printf("---:>Trade closed")
-	xr_meet_trade_closed = true
+    sgm_actor_menu.trade_wnd_closed()
 end
 
 function upgrade_wnd_opened()
-	xr_meet_dialog_closed = false
-	printf("---:>Upgrade opened")
+    sgm_actor_menu.upgrade_wnd_opened()
 end
 
 function upgrade_wnd_closed()
-	printf("---:>Upgrade closed")
-	xr_meet_upgrade_closed = true
+    sgm_actor_menu.upgrade_wnd_closed()
 end
 
 function dead_body_search_wnd_opened()
-	printf("---:>DeadBodySearch opened")
-	dead_body_searching = true
+    sgm_actor_menu.dead_body_search_wnd_opened()
 end
 
 function dead_body_search_wnd_closed()
-	printf("---:>DeadBodySearch closed")
-	dead_body_searching = false
+    sgm_actor_menu.dead_body_search_wnd_closed()
 end
 
 function dialog_wnd_showed()
-	printf("---:>Talk Dialog show")
+    sgm_actor_menu.dialog_wnd_showed()
 end
 
 function dialog_wnd_closed()
-	printf("---:>Talk Dialog hide")
-	xr_meet_dialog_closed = true
+    sgm_actor_menu.dialog_wnd_closed()
 end
