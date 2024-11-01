@@ -69,35 +69,10 @@ function actor_have_bandage(first_speaker, second_speaker)
 	return first_speaker:object("bandage") ~= nil
 end
 function transfer_medkit(first_speaker, second_speaker)
-	if first_speaker:object("medkit") ~= nil then
-
-		dialogs.relocate_item_section(second_speaker, "medkit", "out")
-		--alife():release(alife():object(second_speaker:object("medkit"):id()), true)
-
-	elseif first_speaker:object("medkit_army") ~= nil then
-
-		dialogs.relocate_item_section(second_speaker, "medkit_army", "out")
-		--alife():release(alife():object(second_speaker:object("medkit_army"):id()), true)
-
-	else
-
-		dialogs.relocate_item_section(second_speaker, "medkit_scientic", "out")
-		--alife():release(alife():object(second_speaker:object("medkit_scientic"):id()), true)
-
-	end
-
-	alife():create("medkit_script", second_speaker:position(), second_speaker:level_vertex_id(), second_speaker:game_vertex_id(), second_speaker:id())
-
-	--' ��� ���� �������� ������� ��� �������������.
-	xr_wounded.unlock_medkit(second_speaker)
-
-	if second_speaker:relation(first_speaker) ~= game_object.enemy then
-		second_speaker:set_relation(game_object.friend, first_speaker)
-	end
-	first_speaker:change_character_reputation(10);
+	sgm_dialog.transfer_medkit(first_speaker, second_speaker)
 end
 function transfer_bandage(first_speaker, second_speaker)
-	dialogs.relocate_item_section(second_speaker, "bandage", "out")
+	sgm_dialogs.relocate_item_section(second_speaker, "bandage", "out")
 	second_speaker:set_relation(game_object.friend, first_speaker)
 end
 function kill_yourself(npc, actor)
@@ -140,20 +115,7 @@ end
 
 
 function relocate_money(victim, num, type)
-	if db.actor then
-		if type == "in" then
-			db.actor:give_money(num)
-			game_stats.money_quest_update (num)
-
-		elseif type == "out" then
-			if victim == nil then
-				abort("Couldn't relocate money to NULL")
-			end
-			db.actor:transfer_money(num, victim)
-			game_stats.money_quest_update(-num)
-		end
-		news_manager.relocate_money(db.actor, type, num)
-	end
+	sgm_dialogs.relocate_money(victim, num, type)
 end
 
 --'---------------------------------------------------------------------------------
@@ -245,7 +207,7 @@ function not_level_jupiter(first_speaker, second_speaker)
 end
 
 function not_level_pripyat(first_speaker, second_speaker)
-	return level.name() ~= "pripyat"
+	return sgm_dialogs.not_level_pripyat(first_speaker, second_speaker)
 end
 
 -----------------------------------------------------------------------------------
@@ -432,69 +394,16 @@ end
 -- ����� ������� ��������� ��������� � ��������!!!
 ----------------------------------------------------------------------------------
 
-function relocate_item_section_to_actor(first_speaker, second_speaker, section, amount)
-	-- ������� ������� ��� �� ��� �����
-	local npc = who_is_npc(first_speaker, second_speaker)
-	local v = 0
-	--' ����������� ����� ������ ��������� ��������.
-	if not amount then
-		amount = 1
-	end
-
-	local function transfer_object_item(temp, item)
-		--printf("item:section(): [%s]", item:section())
-		if (item:section() == section and v ~= 0) then
-			npc:transfer_item(item, db.actor)
-			v = v - 1
-		end
-	end
-
-	if amount > 1 then
-		v = amount
-		npc:iterate_inventory(transfer_object_item, nil)
-	else
-		if npc:object(section) ~= nil then
-			npc:transfer_item(npc:object(section), db.actor)
-		else
-			alife():create(section,
-					db.actor:position(),
-					db.actor:level_vertex_id(),
-					db.actor:game_vertex_id(),
-					db.actor:id())
-		end
-	end
-
-	if v ~= 0 then
-		for i = 1, v do
-			alife():create(section,
-					db.actor:position(),
-					db.actor:level_vertex_id(),
-					db.actor:game_vertex_id(),
-					db.actor:id())
-		end
-	end
-	if death_manager.ammo_sections[section] == true then
-		local ltx = system_ini()
-		local box_size = ltx:r_s32(section, "box_size")
-		amount = amount * box_size
-	end
-	news_manager.relocate_item(db.actor, "in", section, amount)
+function relocate_item_section_to_actor(first_speaker, second_speaker, section, amount, show_time)
+	sgm_dialogs.relocate_item_section_to_actor(first_speaker, second_speaker, section, amount, show_time)
 end
 
-function relocate_money_to_actor(first_speaker, second_speaker, num)
-	db.actor:give_money(num)
-	game_stats.money_quest_update (num)
-	news_manager.relocate_money(db.actor, "in", num)
+function relocate_money_to_actor(first_speaker, second_speaker, num, show_time)
+	sgm_dialogs.relocate_money_to_actor(first_speaker, second_speaker, num, show_time)
 end
 
-function relocate_money_from_actor(first_speaker, second_speaker, num)
-	local victim = who_is_npc(first_speaker, second_speaker)
-	if victim == nil then
-		abort("Couldn't relocate money to NULL")
-	end
-	db.actor:transfer_money(num, victim)
-	game_stats.money_quest_update(-num)
-	news_manager.relocate_money(db.actor, "out", num)
+function relocate_money_from_actor(first_speaker, second_speaker, num, show_time)
+	sgm_dialogs.relocate_money_to_actor(first_speaker, second_speaker, num, show_time)
 end
 
 --[[ Old one
@@ -514,47 +423,8 @@ function who_is_actor(first_speaker, second_speaker)
 end
 
 --section - ��� ������ ��� ��������; amount - ����������, ����� ��������� ������ "all"
-function relocate_item_section_from_actor(first_speaker, second_speaker, section, amount)
-	local npc = who_is_npc(first_speaker, second_speaker)
-	local actor = who_is_actor(first_speaker, second_speaker)
-	local i = 0
-	--printf("Amount [%s]", tostring(amount))
-	if not amount then
-		amount = 1
-	end
-
-	local function transfer_object_item(temp, item)
-		--printf("item:section(): [%s]", item:section())
-		if (item:section() == section and i ~= 0) then
-			db.actor:transfer_item(item, npc)
-			i = i - 1
-		end
-	end
-
-	if amount == "all" then
-		i = -1
-		actor:iterate_inventory(transfer_object_item, nil)
-		amount = (i+1)*(-1)
-		i = 0
-	elseif amount > 1 then
-		i = amount
-		actor:iterate_inventory(transfer_object_item, nil)
-	elseif amount < 1 then
-		abort("Wrong parameters in function 'relocate_item_section_from_actor'!")
-	else
-		actor:transfer_item(actor:object(section), npc)
-	end
-
-	if i~=0 then
-		assert("Actor do not has enough items! Transferred [%s], needed [%s]", tostring(amount - i), tostring(amount))
-	end
-
-	if death_manager.ammo_sections[db.actor.section] == true then
-		local ltx = system_ini()
-		local box_size = ltx:r_s32(section, "box_size")
-		amount = amount * box_size
-	end
-	news_manager.relocate_item(db.actor, "out", section, amount - i)
+function relocate_item_section_from_actor(first_speaker, second_speaker, section, amount, show_time)
+	sgm_dialogs.relocate_item_section_from_actor(first_speaker, second_speaker, section, amount, show_time)
 end
 
 function actor_has_item(first_speaker, second_speaker, section)
@@ -906,15 +776,15 @@ function medic_magic_potion(first_speaker, second_speaker)
 	db.actor.power = 1
 	db.actor.radiation = -1
 	db.actor.bleeding = 1
+	sgm_dialogs.medic_magic_potion(first_speaker, second_speaker)
 end
 
 function actor_needs_bless(first_speaker, second_speaker)
-	if db.actor.health < 1 or
-			db.actor.radiation > 0 or
-			db.actor.bleeding > 0 then
+	-- SGM in
+	if db.actor.health < 1 or db.actor.radiation > 0 or db.actor.bleeding > 0 or sgm_g.read_mod_param("actor_toxicity") > -1.0 then
 		return true
 	end
-
+	-- SGM out
 	return false
 end
 

@@ -6937,20 +6937,14 @@ function relocate_item_section_from_actor(first_speaker, second_speaker, section
    news_manager.relocate_item(db.actor, "out", section, amount - i, show_time)
 end
 
--------------------------------------//Patching//-------------------------------------------------
--- todo не вижу вызовов в луа, мб потребуется setenv использовать
-local old_medic_magic_potion = dialogs.medic_magic_potion
 function medic_magic_potion(first_speaker, second_speaker)
    write_mod_param("actor_toxicity", -1.0)
-   old_medic_magic_potion(first_speaker, second_speaker)
 end
 
-local old_actor_needs_bless = dialogs.actor_needs_bless
 function actor_needs_bless(first_speaker, second_speaker)
    if db.actor.health < 1 or db.actor.radiation > 0 or db.actor.bleeding > 0 or sgm_g.read_mod_param("actor_toxicity") > -1.0 then
       return true
    end
-   old_actor_needs_bless(first_speaker, second_speaker)
 end
 
 -------------------------------------//Copyright GeJorge//-------------------------------------------------
