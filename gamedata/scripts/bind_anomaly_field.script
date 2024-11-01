@@ -49,6 +49,9 @@ end
 
 function anomaly_field_binder:update(delta)
 	object_binder.update(self, delta)
+    --/ SGM in
+    sgm_modules.module_anomaly_field(self.object)
+    --/ SGM out
 	if(time_global()-self.last_update<10000) then
 		return
 	end

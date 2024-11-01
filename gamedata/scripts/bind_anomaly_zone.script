@@ -413,9 +413,6 @@ end
 function anomaly_zone_binder:save(thread)
 	set_save_marker(thread, "save", false, "anomaly_zone_binder")
 	object_binder.save(self, thread)
-	--/ SGM in
-	sgm_modules.module_anomaly_field(self.object)
-	--/ SGM out
 	local count = 0
 	for k,v in pairs(self.artefact_ways_by_id) do
 		count = count + 1
