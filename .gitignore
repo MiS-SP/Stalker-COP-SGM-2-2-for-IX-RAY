@@ -88,3 +88,6 @@ helpers
 *.seq
 *.omf
 *.ttf
+
+# original files
+.orig
