@@ -46,14 +46,14 @@ function reward_update()
 end
 
 function check_trader_stage(completion, pre_1, pre_2)
-   if sgm_g.dont_has_alife_info("t_s_b" .. completion) and get_actor_rank() >= pre_1 and (pre_2 == nil or (pre_2 ~= nil and get_actor_rank() < pre_2)) then
+   if sgm_g.dont_has_alife_info("t_s_b" .. completion) and sgm_g.get_actor_rank() >= pre_1 and (pre_2 == nil or (pre_2 ~= nil and sgm_g.get_actor_rank() < pre_2)) then
       give_info("t_s_b" .. completion)
       inc_trader_stage()
    end
 end
 
 function check_medal_reward(nominal, descr_num, reward_secrets)
-   if get_actor_rank() >= nominal and sgm_g.dont_has_alife_info("medal_rank_" .. nominal) then
+   if sgm_g.get_actor_rank() >= nominal and sgm_g.dont_has_alife_info("medal_rank_" .. nominal) then
       give_info("medal_rank_" .. nominal)
       give_object_to_actor("medal_rank_" .. nominal)
       news_manager.send_tip(db.actor, "st_medal_tip_text" .. descr_num, 0, "medal", 8000, nil, "st_medal_tip_title")

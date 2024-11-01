@@ -43,9 +43,9 @@ function update_update()
    end
    --/Бонус достижения "Электронный магнат".
    if has_alife_info("sgm_achievements_magnate") then
-      change_flag_value("value_webmoney_course_from", 90)
-      change_flag_value("value_webmoney_course_before", 185)
-      change_flag_value("value_card_21_max_rate", 2000)
+      sgm_g.change_flag_value("value_webmoney_course_from", 90)
+      sgm_g.change_flag_value("value_webmoney_course_before", 185)
+      sgm_g.change_flag_value("value_card_21_max_rate", 2000)
    end
    --/Проверка слота на содержание. Выводит на колобок.
    if db.actor:item_in_slot(2) ~= nil then

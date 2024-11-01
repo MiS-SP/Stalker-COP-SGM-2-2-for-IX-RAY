@@ -57,44 +57,44 @@ amb_vol = 0
 b_discard_settings_shown = false
 ----------------------------------------------------------------------
 local scripts_to_print = {
-	["stalker_generic"]     = true,
-	["xr_smartcover"]       = true,
-	["xr_logic"]            = true,
-	["xr_conditions"]       = true,
-	["xr_cover"]            = true,
-	["xr_motivator"]        = true,
-	["xr_walker"]           = true,
-	["xr_camper"]           = true,
-	["xr_kamp"]             = true,
-	["restrictor_manager"]  = true,
-	["sim_board"]           = true,
-	["sim_faction"]         = true,
-	["post_combat_idle"]    = true,
-	["xr_death"]            = true,
-	["xr_sound"]            = true,
-	["utils"]               = true,
-	["treasure_manager"]    = true,
-	["object_collection"]   = true,
-	["se_actor"]            = true,
+	["stalker_generic"]     = false,
+	["xr_smartcover"]       = false,
+	["xr_logic"]            = false,
+	["xr_conditions"]       = false,
+	["xr_cover"]            = false,
+	["xr_motivator"]        = false,
+	["xr_walker"]           = false,
+	["xr_camper"]           = false,
+	["xr_kamp"]             = false,
+	["restrictor_manager"]  = false,
+	["sim_board"]           = false,
+	["sim_faction"]         = false,
+	["post_combat_idle"]    = false,
+	["xr_death"]            = false,
+	["xr_sound"]            = false,
+	["utils"]               = false,
+	["treasure_manager"]    = false,
+	["object_collection"]   = false,
+	["se_actor"]            = false,
 	["smart_terrain"]       = true,
-	["bind_physic_object"]  = true,
-	["bind_heli"]           = true,
-	["bind_anomaly_zone"]   = true,
-	["bind_stalker"]        = true,
-	["state_mgr_animation"] = true,
-	["se_stalker"]          = true,
-	["db"]                  = true,
-	["sim_squad_generic"]   = true,
-	["sim_squad_scripted"]  = true,
-	["se_smart_cover"]      = true,
-	["se_monster"]          = true,
-	["dialog_manager"]      = true,
-	["xr_combat_ignore"]    = true,
-	["xr_remark"]           = true,
-	["cover_manager"]       = true,
-	["xr_danger"]           = true,
-	["task_manager"]        = true,
-	["task_objects"]        = true
+	["bind_physic_object"]  = false,
+	["bind_heli"]           = false,
+	["bind_anomaly_zone"]   = false,
+	["bind_stalker"]        = false,
+	["state_mgr_animation"] = false,
+	["se_stalker"]          = false,
+	["db"]                  = false,
+	["sim_squad_generic"]   = false,
+	["sim_squad_scripted"]  = false,
+	["se_smart_cover"]      = false,
+	["se_monster"]          = false,
+	["dialog_manager"]      = false,
+	["xr_combat_ignore"]    = false,
+	["xr_remark"]           = false,
+	["cover_manager"]       = false,
+	["xr_danger"]           = false,
+	["task_manager"]        = false,
+	["task_objects"]        = false
 }
 function printf(fmt, ...)
 	local is_g = 0
@@ -652,18 +652,18 @@ end
 -- SGM in
 function give_info(info, i2, i3, i4, i5)
 	if db.actor ~= nil then
-	   if find_out_string(info, ",") then
-		  if dont_has_alife_info(info) then
+	   if sgm_g.find_out_string(info, ",") then
+		  if sgm_g.dont_has_alife_info(info) then
 			 db.actor:give_info_portion(info)
 		  end
-		  if i2 ~= nil and dont_has_alife_info(i2) then db.actor:give_info_portion(i2) end
-		  if i3 ~= nil and dont_has_alife_info(i3) then db.actor:give_info_portion(i3) end
-		  if i4 ~= nil and dont_has_alife_info(i4) then db.actor:give_info_portion(i4) end
-		  if i5 ~= nil and dont_has_alife_info(i5) then db.actor:give_info_portion(i5) end
+		  if i2 ~= nil and sgm_g.dont_has_alife_info(i2) then db.actor:give_info_portion(i2) end
+		  if i3 ~= nil and sgm_g.dont_has_alife_info(i3) then db.actor:give_info_portion(i3) end
+		  if i4 ~= nil and sgm_g.dont_has_alife_info(i4) then db.actor:give_info_portion(i4) end
+		  if i5 ~= nil and sgm_g.dont_has_alife_info(i5) then db.actor:give_info_portion(i5) end
 	   else
 		  info_table = utils.parse_spawns(info)
 		  for k, v in pairs(info_table) do
-			 if dont_has_alife_info(v.section) then
+			 if sgm_g.dont_has_alife_info(v.section) then
 				db.actor:give_info_portion(v.section)
 			 end
 		  end
@@ -675,7 +675,7 @@ function give_info(info, i2, i3, i4, i5)
 -- SGM in
 function disable_info(info, i2, i3, i4, i5)
 	if db.actor ~= nil then
-	   if find_out_string(info, ",") then
+	   if sgm_g.find_out_string(info, ",") then
 		  if has_alife_info(info) then
 			 db.actor:disable_info_portion(info)
 		  end

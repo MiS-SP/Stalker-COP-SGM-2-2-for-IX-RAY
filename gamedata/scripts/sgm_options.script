@@ -12,22 +12,22 @@ function options_update()
       --//Режим: бессмертие//-->
       if has_alife_info("opt_activate_immortal") then
          use_immortal_mode(0.90, 1.00)
-         change_flag_value("bool_cheat_mode_activate", true)
+         sgm_g.change_flag_value("bool_cheat_mode_activate", true)
       end
       --//Режим: бесконечная энергия//-->
       if has_alife_info("opt_activate_power") then
          use_power_mode(0.90, 1.00)
-         change_flag_value("bool_cheat_mode_activate", true)
+         sgm_g.change_flag_value("bool_cheat_mode_activate", true)
       end
       --//Режим: без кровотечения//-->
       if has_alife_info("opt_activate_bleeding") then
          use_bleeding_mode()
-         change_flag_value("bool_cheat_mode_activate", true)
+         sgm_g.change_flag_value("bool_cheat_mode_activate", true)
       end
       --//Режим: автоматический ремонт//-->
       if has_alife_info("opt_activate_repair") then
          use_repair_mode(0.95, 1.00)
-         change_flag_value("bool_cheat_mode_activate", true)
+         sgm_g.change_flag_value("bool_cheat_mode_activate", true)
       end
       --//Режим: бесконечные патроны//-->
       if has_alife_info("opt_activate_ammo") then
@@ -46,7 +46,7 @@ function options_update()
             respawn_item_if_comparison("ammo_pkm_100", ammo_types, 2)
             respawn_item_if_comparison("ammo_dumdum", ammo_types, 2)
          end
-         change_flag_value("bool_cheat_mode_activate", true)
+         sgm_g.change_flag_value("bool_cheat_mode_activate", true)
       end
       --//Опция сбалансированной выдачи книг ТВБ//-->
       if sgm_g.check_seconds(2) and sgm_g.dont_has_alife_info("opt_balanced_skill_books") and sgm_g.r_mod_params("bool", "balanced_skill_books", true) == true then
@@ -54,7 +54,7 @@ function options_update()
       end
       --//Проверка чит-режима//-->
       if sgm_g.check_seconds(2) and sgm_g.dont_has_alife_info("opt_activate_immortal") and sgm_g.dont_has_alife_info("opt_activate_power") and sgm_g.dont_has_alife_info("opt_activate_bleeding") and sgm_g.dont_has_alife_info("opt_activate_repair") and sgm_g.dont_has_alife_info("opt_activate_ammo") then
-         change_flag_value("bool_cheat_mode_activate", false)
+         sgm_g.change_flag_value("bool_cheat_mode_activate", false)
       end
    end
 end

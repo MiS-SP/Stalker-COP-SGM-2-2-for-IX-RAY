@@ -114,7 +114,7 @@ function CBatteryManager:battery_power_bar_setup()
 end
 
 function CBatteryManager:battery_power_bar_clear()
-   release_hud("hud_battery_power_wnd")
+   sgm_g.change_flag_value("hud_battery_power_wnd")
 end
 
 function CBatteryManager:send_tip(text)

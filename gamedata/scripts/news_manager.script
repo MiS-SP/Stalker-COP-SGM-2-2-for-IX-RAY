@@ -1,28 +1,3 @@
---news = {}
---[[
-tips_icons = {
-	default  = { 0, 658},      -- ui_iconsTotal_grouping
-	trader	 = { 332, 893},    -- ui_iconsNpc_trader
-	dolg     = { 0, 658},
-	freedom  = { 0, 658},
-	ecolog   = { 498, 0},      -- ui_iconsNpc_ecolog
-	army     = { 332, 141},    -- ui_iconsNpc_stalker_neytral_balon_6
-	stalker  = { 0, 658},
-	csky  	 = { 0, 658},
-	krot     = { 332, 47},     -- ui_iconsNpc_stalker_neytral_rukzak_4
-	barman   = { 332, 235},    -- ui_iconsNpc_barman
-	wolf	 = { 332, 940},    -- ui_iconsNpc_stalker_neytral_balon_1
-	o_soznanie = { 498, 893},
-	monolith = { 0, 658},
-	saharov  = { 332, 470},    -- ui_iconsNpc_ucheniy_2
-	prizrak  = { 0, 658},
-	killer   = { 0, 658},
-	bandit   = { 0, 658},
-	renegade = { 0, 658}
-}
-]]
-
--- ToDo - Need Pioneer icon here!
 tips_icons = {
 	pioneer 				= "ui_inGame2_PD_Pervootkrivatel",
 	mutant_hunter			= "ui_inGame2_PD_Ohotnik_na_mutantov",
@@ -58,55 +33,9 @@ tips_icons = {
 	recent_surge			= "ui_inGame2_V_zone_nedavno_proshel_vibros",
 }
 
-
-function send_tip(actor, news_id, timeout, sender, showtime, sender_id)
-	if news_id == nil then return false end
-
---	printf("try to send tips for [%s]", tostring(sender_id))
-	if sender_id ~= nil then
-		local sim = alife()
-		if sim ~= nil then
-			local npc = sim:object(get_story_object_id(sender_id))
-			if npc ~= nil then
-				if npc.online then
-					--в онлайне проверяем на раненность
-					if xr_wounded.is_heavy_wounded_by_id(npc.id) then
-						printf("[PDA]Cannot send tips [%s], sender is heavy wounded", tostring(news_id))
-						return false
-					end
-				end
-				-- в других случаях только на смерть
-				if npc:alive() == 1 then
-					printf("[PDA]Cannot send tips [%s], sender is dead", tostring(news_id))
-					return false
-				end
-			end
-		end
-	end
-
-	if timeout == nil then timeout = 0 end
-	if showtime == nil then showtime = 5000 end
-
-	--' Играем дефолтный звук
-	xr_sound.set_sound_play(actor:id(), "pda_tips")
-
-
-	local texture = "ui_iconsTotal_grouping"
-	if sender ~= nil then
-		if type(sender) == "string" then
-			if tips_icons[sender] then
-				texture = tips_icons[sender]
-			end
- 		elseif is_npc_stalker(sender:clsid()) then
-			texture = sender:character_icon()
-		end
-	end
-	local news_caption = game.translate_string("st_tip")
-	local news_text = game.translate_string(news_id)
---	actor:give_game_news(news_caption, news_text, texture, timeout*1000, showtime)
-	actor:give_game_news(news_caption, news_text, texture, timeout*1000, showtime, 0)
-
-	return true
+sgm_news_manager.merge_tips_icon(tips_icons)
+function send_tip(actor, news_id, timeout, sender, showtime, sender_id, title_id, play_snd)
+	return sgm_news_manager.send_tip(actor, news_id, timeout, sender, showtime, sender_id, title_id, play_snd)
 end
 
 
@@ -182,12 +111,15 @@ function is_npc_stalker(class_id)
 end
 
 local action_descr_by_type = {
-								new = "general_new_task",
-								complete = "general_complete_task",
-								fail = "general_fail_task",
-								reversed = "general_reverse_task",
-								updated = "general_update_task"
-							 }
+	new = "general_new_task",
+	complete = "general_complete_task",
+	fail = "general_fail_task",
+	--/ SGM in
+	expired = "general_expire_task",
+	--/ SGM out
+	reversed = "general_reverse_task",
+	updated = "general_update_task"
+}
 
 function send_task(actor, type, task)
 	if db.actor == nil then

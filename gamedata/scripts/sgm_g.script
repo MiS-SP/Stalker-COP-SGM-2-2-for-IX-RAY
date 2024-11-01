@@ -3422,7 +3422,7 @@ end
 
 -- 'Проверка ранга ГГ.
 function get_actor_rank()
-   local result = read_mod_param("actor_rank")
+   local result = read_mod_param("actor_rank", true)
    if result ~= nil and result >= 0.0 and result < 1.0 then
       return 0.0
    elseif result ~= nil and result >= 1.0 then

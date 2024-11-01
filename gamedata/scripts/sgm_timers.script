@@ -10,14 +10,14 @@ end
 function timers_update()
    if check_flague_timer("timer_hud_message") then
       abort_flague_timer("timer_hud_message")
-      release_hud("hud_message_event")
-      release_hud("hud_message_event_long")
+      sgm_g.change_flag_value("hud_message_event")
+      sgm_g.change_flag_value("hud_message_event_long")
       sgm_flags.value_headshot_counter = 0
       sgm_flags.value_rank_counter = 0
    end
    if check_flague_timer("timer_hud_crash") then
       abort_flague_timer("timer_hud_crash")
-      release_hud("hud_crash_info")
+      sgm_g.change_flag_value("hud_crash_info")
    end
    run_flague_timer("timer_auto_energy", 1)
    run_flague_timer("timer_allspawn_auto_print", 1)
@@ -118,14 +118,14 @@ function timers_update()
    --//—обытие завершени€ ночи//-->
    if sgm_g.check_seconds(2) then
       if level.get_time_hours() >= 4 and level.get_time_hours() <= 7 then
-         change_flag_value("bool_every_night_end", true)
+         sgm_g.change_flag_value("bool_every_night_end", true)
       else
-         change_flag_value("bool_every_night_end", false)
+         sgm_g.change_flag_value("bool_every_night_end", false)
       end
    end
    --//—обытие окончани€ мес€ца//-->
    if get_general_game_time(nil, nil, nil, true) == 44639 then
-      change_flag_value("bool_end_of_the_month", true)
+      sgm_g.change_flag_value("bool_end_of_the_month", true)
    end
    if sgm_flags.bool_end_of_the_month == true and get_general_game_time(nil, nil, nil, true) < 44639 then
       sgm_flags.bool_end_of_the_month = false
