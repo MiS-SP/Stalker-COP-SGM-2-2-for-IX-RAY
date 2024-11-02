@@ -72,6 +72,9 @@ cmake-build*/
 # other sources
 directx
 gamedata/anims
+gamedata/levels
+gamedata/meshes
+gamedata/sounds
 **/.vscode/*
 **/.vscode
 helpers
