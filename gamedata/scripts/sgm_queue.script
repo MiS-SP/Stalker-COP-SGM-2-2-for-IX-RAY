@@ -23,11 +23,15 @@ function queue_update()
          end
       end
    end
+   -- Код для батарейки от детектора
    if sgm_g.check_seconds(2) then
-      if sgm_flags.value_throw_item_id ~= -1 and level.object_by_id(sgm_flags.value_throw_item_id) ~= nil then
-         level.object_by_id(sgm_flags.value_throw_item_id):set_condition(sgm_flags.value_throw_item_cond)
-         sgm_flags.value_throw_item_id = -1
-         sgm_flags.value_throw_item_cond = 1.0
+      if sgm_flags.value_throw_item_id ~= -1 then
+         local lvl_obj = level.object_by_id(sgm_flags.value_throw_item_id)
+         if lvl_obj ~= nil then
+            lvl_obj:set_condition(sgm_flags.value_throw_item_cond)
+            sgm_flags.value_throw_item_id = -1
+            sgm_flags.value_throw_item_cond = 1.0
+         end
       end
    end
    if sgm_g.get_table_lines(sgm_flags.table_mod_teleports) > 0 then
