@@ -32,6 +32,7 @@ function action_remark_activity:initialize()
 end
 function action_remark_activity:activate_scheme()
 	self.st.signals = {}
+    sgm_xr_remark.activate_scheme(self)
 	self.sound_end_signalled = false
 	self.action_end_signalled = false
 	self.anim_end_signalled = false
@@ -143,6 +144,7 @@ end
 function action_remark_activity:execute()
 	action_base.execute(self)
 	self:update()
+    sgm_xr_remark.update(self)
 end
 function action_remark_activity:finalize()
 	if self.tips_sound ~= nil then
@@ -207,6 +209,7 @@ function set_scheme(npc, ini, scheme, section, gulag_name)
 	st.target = utils.cfg_get_string          (ini, section,   "target",          npc, false, "", "nil")
 	st.target_id = nil
 	st.target_position = nil
+    sgm_xr_remark.set_scheme(ini, section)
 end
 local function instruction(obj, target_str)
 	abort("\nWrong target field for object [%s] in section [%s]!!!\n"..
