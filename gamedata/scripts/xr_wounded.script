@@ -27,7 +27,7 @@ function evaluator_wound:evaluate ()
 	then
 		return false
 	end
-	return tostring(xr_logic.pstor_retrieve(self.object, "wounded_state")) ~= "nil"
+	return tostring(xr_logic.pstor_retrieve(self.object, "wounded_state"))~="nil"
 end
 
 class "evaluator_can_fight" (property_evaluator)
@@ -117,7 +117,9 @@ function action_wounded:execute ()
 		if tostring(wound_manager_state) == "nil" then
 			print_table(self.a.hp_state)
 			print_table(self.a.hp_state_see)
-			abort("wrong wounded animation %s", self.object:name())
+                        --/ SGM in
+			--abort("wrong wounded animation %s", self.object:name())
+                        --/ SGM out
 		end
 		state_mgr.set_state(self.object, wound_manager_state, nil, nil, {look_object = victim}, nil)
 	end
@@ -199,8 +201,11 @@ function Cwound_manager:eat_medkit()
 			alife():release(alife():object(self.npc:object("medkit_army"):id()), true)
 		elseif self.npc:object("medkit_scientic") ~= nil then
 			alife():release(alife():object(self.npc:object("medkit_scientic"):id()), true)
+                --/ SGM in
+		elseif self.npc:object("medkit_elite") ~= nil then
+			alife():release(alife():object(self.npc:object("medkit_elite"):id()), true)
+                --/ SGM out
 		end
-
 
 		local begin_wounded = xr_logic.pstor_retrieve(self.npc, "begin_wounded")
 		local current_time = time_global()
@@ -368,15 +373,12 @@ local wounded_by_state = {
 
 function init_wounded(npc, ini, section, st, scheme)
 	--'printf("WOUNDED SECTION [%s][%s]", tostring(section), tostring(scheme))
-
 	if tostring(section) == st.wounded_section and
 		 tostring(section) ~= "nil"
 	then
 		return
 	end
-
 	st.wounded_section = utils.to_str(section)
-
 	local def = {}
 	local npc_community = character_community(npc)
 	if npc_community == "monolith" then
@@ -393,21 +395,36 @@ function init_wounded(npc, ini, section, st, scheme)
 		def.use_medkit			= false
 		def.enable_talk			= true
 		def.not_for_help		= true
-
-	elseif npc_community == "zombied" then
+	  elseif npc_community == "zombied" then
 		def.hp_state			= "40|wounded_zombie@nil"
 		def.hp_state_see		= "40|wounded_zombie@nil"
 		def.psy_state			= ""
 		def.hp_victim			= "40|nil"
 		def.hp_cover			= "40|false"
 		def.hp_fight			= "40|false"
-		def.syndata				= ""
+		def.syndata			= ""
 		def.help_dialog			= nil
-		def.help_start_dialog	= nil
+		def.help_start_dialog	        = nil
 		def.use_medkit			= false
 		def.enable_talk			= true
 		def.not_for_help		= true
-	else
+          --/ SGM in
+          elseif scheme~=nil and sgm_functions.ReadCanBeWounded(npc:section())==false then
+		local state = wounded_by_state[math.mod(npc:id(), 3)]
+		def.hp_state			= "0|"..state.."@help_heavy"
+		def.hp_state_see		= "0|"..state.."@help_heavy"
+		def.psy_state			= "0|{=best_pistol}psy_armed,psy_pain@wounded_psy|20|{=best_pistol}psy_shoot,psy_pain@{=best_pistol}wounded_psy_shoot,wounded_psy"
+		def.hp_victim			= "0|nil"
+		def.hp_cover			= "0|false"
+		def.hp_fight			= "0|false"
+		def.syndata			= ""
+		def.help_dialog			= nil
+		def.help_start_dialog	        = nil
+		def.use_medkit			= false
+		def.enable_talk			= true
+		def.not_for_help		= true
+          --/ SGM out
+	  else
 		local state = wounded_by_state[math.mod(npc:id(), 3)]
 		def.hp_state			= "20|"..state.."@help_heavy"
 		def.hp_state_see		= "20|"..state.."@help_heavy"
@@ -422,8 +439,6 @@ function init_wounded(npc, ini, section, st, scheme)
 		def.enable_talk			= true
 		def.not_for_help		= false
 	end
-
-
 	if tostring(section) == "nil" then
 		-- Загружаем дефолты!
 		st.hp_state		= utils.parse_data(npc, def.hp_state)
@@ -490,7 +505,7 @@ function is_wounded(npc)
 	return false
 end
 
-function hit_callback(npc_id) -- Тут может не быть стораджа.
+function hit_callback(npc_id)
 	if db.storage[npc_id].wounded ~= nil then
 		db.storage[npc_id].wounded.wound_manager:hit_callback()
 	end
