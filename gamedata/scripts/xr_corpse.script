@@ -66,7 +66,7 @@ function action_corpse:execute()
    end
    if scheme_param.suicide_mode ~= nil and scheme_param.suicide_mode[1] == "true" then
       if distance_between_safe(db.actor, npc) <= tonumber(scheme_param.suicide_mode[2]) then
-         set_hit_damage_to(npc, hit.wound, 1000, 15)
+         sgm_g.set_hit_damage_to(npc, hit.wound, 1000, 15)
       else
          if scheme_param.life_look ~= nil and scheme_param.life_look ~= 0 then
             sgm_functions.set_state_look_to(npc, scheme_param.life_anim, scheme_param.life_look)
@@ -77,7 +77,7 @@ function action_corpse:execute()
       return
    end
    if sgm_flags.table_mod_schemes[npc_id .. "life_timer"] == 0 then
-      set_hit_damage_to(npc, hit.wound, 1000, 15)
+      sgm_g.set_hit_damage_to(npc, hit.wound, 1000, 15)
       if scheme_param.only_choose == "true" then
          release_inventory(npc)
       end
@@ -108,16 +108,16 @@ function action_corpse:check_logic_condlists(npc, ini, section)
    local scheme_param        = sgm_flags.table_mod_schemes[npc:id()]
    --/if scheme_param.section==nil or (scheme_param.section~=nil and scheme_param.section~=self.st.saved_section) then --/Без постоянного обновления.
    --/   scheme_param.section = self.st.saved_section
-   scheme_param.corpse_item  = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section, "corpse_item", nil))         --'Определенный предмет в трупе.
-   scheme_param.corpse_items = sgm_functions.cfg_get_string(ini, section, "corpse_items", nil)                                 --'Наименование предметов в трупе.
-   if exists(scheme_param.corpse_items) and scheme_param.corpse_items_table == nil then
+   scheme_param.corpse_item  = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section, "corpse_item", nil)) --'Определенный предмет в трупе.
+   scheme_param.corpse_items = sgm_functions.cfg_get_string(ini, section, "corpse_items", nil)                         --'Наименование предметов в трупе.
+   if sgm_g.exists(scheme_param.corpse_items) and scheme_param.corpse_items_table == nil then
       scheme_param.corpse_items_table = utils.parse_spawns(scheme_param.corpse_items)
    end
-   scheme_param.only_choose  = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section, "only_choose", "false"))               --'Очищать ли труп от старых предметов.
-   scheme_param.life_look    = to_number(sgm_functions.check_section_condlist(ini, section, "life_look", 0))                             --'Направление зрения еще живого НПС.
-   scheme_param.life_time    = to_number(sgm_functions.check_section_condlist(ini, section, "life_time", 0))                             --'Продолжительность жизни НПС.
+   scheme_param.only_choose  = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section, "only_choose", "false"))       --'Очищать ли труп от старых предметов.
+   scheme_param.life_look    = sgm_g.to_number(sgm_functions.check_section_condlist(ini, section, "life_look", 0))                     --'Направление зрения еще живого НПС.
+   scheme_param.life_time    = sgm_g.to_number(sgm_functions.check_section_condlist(ini, section, "life_time", 0))                     --'Продолжительность жизни НПС.
    scheme_param.life_anim    = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section, "life_anim",
-      "wounded_heavy"))                                                                                                                  --'Анимация тела НПС при жизни.
+      "wounded_heavy"))                                                                                                          --'Анимация тела НПС при жизни.
    scheme_param.suicide_mode = sgm_functions.check_section_stick(ini, section, "suicide_mode", nil)
    --/end
 end

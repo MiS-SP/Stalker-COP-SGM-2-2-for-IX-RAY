@@ -266,7 +266,7 @@ end
 
 function submodule_inventory_box_control(object)
    if sgm_g.check_seconds(1) then
-      local add_exceptions = true --/find_out_string(object:section(),"p_secret_7")
+      local add_exceptions = true --/sgm_g.find_out_string(object:section(),"p_secret_7")
       if has_alife_info("sgm_achievements_pathfinder") then
          if sgm_g.find_in_string(object:section(), "_secret_") and (sgm_g.find_in_string(object:section(), "_a") or sgm_g.find_in_string(object:section(), "_b") or sgm_g.find_in_string(object:section(), "_c")) and add_exceptions and level.map_has_object_spot(object:id(), sgm_flags.spot_secret_v1) == 0 and object:is_inv_box_empty() == false then
             sgm_g.add_spot_on_map(object:id(), sgm_flags.spot_secret_v1, "st_taynik_name")
@@ -360,7 +360,7 @@ function submodule_anomaly_control(object)
          remove_object_by_id(object:id())
       end
    end
-   if sgm_flags.bool_show_anomalies == true and find_out_string(object:section(), "radioactive") and distance_between(object, db.actor) <= 10 and level.map_has_object_spot(object:id(), sgm_flags.spot_hero_rucksack) == 0 then
+   if sgm_flags.bool_show_anomalies == true and sgm_g.find_out_string(object:section(), "radioactive") and distance_between(object, db.actor) <= 10 and level.map_has_object_spot(object:id(), sgm_flags.spot_hero_rucksack) == 0 then
       level.map_add_object_spot_ser(object:id(), sgm_flags.spot_hero_rucksack, object:name())
       debug_to_file("anomaly_fields_in_radius.txt", object:name())
    end
@@ -380,7 +380,7 @@ function submodule_artefact_control(object)
    local af_pos = object:position()
    local af_lv = object:level_vertex_id()
    local af_gv = object:game_vertex_id()
-   local af_exception = find_out_string(object:section(), "af_prodigy")
+   local af_exception = sgm_g.find_out_string(object:section(), "af_prodigy")
    --/local ground_distance=level.vertex_position(af_lv):distance_to(af_pos)
    --/if sgm_g.find_in_string(af_sect,"af_prodigy") and object:parent()==nil and get_object_story_id(object:id())==nil and (detector_in_slot==nil or (detector_in_slot~=nil and db.actor:active_detector()==nil)) and ground_distance>50.0 then
    --/   create(object:section(),level.vertex_position(af_lv).x,level.vertex_position(af_lv).y,level.vertex_position(af_lv).z,af_lv,af_gv)
@@ -481,7 +481,7 @@ function submodule_granade_prohibition(object)
 end
 
 function submodule_capture_monster(object)
-   if has_alife_info("capture_meal_active") and find_out_string(object:section(), "captured") and get_object_story_id(object:id()) == nil and sgm_functions.ReadCaptureConfirmed(object:section()) == true then
+   if has_alife_info("capture_meal_active") and sgm_g.find_out_string(object:section(), "captured") and get_object_story_id(object:id()) == nil and sgm_functions.ReadCaptureConfirmed(object:section()) == true then
       local m_section = object:section()
       local m_alive = object:alive()
       local m_id = object:id()
@@ -677,22 +677,22 @@ function stalker_modules_inject()
    load_scheme("xr_move", "move", stype_stalker)
    load_scheme("xr_bodyguard", "bodyguard", stype_stalker)
    load_scheme("xr_corpse", "corpse", stype_stalker)
+   return
 end
 
 function monster_modules_inject()
    load_scheme("mob_move", "mob_move", stype_mobile)
+   return
 end
 
 function physic_obj_modules_inject()
    load_scheme("sgm_ph_universal", "sgm_ph_universal", stype_item)
-end
-
-function helicopter_modules_inject()
-   load_scheme("heli_move", "heli_move", stype_heli)
+   return
 end
 
 function restrictor_modules_inject()
-   load_scheme("sr_universal", "sr_universal", stype_restrictor)
+   load_scheme("sgm_sr_universal", "sgm_sr_universal", stype_restrictor)
+   return
 end
 
 -------------------------------------//Copyright GeJorge//-------------------------------------------------

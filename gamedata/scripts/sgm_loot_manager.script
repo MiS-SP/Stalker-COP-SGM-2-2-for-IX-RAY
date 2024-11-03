@@ -4,6 +4,7 @@
 --------------------------------------------------------------------------------------------------------
 ---==================================================================================================---
 
+getter = {}
 class "SGMLootManager"
 function SGMLootManager:__init()
    self.randomizer = {
@@ -177,6 +178,7 @@ function SGMLootManager:__init()
          { "snork",         "mutant_snork_booty",     sgm_g.r_booty_params("number", "snork_prob", 0.20) },
       }
    }
+   getter = self
 end
 
 function SGMLootManager:container_monster_death(victim)
@@ -195,7 +197,7 @@ end
 
 function SGMLootManager:container_stalker_death(victim)
    local victim_visual = victim:get_visual_name()
-   local victim_exceptions = find_out_string(sgm_functions.ReadCommunity(victim:section()), "bodyguard")
+   local victim_exceptions = sgm_g.find_out_string(sgm_functions.ReadCommunity(victim:section()), "bodyguard")
    if victim_exceptions then
       if has_alife_info("opt_marauder_container") then
          for k, v in pairs(self.lists.outfit) do

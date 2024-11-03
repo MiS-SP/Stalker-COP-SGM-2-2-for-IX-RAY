@@ -17,14 +17,14 @@ function monsters_cleaner_update()
       sgm_g.abort_game_timer("m_cleaner_timer")
    end
    if sgm_g.check_game_timer("m_cleaner_timer") then
-      clear_all_objects("monster", 15)
+      sgm_g.clear_all_objects("monster", 15)
       sgm_g.start_game_timer("m_cleaner_timer", sgm_g.r_mod_params("number", "monsters_cleaner_interval", 0))
    end
 end
 
 function anomaly_cleaner_update()
    if sgm_g.r_mod_params("bool", "create_anomaly_permition", true) == false and sgm_g.dont_has_alife_info("anomaly_permition_activate") then
-      clear_all_objects("anomaly")
+      sgm_g.clear_all_objects("anomaly")
       give_info("anomaly_permition_activate")
    elseif sgm_g.r_mod_params("bool", "create_anomaly_permition", true) == true and has_alife_info("anomaly_permition_activate") then
       disable_info("anomaly_permition_activate")

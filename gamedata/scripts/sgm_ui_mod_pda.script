@@ -887,7 +887,7 @@ function achievements_sniper_update()
    local pre2 = sgm_g.read_mod_param("stat_ubil_bosov")
    if pre1 ~= nil and pre1 >= 300 and pre2 ~= nil and pre2 >= 1 and sgm_g.dont_has_alife_info("sgm_achievements_sniper") then
       give_info("sgm_achievements_sniper")
-      inc_mod_param("stat_dostigeniy", 1)
+      sgm_g.inc_mod_param("stat_dostigeniy", 1)
       news_manager.send_tip(db.actor, "st_achievement_sniper_text", 0, "sgm_achievement_sniper", 10000, nil,
          "st_achievement_tip_title")
    end
@@ -898,7 +898,7 @@ function achievements_client_update()
    local pre2 = sgm_g.get_actor_rank()
    if pre1 ~= nil and pre1 >= 10 and pre2 >= 50 and sgm_g.dont_has_alife_info("sgm_achievements_client") then
       give_info("sgm_achievements_client")
-      inc_mod_param("stat_dostigeniy", 1)
+      sgm_g.inc_mod_param("stat_dostigeniy", 1)
       news_manager.send_tip(db.actor, "st_achievement_client_text", 0, "sgm_achievement_client", 10000, nil,
          "st_achievement_tip_title")
    end
@@ -908,7 +908,7 @@ function achievements_pathfinder_update()
    local pre = sgm_g.read_mod_param("stat_taynikov")
    if pre ~= nil and pre >= 60 and sgm_g.dont_has_alife_info("sgm_achievements_pathfinder") then
       give_info("sgm_achievements_pathfinder")
-      inc_mod_param("stat_dostigeniy", 1)
+      sgm_g.inc_mod_param("stat_dostigeniy", 1)
       news_manager.send_tip(db.actor, "st_achievement_pathfinder_text", 0, "sgm_achievement_pathfinder", 10000, nil,
          "st_achievement_tip_title")
    end
@@ -918,7 +918,7 @@ function achievements_guidebook_update()
    local pre = sgm_g.read_mod_param("stat_guidebook")
    if pre ~= nil and pre >= 12 and sgm_g.dont_has_alife_info("sgm_achievements_guidebook") then
       give_info("sgm_achievements_guidebook")
-      inc_mod_param("stat_dostigeniy", 1)
+      sgm_g.inc_mod_param("stat_dostigeniy", 1)
       news_manager.send_tip(db.actor, "st_achievement_guidebook_text", 0, "sgm_achievement_guidebook", 10000, nil,
          "st_achievement_tip_title")
    end
@@ -931,7 +931,7 @@ function achievements_marauder_update()
    local pre = sgm_g.read_mod_param("stat_s_trupov")
    if pre ~= nil and pre >= 18000 and sgm_g.dont_has_alife_info("sgm_achievements_marauder") then
       give_info("sgm_achievements_marauder")
-      inc_mod_param("stat_dostigeniy", 1)
+      sgm_g.inc_mod_param("stat_dostigeniy", 1)
       news_manager.send_tip(db.actor, "st_achievement_marauder_text", 0, "sgm_achievement_marauder", 10000, nil,
          "st_achievement_tip_title")
    end
@@ -941,7 +941,7 @@ function achievements_magnate_update()
    local pre = sgm_g.get_web_money()
    if pre ~= nil and pre >= 20000 and sgm_g.dont_has_alife_info("sgm_achievements_magnate") then
       give_info("sgm_achievements_magnate")
-      inc_mod_param("stat_dostigeniy", 1)
+      sgm_g.inc_mod_param("stat_dostigeniy", 1)
       news_manager.send_tip(db.actor, "st_achievement_magnate_text", 0, "sgm_achievement_magnate", 10000, nil,
          "st_achievement_tip_title")
       sgm_g.write_mod_param("web_money_course", 125 / 100)
@@ -955,7 +955,7 @@ function achievements_assistant_update()
        sgm_g.read_mod_param("pri_mechanic_stripping") ~= nil
    if pre and (sgm_g.read_mod_param("zat_mechanic_stripping") >= value or sgm_g.read_mod_param("jup_mechanic_stripping") >= value or sgm_g.read_mod_param("pri_mechanic_stripping") >= value) and sgm_g.dont_has_alife_info("sgm_achievements_assistant") then
       give_info("sgm_achievements_assistant")
-      inc_mod_param("stat_dostigeniy", 1)
+      sgm_g.inc_mod_param("stat_dostigeniy", 1)
       news_manager.send_tip(db.actor, "st_achievement_assistant_text", 0, "sgm_achievement_assistant", 10000, nil,
          "st_achievement_tip_title")
    end
@@ -965,7 +965,7 @@ function achievements_lifeguard_update()
    local pre = sgm_g.read_mod_param("stat_help_wounded")
    if pre ~= nil and pre >= 8 and sgm_g.dont_has_alife_info("sgm_achievements_lifeguard") then
       give_info("sgm_achievements_lifeguard")
-      inc_mod_param("stat_dostigeniy", 1)
+      sgm_g.inc_mod_param("stat_dostigeniy", 1)
       news_manager.send_tip(db.actor, "st_achievement_lifeguard_text", 0, "sgm_achievement_lifeguard", 10000, nil,
          "st_achievement_tip_title")
    end

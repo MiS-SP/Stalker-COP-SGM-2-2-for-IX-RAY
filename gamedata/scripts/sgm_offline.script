@@ -22,7 +22,7 @@ function offline_update()
                end
             end
             if m == "cond" then
-               if read_obj_mod_param(k, "offline_mode", true) ~= nil and exists(sgm_flags.table_mod_offline[k].cond) then
+               if read_obj_mod_param(k, "offline_mode", true) ~= nil and sgm_g.exists(sgm_flags.table_mod_offline[k].cond) then
                   local cond_performed = sgm_functions.check_string_condlist(sgm_flags.table_mod_offline[k].cond)
                   if cond_performed == true or cond_performed == "true" then
                      if sgm_flags.table_mod_offline[k].switch == true then

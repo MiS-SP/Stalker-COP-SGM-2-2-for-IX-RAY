@@ -9,7 +9,7 @@ function sleep_dialog:__init()
 	end
 
 	local xml = CScriptXmlInit()
-	xml:ParseFile("ui_sleep_dialog.xml")
+	xml:ParseFile("sgm_ui_sleep_dialog.xml")
 
 	self.back = xml:InitStatic("background", self)
 	--	self.sleep_static = xml:InitSleepStatic("sleep_static", self.back)
@@ -113,7 +113,7 @@ end
 function sleep_dialog:OnButtonSleep()
 	self:HideDialog()
 	xr_effects.disable_ui(db.actor, nil)
-	level.add_cam_effector("camera_effects\\sleep.anm", 10, false, "ui_sleep_dialog.dream_callback")
+	level.add_cam_effector("camera_effects\\sleep.anm", 10, false, "sgm_ui_sleep_dialog.dream_callback")
 	level.add_pp_effector("sleep_fade.ppe", 11, false)
 	give_info("actor_is_sleeping")
 	_G.mus_vol = get_console():get_float("snd_volume_music")
@@ -136,7 +136,7 @@ end
 
 --------------------------------------------------------------------------------
 function dream_callback()
-	level.add_cam_effector("camera_effects\\sleep.anm", 10, false, "ui_sleep_dialog.dream_callback2")
+	level.add_cam_effector("camera_effects\\sleep.anm", 10, false, "sgm_ui_sleep_dialog.dream_callback2")
 	local hours = sleep_control.time_track:GetIValue()
 	--/ SGM in
 	sgm_callbacks.on_actor_sleep(hours)
@@ -167,7 +167,7 @@ function dream_callback2()
 end
 
 function sleep()
-	if (sleep_control == nil) then sleep_control = ui_sleep_dialog.sleep_dialog() end
+	if (sleep_control == nil) then sleep_control = sgm_ui_sleep_dialog.sleep_dialog() end
 	sleep_control.time_track:SetCurrentValue()
 	sleep_control:TestAndShow()
 end
@@ -179,7 +179,7 @@ end
 --/SGM
 function psi_sleep_callback()
 	local time_m = math.random(35, 45)
-	level.add_cam_effector("camera_effects\\sleep.anm", 10, false, "ui_sleep_dialog.psi_sleep_callback_end")
+	level.add_cam_effector("camera_effects\\sleep.anm", 10, false, "sgm_ui_sleep_dialog.psi_sleep_callback_end")
 	sgm_callbacks.on_actor_sleep(6)
 	sgm_callbacks.on_forward_game_time(0, time_m)
 	level.change_game_time(0, 0, time_m)
@@ -217,7 +217,7 @@ function psi_sleep_callback_end()
 end
 
 function sleep_factor_callback()
-	level.add_cam_effector("camera_effects\\sleep.anm", 10, false, "ui_sleep_dialog.sleep_factor_callback_end")
+	level.add_cam_effector("camera_effects\\sleep.anm", 10, false, "sgm_ui_sleep_dialog.sleep_factor_callback_end")
 	local hours = level.get_time_hours() + 1
 	_G.mus_vol = get_console():get_float("snd_volume_music")
 	_G.amb_vol = get_console():get_float("snd_volume_eff")

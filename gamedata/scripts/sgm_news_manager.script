@@ -100,7 +100,7 @@ function merge_tips_icon(tips_icons)
 		portrait_Zombied_3         = "ui_inGame2_Zombied_3",
 		portrait_Zombied_4         = "ui_inGame2_Zombied_4",
 	}
-	for k,v in pairs(sgm_tips_icons) do tips_icons[k] = v end
+	for k, v in pairs(sgm_tips_icons) do tips_icons[k] = v end
 end
 
 --/ SGM in
@@ -267,6 +267,7 @@ function bankir_tip(actor, timeout, sender, showtime, sender_id, title_id, messa
 	end
 	return true
 end
+
 function send_add_skill(item_name)
 	local news_caption = game.translate_string("st_add_skill")
 	local news_text = game.translate_string(item_name)
@@ -379,6 +380,7 @@ function send_treasure(param, treasure_name)
 		db.actor:give_game_news(news_caption, descr_caption, "ui_inGame2_Polucheni_koordinaty_taynika", 0, 3000)
 	end
 end
+
 function relocate_item(actor, type, item, amount, show_time)
 	local show_value = 3000
 	if sgm_g.exists(show_time) then

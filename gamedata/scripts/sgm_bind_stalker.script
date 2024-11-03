@@ -65,10 +65,10 @@ function update()
 end
 
 ------------------------------------>
-function save(packet)
+function save(self, packet)
 	--/ SGM in
 	if sgm_g.get_game_unique_id() then
-		data_param_save_all()
+		sgm_g.data_param_save_all()
 	end
 	--/ SGM out
 	set_save_marker(packet, "save", false, "actor_binder")
@@ -85,12 +85,13 @@ function save(packet)
 	release_body_manager.get_release_body_manager():save(packet)
 	self.surge_manager:save(packet)
 	--/ SGM in
-	sgm_loader.save(packet)
+	-- todo переписать под скрипт ix-ray callback save
+	sgm_loader.SGMLoader.save(sgm_loader.getter, packet)
 	--/ SGM out
 end
 
 ------------------------------------>
 function load(reader)
 	-- todo переписать под скрипт ix-ray callback load
-	sgm_loader.load(reader)
+	sgm_loader.load(sgm_loader.getter,reader)
 end

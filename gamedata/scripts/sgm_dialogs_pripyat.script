@@ -290,42 +290,42 @@ end
 
 function pri_alf_actor_dont_has_info(first_speaker, second_speaker)
 	return db.actor:object("pri_alf_info_1") == nil or db.actor:object("pri_alf_info_2") == nil or
-	db.actor:object("pri_alf_info_3") == nil
+		db.actor:object("pri_alf_info_3") == nil
 end
 
 function pri_alf_actor_has_info_1(first_speaker, second_speaker)
 	return db.actor:object("pri_alf_info_1") ~= nil and db.actor:object("pri_alf_info_2") == nil and
-	db.actor:object("pri_alf_info_3") == nil
+		db.actor:object("pri_alf_info_3") == nil
 end
 
 function pri_alf_actor_has_info_2(first_speaker, second_speaker)
 	return db.actor:object("pri_alf_info_2") ~= nil and db.actor:object("pri_alf_info_1") == nil and
-	db.actor:object("pri_alf_info_3") == nil
+		db.actor:object("pri_alf_info_3") == nil
 end
 
 function pri_alf_actor_has_info_3(first_speaker, second_speaker)
 	return db.actor:object("pri_alf_info_3") ~= nil and db.actor:object("pri_alf_info_1") == nil and
-	db.actor:object("pri_alf_info_2") == nil
+		db.actor:object("pri_alf_info_2") == nil
 end
 
 function pri_alf_actor_has_info_12(first_speaker, second_speaker)
 	return db.actor:object("pri_alf_info_1") ~= nil and db.actor:object("pri_alf_info_2") ~= nil and
-	db.actor:object("pri_alf_info_3") == nil
+		db.actor:object("pri_alf_info_3") == nil
 end
 
 function pri_alf_actor_has_info_13(first_speaker, second_speaker)
 	return db.actor:object("pri_alf_info_1") ~= nil and db.actor:object("pri_alf_info_3") ~= nil and
-	db.actor:object("pri_alf_info_2") == nil
+		db.actor:object("pri_alf_info_2") == nil
 end
 
 function pri_alf_actor_has_info_23(first_speaker, second_speaker)
 	return db.actor:object("pri_alf_info_2") ~= nil and db.actor:object("pri_alf_info_3") ~= nil and
-	db.actor:object("pri_alf_info_1") == nil
+		db.actor:object("pri_alf_info_1") == nil
 end
 
 function pri_alf_actor_has_info_all(first_speaker, second_speaker)
 	return db.actor:object("pri_alf_info_1") ~= nil and db.actor:object("pri_alf_info_2") ~= nil and
-	db.actor:object("pri_alf_info_3") ~= nil
+		db.actor:object("pri_alf_info_3") ~= nil
 end
 
 function pri_alf_actor_relocate_info_all(first_speaker, second_speaker)

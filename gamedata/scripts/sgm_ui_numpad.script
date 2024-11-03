@@ -7,7 +7,7 @@
 
 
 function main()
-	super_dlg = ui_numpad.numpad()
+	super_dlg = sgm_ui_numpad.numpad()
 	super_dlg:ShowDialog(true)
 end
 

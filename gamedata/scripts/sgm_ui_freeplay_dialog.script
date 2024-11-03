@@ -34,7 +34,7 @@ end
 
 function show(mb_type, text)
    if (freeplay_control == nil) then
-      freeplay_control = ui_freeplay_dialog.freeplay_dialog()
+      freeplay_control = sgm_ui_freeplay_dialog.freeplay_dialog()
    end
    --/ SGM in
    sgm_g.set_ui_disabled()

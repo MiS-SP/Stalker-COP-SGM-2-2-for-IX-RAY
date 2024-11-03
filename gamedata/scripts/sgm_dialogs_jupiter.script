@@ -981,7 +981,7 @@ function jup_b202_transfer_medkit(first_speaker, second_speaker)
 	elseif db.actor:object("medkit_elite") ~= nil then
 		dialogs.relocate_item_section_from_actor(first_speaker, second_speaker, "medkit_elite")
 	end
-	inc_mod_param("stat_help_wounded", 1)
+	sgm_g.inc_mod_param("stat_help_wounded", 1)
 	--/ SGM out
 end
 
@@ -989,7 +989,7 @@ function jup_b202_actor_has_medkit(first_speaker, second_speaker)
 	local actor = dialogs.who_is_actor(first_speaker, second_speaker)
 	--/ SGM in
 	return (actor:object("medkit") ~= nil) or (actor:object("medkit_army") ~= nil) or
-	(actor:object("medkit_scientic") ~= nil) or (actor:object("medkit_elite") ~= nil)
+		(actor:object("medkit_scientic") ~= nil) or (actor:object("medkit_elite") ~= nil)
 	--/ SGM out
 end
 
@@ -1351,9 +1351,9 @@ end
 
 function jup_b47_employ_squad(first_speaker, second_speaker)
 	local a = has_alife_info("jup_b47_bunker_guards_started") and
-	(sgm_g.dont_has_alife_info("jup_b47_bunker_guards_done"))                                                            -- or has_alife_info("jup_b6_employ_stalker")
+		(sgm_g.dont_has_alife_info("jup_b47_bunker_guards_done")) -- or has_alife_info("jup_b6_employ_stalker")
 	local b = has_alife_info("jup_b6_employ_stalker") and
-	(sgm_g.dont_has_alife_info("jup_b6_employed_stalker"))                                                               --not (has_alife_info("jup_b47_bunker_guards_done") and has_alife_info("jup_b6_employed_stalker"))
+		(sgm_g.dont_has_alife_info("jup_b6_employed_stalker")) --not (has_alife_info("jup_b47_bunker_guards_done") and has_alife_info("jup_b6_employed_stalker"))
 	return a or b
 end
 

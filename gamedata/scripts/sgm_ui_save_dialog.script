@@ -5,7 +5,7 @@
 -- Copyright:   2004 GSC Game World
 -- Version:     1.0
 -- Modified:    Serhiy Pryshchepa (peacemaker@gsc-game.kiev.ua)
-local saved_game_extension = ui_load_dialog.saved_game_extension
+local saved_game_extension = sgm_ui_load_dialog.saved_game_extension
 
 class "save_item" (CUIListBoxItem)
 
@@ -154,7 +154,7 @@ function save_dialog:delete_selected_file()
 	local item     = self.list_box:GetItemByIndex(index)
 	local filename = item.fn:GetText()
 
-	ui_load_dialog.delete_save_game(filename)
+	sgm_ui_load_dialog.delete_save_game(filename)
 
 	self.list_box:RemoveItem(item)
 	self:OnListItemClicked()

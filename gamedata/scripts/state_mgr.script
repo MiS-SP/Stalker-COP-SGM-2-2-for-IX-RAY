@@ -17,7 +17,7 @@ function evaluator_state_mgr_idle:__init(name, state_manager) super (nil, name)
 	self.mgr = nil
 end
 function evaluator_state_mgr_idle:evaluate()
-	local t = self.st.target_state == "idle" and
+	local t = self.st.target_state=="idle" and
 			 --not self.st.planner:evaluator(self.st.properties["locked"]):evaluate() and
 			not self.st.planner:evaluator(self.st.properties["animstate_locked"]):evaluate() and
 			not self.st.planner:evaluator(self.st.properties["animation_locked"]):evaluate() and
@@ -56,9 +56,6 @@ function evaluator_state_mgr_idle:evaluate()
 	--if self.combat_planner:current_action_id() == stalker_ids.action_post_combat_wait then
 	--	return true
 	--end
-
-
-
 	return false
 end
 
@@ -244,12 +241,14 @@ function eva_state_mgr_end:__init(name, st) super (nil, name)
 	self.mgr = nil
 end
 function eva_state_mgr_end:evaluate()
-	if self.mgr == nil then
+        --/ SGM in
+	if self.mgr == nil and self.object~=nil then
 		self.mgr = self.object:motivation_action_manager()
 	end
-	if self.combat_planner == nil then
+	if self.combat_planner == nil and self.object~=nil then
 		self.combat_planner =  cast_planner(self.mgr:action(stalker_ids.action_combat_planner))
 	end
+        --/ SGM out
 
 	if not self.mgr:initialized() then
 		return false
@@ -486,18 +485,17 @@ function state_manager:set_state(state_name, callback, timeout, target, extra)
 
 
 		--' Проверка на необходимость special_danger_move
-		if state_lib.states[state_name].special_danger_move == true then
-			--printf("SPECIAL DANGER MOVE %s for stalker [%s]", tostring(self.npc:special_danger_move()), self.npc:name())
+                --/ SGM in
+		if state_lib.states~=nil and state_lib.states[state_name]~=nil and state_lib.states[state_name].special_danger_move~=nil and state_lib.states[state_name].special_danger_move==true then
 			if self.npc:special_danger_move() ~= true then
 				self.npc:special_danger_move(true)
 			end
 		else
-			--printf("SPECIAL DANGER MOVE %s for stalker [%s]", tostring(self.npc:special_danger_move()), self.npc:name())
 			if self.npc:special_danger_move() == true then
 				self.npc:special_danger_move(false)
 			end
 		end
-
+                --/ SGM out
 		self.target_state = state_name
 		self.current_object = nil
 		switched = true
@@ -543,7 +541,8 @@ end
 function state_manager:update()
 	--printf("Update called for stalker [%s]", self.npc:name())
 	-- Обрабатываем коллбек
-	if self.animation.states.current_state == state_lib.states[self.target_state].animation then
+        --/ SGM in
+	if self.target_state~=nil and self.animation.states.current_state==state_lib.states[self.target_state].animation then
 		if self.callback ~= nil and
 			 self.callback.func ~= nil
 		then
@@ -565,7 +564,7 @@ function state_manager:update()
 			end
 		end
 	end
-
+        --/ SGM out
 
 	local last_pl_id = nil
 	self.planner:update()

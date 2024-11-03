@@ -210,14 +210,14 @@ function drop_1_update()
 end
 
 function drop_2_update()
-   for k,v in pairs(on_collapse_before_termination) do
-      if has_alife_info(v[2]) and dont_has_alife_info(v[3]) and db.actor:object(v[1]) then
-         remove_inv_item(db.actor,v[1])
+   for k, v in pairs(on_collapse_before_termination) do
+      if has_alife_info(v[2]) and sgm_g.dont_has_alife_info(v[3]) and db.actor:object(v[1]) then
+         remove_inv_item(db.actor, v[1])
       end
    end
-   for z,q in pairs(on_after_termination) do
-      if (q[3]==nil or (q[3]~=nil and has_alife_info(q[3]))) and sgm_g.get_sid_online(q[1]) and level.object_by_id(get_story_object_id(q[1])):object(q[2]) then
-         remove_inv_item(level.object_by_id(get_story_object_id(q[1])),q[2])
+   for z, q in pairs(on_after_termination) do
+      if (q[3] == nil or (q[3] ~= nil and has_alife_info(q[3]))) and sgm_g.get_sid_online(q[1]) and level.object_by_id(get_story_object_id(q[1])):object(q[2]) then
+         remove_inv_item(level.object_by_id(get_story_object_id(q[1])), q[2])
       end
    end
 end

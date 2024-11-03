@@ -36,7 +36,7 @@ function CHudManager:hud_carrying(cond)
                sgm_flags.string_hud_carrying = "nil"
             end
             sgm_flags.value_outfit_flg = 0
-            start_flague_timer("timer_carrying_dressed_delay", 2000)
+            sgm_g.start_flague_timer("timer_carrying_dressed_delay", 2000)
          elseif sgm_flags.string_hud_carrying ~= "nil" and (sgm_g.dont_has_alife_info("opt_activate_carrying_hud")) then
             sgm_g.change_flag_value(sgm_flags.string_hud_carrying)
             sgm_flags.string_hud_carrying = "nil"
@@ -63,7 +63,7 @@ function CHudManager:hud_carrying(cond)
             if has_alife_info("opt_activate_carrying_hud") then
                play_snd_at_actor([[sound_effects\use_gas_mask]])
             end
-            start_flague_timer("timer_carrying_dressed_delay", 10000)
+            sgm_g.start_flague_timer("timer_carrying_dressed_delay", 10000)
          end
       end
       if helm_in_slot then
@@ -73,7 +73,7 @@ function CHudManager:hud_carrying(cond)
                sgm_flags.string_hud2_carrying = "nil"
             end
             sgm_flags.value_helm_flg = 0
-            start_flague_timer("timer_carrying_dressed_delay", 2000)
+            sgm_g.start_flague_timer("timer_carrying_dressed_delay", 2000)
          elseif sgm_flags.string_hud2_carrying ~= "nil" and (sgm_g.dont_has_alife_info("opt_activate_carrying_hud")) then
             sgm_g.change_flag_value(sgm_flags.string_hud2_carrying)
             sgm_flags.string_hud2_carrying = "nil"
@@ -100,7 +100,7 @@ function CHudManager:hud_carrying(cond)
             if has_alife_info("opt_activate_carrying_hud") then
                play_snd_at_actor([[sound_effects\use_gas_mask]])
             end
-            start_flague_timer("timer_carrying_dressed_delay", 10000)
+            sgm_g.start_flague_timer("timer_carrying_dressed_delay", 10000)
          end
       end
    else
@@ -140,13 +140,13 @@ function CHudManager:hud_weapons()
          local param_info = sgm_functions.GetSkillInfo(active_item:section())
          local param_point = sgm_functions.GetSkillPoint(active_item:section())
          if param_info ~= nil and param_point ~= nil and has_alife_info(param_info) then
-            add_hud("hud_wpn_studied1")
+            sgm_g.add_hud("hud_wpn_studied1")
          elseif param_info ~= nil and param_point ~= nil and sgm_g.dont_has_alife_info(param_info) then
             sgm_g.change_flag_value("hud_wpn_studied1")
          end
-         add_hud("hud_wpn_params_1", params_txt)
-         add_hud("hud_wpn_params_1_1", params_txt_2)
-         show_pistol_state_bar("hud_wpn_state_bar1", "ui_mod_progress_bars.xml", "weapon_state_bar_slot1",
+         sgm_g.add_hud("hud_wpn_params_1", params_txt)
+         sgm_g.add_hud("hud_wpn_params_1_1", params_txt_2)
+         sgm_g.show_pistol_state_bar("hud_wpn_state_bar1", "ui_mod_progress_bars.xml", "weapon_state_bar_slot1",
             sgm_flags.value_wpn1_state_bar)
       end
       if (active_item == nil or (pistol_in_slot ~= nil and active_item:section() ~= pistol_in_slot:section())) then
@@ -164,13 +164,13 @@ function CHudManager:hud_weapons()
          local param_info = sgm_functions.GetSkillInfo(active_item:section())
          local param_point = sgm_functions.GetSkillPoint(active_item:section())
          if param_info ~= nil and param_point ~= nil and has_alife_info(param_info) then
-            add_hud("hud_wpn_studied2")
+            sgm_g.add_hud("hud_wpn_studied2")
          elseif param_info ~= nil and param_point ~= nil and sgm_g.dont_has_alife_info(param_info) then
             sgm_g.change_flag_value("hud_wpn_studied2")
          end
-         add_hud("hud_wpn_params_2", params_txt)
-         add_hud("hud_wpn_params_2_2", params_txt_2)
-         show_rifle_state_bar("hud_wpn_state_bar2", "ui_mod_progress_bars.xml", "weapon_state_bar_slot2",
+         sgm_g.add_hud("hud_wpn_params_2", params_txt)
+         sgm_g.add_hud("hud_wpn_params_2_2", params_txt_2)
+         sgm_g.show_rifle_state_bar("hud_wpn_state_bar2", "ui_mod_progress_bars.xml", "weapon_state_bar_slot2",
             sgm_flags.value_wpn2_state_bar)
       end
       if (active_item == nil or (rifle_in_slot ~= nil and active_item:section() ~= rifle_in_slot:section())) then
@@ -187,13 +187,13 @@ function CHudManager:hud_weapons()
                 "[" .. params_explosion .. game.translate_string("st_def_meters") .. "]"
             local params_txt_2 = game.translate_string("st_detonation_scraps") ..
                 "[" .. params_splinter .. game.translate_string("st_def_meters") .. "]"
-            add_hud("hud_wpn_params_3", params_txt)
-            add_hud("hud_wpn_params_3_3", params_txt_2)
+            sgm_g.add_hud("hud_wpn_params_3", params_txt)
+            sgm_g.add_hud("hud_wpn_params_3_3", params_txt_2)
          else
             local params_smoke = self:ReadExplodeDuration(active_item:section())
             local params_txt = game.translate_string("st_detonation_time") ..
                 "[" .. params_smoke .. game.translate_string("st_def_second") .. "]"
-            add_hud("hud_wpn_params_3", params_txt)
+            sgm_g.add_hud("hud_wpn_params_3", params_txt)
             sgm_g.change_flag_value("hud_wpn_params_3_3")
          end
       end
@@ -228,17 +228,17 @@ function CHudManager:ReadDamage(section, object)
       addon_value = default_value
    end
    if has_alife_info(param_info) and sgm_g.dont_has_alife_info("sgm_achievements_sniper") then
-      if s_status ~= 1 and get_installed_addon(object, "silencer") == false then
+      if s_status ~= 1 and sgm_g.get_installed_addon(object, "silencer") == false then
          return math.floor(string.format(math.floor(default_value * 100)) + string.format(math.floor(param_point * 100)))
-      elseif s_status ~= 1 and get_installed_addon(object, "silencer") == true then
+      elseif s_status ~= 1 and sgm_g.get_installed_addon(object, "silencer") == true then
          return math.floor(string.format(math.floor(addon_value * 100)) + string.format(math.floor(param_point * 100)))
       elseif s_status == 1 then
          return math.floor(string.format(math.floor(addon_value * 100)) + string.format(math.floor(param_point * 100)))
       end
    elseif sgm_g.dont_has_alife_info(param_info) and sgm_g.dont_has_alife_info("sgm_achievements_sniper") then
-      if s_status ~= 1 and get_installed_addon(object, "silencer") == false then
+      if s_status ~= 1 and sgm_g.get_installed_addon(object, "silencer") == false then
          return math.floor(string.format(math.floor(default_value * 100)))
-      elseif s_status ~= 1 and get_installed_addon(object, "silencer") == true then
+      elseif s_status ~= 1 and sgm_g.get_installed_addon(object, "silencer") == true then
          return math.floor(string.format(math.floor(addon_value * 100)))
       elseif s_status == 1 then
          return math.floor(string.format(math.floor(addon_value * 100)))
@@ -246,10 +246,10 @@ function CHudManager:ReadDamage(section, object)
    elseif has_alife_info(param_info) and has_alife_info("sgm_achievements_sniper") then
       local achievements_bonus = string.format(math.floor((sgm_functions.ReadDamage2(section) * 100) *
          sgm_g.r_mod_params("number", "achievements_sniper_bonus", 0.20)))
-      if s_status ~= 1 and get_installed_addon(object, "silencer") == false then
+      if s_status ~= 1 and sgm_g.get_installed_addon(object, "silencer") == false then
          return math.floor(string.format(math.floor(default_value * 100)) + string.format(math.floor(param_point * 100)) +
             achievements_bonus)
-      elseif s_status ~= 1 and get_installed_addon(object, "silencer") == true then
+      elseif s_status ~= 1 and sgm_g.get_installed_addon(object, "silencer") == true then
          return math.floor(string.format(math.floor(addon_value * 100)) + string.format(math.floor(param_point * 100)) +
             achievements_bonus)
       elseif s_status == 1 then
@@ -259,9 +259,9 @@ function CHudManager:ReadDamage(section, object)
    elseif sgm_g.dont_has_alife_info(param_info) and has_alife_info("sgm_achievements_sniper") then
       local achievements_bonus = string.format(math.floor((sgm_functions.ReadDamage2(section) * 100) *
          sgm_g.r_mod_params("number", "achievements_sniper_bonus", 0.20)))
-      if s_status ~= 1 and get_installed_addon(object, "silencer") == false then
+      if s_status ~= 1 and sgm_g.get_installed_addon(object, "silencer") == false then
          return math.floor(string.format(math.floor(default_value * 100)) + achievements_bonus)
-      elseif s_status ~= 1 and get_installed_addon(object, "silencer") == true then
+      elseif s_status ~= 1 and sgm_g.get_installed_addon(object, "silencer") == true then
          return math.floor(string.format(math.floor(addon_value * 100)) + achievements_bonus)
       elseif s_status == 1 then
          return math.floor(string.format(math.floor(addon_value * 100)) + achievements_bonus)
@@ -280,9 +280,9 @@ function CHudManager:ReadDistance(section, object)
    else
       addon_value = default_value
    end
-   if s_status ~= 1 and get_installed_addon(object, "silencer") == false then
+   if s_status ~= 1 and sgm_g.get_installed_addon(object, "silencer") == false then
       return default_value
-   elseif s_status ~= 1 and get_installed_addon(object, "silencer") == true then
+   elseif s_status ~= 1 and sgm_g.get_installed_addon(object, "silencer") == true then
       return addon_value
    elseif s_status == 1 then
       return addon_value
@@ -333,23 +333,23 @@ function CHudManager:setup_carrying_hud(item, type, sound)
    end
    if has_alife_info("opt_activate_carrying_hud") then
       if get_hud():GetCustomStatic(item_hud .. item_hud_prefix) == nil then
-         add_hud(item_hud .. item_hud_prefix)
+         sgm_g.add_hud(item_hud .. item_hud_prefix)
          if sound == true then
             play_snd_at_actor([[sound_effects\use_gas_mask]])
             sgm_flags.bool_carrying_snd_end = true
-            start_flague_timer("timer_after_carrying_delay", 2000)
+            sgm_g.start_flague_timer("timer_after_carrying_delay", 2000)
          end
          self:check_broken_snd(item_hud_prefix)
       end
    else
       sgm_g.change_flag_value("bool_carrying_snd_end", true)
       if sgm_flags.timer_after_carrying_delay == 0 then
-         start_flague_timer("timer_after_carrying_delay", 2000)
+         sgm_g.start_flague_timer("timer_after_carrying_delay", 2000)
       end
    end
    if sgm_functions.ReadHasAntigas(item_section) == true and has_alife_info("opt_activate_carrying_breathing") then
       if sgm_flags.bool_carrying_snd_end == true and time_global() >= sgm_flags.timer_after_carrying_delay and sgm_flags.timer_carrying_idle_snd == 0 then
-         start_flague_timer("timer_carrying_idle_snd", math.random(3500, 5000))
+         sgm_g.start_flague_timer("timer_carrying_idle_snd", math.random(3500, 5000))
       elseif sgm_flags.bool_carrying_snd_end == true and time_global() >= sgm_flags.timer_after_carrying_delay and sgm_flags.timer_carrying_idle_snd ~= 0 then
          if time_global() >= sgm_flags.timer_carrying_idle_snd then
             sgm_flags.timer_carrying_idle_snd = 0
@@ -381,31 +381,31 @@ function CHudManager:hud_indikators()
          sgm_g.change_flag_value("hud_sleep_yellow")
          sgm_g.change_flag_value("hud_sleep_orange")
          sgm_g.change_flag_value("hud_sleep_red")
-         add_hud("hud_sleep_green")
+         sgm_g.add_hud("hud_sleep_green")
          sgm_g.change_flag_value("string_approach_sleep_color", "green")
       elseif sleep_factor >= (max_time - 125) and sleep_factor < (max_time - 80) then
          sgm_g.change_flag_value("hud_sleep_green")
          sgm_g.change_flag_value("hud_sleep_orange")
          sgm_g.change_flag_value("hud_sleep_red")
-         add_hud("hud_sleep_yellow")
+         sgm_g.add_hud("hud_sleep_yellow")
          sgm_g.change_flag_value("string_approach_sleep_color", "yellow")
       elseif sleep_factor >= (max_time - 80) and sleep_factor < (max_time - 35) then
          sgm_g.change_flag_value("hud_sleep_green")
          sgm_g.change_flag_value("hud_sleep_yellow")
          sgm_g.change_flag_value("hud_sleep_red")
-         add_hud("hud_sleep_orange")
+         sgm_g.add_hud("hud_sleep_orange")
          sgm_g.change_flag_value("string_approach_sleep_color", "orange")
       elseif sleep_factor >= (max_time - 35) and sleep_factor < max_time then
          sgm_g.change_flag_value("hud_sleep_green")
          sgm_g.change_flag_value("hud_sleep_yellow")
          sgm_g.change_flag_value("hud_sleep_orange")
-         add_hud("hud_sleep_red")
+         sgm_g.add_hud("hud_sleep_red")
          sgm_g.change_flag_value("string_approach_sleep_color", "red")
       elseif sleep_factor >= max_time then
          sgm_g.change_flag_value("hud_sleep_green")
          sgm_g.change_flag_value("hud_sleep_yellow")
          sgm_g.change_flag_value("hud_sleep_orange")
-         add_hud("hud_sleep_red")
+         sgm_g.add_hud("hud_sleep_red")
          sgm_g.change_flag_value("string_approach_sleep_color", "critical")
       elseif sleep_factor < (max_time - 180) then
          sgm_g.change_flag_value("hud_sleep_green")
@@ -428,25 +428,25 @@ function CHudManager:hud_indikators()
          sgm_g.change_flag_value("hud_aura_inactivity_yellow")
          sgm_g.change_flag_value("hud_aura_inactivity_orange")
          sgm_g.change_flag_value("hud_aura_inactivity_red")
-         add_hud("hud_aura_inactivity_green")
+         sgm_g.add_hud("hud_aura_inactivity_green")
          sgm_g.change_flag_value("bool_aura_inactivity_action", false)
          level.remove_cam_effector(7682)
       elseif aura_factor >= 10 and aura_factor < 15 then
          sgm_g.change_flag_value("hud_aura_inactivity_green")
          sgm_g.change_flag_value("hud_aura_inactivity_orange")
          sgm_g.change_flag_value("hud_aura_inactivity_red")
-         add_hud("hud_aura_inactivity_yellow")
+         sgm_g.add_hud("hud_aura_inactivity_yellow")
          sgm_g.change_flag_value("bool_aura_inactivity_action", false)
       elseif aura_factor >= 15 and aura_factor < 20 then
          sgm_g.change_flag_value("hud_aura_inactivity_green")
          sgm_g.change_flag_value("hud_aura_inactivity_yellow")
          sgm_g.change_flag_value("hud_aura_inactivity_red")
-         add_hud("hud_aura_inactivity_orange")
+         sgm_g.add_hud("hud_aura_inactivity_orange")
       elseif aura_factor >= 20 then
          sgm_g.change_flag_value("hud_aura_inactivity_green")
          sgm_g.change_flag_value("hud_aura_inactivity_yellow")
          sgm_g.change_flag_value("hud_aura_inactivity_orange")
-         add_hud("hud_aura_inactivity_red")
+         sgm_g.add_hud("hud_aura_inactivity_red")
          sgm_g.change_flag_value("bool_aura_inactivity_action", true)
       end
    end
@@ -456,22 +456,22 @@ function CHudManager:hud_indikators()
          sgm_g.change_flag_value("hud_toxic_yellow")
          sgm_g.change_flag_value("hud_toxic_orange")
          sgm_g.change_flag_value("hud_toxic_red")
-         add_hud("hud_toxic_green")
+         sgm_g.add_hud("hud_toxic_green")
       elseif toxicity_factor >= 0.3 and toxicity_factor < 0.6 then
          sgm_g.change_flag_value("hud_toxic_green")
          sgm_g.change_flag_value("hud_toxic_orange")
          sgm_g.change_flag_value("hud_toxic_red")
-         add_hud("hud_toxic_yellow")
+         sgm_g.add_hud("hud_toxic_yellow")
       elseif toxicity_factor >= 0.6 and toxicity_factor < 0.8 then
          sgm_g.change_flag_value("hud_toxic_green")
          sgm_g.change_flag_value("hud_toxic_yellow")
          sgm_g.change_flag_value("hud_toxic_red")
-         add_hud("hud_toxic_orange")
+         sgm_g.add_hud("hud_toxic_orange")
       elseif toxicity_factor >= 0.8 then
          sgm_g.change_flag_value("hud_toxic_green")
          sgm_g.change_flag_value("hud_toxic_yellow")
          sgm_g.change_flag_value("hud_toxic_orange")
-         add_hud("hud_toxic_red")
+         sgm_g.add_hud("hud_toxic_red")
       else
          sgm_g.change_flag_value("hud_toxic_green")
          sgm_g.change_flag_value("hud_toxic_yellow")
@@ -484,14 +484,14 @@ end
 function CHudManager:hud_utils()
    if sgm_g.check_seconds(2) then
       if sgm_g.get_flag_value("bool_cheat_mode_activate") == true then
-         add_hud("hud_cheat_mode_static")
+         sgm_g.add_hud("hud_cheat_mode_static")
       else
          sgm_g.change_flag_value("hud_cheat_mode_static")
       end
    end
    if sgm_ui_mod_elements.army_timer_active == true then
       local data_timer = sgm_ui_mod_elements.army_timer_value
-      add_hud("hud_timer_wnd", data_timer)
+      sgm_g.add_hud("hud_timer_wnd", data_timer)
    else
       if sgm_g.check_seconds(2) then
          sgm_g.change_flag_value("hud_timer_wnd")
@@ -504,8 +504,8 @@ function CHudManager:hud_utils()
       else
          data_rank = "" .. sgm_g.get_actor_rank()
       end
-      add_hud("hud_actor_rank_icon")
-      add_hud("hud_actor_rank_text", data_rank)
+      sgm_g.add_hud("hud_actor_rank_icon")
+      sgm_g.add_hud("hud_actor_rank_text", data_rank)
    elseif sgm_g.dont_has_alife_info("opt_show_rank_counter") and sgm_g.check_seconds(1) then
       sgm_g.change_flag_value("hud_actor_rank_text")
       sgm_g.change_flag_value("hud_actor_rank_icon")
@@ -530,7 +530,7 @@ function CHudManager:hud_utils()
    if sgm_g.check_seconds(1) then
       if get_hud():GetCustomStatic("game_saved") ~= nil then
          if sgm_flags.timer_looped_save_message == 0 then
-            start_flague_timer("timer_looped_save_message", 5000)
+            sgm_g.start_flague_timer("timer_looped_save_message", 5000)
          end
          if sgm_flags.timer_looped_save_message ~= 0 then
             if time_global() >= sgm_flags.timer_looped_save_message then
@@ -543,7 +543,7 @@ function CHudManager:hud_utils()
       end
       if get_hud():GetCustomStatic("item_used") ~= nil then
          if sgm_flags.timer_looped_use_item_message == 0 then
-            start_flague_timer("timer_looped_use_item_message", 5000)
+            sgm_g.start_flague_timer("timer_looped_use_item_message", 5000)
          end
          if sgm_flags.timer_looped_use_item_message ~= 0 then
             if time_global() >= sgm_flags.timer_looped_use_item_message then

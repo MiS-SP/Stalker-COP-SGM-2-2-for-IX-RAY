@@ -192,9 +192,9 @@ function CGeneralTask:give_task(community)
 		t:set_title(game.translate_string(self.current_title) .. " " .. task_functor[self.title_end]())
 	end
 	if self.descr_end == nil or self.descr_end == "nil" then
-		if exists(self.execution_time) then
+		if sgm_g.exists(self.execution_time) then
 			sgm_g.start_game_timer("timer_quest_" .. self.id, tonumber(self.execution_time))
-			if exists(utils.cfg_get_string(self.task_ini, self.id, "on_expired", nil, false, "", "nil")) then
+			if sgm_g.exists(utils.cfg_get_string(self.task_ini, self.id, "on_expired", nil, false, "", "nil")) then
 				if sgm_g.find_in_string(self.id, "employer_find_item") and sgm_g.find_in_string(self.current_descr, "text0") then
 					local employer_find_item_name = game.translate_string(sgm_functions.ReadCaption(sgm_g.read_mod_param(
 						"employer_currert_target")))
@@ -326,7 +326,7 @@ function CGeneralTask:check_task(tm)
 	end
 	if self.descr_end == nil or self.descr_end == "nil" then
 		local t_descr = task_functor[self.descr_functor](self.id, "descr", self.descr)
-		if exists(self.execution_time) then
+		if sgm_g.exists(self.execution_time) then
 			self.current_descr = t_descr
 			local currert_execution_time = check_game_timer("timer_quest_" .. self.id, true) - get_general_game_time()
 			if currert_execution_time <= 0 then
@@ -340,12 +340,12 @@ function CGeneralTask:check_task(tm)
 				else
 					self.t:set_description(game.translate_string(t_descr))
 				end
-				if exists(utils.cfg_get_string(self.task_ini, self.id, "on_expired", nil, false, "", "nil")) then
+				if sgm_g.exists(utils.cfg_get_string(self.task_ini, self.id, "on_expired", nil, false, "", "nil")) then
 					self.last_check_task = "expired"
 					return
 				end
 			else
-				if exists(utils.cfg_get_string(self.task_ini, self.id, "on_expired", nil, false, "", "nil")) then
+				if sgm_g.exists(utils.cfg_get_string(self.task_ini, self.id, "on_expired", nil, false, "", "nil")) then
 					if sgm_g.find_in_string(self.id, "employer_find_item") and sgm_g.find_in_string(self.current_descr, "text0") then
 						local employer_find_item_name = game.translate_string(sgm_functions.ReadCaption(sgm_g
 							.read_mod_param(

@@ -57,7 +57,7 @@ function check_medal_reward(nominal, descr_num, reward_secrets)
       give_info("medal_rank_" .. nominal)
       give_object_to_actor("medal_rank_" .. nominal)
       news_manager.send_tip(db.actor, "st_medal_tip_text" .. descr_num, 0, "medal", 8000, nil, "st_medal_tip_title")
-      inc_mod_param("stat_medaley", 1)
+      sgm_g.inc_mod_param("stat_medaley", 1)
       give_secret(reward_secrets)
    end
 end

@@ -157,7 +157,10 @@ function utils_update()
       give_info("actor_come_to_darkvalley")
       sgm_supply.check_and_spawn_supply()
    end
-   if level_name == "labx8" and sgm_g.dont_has_alife_info("actor_come_to_labx8") then give_info("actor_come_to_labx8") end
+   if level_name == "labx8" and sgm_g.dont_has_alife_info("actor_come_to_labx8") then
+      give_info(
+      "actor_come_to_labx8")
+   end
    if level_name == "l04u_labx18" and sgm_g.dont_has_alife_info("actor_come_to_x18") then
       give_info("actor_come_to_x18")
       sgm_supply.check_and_spawn_supply()
@@ -198,7 +201,7 @@ function w_CTime(p, t)
       p:w_u8(-1)
       return
    end
-   old_w_CTime()
+   old_w_CTime(p, t)
 end
 
 utils.w_CTime = w_CTime

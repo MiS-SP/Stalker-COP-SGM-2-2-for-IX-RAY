@@ -173,7 +173,7 @@ end
 
 function mod_options:press_hud()
    if self.mod_hud_dlg == nil then
-      self.mod_hud_dlg = ui_mod_hud.mod_hud()
+      self.mod_hud_dlg = sgm_ui_mod_hud.mod_hud()
       self.mod_hud_dlg.owner = self
    end
    self.mod_hud_dlg:ShowDialog(true)
@@ -183,7 +183,7 @@ end
 
 function mod_options:press_optimization()
    if self.mod_options_add_dlg == nil then
-      self.mod_options_add_dlg = ui_mod_optimization.mod_optimization()
+      self.mod_options_add_dlg = sgm_ui_mod_optimization.mod_optimization()
       self.mod_options_add_dlg.owner = self
    end
    self.mod_options_add_dlg:ShowDialog(true)

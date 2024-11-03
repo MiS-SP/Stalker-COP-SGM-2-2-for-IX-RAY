@@ -203,7 +203,7 @@ function action_cutscene:select_next_motion()
 
 	if cam_effector_sets[motion] == nil then --Это имя файла, а не имя таблицы.
 		self.motion = cam_effector_set(
-		{ start = {}, idle = { { anim = motion, looped = false, global_cameffect = self.st.global_cameffect } }, finish = {} },
+			{ start = {}, idle = { { anim = motion, looped = false, global_cameffect = self.st.global_cameffect } }, finish = {} },
 			self.st)
 	else
 		self.motion = cam_effector_set(cam_effector_sets[motion], self.st)

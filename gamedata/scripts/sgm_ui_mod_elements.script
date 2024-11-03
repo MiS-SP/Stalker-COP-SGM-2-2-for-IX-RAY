@@ -399,7 +399,7 @@ function mp3_update()
 end
 
 function add_mp3_bonus(info_name)
-   if dont_has_alife_info(info_name) then
+   if sgm_g.dont_has_alife_info(info_name) then
       news_manager.send_tip(db.actor, "st_mp3_new_content_descr", 0, "mp3_player", 3500, nil, "st_mp3_new_content_title")
    end
    give_info(info_name)
@@ -1826,7 +1826,7 @@ end
 function personal_marker:btn_setup()
    local sobj = alife():create("personal_marker", db.actor:position(), db.actor:level_vertex_id(),
       db.actor:game_vertex_id())
-   if exists(self.enter_field:GetText()) and self.enter_field:GetText() ~= "" then
+   if sgm_g.exists(self.enter_field:GetText()) and self.enter_field:GetText() ~= "" then
       sgm_g.add_spot_on_map(sobj.id, sgm_flags.spot_map_marker, self.enter_field:GetText())
    else
       sgm_g.add_spot_on_map(sobj.id, sgm_flags.spot_map_marker, "st_personal_marker_name")
@@ -1906,7 +1906,7 @@ function personal_rukzak:btn_leave()
    if self.check_with_spot:GetCheck() == true then
       local sobj = create("default_inventory_box", db.actor:position().x, db.actor:position().y, db.actor:position().z,
          db.actor:level_vertex_id(), db.actor:game_vertex_id())
-      if exists(self.spot_name_field:GetText()) and self.spot_name_field:GetText() ~= "" then
+      if sgm_g.exists(self.spot_name_field:GetText()) and self.spot_name_field:GetText() ~= "" then
          sgm_g.add_spot_on_map(sobj.id, sgm_flags.spot_hero_rucksack, self.spot_name_field:GetText())
       else
          sgm_g.add_spot_on_map(sobj.id, sgm_flags.spot_hero_rucksack, "st_treasure_rukzak_name")
@@ -2941,7 +2941,7 @@ function question_game:select_random_question()
    local min_q, max_q = 1, question_game_q_count
    local rnd_q = "q_" .. string.sub(level.name(), 1, 1) .. "_cell_" .. math.random(min_q, max_q)
    for k, v in pairs(question_q_table) do
-      if k ~= nil and k == rnd_q and dont_has_alife_info(k) then
+      if k ~= nil and k == rnd_q and sgm_g.dont_has_alife_info(k) then
          question_game_q_s = k
          question_game_q_h_f = true
       end
@@ -2957,7 +2957,7 @@ function question_game:select_random_advice()
    local min_a, max_a = 1, question_game_a_count
    local rnd_a = "a_" .. string.sub(level.name(), 1, 1) .. "_cell_" .. math.random(min_a, max_a)
    for k, v in pairs(question_a_table) do
-      if k ~= nil and k == rnd_a and dont_has_alife_info(k) then
+      if k ~= nil and k == rnd_a and sgm_g.dont_has_alife_info(k) then
          question_game_a_s = k
          question_game_a_h_f = true
       end
@@ -3019,7 +3019,8 @@ function question_game:parse_questions()
          for i = 0, items_count - 1 do
             result, item_section, str = question_game_ini:r_line(id, i, "", "")
             if item_section == "cond" then
-               par_cond = sgm_g.to_string(sgm_functions.check_section_condlist(question_game_ini, id, "cond", "false"))
+               par_cond = sgm_g.to_string(sgm_functions.check_section_condlist(question_game_ini, id, "cond",
+                  "false"))
             elseif item_section == "question" then
                par_question = game.translate_string(str)
             elseif item_section == "var_a" then
@@ -3081,7 +3082,7 @@ end
 
 function question_game:consider_available_questions()
    for k, v in pairs(question_q_table) do
-      if k ~= nil and dont_has_alife_info(k) then
+      if k ~= nil and sgm_g.dont_has_alife_info(k) then
          question_game_q_available = question_game_q_available + 1
       end
    end
@@ -3102,7 +3103,8 @@ function question_game:parse_advices()
          for i = 0, items_count - 1 do
             result, item_section, str = question_game_ini:r_line(id, i, "", "")
             if item_section == "cond" then
-               par_cond = sgm_g.to_string(sgm_functions.check_section_condlist(question_game_ini, id, "cond", "false"))
+               par_cond = sgm_g.to_string(sgm_functions.check_section_condlist(question_game_ini, id, "cond",
+                  "false"))
             elseif item_section == "advice" then
                par_advice = game.translate_string(str)
             elseif item_section == "reward_money" then
@@ -3139,7 +3141,7 @@ end
 
 function question_game:consider_available_advices()
    for k, v in pairs(question_a_table) do
-      if k ~= nil and dont_has_alife_info(k) then
+      if k ~= nil and sgm_g.dont_has_alife_info(k) then
          question_game_a_available = question_game_a_available + 1
       end
    end

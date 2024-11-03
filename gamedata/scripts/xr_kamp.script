@@ -1,19 +1,20 @@
+--' Откорректировал схему под ЗП.
 ----------------------------------------------------------------------------------------------------------------------
---	РЎС…РµРјР° Р»Р°РіРµСЂСЊ. Р§СѓРґР°Рє(Рё) Сѓ РєРѕСЃС‚СЂР°.
---	Р°РІС‚РѕСЂ: Р”РёРґРµРЅРєРѕ Р СѓСЃР»Р°РЅ (Stohe)
+--	Схема лагерь. Чудак(и) у костра.
+--	автор: Диденко Руслан (Stohe)
 --	TODO:
 ----------------------------------------------------------------------------------------------------------------------
 --function printf()
 --end
 
 kamps = {}
-kamp_stalkers = {} -- РјРѕРіСѓС‚ Р»Рё СЃС‚Р°Р»РєРµСЂС‹ РІ Р»Р°РіРµСЂРµ СЋР·Р°С‚СЊСЃСЏ РёРіСЂРѕРєРѕРј.
--- РћР±СЉСЏРІР»РµРЅРёСЏ РёС‚РµСЂР°С‚РѕСЂРѕРІ
+kamp_stalkers = {} -- могут ли сталкеры в лагере юзаться игроком.
+-- Объявления итераторов
 local k,v,kk,vv = 0,0,0,0
 ---------------------------------------------------------------------------------------------------------------------
 --Evaluators
 ----------------------------------------------------------------------------------------------------------------------
---' РЈСЃР»РѕРІРёРµ Р·Р°РІРµСЂС€РµРЅРёСЏ СЃРєСЂРёРїС‚Р°
+--' Условие завершения скрипта
 class "evaluator_kamp_end" (property_evaluator)
 function evaluator_kamp_end:__init(name, storage) super (nil, name)
 	self.a = storage
@@ -21,21 +22,21 @@ end
 function evaluator_kamp_end:evaluate()
 	return not xr_logic.is_active(self.object, self.a)
 end
---' РќР°С…РѕРґРёРјСЃСЏ Р»Рё РјС‹ РЅР° Р·Р°РґР°РЅРЅРѕР№ РїРѕР·РёС†РёРё
+--' Находимся ли мы на заданной позиции
 class "evaluator_on_position" (property_evaluator)
 function evaluator_on_position:__init(name, storage) super (nil, name)
 	self.a = storage
 end
 function evaluator_on_position:evaluate()
-		if self.object:level_vertex_id() == self.a.pos_vertex then
-		return true
+        if self.object:level_vertex_id() == self.a.pos_vertex then
+	   return true
 	end
 	return false
 end
 ----------------------------------------------------------------------------------------------------------------------
 --Actions
 ----------------------------------------------------------------------------------------------------------------------
---' РРґРµС‚ РІ Р·Р°РґР°РЅРЅСѓСЋ РѕР±Р»Р°СЃС‚СЊ
+--' Идет в заданную область
 class "action_go_position" (action_base)
 function action_go_position:__init (npc_name,action_name,storage) super (nil,action_name)
 	self.a = storage
@@ -53,14 +54,13 @@ function action_go_position:initialize()
 end
 function action_go_position:execute ()
 	action_base.execute (self)
-
-	-- РЎРїСЂР°С€РёРІР°РµРј РіРґРµ СЃРёРґРµС‚СЊ
+	-- Спрашиваем где сидеть
 	local tmp_pos_vertex, npc_position_num = kamps[self.a.center_point]:getDestVertex(self.object, self.a.radius)
 	if self.a.npc_position_num ~= npc_position_num then
 		self.a.npc_position_num = npc_position_num
 		self.a.pos_vertex = tmp_pos_vertex
 
-		--' РћРїСЂРµРґРµР»СЏРµРј РєСѓРґР° СЃРјРѕС‚СЂРµС‚СЊ.
+		--' Определяем куда смотреть.
 		self.a.pp = patrol(self.a.center_point):point(0)
 
 		local dir = vector():set(math.random(-1,1), 0, math.random(-1,1))
@@ -83,12 +83,16 @@ function action_go_position:execute ()
 		self.object:set_path_type(game_object.level_path)
 		state_mgr.set_state(self.object, self.a.def_state_moving)
 	end
+        --/ SGM in
+	local state, sound, substate = kamps[self.a.center_point]:updateNpc(self.object)
+	state_mgr.set_state(self.object, state, nil, nil, {look_position = self.a.pp}, {fast_set=true}, nil, {subanim = substate})
+        --/ SGM out
 end
 function action_go_position:finalize ()
 	action_base.finalize (self)
 end
 
---' РџСЂРѕСЃС‚Рѕ СЃРёРґРёС‚ Рё РІС‚С‹РєР°РµС‚
+--' Просто сидит и втыкает
 class "action_wait" (action_base)
 function action_wait:__init (npc_name,action_name,storage) super (nil,action_name)
 	self.a = storage
@@ -99,17 +103,19 @@ function action_wait:initialize()
 --	self.object:set_path_evaluator()
 	self.object:set_desired_position()
 	self.object:set_desired_direction()
-
 	kamps[self.a.center_point]:increasePops(self.object)
 end
 function action_wait:activate_scheme()
 	self.a.signals = {}
+        self:execute()
 end
 function action_wait:execute()
 	action_base.execute (self)
-
-	--' РїРѕРІРµСЂРЅСѓС‚СЊ РµРіРѕ Р»РёС†РѕРј Рє С†РµРЅС‚СЂСѓ
-	state_mgr.set_state(self.object, "sit", nil, nil, {look_position = self.a.pp})
+	--' повернуть его лицом к центру
+        --/ SGM in
+	local state, sound, substate = kamps[self.a.center_point]:updateNpc(self.object)
+	state_mgr.set_state(self.object, state, nil, nil, {look_position = self.a.pp}, nil, nil, {subanim = substate})
+        --/ SGM out
 end
 function action_wait:finalize()
 	kamps[self.a.center_point]:decreasePops(self.object)
@@ -154,17 +160,17 @@ function CKampManager:__init(path)
 	self.npc = {}
 	self.population = 0
 	self.kamp_state = "idle"
-	-- Р“РґРµ С‚Рѕ Р·РґРµСЃСЊ СЂР°СЃРїР°СЂСЃРёРј РїР°С‚СЂСѓР»СЊРЅС‹Р№ РїСѓС‚СЊ Рё РїСЂРѕР°РїРґРµР№С‚РёРј РІРµРєС‚РѕСЂ РїРѕР·РёС†РёР№.
-	-- 0 РІРµСЂС€РёРЅР° - С†РµРЅС‚СЂ Р»Р°РіРµСЂСЏ.
-	-- 1 С„Р»Р°Рі - СЃРµРєС‚РѕСЂ Р·Р°РЅСЏС‚, РІ РїРѕРёРЅС‚Рµ РјРѕР¶РЅРѕ СЃРёРґРµС‚СЊ.
-	-- 2 С„Р»Р°Рі - СЃРµРєС‚РѕСЂ Р·Р°РЅСЏС‚, РІ РїРѕРёРЅС‚Рµ РЅРµР»СЊР·СЏ СЃРёРґРµС‚СЊ.
+	-- Где то здесь распарсим патрульный путь и проапдейтим вектор позиций.
+	-- 0 вершина - центр лагеря.
+	-- 1 флаг - сектор занят, в поинте можно сидеть.
+	-- 2 флаг - сектор занят, в поинте нельзя сидеть.
 --[[
 	for k = 1, self.patrol:count() - 1 do
-		-- РµСЃР»Рё РµСЃС‚СЊ 1 РёР»Рё 2 С„Р»Р°Р¶РѕРє - РѕС‚РјРµС‚РёС‚СЊ СЃРµРєС‚РѕСЂ РєР°Рє Р·Р°РЅСЏС‚С‹Р№
+		-- если есть 1 или 2 флажок - отметить сектор как занятый
 		if self.patrol:flag(k,1) or
 			 self.patrol:flag(k,2)
 		then
-			-- РѕС‚РјРµС‚РёС‚СЊ СЃРµРєС‚РѕСЂ РєР°Рє Р·Р°РЅСЏС‚С‹Р№
+			-- отметить сектор как занятый
 			for key,value in pairs(self.position) do
 				dir = vector():sub(level.vertex_position(self.patrol:level_vertex_id(k)), level.vertex_position(self.center))
 				if value.dir then
@@ -179,15 +185,15 @@ function CKampManager:__init(path)
 
 		end
 
-		-- РµСЃР»Рё РµСЃС‚СЊ 1 С„Р»Р°Р¶РѕРє - СЃРѕР·РґР°С‚СЊ РјРµСЃС‚Рѕ РґР»СЏ СЃРёРґРµРЅРёСЏ РІ С‚РѕС‡РєРµ РїСѓС‚Рё
+		-- если есть 1 флажок - создать место для сидения в точке пути
 		if self.patrol:flag(k,1) then
-			-- СЃРѕР·РґР°С‚СЊ С‚РѕС‡РєСѓ РґР»СЏ СЃРёРґРµРЅРёСЏ
+			-- создать точку для сидения
 			table.insert(self.position, {vertex = self.patrol:level_vertex_id(k)})
 		end
 	end
 ]]
 	--print_table(self.position)
-	--РўР°Р±Р»РёС†Р° СЃРѕРѕС‚РІРµС‚СЃС‚РІРёР№ СЃРѕСЃС‚РѕСЏРЅРёСЏ Р»Р°РіРµСЂСЏ Рё РґРѕРїСѓСЃС‚РёРјС‹С… Р°РЅРёРјР°С†РёР№ Рё Р·РІСѓРєРѕРІ.
+	--Таблица соответствий состояния лагеря и допустимых анимаций и звуков.
 	self.avail_state = {idle				= { directed	= { "wait", "sit", "sit_ass", "sit_knee", "eat_kolbasa", "eat_vodka", "eat_energy", "eat_bread", "trans"}},
 						pre_harmonica		= { directed	= { "wait_harmonica"},
 												undirected	= { "wait", "sit", "sit_ass", "sit_knee", "eat_kolbasa", "eat_vodka", "eat_energy", "eat_bread", "trans"}},
@@ -213,7 +219,7 @@ function CKampManager:__init(path)
 						post_guitar			= { directed = "", undirected = "reac_guitar"},
 						story				= { directed = "", undirected = ""}}
 
-	-- РўР°Р±Р»РёС†Р° С‚Р°Р№РјР°СѓС‚РѕРІ РїРѕ СЃРѕСЃС‚РѕСЏРЅРёСЋ. Р•СЃР»Рё СЃРѕСЃС‚РѕСЏРЅРёРµ СѓСЃС‚Р°РЅРѕРІРёР»РѕСЃСЊ, С‚Рѕ РЅРµРєРѕС‚РѕСЂРѕРµ РІСЂРµРјСЏ РѕРЅРѕ РЅРµ РјРѕР¶РµС‚ Р±С‹С‚ РёР·РјРµРЅРµРЅРѕ.
+	-- Таблица таймаутов по состоянию. Если состояние установилось, то некоторое время оно не может быт изменено.
 	self.timeout	 = {idle				= { min = 30000 },
 						pre_harmonica		= { min = 3000 },
 						harmonica			= { min = 5000, soundstart = true },
@@ -223,12 +229,12 @@ function CKampManager:__init(path)
 						post_guitar			= { min = 3000 },
 						story				= { min = 1000, soundstart = true }}
 
-	-- РўР°Р±Р»РёС†Р° РіР»РѕР±Р°Р»СЊРЅС‹С… СЃРѕСЃС‚РѕСЏРЅРёР№ Р»Р°РіРµСЂСЏ.
+	-- Таблица глобальных состояний лагеря.
 	self.kamp_states = { idle = true,
 						 pre_harmonica = false, harmonica = false, post_harmonica = false,
 						 pre_guitar = false, guitar = false, post_guitar = false,
 						 story = true }
-	-- РўР°Р±Р»РёС†Р° РґРѕРїСѓСЃС‚РёРјС‹С… РїРµСЂРµС…РѕРґРѕРІ РјРµР¶РґСѓ СЃРѕСЃС‚РѕСЏРЅРёСЏРјРё СЃ РІРµСЂРѕСЏС‚РЅРѕСЃС‚СЏРјРё.
+	-- Таблица допустимых переходов между состояниями с вероятностями.
 	self.trans_kamp = { idle			= { idle = 0, pre_harmonica = 0, pre_guitar = 50, story = 50},
 						pre_harmonica	= { harmonica = 100 },
 						harmonica		= { post_harmonica = 100 },
@@ -238,15 +244,15 @@ function CKampManager:__init(path)
 						post_guitar		= { idle = 70, guitar = 30 },
 						story			= { idle = 100 }}
 
-	-- РҐСЂР°РЅРёР»РёС‰Рµ РґР»СЏ СЂРµР¶РёСЃСЃРµСЂР° Р»Р°РіРµСЂСЏ. Р РµР¶РёСЃСЃРµСЂРµРј СЏРІР»СЏРµС‚СЃСЏ СЃС‚Р°Р»РєРµСЂ, Р·Р°С‚РµСЏРІС€РёР№ РЅРµРѕР±С‹С‡РЅРѕРµ РїРѕРІРµРґРµРЅРёРµ
+	-- Хранилище для режиссера лагеря. Режиссерем является сталкер, затеявший необычное поведение
 	self.director = nil
 
 
-	--' Р”Р»СЏ С‚РµСЃС‚Р° СЃРѕР·РґР°РµРј РѕР±СЉРµРєС‚ РёСЃС‚РѕСЂРёРё
+	--' Для теста создаем объект истории
 	self.sound_manager = sound_manager.get_sound_manager("kamp_"..path)
 end
 function CKampManager:selectPosition(npc_id)
-	-- СЃРѕР·РґР°РµРј СЃРїРёСЃРѕРє РґРѕСЃС‚СѓРїРЅС‹С… РїРѕР·РёС†РёР№
+	-- создаем список доступных позиций
 	--printf("KAMP. [%s] called select position", npc_id)
 	local free = {}
 	for k,v in pairs(self.position) do
@@ -254,7 +260,7 @@ function CKampManager:selectPosition(npc_id)
 			table.insert(free, k)
 		end
 	end
-	--' Р·Р°С‚РµРј РёР· РґРѕСЃС‚СѓРїРЅС‹С… РїРѕР·РёС†РёР№ РІС‹Р±СЂР°С‚СЊ СЂР°РЅРґРѕРјРЅРѕ РѕРґРЅСѓ.
+	--' затем из доступных позиций выбрать рандомно одну.
 	if #free > 0 then
 		--printf("KAMP [%s] free node > 0", npc_id)
 		local rr = math.random(#free)
@@ -279,13 +285,13 @@ function CKampManager:getDestVertex(npc, radius)
 		return nil
 	end
 
-	-- РІС‹СЃС‡РёС‚С‹РІР°РµРј РІРµСЂС‚РµС… РїРѕ РЅР°РїСЂР°РІР»РµРЅРёСЋ
-	-- Р‘РµСЂРµРј РїРѕР·РёС†РёСЋ РІ Р·Р°РґР°РЅРЅРѕРј РЅР°РїСЂР°РІР»РµРЅРёРё, Р·Р°С‚РµРј Р±РµСЂРµРј РЅРёР°СЂРµСЃС‚ С‚РѕС‡РєСѓ РѕС‚ РЅРµРµ.
+	-- высчитываем вертех по направлению
+	-- Берем позицию в заданном направлении, затем берем ниарест точку от нее.
 
 	local pp = self.patrol:point(0)
 	local dir = self.position[self.npc[npc_id].position].dir
 
-	-- РЎС‡РёС‚Р°РµРј СЂР°РЅРґРѕРјРЅРѕРµ РѕС‚РєР»РѕРЅРµРЅРёРµ РЅР°РїСЂР°РІР»РµРЅРёСЏ.
+	-- Считаем рандомное отклонение направления.
 	dir.x = dir.x + math.random(-1,1)/5
 	dir.z = dir.z + math.random(-1,1)/5
 	dir:normalize()
@@ -321,7 +327,7 @@ function CKampManager:getDestVertex(npc, radius)
 	return dest_vertex, self.npc[npc_id].position
 end
 function CKampManager:proceedState(npc)
-	-- РџСЂРѕРІРµСЂРєР° РЅР° С‚Р°Р№РјР°СѓС‚
+	-- Проверка на таймаут
 	local npc_id = npc:id()
 	local active_sound_count = npc:active_sound_count()
 	if self.npc[npc_id].need_sound_begin == true then
@@ -337,31 +343,31 @@ function CKampManager:proceedState(npc)
 		return
 	end
 
-	--' Р•СЃР»Рё СЂРµР¶РёСЃСЃРµСЂ РЅРµ Р·Р°РєРѕРЅС‡РёР» РіРѕРІРѕСЂРёС‚СЊ - Р¶РґРµРј РєРѕРЅС†Р° С„СЂР°Р·С‹.
+	--' Если режиссер не закончил говорить - ждем конца фразы.
 	if active_sound_count > 0 then
 		return
 	end
 
-	--' Р•СЃР»Рё РЅР°С‡Р°Р»Рё РіРѕРІРѕСЂРёС‚СЊ РєР°РєСѓСЋ С‚Рѕ РёСЃС‚РѕСЂРёСЋ СЃР°СѓРЅРґ-РјРµРЅРµРґР¶РµСЂР°
+	--' Если начали говорить какую то историю саунд-менеджера
 	if not self.sound_manager:is_finished() then
 		self.sound_manager:update()
 		return
 	end
 
 	--printf("Proceed state for [%s]", npc_id)
-	-- РћРїСЂРµРґРµР»СЏСЋС‚СЃСЏ РґРѕРїСѓСЃС‚РёРјС‹Рµ РІ РґР°РЅРЅС‹Р№ РјРѕРјРµРЅС‚ РїРµСЂРµС…РѕРґС‹.
+	-- Определяются допустимые в данный момент переходы.
 	local temp = {}
 	local max_rnd = 0
 	for k,v in pairs(self.trans_kamp[self.kamp_state]) do
-		-- РћРїСЂРµРґРµР»СЏСЋС‚СЃСЏ РґРѕРїСѓСЃС‚РёРјС‹Рµ СЃРѕСЃС‚РѕСЏРЅРёСЏ РґР»СЏ Р»Р°РіРµСЂСЏ.
+		-- Определяются допустимые состояния для лагеря.
 		if self.kamp_states[k] == true then
 			temp[k] = v
 			max_rnd = max_rnd + v
 		end
 	end
-	-- РћСЃСѓС‰РµСЃС‚РІР»СЏРµС‚СЃСЏ СЂР°РЅРґРѕРјРЅС‹Р№ РІР·РІРµС€РµРЅРЅС‹Р№ РїРµСЂРµС…РѕРґ.
+	-- Осуществляется рандомный взвешенный переход.
 	if max_rnd == 0 then
-		-- Р•СЃР»Рё РїРµСЂРµС…РѕРґРёС‚СЊ РЅРµРєСѓРґР° - РїРµСЂРµС…РѕРґРёРј РІ Р°Р№РґР»
+		-- Если переходить некуда - переходим в айдл
 		temp["idle"] = 100
 		max_rnd = 100
 	end
@@ -398,14 +404,14 @@ function CKampManager:proceedState(npc)
 end
 function CKampManager:proceedRole(npc, director)
 	--printf("Proceed Role for [%s]", npc:id())
-	-- РћРїСЂРµРґРµР»РёС‚СЊ СЃРїРёСЃРѕРє РґРѕСЃС‚СѓРїРЅС‹С… Р°РЅРёРјР°С†РёР№ РїРѕ СЃРѕСЃС‚РѕСЏРЅРёСЋ Р»Р°РіРµСЂСЏ.
-	-- РѕРїСЂРµРґРµР»РёС‚СЊ СЃРїРёСЃРѕРє РґРѕСЃС‚СѓРїРЅС‹С… Р°РЅРёРјР°С†РёР№ РїРѕ РЅР°Р»РёС‡РёСЋ РїСЂРµРґРјРµС‚РѕРІ
-	-- РІС‹Р±СЂР°С‚СЊ РѕРґРЅСѓ РёР· РЅРёС… (С‚Рѕ Р¶Рµ СЃР°РјРѕРµ СЃРѕ Р·РІСѓРєРѕРј).
+	-- Определить список доступных анимаций по состоянию лагеря.
+	-- определить список доступных анимаций по наличию предметов
+	-- выбрать одну из них (то же самое со звуком).
 	local states = 0
 	local sound = ""
 	local state = ""
 	local npc_id = npc:id()
-	-- Р’С‹Р±РёСЂР°С‚СЊ РЅРѕРІРѕРµ СЃРѕСЃС‚РѕСЏРЅРёРµ С‚РѕР»СЊРєРѕ СЂР°Р· РІ РєР°РєРѕРµ С‚Рѕ РІСЂРµРјСЏ.
+	-- Выбирать новое состояние только раз в какое то время.
 	if self.npc[npc_id].begin == nil or
 		 time_global() - self.npc[npc_id].begin >= self.npc[npc_id].state_idle
 	then
@@ -415,7 +421,7 @@ function CKampManager:proceedRole(npc, director)
 			states = self.avail_state[self.kamp_state].undirected
 		end
 
-		--' Р’С‹Р±РёСЂР°РµРј С‚РѕР»СЊРєРѕ С‚Рµ Р°РЅРёРјР°С†РёРё, РєРѕС‚РѕСЂС‹Рµ РјРѕР¶РµС‚ РёРіСЂР°С‚СЊ РќРџРЎ.
+		--' Выбираем только те анимации, которые может играть НПС.
 		local temp = {}
 		for k,v in pairs(states) do
 			--printf("npc community is [%s]", character_community(npc))
@@ -446,16 +452,16 @@ function CKampManager:proceedRole(npc, director)
 	return state, sound
 end
 function CKampManager:updateNpc(npc)
-	-- РџСЂРѕРІРµСЂРєР° С‡С‚Рѕ СЃС‚Р°Р»РєРµСЂ РјРѕР¶РµС‚ РґРµР»Р°С‚СЊ, Р° С‡С‚Рѕ РЅРµС‚.
+	-- Проверка что сталкер может делать, а что нет.
 	self:checkNpcAbility(npc)
-	-- РџСЂРѕСЃРёРј Р»Р°РіРµСЂСЊ РІС‹Р±СЂР°С‚СЊ С‚РµРєСѓС‰РµРµ СЃРѕСЃС‚РѕСЏРЅРёРµ. РњРµРЅСЏС‚СЊ СЃРѕСЃС‚РѕСЏРЅРёРµ Р»Р°РіРµСЂСЏ
-	-- РёРјРµРµС‚ РїСЂР°РІРѕ С‚РѕР»СЊРєРѕ СЂРµР¶РёСЃСЃРµСЂ.
+	-- Просим лагерь выбрать текущее состояние. Менять состояние лагеря
+	-- имеет право только режиссер.
 	local npc_id = npc:id()
 	local director = self.director == nil or self.director == npc_id
 	if director	then
 		self:proceedState(npc)
 	end
-	-- Р“РѕРІРѕСЂРёРј С‡СѓРґР°РєСѓ РІС‹Р±СЂР°С‚СЊ СЃРµР±Рµ СЃРѕСЃС‚РѕСЏРЅРёРµ РґР»СЏ С‚РµРєСѓС‰РµРіРѕ СЃРѕСЃС‚РѕСЏРЅРёСЏ Р»Р°РіРµСЂСЏ.
+	-- Говорим чудаку выбрать себе состояние для текущего состояния лагеря.
 	local state, sound = self:proceedRole(npc, director)
 
 	local substate = nil
@@ -522,7 +528,7 @@ function CKampManager:updateNpc(npc)
 		xr_kamp.kamp_stalkers[npc_id] = true
 	end
 
-	-- Р’С‹Р±РѕСЂ СЂРµР°Р»СЊРЅС‹С… Р·РІСѓРєРѕРІ
+	-- Выбор реальных звуков
 	if sound == "idle" then
 		sound = "state"
 	elseif sound == "reac_guitar" then
@@ -542,31 +548,31 @@ function CKampManager:checkNpcAbility(npc)
 	if character_community(npc) ~= "monolith" and
 		 character_community(npc) ~= "zombied"
 	then
-		-- РµСЃС‚СЊ РєРѕР»Р±Р°СЃСѓ
+		-- есть колбасу
 		if npc:object("kolbasa") then
 			self.npc[npc_id].states["eat_kolbasa"] = true
 		else
 			self.npc[npc_id].states["eat_kolbasa"] = false
 		end
-		-- РїРёС‚СЊ РІРѕРґРєСѓ
+		-- пить водку
 		if npc:object("vodka") then
 			self.npc[npc_id].states["eat_vodka"] = true
 		else
 			self.npc[npc_id].states["eat_vodka"] = false
 		end
-		-- РїРёС‚СЊ РµРЅРµСЂРіРёС‚РёС‡РµСЃРєРёР№ РЅР°РїРёС‚РѕРє
+		-- пить енергитический напиток
 		if npc:object("energy_drink") then
 			self.npc[npc_id].states["eat_energy"] = true
 		else
 			self.npc[npc_id].states["eat_energy"] = false
 		end
-		-- РµСЃС‚СЊ С…Р»РµР±
+		-- есть хлеб
 		if npc:object("bread") then
 			self.npc[npc_id].states["eat_bread"] = true
 		else
 			self.npc[npc_id].states["eat_bread"] = false
 		end
-		-- РёРіСЂР°С‚СЊ РЅР° РіР°СЂРјРѕС€РєРµ
+		-- играть на гармошке
 --		if npc:object("harmonica_a") then
 --			self.npc[npc_id].states["play_harmonica"] = true
 --			self.npc[npc_id].states["wait_harmonica"] = true
@@ -580,7 +586,7 @@ function CKampManager:checkNpcAbility(npc)
 			self.kamp_states["harmonica"] = false
 			self.kamp_states["post_harmonica"] = false
 --		end
-		-- РёРіСЂР°С‚СЊ РЅР° РіРёС‚Р°СЂРµ
+		-- играть на гитаре
 --		if npc:object("guitar_a") then
 --			self.npc[npc_id].states["play_guitar"] = true
 --			self.npc[npc_id].states["wait_guitar"] = true
@@ -627,7 +633,7 @@ function CKampManager:removeNpc(npc)
 	self.sound_manager:unregister_npc(npc:id())
 	local npc_id = npc:id()
 	if self.npc[npc_id] ~= nil then
-		-- Р•СЃР»Рё СѓРґР°Р»СЏРµРј СЂРµР¶РёСЃСЃРµСЂР° - РЅРµРѕР±С…РѕРґРёРјРѕ С„РѕСЂСЃРёСЂРѕРІР°РЅРЅРѕ РїРµСЂРµРІРµСЃС‚Рё Р»Р°РіРµСЂСЊ РІ РёРґР»РѕРІРѕРµ СЃРѕСЃС‚РѕСЏРЅРёРµ.
+		-- Если удаляем режиссера - необходимо форсированно перевести лагерь в идловое состояние.
 		if self.director == npc_id then
 			self.director = nil
 			self.npc[npc_id].begin = nil
@@ -711,7 +717,7 @@ function add_to_binder(object, ini, scheme, section, storage)
 	action:add_precondition		(world_property(properties["kamp_end"],		true))
 
 end
--- РІРєР»СЋС‡РµРЅРёРµ Р»Р°РіРµСЂСЏ
+-- включение лагеря
 function set_scheme(npc, ini, scheme, section, gulag_name)
 	local st = xr_logic.assign_storage_and_bind(npc, ini, scheme, section)
 

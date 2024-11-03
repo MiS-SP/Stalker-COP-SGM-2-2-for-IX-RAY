@@ -89,7 +89,7 @@ function action_bodyguard:execute()
    local scheme_param = sgm_flags.table_mod_schemes[npc_id]
    local best_danger = npc:best_danger()
    local danger_precond = best_danger and
-       (best_danger:type() == danger_object.grenade or best_danger:type() == danger_object.entity_attacked)
+   (best_danger:type() == danger_object.grenade or best_danger:type() == danger_object.entity_attacked)
    local npc_found_enemy = npc:best_enemy() ~= nil or danger_precond
    local npc_without_enemy = npc:best_enemy() == nil and not danger_precond
    if read_obj_mod_param(npc, "issued_rifle_weapon") ~= nil and not npc:object(read_obj_mod_param(npc, "issued_rifle_weapon")) then
@@ -97,7 +97,7 @@ function action_bodyguard:execute()
    elseif read_obj_mod_param(npc, "issued_pistol_weapon") ~= nil and not npc:object(read_obj_mod_param(npc, "issued_pistol_weapon")) then
       give_object_to_npc(read_obj_mod_param(npc, "issued_pistol_weapon"), npc)
    end
-   if read_obj_mod_param(npc, "issued_medkit") ~= nil and npc.health < sgm_g.r_mod_params("number", "bodyguard_medkit_threshold", 0.35) and npc:object(read_obj_mod_param(npc, "issued_medkit")) ~= nil then
+   if read_obj_mod_param(npc, "issued_medkit") ~= nil and npc.health < r_mod_params("number", "bodyguard_medkit_threshold", 0.35) and npc:object(read_obj_mod_param(npc, "issued_medkit")) ~= nil then
       npc:eat(npc:object(read_obj_mod_param(npc, "issued_medkit")))
       if read_obj_mod_param(npc, "issued_medkit") == "medkit" then
          npc.health = 0.60
@@ -125,12 +125,12 @@ function action_bodyguard:execute()
       end
    elseif scheme_param.use_command == "guard" and npc_without_enemy then
       sgm_functions.send_npc_to(npc, db.actor:level_vertex_id(), scheme_param.bodyguard_vector)
-      if distance_between_safe(db.actor, npc) > sgm_g.r_mod_params("number", "bodyguard_running_dist", 35) then
+      if distance_between_safe(db.actor, npc) > r_mod_params("number", "bodyguard_running_dist", 35) then
          if sgm_flags.table_mod_schemes[npc_id .. "bodyguard_vector_timer"] == 0 then
             sgm_functions.set_state(npc, "sprint", true)
             sgm_flags.table_mod_schemes[npc_id .. "bodyguard_vector_timer"] = time_global() + math.random(300, 400)
          end
-      elseif distance_between_safe(db.actor, npc) >= 9 and distance_between_safe(db.actor, npc) <= sgm_g.r_mod_params("number", "bodyguard_running_dist", 35) then
+      elseif distance_between_safe(db.actor, npc) >= 9 and distance_between_safe(db.actor, npc) <= r_mod_params("number", "bodyguard_running_dist", 35) then
          if sgm_flags.table_mod_schemes[npc_id .. "bodyguard_vector_timer"] == 0 then
             sgm_functions.set_state(npc, "assault", true)
             sgm_flags.table_mod_schemes[npc_id .. "bodyguard_vector_timer"] = time_global() + math.random(300, 400)
@@ -160,12 +160,12 @@ function action_bodyguard:execute()
       end
    elseif scheme_param.use_command == "nofire" then
       sgm_functions.send_npc_to(npc, db.actor:level_vertex_id(), scheme_param.bodyguard_vector)
-      if distance_between_safe(db.actor, npc) > sgm_g.r_mod_params("number", "bodyguard_running_dist", 35) then
+      if distance_between_safe(db.actor, npc) > r_mod_params("number", "bodyguard_running_dist", 35) then
          if sgm_flags.table_mod_schemes[npc_id .. "bodyguard_vector_timer"] == 0 then
             sgm_functions.set_state(npc, "sprint", true)
             sgm_flags.table_mod_schemes[npc_id .. "bodyguard_vector_timer"] = time_global() + math.random(300, 400)
          end
-      elseif distance_between_safe(db.actor, npc) >= 9 and distance_between_safe(db.actor, npc) <= sgm_g.r_mod_params("number", "bodyguard_running_dist", 35) then
+      elseif distance_between_safe(db.actor, npc) >= 9 and distance_between_safe(db.actor, npc) <= r_mod_params("number", "bodyguard_running_dist", 35) then
          if sgm_flags.table_mod_schemes[npc_id .. "bodyguard_vector_timer"] == 0 then
             sgm_functions.set_state(npc, "assault", true)
             sgm_flags.table_mod_schemes[npc_id .. "bodyguard_vector_timer"] = time_global() + math.random(300, 400)

@@ -35,7 +35,7 @@ end
 
 function action_universal:get_random_theme()
    return sgm_flags.table_mod_schemes[self.object:id()].sound_object_theme_table
-   [math.random(table.getn(sgm_flags.table_mod_schemes[self.object:id()].sound_object_theme_table))]
+       [math.random(table.getn(sgm_flags.table_mod_schemes[self.object:id()].sound_object_theme_table))]
 end
 
 function action_universal:update(delta)
@@ -66,7 +66,7 @@ function action_universal:update(delta)
    end
    if scheme_param.born_kick == "true" and not sgm_g.read_obj_mod_param(self.object, "is_kicked") then
       set_hit_damage_to(self.object, hit.wound, 1, 1)
-      write_obj_mod_param(self.object, "is_kicked", true)
+      sgm_g.write_obj_mod_param(self.object, "is_kicked", true)
    end
    if scheme_param.scheme_type == "script_object" then
       self:script_object_update(scheme_param)
@@ -107,7 +107,7 @@ end
 
 function action_universal:script_object_update(scheme_param)
    if scheme_param.script_object_cond == "true" then
-      if exists(scheme_param.script_object_code) then
+      if sgm_g.exists(scheme_param.script_object_code) then
          if sgm_g.read_obj_mod_param(self.object, "access_resolved") == nil or sgm_g.read_obj_mod_param(self.object, "access_resolved") == false then
             self:script_object_code(scheme_param)
             return
@@ -128,7 +128,7 @@ end
 
 function action_universal:treasure_object_update(scheme_param)
    if scheme_param.treasure_object_cond == "true" then
-      if exists(scheme_param.treasure_object_code) then
+      if sgm_g.exists(scheme_param.treasure_object_code) then
          if sgm_g.read_obj_mod_param(self.object, "access_resolved") == nil or sgm_g.read_obj_mod_param(self.object, "access_resolved") == false then
             self:treasure_object_code(scheme_param)
             return
@@ -155,10 +155,10 @@ function action_universal:minetrap_object_update(scheme_param)
          sgm_flags.table_mod_mineraps[self.object:id()] = false
       end
       if sgm_flags.table_mod_mineraps[self.object:id()] == true then
-         sobj = create("minetrap_charge", self.object:position().x, self.object:position().y, self.object:position().z,
+         sobj = sgm_g.create("minetrap_charge", self.object:position().x, self.object:position().y, self.object:position().z,
             self.object:level_vertex_id(), self.object:game_vertex_id())
-         write_obj_mod_param(self.object, "detonate_source", sobj.id)
-         write_obj_mod_param(self.object, "detonate_timer", time_global() + 500)
+         sgm_g.write_obj_mod_param(self.object, "detonate_source", sobj.id)
+         sgm_g.write_obj_mod_param(self.object, "detonate_timer", time_global() + 500)
       end
    else
       self:deactivate(true)
@@ -177,7 +177,7 @@ end
 
 function action_universal:explosive_object_update(scheme_param)
    if sgm_g.read_obj_mod_param(self.object, "detonate_source") == nil then
-      if exists(scheme_param.explosive_object_tip) then
+      if sgm_g.exists(scheme_param.explosive_object_tip) then
          self.object:set_nonscript_usable(true)
          self.object:set_tip_text(scheme_param.explosive_object_tip)
       else
@@ -185,10 +185,10 @@ function action_universal:explosive_object_update(scheme_param)
          self.object:set_tip_text("")
       end
       if scheme_param.explosive_object_launch_cond == "true" then
-         sobj = create(scheme_param.explosive_object_charge, self.object:position().x, self.object:position().y,
+         sobj = sgm_g.create(scheme_param.explosive_object_charge, self.object:position().x, self.object:position().y,
             self.object:position().z, self.object:level_vertex_id(), self.object:game_vertex_id())
-         write_obj_mod_param(self.object, "detonate_source", sobj.id)
-         write_obj_mod_param(self.object, "detonate_timer", time_global() + scheme_param.explosive_object_timer)
+         sgm_g.write_obj_mod_param(self.object, "detonate_source", sobj.id)
+         sgm_g.write_obj_mod_param(self.object, "detonate_timer", time_global() + scheme_param.explosive_object_timer)
       end
    else
       self:deactivate(true)
@@ -197,7 +197,7 @@ function action_universal:explosive_object_update(scheme_param)
 end
 
 function action_universal:explosive_object_waiting(scheme_param, is_hitted)
-   if exists(scheme_param.explosive_object_sound) and is_hitted ~= true then
+   if sgm_g.exists(scheme_param.explosive_object_sound) and is_hitted ~= true then
       if scheme_param.bomb_sound_active == nil then
          scheme_param.bomb_sound_active = true
          scheme_param.bomb_sound = sound_object(scheme_param.explosive_object_sound)
@@ -208,7 +208,7 @@ function action_universal:explosive_object_waiting(scheme_param, is_hitted)
    end
    if sgm_g.read_obj_mod_param(self.object, "detonate_timer") <= time_global() then
       scheme_param.bomb_sound = nil
-      if exists(scheme_param.explosive_object_action) then
+      if sgm_g.exists(scheme_param.explosive_object_action) then
          sgm_functions.execute_condlist(self.object, self.st.saved_section, scheme_param.explosive_object_action)
       end
       detonate_explosive_charge(sgm_g.read_obj_mod_param(self.object, "detonate_source"))
@@ -227,7 +227,7 @@ function action_universal:wipe_mod_params()
 end
 
 function action_universal:set_sound_mode(value)
-   write_obj_mod_param(self.object, "sound_mode", value)
+   sgm_g.write_obj_mod_param(self.object, "sound_mode", value)
 end
 
 function action_universal:sound_object_update(scheme_param)
@@ -239,7 +239,7 @@ function action_universal:sound_object_update(scheme_param)
          scheme_param.sound_played = sound_object(self:get_random_theme())
          if scheme_param.sound_played ~= nil then
             scheme_param.sound_played:play_at_pos(self.object, self.object:position())
-            if exists(scheme_param.sound_object_range_min) and exists(scheme_param.sound_object_range_max) then
+            if sgm_g.exists(scheme_param.sound_object_range_min) and sgm_g.exists(scheme_param.sound_object_range_max) then
                scheme_param.sound_played.min_distance = tonumber(scheme_param.sound_object_range_min)
                scheme_param.sound_played.max_distance = tonumber(scheme_param.sound_object_range_max)
             else
@@ -295,22 +295,22 @@ function action_universal:hit_callback(obj, amount, local_direction, who, bone_i
       if scheme_param.hit_afraid == "true" then
          if scheme_param.scheme_type == "minetrap_object" then
             if sgm_g.read_obj_mod_param(self.object, "detonate_source") == nil then
-               sobj = create("minetrap_charge", self.object:position().x, self.object:position().y,
+               sobj = sgm_g.create("minetrap_charge", self.object:position().x, self.object:position().y,
                   self.object:position().z, self.object:level_vertex_id(), self.object:game_vertex_id())
-               write_obj_mod_param(self.object, "detonate_source", sobj.id)
-               write_obj_mod_param(self.object, "detonate_timer", time_global() + 1000)
+               sgm_g.write_obj_mod_param(self.object, "detonate_source", sobj.id)
+               sgm_g.write_obj_mod_param(self.object, "detonate_timer", time_global() + 1000)
                sgm_flags.table_mod_mineraps[self.object:id()] = true
             end
          end
          if scheme_param.scheme_type == "explosive_object" then
             if sgm_g.read_obj_mod_param(self.object, "detonate_source") == nil then
-               sobj = create(scheme_param.explosive_object_charge, self.object:position().x, self.object:position().y,
+               sobj = sgm_g.create(scheme_param.explosive_object_charge, self.object:position().x, self.object:position().y,
                   self.object:position().z, self.object:level_vertex_id(), self.object:game_vertex_id())
-               write_obj_mod_param(self.object, "detonate_source", sobj.id)
-               write_obj_mod_param(self.object, "detonate_timer", time_global() + 1000)
+               sgm_g.write_obj_mod_param(self.object, "detonate_source", sobj.id)
+               sgm_g.write_obj_mod_param(self.object, "detonate_timer", time_global() + 1000)
             end
          end
-         write_obj_mod_param(self.object, "is_hitted", true)
+         sgm_g.write_obj_mod_param(self.object, "is_hitted", true)
       end
    end
 end
@@ -319,18 +319,18 @@ function action_universal:use_callback(obj, who)
    local scheme_param = sgm_flags.table_mod_schemes[self.object:id()]
    if scheme_param.bomb_integrated == "true" then
       if sgm_g.read_obj_mod_param(self.object, "detonate_source") == nil then
-         sobj = create("detonation_charge_invisible_big", self.object:position().x, self.object:position().y,
+         sobj = sgm_g.create("detonation_charge_invisible_big", self.object:position().x, self.object:position().y,
             self.object:position().z, self.object:level_vertex_id(), self.object:game_vertex_id())
-         write_obj_mod_param(self.object, "detonate_source", sobj.id)
-         write_obj_mod_param(self.object, "detonate_timer", time_global() + 1000)
+         sgm_g.write_obj_mod_param(self.object, "detonate_source", sobj.id)
+         sgm_g.write_obj_mod_param(self.object, "detonate_timer", time_global() + 1000)
       end
    end
    if scheme_param.scheme_type == "explosive_object" then
-      if sgm_g.read_obj_mod_param(self.object, "detonate_source") == nil and exists(scheme_param.explosive_object_tip) then
-         sobj = create(scheme_param.explosive_object_charge, self.object:position().x, self.object:position().y,
+      if sgm_g.read_obj_mod_param(self.object, "detonate_source") == nil and sgm_g.exists(scheme_param.explosive_object_tip) then
+         sobj = sgm_g.create(scheme_param.explosive_object_charge, self.object:position().x, self.object:position().y,
             self.object:position().z, self.object:level_vertex_id(), self.object:game_vertex_id())
-         write_obj_mod_param(self.object, "detonate_source", sobj.id)
-         write_obj_mod_param(self.object, "detonate_timer", time_global() + scheme_param.explosive_object_timer)
+         sgm_g.write_obj_mod_param(self.object, "detonate_source", sobj.id)
+         sgm_g.write_obj_mod_param(self.object, "detonate_timer", time_global() + scheme_param.explosive_object_timer)
       end
    end
    if scheme_param.scheme_type == "sound_object" then
@@ -343,17 +343,17 @@ function action_universal:use_callback(obj, who)
       end
    end
    if scheme_param.scheme_type == "script_object" then
-      if exists(scheme_param.script_object_code) then
+      if sgm_g.exists(scheme_param.script_object_code) then
          if sgm_g.read_obj_mod_param(self.object, "access_resolved") == nil or sgm_g.read_obj_mod_param(self.object, "access_resolved") == false then
-            local numpad = ui_numpad.numpad(self)
+            local numpad = sgm_ui_numpad.numpad(self)
             numpad:ShowDialog(true)
          end
       end
    end
    if scheme_param.scheme_type == "treasure_object" then
-      if exists(scheme_param.treasure_object_code) then
+      if sgm_g.exists(scheme_param.treasure_object_code) then
          if sgm_g.read_obj_mod_param(self.object, "access_resolved") == nil or sgm_g.read_obj_mod_param(self.object, "access_resolved") == false then
-            local numpad = ui_numpad.numpad(self)
+            local numpad = sgm_ui_numpad.numpad(self)
             numpad:ShowDialog(true)
          end
       end
@@ -368,17 +368,17 @@ end
 function action_universal:OnNumberReceive(text)
    local scheme_param = sgm_flags.table_mod_schemes[self.object:id()]
    if scheme_param.scheme_type == "script_object" then
-      if exists(scheme_param.script_object_code) then
+      if sgm_g.exists(scheme_param.script_object_code) then
          if text ~= nil and text ~= "" and tonumber(text) == tonumber(scheme_param.script_object_code) then
-            write_obj_mod_param(self.object, "access_resolved", true)
+            sgm_g.write_obj_mod_param(self.object, "access_resolved", true)
             self:correct_entering(scheme_param)
          end
       end
    end
    if scheme_param.scheme_type == "treasure_object" then
-      if exists(scheme_param.treasure_object_code) then
+      if sgm_g.exists(scheme_param.treasure_object_code) then
          if text ~= nil and text ~= "" and get_spot_on_map(self.object:id(), sgm_flags.spot_unique_treasure) and tonumber(text) == tonumber(scheme_param.treasure_object_code) then
-            write_obj_mod_param(self.object, "access_resolved", true)
+            sgm_g.write_obj_mod_param(self.object, "access_resolved", true)
             self:correct_entering(scheme_param)
          end
       end
@@ -387,42 +387,42 @@ end
 
 function action_universal:correct_entering(scheme_param)
    if scheme_param.scheme_type == "script_object" then
-      if exists(scheme_param.script_object_code_action) then
+      if sgm_g.exists(scheme_param.script_object_code_action) then
          sgm_functions.execute_condlist(self.object, self.st.saved_section, scheme_param.script_object_code_action)
       end
       if scheme_param.script_object_code_items ~= nil then
          for k, v in pairs(scheme_param.script_object_code_items_table) do
             for i = 1, v.prob do
-               alife():create(v.section, self.object:position(), self.object:level_vertex_id(),
+               alife():sgm_g.create(v.section, self.object:position(), self.object:level_vertex_id(),
                   self.object:game_vertex_id(), self.object:id())
             end
          end
       end
       if scheme_param.script_object_code_item ~= nil then
-         alife():create(scheme_param.script_object_code_item, self.object:position(), self.object:level_vertex_id(),
+         alife():sgm_g.create(scheme_param.script_object_code_item, self.object:position(), self.object:level_vertex_id(),
             self.object:game_vertex_id(), self.object:id())
       end
    end
    if scheme_param.scheme_type == "treasure_object" then
-      if exists(scheme_param.treasure_object_code_action) then
+      if sgm_g.exists(scheme_param.treasure_object_code_action) then
          sgm_functions.execute_condlist(self.object, self.st.saved_section, scheme_param.treasure_object_code_action)
       end
       if scheme_param.treasure_object_code_items ~= nil then
          for k, v in pairs(scheme_param.treasure_object_code_items_table) do
             for i = 1, v.prob do
-               alife():create(v.section, self.object:position(), self.object:level_vertex_id(),
+               alife():sgm_g.create(v.section, self.object:position(), self.object:level_vertex_id(),
                   self.object:game_vertex_id(), self.object:id())
             end
          end
       end
       if scheme_param.treasure_object_code_item ~= nil then
-         alife():create(scheme_param.treasure_object_code_item, self.object:position(), self.object:level_vertex_id(),
+         alife():sgm_g.create(scheme_param.treasure_object_code_item, self.object:position(), self.object:level_vertex_id(),
             self.object:game_vertex_id(), self.object:id())
       end
-      if exists(scheme_param.treasure_object_code_fill_items_layers) and scheme_param.treasure_object_code_fill_items_layers > 0 then
+      if sgm_g.exists(scheme_param.treasure_object_code_fill_items_layers) and scheme_param.treasure_object_code_fill_items_layers > 0 then
          for i = 1, scheme_param.treasure_object_code_fill_items_layers do
             local layer_items_table = parse_general_names(scheme_param["treasure_object_code_fill_items_layer_" .. i])
-            alife():create(get_random_string(layer_items_table), self.object:position(), self.object:level_vertex_id(),
+            alife():sgm_g.create(get_random_string(layer_items_table), self.object:position(), self.object:level_vertex_id(),
                self.object:game_vertex_id(), self.object:id())
          end
       end
@@ -439,8 +439,10 @@ function action_universal:check_logic_condlists(obj, ini, section)
       "default"))
    scheme_param.hit_afraid      = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section, "hit_afraid",
       "false"))
-   scheme_param.born_kick       = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section, "born_kick", "false"))
-   scheme_param.bomb_integrated = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section, "bomb_integrated",
+   scheme_param.born_kick       = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section, "born_kick",
+      "false"))
+   scheme_param.bomb_integrated = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section,
+      "bomb_integrated",
       "false"))
    --\Команды: SCRIPT OBJECT\--
    if scheme_param.scheme_type == "script_object" then
@@ -455,10 +457,10 @@ function action_universal:check_logic_condlists(obj, ini, section)
       scheme_param.script_object_code_action = sgm_g.to_string(sgm_functions.cfg_get_string(ini, section,
          "script_object_code_action", nil))
       scheme_param.script_object_code_item   = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section,
-         "script_object_code_item", nil))                                                                                                          --'Определенный предмет в трупе.
+         "script_object_code_item", nil)) --'Определенный предмет в трупе.
       scheme_param.script_object_code_items  = sgm_g.to_string(sgm_functions.cfg_get_string(ini, section,
          "script_object_code_items", nil))
-      if exists(scheme_param.script_object_code_items) and scheme_param.script_object_code_items_table == nil then
+      if sgm_g.exists(scheme_param.script_object_code_items) and scheme_param.script_object_code_items_table == nil then
          scheme_param.script_object_code_items_table = utils.parse_spawns(scheme_param.script_object_code_items)
       end
    end
@@ -475,18 +477,19 @@ function action_universal:check_logic_condlists(obj, ini, section)
       scheme_param.treasure_object_code_action = sgm_g.to_string(sgm_functions.cfg_get_string(ini, section,
          "treasure_object_code_action", nil))
       scheme_param.treasure_object_code_item   = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section,
-         "treasure_object_code_item", nil))                                                                                                            --'Определенный предмет в трупе.
+         "treasure_object_code_item", nil)) --'Определенный предмет в трупе.
       scheme_param.treasure_object_code_items  = sgm_g.to_string(sgm_functions.cfg_get_string(ini, section,
          "treasure_object_code_items", nil))
-      if exists(scheme_param.treasure_object_code_items) and scheme_param.treasure_object_code_items_table == nil then
+      if sgm_g.exists(scheme_param.treasure_object_code_items) and scheme_param.treasure_object_code_items_table == nil then
          scheme_param.treasure_object_code_items_table = utils.parse_spawns(scheme_param.treasure_object_code_items)
       end
       scheme_param.treasure_object_code_fill_items_layers = to_number(sgm_functions.check_section_condlist(ini, section,
          "treasure_object_code_fill_items_layers", nil))
-      if exists(scheme_param.treasure_object_code_fill_items_layers) and scheme_param.treasure_object_code_fill_items_layers > 0 then
+      if sgm_g.exists(scheme_param.treasure_object_code_fill_items_layers) and scheme_param.treasure_object_code_fill_items_layers > 0 then
          for i = 1, scheme_param.treasure_object_code_fill_items_layers do
-            scheme_param["treasure_object_code_fill_items_layer_" .. i] = sgm_g.to_string(sgm_functions.cfg_get_string(
-            ini, section, "treasure_object_code_fill_items_layer_" .. i, nil))
+            scheme_param["treasure_object_code_fill_items_layer_" .. i] = sgm_g.to_string(sgm_functions
+               .cfg_get_string(
+                  ini, section, "treasure_object_code_fill_items_layer_" .. i, nil))
          end
       end
    end
@@ -504,10 +507,10 @@ function action_universal:check_logic_condlists(obj, ini, section)
          "explosive_object_timer", 1000))
       scheme_param.explosive_object_sound       = sgm_functions.cfg_get_string(ini, section, "explosive_object_sound",
          nil)
-      if exists(scheme_param.explosive_object_tip) and scheme_param.explosive_object_tip == "default" then
+      if sgm_g.exists(scheme_param.explosive_object_tip) and scheme_param.explosive_object_tip == "default" then
          scheme_param.explosive_object_tip = "st_sgm_ph_universal_default"
       end
-      if exists(scheme_param.explosive_object_sound) and scheme_param.explosive_object_sound == "default" then
+      if sgm_g.exists(scheme_param.explosive_object_sound) and scheme_param.explosive_object_sound == "default" then
          scheme_param.explosive_object_sound = [[detectors\bomb_timer]]
       end
    end
@@ -533,7 +536,7 @@ function action_universal:check_logic_condlists(obj, ini, section)
          "sound_object_tip_on", "st_set_radio_on"))
       scheme_param.sound_object_tip_off     = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section,
          "sound_object_tip_off", "st_set_radio_off"))
-      if exists(scheme_param.sound_object_theme) then
+      if sgm_g.exists(scheme_param.sound_object_theme) then
          scheme_param.sound_object_theme_table = parse_names(scheme_param.sound_object_theme)
       end
    end

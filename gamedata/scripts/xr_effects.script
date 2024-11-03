@@ -1,20 +1,17 @@
 -- ----------------------------------------------------------------------------------------------------
--- РћР±С‰РёРµ С„СѓРЅРєС†РёРё
+-- Общие функции
 -- ----------------------------------------------------------------------------------------------------
-
--- РџСЂРёРЅСѓРґРёС‚РµР»СЊРЅРѕ Р°РїРґРµР№С‚РёС‚ Р»РѕРіРёРєСѓ Сѓ РѕР±СЉРµРєС‚РѕРІ, РїРµСЂРµРґР°РЅРЅС‹С… РїР°СЂР°РјРµС‚СЂРѕРј. РџРѕРєР° СЂР°Р±РѕС‚Р°РµС‚ С‚РѕР»СЊРєРѕ СЃ РќРџРЎ
+-- Принудительно апдейтит логику у объектов, переданных параметром. Пока работает только с НПС
 function update_npc_logic(actor, object, p)
 	--printf("UPDATE NPC LOGIC %s", device():time_global())
 	for k, v in pairs(p) do
 		local npc = get_story_object(v)
 		if npc ~= nil then
 			xr_motivator.update_logic(npc)
-
 			local planner = npc:motivation_action_manager()
 			planner:update()
 			planner:update()
 			planner:update()
-
 			db.storage[npc:id()].state_mgr:update()
 			db.storage[npc:id()].state_mgr:update()
 			db.storage[npc:id()].state_mgr:update()
@@ -33,22 +30,16 @@ function update_obj_logic(actor, object, p)
 		if obj ~= nil then
 			local st = db.storage[obj:id()]
 			xr_logic.try_switch_to_another_section(obj, st[st.active_scheme], actor)
-
-			--			if st.active_scheme == "sr_cutscene" then
-			--				st[st.active_scheme].cutscene_action
-			--			end
 		end
 	end
 end
 
 local ui_active_slot = 0
-
 function disable_ui(actor, npc, p)
 	if db.actor:is_talking() then
 		db.actor:stop_talk()
 	end
 	level.show_weapon(false)
-
 	if not p or (p and p[1] ~= "true") then
 		local slot = db.actor:active_slot()
 		if (slot ~= 0) then
@@ -56,7 +47,6 @@ function disable_ui(actor, npc, p)
 			db.actor:activate_slot(0)
 		end
 	end
-
 	level.disable_input()
 	level.hide_indicators_safe()
 	local hud = get_hud()
@@ -65,7 +55,7 @@ function disable_ui(actor, npc, p)
 	disable_actor_nightvision(nil, nil)
 	disable_actor_torch(nil, nil)
 	--/ SGM in
-	sgm_g.set_ui_disabled()
+	set_ui_disabled()
 	--/ SGM out
 end
 
@@ -74,7 +64,6 @@ function disable_ui_only(actor, npc)
 		db.actor:stop_talk()
 	end
 	level.show_weapon(false)
-
 	if not p or (p and p[1] ~= "true") then
 		local slot = db.actor:active_slot()
 		if (slot ~= 0) then
@@ -82,26 +71,22 @@ function disable_ui_only(actor, npc)
 			db.actor:activate_slot(0)
 		end
 	end
-
 	level.disable_input()
 	level.hide_indicators_safe()
 	local hud = get_hud()
 	hud:HideActorMenu()
 	hud:HidePdaMenu()
 	--/ SGM in
-	sgm_g.set_ui_disabled()
+	set_ui_disabled()
 	--/ SGM out
 end
 
 function enable_ui(actor, npc, p)
-	--db.actor:restore_weapon()
-
 	if not p or (p and p[1] ~= "true") then
 		if ui_active_slot ~= 0 and db.actor:item_in_slot(ui_active_slot) ~= nil then
 			db.actor:activate_slot(ui_active_slot)
 		end
 	end
-
 	ui_active_slot = 0
 	level.show_weapon(true)
 	level.enable_input()
@@ -111,13 +96,12 @@ function enable_ui(actor, npc, p)
 	--/ SGM in
 	db.actor:disable_info_portion("game_disable_ui")
 	if (sgm_g.dont_has_alife_info("pri_a28_cam_started")) or has_alife_info("pri_a28_actor_in_zone_stay") then
-		sgm_g.set_ui_worked()
+		set_ui_worked()
 	end
 	--/ SGM out
 end
 
 local cam_effector_playing_object_id = nil
-
 function run_cam_effector(actor, npc, p)
 	if p[1] then
 		local loop, num = false, (1000 + math.random(100))
@@ -194,7 +178,6 @@ end
 
 function run_tutorial(actor, npc, p)
 	printf("run tutorial called")
-	-- game.start_tutorial(p[1])
 	--/ SGM in
 	sgm_callbacks.on_run_tutorial(p[1])
 	--/ SGM out
@@ -211,7 +194,7 @@ end
 function jup_b32_place_scanner(actor, npc)
 	for i = 1, 5 do
 		if xr_conditions.actor_in_zone(actor, npc, { "jup_b32_sr_scanner_place_" .. i })
-			and not has_alife_info("jup_b32_scanner_" .. i .. "_placed") then
+			and sgm_g.dont_has_alife_info("jup_b32_scanner_" .. i .. "_placed") then
 			db.actor:give_info_portion("jup_b32_scanner_" .. i .. "_placed")
 			db.actor:give_info_portion("jup_b32_tutorial_done")
 			remove_item(actor, npc, { "jup_b32_scanner_device" })
@@ -310,18 +293,15 @@ function teleport_actor(actor, npc, p)
 		dir = -look:point(0):sub(point:point(0)):getH()
 		db.actor:set_actor_direction(dir)
 	end
-
 	for k, v in pairs(db.no_weap_zones) do
 		local zone = db.zone_by_name[k]
 		if utils.npc_in_zone(db.actor, zone) then
 			db.no_weap_zones[k] = true
 		end
 	end
-
 	if npc and npc:name() ~= nil then
 		printf("teleporting actor from [%s]", tostring(npc:name()))
 	end
-
 	db.actor:set_actor_position(point:point(0))
 end
 
@@ -506,22 +486,21 @@ send_tip(news_id:sender:sender_id)
 		* - not necessary
 --]]
 function send_tip(actor, npc, p)
-	-- news_manager.send_tip(actor, p[1], nil, p[2], nil, p[3])
 	--/ SGM in
 	news_manager.send_tip(actor, p[1], nil, p[2], p[4], p[5], p[3])
 	--/ SGM out
 end
 
 --[[
-Р”Р°С‚СЊ СЃС‚Р°Р»РєРµСЂСѓ РЅРµР±РѕР»СЊС€РѕР№ РїРёРЅРѕРє. РќР°РїСЂРёРјРµСЂ С‡С‚РѕР± СЃРєРёРЅСѓС‚СЊ РµРіРѕ СЃ РІРѕР·РІС‹С€РµРЅРёСЏ.
-РїР°СЂР°РјРµС‚СЂС‹: actor, npc, p[direction,bone,power,impulse,reverse=false]
-		1. direction - РµСЃР»Рё СЃС‚СЂРѕРєР°, С‚Рѕ СЃС‡РёС‚Р°РµС‚СЃСЏ, С‡С‚Рѕ СЌС‚Рѕ РёРјСЏ РїСѓС‚Рё Рё РІ СЃС‚РѕСЂРѕРЅСѓ
-				РїРµСЂРІРѕР№ С‚РѕС‡РєРё РїСЂРѕРёР·РІРѕРґРёС‚СЃСЏ С‚РѕР»С‡РµРє. Р•СЃР»Рё Р¶Рµ СЌС‚Рѕ С‡РёСЃР»Рѕ, С‚Рѕ РѕРЅРѕ
-				СЂР°СЃСЃРјР°С‚СЂРёРІР°РµС‚СЃСЏ РєР°Рє story_id РїРµСЂСЃРѕРЅР°Р¶Р° РѕС‚ РєРѕС‚РѕСЂРѕРіРѕ РґРѕР»Р¶РµРЅ РїРѕСЃС‚СѓРїРёС‚СЊ С…РёС‚.
-		2. bone - СЃС‚СЂРѕРєР°. РРјСЏ РєРѕСЃС‚Рё, РїРѕ РєРѕС‚РѕСЂРѕР№ РЅР°РЅРѕСЃРёС‚СЃСЏ СѓРґР°СЂ.
-		3. power - СЃРёР»Р° СѓРґР°СЂР°
-		4. impulse - РёРјРїСѓР»СЊСЃ
-		5. reverse (true/false) - РёР·РјРµРЅРµРЅРёРµ РЅР°РїСЂР°РІР»РµРЅРёСЏ СѓРґР°СЂР°. РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ false
+Дать сталкеру небольшой пинок. Например чтоб скинуть его с возвышения.
+параметры: actor, npc, p[direction,bone,power,impulse,reverse=false]
+		1. direction - если строка, то считается, что это имя пути и в сторону
+				первой точки производится толчек. Если же это число, то оно
+				рассматривается как story_id персонажа от которого должен поступить хит.
+		2. bone - строка. Имя кости, по которой наносится удар.
+		3. power - сила удара
+		4. impulse - импульс
+		5. reverse (true/false) - изменение направления удара. по умолчанию false
 --]]
 function hit_npc(actor, npc, p)
 	local h = hit()
@@ -553,17 +532,17 @@ function hit_npc(actor, npc, p)
 end
 
 --[[
-Р”Р°С‚СЊ РѕР±СЊРµРєС‚Сѓ, Р·Р°РґР°РЅРЅРѕРјСѓ story_id, С…РёС‚.
-РїР°СЂР°РјРµС‚СЂС‹: actor, npc, p[sid,bone,power,impulse,hit_src=npc:position()]
-		1. sid - story_id РѕР±СЊРµРєС‚Р°, РїРѕ РєРѕС‚РѕСЂРѕРјСѓ РЅР°РЅРѕСЃРёС‚СЃСЏ С…РёС‚.
-		2. bone - СЃС‚СЂРѕРєР°. РРјСЏ РєРѕСЃС‚Рё, РїРѕ РєРѕС‚РѕСЂРѕР№ РЅР°РЅРѕСЃРёС‚СЃСЏ СѓРґР°СЂ.
-		3. power - СЃРёР»Р° СѓРґР°СЂР°
-		4. impulse - РёРјРїСѓР»СЊСЃ
-		5. hit_src - РµСЃР»Рё С‡РёСЃР»Рѕ, С‚Рѕ СЂР°СЃСЃРјР°С‚СЂРёРІР°РµС‚СЃСЏ РєР°Рє story_id РѕР±СЊРµРєС‚Р°, СЃРѕ СЃС‚РѕСЂРѕРЅС‹
-				РєРѕС‚РѕСЂРѕРіРѕ РЅР°РЅРѕСЃРёС‚СЃСЏ С…РёС‚ (РѕРЅ Р¶Рµ СЏРІР»СЏРµС‚СЃСЏ Рё РёРЅРёС†РёР°С‚РѕСЂРѕРј С…РёС‚Р°), РёРЅР°С‡Рµ СЌС‚Рѕ
-				С‚РѕС‡РєР° (waypoint), РёР· РєРѕС‚РѕСЂРѕР№ РїРѕ РѕР±СЉРµРєС‚Сѓ РЅР°РЅРѕСЃРёС‚СЃСЏ С…РёС‚.
-				Р•СЃР»Рё РЅРµ Р·Р°РґР°РЅРѕ, С‚Рѕ Р±РµСЂРµС‚СЃСЏ РїРѕР·РёС†РёСЏ РѕР±СЊРµРєС‚Р°, РёР· РєРѕС‚РѕСЂРѕРіРѕ Р±С‹Р»Р° РІС‹Р·РІР°РЅР°
-				РґР°РЅРЅР°СЏ С„СѓРЅРєС†РёСЏ.
+Дать обьекту, заданному story_id, хит.
+параметры: actor, npc, p[sid,bone,power,impulse,hit_src=npc:position()]
+		1. sid - story_id обьекта, по которому наносится хит.
+		2. bone - строка. Имя кости, по которой наносится удар.
+		3. power - сила удара
+		4. impulse - импульс
+		5. hit_src - если число, то рассматривается как story_id обьекта, со стороны
+				которого наносится хит (он же является и инициатором хита), иначе это
+				точка (waypoint), из которой по объекту наносится хит.
+				Если не задано, то берется позиция обьекта, из которого была вызвана
+				данная функция.
 --]]
 function hit_obj(actor, npc, p)
 	local h = hit()
@@ -659,9 +638,9 @@ function hit_obj_fire_wound(actor, npc, p)
 end
 ]] --
 --[[
-Р”Р°С‚СЊ СЃС‚Р°Р»РєРµСЂСѓ РЅРµР±РѕР»СЊС€РѕР№ РїРёРЅРѕРє РїРѕСЃР»Рµ СЃРјРµСЂС‚Рё. РђРЅР°Р»РѕРіРёС‡РЅРѕ РїСЂРµРґС‹РґСѓС‰РµРјСѓ, С‚РѕР»СЊРєРѕ РЅР°РїСЂР°РІР»РµРЅРёРµ С…РёС‚Р° С‚РµРїРµСЂСЊ
-РІС‹С‡РёСЃР»СЏРµС‚СЃСЏ С‡РµСЂРµР· СѓР±РёР№С†Сѓ. РџРѕСЌС‚РѕРјСѓ РїР°СЂР°РјРµС‚СЂР° direction РЅРµС‚.
-РїР°СЂР°РјРµС‚СЂС‹: actor, npc, p[bone,power,impulse]
+Дать сталкеру небольшой пинок после смерти. Аналогично предыдущему, только направление хита теперь
+вычисляется через убийцу. Поэтому параметра direction нет.
+параметры: actor, npc, p[bone,power,impulse]
 FIXME: killer:position() isn't working
 --]]
 function hit_by_killer(actor, npc, p)
@@ -709,8 +688,8 @@ function hit_npc_from_actor(actor, npc, p)
 end
 
 --[[
--- РҐРёС‚СѓРµС‚ РЅРїСЃ РѕС‚ РЅРїСЃ, РµСЃР»Рё Р·Р°РґР°РЅ РѕРґРёРЅ РїР°СЂР°РјРµС‚СЂ (СЃС‚РѕСЂРё Р°Р№РґРё), С‚Рѕ РЅРїСЃ СЃ С‚Р°РєРёРј СЃС‚РѕСЂРё Р°Р№РґРё С…РёС‚РЅРµС‚ РЅРїСЃ Сѓ РєРѕС‚РѕСЂРѕРіРѕ РІС‹Р·РІР°Р»Рё СЌС‚Сѓ С„СѓРЅРєС†РёСЋ.
--- РµСЃР»Рё Р·Р°РґР°РЅРѕ 2 СЃС‚РѕСЂРё Р°Р№РґРё , С‚Рѕ РЅРїСЃ СЃ 1-С‹Рј СЃС‚РѕСЂРё Р°Р№РґРё С…РёС‚РЅРµС‚ РЅРїСЃ СЃРѕ 2-С‹Рј СЃС‚РѕСЂРё Р°Р№РґРё.
+-- Хитует нпс от нпс, если задан один параметр (стори айди), то нпс с таким стори айди хитнет нпс у которого вызвали эту функцию.
+-- если задано 2 стори айди , то нпс с 1-ым стори айди хитнет нпс со 2-ым стори айди.
 function hit_npc_from_npc(actor, npc, p)
 	if p == nil then abort("Invalid parameter in function 'hit_npc_from_npc'!!!!") end
 	local h = hit()
@@ -783,18 +762,15 @@ function remove_npc(actor, npc, p)
 	if p and p[1] then
 		npc_id = get_story_object_id(p[1])
 	end
-	-- if npc_id ~= nil then
-	-- 	alife():release(alife():object(npc_id), true)
-	-- end
 	--/ SGM in
 	if npc_id ~= nil and alife():object(npc_id) then
-		sgm_g.clear_mod_params_for_npc(npc_id)
+		clear_mod_params_for_npc(npc_id)
 		alife():release(alife():object(npc_id), true)
 	end
 	--/ SGM out
 end
 
--- РїСЂРёР±Р°РІРёС‚СЊ Рє СѓРєР°Р·Р°РЅРЅРѕРјСѓ СЃС‡С‘С‚С‡РёРєСѓ Р°РєС‚С‘СЂР° 1
+-- прибавить к указанному счётчику актёра 1
 function inc_counter(actor, npc, p)
 	if p and p[1] then
 		local inc_value = p[2] or 1
@@ -824,14 +800,12 @@ end
 function set_counter(actor, npc, p)
 	if p and p[1] then
 		local count = p[2] or 0
-		--		printf( "set_counter '%s' %s", p[1], count)
 		xr_logic.pstor_store(actor, p[1], count)
-		--		printf("counter [%s] value [%s]", p[1], xr_logic.pstor_retrieve(actor, p[1], 0))
 	end
 end
 
 ------------------------------------------------------------------------------------------------------------------------
--- РїРѕСЃС‚РїСЂРѕС†РµСЃСЃ Рё РІР»РёСЏРЅРёРµ СѓРґР°СЂР° РІ РјРѕСЂРґСѓ
+-- постпроцесс и влияние удара в морду
 function actor_punch(npc)
 	if db.actor:position():distance_to_sqr(npc:position()) > 4 then
 		return
@@ -853,7 +827,7 @@ function actor_punch(npc)
 	end
 end
 
--- Р·Р°Р±С‹РІР°РЅРёРµ РѕР±РёРґС‹
+-- забывание обиды
 function clearAbuse(npc)
 	printf("CLEAR_ABUSE")
 	xr_abuse.clear_abuse(npc)
@@ -897,7 +871,7 @@ function turn_off_underpass_lamps(actor, npc)
 	end
 end
 
----Р’С‹РєР»СЋС‡РµРЅРёРµ РґРёРЅР°РјРёС‡РµСЃРєРѕР№ Р»Р°РјРїРѕС‡РєРё (hanging_lamp)
+---Выключение динамической лампочки (hanging_lamp)
 function turn_off(actor, npc, p)
 	local obj
 	for k, v in pairs(p) do
@@ -916,7 +890,7 @@ function turn_off_object(actor, npc)
 	npc:get_hanging_lamp():turn_off()
 end
 
----Р’РєР»СЋС‡РµРЅРёРµ РґРёРЅР°РјРёС‡РµСЃРєРѕР№ Р»Р°РјРїРѕС‡РєРё (hanging_lamp)
+---Включение динамической лампочки (hanging_lamp)
 function turn_on(actor, npc, p)
 	local obj
 	for k, v in pairs(p) do
@@ -930,7 +904,7 @@ function turn_on(actor, npc, p)
 	end
 end
 
----Р’РєР»СЋС‡РµРЅРёРµ Рё Р·Р°РїСѓСЃРє РґРёРЅР°РјРёС‡РµСЃРєРѕР№ Р»Р°РјРїРѕС‡РєРё (hanging_lamp)
+---Включение и запуск динамической лампочки (hanging_lamp)
 function turn_on_and_force(actor, npc, p)
 	local obj = get_story_object(p[1])
 	if not obj then
@@ -944,7 +918,7 @@ function turn_on_and_force(actor, npc, p)
 	obj:get_hanging_lamp():turn_on()
 end
 
----Р’С‹РєР»СЋС‡РµРЅРёРµ РґРёРЅР°РјРёС‡РµСЃРєРѕР№ Р»Р°РјРїРѕС‡РєРё Рё РїР°СЂС‚РёРєР»РѕРІ (hanging_lamp)
+---Выключение динамической лампочки и партиклов (hanging_lamp)
 function turn_off_and_force(actor, npc, p)
 	local obj = get_story_object(p[1])
 	if not obj then
@@ -963,10 +937,10 @@ function turn_off_object(actor, npc)
 	npc:get_hanging_lamp():turn_off()
 end
 
--- Р’С‹Р·РѕРІ СЌС‚РѕР№ С„СѓРЅРєС†РёРё РѕС‚РєР»СЋС‡РёС‚ РѕР±СЂР°Р±РѕС‚С‡РёРє [combat] Р±РѕСЏ РґР»СЏ РїРµСЂСЃРѕРЅР°Р¶Р°.
--- РСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ РІ СЃР»СѓС‡Р°СЏС…, РєРѕРіРґР° РІСЃРµ РЅРµРѕР±С…РѕРґРёРјС‹Рµ РґРµР№СЃС‚РІРёСЏ, С‚Р°РєРёРµ РєР°Рє РїРµСЂРµРєР»СЋС‡РµРЅРёРµ РЅР° РґСЂСѓРіСѓСЋ СЃРµРєС†РёСЋ,
--- СѓР¶Рµ РІС‹РїРѕР»РЅРµРЅС‹, Рё РїРѕРІС‚РѕСЂРЅРѕ РІС‹РїРѕР»РЅСЏС‚СЊ РёС… РІРѕ РІСЂРµРјСЏ Р±РѕСЏ РЅРµР»СЊР·СЏ (Р° СѓСЃР»РѕРІРёСЏ СЃРµРєС†РёРё [combat] РїСЂРѕРІРµСЂСЏСЋС‚СЃСЏ РЅР° РєР°Р¶РґРѕРј
--- Р°РїРґРµР№С‚Рµ, РєРѕРіРґР° РїРµСЂСЃРѕРЅР°Р¶ РІ Р±РѕСЋ, РµСЃР»Рё, РєРѕРЅРµС‡РЅРѕ, РЅРµ РѕС‚РєР»СЋС‡РµРЅС‹ РІС‹Р·РѕРІРѕРј СЌС‚РѕР№ С„СѓРЅРєС†РёРё).
+-- Вызов этой функции отключит обработчик [combat] боя для персонажа.
+-- Используется в случаях, когда все необходимые действия, такие как переключение на другую секцию,
+-- уже выполнены, и повторно выполнять их во время боя нельзя (а условия секции [combat] проверяются на каждом
+-- апдейте, когда персонаж в бою, если, конечно, не отключены вызовом этой функции).
 function disable_combat_handler(actor, npc)
 	if db.storage[npc:id()].combat then
 		db.storage[npc:id()].combat.enabled = false
@@ -977,7 +951,7 @@ function disable_combat_handler(actor, npc)
 	end
 end
 
--- Р’С‹Р·РѕРІ СЌС‚РѕР№ С„СѓРЅРєС†РёРё РѕС‚РєР»СЋС‡РёС‚ РѕР±СЂР°Р±РѕС‚С‡РёРє [combat_ignore] РїРµСЂРµС…РІР°С‚Р° Р±РѕСЏ РґР»СЏ РїРµСЂСЃРѕРЅР°Р¶Р°.
+-- Вызов этой функции отключит обработчик [combat_ignore] перехвата боя для персонажа.
 function disable_combat_ignore_handler(actor, npc)
 	if db.storage[npc:id()].combat_ignore then
 		db.storage[npc:id()].combat_ignore.enabled = false
@@ -985,7 +959,7 @@ function disable_combat_ignore_handler(actor, npc)
 end
 
 -------------------------------------------------------------------------------------
--- Р¤СѓРЅРєС†РёРё РґР»СЏ СЂР°Р±РѕС‚С‹ СЃ РІРµСЂС‚РѕР»С‘С‚Р°РјРё
+-- Функции для работы с вертолётами
 -------------------------------------------------------------------------------------
 --[[
 function heli_set_enemy_actor(actor, npc)
@@ -1019,12 +993,12 @@ function heli_die(actor, npc)
 end
 
 --'-----------------------------------------------------------------------------------
---' Р¤СѓРЅРєС†РёРё РґР»СЏ СЂР°Р±РѕС‚С‹ СЃ РїРѕРіРѕРґРЅС‹РјРё СЌС„С„РµРєС‚Р°РјРё
+--' Функции для работы с погодными эффектами
 --'-----------------------------------------------------------------------------------
 
--- РџСЂРёРЅСѓРґРёС‚РµР»СЊРЅР°СЏ СѓСЃС‚Р°РЅРѕРІРєР° РїРѕРіРѕРґРЅС‹С… СѓСЃР»РѕРІРёР№
--- =set_weather(<СЃРµРєС†РёСЏ РїРѕРіРѕРґС‹>:true) - СѓСЃС‚Р°РЅРѕРІРєР° РїРѕРіРѕРґС‹ СЃСЂР°Р·Сѓ, false - С‡РµСЂРµР· РЅРµРєРѕС‚РѕСЂРѕРµ РІСЂРµРјСЏ
--- Р‘СѓРґРµС‚ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊСЃСЏ РЅР° СЃС‚Р°СЂС‚Рµ РёРіСЂС‹ Р—РѕРІ РџСЂРёРїСЏС‚Рё Рё РІ СЃС†РµРЅРµ jup_b15 - СѓС‚СЂРѕ РїРѕСЃР»Рµ РїСЊСЏРЅРєРё СЃ Р—СѓР»СѓСЃРѕРј
+-- Принудительная установка погодных условий
+-- =set_weather(<секция погоды>:true) - установка погоды сразу, false - через некоторое время
+-- Будет использоваться на старте игры Зов Припяти и в сцене jup_b15 - утро после пьянки с Зулусом
 function set_weather(actor, npc, p)
 	if (p[1]) then
 		if (p[2] == "true") then
@@ -1113,7 +1087,7 @@ function on_tutor_gameover_quickload()
 	c:execute("load_last_save")
 end
 
--- РґР»СЏ СЃРјРµРЅС‹ СЂР°Р±РѕС‚С‹
+-- для смены работы
 function get_stalker_for_new_job(actor, npc, p)
 	xr_gulag.find_stalker_for_job(npc, p[1])
 end
@@ -1140,11 +1114,11 @@ end
 ]] --
 
 --'-----------------------------------------------------------------------------------
---' Р¤СѓРЅРєС†РёРё РґР»СЏ СЂР°Р±РѕС‚С‹ СЃ РїРѕРґСЃРїР°СѓРЅРѕРј
+--' Функции для работы с подспауном
 --'-----------------------------------------------------------------------------------
 function spawn_object(actor, obj, p)
-	--' p[1] - СЃРµРєС†РёСЏ РєРѕРіРѕ СЃРїР°СѓРЅРёС‚СЊ
-	--' p[2] - РёРјСЏ РїР°С‚СЂСѓР»СЊРЅРѕРіРѕ РїСѓС‚Рё РіРґРµ СЃРїР° СѓРЅРёС‚СЊ.
+	--' p[1] - секция кого спаунить
+	--' p[2] - имя патрульного пути где спа унить.
 	local spawn_sect = p[1]
 	if spawn_sect == nil then
 		abort("Wrong spawn section for 'spawn_object' function %s. For object %s", tostring(spawn_sect), obj:name())
@@ -1206,8 +1180,8 @@ function jup_b219_restore_gate()
 end
 
 function spawn_corpse(actor, obj, p)
-	--' p[1] - СЃРµРєС†РёСЏ РєРѕРіРѕ СЃРїР°СѓРЅРёС‚СЊ
-	--' p[2] - РёРјСЏ РїР°С‚СЂСѓР»СЊРЅРѕРіРѕ РїСѓС‚Рё РіРґРµ СЃРїР°СѓРЅРёС‚СЊ.
+	--' p[1] - секция кого спаунить
+	--' p[2] - имя патрульного пути где спаунить.
 	local spawn_sect = p[1]
 	if spawn_sect == nil then
 		abort("Wrong spawn section for 'spawn_corpse' function %s. For object %s", tostring(spawn_sect), obj:name())
@@ -1232,8 +1206,8 @@ function spawn_corpse(actor, obj, p)
 end
 
 function spawn_object_in(actor, obj, p)
-	--' p[1] - СЃРµРєС†РёСЏ РєРѕРіРѕ СЃРїР°СѓРЅРёС‚СЊ
-	--' p[2] - СЃС‚РѕСЂРё Р°Р№РґРё РѕР±СЊРµРєС‚Р° РІ РєРѕС‚РѕСЂС‹Р№ СЃРїР°РІРЅРёС‚СЊ
+	--' p[1] - секция кого спаунить
+	--' p[2] - стори айди обьекта в который спавнить
 	local spawn_sect = p[1]
 	if spawn_sect == nil then
 		abort("Wrong spawn section for 'spawn_object' function %s. For object %s", tostring(spawn_sect), obj:name())
@@ -1259,8 +1233,8 @@ function spawn_object_in(actor, obj, p)
 end
 
 function spawn_npc_in_zone(actor, obj, p)
-	--' p[1] - СЃРµРєС†РёСЏ РєРѕРіРѕ СЃРїР°СѓРЅРёС‚СЊ
-	--' p[2] - РёРјСЏ Р·РѕРЅС‹ РІ РєРѕС‚РѕСЂРѕР№ СЃРїР°СѓРЅРёС‚СЊ.
+	--' p[1] - секция кого спаунить
+	--' p[2] - имя зоны в которой спаунить.
 	local spawn_sect = p[1]
 	if spawn_sect == nil then
 		abort("Wrong spawn section for 'spawn_object' function %s. For object %s", tostring(spawn_sect), obj:name())
@@ -1346,7 +1320,7 @@ function anim_obj_stop(actor, npc, p)
 	end
 end
 
--- Р¤СѓРЅРєС†РёРё РґР»СЏ СЂР°Р±РѕС‚С‹ СЃ РѕРіРЅРµРЅРЅС‹РјРё Р·РѕРЅР°РјРё.
+-- Функции для работы с огненными зонами.
 --[[
 function turn_on_fire_zone(actor, npc, p)
 	bind_campfire.fire_zones_table[ p[1] ]:turn_on()
@@ -1357,7 +1331,7 @@ function turn_off_fire_zone(actor, npc, p)
 end
 ]] --
 --'-----------------------------------------------------------------------------------
---' Р¤СѓРЅРєС†РёРё РґР»СЏ РѕС‚С‹РіСЂС‹РІР°РЅРёСЏ Р·РІСѓРєР°
+--' Функции для отыгрывания звука
 --'-----------------------------------------------------------------------------------
 function play_sound(actor, obj, p)
 	local theme = p[1]
@@ -1487,34 +1461,36 @@ function create_squad_member(actor, obj, p)
 	end
 	local board = sim_board.get_sim_board()
 	local squad = get_story_squad(story_id)
-	local squad_smart = board.smarts[squad.smart_id].smrt
-	if p[3] ~= nil then
-		local spawn_point
-		if p[3] == "simulation_point" then
-			spawn_point = utils.cfg_get_string(sim_board.squad_ltx, squad:section_name(), "spawn_point", obj, false, "")
-			if spawn_point == "" or spawn_point == nil then
-				spawn_point = xr_logic.parse_condlist(obj, "spawn_point", "spawn_point", squad_smart.spawn_point)
+	if squad ~= nil then
+		local squad_smart = board.smarts[squad.smart_id].smrt
+		if p[3] ~= nil then
+			local spawn_point
+			if p[3] == "simulation_point" then
+				spawn_point = utils.cfg_get_string(sim_board.squad_ltx, squad:section_name(), "spawn_point", obj, false,
+					"")
+				if spawn_point == "" or spawn_point == nil then
+					spawn_point = xr_logic.parse_condlist(obj, "spawn_point", "spawn_point", squad_smart.spawn_point)
+				else
+					spawn_point = xr_logic.parse_condlist(obj, "spawn_point", "spawn_point", spawn_point)
+				end
+				spawn_point = xr_logic.pick_section_from_condlist(db.actor, obj, spawn_point)
 			else
-				spawn_point = xr_logic.parse_condlist(obj, "spawn_point", "spawn_point", spawn_point)
+				spawn_point = p[3]
 			end
-			spawn_point = xr_logic.pick_section_from_condlist(db.actor, obj, spawn_point)
+			position        = patrol(spawn_point):point(0)
+			level_vertex_id = patrol(spawn_point):level_vertex_id(0)
+			game_vertex_id  = patrol(spawn_point):game_vertex_id(0)
 		else
-			spawn_point = p[3]
+			local commander = alife():object(squad:commander_id())
+			position        = commander.position
+			level_vertex_id = commander.m_level_vertex_id
+			game_vertex_id  = commander.m_game_vertex_id
 		end
-		position        = patrol(spawn_point):point(0)
-		level_vertex_id = patrol(spawn_point):level_vertex_id(0)
-		game_vertex_id  = patrol(spawn_point):game_vertex_id(0)
-	else
-		local commander = alife():object(squad:commander_id())
-		position        = commander.position
-		level_vertex_id = commander.m_level_vertex_id
-		game_vertex_id  = commander.m_game_vertex_id
+		local new_member_id = squad:add_squad_member(squad_member_sect, position, level_vertex_id, game_vertex_id)
+		squad:assign_squad_member_to_smart(new_member_id, squad_smart)
+		board:setup_squad_and_group(alife():object(new_member_id))
+		squad:update()
 	end
-	local new_member_id = squad:add_squad_member(squad_member_sect, position, level_vertex_id, game_vertex_id)
-	squad:assign_squad_member_to_smart(new_member_id, squad_smart)
-	board:setup_squad_and_group(alife():object(new_member_id))
-	--squad_smart:refresh()
-	squad:update()
 end
 
 function remove_squad(actor, obj, p)
@@ -1629,7 +1605,6 @@ function give_task(actor, obj, p)
 	if p[1] == nil then
 		abort("No parameter in give_task function.")
 	end
-	-- task_manager.get_task_manager():give_task(p[1])
 	--/ SGM in
 	sgm_callbacks.on_give_task(p[1])
 	--/ SGM out
@@ -1644,7 +1619,7 @@ function set_active_task(actor, npc, p)
 	end
 end
 
--- Р¤СѓРЅРєС†РёРё РґР»СЏ СЂР°Р±РѕС‚С‹ СЃ РѕС‚РЅРѕС€РµРЅРёСЏРјРё
+-- Функции для работы с отношениями
 
 function actor_friend(actor, npc)
 	printf("_bp: xr_effects: actor_friend(): npc='%s': time=%d", npc:name(), time_global())
@@ -1679,7 +1654,7 @@ function set_squad_friend_to_actor(actor, npc, p)
 	squad:set_squad_relation("friend")
 end
 
---РЎРґРµР»Р°С‚СЊ Р°РєС‚РµСЂР° РІСЂР°РіРѕРј Рє РѕС‚СЂСЏРґСѓ, РїРµСЂРµРґР°РµС‚СЃСЏ РёРјСЏ РѕС‚СЂСЏРґР°
+--Сделать актера врагом к отряду, передается имя отряда
 function set_squad_enemy_to_actor(actor, npc, p)
 	local story_id = p[1]
 	local squad = get_story_squad(story_id)
@@ -1977,18 +1952,6 @@ function stop_sr_cutscene(actor, npc, p)
 	if (obj.active_scheme ~= nil) then
 		obj[obj.active_scheme].signals["cam_effector_stop"] = true
 	end
-
-	-- Restore camera at end if needed
-	if xr_state:get_camera_state() then
-		set_third_person()
-		xr_state:reg_camera_change(false)
-	end
-	-- Restore actor shadow if needed
-	if xr_state:get_actor_shadow_state() then
-		set_actor_shadow(true)
-		-- get_console():execute("r_actor_shadow 1")
-		xr_state:reg_actor_shadow_change(false)
-	end
 end
 
 --[[
@@ -2020,9 +1983,9 @@ function add_map_spot(actor, npc, p)
 			if(p[3]==nil) then
 				p[3] = "default"
 			end
-			--/ SGM in
-			sgm_g.add_spot_on_map(id,p[2],p[3])
-			--/ SGM out
+                        --/ SGM in
+                        add_spot_on_map(id,p[2],p[3])
+                        --/ SGM out
 		else
 			abort("Wrong story id or name [%s] for map spot function", tostring(story_id))
 		end
@@ -2043,9 +2006,9 @@ function remove_map_spot(actor, npc, p)
 			if(p[2]==nil) then
 				p[2] = "primary_task_location"
 			end
-			--/ SGM in
-			sgm_g.remove_spot_on_map(id,p[2])
-			--/ SGM out
+                        --/ SGM in
+                        remove_spot_on_map(id,p[2])
+                        --/ SGM out
 		else
 			abort("Wrong story id or name [%s] for map spot function", tostring(story_id))
 		end
@@ -2147,7 +2110,7 @@ function seize_money_to_npc(actor, npc, p)
 	end
 end
 
--- РџРµСЂРµРґР°С‡Р° РїСЂРµРґРјРµС‚Р° РѕС‚ РЅРµРїРёСЃСЏ Рє РЅРµРїРёСЃСЋ
+-- Передача предмета от непися к неписю
 -- relocate_item(item_name:story_id_from:story_id_to)
 function relocate_item(actor, npc, p)
 	local item = p and p[1]
@@ -2168,7 +2131,7 @@ function relocate_item(actor, npc, p)
 	end
 end
 
--- РЎРґРµР»Р°С‚СЊ СЃРєРІР°РґС‹ РІСЂР°РіР°РјРё, РїРµСЂРµРґР°СЋС‚СЃСЏ РґРІР° СЃРєРІР°РґР° set_squads_enemies(squad_name_1:squad_name_2)
+-- Сделать сквады врагами, передаются два сквада set_squads_enemies(squad_name_1:squad_name_2)
 function set_squads_enemies(actor, npc, p)
 	if (p[1] == nil or p[2] == nil) then
 		abort("Wrong parameters in function set_squad_enemies")
@@ -2214,12 +2177,12 @@ function jup_b16_play_particle_and_sound(actor, npc, p)
 	--particles_table[p[1]].sound    :play_at_pos(actor, patrol(npc:name().."_particle"):point(0), 0, sound_object.s3d)
 end
 
---Р¤СѓРЅРєС†РёСЏ СѓСЃС‚Р°РЅРѕРІРєРё СЃРѕСЃС‚РѕСЏРЅРёСЏ РІРёРґРёРјРѕСЃС‚Рё РєСЂРѕРІРѕСЃРѕСЃР°.
--- Р’РѕР·РјРѕР¶РЅС‹Р№ РЅР°Р±РѕСЂ РїР°СЂР°РјРµС‚СЂРѕРІ --> story_id:visibility_state(РјРѕР¶РЅРѕ РІС‹Р·С‹РІР°С‚СЊ РѕС‚РєСѓРґР° СѓРіРѕРґРЅРѕ) РёР»Рё visibility_state(РµСЃР»Рё РІС‹Р·С‹РІР°РµС‚СЃСЏ РёР· РєР°СЃС‚РѕРјРґР°С‚С‹ РєСЂРѕРІРѕСЃРѕСЃР°)
+--Функция установки состояния видимости кровососа.
+-- Возможный набор параметров --> story_id:visibility_state(можно вызывать откуда угодно) или visibility_state(если вызывается из кастомдаты кровососа)
 --  visibility_state -->
---						0 - РЅРµРІРёРґРёРјС‹Р№
---						1 - РїРѕР»СѓРІРёРґРёРјС‹Р№
---						2 - РїРѕР»РЅРѕСЃС‚СЊСЋ РІРёРґРёРјС‹Р№
+--						0 - невидимый
+--						1 - полувидимый
+--						2 - полностью видимый
 function set_bloodsucker_state(actor, npc, p)
 	if (p and p[1]) == nil then abort("Wrong parameters in function 'set_bloodsucker_state'!!!") end
 	local state = p[1]
@@ -2232,10 +2195,6 @@ function set_bloodsucker_state(actor, npc, p)
 		npc = level.object_by_id(npc:id())
 	end
 	--/ SGM out
-	if p[2] ~= nil then
-		state = p[2]
-		npc = get_story_object(p[1])
-	end
 	if npc ~= nil then
 		if state == "default" then
 			npc:force_visibility_state(-1)
@@ -2245,14 +2204,14 @@ function set_bloodsucker_state(actor, npc, p)
 	end
 end
 
---Р¤СѓРЅРєС†РёСЏ РІСЃС‚Р°РІРєРё РїСЂРµРґРјРµС‚Р° РІ РѕРїСЂРµРґРµР»РµРЅРЅСѓСЋ С‚РѕС‡РєСѓ, СЃРґРµР»Р°Р» РґР»СЏ СЃС†РµРЅС‹ Р±57
+--Функция вставки предмета в определенную точку, сделал для сцены б57
 function drop_object_item_on_point(actor, npc, p)
 	local drop_object = db.actor:object(p[1])
 	local drop_point  = patrol(p[2]):point(0)
 	db.actor:drop_item_and_teleport(drop_object, drop_point)
 end
 
---Р¤СѓРЅРєС†РёСЏ РѕС‚РЅСЏС‚РёСЏ РїСЂРµРґРјРµС‚Р° Сѓ РёРіСЂРѕРєР°
+--Функция отнятия предмета у игрока
 function remove_item(actor, npc, p)
 	if (p and p[1]) == nil then abort("Wrong parameters in function 'remove_item'!!!") end
 	local item = p[1]
@@ -2268,29 +2227,25 @@ function remove_item(actor, npc, p)
 	news_manager.relocate_item(db.actor, "out", item)
 end
 
--- РЎСЋР¶РµС‚РЅРѕРµ СЃРѕС…СЂР°РЅРµРЅРёРµ РІ РІР°Р¶РЅС‹С… РјРµСЃС‚Р°С…
+-- Сюжетное сохранение в важных местах
 function scenario_autosave(actor, npc, p)
 	local save_name = p[1]
+
 	if save_name == nil then
 		abort("You are trying to use scenario_autosave without save name")
 	end
 	--/ SGM in
-	if (sgm_g.autosave_precond() or sgm_g.find_in_string(save_name, "save_uni_travel")) and IsImportantSave() then
+	if (autosave_precond() or find_in_string(save_name, "save_uni_travel")) and IsImportantSave() then
 		local save_param = user_name() .. " - " .. game.translate_string(save_name)
 		sgm_flags.string_savegame_type = "autosave"
-		sgm_g.data_param_save_game(save_param)
+		data_param_save_game(save_param)
 		get_console():execute("save " .. save_param)
 	else
-		if sgm_flags.table_mod_autosaves[save_name] == nil and save_name ~= nil and IsImportantSave() then
+		if sgm_flags.table_mod_autosaves[save_name] == nil and IsImportantSave() then
 			sgm_flags.table_mod_autosaves[save_name] = true
 		end
 	end
 	--/ SGM out
-	if IsImportantSave() then
-		local save_param = user_name() .. " - " .. game.translate_string(save_name)
-
-		get_console():execute("save " .. save_param)
-	end
 end
 
 function zat_b29_create_random_infop(actor, npc, p)
@@ -2321,7 +2276,7 @@ function zat_b29_create_random_infop(actor, npc, p)
 		current_infop = math.random(1, total_infop)
 		for k, v in pairs(p) do
 			if k > 1 then
-				if (k == current_infop + 1 and (not has_alife_info(v))) then
+				if (k == current_infop + 1 and (sgm_g.dont_has_alife_info(v))) then
 					db.actor:give_info_portion(v)
 					break
 				end
@@ -2381,7 +2336,7 @@ function relocate_item_b29(actor, npc, p)
 	end
 end
 
--- Р¤СѓРЅРєС†РёСЏ СЂРµСЃРµС‚РёС‚ СЃРµРєРІРµРЅСЃРЅСѓСЋ Р·РІСѓРєРѕРєСѓСЋ С‚РµРјСѓ Сѓ РЅРµРїРёСЃСЏ. by peacemaker, hein, redstain
+-- Функция ресетит секвенсную звукокую тему у непися. by peacemaker, hein, redstain
 function reset_sound_npc(actor, npc, p)
 	local obj_id = npc:id()
 	if obj_id and xr_sound.sound_table and xr_sound.sound_table[obj_id] then
@@ -2416,11 +2371,8 @@ function clear_box(actor, npc, p)
 	local function add_items(inv_box, item)
 		table.insert(items_table, item)
 	end
-
 	inv_box:iterate_inventory_box(add_items, inv_box)
-
 	for k, v in pairs(items_table) do
-		-- alife():release(alife():object(v:id()), true)
 		--/ SGM in
 		if v ~= nil and alife():object(v:id()) then
 			alife():release(alife():object(v:id()), true)
@@ -2464,7 +2416,6 @@ function set_game_time(actor, npc, p)
 	level.change_game_time(0, hours_to_change, minutes_to_change)
 	level_weathers.get_weather_manager():forced_weather_change()
 	surge_manager.get_surge_manager().time_forwarded = true
-	printf("set_game_time: time changed to [%d][%d]", hours_to_change, minutes_to_change)
 end
 
 function forward_game_time(actor, npc, p)
@@ -2474,7 +2425,6 @@ function forward_game_time(actor, npc, p)
 
 	local hours = tonumber(p[1])
 	local minutes = tonumber(p[2])
-
 	if p[2] == nil then
 		minutes = 0
 	end
@@ -2624,6 +2574,7 @@ function pick_artefact_from_anomaly(actor, npc, p)
 	anomal_zone:on_artefact_take(af_obj)
 
 	alife():release(af_obj, true)
+
 	give_item(db.actor, npc, { af_name, p[1] })
 	--	alife():create(af_name,
 	--		npc.position,
@@ -2632,18 +2583,18 @@ function pick_artefact_from_anomaly(actor, npc, p)
 	--		npc.id)
 end
 
-function sgm_g.anomaly_turn_off(actor, npc, p)
+function anomaly_turn_off(actor, npc, p)
 	local anomal_zone = db.anomaly_by_name[p[1]]
 	if anomal_zone == nil then
-		abort("No such anomal zone in function 'sgm_g.anomaly_turn_off!'")
+		abort("No such anomal zone in function 'anomaly_turn_off!'")
 	end
 	anomal_zone:turn_off()
 end
 
-function sgm_g.anomaly_turn_on(actor, npc, p)
+function anomaly_turn_on(actor, npc, p)
 	local anomal_zone = db.anomaly_by_name[p[1]]
 	if anomal_zone == nil then
-		abort("No such anomal zone in function 'sgm_g.anomaly_turn_on!'")
+		abort("No such anomal zone in function 'anomaly_turn_on!'")
 	end
 	if p[2] then
 		anomal_zone:turn_on(true)
@@ -2739,7 +2690,7 @@ function oasis_heal()
 	db.actor.satiety = 0.01
 end
 
---Р¤СѓРЅРєС†РёСЏ РїСЂРёРЅРёРјР°РµС‚ С‚РѕР»СЊРєРѕ РѕРґРЅРѕ Р·РЅР°С‡РµРЅРёРµ, РѕРїСЂРµРґРµР»СЏСЋС‰РµРµ РґР»СЏ РєР°РєРѕР№ РіСЂСѓРїРёСЂРѕРІРєРё Р·Р°РїСѓСЃРєР°РµС‚СЃСЏ. РґРѕСЃС‚СѓРїРЅС‹Рµ Р·РЅР°С‡РµРЅРёСЏ [duty, freedom]
+--Функция принимает только одно значение, определяющее для какой групировки запускается. доступные значения [duty, freedom]
 function jup_b221_play_main(actor, npc, p)
 	local info_table = {}
 	local main_theme
@@ -2751,7 +2702,7 @@ function jup_b221_play_main(actor, npc, p)
 	if (p and p[1]) == nil then
 		abort("No such parameters in function 'jup_b221_play_main'")
 	end
-	--РЎРѕСЃС‚Р°РІР»СЏРµРј С‚Р°Р±Р»РёС†Сѓ РёРЅС„РѕРїРѕСЂС€РёРЅРѕРІ РѕРїСЂРµРґРµР»СЏСЋС‰РёС… РґРѕСЃС‚СѓРїРЅРѕСЃС‚СЊ С‚РѕР№ РёР»Рё РёРЅРѕР№ С‚РµРјС‹, РѕРїСЂРµРґРµР»СЏРµРј РїСЂРµС„РёРєСЃС‹ С‚РµРјС‹, РѕС‚РІРµС‚Р° Рё СЂРµР°РєС†РёРё, СЃРѕРѕС‚РІРµС‚СЃС‚РІРµРЅРЅРѕ РґР»СЏ РґРѕР»РіР° РёР»Рё РґР»СЏ СЃРІРѕР±РѕРґС‹.
+	--Составляем таблицу инфопоршинов определяющих доступность той или иной темы, определяем префиксы темы, ответа и реакции, соответственно для долга или для свободы.
 	if tostring(p[1]) == "duty" then
 		info_table = {
 			[1] = "jup_b25_freedom_flint_gone",
@@ -2779,14 +2730,14 @@ function jup_b221_play_main(actor, npc, p)
 	else
 		abort("Wrong parameters in function 'jup_b221_play_main'")
 	end
-	--РЎРѕСЃС‚Р°РІР»СЏРµРј С‚Р°Р±Р»РёС†Сѓ РґРѕСЃС‚С‹РїРЅС‹С… С‚РµРј(С‚Р»СЊРєРѕ РЅРѕРјРµСЂР° С‚РµРј).
+	--Составляем таблицу достыпных тем(тлько номера тем).
 	for k, v in pairs(info_table) do
-		if (has_alife_info(v)) and (not has_alife_info(main_theme .. tostring(k) .. "_played")) then
+		if (has_alife_info(v)) and (sgm_g.dont_has_alife_info(main_theme .. tostring(k) .. "_played")) then
 			table.insert(reachable_theme, k)
 			--			printf("jup_b221_play_main: table reachable_theme ------------------------------> [%s]", tostring(k))
 		end
 	end
-	--Р•СЃР»Рё С‚Р°Р±Р»РёС†Р° РґРѕСЃС‚СѓРїРЅС‹С… С‚РµРј РїСѓСЃС‚Р° РёРіСЂР°РµРј РѕС‚РІРµС‚. Р•СЃР»Рё Р¶Рµ РѕРЅР° РЅРµ РїСѓСЃС‚Р° РёРіСЂР°РµРј РѕСЃРЅРѕРІРЅСѓСЋ С‚РµРјСѓ. Р•СЃР»Рё РёРіСЂР°РµРј РѕСЃРЅРѕРІРЅСѓСЋ С‚РµРјСѓ Р·Р°РЅРѕСЃРёРј Р·РЅР°С‡РµРЅРёРµ СЃС‡РµС‚С‡РёРєР° РґР»СЏ РїРѕРІС‚РѕСЂРЅРѕРіРѕ РІС‹РїРѕР»РЅРµРЅРёСЏ С„СѓРЅРєС†РёРё. РўРµРјСѓ РІС‹Р±РёСЂР°РµРј РїРѕ СЂР°РЅРґРѕРјСѓ.
+	--Если таблица доступных тем пуста играем ответ. Если же она не пуста играем основную тему. Если играем основную тему заносим значение счетчика для повторного выполнения функции. Тему выбираем по рандому.
 	if #reachable_theme ~= 0 then
 		disable_info(info_need_reply)
 		theme_to_play = reachable_theme[math.random(1, #reachable_theme)]
@@ -2833,7 +2784,6 @@ function damage_actor_items_on_start(actor, npc)
 	--/ SGM in
 	obj = actor:object("wpn_fort_actor")
 	--/ SGM out
-	obj = actor:object("wpn_pm_actor")
 	if obj ~= nil then
 		obj:set_condition(0.9)
 	end
@@ -2967,7 +2917,7 @@ end
 --/ SGM in
 local detectors = { "detector_simple", "detector_advanced", "detector_elite", "detector_scientific", "detector_omega" }
 --/ SGM out
--- РўРѕР»СЊРєРѕ РґР»СЏ state_mgr
+-- Только для state_mgr
 function get_best_detector(npc)
 	for k, v in pairs(detectors) do
 		local obj = npc:object(v)
@@ -2988,7 +2938,7 @@ function hide_best_detector(npc)
 	end
 end
 
--- РРЅС„РѕРїРѕСЂС€РЅС‹ РґР»СЏ СЃРёРЅС…СЂРѕРЅРёР·Р°С†РёРё Р°РЅРёРјР°С†РёРё РЅРїСЃ СЃ РїСЂРѕС‡РёРјРё РґРµР№СЃС‚РІРёСЏРјРё, Рё РґР»СЏ РґСЂСѓРіРёС… С†РµР»РµР№
+-- Инфопоршны для синхронизации анимации нпс с прочими действиями, и для других целей
 function pri_a18_radio_start(actor, npc)
 	db.actor:give_info_portion("pri_a18_radio_start")
 end
@@ -3094,7 +3044,7 @@ local actor_torch       = false
 
 function disable_actor_nightvision(actor, npc)
 	local nightvision = db.actor:object("device_torch")
-	if nightvision ~= nil and nightvision:night_vision_enabled() then
+	if nightvision:night_vision_enabled() then
 		nightvision:enable_night_vision(false)
 		actor_nightvision = true
 	end
@@ -3102,7 +3052,7 @@ end
 
 function enable_actor_nightvision(actor, npc)
 	local nightvision = db.actor:object("device_torch")
-	if nightvision ~= nil and not nightvision:night_vision_enabled() and actor_nightvision then
+	if not nightvision:night_vision_enabled() and actor_nightvision then
 		nightvision:enable_night_vision(true)
 		actor_nightvision = false
 	end
@@ -3110,7 +3060,7 @@ end
 
 function disable_actor_torch(actor, npc)
 	local torch = db.actor:object("device_torch")
-	if torch ~= nil and torch:torch_enabled() then
+	if torch:torch_enabled() then
 		torch:enable_torch(false)
 		actor_torch = true
 	end
@@ -3118,32 +3068,18 @@ end
 
 function enable_actor_torch(actor, npc)
 	local torch = db.actor:object("device_torch")
-	if torch ~= nil and not torch:torch_enabled() and actor_torch then
+	if not torch:torch_enabled() and actor_torch then
 		torch:enable_torch(true)
 		actor_torch = false
 	end
 end
 
 function create_cutscene_actor_with_weapon(actor, npc, p)
-	-- Handle camera change to play cutscenes properly
-	if not is_first_person() then
-		set_first_person()
-		if not xr_state:get_camera_state() then
-			xr_state:reg_camera_change(true)
-		end
-	end
-	-- Handle actor shadow hiding to play cutscenes properly
-	if is_actor_shadow() then
-		set_actor_shadow(false)
-		-- get_console():execute("r_actor_shadow 0")
-		xr_state:reg_actor_shadow_change(true)
-	end
-
-	--' p[1] - СЃРµРєС†РёСЏ РєРѕРіРѕ СЃРїР°СѓРЅРёС‚СЊ
-	--' p[2] - РёРјСЏ РїР°С‚СЂСѓР»СЊРЅРѕРіРѕ РїСѓС‚Рё РіРґРµ СЃРїР°СѓРЅРёС‚СЊ.
-	--' p[3] - С‚РѕС‡РєР° РїР°С‚СЂСѓР»СЊРЅРѕРіРѕ РїСѓС‚Рё
-	--' p[4] - РїРѕРІРѕСЂРѕС‚ РїРѕ РѕСЃРё Y
-	--' p[5] - РїСЂРёРЅСѓРґРёС‚РµР»СЊРЅС‹Р№ СЃР»РѕС‚ - Р±СѓРґРµС‚ СЂР°Р±РѕС‚Р°С‚СЊ РґР°Р¶Рµ РїСЂРё disable_ui
+	--' p[1] - секция кого спаунить
+	--' p[2] - имя патрульного пути где спаунить.
+	--' p[3] - точка патрульного пути
+	--' p[4] - поворот по оси Y
+	--' p[5] - принудительный слот - будет работать даже при disable_ui
 	local spawn_sect = p[1]
 	if spawn_sect == nil then
 		abort("Wrong spawn section for 'spawn_object' function %s. For object %s", tostring(spawn_sect), obj:name())
@@ -3211,13 +3147,13 @@ function create_cutscene_actor_with_weapon(actor, npc, p)
 	end
 end
 
--- Р—Р°СЃС‚Р°РІРёС‚СЊ РёРіСЂР°С‚СЊ СѓРЅРёРєР°Р»СЊРЅС‹Рµ Р°РЅРёРјР°С†РёРё СЃРЅР°(Сѓ РєСЂРѕРІРѕСЃРѕСЃР°)
+-- Заставить играть уникальные анимации сна(у кровососа)
 function set_force_sleep_animation(actor, npc, p)
 	local num = p[1]
 	npc:force_stand_sleep_animation(tonumber(num))
 end
 
--- РЈР±СЂР°С‚СЊ СѓРЅРёРєР°Р»СЊРЅС‹Рµ Р°РЅРёРјР°С†РёРё СЃРЅР°(Сѓ РєСЂРѕРІРѕСЃРѕСЃР°)
+-- Убрать уникальные анимации сна(у кровососа)
 function release_force_sleep_animation(actor, npc)
 	npc:release_stand_sleep_animation()
 end
@@ -3226,15 +3162,15 @@ function zat_b33_pic_snag_container(actor, npc)
 	if xr_conditions.actor_in_zone(actor, npc, { "zat_b33_tutor" }) then
 		give_actor(actor, npc, { "zat_b33_safe_container" })
 		db.actor:give_info_portion("zat_b33_find_package")
-		if not has_alife_info("zat_b33_safe_container") then
+		if sgm_g.dont_has_alife_info("zat_b33_safe_container") then
 			local zone = db.zone_by_name["zat_b33_tutor"]
 			play_sound(actor, zone, { "pda_news" })
 		end
 	end
 end
 
---РћС‚РєР»СЋС‡РµРЅРёРµ РІРѕР·РґРµР№СЃС‚РІРёСЏ РІСЂР°Р¶РµСЃРєРѕРіРѕ РЅРїСЃ РЅР° РёРЅРґРёРєР°С‚РѕСЂ РІРёРґРёРјРѕСЃС‚Рё РІСЂР°РіР° РЅР° С…Р°РґРµ РёРіСЂРѕРєР°.
---РСЃРї. С‚РѕР»СЊРєРѕ РёР· Р»РѕРіРёРєРё РЅРїСЃ.
+--Отключение воздействия вражеского нпс на индикатор видимости врага на хаде игрока.
+--Исп. только из логики нпс.
 function set_visual_memory_enabled(actor, npc, p)
 	if (p and p[1]) and (tonumber(p[1]) >= 0) and (tonumber(p[1]) <= 1) then
 		local boolval = false
@@ -3295,7 +3231,7 @@ function zat_b202_spawn_b33_loot(actor, npc, p)
 		else
 			obj_id = "jup_b202_snag_treasure"
 		end
-		if not has_alife_info(tostring(v)) then
+		if sgm_g.dont_has_alife_info(tostring(v)) then
 			for l, m in pairs(item_table[k]) do
 				--				printf("zat_b202_spawn_b33_loot: number [%s] item [%s] to [%s]", tostring(k), tostring(m), tostring(obj_id))
 				spawn_object_in(actor, npc, { tostring(m), tostring(obj_id) })
@@ -3389,7 +3325,7 @@ function pri_a28_check_zones()
 
 	if has_alife_info(info_tbl[index]) then
 		for k, v in pairs(info_tbl) do
-			if not has_alife_info(info_tbl[k]) then
+			if sgm_g.dont_has_alife_info(info_tbl[k]) then
 				db.actor:give_info_portion(info_tbl[k])
 			end
 		end
@@ -3436,4 +3372,1429 @@ function jup_b200_count_found(actor)
 
 	cnt = cnt + xr_logic.pstor_retrieve(actor, "jup_b200_tech_materials_brought_counter", 0)
 	xr_logic.pstor_store(actor, "jup_b200_tech_materials_found_counter", cnt)
+end
+
+---==================================================================================================---
+--------------------------------------------------------------------------------------------------------
+---------------------------------------(Sigerous MOD)---------------------------------------------------
+--------------------------------------------------------------------------------------------------------
+---==================================================================================================---
+------------------------------------------------------------------------------
+--                      Функции для респауна баз                            --
+------------------------------------------------------------------------------
+function recoil_zat_bandit_base(actor, npc)
+	disable_several_info("zat_bandit_base_bodyguard_", "_death", 1, 4)
+	disable_info("zat_bandit_base_west_chief_death", "zat_bandit_base_south_chief_death", "zat_bandit_base_actor_hit",
+		"zat_bandit_base_hit")
+end
+
+function recoil_jup_rasvet_base(actor, npc)
+	disable_several_info("jup_rasvet_base_guard_", "_death", 1, 10)
+	disable_several_info("jup_rasvet_base_bodyguard_", "_death", 1, 2)
+	disable_info("jup_rasvet_base_actor_hit", "jup_rasvet_base_hit")
+end
+
+function recoil_jup_killer_base_part_1(actor, npc)
+	disable_several_info("jup_killer_base_patrol_", "_death", 1, 8)
+	disable_info("jup_killer_base_actor_hit")
+end
+
+function recoil_jup_killer_base_part_2(actor, npc)
+	disable_several_info("jup_killer_base_sentry_", "_death", 1, 20)
+	disable_info("jup_killer_base_actor_hit")
+end
+
+function recoil_pri_monolit_base(actor, npc)
+	disable_several_info("pri_monolit_base_guard_", "_death", 1, 10)
+	disable_several_info("pri_monolit_base_sniper_", "_death", 1, 3)
+	disable_several_info("pri_monolit_base_sentry_", "_death", 1, 3)
+	disable_info("pri_monolit_base_actor_hit", "pri_monolit_base_hit")
+end
+
+------------------------------------------------------------------------------
+--                     Функции для телохранителей                           --
+------------------------------------------------------------------------------
+function bodyguard_init(actor, npc)
+	if sgm_g.dont_has_alife_info(npc:profile_name() .. "_init") then
+		give_info(npc:profile_name() .. "_init")
+		news_manager.bodyguard_tip(db.actor,
+			game.translate_string("st_bodyguard_init_tip") .. " «" .. npc:character_name() .. "»", 0, "bodyguard", 10000,
+			nil, "st_add_info_title")
+	end
+end
+
+function bodyguard_death(actor, npc)
+	if has_alife_info(npc:profile_name() .. "_pursue") then
+		news_manager.bodyguard_tip(db.actor,
+			game.translate_string("st_bodyguard_death_tip") ..
+			" «" .. npc:character_name() .. "» - " .. game.translate_string("st_bodyguard_death2_tip"), 0, "bodyguard",
+			10000, nil, "st_add_info_title")
+	end
+	disable_info(npc:profile_name() .. "_stand_and_fire")
+	disable_info(npc:profile_name() .. "_nofire")
+	disable_info(npc:profile_name() .. "_stop")
+	disable_info(npc:profile_name() .. "_pursue")
+end
+
+function bodyguard_command_0(actor, npc)
+	news_manager.bodyguard_tip(db.actor,
+		game.translate_string("st_bodyguard_commands_tip") ..
+		" «" .. npc:character_name() .. "» - " .. game.translate_string("st_bodyguard_command_0_tip"), 0, "bodyguard",
+		6000, nil, "st_add_info_title")
+end
+
+function bodyguard_command_1(actor, npc)
+	news_manager.bodyguard_tip(db.actor,
+		game.translate_string("st_bodyguard_commands_tip") ..
+		" «" .. npc:character_name() .. "» - " .. game.translate_string("st_bodyguard_command_1_tip"), 0, "bodyguard",
+		6000, nil, "st_add_info_title")
+end
+
+function bodyguard_command_2(actor, npc)
+	news_manager.send_tip(db.actor,
+		game.translate_string("st_bodyguard_commands_tip") ..
+		" «" .. npc:character_name() .. "» - " .. game.translate_string("st_bodyguard_command_2_tip"), 0, "bodyguard",
+		6000, nil, "st_add_info_title")
+end
+
+function bodyguard_command_3(actor, npc)
+	news_manager.send_tip(db.actor,
+		game.translate_string("st_bodyguard_commands_tip") ..
+		" «" .. npc:character_name() .. "» - " .. game.translate_string("st_bodyguard_command_3_tip"), 0, "bodyguard",
+		6000, nil, "st_add_info_title")
+end
+
+function bodyguard_command_4(actor, npc)
+	news_manager.send_tip(db.actor,
+		game.translate_string("st_bodyguard_commands_tip") ..
+		" «" .. npc:character_name() .. "» - " .. game.translate_string("st_bodyguard_command_4_tip"), 0, "bodyguard",
+		6000, nil, "st_add_info_title")
+	disable_info(npc:profile_name() .. "_stand_and_fire")
+	disable_info(npc:profile_name() .. "_nofire")
+	disable_info(npc:profile_name() .. "_stop")
+	disable_info(npc:profile_name() .. "_release")
+	disable_info(npc:profile_name() .. "_pursue")
+	remove_spot_on_map(npc:id(), sgm_flags.spot_actor_guard)
+	for k, v in pairs(xr_bodyguard.bodyguards_config) do
+		if k ~= nil and npc:profile_name() == k then
+			xr_effects["respawn_" .. k](actor, npc)
+		end
+	end
+end
+
+function respawn_zat_stalker_bodyguard(actor, npc)
+	create("zat_stalker_bodyguard", 105.417, -1.338, 179.173, 1148335, 316)
+	disable_info("zat_stalker_bodyguard_init", "zat_stalker_bodyguard_danger")
+end
+
+function respawn_zat_bandit_bodyguard(actor, npc)
+	create("zat_bandit_bodyguard", 405.858, 39.446, -18.573, 1633413, 293)
+	disable_info("zat_bandit_bodyguard_init", "zat_bandit_bodyguard_danger")
+end
+
+function respawn_jup_freedom_bodyguard(actor, npc)
+	create("jup_freedom_bodyguard", -58.776, 3.487, 190.235, 621642, 368)
+	disable_info("jup_freedom_bodyguard_init", "jup_freedom_bodyguard_danger")
+end
+
+function respawn_jup_army_bodyguard(actor, npc)
+	create("jup_army_bodyguard", -58.776, 3.487, 190.235, 621642, 368)
+	disable_info("jup_army_bodyguard_init", "jup_army_bodyguard_danger")
+end
+
+function respawn_jup_killer_bodyguard(actor, npc)
+	create("jup_killer_bodyguard", 230.462, 28.146, -420.110, 1109403, 610)
+	disable_info("jup_killer_bodyguard_init", "jup_killer_bodyguard_danger")
+end
+
+function respawn_pri_army_bodyguard(actor, npc)
+	create("pri_army_bodyguard", 147.369, -0.095, -185.508, 377149, 708)
+	disable_info("pri_army_bodyguard_init", "pri_army_bodyguard_danger")
+end
+
+function respawn_pri_monolith_bodyguard(actor, npc)
+	create("pri_monolith_bodyguard", -180.116, 0.668, -348.861, 34718, 806)
+	disable_info("pri_monolith_bodyguard_init", "pri_monolith_bodyguard_danger")
+end
+
+------------------------------------------------------------------------------
+--                            Функции для квестов                           --
+------------------------------------------------------------------------------
+function zat_accompany_stalker_ambush_action(actor, npc)
+	create("boar_normal", 128.99235534668, 1.4472534656525, 390.87936401367, 1187887, 134)
+	create("boar_strong", 126.70880889893, 3.1739783287048, 370.45471191406, 1184330, 134)
+	create("boar_normal", 88.661109924316, 8.7471570968628, 368.44290161133, 1119433, 135)
+	create("boar_strong", 56.869701385498, 13.433298110962, 382.32415771484, 1059309, 137)
+	create("boar_normal", 52.019958496094, 13.558873176575, 409.54943847656, 1049705, 197)
+end
+
+function zat_chimera_zagon_final_tip(actor, npc)
+	--/news_manager.send_tip(db.actor,"zat_chimera_zagon_final_text",0,"chimera",5000,nil,npc:character_name()..":")
+end
+
+function zat_accompany_to_boat(actor, npc)
+	if sgm_g.dont_has_alife_info("zat_accompany_to_boat_i_am_alone") then
+		create("zat_accompany_to_boat_spot", 148.695, -7.344, 183.552, 1220159, 295)
+		give_info("zat_accompany_to_boat_alt")
+		give_info("zat_accompany_to_boat_start")
+		add_task("sgm_zat_accompany_to_boat")
+	end
+end
+
+function zat_duty_kanevskiy_charge(actor, npc)
+	if get_global_pattern() == 1 then
+		activate_detonate_charge(npc, math.random(5000, 6000), "visible_big", 576.815, 10.850, -288.893, 1841058, 220)
+		create("snork_normal", 518.00732421875, 9.1930103302002, -293.25762939453, 1797434, 83)
+		create("snork_normal", 524.24975585938, 18.880195617676, -338.07827758789, 1804512, 82)
+		create("snork_normal", 533.1416015625, -1.9498739242554, -245.36294555664, 1814147, 220)
+		create("snork_normal_hunter", 545.13287353516, -0.87468135356903, -242.7574005127, 1827065, 220)
+	else
+		activate_detonate_charge(npc, math.random(5000, 6000), "visible_big", -419.209, 25.620, -216.804, 149223, 93)
+		create("snork_normal", -436.53112792969, 13.097826004028, -161.74021911621, 126567, 39)
+		create("snork_normal", -430.52825927734, 13.314255714417, -168.42752075195, 133696, 39)
+		create("snork_normal", -407.05767822266, 20.789720535278, -161.07034301758, 166994, 39)
+		create("snork_strong_hunter", -429.6042175293, 13.857533454895, -138.47366333008, 134614, 94)
+	end
+end
+
+function zat_ambush_vobla_sniper(actor, npc)
+	create("zat_vobla_protection_sniper", 412.876, 5.907, 258.636, 1645736, 7)
+end
+
+function zat_ambush_heli_5(actor, npc)
+	create("zat_heli_5_sniper", -447.016, -1.728, 92.031, 115302, 214)
+end
+
+function zat_breeder_reborn(actor, npc)
+	create("zat_stalker_breeder2", 114.681, -7.348, 186.171, 1163606, 316)
+end
+
+function zat_monsters_1st_wave_update(actor, npc)
+	if sgm_g.dont_has_alife_info("zat_monsters_wave_1st_wave_end") then
+		sgm_g.inc_mod_param("zat_monster_w1_deaths")
+		if read_mod_param("zat_monster_w1_deaths") >= 30 then
+			clear_all_objects("monster", 1, 150)
+			give_info("zat_monsters_wave_1st_wave_end")
+			clear_mod_param("zat_monster_w1_deaths")
+			clear_mod_param("zat_monster_w1_spawned")
+			game_autosave_assign("save_zat_monsters_1st_wave_end")
+		end
+	end
+end
+
+function zat_monsters_2nd_wave_update(actor, npc)
+	if sgm_g.dont_has_alife_info("zat_monsters_wave_2nd_wave_end") then
+		sgm_g.inc_mod_param("zat_monster_w2_deaths")
+		if read_mod_param("zat_monster_w2_deaths") >= 36 then
+			clear_all_objects("monster", 1, 150)
+			give_info("zat_monsters_wave_2nd_wave_end")
+			clear_mod_param("zat_monster_w2_deaths")
+			clear_mod_param("zat_monster_w2_spawned")
+			game_autosave_assign("save_zat_monsters_2nd_wave_end")
+		end
+	end
+end
+
+function zat_monsters_3rd_wave_update(actor, npc)
+	if sgm_g.dont_has_alife_info("zat_monsters_wave_3rd_wave_end") then
+		sgm_g.inc_mod_param("zat_monster_w3_deaths")
+		if read_mod_param("zat_monster_w3_deaths") >= 42 then
+			clear_all_objects("monster", 1, 250)
+			give_info("zat_monsters_wave_3rd_wave_end")
+			clear_mod_param("zat_monster_w3_deaths")
+			clear_mod_param("zat_monster_w3_spawned")
+			game_autosave_assign("save_zat_monsters_3rd_wave_end")
+		end
+	end
+end
+
+function zat_monsters_wave_commander_death(actor, npc)
+	if sgm_g.dont_has_alife_info("zat_monsters_wave_3_controller_destroyed") and sgm_g.dont_has_alife_info("zat_monsters_wave_fail") then
+		clear_all_objects("monster", 1, 200)
+		news_manager.send_tip(db.actor, "zat_barge_noah_about_commander_death_text", 0, "portrait_Noy", 8000, nil,
+			"zat_barge_noah_title")
+		give_info("zat_monsters_wave_fail")
+	end
+end
+
+function zat_monsters_wave_1_controller_appeared(actor, npc)
+	if sgm_g.dont_has_alife_info("zat_monsters_wave_defence_commander_killed") then
+		news_manager.send_tip(db.actor, "zat_monsters_wave_1_controller_appeared_text", 0, "portrait_neutral_4", 12000,
+			nil, "zat_barge_defence_commander_title")
+	end
+end
+
+function zat_monsters_wave_2_controller_appeared(actor, npc)
+	if sgm_g.dont_has_alife_info("zat_monsters_wave_defence_commander_killed") then
+		news_manager.send_tip(db.actor, "zat_monsters_wave_2_controller_appeared_text", 0, "portrait_neutral_4", 12000,
+			nil, "zat_barge_defence_commander_title")
+	end
+end
+
+function zat_monsters_wave_3_controller_appeared(actor, npc)
+	if sgm_g.dont_has_alife_info("zat_monsters_wave_defence_commander_killed") then
+		news_manager.send_tip(db.actor, "zat_monsters_wave_3_controller_appeared_text", 0, "portrait_neutral_4", 12000,
+			nil, "zat_barge_defence_commander_title")
+	end
+end
+
+function zat_homsa_attacked_update_1(actor, npc)
+	if sgm_g.dont_has_alife_info("zat_homsa_from_monsters_wave_1") then
+		sgm_g.inc_mod_param("zat_homsa_attacked_monsters_deaths_1")
+		if read_mod_param("zat_homsa_attacked_monsters_deaths_1") >= 3 then
+			give_info("zat_homsa_from_monsters_wave_1")
+			clear_mod_param("zat_homsa_attacked_monsters_deaths_1")
+		end
+	end
+end
+
+function zat_homsa_attacked_update_2(actor, npc)
+	if sgm_g.dont_has_alife_info("zat_homsa_from_monsters_wave_2") then
+		sgm_g.inc_mod_param("zat_homsa_attacked_monsters_deaths_2")
+		if read_mod_param("zat_homsa_attacked_monsters_deaths_2") >= 3 then
+			give_info("zat_homsa_from_monsters_wave_2")
+			clear_mod_param("zat_homsa_attacked_monsters_deaths_2")
+		end
+	end
+end
+
+function zat_homsa_attacked_update_3(actor, npc)
+	if sgm_g.dont_has_alife_info("zat_homsa_from_monsters_wave_3") then
+		sgm_g.inc_mod_param("zat_homsa_attacked_monsters_deaths_3")
+		if read_mod_param("zat_homsa_attacked_monsters_deaths_3") >= 2 then
+			give_info("zat_homsa_from_monsters_wave_3")
+			clear_mod_param("zat_homsa_attacked_monsters_deaths_3")
+		end
+	end
+end
+
+function zat_b103_merc_task_spez_1_create(actor, npc)
+	if sgm_g.dont_has_alife_info("zat_quest_the_spez_freedom_all_dead") then
+		create("zat_quest_the_spez_1_spot", -497.307, 28.247, -224.915, 58005, 38)
+		create("zat_ecolog_spez_case", 179.622, 4.821, -191.095, 1273476, 78)
+		create("zat_quest_the_spez_freedom_1_1", -507.797, 30.262, -232.305, 44475, 38)
+		create("zat_quest_the_spez_freedom_1_2", -517.463, 31.208, -225.713, 32511, 38)
+		create("zat_quest_the_spez_freedom_1_3", -530.278, 33.182, -222.015, 17887, 38)
+		create("zat_quest_the_spez_freedom_1_4", -491.417, 28.930, -241.236, 65130, 38)
+		create("zat_quest_the_spez_freedom_1_5", -520.189, 30.845, -209.555, 29305, 38)
+		create_dead_body("zat_quest_the_spez_dolg_1_dead_1", "bio_bandage", 186.669, 4.821, -188.737, 1285026, 78)
+		create_dead_body("zat_quest_the_spez_dolg_1_dead_2", "bio_bandage", 179.224, 4.821, -185.916, 1272319, 78)
+		create_dead_body("zat_quest_the_spez_dolg_1_dead_3", "bio_bandage", 182.748, 4.821, -179.858, 1278168, 78)
+		create_dead_body("zat_quest_the_spez_dolg_1_dead_4", "bio_bandage", 194.997, 5.637, -211.848, 1298331, 78)
+		create_dead_body("zat_quest_the_spez_ecolog_1_dead_1", "bio_bandage", 169.139, 4.820, -186.843, 1255912, 149)
+		create_dead_body("zat_quest_the_spez_ecolog_1_dead_2", "bio_bandage", 170.986, 4.818, -191.644, 1258189, 78)
+		create_dead_body("zat_quest_the_spez_ecolog_1_dead_3", "bio_bandage", 193.258, 4.820, -187.768, 1294967, 78)
+	end
+end
+
+function zat_b103_merc_task_spez_2_create(actor, npc)
+	if sgm_g.dont_has_alife_info("zat_quest_the_spez_all_ecodolg_killed") then
+		create("zat_quest_the_spez_2_spot", 523.335, -7.074, -168.535, 1803082, 83)
+		create("zat_quest_the_spez_freedom_2_1", 475.759, 31.968, -433.542, 1740924, 82)
+		create("zat_quest_the_spez_freedom_2_2", 472.630, 31.717, -440.119, 1735847, 74)
+		create("zat_quest_the_spez_freedom_2_3", 463.886, 31.541, -439.264, 1723576, 74)
+		create("zat_quest_the_spez_freedom_2_4", 475.322, 31.735, -442.787, 1739919, 82)
+		create("zat_quest_the_spez_freedom_2_5", 481.279, 32.086, -443.815, 1748102, 82)
+	end
+end
+
+function zat_b103_merc_task_spez_3_create(actor, npc)
+	if sgm_g.dont_has_alife_info("zat_quest_the_spez_all_ecodolg_killed") then
+		create("zat_ecolog_spez_case", 569.290, -7.367, -195.043, 1838561, 220)
+		create("zat_quest_the_spez_ecolog_2_1", 575.513, -5.884, -201.112, 1840389, 220)
+		create("zat_quest_the_spez_ecolog_2_2", 574.887, -6.418, -200.279, 1840203, 220)
+		create("zat_quest_the_spez_ecolog_2_3", 574.096, -6.903, -199.103, 1839820, 220)
+		create("zat_quest_the_spez_dolg_2_1", 573.080, -7.138, -197.977, 1839820, 220)
+		create("zat_quest_the_spez_dolg_2_2", 571.863, -7.170, -198.591, 1839820, 220)
+		create("zat_quest_the_spez_dolg_2_3", 571.143, -7.158, -201.207, 1839627, 220)
+		create("zat_quest_the_spez_dolg_2_4", 570.565, -7.149, -203.440, 1839429, 220)
+		create("zat_quest_the_spez_killer_razvodayshi", 434.788, 33.471, -231.101, 1672074, 73)
+	end
+end
+
+function zat_a6_sultan_quest_kontra_create_enemy(actor, npc)
+	if sgm_g.dont_has_alife_info("zat_a6_sultan_quest_kontra_all_lucian_member_dead") then
+		create("zat_bandit_kontrabanda_lucian_2", 483.578, -5.846, 199.974, 1475874, 519)
+		create("zat_bandit_kontrabanda_killer_1_2", 478.171, -6.404, 199.471, 1470114, 519)
+		create("zat_bandit_kontrabanda_killer_2_2", 474.305, -6.497, 193.143, 1465791, 524)
+		create("zat_bandit_kontrabanda_killer_3_2", 474.526, -6.533, 215.412, 1465818, 519)
+	end
+end
+
+function zat_alfa_sabotage_squad_update(actor, npc)
+	if sgm_g.dont_has_alife_info("zat_alfa_sabotage_alfa_dead") then
+		sgm_g.inc_mod_param("zat_alfa_sabotage_squad_deaths")
+		if read_mod_param("zat_alfa_sabotage_squad_deaths") >= 4 then
+			give_info("zat_alfa_sabotage_alfa_dead")
+			clear_mod_param("zat_alfa_sabotage_squad_deaths")
+		end
+	end
+end
+
+function zat_alfa_sabotage_charge_update(actor, npc)
+	if sgm_g.dont_has_alife_info("zat_alfa_sabotage_charge_all_innocuous") then
+		sgm_g.inc_mod_param("zat_alfa_sabotage_charge_innocuous")
+	end
+end
+
+function jup_replace_on_tower_1(actor, npc)
+	npc:set_npc_position(vector():set(-63.238, 33.481, -336.089))
+end
+
+function jup_replace_on_tower_2(actor, npc)
+	npc:set_npc_position(vector():set(-53.237, 33.500, -335.834))
+end
+
+function jup_rasvet_eliminate_burrows_hole_1_launch(actor, npc)
+	create_force("jup_rasvet_monsters_1_hole_squad", 382.375, -5.818, 465.765, 1321140, 563)
+	give_info("jup_rasvet_eliminate_burrows_1_hole_spawn")
+end
+
+function jup_rasvet_eliminate_burrows_hole_2_launch(actor, npc)
+	if sgm_g.dont_has_alife_info("jup_rasvet_eliminate_burrows_fail") then
+		news_manager.send_tip(db.actor, "jup_rasvet_leader_about_eliminate_burrow_2_text", 0, "portrait_Nebo_3", 7000,
+			nil, "jup_rasvet_leader_title", false)
+		create_force("jup_rasvet_monsters_2_hole_squad", 417.749, 27.089, -424.699, 1370173, 555)
+		give_info("jup_rasvet_eliminate_burrows_2_hole_spawn")
+		game_autosave_assign("save_jup_rasvet_monsters_hole_1_destroyed")
+	end
+end
+
+function jup_rasvet_eliminate_burrows_hole_3_launch(actor, npc)
+	if sgm_g.dont_has_alife_info("jup_rasvet_eliminate_burrows_fail") then
+		news_manager.send_tip(db.actor, "jup_rasvet_leader_about_eliminate_burrow_3_text", 0, "portrait_Nebo_3", 7000,
+			nil, "jup_rasvet_leader_title", false)
+		create_force("jup_rasvet_monsters_3_hole_squad", -280.001, 5.959, -443.465, 240801, 576)
+		give_info("jup_rasvet_eliminate_burrows_3_hole_spawn")
+		game_autosave_assign("save_jup_rasvet_monsters_hole_2_destroyed")
+	end
+end
+
+function jup_rasvet_eliminate_burrows_hole_4_launch(actor, npc)
+	if sgm_g.dont_has_alife_info("jup_rasvet_eliminate_burrows_fail") then
+		news_manager.send_tip(db.actor, "jup_rasvet_leader_about_eliminate_burrow_4_text", 0, "portrait_Nebo_3", 7000,
+			nil, "jup_rasvet_leader_title", false)
+		create_force("jup_rasvet_monsters_4_hole_squad", -240.671, 1.456, -119.465, 308289, 449)
+		give_info("jup_rasvet_eliminate_burrows_4_hole_spawn")
+		game_autosave_assign("save_jup_rasvet_monsters_hole_3_destroyed")
+	end
+end
+
+function jup_rasvet_eliminate_burrows_hole_5_launch(actor, npc)
+	if sgm_g.dont_has_alife_info("jup_rasvet_eliminate_burrows_fail") then
+		news_manager.send_tip(db.actor, "jup_rasvet_leader_about_eliminate_burrow_5_text", 0, "portrait_Nebo_3", 7000,
+			nil, "jup_rasvet_leader_title", false)
+		create_force("jup_rasvet_monsters_5_hole_squad", -406.648, 4.255, -108.928, 35167, 451)
+		give_info("jup_rasvet_eliminate_burrows_5_hole_spawn")
+	end
+end
+
+function jup_rasvet_eliminate_burrows_hole_5_victory(actor, npc)
+	if sgm_g.dont_has_alife_info("jup_rasvet_eliminate_burrows_fail") then
+		play_snd_at_actor([[characters_voice\human_01\csky\alife\defence\actor_help_1]])
+		news_manager.send_tip(db.actor, "jup_rasvet_leader_about_eliminate_burrow_5_victory_text", 0, "portrait_Nebo_3",
+			7000, nil, "jup_rasvet_leader_title", false)
+	end
+end
+
+function jup_psi_spawner(actor, npc)
+	create("jup_psi_controller_1", 315.936, 34.592, -232.588, 1223840, 549)
+end
+
+function jup_ambush_zombied_spawner(actor, npc)
+	create("jup_ambush_zombied_1", 334.939, 27.179, -268.859, 1250657, 549)
+	create("jup_ambush_zombied_2", 330.469, 26.866, -254.539, 1244500, 549)
+	create("jup_ambush_zombied_3", 303.445, 27.289, -262.975, 1207137, 633)
+	create("jup_ambush_zombied_4", 316.412, 26.872, -248.719, 1224770, 633)
+	create("jup_ambush_zombied_5", 344.804, 27.979, -240.368, 1266513, 549)
+	create("jup_ambush_zombied_6", 355.324, 27.161, -260.047, 1279815, 549)
+end
+
+function jup_killer_first_squad_controler(actor, npc)
+	create("jup_psi_controller_1", 315.936, 34.592, -232.588, 1223840, 549)
+end
+
+function jup_killer_first_squad_1_mutation(actor, npc)
+	--/create("jup_ambush_zombied_7",npc:position().x+math.random(-5,5),npc:position().y,npc:position().z+math.random(-5,5),npc:level_vertex_id(),npc:game_vertex_id())
+end
+
+function jup_killer_first_squad_2_mutation(actor, npc)
+	--/create("jup_ambush_zombied_8",npc:position().x+math.random(-5,5),npc:position().y,npc:position().z+math.random(-5,5),npc:level_vertex_id(),npc:game_vertex_id())
+end
+
+function jup_killer_first_squad_3_mutation(actor, npc)
+	--/create("jup_ambush_zombied_9",npc:position().x+math.random(-5,5),npc:position().y,npc:position().z+math.random(-5,5),npc:level_vertex_id(),npc:game_vertex_id())
+end
+
+function jup_killer_first_squad_4_mutation(actor, npc)
+	--/create("jup_ambush_zombied_10",npc:position().x+math.random(-5,5),npc:position().y,npc:position().z+math.random(-5,5),npc:level_vertex_id(),npc:game_vertex_id())
+end
+
+function jup_ambush_zombied_check(actor, npc)
+	if has_several_info("jup_ambush_zombied_", "_death", 1, 6) and sgm_g.dont_has_alife_info("jup_mercenary_check_plant_clear_perimetr") then
+		give_info("jup_mercenary_check_plant_clear_perimetr")
+		game_autosave_assign("save_jup_mercenary_check_plant_sector_clear")
+	end
+end
+
+function jup_psi_controller_check(actor, npc)
+	if sgm_g.dont_has_alife_info("jup_mercenary_check_plant_snorks") then
+		sgm_g.inc_mod_param("jup_ambush_zombied_deaths")
+		if read_mod_param("jup_ambush_zombied_deaths") >= 12 then
+			create("jup_after_fight_snork_1", 282.904, 27.866, -212.074, 1180670, 653)
+			create("jup_after_fight_snork_2", 414.830, 27.297, -240.032, 1371492, 641)
+			create("jup_after_fight_snork_3", 405.413, 27.131, -266.837, 1354848, 637)
+			create("jup_after_fight_snork_4", 381.892, 27.976, -239.890, 1320306, 642)
+			create("jup_after_fight_snork_5", 265.964, 28.271, -179.728, 1159642, 537)
+			clear_mod_param("jup_ambush_zombied_deaths")
+			give_info("jup_mercenary_check_plant_snorks")
+		end
+	end
+	if has_several_info("jup_after_fight_snork_", "_death", 1, 5) and sgm_g.dont_has_alife_info("jup_mercenary_check_plant_have_secured") then
+		give_info("jup_mercenary_check_plant_have_secured")
+	end
+end
+
+function jup_beylis_ambush_effect(actor, npc)
+	create("chimera_normal", 72.532, 24.061, -168.847, 839146, 363)
+	create("bloodsucker_strong", 72.532, 24.061, -168.847, 839146, 363)
+end
+
+function jup_train_zasada(actor, npc)
+	create("jup_train_bandit_sniper", -95.290, 5.250, 203.518, 564533, 592)
+end
+
+function jup_rasvet_attacked_update(actor, npc)
+	if sgm_g.dont_has_alife_info("jup_beat_from_monsters_safely") then
+		sgm_g.inc_mod_param("jup_attacked_monsters_deaths")
+		if read_mod_param("jup_attacked_monsters_deaths") >= 19 then
+			give_info("jup_beat_from_monsters_safely")
+			clear_mod_param("jup_attacked_monsters_deaths")
+		end
+	end
+end
+
+function jup_night_killers_check(actor, npc)
+	if has_several_info("jup_night_killer_", "_death", 1, 8) and sgm_g.dont_has_alife_info("jup_destroy_night_killers_perebil") then
+		give_info("jup_destroy_night_killers_perebil")
+	end
+	if has_several_info("jup_night_killer_", "_death", 1, 7) and sgm_g.dont_has_alife_info("jup_destroy_night_killers_esche") then
+		create("jup_night_killer_8", 263.041, -17.519, 193.630, 1154748, 614)
+		create("jup_night_killer_9", 423.285, 4.455, -72.301, 1384995, 527)
+		give_info("jup_destroy_night_killers_esche")
+	end
+end
+
+function jup_follower_scientist_check(actor, npc)
+	if has_several_info("jup_follower_scientist_", "_death", 1, 5) and sgm_g.dont_has_alife_info("jup_follow_scientists_fail") then
+		give_info("jup_follow_scientists_fail")
+	elseif has_alife_info("jup_follower_scientist_1_death") and sgm_g.dont_has_alife_info("jup_follow_scientists_fail") then
+		give_info("jup_follow_scientists_fail")
+	end
+end
+
+function jup_witnesses_members_update(actor, npc)
+	if sgm_g.dont_has_alife_info("jup_avoid_witnesses_cleaned") then
+		sgm_g.inc_mod_param("jup_witnesses_deaths")
+		if read_mod_param("jup_witnesses_deaths") >= 11 then
+			give_info("jup_avoid_witnesses_cleaned")
+			clear_mod_param("jup_witnesses_deaths")
+			game_autosave_assign("save_jup_avoid_witnesses_rescued")
+		end
+	end
+end
+
+function jup_start_psi_sleep(actor, npc)
+	news_manager.send_tip(db.actor, sgm_functions.ReadCaption("psy_complex"), 0, "got_medicine", 2500, nil,
+		"st_item_used")
+	disable_ui(db.actor, nil)
+	level.add_cam_effector("camera_effects\\sleep.anm", 10, false, "ui_sleep_dialog.psi_sleep_callback")
+	level.add_pp_effector("sleep_fade.ppe", 11, false)
+	give_info("actor_is_sleeping")
+	_G.mus_vol = get_console():get_float("snd_volume_music")
+	_G.amb_vol = get_console():get_float("snd_volume_eff")
+	get_console():execute("snd_volume_music 0")
+	get_console():execute("snd_volume_eff 0")
+	surge_manager.resurrect_skip_message()
+end
+
+function jup_killer_caravan_update(actor, npc)
+	if has_alife_info("jup_killer_caravan_commander_death") and has_alife_info("jup_killer_caravan_member1_death") and has_alife_info("jup_killer_caravan_member2_death") and has_alife_info("jup_killer_caravan_member3_death") then
+		give_info("jup_examine_caravan_is_dead")
+	end
+end
+
+function jup_rasvet_polter_effect(actor, npc)
+	if sgm_g.dont_has_alife_info("jup_rasvet_polter_skauts_talking") then
+		play_snd_at_actor([[ambient\blowout_begin]])
+		level.add_cam_effector("camera_effects\\shell_shock.anm", 118711, false, "")
+		level.add_cam_effector("camera_effects\\earthquake_00.anm", 118712, false, "")
+		level.add_pp_effector("snd_shock.ppe", 118713, false)
+		level.add_pp_effector("shock_hit.ppe", 118990, false)
+		level.set_pp_effector_factor(118990, 20)
+		level.set_pp_effector_factor(118713, 0.5)
+		news_manager.send_tip(db.actor, "jup_rasvet_migel_about_help_text", 0, "portrait_Nebo_1", 7000, nil,
+			"jup_rasvet_migel_title", false)
+	end
+end
+
+function jup_rasvet_prior_create_dead_body(actor, npc)
+	if sgm_g.dont_has_alife_info("jup_b206_rasvet_prior_quest_fail") then
+		news_manager.send_tip(db.actor, "jup_rasvet_leader_quest_about_dead_patrol_text", 0, "portrait_Nebo_3", 18000,
+			nil, "jup_rasvet_leader_title", false)
+		create("jup_rasvet_gudvin_letter", -194.194, 5.516, -76.940, 385941, 390)
+		create("jup_rasvet_prior_quest_spot_1", -435.352, 9.615, -2.013, 5287, 376)
+		create("jup_rasvet_prior_quest_spot_2", -200.808, 3.491, -439.198, 376193, 480)
+		create_dead_body("jup_rasvet_prior_patrol_dead_1", "bio_bandage", -401.678, -2.680, 176.045, 42739, 644)
+		create_dead_body("jup_rasvet_prior_patrol_dead_2", "bio_bandage", -406.250, -2.707, 168.987, 36537, 644)
+		create_dead_body("jup_rasvet_prior_patrol_dead_3", "bio_bandage", -411.953, -2.670, 170.436, 27802, 644)
+		create_dead_body("jup_rasvet_prior_patrol_dead_4", "bio_bandage", -417.420, -2.938, 179.110, 21724, 644)
+	end
+end
+
+function jup_rasvet_prior_create_enemy_himera(actor, npc)
+	if sgm_g.dont_has_alife_info("jup_b206_rasvet_prior_quest_fail") then
+		create("jup_rasvet_quest_prior_himera_1", -406.241, 10.798, -9.445, 36294, 376)
+		create("jup_rasvet_quest_prior_himera_2", -407.667, 9.858, -17.224, 34297, 376)
+	end
+end
+
+function jup_rasvet_prior_create_enemy_angel(actor, npc)
+	if sgm_g.dont_has_alife_info("jup_b206_rasvet_prior_quest_fail") then
+		create("jup_rasvet_prior_zas_black_angel_1", -226.175, 3.405, -360.943, 332918, 480)
+		create("jup_rasvet_prior_zas_black_angel_2", -219.538, 3.484, -360.620, 344092, 480)
+		create("jup_rasvet_prior_zas_black_angel_3", -209.997, 5.487, -361.854, 360854, 480)
+		create("jup_rasvet_prior_zas_black_angel_4", -232.104, 3.826, -365.464, 322358, 480)
+		create("jup_rasvet_prior_zas_black_angel_5", -223.236, 3.422, -360.593, 337807, 480)
+	end
+end
+
+function jup_a6_azot_quest_cheked_plant_1(actor, npc)
+	if xr_conditions.actor_in_zone(actor, npc, { "jup_a6_azot_restr_plant_1" }) then
+		db.actor:give_info_portion("jup_b206_modul_restr_1_searched")
+		give_actor(db.actor, nil, { "jup_b12_plant_memory_1" })
+	end
+end
+
+function jup_a6_azot_quest_cheked_plant_2(actor, npc)
+	if xr_conditions.actor_in_zone(actor, npc, { "jup_a6_azot_restr_plant_2" }) then
+		db.actor:give_info_portion("jup_b206_modul_restr_2_searched")
+		give_actor(db.actor, nil, { "jup_b12_plant_memory_2" })
+	end
+end
+
+function jup_a6_azot_quest_cheked_plant_3(actor, npc)
+	if xr_conditions.actor_in_zone(actor, npc, { "jup_a6_azot_restr_plant_3" }) then
+		create("jup_a6_azat_quest_mechanik_kurier_2", 407.324, 27.297, -465.436, 1358134, 555)
+		db.actor:give_info_portion("jup_b206_modul_restr_3_searched")
+		give_actor(db.actor, nil, { "jup_b12_plant_memory_3" })
+	end
+end
+
+function jup_a6_azot_quest_mech_kutier_2_charge(actor, npc)
+	activate_detonate_charge(npc, 0, "visible_big", 407.324, 27.297, -465.436, 1358134, 555)
+end
+
+function pri_monolith_use_temple(actor, npc)
+	give_info("pri_expiation_sin_3_back_to_temple")
+	play_snd_at_actor([[sound_effects\monolith_voice2]])
+end
+
+function pri_quest_bloodsucker_sleep1_activate(actor, npc)
+	xr_effects.disable_ui_only(db.actor, nil)
+	level.add_cam_effector("camera_effects\\surge_02.anm", 10, false, "xr_effects.pri_quest_bloodsucker_sleep1_callback1")
+	level.add_pp_effector("surge_fade.ppe", 11, false)
+	_G.mus_vol = get_console():get_float("snd_volume_music")
+	_G.amb_vol = get_console():get_float("snd_volume_eff")
+	get_console():execute("snd_volume_music 0")
+	get_console():execute("snd_volume_eff 0")
+	create("quest_bloodsucker_letter_1", 44.696, 17.434, -138.663, 259128, 698)
+end
+
+function pri_quest_bloodsucker_sleep1_callback1()
+	set_ui_disabled()
+	level.add_cam_effector("camera_effects\\surge_01.anm", 10, false, "xr_effects.pri_quest_bloodsucker_sleep1_callback2")
+	local rnd = math.random(35, 45)
+	sgm_callbacks.on_forward_game_time(0, rnd)
+	level.change_game_time(0, 0, rnd)
+	level_weathers.get_weather_manager():forced_weather_change()
+end
+
+function pri_quest_bloodsucker_sleep1_callback2()
+	set_ui_worked()
+	xr_effects.enable_ui(db.actor, nil)
+	get_console():execute("snd_volume_music " .. tostring(_G.mus_vol))
+	get_console():execute("snd_volume_eff " .. tostring(_G.amb_vol))
+	_G.amb_vol = 0
+	_G.mus_vol = 0
+	give_info("pri_bloodsucker_vaccine_1st_sleep_end")
+end
+
+function pri_quest_bloodsucker_sleep2_activate(actor, npc)
+	xr_effects.disable_ui_only(db.actor, nil)
+	level.add_cam_effector("camera_effects\\surge_02.anm", 10, false, "xr_effects.pri_quest_bloodsucker_sleep2_callback1")
+	level.add_pp_effector("surge_fade.ppe", 11, false)
+	_G.mus_vol = get_console():get_float("snd_volume_music")
+	_G.amb_vol = get_console():get_float("snd_volume_eff")
+	get_console():execute("snd_volume_music 0")
+	get_console():execute("snd_volume_eff 0")
+	create("quest_bloodsucker_letter_2", 44.696, 17.434, -138.663, 259128, 698)
+end
+
+function pri_quest_bloodsucker_sleep2_callback1()
+	set_ui_disabled()
+	level.add_cam_effector("camera_effects\\surge_01.anm", 10, false, "xr_effects.pri_quest_bloodsucker_sleep2_callback2")
+	local rnd = math.random(35, 45)
+	sgm_callbacks.on_forward_game_time(0, rnd)
+	level.change_game_time(0, 0, rnd)
+	level_weathers.get_weather_manager():forced_weather_change()
+end
+
+function pri_quest_bloodsucker_sleep2_callback2()
+	set_ui_worked()
+	xr_effects.enable_ui(db.actor, nil)
+	get_console():execute("snd_volume_music " .. tostring(_G.mus_vol))
+	get_console():execute("snd_volume_eff " .. tostring(_G.amb_vol))
+	_G.amb_vol = 0
+	_G.mus_vol = 0
+	give_info("pri_bloodsucker_vaccine_2nd_sleep_end")
+end
+
+function pass_guide_keeper_alfa_update(actor, npc)
+	if sgm_g.dont_has_alife_info("pri_rescue_underground_guide_terrain_is_secured") then
+		sgm_g.inc_mod_param("pass_keeper_alfa_deaths")
+		if read_mod_param("pass_keeper_alfa_deaths") >= 21 then
+			give_info("pri_rescue_underground_guide_terrain_is_secured")
+			clear_mod_param("pass_keeper_alfa_deaths")
+			game_autosave_assign("save_pri_rescue_guide_terrain_is_secured")
+		end
+	end
+end
+
+function val_b2_accompany_guider_ambush_action(actor, npc)
+	create("boar_normal_hunter", -129.554, -1.352, -279.815, 28670, 1111)
+end
+
+function val_b2_assault_b1_commander_death_1(actor, npc)
+	give_info("val_alt_storyline_commenced", "val_assault_factory_squad_commander_dead")
+end
+
+function val_b2_assault_b1_commander_death_2(actor, npc)
+	give_info("val_assault_factory_squad_commander_dead")
+end
+
+function val_lucas_attacked_update_1(actor, npc)
+	if sgm_g.dont_has_alife_info("val_beat_from_monsters_wave_1") then
+		sgm_g.inc_mod_param("val_attacked_monsters_deaths_1")
+		if read_mod_param("val_attacked_monsters_deaths_1") >= 7 then
+			give_info("val_beat_from_monsters_wave_1")
+			clear_mod_param("val_attacked_monsters_deaths_1")
+		end
+	end
+end
+
+function val_lucas_attacked_update_2(actor, npc)
+	if sgm_g.dont_has_alife_info("val_beat_from_monsters_wave_2") then
+		sgm_g.inc_mod_param("val_attacked_monsters_deaths_2")
+		if read_mod_param("val_attacked_monsters_deaths_2") >= 9 then
+			give_info("val_beat_from_monsters_wave_2")
+			clear_mod_param("val_attacked_monsters_deaths_2")
+		end
+	end
+end
+
+function val_lucas_attacked_update_3(actor, npc)
+	if sgm_g.dont_has_alife_info("val_beat_from_monsters_wave_3") then
+		sgm_g.inc_mod_param("val_attacked_monsters_deaths_3")
+		if read_mod_param("val_attacked_monsters_deaths_3") >= 3 then
+			give_info("val_beat_from_monsters_wave_3")
+			clear_mod_param("val_attacked_monsters_deaths_3")
+		end
+	end
+end
+
+function val_lucas_quest_antenner_1(actor, npc)
+	if xr_conditions.actor_in_zone(actor, npc, { "val_lucas_antenna_1" }) then
+		give_info("val_lucas_antenna_1_done")
+		play_snd_at_actor([[sound_effects\radio_noise]])
+	end
+end
+
+function val_lucas_quest_antenner_2(actor, npc)
+	if xr_conditions.actor_in_zone(actor, npc, { "val_lucas_antenna_2" }) then
+		give_info("val_lucas_antenna_2_done")
+		play_snd_at_actor([[sound_effects\radio_noise]])
+	end
+end
+
+function val_lucas_quest_antenner_3(actor, npc)
+	if xr_conditions.actor_in_zone(actor, npc, { "val_lucas_antenna_3" }) then
+		give_info("val_lucas_antenna_3_done")
+		play_snd_at_actor([[sound_effects\radio_noise]])
+	end
+end
+
+function mil_create_hole_bomb(actor, npc)
+	create("mil_hole_bomb", -61.090858459473, -5.8885412216187, -12.620957374573, 236559, 1366)
+end
+
+function mil_b4_place_hole_bomb(actor, npc)
+	if xr_conditions.actor_in_zone(actor, npc, { "mil_b4_hole_bomb" }) then
+		give_info("mil_smash_monster_hole_bomb_setuped")
+		create("remote_charge", db.actor:position().x, db.actor:position().y, db.actor:position().z,
+			db.actor:level_vertex_id(), db.actor:game_vertex_id())
+		check_actor_item_to_add("mil_hole_bomb_control")
+	end
+end
+
+function mil_b6_wave_counter_inc(actor, npc)
+	if sgm_g.dont_has_alife_info("mil_defence_b6_complete") and sgm_g.dont_has_alife_info("mil_alt_storyline_commenced") then
+		if read_mod_param("mil_b6_wave_counter") == nil then
+			write_mod_param("mil_b6_wave_counter", 1)
+		else
+			sgm_g.inc_mod_param("mil_b6_wave_counter")
+		end
+	end
+end
+
+function mil_b6_wave_counter_dec(actor, npc)
+	if sgm_g.dont_has_alife_info("mil_defence_b6_complete") and sgm_g.dont_has_alife_info("mil_alt_storyline_commenced") then
+		if read_mod_param("mil_b6_wave_counter") ~= nil and read_mod_param("mil_b6_wave_counter") > 0 then
+			dec_mod_param("mil_b6_wave_counter")
+		end
+	end
+end
+
+function mil_b7_wave_counter_inc(actor, npc)
+	if sgm_g.dont_has_alife_info("mil_defence_b7_complete") and sgm_g.dont_has_alife_info("mil_alt_storyline_commenced") then
+		if read_mod_param("mil_b7_wave_counter") == nil then
+			write_mod_param("mil_b7_wave_counter", 1)
+		else
+			sgm_g.inc_mod_param("mil_b7_wave_counter")
+		end
+	end
+end
+
+function mil_b7_wave_counter_dec(actor, npc)
+	if sgm_g.dont_has_alife_info("mil_defence_b7_complete") and sgm_g.dont_has_alife_info("mil_alt_storyline_commenced") then
+		if read_mod_param("mil_b7_wave_counter") ~= nil and read_mod_param("mil_b7_wave_counter") > 0 then
+			dec_mod_param("mil_b7_wave_counter")
+		end
+	end
+end
+
+function mil_defence_b1_done(actor, npc)
+	news_manager.send_tip(db.actor, "mil_defence_b1_done_text", 0, "portrait_Nebo_Exo", 8000, nil,
+		"mil_b7_base_leader_title")
+end
+
+function mil_defence_b1_fail(actor, npc)
+	news_manager.send_tip(db.actor, "mil_defence_b1_fail_text", 0, "portrait_Nebo_Exo", 8000, nil,
+		"mil_b7_base_leader_title")
+end
+
+function mil_defence_b2_done(actor, npc)
+	news_manager.send_tip(db.actor, "mil_defence_b2_done_text", 0, "portrait_Nebo_Exo", 8000, nil,
+		"mil_b7_base_leader_title")
+end
+
+function mil_defence_b2_fail(actor, npc)
+	news_manager.send_tip(db.actor, "mil_defence_b2_fail_text", 0, "portrait_Nebo_Exo", 8000, nil,
+		"mil_b7_base_leader_title")
+end
+
+function mil_defence_b3_done(actor, npc)
+	news_manager.send_tip(db.actor, "mil_defence_b3_done_text", 0, "portrait_Nebo_Exo", 8000, nil,
+		"mil_b7_base_leader_title")
+end
+
+function mil_defence_b3_fail(actor, npc)
+	news_manager.send_tip(db.actor, "mil_defence_b3_fail_text", 0, "portrait_Nebo_Exo", 8000, nil,
+		"mil_b7_base_leader_title")
+end
+
+function mil_defence_b4_done(actor, npc)
+	news_manager.send_tip(db.actor, "mil_defence_b4_done_text", 0, "portrait_Nebo_Exo", 8000, nil,
+		"mil_b7_base_leader_title")
+end
+
+function mil_defence_b4_fail(actor, npc)
+	news_manager.send_tip(db.actor, "mil_defence_b4_fail_text", 0, "portrait_Nebo_Exo", 8000, nil,
+		"mil_b7_base_leader_title")
+end
+
+function mil_defence_b5_done(actor, npc)
+	news_manager.send_tip(db.actor, "mil_defence_b5_done_text", 0, "portrait_Nebo_Exo", 8000, nil,
+		"mil_b7_base_leader_title")
+end
+
+function mil_defence_b5_fail(actor, npc)
+	news_manager.send_tip(db.actor, "mil_defence_b5_fail_text", 0, "portrait_Nebo_Exo", 8000, nil,
+		"mil_b7_base_leader_title")
+end
+
+function mil_defence_b6_complete(actor, npc)
+	news_manager.send_tip(db.actor, "mil_defence_b6_complete_text", 0, "portrait_Nebo_Exo", 14000, nil,
+		"mil_b7_base_leader_title")
+end
+
+function mil_smash_monster_hole_done(actor, npc)
+	news_manager.send_tip(db.actor, "mil_smash_monster_hole_done_text", 0, "portrait_Nebo_Exo", 12000, nil,
+		"mil_b7_base_leader_title")
+	game_autosave_assign("save_mil_smash_monster_hole_done")
+end
+
+function esc_b2_create_bomb(actor, npc)
+	create("esc_b2_bomb", -185.15017700195, -21.729053497314, -131.43598937988, 64305, 1865)
+end
+
+function esc_b2_place_bomb(actor, npc)
+	if xr_conditions.actor_in_zone(actor, npc, { "esc_b2_bomb_place" }) then
+		give_info("esc_village_annex_placed_c4")
+		create("remote_charge", db.actor:position().x, db.actor:position().y, db.actor:position().z,
+			db.actor:level_vertex_id(), db.actor:game_vertex_id())
+		check_actor_item_to_add("esc_b2_bomb_control")
+	end
+end
+
+function esc_a2_monster_squad_death(actor, npc)
+	create_force("esc_a1_monster_squad", "esc_monster_burrow_1")
+end
+
+function esc_a1_monster_squad_death(actor, npc)
+	create_force("esc_a3_monster_squad", "esc_monster_burrow_3")
+end
+
+function esc_a3_monster_squad_death(actor, npc)
+	create_force("esc_a5_monster_squad", "esc_monster_burrow_5")
+end
+
+function esc_blockpost_protection_bonus_inc(actor, npc)
+	if sgm_g.dont_has_alife_info("esc_blockpost_protection_done") then
+		if read_mod_param("esc_blockpost_protection_bonus") == nil then
+			write_mod_param("esc_blockpost_protection_bonus", 1)
+		else
+			sgm_g.inc_mod_param("esc_blockpost_protection_bonus")
+		end
+	end
+end
+
+function mar_create_army_wounded(actor, npc)
+	create("mar_army_wounded", -250.73123168945, 0.33261534571648, -117.54051208496, 18393, 1763)
+end
+
+function mar_destroy_mines(actor, npc)
+	release_objects_by_section("sgm_mar_mine_field")
+end
+
+function red_forester_door_charge(actor, npc)
+	activate_detonate_charge(npc, 10000, "invisible_big", 27.683589935303, 4.0145859718323, 24.82555770874, 80864, 2186)
+end
+
+------------------------------------------------------------------------------
+--                        Работа с заселением пустырей                      --
+------------------------------------------------------------------------------
+function zat_respawn1_killers_counter(actor, npc)
+	give_info(npc:section() .. "_death")
+	if has_several_info("zat_respawn1_killer", "_death", 1, 12) and sgm_g.dont_has_alife_info("zat_respawn1_all_deaths") then
+		give_info("zat_respawn1_all_deaths")
+	end
+end
+
+function zat_respawn2_killers_counter(actor, npc)
+	give_info(npc:section() .. "_death")
+	if has_several_info("zat_respawn2_killer", "_death", 1, 11) and sgm_g.dont_has_alife_info("zat_respawn2_all_deaths") then
+		give_info("zat_respawn2_all_deaths")
+	end
+end
+
+function zat_respawn3_randoms_counter(actor, npc)
+	if has_several_info("zat_respawn3_random", "_death", 1, 17) and sgm_g.dont_has_alife_info("zat_respawn3_all_deaths") then
+		give_info("zat_respawn3_all_deaths")
+	end
+end
+
+function zat_respawn3_release_counter(actor, npc)
+	disable_several_info("zat_respawn3_random", "_death", 1, 17)
+end
+
+function zat_respawn4_killers_counter(actor, npc)
+	give_info(npc:section() .. "_death")
+	if has_several_info("zat_respawn4_killer", "_death", 1, 14) and sgm_g.dont_has_alife_info("zat_respawn4_all_deaths") then
+		give_info("zat_respawn4_all_deaths")
+	end
+end
+
+function zat_respawn5_randoms_counter(actor, npc)
+	if has_several_info("zat_respawn5_random", "_death", 1, 8) and sgm_g.dont_has_alife_info("zat_respawn5_all_deaths") then
+		give_info("zat_respawn5_all_deaths")
+	end
+end
+
+function zat_respawn5_release_counter(actor, npc)
+	disable_several_info("zat_respawn5_random", "_death", 1, 8)
+end
+
+function zat_respawn6_randoms_counter(actor, npc)
+	if has_several_info("zat_respawn6_random", "_death", 1, 10) and sgm_g.dont_has_alife_info("zat_respawn6_all_deaths") then
+		give_info("zat_respawn6_all_deaths")
+	end
+end
+
+function zat_respawn6_release_counter(actor, npc)
+	disable_several_info("zat_respawn6_random", "_death", 1, 10)
+end
+
+function zat_respawn7_randoms_counter(actor, npc)
+	if has_several_info("zat_respawn7_random", "_death", 1, 8) and sgm_g.dont_has_alife_info("zat_respawn7_all_deaths") then
+		give_info("zat_respawn7_all_deaths")
+	end
+end
+
+function zat_respawn7_release_counter(actor, npc)
+	disable_several_info("zat_respawn7_random", "_death", 1, 8)
+end
+
+function jup_respawn1_randoms_counter(actor, npc)
+	if has_several_info("jup_respawn1_random", "_death", 1, 20) and sgm_g.dont_has_alife_info("jup_respawn1_all_deaths") then
+		give_info("jup_respawn1_all_deaths")
+	end
+end
+
+function jup_respawn1_release_counter(actor, npc)
+	disable_several_info("jup_respawn1_random", "_death", 1, 20)
+end
+
+function jup_respawn2_randoms_counter(actor, npc)
+	if has_several_info("jup_respawn2_random", "_death", 1, 29) and sgm_g.dont_has_alife_info("jup_respawn2_all_deaths") then
+		give_info("jup_respawn2_all_deaths")
+	end
+end
+
+function jup_respawn2_release_counter(actor, npc)
+	disable_several_info("jup_respawn2_random", "_death", 1, 29)
+end
+
+function jup_respawn3_randoms_counter(actor, npc)
+	if has_several_info("jup_respawn3_random", "_death", 1, 6) and sgm_g.dont_has_alife_info("jup_respawn3_all_deaths") then
+		give_info("jup_respawn3_all_deaths")
+	end
+end
+
+function jup_respawn3_release_counter(actor, npc)
+	disable_several_info("jup_respawn3_random", "_death", 1, 6)
+end
+
+function jup_respawn4_randoms_counter(actor, npc)
+	if has_several_info("jup_respawn4_random", "_death", 1, 15) and sgm_g.dont_has_alife_info("jup_respawn4_all_deaths") then
+		give_info("jup_respawn4_all_deaths")
+	end
+end
+
+function jup_respawn4_release_counter(actor, npc)
+	disable_several_info("jup_respawn4_random", "_death", 1, 15)
+end
+
+------------------------------------------------------------------------------
+--                          Шаблонные функции                               --
+------------------------------------------------------------------------------
+function set_spot_on_self(actor, npc, p)
+	if p[1] == nil or p[2] == nil then return end
+	add_spot_on_map(npc:id(), tostring(p[1]), tostring(p[2]))
+end
+
+function delete_spot_on_self(actor, npc, p)
+	if p[1] == nil then return end
+	remove_spot_on_map(npc:id(), tostring(p[1]))
+end
+
+function sleep_place_spot_control(actor, npc, p)
+	local location_name, descr, need_1_info, dont_2_info = p[1], p[2], p[3], p[4]
+	if npc ~= nil then
+		if level.map_has_object_spot(npc:id(), location_name) == 0 and distance_between_safe(db.actor, npc) <= 100 and has_alife_info(need_1_info) and sgm_g.dont_has_alife_info(dont_2_info) then
+			level.map_add_object_spot_ser(npc:id(), location_name, descr)
+		end
+		if level.map_has_object_spot(npc:id(), location_name) ~= 0 and (has_alife_info(dont_2_info) or distance_between_safe(db.actor, npc) > 100) then
+			level.map_remove_object_spot(npc:id(), location_name)
+		end
+	end
+end
+
+function set_community_to_community_relation(actor, npc, p)
+	local from_faction, to_faction, type_relation, double_effect = p[1], p[2], p[3], p[4]
+	set_faction_to_faction_relation(from_faction, to_faction, type_relation, double_effect)
+end
+
+function set_npc_to_actor_relation(actor, npc, p)
+	local type = p[1]
+	if type == "enemy" then
+		npc:set_relation(game_object.enemy, db.actor)
+		npc:force_set_goodwill(-5000, db.actor)
+	elseif type == "friend" then
+		npc:set_relation(game_object.friend, db.actor)
+	elseif type == "neutral" then
+		npc:set_relation(game_object.neutral, db.actor)
+	end
+end
+
+function play_s2d_sound(actor, npc, p)
+	local sound = p[1]
+	local count1 = p[2]
+	local count2 = p[3]
+	if count1 == nil and count2 == nil then
+		snd_sourse = sound_object(sound)
+		snd_sourse:play(db.actor, 0, sound_object.s2d)
+	elseif count1 ~= nil and count2 ~= nil then
+		local rnd_snd = math.random(count1, count2)
+		snd_sourse = sound_object(sound .. rnd_snd)
+		snd_sourse:play(db.actor, 0, sound_object.s2d)
+	end
+end
+
+function play_s3d_sound(actor, npc, p)
+	local sound = p[1]
+	local count1 = p[2]
+	local count2 = p[3]
+	if count1 == nil and count2 == nil then
+		snd_sourse = sound_object(sound)
+		snd_sourse:play_at_pos(npc, npc:position(), 0, sound_object.s3d)
+	elseif count1 ~= nil and count2 ~= nil then
+		local rnd_snd = math.random(count1, count2)
+		snd_sourse = sound_object(sound .. rnd_snd)
+		snd_sourse:play_at_pos(npc, npc:position(), 0, sound_object.s3d)
+		snd_sourse.volume = 1.00
+	end
+end
+
+function play_looped_s2d_sound(actor, npc, p)
+	local sound = p[1]
+	local count1 = p[2]
+	local count2 = p[3]
+	if count1 == nil and count2 == nil then
+		snd_sourse = sound_object(sound)
+		snd_sourse:play(db.actor, 0, sound_object.s2d + sound_object.looped)
+	elseif count1 ~= nil and count2 ~= nil then
+		local rnd_snd = math.random(count1, count2)
+		snd_sourse = sound_object(sound .. rnd_snd)
+		snd_sourse:play(db.actor, 0, sound_object.s2d + sound_object.looped)
+	end
+end
+
+function play_looped_s3d_sound(actor, npc, p)
+	local sound = p[1]
+	local count1 = p[2]
+	local count2 = p[3]
+	local snd_souce
+	if count1 == nil or count2 == nil then
+		snd_souce = sound_object(sound)
+		if snd_souce:playing() == false then
+			snd_souce:play_at_pos(npc, npc:position(), 0, sound_object.s3d + sound_object.looped)
+		end
+	elseif count1 ~= nil and count2 ~= nil then
+		snd_souce = sound_object(sound .. math.random(count1, count2))
+		if snd_souce:playing() == false then
+			snd_souce:play_at_pos(npc, npc:position(), 0, sound_object.s3d + sound_object.looped)
+		end
+	end
+end
+
+function play_sound_theme(actor, obj, p)
+	local theme = p[1]
+	local unneed_info = p[2]
+	local faction = p[3]
+	local point = sim_board.get_sim_board().smarts_by_names[p[4]]
+	if point ~= nil then
+		point = point.id
+	elseif p[4] ~= nil then
+		point = p[3]
+	end
+	if obj and IsStalker(obj) then
+		if not obj:alive() then
+			abort("Stalker [%s][%s] is dead, but you wants to say something for you: [%s]!", tostring(obj:id()),
+				tostring(obj:name()), p[1])
+		end
+	end
+	if sgm_g.exists(unneed_info) and sgm_g.dont_has_alife_info(unneed_info) then
+		xr_sound.set_sound_play(obj:id(), theme, faction, point)
+	elseif sgm_g.exists(unneed_info) and has_alife_info(unneed_info) then
+		return
+	else
+		xr_sound.set_sound_play(obj:id(), theme, faction, point)
+	end
+end
+
+function add_sid(actor, npc, p)
+	local story_name = p[1]
+	add_story_object(npc:id(), story_name)
+end
+
+function release_sid(actor, npc, p)
+	local target = p[1]
+	unregister_story_id(p[1])
+end
+
+function teleport_npc_to_level_vertex(actor, npc, p)
+	local lv_pos = p[1]
+	if lv_pos ~= nil then
+		local param1 = level.vertex_position(tonumber(lv_pos)).x
+		local param2 = level.vertex_position(tonumber(lv_pos)).y
+		local param3 = level.vertex_position(tonumber(lv_pos)).z
+		npc:set_npc_position(vector():set(param1, param2, param3))
+	end
+end
+
+function edit_counter(actor, npc, p)
+	local counter_name = p[1]
+	local to_value = p[2]
+	local action = p[3]
+	if read_mod_param(counter_name) ~= nil then
+		if (action == true or action == "true" or action == "+" or action == "plus" or action == nil) then
+			local counter = read_mod_param(counter_name)
+			write_mod_param(counter_name, counter + to_value)
+		elseif (action == false or action == "false" or action == "-" or action == "minus") then
+			local counter = read_mod_param(counter_name)
+			write_mod_param(counter_name, counter - to_value)
+		end
+	end
+end
+
+function increase_counter(actor, npc, p)
+	local counter_name = p[1]
+	local add_value = p[2]
+	if read_mod_param(counter_name) == nil then write_mod_param(counter_name, 0) end
+	if add_value == nil then add_value = 1 end
+	if read_mod_param(counter_name) ~= nil then
+		local counter = read_mod_param(counter_name)
+		write_mod_param(counter_name, counter + add_value)
+	end
+end
+
+function decrease_counter(actor, npc, p)
+	local counter_name = p[1]
+	local add_value = p[2]
+	if read_mod_param(counter_name) == nil then write_mod_param(counter_name, 0) end
+	if add_value == nil then add_value = 1 end
+	if read_mod_param(counter_name) ~= nil then
+		local counter = read_mod_param(counter_name)
+		write_mod_param(counter_name, counter - add_value)
+	end
+end
+
+function release_counter(actor, npc, p)
+	local counter_1_name = p[1]
+	local counter_2_name = p[2]
+	local counter_3_name = p[3]
+	local counter_4_name = p[4]
+	local counter_5_name = p[5]
+	if read_mod_param(counter_1_name) ~= nil then clear_mod_param(counter_1_name) end
+	if read_mod_param(counter_2_name) ~= nil then clear_mod_param(counter_2_name) end
+	if read_mod_param(counter_3_name) ~= nil then clear_mod_param(counter_3_name) end
+	if read_mod_param(counter_4_name) ~= nil then clear_mod_param(counter_4_name) end
+	if read_mod_param(counter_5_name) ~= nil then clear_mod_param(counter_5_name) end
+end
+
+function delete_counter(actor, npc, p)
+	local counter_1_name = p[1]
+	local counter_2_name = p[2]
+	local counter_3_name = p[3]
+	local counter_4_name = p[4]
+	local counter_5_name = p[5]
+	if sgm_functions.read_variable(counter_1_name) ~= nil then sgm_functions.clear_variable(counter_1_name) end
+	if sgm_functions.read_variable(counter_2_name) ~= nil then sgm_functions.clear_variable(counter_2_name) end
+	if sgm_functions.read_variable(counter_3_name) ~= nil then sgm_functions.clear_variable(counter_3_name) end
+	if sgm_functions.read_variable(counter_4_name) ~= nil then sgm_functions.clear_variable(counter_4_name) end
+	if sgm_functions.read_variable(counter_5_name) ~= nil then sgm_functions.clear_variable(counter_5_name) end
+end
+
+function setup_anim_to_actor(actor, npc, p)
+	local need_state = p[1]
+	local to_body = p[2]
+	if state_mgr.get_state(npc) ~= need_state then
+		if to_body == "true" then
+			state_mgr.set_state(npc, need_state, nil, nil, { look_object = db.actor }, { fast_set = true })
+		else
+			state_mgr.set_state(npc, need_state, nil, nil,
+				{ look_position = level.vertex_position(db.actor:level_vertex_id()) }, { fast_set = true })
+		end
+	end
+end
+
+function activate_no_weapon_zone(actor, npc, p)
+	if p then
+		setup_no_weapon_zone(p[1], "n_w_" .. npc:id(), p[2], npc)
+	end
+end
+
+function activate_no_weapon_zone_disabled(actor, npc, p)
+	if p then
+		setup_no_weapon_zone_disabled(p[1], "n_w_d_" .. npc:id(), p[2], p[3], npc)
+	end
+end
+
+function activate_inactivity_aura(actor, npc, p)
+	if p then
+		setup_inactivity_aura(p[1], "i_aura_" .. npc:id(), p[2], p[3], npc)
+	end
+end
+
+function autosave_game(actor, npc, p)
+	local save_name = p[1]
+	game_autosave_assign(save_name)
+end
+
+function create_game_timer(actor, npc, p)
+	if check_game_timer(p[1]) == nil then
+		start_game_timer(p[1], p[2], p[3])
+	end
+end
+
+function deliver_skill_book(actor, npc, p)
+	if p ~= nil and p ~= "nil" then
+		if sgm_g.exists(p[1]) then
+			give_skill_book(p[1])
+		end
+		if sgm_g.exists(p[2]) then
+			give_skill_book(nil, p[2])
+		end
+	else
+		give_skill_book()
+	end
+end
+
+function setup_detonate_charge(actor, npc, p)
+	activate_detonate_charge(npc, p[1], true, p[2], p[3], p[4], p[5], p[6])
+end
+
+function add_actor_rank(actor, npc, p)
+	local rank_bonus = p[1]
+	if read_mod_param("actor_rank") ~= nil and rank_bonus ~= nil then
+		write_mod_param("actor_rank", read_mod_param("actor_rank") + (rank_bonus * sgm_ranks.game_multiplier()))
+		congratulate_with_rank_event("add", 8500, rank_bonus * sgm_ranks.game_multiplier())
+	elseif read_mod_param("actor_rank") ~= nil and rank_bonus == nil then
+		write_mod_param("actor_rank", read_mod_param("actor_rank") + 1)
+		congratulate_with_rank_event("add", 8500, 1)
+	end
+end
+
+function give_money_to_actor(actor, npc, p)
+	if p[2] == true then
+		db.actor:give_money(tonumber(p[1]))
+		game_stats.money_quest_update(tonumber(p[1]))
+	else
+		dialogs.relocate_money(db.actor, p[1], "in")
+	end
+end
+
+function give_money_from_actor(actor, npc, p)
+	if p[2] == true then
+		db.actor:give_money(-tonumber(p[1]))
+		game_stats.money_quest_update(-tonumber(p[1]))
+	else
+		if p[3] == true then
+			dialogs.relocate_money(db.actor, p[1], "out2")
+		else
+			dialogs.relocate_money(db.actor, p[1], "out")
+		end
+	end
+end
+
+function has_much_info(actor, npc, p)
+	local l_part = p[1]
+	local r_part = p[2]
+	local count_a = p[3]
+	local count_b = p[4]
+	if count_b == nil then
+		count_b = count_a
+		count_a = 1
+	end
+	local info_cnt = 0
+	for i = count_a, count_b do
+		if has_alife_info(l_part .. i .. r_part) then
+			info_cnt = info_cnt + 1
+		end
+	end
+	return info_cnt >= count_b
+end
+
+------------------------------------------------------------------------------
+--                              Разное                                      --
+------------------------------------------------------------------------------
+function chicken_rabua_activate_1(actor, npc)
+	local x, y, z, lv, gv = npc:position().x, npc:position().y, npc:position().z, npc:level_vertex_id(),
+		npc:game_vertex_id()
+	remove_object_by_id(npc:id())
+	create("chicken_rabua", x, y, z, lv, gv)
+	create("chicken_rabua_egg", x, y + 0.5, z, lv, gv)
+end
+
+function chicken_rabua_activate_2(actor, npc)
+	local x, y, z, lv, gv = npc:position().x, npc:position().y, npc:position().z, npc:level_vertex_id(),
+		npc:game_vertex_id()
+	remove_object_by_id(npc:id())
+	create("chicken_rabua", x, y, z, lv, gv)
+end
+
+function employer_quest_complete(actor, npc)
+	write_mod_param("employer_activate", "false")
+	clear_mod_param("employer_currert_quest")
+	clear_mod_param("employer_currert_target")
+	clear_mod_param("employer_currert_distance")
+	clear_mod_param("employer_currert_type")
+	disable_info("employer_find_item_reward")
+	disable_info("employer_find_item_complete")
+	disable_info("employer_kill_stalker_reward")
+	disable_info("employer_kill_stalker_complete")
+end
+
+function monster_captured(actor, npc)
+	if not xr_logic.mob_captured(npc) then
+		xr_logic.mob_capture(npc, true)
+	end
+end
+
+function captured_monster_hitted(actor, npc)
+	local c_m_h_rnd = math.random(1, 10)
+	if c_m_h_rnd == 1 then
+		sgm_flags.table_m_capture_hits[npc:id()] = true
+	end
+end
+
+function release_npc(actor, npc)
+	if npc ~= nil then
+		if npc ~= nil and get_story_object(npc:profile_name()) ~= nil then
+			unregister_story_id(npc:profile_name())
+		end
+		if alife():object(npc:id()) then
+			clear_mod_params_for_npc(npc:id())
+			alife():release(alife():object(npc:id()), true)
+		end
+	end
+end
+
+function release_object(actor, npc)
+	if npc ~= nil then
+		if alife():object(npc:id()) then
+			alife():release(alife():object(npc:id()), true)
+		end
+	end
+end
+
+function sleep_zone_activate(actor, npc)
+	ui_sleep_dialog.sleep()
+	give_info("sleep_active")
+end
+
+function remove_mod_spots(actor, npc)
+	remove_spot_on_map(npc:id(), sgm_flags.spot_actor_guard)
+	remove_spot_on_map(npc:id(), sgm_flags.spot_cash_keeper)
+	remove_spot_on_map(npc:id(), sgm_flags.spot_unique_trader)
+	remove_spot_on_map(npc:id(), sgm_flags.spot_artefact_chemist)
+	remove_spot_on_map(npc:id(), sgm_flags.spot_quest_person)
+	remove_spot_on_map(npc:id(), sgm_flags.spot_job_person)
+	remove_spot_on_map(npc:id(), sgm_flags.spot_base_commander)
+	remove_spot_on_map(npc:id(), sgm_flags.spot_info_dealer)
+	remove_spot_on_map(npc:id(), sgm_flags.spot_employer)
+	remove_spot_on_map(npc:id(), sgm_flags.spot_quest_tip)
+	remove_spot_on_map(npc:id(), sgm_flags.spot_quest_enemy_squad_1)
+	remove_spot_on_map(npc:id(), sgm_flags.spot_quest_enemy_squad_2)
 end

@@ -16,12 +16,12 @@ function on_stalker_hit(victim, amount, local_direction, who, bone_index)
    end
    if sgm_flags.bool_headshot_s_allower == true and (bone_index == "from_death_callback") then
       if (sgm_g.r_mod_params("bool", "grows_rank_for_neutral", true) or (sgm_g.r_mod_params("bool", "grows_rank_for_neutral", true) == false and check_relation_between(victim, db.actor) == "enemy")) then
-         inc_mod_param("stat_headshots", 1)
+         sgm_g.inc_mod_param("stat_headshots", 1)
          sgm_flags.bool_headshot_s_waiting = true
       end
       sgm_flags.bool_headshot_s_allower = false
    end
-   if victim ~= nil and active_item and who:clsid() == clsid.script_actor and find_out_string(active_item:section(), "grenade_") then
+   if victim ~= nil and active_item and who:clsid() == clsid.script_actor and sgm_g.find_out_string(active_item:section(), "grenade_") then
       local active_sect = active_item:section()
       param_info = sgm_functions.GetSkillInfo(active_sect)
       param_point = sgm_functions.GetSkillPoint(active_sect)
@@ -89,12 +89,12 @@ function on_monster_hit(victim, amount, local_direction, who, bone_index)
          sgm_flags.bool_headshot_m_allower = false
       end
       if sgm_flags.bool_headshot_m_allower == true and (bone_index == "from_death_callback") then
-         inc_mod_param("stat_headshots", 1)
+         sgm_g.inc_mod_param("stat_headshots", 1)
          sgm_flags.bool_headshot_m_waiting = true
          sgm_flags.bool_headshot_m_allower = false
       end
    end
-   if victim ~= nil and active_item and who:clsid() == clsid.script_actor and find_out_string(active_item:section(), "grenade_") then
+   if victim ~= nil and active_item and who:clsid() == clsid.script_actor and sgm_g.find_out_string(active_item:section(), "grenade_") then
       local active_sect = active_item:section()
       param_info = sgm_functions.GetSkillInfo(active_sect)
       param_point = sgm_functions.GetSkillPoint(active_sect)
@@ -214,7 +214,7 @@ end
 --                            На выстрел ГГ                                 --
 ------------------------------------------------------------------------------
 function on_weapon_shot(item)
-   inc_mod_param("stat_weapon_shots")
+   sgm_g.inc_mod_param("stat_weapon_shots")
 end
 
 ------------------------------------------------------------------------------
@@ -271,7 +271,7 @@ function on_trade(item, money, type)
    local is_sell = type == 1
    local is_buy = type == 2
    if is_sell and sgm_g.find_in_string(item_name, "device_pda_alfa_commander") then
-      inc_mod_param("alfa_pda_collected")
+      sgm_g.inc_mod_param("alfa_pda_collected")
    end
 end
 
@@ -319,7 +319,7 @@ function on_item_take(obj)
          61.821, 16.526, -125.120, 278969, 698)
    end
    if sgm_g.find_in_string(obj_name, "device_pda_alfa_commander") then
-      inc_mod_param("alfa_pda_collected")
+      sgm_g.inc_mod_param("alfa_pda_collected")
    end
 end
 
@@ -354,10 +354,10 @@ function on_take_item_from_box(box, item)
       local param_bi = sgm_functions.ReadBaseItems(box_name)
       local param_ii = sgm_functions.ReadTakeItemsInfo(box_name)
       local param_si = sgm_functions.ReadFirstSearchInfo(box_name)
-      if exists(param_si) and sgm_g.dont_has_alife_info(param_si) then
+      if sgm_g.exists(param_si) and sgm_g.dont_has_alife_info(param_si) then
          give_info(param_si)
       end
-      if exists(param_ii) and db.actor:character_community() ~= param_nc and sgm_g.dont_has_alife_info(param_ii) then
+      if sgm_g.exists(param_ii) and db.actor:character_community() ~= param_nc and sgm_g.dont_has_alife_info(param_ii) then
          give_info(param_ii)
       end
    end
@@ -414,7 +414,7 @@ function on_use_item(obj)
          give_object_to_actor(sgm_functions.ReadActivateBinocular(item_name))
       end
    end
-   if exists(sgm_functions.ReadCodeId(item_name)) then
+   if sgm_g.exists(sgm_functions.ReadCodeId(item_name)) then
       if get_story_object_id(sgm_functions.ReadCodeTarget(item_name)) ~= nil then
          add_spot_on_map_for_sid(sgm_functions.ReadCodeTarget(item_name), sgm_flags.spot_unique_treasure,
             game.translate_string("st_unique_treasure_spot_descr") .. " " ..
@@ -429,7 +429,7 @@ function on_use_item(obj)
    if sgm_functions.ReadThisIsAmmoContainer(item_name) then
       give_ammo_with_container()
    end
-   if exists(sgm_functions.ReadOnUseInfo(item_name)) then
+   if sgm_g.exists(sgm_functions.ReadOnUseInfo(item_name)) then
       give_info(sgm_functions.ReadOnUseInfo(item_name))
    end
    if sgm_functions.ReadReceptionMoney(item_name) > 0 then
@@ -448,7 +448,7 @@ function on_use_item(obj)
       end
    end
    if sgm_functions.ReadEatToxicity(item_name) ~= 0 and sgm_g.r_mod_params("bool", "present_toxicity", true) == true then
-      inc_mod_param("actor_toxicity", sgm_functions.ReadEatToxicity(item_name))
+      sgm_g.inc_mod_param("actor_toxicity", sgm_functions.ReadEatToxicity(item_name))
    end
    if sgm_g.find_in_string(item_name, "medal_rank") then
       local param_m = sgm_functions.GetMedalMoney(item_name)
@@ -457,7 +457,7 @@ function on_use_item(obj)
       local m_from = sgm_functions.ReadMoneyFrom(item_name)
       local m_before = sgm_functions.ReadMoneyBefore(item_name)
       dialogs.relocate_money(db.actor, math.random(m_from, m_before), "in")
-   elseif sgm_g.find_in_string(item_name, "medkit") and find_out_string(item_name, "_used") then
+   elseif sgm_g.find_in_string(item_name, "medkit") and sgm_g.find_out_string(item_name, "_used") then
       set_sleep_factor("+", 2)
    elseif sgm_g.find_in_string(item_name, "medkit") and sgm_g.find_in_string(item_name, "_used") then
       set_sleep_factor("+", 1)
@@ -517,7 +517,7 @@ function on_use_item(obj)
             sgm_flags.value_guidebook_type = 2
          end
          give_info("guidebook_active")
-         run_dynamic_element(ui_mod_guidebook.guidebook(), false)
+         run_dynamic_element(sgm_ui_mod_guidebook.guidebook(), false)
       else
          game_hide_menu()
          if item_name == "guidebook_mono" then
@@ -619,7 +619,7 @@ function on_use_skill_book(obj)
    local target_caption = sgm_functions.ReadCaption(skill_target)
    give_info(obj:section())
    news_manager.send_add_skill(target_caption)
-   inc_mod_param("stat_books")
+   sgm_g.inc_mod_param("stat_books")
 end
 
 ------------------------------------------------------------------------------
@@ -683,7 +683,7 @@ end
 function on_search_secret(box)
    if sgm_functions.ReadInventoryUseInfo(box:section()) ~= nil and sgm_functions.ReadInventoryUseInfo(box:section()) ~= "none" then
       if sgm_g.dont_has_alife_info(sgm_functions.ReadInventoryUseInfo(box:section())) then
-         inc_mod_param("stat_taynikov")
+         sgm_g.inc_mod_param("stat_taynikov")
          congratulate_with_secret_event("add", 9000, true)
          give_info(sgm_functions.ReadInventoryUseInfo(box:section()))
       end
@@ -696,7 +696,7 @@ end
 function on_search_deserve(box)
    if sgm_functions.ReadInventoryUseInfo(box:section()) ~= nil and sgm_functions.ReadInventoryUseInfo(box:section()) ~= "none" then
       if sgm_g.dont_has_alife_info(sgm_functions.ReadInventoryUseInfo(box:section())) then
-         inc_mod_param("stat_deserves")
+         sgm_g.inc_mod_param("stat_deserves")
          congratulate_with_deserve_event("add", 9000, true)
          give_info(sgm_functions.ReadInventoryUseInfo(box:section()))
       end
@@ -710,7 +710,7 @@ function on_stalker_death(victim, killer)
    if sgm_flags.table_s_skill_hits[victim:name()] == nil or sgm_flags.table_s_skill_hits[victim:name()] == false then
       sgm_ranks.read_stalker_death(victim, killer, "default_death")
    end
-   sgm_container.container_stalker_death(victim, killer)
+   sgm_loot_manager.getter.container_stalker_death(sgm_loot_manager.getter, victim)
    remove_spot_on_map(victim:id(), "alife_presentation_squad_friend")
    remove_spot_on_map(victim:id(), "alife_presentation_squad_neutral")
    remove_spot_on_map(victim:id(), sgm_flags.spot_actor_guard)
@@ -738,7 +738,7 @@ function on_monster_death(victim, killer)
    if sgm_flags.table_m_skill_hits[victim:name()] == nil or sgm_flags.table_m_skill_hits[victim:name()] == false then
       sgm_ranks.read_monster_death(victim, killer, "default_death")
    end
-   sgm_container.container_monster_death(victim, killer)
+   sgm_loot_manager.getter.container_monster_death(sgm_loot_manager.getter, victim)
    remove_spot_on_map(victim:id(), sgm_flags.spot_quest_tip)
    remove_spot_on_map(victim:id(), sgm_flags.spot_quest_enemy_squad_1)
    remove_spot_on_map(victim:id(), sgm_flags.spot_quest_enemy_squad_2)
@@ -754,11 +754,11 @@ function on_check_npc_enemy(npc, enemy)
    if npc ~= nil and enemy ~= nil then
       if IsStalker(npc) and IsStalker(enemy) and enemy:id() ~= db.actor:id() then
          if sgm_g.find_in_string(sgm_functions.ReadCommunity(enemy:section()), "alfa_force") then
-            if find_out_string(npc:section(), "sim_default") then
+            if sgm_g.find_out_string(npc:section(), "sim_default") then
                return false
             end
          elseif sgm_g.find_in_string(sgm_functions.ReadCommunity(npc:section()), "alfa_force") then
-            if find_out_string(enemy:section(), "sim_default") then
+            if sgm_g.find_out_string(enemy:section(), "sim_default") then
                return false
             end
          end
@@ -792,9 +792,9 @@ function on_check_npc_enemy(npc, enemy)
          end
       end
       if sgm_functions.ReadMonstersFriendly(npc:section()) == true then
-         if IsStalker(npc) and IsMonster(enemy) and find_out_string(enemy:section(), "captured") then
+         if IsStalker(npc) and IsMonster(enemy) and sgm_g.find_out_string(enemy:section(), "captured") then
             return false
-         elseif IsMonster(npc) and find_out_string(npc:section(), "captured") and IsMonster(enemy) then
+         elseif IsMonster(npc) and sgm_g.find_out_string(npc:section(), "captured") and IsMonster(enemy) then
             return false
          end
       end
@@ -802,13 +802,13 @@ function on_check_npc_enemy(npc, enemy)
          return false --/Игнорируем завербованных мутантов.
       elseif IsMonster(npc) and sgm_g.find_in_string(npc:section(), "captured") and IsMonster(enemy) and sgm_g.find_in_string(enemy:section(), "captured") and (sgm_flags.table_m_capture_hits[enemy:id()] == nil or sgm_flags.table_m_capture_hits[enemy:id()] == false) then
          return false --/Игнорируем завербованных мутантов, если мы такой же завербованный мутант.
-      elseif IsMonster(npc) and sgm_g.find_in_string(npc:section(), "captured") and (sgm_flags.table_m_capture_hits[npc:id()] == nil or sgm_flags.table_m_capture_hits[npc:id()] == false) and IsMonster(enemy) and find_out_string(enemy:section(), "captured") and has_alife_info("capture_meal_active") and sgm_flags.string_capture_monster_target ~= "none" and sgm_functions.ReadCommunity(enemy:section()) ~= nil and sgm_g.find_in_string(sgm_functions.ReadCommunity(enemy:section()), sgm_flags.string_capture_monster_target) then
+      elseif IsMonster(npc) and sgm_g.find_in_string(npc:section(), "captured") and (sgm_flags.table_m_capture_hits[npc:id()] == nil or sgm_flags.table_m_capture_hits[npc:id()] == false) and IsMonster(enemy) and sgm_g.find_out_string(enemy:section(), "captured") and has_alife_info("capture_meal_active") and sgm_flags.string_capture_monster_target ~= "none" and sgm_functions.ReadCommunity(enemy:section()) ~= nil and sgm_g.find_in_string(sgm_functions.ReadCommunity(enemy:section()), sgm_flags.string_capture_monster_target) then
          return false --/Игнорируем мутантов, которые находятся под воздействие препарата X8П25.
-      elseif IsMonster(npc) and find_out_string(npc:section(), "captured") and IsMonster(enemy) and sgm_g.find_in_string(enemy:section(), "captured") and (sgm_flags.table_m_capture_hits[enemy:id()] == nil or sgm_flags.table_m_capture_hits[enemy:id()] == false) and has_alife_info("capture_meal_active") and sgm_flags.string_capture_monster_target ~= "none" and sgm_functions.ReadCommunity(enemy:section()) ~= nil and sgm_g.find_in_string(sgm_functions.ReadCommunity(enemy:section()), sgm_flags.string_capture_monster_target) then
+      elseif IsMonster(npc) and sgm_g.find_out_string(npc:section(), "captured") and IsMonster(enemy) and sgm_g.find_in_string(enemy:section(), "captured") and (sgm_flags.table_m_capture_hits[enemy:id()] == nil or sgm_flags.table_m_capture_hits[enemy:id()] == false) and has_alife_info("capture_meal_active") and sgm_flags.string_capture_monster_target ~= "none" and sgm_functions.ReadCommunity(enemy:section()) ~= nil and sgm_g.find_in_string(sgm_functions.ReadCommunity(enemy:section()), sgm_flags.string_capture_monster_target) then
          return false --/Игнорируем завербованных мутантов, если нас уже начинают потихоньку вербовать, вообщем переключаемся на ГГ.
       elseif IsStalker(enemy) and sgm_g.find_in_string(sgm_functions.ReadCommunity(enemy:section()), "bodyguard") and (check_relation_between(npc, db.actor) ~= "enemy" or sgm_g.dont_has_alife_info(enemy:profile_name() .. "_pursue")) and check_relation_between(enemy, db.actor) ~= "enemy" then
          return false --/Игнорируем телохранителей, нанимаемых ГГ. Если мы и наш телоранитель дружественны к к ГГ, или телохранитель свободен.
-      elseif IsStalker(enemy) and sgm_g.find_in_string(sgm_functions.ReadCommunity(enemy:section()), "bodyguard") and find_out_string(sgm_functions.ReadCommunity(npc:section()), "bodyguard") and find_out_string(npc:section(), "captured") and check_relation_between(enemy, db.actor) == "enemy" then
+      elseif IsStalker(enemy) and sgm_g.find_in_string(sgm_functions.ReadCommunity(enemy:section()), "bodyguard") and sgm_g.find_out_string(sgm_functions.ReadCommunity(npc:section()), "bodyguard") and sgm_g.find_out_string(npc:section(), "captured") and check_relation_between(enemy, db.actor) == "enemy" then
          return false --/Игнорируем телохранителей, нанимаемых ГГ. Если мы не телохранители и не прирученные мутанты.
       end
    end
@@ -823,11 +823,11 @@ end
 
 function on_squad_respawn(squad_name, squad_id, squad_level)
    if sgm_g.find_in_string(squad_name, "alfa_squad") then
-      inc_mod_param("alfa_squad_" .. string.sub(squad_name, 1, 1) .. "_count")
+      sgm_g.inc_mod_param("alfa_squad_" .. string.sub(squad_name, 1, 1) .. "_count")
    end
    if sgm_g.find_in_string(squad_name, "sim_squad") and sgm_functions.ReadFaction(squad_name) ~= nil and not sgm_functions.ReadStoryId(squad_name) then
       if sgm_g.level_has_respawn_limiter(squad_level) then
-         inc_mod_param(sgm_functions.ReadFaction(squad_name) .. "_squad_" .. squad_level .. "_count")
+         sgm_g.inc_mod_param(sgm_functions.ReadFaction(squad_name) .. "_squad_" .. squad_level .. "_count")
       end
    end
 end

@@ -111,8 +111,8 @@ function action_universal:update(delta)
             local y = tonumber(scheme_param.level_change_throw_coord[2])
             local z = tonumber(scheme_param.level_change_throw_coord[3])
             local h = scheme_param.level_change_throw_coord[4]
-            if exists(scheme_param.level_change_throw_coord[5]) then
-               if exists(scheme_param.level_change_throw_coord[6]) then
+            if sgm_g.exists(scheme_param.level_change_throw_coord[5]) then
+               if sgm_g.exists(scheme_param.level_change_throw_coord[6]) then
                   if has_alife_info(tostring(scheme_param.level_change_throw_coord[6])) and sgm_g.dont_has_alife_info(tostring(scheme_param.level_change_throw_coord[5])) then
                      give_info(tostring(scheme_param.level_change_throw_coord[5]))
                   end
@@ -122,7 +122,7 @@ function action_universal:update(delta)
                   end
                end
             end
-            if exists(scheme_param.level_change_throw_coord[4]) then
+            if sgm_g.exists(scheme_param.level_change_throw_coord[4]) then
                self:level_change_throw_actor(x, y, z, tonumber(h))
             else
                local dir_x = tonumber(scheme_param.level_change_throw_dir[1])
@@ -170,7 +170,7 @@ function action_universal:noweap_zone_activate(scheme_param)
 end
 
 function action_universal:throw_zone_activate(scheme_param)
-   if utils.npc_in_zone(db.actor, self.object) and exists(scheme_param.throw_zone_points) then
+   if utils.npc_in_zone(db.actor, self.object) and sgm_g.exists(scheme_param.throw_zone_points) then
       if scheme_param.throw_zone_deprive == "true" then
          local active_item = db.actor:active_item()
          if active_item then
@@ -195,7 +195,7 @@ function action_universal:sound_zone_activate(scheme_param)
          scheme_param.sound_played = sound_object(self:get_random_theme())
          if scheme_param.sound_played ~= nil then
             scheme_param.sound_played:play_at_pos(self.object, self.object:position())
-            if exists(scheme_param.sound_zone_range_min) and exists(scheme_param.sound_zone_range_max) then
+            if sgm_g.exists(scheme_param.sound_zone_range_min) and sgm_g.exists(scheme_param.sound_zone_range_max) then
                scheme_param.sound_played.min_distance = tonumber(scheme_param.sound_zone_range_min)
                scheme_param.sound_played.max_distance = tonumber(scheme_param.sound_zone_range_max)
             else
@@ -324,7 +324,7 @@ function action_universal:create_zone_activate(scheme_param, when)
 end
 
 function action_universal:level_change_activate(x, y, z, autosave_name, trans_h, trans_m)
-   if exists(autosave_name) then
+   if sgm_g.exists(autosave_name) then
       game_autosave(autosave_name, 2)
    end
    self.level_change_hidden_spots = true
@@ -341,13 +341,13 @@ function action_universal:level_change_prepare()
    level.hide_indicators_safe()
    level.show_weapon(false)
    level.disable_input()
-   if exists(scheme_param.level_change_on_use) then
+   if sgm_g.exists(scheme_param.level_change_on_use) then
       sgm_functions.execute_condlist(self.object, self.st.saved_section, scheme_param.level_change_on_use)
    end
 end
 
 function action_universal:level_change_setup_spots(scheme_param)
-   if exists(scheme_param.level_change_spot[1]) then
+   if sgm_g.exists(scheme_param.level_change_spot[1]) then
       if scheme_param.level_change_spot[3] == "false" or (scheme_param.level_change_spot[3] == "true" and self.level_change_hidden_spots == false) then
          sgm_g.add_spot_on_map(self.object:id(), scheme_param.level_change_spot[1], scheme_param.level_change_spot[2])
       elseif scheme_param.level_change_spot[3] == "true" and self.level_change_hidden_spots == true then
@@ -429,7 +429,7 @@ function action_universal:check_logic_condlists(obj, ini, section)
       scheme_param.throw_zone_deprive = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section,
          "throw_zone_deprive",
          "false"))
-      if exists(scheme_param.throw_zone_points) then
+      if sgm_g.exists(scheme_param.throw_zone_points) then
          scheme_param.throw_zone_points_table = parse_names(scheme_param.throw_zone_points)
       end
    end
@@ -449,7 +449,7 @@ function action_universal:check_logic_condlists(obj, ini, section)
          "sound_zone_range_min", nil))
       scheme_param.sound_zone_range_max = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section,
          "sound_zone_range_max", nil))
-      if exists(scheme_param.sound_zone_theme) then
+      if sgm_g.exists(scheme_param.sound_zone_theme) then
          scheme_param.sound_zone_theme_table = parse_names(scheme_param.sound_zone_theme)
       end
    end
@@ -466,7 +466,7 @@ function action_universal:check_logic_condlists(obj, ini, section)
          "ambush_zone_radius", 10))
       scheme_param.ambush_zone_prob       = to_number(sgm_functions.check_section_condlist(ini, section,
          "ambush_zone_prob", 0.6))
-      if exists(scheme_param.ambush_zone_creatures) then
+      if sgm_g.exists(scheme_param.ambush_zone_creatures) then
          scheme_param.ambush_zone_creatures_table = parse_names(scheme_param.ambush_zone_creatures)
       end
    end
@@ -485,13 +485,14 @@ function action_universal:check_logic_condlists(obj, ini, section)
          "create_zone_radius", 5))
       scheme_param.create_zone_prob       = to_number(sgm_functions.check_section_condlist(ini, section,
          "create_zone_prob", 0.2))
-      if exists(scheme_param.create_zone_items) then
+      if sgm_g.exists(scheme_param.create_zone_items) then
          scheme_param.create_zone_spawner_table = parse_names(scheme_param.create_zone_items)
       end
    end
    --\Команды: LEVEL_CHANGE_ZONE\--
    if scheme_param.scheme_type == "level_change_zone" then
-      scheme_param.level_change_cond               = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section,
+      scheme_param.level_change_cond               = sgm_g.to_string(sgm_functions.check_section_condlist(ini,
+         section,
          "level_change_cond", "true"))
       scheme_param.level_change_on_use             = sgm_functions.cfg_get_string(ini, section, "level_change_on_use",
          nil)
@@ -505,15 +506,20 @@ function action_universal:check_logic_condlists(obj, ini, section)
          "level_change_travel_time", "1,00", 2)
       scheme_param.level_change_spot               = sgm_functions.check_section_comma(ini, section, "level_change_spot",
          "nil,nil,false", 3)
-      scheme_param.level_change_silent_travel      = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section,
+      scheme_param.level_change_silent_travel      = sgm_g.to_string(sgm_functions.check_section_condlist(ini,
+         section,
          "level_change_silent_travel", "false"))
-      scheme_param.level_change_hidden_mode        = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section,
+      scheme_param.level_change_hidden_mode        = sgm_g.to_string(sgm_functions.check_section_condlist(ini,
+         section,
          "level_change_hidden_mode", "false"))
-      scheme_param.level_change_autosave           = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section,
+      scheme_param.level_change_autosave           = sgm_g.to_string(sgm_functions.check_section_condlist(ini,
+         section,
          "level_change_autosave", nil))
-      scheme_param.level_change_message_possible   = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section,
+      scheme_param.level_change_message_possible   = sgm_g.to_string(sgm_functions.check_section_condlist(ini,
+         section,
          "level_change_message_possible", "st_level_change_zone_yes_no_text"))
-      scheme_param.level_change_message_impossible = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section,
+      scheme_param.level_change_message_impossible = sgm_g.to_string(sgm_functions.check_section_condlist(ini,
+         section,
          "level_change_message_impossible", "st_level_change_zone_ok_text"))
    end
    --/end

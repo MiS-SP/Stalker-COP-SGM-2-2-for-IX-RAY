@@ -12,15 +12,6 @@ function start_game_callback_sgm_patching(squad_community_by_behaviour, monster_
    monster_classes[clsid.zombie_s] = true
 end
 
--- Крешнуть игру (после вывода сообщения об ошибке в лог)
-function abort(fmt, ...)
-   if fmt ~= nil and ... ~= nil then
-      local log = string.format(fmt, ...)
-      --error_log(log)
-      sgm_callbacks.on_game_crash(log)
-   end
-end
-
 --=============================================================--
 --=======================/SGM/=================================--
 --=============================================================--
@@ -479,14 +470,14 @@ end
 ------------------------------------------------------------------------------
 -- 'Выдача инфопортации, если таковая отсутствует.
 function recover_info(dont_info)
-   if dont_has_alife_info(dont_info) then
+   if sgm_g.dont_has_alife_info(dont_info) then
       give_info(dont_info)
    end
 end
 
 -- 'Выдача инфопортации, если первая присутствует, а вторая отсутствует.
 function recover_info2(has_info, grant_info)
-   if has_alife_info(has_info) and dont_has_alife_info(grant_info) then
+   if has_alife_info(has_info) and sgm_g.dont_has_alife_info(grant_info) then
       give_info(grant_info)
    end
 end
@@ -536,7 +527,7 @@ function dont_has_several_info(l_part, r_part, count_a, count_b)
    end
    local info_cnt = 0
    for i = count_a, count_b do
-      if dont_has_alife_info(l_part .. i .. r_part) then
+      if sgm_g.dont_has_alife_info(l_part .. i .. r_part) then
          info_cnt = info_cnt + 1
       end
    end
@@ -563,13 +554,13 @@ end
 -- 'Подсчет нескольких неполученных инфопортаций за один вызов.
 function dont_has_chosen_info(info_list)
    if find_out_string(info_list, ",") then
-      return dont_has_alife_info(info_list)
+      return sgm_g.dont_has_alife_info(info_list)
    else
       local info_result = 0
       local info_table = utils.parse_spawns(info_list)
       local info_count = get_table_names(info_table)
       for k, v in pairs(info_table) do
-         if dont_has_alife_info(v.section) then
+         if sgm_g.dont_has_alife_info(v.section) then
             info_result = info_result + 1
          end
       end
@@ -597,13 +588,13 @@ end
 -- 'Проверка на отсутствие любой из нескольких инфопортаций.
 function dont_any_chosen_info(info_list)
    if find_out_string(info_list, ",") then
-      return dont_has_alife_info(info_list)
+      return sgm_g.dont_has_alife_info(info_list)
    else
       local info_result = false
       local info_table = utils.parse_spawns(info_list)
       local info_count = get_table_names(info_table)
       for k, v in pairs(info_table) do
-         if dont_has_alife_info(v.section) then
+         if sgm_g.dont_has_alife_info(v.section) then
             info_result = true
          end
       end
@@ -612,7 +603,7 @@ function dont_any_chosen_info(info_list)
 end
 
 -- 'Проверка на отсутствие инфопортации.
-function dont_has_alife_info(info_id)
+function sgm_g.dont_has_alife_info(info_id)
    return not has_alife_info(info_id)
 end
 
@@ -994,7 +985,7 @@ end
 -- 'Запуск окошка, в котором нужно нажимать кнопки Да:Нет:Ок.
 function run_choose_box(type, reason, text, extra_value)
    if object_exists(db.actor) and device().precache_frame == 0 and (not db.actor:is_talking()) then
-      ui_mod_elements.information_block_show(type, reason, text, extra_value)
+      sgm_ui_mod_elements.information_block_show(type, reason, text, extra_value)
    end
 end
 
@@ -1023,15 +1014,15 @@ end
 function precond_hud(type)
    if type == nil or type == 1 then
       return (not db.actor:is_talking()) and object_alive(db.actor) and check_ui_worked(true) and
-          dont_has_alife_info("inventory_wnd_opened") and dont_has_alife_info("sleep_active") and
-          dont_has_alife_info("actor_in_sleep") and dont_has_alife_info("screenshot_mode")
+          sgm_g.dont_has_alife_info("inventory_wnd_opened") and sgm_g.dont_has_alife_info("sleep_active") and
+          sgm_g.dont_has_alife_info("actor_in_sleep") and sgm_g.dont_has_alife_info("screenshot_mode")
    elseif type == 2 then
-      return object_alive(db.actor) and check_ui_worked(true) and dont_has_alife_info("actor_in_sleep") and
-          dont_has_alife_info("sleep_active")
+      return object_alive(db.actor) and check_ui_worked(true) and sgm_g.dont_has_alife_info("actor_in_sleep") and
+          sgm_g.dont_has_alife_info("sleep_active")
    elseif type == 3 then
       return (not db.actor:is_talking()) and object_alive(db.actor) and check_ui_worked(true) and
-          dont_has_alife_info("screenshot_mode") and dont_has_alife_info("inventory_wnd_opened") and
-          dont_has_alife_info("actor_in_sleep")
+          sgm_g.dont_has_alife_info("screenshot_mode") and sgm_g.dont_has_alife_info("inventory_wnd_opened") and
+          sgm_g.dont_has_alife_info("actor_in_sleep")
    end
 end
 
@@ -1040,7 +1031,7 @@ end
 ------------------------------------------------------------------------------
 -- 'Вывод информации о заработанном ранге.
 function congratulate_with_rank_event(type, delay, to_value, sound_bool, add_text, check_talking)
-   if type == "add" and dont_has_alife_info("opt_disable_statistic_event") then
+   if type == "add" and sgm_g.dont_has_alife_info("opt_disable_statistic_event") then
       sgm_flags.value_rank_counter = sgm_flags.value_rank_counter + to_value
       local descriptor = game.translate_string("st_rank_event_present") ..
           " " .. "(+" .. math.floor(sgm_flags.value_rank_counter) .. ")"
@@ -1061,7 +1052,7 @@ function congratulate_with_rank_event(type, delay, to_value, sound_bool, add_tex
       if sound_bool ~= nil and sound_bool == true then
          play_snd_at_actor([[device\pda\pda_news]])
       end
-   elseif type == "clear" and dont_has_alife_info("opt_disable_statistic_event") then
+   elseif type == "clear" and sgm_g.dont_has_alife_info("opt_disable_statistic_event") then
       sgm_flags.timer_hud_message = 0
       release_hud("hud_message_event")
    end
@@ -1069,7 +1060,7 @@ end
 
 -- 'Вывод информации о заработанном хедшоте.
 function congratulate_with_headshot_event(type, delay, to_value, sound_bool, check_talking)
-   if type == "add" and dont_has_alife_info("opt_disable_statistic_event") then
+   if type == "add" and sgm_g.dont_has_alife_info("opt_disable_statistic_event") then
       sgm_flags.value_headshot_counter = sgm_flags.value_headshot_counter + to_value
       local descriptor = game.translate_string("st_event_headshot") ..
           " " .. "(+" .. math.floor(sgm_flags.value_headshot_counter) .. ")"
@@ -1080,7 +1071,7 @@ function congratulate_with_headshot_event(type, delay, to_value, sound_bool, che
       if sound_bool ~= nil and sound_bool == true then
          play_snd_at_actor([[device\pda\pda_news]])
       end
-   elseif type == "clear" and dont_has_alife_info("opt_disable_statistic_event") then
+   elseif type == "clear" and sgm_g.dont_has_alife_info("opt_disable_statistic_event") then
       sgm_flags.timer_hud_message = 0
       release_hud("hud_message_event")
    end
@@ -1088,7 +1079,7 @@ end
 
 -- 'Вывод информации о найденном SGM тайнике.
 function congratulate_with_secret_event(type, delay, sound_bool, check_talking)
-   if type == "add" and dont_has_alife_info("opt_disable_statistic_event") then
+   if type == "add" and sgm_g.dont_has_alife_info("opt_disable_statistic_event") then
       local descriptor = game.translate_string("st_event_iam_find") ..
           " " .. read_mod_param("stat_taynikov") .. game.translate_string("st_event_find_secret")
       if (check_talking == nil or check_talking == false) or (check_talking == true and (not db.actor:is_talking())) then
@@ -1098,7 +1089,7 @@ function congratulate_with_secret_event(type, delay, sound_bool, check_talking)
       if sound_bool ~= nil and sound_bool == true then
          play_snd_at_actor([[device\pda\pda_news]])
       end
-   elseif type == "clear" and dont_has_alife_info("opt_disable_statistic_event") then
+   elseif type == "clear" and sgm_g.dont_has_alife_info("opt_disable_statistic_event") then
       sgm_flags.timer_hud_message = 0
       release_hud("hud_message_event")
    end
@@ -1106,7 +1097,7 @@ end
 
 -- 'Вывод информации о найденном персональном тайнике.
 function congratulate_with_deserve_event(type, delay, sound_bool, check_talking)
-   if type == "add" and dont_has_alife_info("opt_disable_statistic_event") then
+   if type == "add" and sgm_g.dont_has_alife_info("opt_disable_statistic_event") then
       local descriptor = game.translate_string("st_event_iam_find") ..
           " " .. read_mod_param("stat_deserves") .. game.translate_string("st_event_find_deserve")
       if (check_talking == nil or check_talking == false) or (check_talking == true and (not db.actor:is_talking())) then
@@ -1116,7 +1107,7 @@ function congratulate_with_deserve_event(type, delay, sound_bool, check_talking)
       if sound_bool ~= nil and sound_bool == true then
          play_snd_at_actor([[device\pda\pda_news]])
       end
-   elseif type == "clear" and dont_has_alife_info("opt_disable_statistic_event") then
+   elseif type == "clear" and sgm_g.dont_has_alife_info("opt_disable_statistic_event") then
       sgm_flags.timer_hud_message = 0
       release_hud("hud_message_event")
    end
@@ -1124,7 +1115,7 @@ end
 
 -- 'Вывод длинной строки на HUD.
 function congratulate_with_event(delay, descr, sound_bool, check_talking)
-   if dont_has_alife_info("opt_disable_statistic_event") then
+   if sgm_g.dont_has_alife_info("opt_disable_statistic_event") then
       if (check_talking == nil or check_talking == false) or (check_talking == true and (not db.actor:is_talking())) then
          add_hud("hud_message_event_long", descr)
       end
@@ -1146,9 +1137,9 @@ end
 ------------------------------------------------------------------------------
 -- 'Условие для успешного автосохранения.
 function autosave_precond()
-   if object_exists(db.actor) and device().precache_frame == 0 and (not db.actor:is_talking()) and dont_has_alife_info("actor_in_sleep") then
+   if object_exists(db.actor) and device().precache_frame == 0 and (not db.actor:is_talking()) and sgm_g.dont_has_alife_info("actor_in_sleep") then
       return true
-   elseif object_exists(db.actor) and device().precache_frame ~= 0 and (not db.actor:is_talking()) and dont_has_alife_info("actor_in_sleep") then
+   elseif object_exists(db.actor) and device().precache_frame ~= 0 and (not db.actor:is_talking()) and sgm_g.dont_has_alife_info("actor_in_sleep") then
       return false
    else
       return false
@@ -1160,7 +1151,7 @@ function game_autosave(save_name, type)
    if type == nil then type = 1 end
    if type == 1 then
       if autosave_precond() then
-         if save_name ~= nil and dont_has_alife_info(save_name) then
+         if save_name ~= nil and sgm_g.dont_has_alife_info(save_name) then
             give_info(save_name)
             if IsImportantSave() then
                local save_param = user_name() .. " - " .. game.translate_string("st_" .. save_name)
@@ -1323,7 +1314,7 @@ function find_out_string(where, what)
 end
 
 -- 'Сохранение списка секций из .ltx в табличную переменную.
-   -- ! warning, NOT SAVE FUNCTION
+-- ! warning, NOT SAVE FUNCTION
 function save_and_transform_ini_table(ini_path, ini_table, script_path, script_table, need_exist)
    local ini = ini_file(ini_path)
    local list_name_1 = ini_table
@@ -2892,7 +2883,7 @@ end
 
 -- 'Воспроизведение в МП-3 плеере
 function check_is_mp3_playing()
-   return ui_mod_elements.mp3_obj ~= nil and ui_mod_elements.mp3_obj:playing()
+   return sgm_ui_mod_elements.mp3_obj ~= nil and sgm_ui_mod_elements.mp3_obj:playing()
 end
 
 -- 'Вербовка мутанта
@@ -3253,11 +3244,11 @@ function give_skill_book(section, news, is_general)
          selected_skill_table = table_skill_books_general
       end
       full_skill_book = "skill_book_" .. selected_skill_book
-      if dont_has_alife_info(full_skill_book) and (not db.actor:object(full_skill_book)) then
+      if sgm_g.dont_has_alife_info(full_skill_book) and (not db.actor:object(full_skill_book)) then
          give_object_to_actor(full_skill_book, 1, news)
       else
          for k, v in pairs(selected_skill_table) do
-            if v ~= nil and dont_has_alife_info("skill_book_" .. v) and (not db.actor:object("skill_book_" .. v)) then
+            if v ~= nil and sgm_g.dont_has_alife_info("skill_book_" .. v) and (not db.actor:object("skill_book_" .. v)) then
                its_all = false
             end
          end
@@ -3280,13 +3271,13 @@ function give_mp3_bonus(num)
    local round = math.random(1, 40)
    local its_all = true
    if num ~= nil then
-      ui_mod_elements.add_mp3_bonus("mp3_bonus_" .. num)
+      sgm_ui_mod_elements.add_mp3_bonus("mp3_bonus_" .. num)
    else
-      if dont_has_alife_info("mp3_bonus_" .. round) then
-         ui_mod_elements.add_mp3_bonus("mp3_bonus_" .. round)
+      if sgm_g.dont_has_alife_info("mp3_bonus_" .. round) then
+         sgm_ui_mod_elements.add_mp3_bonus("mp3_bonus_" .. round)
       else
          for k = 1, 40 do
-            if dont_has_alife_info("mp3_bonus_" .. k) then
+            if sgm_g.dont_has_alife_info("mp3_bonus_" .. k) then
                its_all = false
             end
          end
@@ -3300,9 +3291,9 @@ end
 -- 'Выдача SGM тайника.
 function give_secret(count)
    local issued = 0
-   if sgm_flags.table_mod_secrets ~= nil and dont_has_alife_info("sgm_achievements_pathfinder") then
+   if sgm_flags.table_mod_secrets ~= nil and sgm_g.dont_has_alife_info("sgm_achievements_pathfinder") then
       for k, v in pairs(sgm_flags.table_mod_secrets) do
-         if issued < count and v ~= nil and level.object_by_id(v) ~= nil and level.map_has_object_spot(v, sgm_flags.spot_secret_v2) == 0 and sgm_functions.ReadInventoryUseInfo(level.object_by_id(v):section()) ~= "none" and dont_has_alife_info(sgm_functions.ReadInventoryUseInfo(level.object_by_id(v):section())) and level.object_by_id(v):is_inv_box_empty() == false then
+         if issued < count and v ~= nil and level.object_by_id(v) ~= nil and level.map_has_object_spot(v, sgm_flags.spot_secret_v2) == 0 and sgm_functions.ReadInventoryUseInfo(level.object_by_id(v):section()) ~= "none" and sgm_g.dont_has_alife_info(sgm_functions.ReadInventoryUseInfo(level.object_by_id(v):section())) and level.object_by_id(v):is_inv_box_empty() == false then
             news_manager.send_tip(db.actor, "", 0, "taynik", 6000, nil, "st_entry_mod_secret")
             add_spot_on_map(v, sgm_flags.spot_secret_v2, "st_taynik_name")
             issued = issued + 1
@@ -3750,7 +3741,7 @@ function setup_no_weapon_zone_disabled(radius, name, info, allow_icon, x, y, z, 
    elseif x ~= nil and y == nil and z == nil and lv == nil and gv == nil then
       currert_zone = actor_pos:distance_to(x:position()) < radius
    end
-   if currert_zone and dont_has_alife_info(info) then
+   if currert_zone and sgm_g.dont_has_alife_info(info) then
       if allow_icon == true or allow_icon == "true" then
          add_hud("hud_no_weapon_zone", nil, true, true)
       end
@@ -3864,14 +3855,14 @@ end
 -- 'Проверка на валидность уникального серийного номера игры.
 local fullPath = getFS():update_path("$app_data_root$", "sgm_data//save_data.sgm")
 function check_game_unique_id(value)
-   local result=true
-   local file=io.open(fullPath,"r")
+   local result = true
+   local file = io.open(fullPath, "r")
    if file == nil then
       return result
    end
    for line in file:lines() do
-      if find_in_string(tostring(line),"|"..value.."|0|") then
-         result=false
+      if find_in_string(tostring(line), "|" .. value .. "|0|") then
+         result = false
       end
    end
    file:close()

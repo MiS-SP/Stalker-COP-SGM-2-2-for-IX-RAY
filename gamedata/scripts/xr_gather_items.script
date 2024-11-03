@@ -1,0 +1,43 @@
+----------------------------------------------------------------------------------------------------------------------
+-- EVALUATORS
+----------------------------------------------------------------------------------------------------------------------
+class "evaluator_gather_items" (property_evaluator)
+function evaluator_gather_items:__init(name, storage, npc)
+	super(nil, name)
+	self.a = storage
+end
+
+function evaluator_gather_items:evaluate()
+	if self.a.gather_items_enabled ~= true then
+		return false
+	end
+	--/ SGM in
+	if sgm_functions.ReadGatherDetection(self.object:section()) == false then
+		return false
+	end
+	if sgm_g.exists(sgm_g.get_object_squad_name(self.object)) and sgm_functions.ReadAssaultSquad(get_object_squad(self.object).settings_id) then
+		return false
+	end
+	--/ SGM out
+
+	return self.object:is_there_items_to_pickup()
+end
+
+----------------------------------------------------------------------------------------------------------------------
+-- BINDER
+----------------------------------------------------------------------------------------------------------------------
+function add_to_binder(object, ini, scheme, section, storage)
+	local manager = object:motivation_action_manager()
+
+	manager:remove_evaluator(stalker_ids.property_items)
+	manager:add_evaluator(stalker_ids.property_items,
+		this.evaluator_gather_items("is_there_items_to_pickup", storage, object))
+end
+
+function set_gather_items(npc, ini, scheme, section)
+	local st = xr_logic.assign_storage_and_bind(npc, ini, scheme, section)
+end
+
+function reset_gather_items(npc, scheme, st, section)
+	st.gather_items.gather_items_enabled = utils.cfg_get_bool(st.ini, section, "gather_items_enabled", npc, false, true)
+end

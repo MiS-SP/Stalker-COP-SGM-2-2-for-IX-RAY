@@ -91,7 +91,7 @@ function task_update()
       if sgm_g.check_game_timer("shustriy_d_timer") == nil then
          sgm_g.start_game_timer("shustriy_d_timer", math.random(1, 2), "days")
       elseif sgm_g.check_game_timer("shustriy_d_timer") then
-         inc_mod_param("shustriy_available_tasks")
+         sgm_g.inc_mod_param("shustriy_available_tasks")
          give_info("shustriy_find_4_allow")
          abort_game_timer("shustriy_d_timer")
       end
@@ -410,7 +410,7 @@ function task_update()
          end
          if check_flague_timer("pri_freeplay_psy_wave_timer") then
             sgm_flags.pri_freeplay_psy_wave_timer = 0
-            inc_mod_param("pri_psy_wave_timer")
+            sgm_g.inc_mod_param("pri_psy_wave_timer")
          end
          if sgm_g.dont_has_alife_info("pri_zone_cleaning_boom_first") and psy_wave_timer >= 2 then
             give_info("pri_zone_cleaning_boom_first")
@@ -531,7 +531,7 @@ function task_update()
                            v[3] + math.random(-5, 5), v[4], v[5])
                      end
                   end
-                  inc_mod_param("zat_monster_w1_spawned")
+                  sgm_g.inc_mod_param("zat_monster_w1_spawned")
                   zat_monsters_wave_spawner = false
                end
             end
@@ -572,7 +572,7 @@ function task_update()
                            v[3] + math.random(-5, 5), v[4], v[5])
                      end
                   end
-                  inc_mod_param("zat_monster_w2_spawned")
+                  sgm_g.inc_mod_param("zat_monster_w2_spawned")
                   zat_monsters_wave_spawner = false
                end
             end
@@ -618,7 +618,7 @@ function task_update()
                            v[3] + math.random(-5, 5), v[4], v[5])
                      end
                   end
-                  inc_mod_param("zat_monster_w3_spawned")
+                  sgm_g.inc_mod_param("zat_monster_w3_spawned")
                   zat_monsters_wave_spawner = false
                end
             end

@@ -4,6 +4,8 @@
 --------------------------------------------------------------------------------------------------------
 ---==================================================================================================---
 
+getter = {}
+
 class "SGMLoader"
 
 function SGMLoader:__init()
@@ -15,6 +17,7 @@ function SGMLoader:__init()
       loot = sgm_loot_manager.SGMLootManager()
    }
    self:sigerous_mod_load()
+   getter = self
 end
 
 function SGMLoader:sigerous_mod_load()
@@ -72,14 +75,14 @@ function SGMLoader:sigerous_mod_load()
    sgm_timers.timers_main()
 end
 
-function save(packet)
+function SGMLoader:save(packet)
    self.managers.save:save(packet)
-   battery_manager:save(packet)
+   self.managers.battery:save(packet)
 end
 
-function load(reader)
+function SGMLoader:load(reader)
    self.managers.save:load(reader)
-   battery_manager:load(reader)
+   self.managers.battery:load(reader)
 end
 
 ----------------------

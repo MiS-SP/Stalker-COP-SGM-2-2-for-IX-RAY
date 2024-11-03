@@ -1368,7 +1368,7 @@ function extract_money_from_corpse(npc)
    relocate_web_money(bringed_money, "in", false)
    news_manager.send_tip(db.actor, bringed_money .. " " .. game.translate_string("st_bankir_ru"), 0, "money", 3000, nil,
       "st_loot_entry")
-   inc_mod_param("stat_s_trupov", bringed_money)
+   sgm_g.inc_mod_param("stat_s_trupov", bringed_money)
 end
 
 -- 'Переброска предметов от одного обьекта к другому.

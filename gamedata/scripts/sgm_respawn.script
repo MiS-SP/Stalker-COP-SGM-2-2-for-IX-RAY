@@ -32,17 +32,23 @@ function respawn_abandoned()
    local level_name = level.name()
    local hours, minutes, day = level.get_time_hours(), level.get_time_minutes(), level.get_time_days()
    local ini = ini_file("respawn\\respawn_abandoned.ltx")
+   -- if sgm_flags.table_mod_respawn["respawn_abandoned"] == nil then
+   --    return
+   -- end
    for k, v in pairs(sgm_flags.table_mod_respawn["respawn_abandoned"]) do
       if string.sub(level_name, 1, 3) == string.sub(v, 1, 3) then
          local section = v
-         local target_smart = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section, "target_smart", "nil"))
+         local target_smart = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section, "target_smart",
+            "nil"))
          local place = sgm_functions.check_section_comma(ini, section, "place", nil, 5)
          local section_layers = sgm_g.to_number(sgm_functions.check_section_condlist(ini, section, "section_layers", 0))
          local cond_bool = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section, "cond", "true"))
          local born_info = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section, "born_info", ""))
-         local reload_info = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section, "reload_info", "none"))
+         local reload_info = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section, "reload_info",
+            "none"))
          local respawn_radius = sgm_g.to_number(sgm_functions.check_section_condlist(ini, section, "respawn_radius", 2))
-         local time_of_the_day = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section, "time_of_the_day", ""))
+         local time_of_the_day = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section,
+            "time_of_the_day", ""))
          local precond_night = (level.get_time_hours() >= 22 or level.get_time_hours() <= 6) and time_of_the_day ==
              "night"
          local precond_day = (level.get_time_hours() > 6 and level.get_time_hours() < 22) and time_of_the_day == "day"

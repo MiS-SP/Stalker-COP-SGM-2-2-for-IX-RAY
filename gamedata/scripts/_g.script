@@ -99,10 +99,10 @@ local scripts_to_print = {
 function printf(fmt, ...)
 	local is_g = 0
 	local result = fmt
-	if debug == nil then
-		log(string.format(fmt, ...))
-		return
-	end
+	-- if debug == nil then
+	-- 	log(string.format(fmt, ...))
+	-- 	return
+	-- end
 	local info_table = debug.getinfo(2)
 	local script_name = string.gsub(info_table.short_src, "%.script", "")
 	script_name = string.gsub(script_name, "gamedata\\scripts\\", "")
@@ -314,7 +314,7 @@ end
 --Вычисляет yaw в радианах
 function yaw(v1, v2)
 	return math.acos(((v1.x * v2.x) + (v1.z * v2.z)) /
-	(math.sqrt(v1.x * v1.x + v1.z * v1.z) * math.sqrt(v2.x * v2.x + v2.z * v2.z)))
+		(math.sqrt(v1.x * v1.x + v1.z * v1.z) * math.sqrt(v2.x * v2.x + v2.z * v2.z)))
 end
 
 function yaw_degree(v1, v2)
@@ -477,12 +477,13 @@ end
 -- Крешнуть игру (после вывода сообщения об ошибке в лог)
 function abort(fmt, ...)
 	if fmt ~= nil and ... ~= nil then
-	   local log = string.format(fmt, ...)
-	   --error_log(log)
-	   sgm_callbacks.on_game_crash(log)
+		local log = string.format(fmt, ...)
+		--error_log(log)
+		sgm_callbacks.on_game_crash(log)
 	end
- end
- -- SGM out
+end
+
+-- SGM out
 
 function set_inactivate_input_time(delta)
 	db.storage[db.actor:id()].disable_input_time = game.get_game_time()
@@ -652,48 +653,50 @@ end
 -- SGM in
 function give_info(info, i2, i3, i4, i5)
 	if db.actor ~= nil then
-	   if sgm_g.find_out_string(info, ",") then
-		  if sgm_g.dont_has_alife_info(info) then
-			 db.actor:give_info_portion(info)
-		  end
-		  if i2 ~= nil and sgm_g.dont_has_alife_info(i2) then db.actor:give_info_portion(i2) end
-		  if i3 ~= nil and sgm_g.dont_has_alife_info(i3) then db.actor:give_info_portion(i3) end
-		  if i4 ~= nil and sgm_g.dont_has_alife_info(i4) then db.actor:give_info_portion(i4) end
-		  if i5 ~= nil and sgm_g.dont_has_alife_info(i5) then db.actor:give_info_portion(i5) end
-	   else
-		  info_table = utils.parse_spawns(info)
-		  for k, v in pairs(info_table) do
-			 if sgm_g.dont_has_alife_info(v.section) then
-				db.actor:give_info_portion(v.section)
-			 end
-		  end
-	   end
+		if sgm_g.find_out_string(info, ",") then
+			if sgm_g.dont_has_alife_info(info) then
+				db.actor:give_info_portion(info)
+			end
+			if i2 ~= nil and sgm_g.dont_has_alife_info(i2) then db.actor:give_info_portion(i2) end
+			if i3 ~= nil and sgm_g.dont_has_alife_info(i3) then db.actor:give_info_portion(i3) end
+			if i4 ~= nil and sgm_g.dont_has_alife_info(i4) then db.actor:give_info_portion(i4) end
+			if i5 ~= nil and sgm_g.dont_has_alife_info(i5) then db.actor:give_info_portion(i5) end
+		else
+			info_table = utils.parse_spawns(info)
+			for k, v in pairs(info_table) do
+				if sgm_g.dont_has_alife_info(v.section) then
+					db.actor:give_info_portion(v.section)
+				end
+			end
+		end
 	end
- end
- -- SGM out
+end
+
+-- SGM out
 
 -- SGM in
 function disable_info(info, i2, i3, i4, i5)
 	if db.actor ~= nil then
-	   if sgm_g.find_out_string(info, ",") then
-		  if has_alife_info(info) then
-			 db.actor:disable_info_portion(info)
-		  end
-		  if i2 ~= nil and has_alife_info(i2) then db.actor:disable_info_portion(i2) end
-		  if i3 ~= nil and has_alife_info(i3) then db.actor:disable_info_portion(i3) end
-		  if i4 ~= nil and has_alife_info(i4) then db.actor:disable_info_portion(i4) end
-		  if i5 ~= nil and has_alife_info(i5) then db.actor:disable_info_portion(i5) end
-	   else
-		  info_table = utils.parse_spawns(info)
-		  for k, v in pairs(info_table) do
-			 if has_alife_info(v.section) then
-				db.actor:disable_info_portion(v.section)
-			 end
-		  end
-	   end
+		if sgm_g.find_out_string(info, ",") then
+			if has_alife_info(info) then
+				db.actor:disable_info_portion(info)
+			end
+			if i2 ~= nil and has_alife_info(i2) then db.actor:disable_info_portion(i2) end
+			if i3 ~= nil and has_alife_info(i3) then db.actor:disable_info_portion(i3) end
+			if i4 ~= nil and has_alife_info(i4) then db.actor:disable_info_portion(i4) end
+			if i5 ~= nil and has_alife_info(i5) then db.actor:disable_info_portion(i5) end
+		else
+			info_table = utils.parse_spawns(info)
+			for k, v in pairs(info_table) do
+				if has_alife_info(v.section) then
+					db.actor:disable_info_portion(v.section)
+				end
+			end
+		end
 	end
- end
- -- SGM out
+end
+
+-- SGM out
 
 function create_ammo(section, position, lvi, gvi, pid, num)
 	local ini = system_ini()
@@ -748,19 +751,18 @@ local save_markers = {}
 
 -- Функции для проверки корректности сейв лоад
 function set_save_marker(p, mode, check, prefix)
-
 	-- определяем ключ маркера.
 	local result = ""
---	if debug ~= nil then
---		local info_table = debug.getinfo(2)
---		local script_name = string.gsub(info_table.short_src, "%.script", "")
---		script_name = string.gsub(script_name, "gamedata\\scripts\\", "")
---		result = script_name
---	end
+	--	if debug ~= nil then
+	--		local info_table = debug.getinfo(2)
+	--		local script_name = string.gsub(info_table.short_src, "%.script", "")
+	--		script_name = string.gsub(script_name, "gamedata\\scripts\\", "")
+	--		result = script_name
+	--	end
 
---	if prefix ~= nil then
-		result = result .. "_" .. prefix
---	end
+	--	if prefix ~= nil then
+	result = result .. "_" .. prefix
+	--	end
 
 	if check == true then
 		if save_markers[result] == nil then
@@ -769,43 +771,43 @@ function set_save_marker(p, mode, check, prefix)
 
 		if mode == "save" then
 			local dif = p:w_tell() - save_markers[result]
-			printf(result..": SAVE DIF: %s", dif)
+			printf(result .. ": SAVE DIF: %s", dif)
 			if dif >= 8000 then
 				printf("WARNING! may be this is problem save point")
 			end
 			if dif >= 10240 then
---				abort("You are saving too much")
+				--				abort("You are saving too much")
 			end
-                        --/ SGM in
-                	if prefix=="actor_binder" then
-                           local r_s=p:w_tell()-save_markers[result]
-                           sgm_flags.value_pstor_factor=tonumber(r_s)
-                	end
-                        --/ SGM out
+			--/ SGM in
+			if prefix == "actor_binder" then
+				local r_s = p:w_tell() - save_markers[result]
+				sgm_flags.value_pstor_factor = tonumber(r_s)
+			end
+			--/ SGM out
 			p:w_u16(dif)
 		else
 			local c_dif = p:r_tell() - save_markers[result]
 			local dif = p:r_u16()
-			 if dif ~= c_dif then
-                                --/ SGM in
-                                --/fill_log("check="..check)
-			 	abort("INCORRECT LOAD [%s].[%s][%s]", result, dif, c_dif)
-                                return
-                                --/ SGM out
-			 else
-			 	printf(result..": LOAD DIF: %s", dif)
-			 end
+			if dif ~= c_dif then
+				--/ SGM in
+				--/fill_log("check="..check)
+				abort("INCORRECT LOAD [%s].[%s][%s]", result, dif, c_dif)
+				return
+				--/ SGM out
+			else
+				printf(result .. ": LOAD DIF: %s", dif)
+			end
 		end
 		return
 	end
 	if mode == "save" then
-		printf(result..": set save marker: %s", p:w_tell())
+		printf(result .. ": set save marker: %s", p:w_tell())
 		save_markers[result] = p:w_tell()
 		if p:w_tell() > 16000 then
 			abort("You are saving too much")
 		end
 	else
-		printf(result..": set load marker: %s", p:r_tell())
+		printf(result .. ": set load marker: %s", p:r_tell())
 		save_markers[result] = p:r_tell()
 	end
 end

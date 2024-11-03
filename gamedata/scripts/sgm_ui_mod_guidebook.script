@@ -156,7 +156,7 @@ function guidebook:btn_exit()
    game_hide_menu(1)
    disable_info("guidebook_active")
    level.add_pp_effector("teleport.ppe", 7777, false)
-   inc_mod_param("stat_guidebook")
+   sgm_g.inc_mod_param("stat_guidebook")
    play_snd_at_actor([[anomaly\teleport_work_1]])
 end
 

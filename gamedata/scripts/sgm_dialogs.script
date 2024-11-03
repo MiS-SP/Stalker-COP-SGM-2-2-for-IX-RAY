@@ -2447,7 +2447,7 @@ function start_minigame_21_point(actor, npc)
    run_dynamic_element(sgm_ui_mod_elements.card_game_21_point(), false, true)
    if enemy_name ~= nil then
       sgm_ui_mod_elements.card_game_21_enemy_name = game.translate_string(level.object_by_id(enemy_name:id())
-      :character_name())
+         :character_name())
    end
 end
 
@@ -4052,7 +4052,7 @@ function trader_activate_order(actor, npc)
    elseif npc_nm == "pri_monolit_base_trader" then
       npc_nm = "pri_monolith_trader"
    end
-   inc_mod_param("stat_executed_orders")
+   sgm_g.inc_mod_param("stat_executed_orders")
    edit_trader_order(npc_nm, loaded_item)
    edit_trader_order_time(npc_nm, sgm_g.r_mod_params("number", "trader_order_delivery_time", 60))
 end
@@ -6765,7 +6765,7 @@ function transfer_medkit(first_speaker, second_speaker)
          dialogs.relocate_money(db.actor, sum, "in")
          congratulate_with_event(10000, game.translate_string("st_help_wounded_payment") .. " - " .. sum, false, false)
       end
-      inc_mod_param("stat_help_wounded", 1)
+      sgm_g.inc_mod_param("stat_help_wounded", 1)
    end
 end
 

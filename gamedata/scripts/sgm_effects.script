@@ -25,7 +25,7 @@ function effects_update()
          sgm_flags.string_approach_sleep_color = "sleeped"
          xr_effects.disable_ui(db.actor, nil)
          level.add_pp_effector("sleep_fade.ppe", 11, false)
-         level.add_cam_effector("camera_effects\\dream.anm", 10, false, "ui_sleep_dialog.sleep_factor_callback")
+         level.add_cam_effector("camera_effects\\dream.anm", 10, false, "sgm_ui_sleep_dialog.sleep_factor_callback")
          give_info("actor_is_sleeping")
          _G.mus_vol = get_console():get_float("snd_volume_music")
          _G.amb_vol = get_console():get_float("snd_volume_eff")

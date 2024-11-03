@@ -370,7 +370,7 @@ function actor_binder:update(delta)
 end
 ----------------------------------------------------------------------------------------------------------------------
 function actor_binder:save(packet)
-	sgm_bind_stalker.save(packet)
+	sgm_bind_stalker.save(self, packet)
 	sr_psy_antenna.save( packet )
 	packet:w_bool(sim_board.get_sim_board().simulation_started)
 

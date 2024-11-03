@@ -1537,7 +1537,7 @@ function zat_b53_transfer_medkit_to_npc(first_speaker, second_speaker)
 	news_manager.relocate_item(db.actor, "out", section, 1)
 
 	db.actor:change_character_reputation(10)
-	inc_mod_param("stat_help_wounded", 1)
+	sgm_g.inc_mod_param("stat_help_wounded", 1)
 end
 
 -------------------------- a23 -----------------------------
