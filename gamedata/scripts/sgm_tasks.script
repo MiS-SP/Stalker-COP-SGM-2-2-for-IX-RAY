@@ -76,7 +76,7 @@ function task_update()
    end
    --/Условия для некоторых квестов
    if has_alife_info("zat_b7_actor_help_stalkers") and sgm_g.dont_has_alife_info("zat_b5_actor_with_stalkers") then
-      if has_alife_info("zat_bandit_base_leader_death") and has_several_info("zat_bandit_base_bodyguard_", "_death", 1, 4) then
+      if has_alife_info("zat_bandit_base_leader_death") and sgm_g.has_several_info("zat_bandit_base_bodyguard_", "_death", 1, 4) then
          if sgm_g.dont_has_alife_info("zat_lesnichestvo_svobodno") then
             give_info("zat_lesnichestvo_svobodno")
          end
@@ -88,9 +88,9 @@ function task_update()
    end
    --/Квест:Заказы Шустрого
    if sgm_g.dont_has_alife_info("shustriy_find_4_allow") and sgm_g.read_mod_param("shustriy_available_tasks") ~= nil and sgm_g.read_mod_param("shustriy_available_tasks") <= 0 then
-      if check_game_timer("shustriy_d_timer") == nil then
-         start_game_timer("shustriy_d_timer", math.random(1, 2), "days")
-      elseif check_game_timer("shustriy_d_timer") then
+      if sgm_g.check_game_timer("shustriy_d_timer") == nil then
+         sgm_g.start_game_timer("shustriy_d_timer", math.random(1, 2), "days")
+      elseif sgm_g.check_game_timer("shustriy_d_timer") then
          inc_mod_param("shustriy_available_tasks")
          give_info("shustriy_find_4_allow")
          abort_game_timer("shustriy_d_timer")
@@ -146,36 +146,36 @@ function task_update()
             create("box_konteyner", -170.902, 0.548, -342.223, 40299, 806)
             give_info("pri_expiation_sin_3_teleport_retranslator")
          end
-         if sgm_g.dont_has_alife_info("pri_expiation_sin_3_enemy_destroyed") and has_several_info("pri_killer_barricaded_", "_death", 1, 18) then
+         if sgm_g.dont_has_alife_info("pri_expiation_sin_3_enemy_destroyed") and sgm_g.has_several_info("pri_killer_barricaded_", "_death", 1, 18) then
             give_info("pri_expiation_sin_3_enemy_destroyed")
             game_autosave_assign("save_pri_expiation_sin_3_market_destroyed")
          end
       end
       if sgm_g.dont_has_alife_info("pri_expiation_sin_1_allow") then
-         if check_game_timer("pri_expiation_sin_1_timer") == nil then
-            start_game_timer("pri_expiation_sin_1_timer", 1, "days")
-         elseif check_game_timer("pri_expiation_sin_1_timer") then
+         if sgm_g.check_game_timer("pri_expiation_sin_1_timer") == nil then
+            sgm_g.start_game_timer("pri_expiation_sin_1_timer", 1, "days")
+         elseif sgm_g.check_game_timer("pri_expiation_sin_1_timer") then
             give_info("pri_expiation_sin_1_allow")
             abort_game_timer("pri_expiation_sin_1_timer")
          end
       elseif has_alife_info("pri_expiation_sin_1_complete") and sgm_g.dont_has_alife_info("pri_expiation_sin_2_allow") then
-         if check_game_timer("pri_expiation_sin_2_timer") == nil then
-            start_game_timer("pri_expiation_sin_2_timer", 1, "days")
-         elseif check_game_timer("pri_expiation_sin_2_timer") then
+         if sgm_g.check_game_timer("pri_expiation_sin_2_timer") == nil then
+            sgm_g.start_game_timer("pri_expiation_sin_2_timer", 1, "days")
+         elseif sgm_g.check_game_timer("pri_expiation_sin_2_timer") then
             give_info("pri_expiation_sin_2_allow")
             abort_game_timer("pri_expiation_sin_2_timer")
          end
       elseif has_alife_info("pri_expiation_sin_2_complete") and sgm_g.dont_has_alife_info("pri_expiation_sin_3_allow") then
-         if check_game_timer("pri_expiation_sin_3_timer") == nil then
-            start_game_timer("pri_expiation_sin_3_timer", 1, "days")
-         elseif check_game_timer("pri_expiation_sin_3_timer") then
+         if sgm_g.check_game_timer("pri_expiation_sin_3_timer") == nil then
+            sgm_g.start_game_timer("pri_expiation_sin_3_timer", 1, "days")
+         elseif sgm_g.check_game_timer("pri_expiation_sin_3_timer") then
             give_info("pri_expiation_sin_3_allow")
             abort_game_timer("pri_expiation_sin_3_timer")
          end
       elseif has_alife_info("pri_expiation_sin_3_kiborg_final_talk") and sgm_g.dont_has_alife_info("pri_expiation_sin_3_repair_completed") then
-         if check_game_timer("pri_expiation_sin_3_repair_timer") == nil then
-            start_game_timer("pri_expiation_sin_3_repair_timer", 1, "days")
-         elseif check_game_timer("pri_expiation_sin_3_repair_timer") then
+         if sgm_g.check_game_timer("pri_expiation_sin_3_repair_timer") == nil then
+            sgm_g.start_game_timer("pri_expiation_sin_3_repair_timer", 1, "days")
+         elseif sgm_g.check_game_timer("pri_expiation_sin_3_repair_timer") then
             give_info("pri_expiation_sin_3_repair_completed")
             sgm_dialogs.pri_expiation_sin_3_create_base()
             game_autosave_assign("save_pri_expiation_sin_3_repair_finished")
@@ -185,18 +185,18 @@ function task_update()
    end
    --/Квест:Тайное противостояние
    if has_alife_info("zat_b103_merc_task_spez_loki_1_1_talking") and sgm_g.dont_has_alife_info("zat_b103_merc_task_spez_1_1_sutki_come") then
-      if check_game_timer("zat_quest_spez_3_timer") == nil then
-         start_game_timer("zat_quest_spez_3_timer", 12, "hours")
-      elseif check_game_timer("zat_quest_spez_3_timer") then
+      if sgm_g.check_game_timer("zat_quest_spez_3_timer") == nil then
+         sgm_g.start_game_timer("zat_quest_spez_3_timer", 12, "hours")
+      elseif sgm_g.check_game_timer("zat_quest_spez_3_timer") then
          xr_effects.zat_b103_merc_task_spez_1_create()
          give_info("zat_b103_merc_task_spez_1_1_sutki_come")
          abort_game_timer("zat_quest_spez_3_timer")
       end
    end
    if has_alife_info("zat_b103_merc_task_spez_shulga_2_1_talking") and sgm_g.dont_has_alife_info("zat_b103_merc_task_spez_shulga_2_1_sutki_come") then
-      if check_game_timer("zat_quest_spez_4_timer") == nil then
-         start_game_timer("zat_quest_spez_4_timer", 12, "hours")
-      elseif check_game_timer("zat_quest_spez_4_timer") then
+      if sgm_g.check_game_timer("zat_quest_spez_4_timer") == nil then
+         sgm_g.start_game_timer("zat_quest_spez_4_timer", 12, "hours")
+      elseif sgm_g.check_game_timer("zat_quest_spez_4_timer") then
          xr_effects.zat_b103_merc_task_spez_2_create()
          give_info("zat_b103_merc_task_spez_shulga_2_1_sutki_come")
          abort_game_timer("zat_quest_spez_4_timer")
@@ -204,21 +204,21 @@ function task_update()
    end
    --/Квест:Закрытое расследование
    if has_alife_info("zat_b106_stalker_gonta_b52_about_hunters_second_dialog_talking") and sgm_g.dont_has_alife_info("zat_b106_stalker_gonta_b52_about_hunters_second_dialog_sutki_come") then
-      if check_game_timer("zat_quest_homsa_1_timer") == nil then
-         start_game_timer("zat_quest_homsa_1_timer", 1, "days")
-      elseif check_game_timer("zat_quest_homsa_1_timer") then
+      if sgm_g.check_game_timer("zat_quest_homsa_1_timer") == nil then
+         sgm_g.start_game_timer("zat_quest_homsa_1_timer", 1, "days")
+      elseif sgm_g.check_game_timer("zat_quest_homsa_1_timer") then
          give_info("zat_b106_stalker_gonta_b52_about_hunters_second_dialog_sutki_come")
          abort_game_timer("zat_quest_homsa_1_timer")
       end
    end
    --/Квест: Протокол Юпитер
-   if has_alife_info("jup_a6_azot_quest_mech_begin") and has_several_info("jup_a6_azot_quest_mech_killer_", "_dead", 1, 5) and sgm_g.dont_has_alife_info("jup_a6_azot_quest_mech_killer_all_dead") then
+   if has_alife_info("jup_a6_azot_quest_mech_begin") and sgm_g.has_several_info("jup_a6_azot_quest_mech_killer_", "_dead", 1, 5) and sgm_g.dont_has_alife_info("jup_a6_azot_quest_mech_killer_all_dead") then
       give_info("jup_a6_azot_quest_mech_killer_all_dead")
    end
    if has_alife_info("jup_a6_azot_quest_mech_sustriy") and sgm_g.dont_has_alife_info("jup_a6_azot_quest_mech_kutier_come") then
-      if check_game_timer("jup_quest_azot_1_timer") == nil then
-         start_game_timer("jup_quest_azot_1_timer", 12, "hours")
-      elseif check_game_timer("jup_quest_azot_1_timer") then
+      if sgm_g.check_game_timer("jup_quest_azot_1_timer") == nil then
+         sgm_g.start_game_timer("jup_quest_azot_1_timer", 12, "hours")
+      elseif sgm_g.check_game_timer("jup_quest_azot_1_timer") then
          create("jup_a6_azat_quest_mechanik_kurier_1", -167.538, -3.277, 472.960, 434990, 564)
          give_info("jup_a6_azot_quest_mech_kutier_come")
          abort_game_timer("jup_quest_azot_1_timer")
@@ -229,38 +229,38 @@ function task_update()
       give_info("zat_a6_sultan_quest_kontra_find_items")
    end
    if has_alife_info("zat_a6_sultan_quest_kontra_sultan_kill") and sgm_g.dont_has_alife_info("zat_a6_sultan_quest_kontra_lucian_come_jupiter") then
-      if check_game_timer("zat_quest_sultan_1_timer") == nil then
-         start_game_timer("zat_quest_sultan_1_timer", 12, "hours")
-      elseif check_game_timer("zat_quest_sultan_1_timer") then
+      if sgm_g.check_game_timer("zat_quest_sultan_1_timer") == nil then
+         sgm_g.start_game_timer("zat_quest_sultan_1_timer", 12, "hours")
+      elseif sgm_g.check_game_timer("zat_quest_sultan_1_timer") then
          xr_effects.zat_a6_sultan_quest_kontra_create_enemy()
          give_info("zat_a6_sultan_quest_kontra_lucian_come_jupiter")
          abort_game_timer("zat_quest_sultan_1_timer")
       end
    end
-   if sgm_g.dont_has_alife_info("zat_a6_sultan_quest_kontra_all_lucian_member_dead") and has_alife_info("zat_a6_sultan_quest_kontra_lucian_dead") and has_several_info("zat_a6_sultan_quest_kontra_lucian_member_", "_dead", 1, 3) then
+   if sgm_g.dont_has_alife_info("zat_a6_sultan_quest_kontra_all_lucian_member_dead") and has_alife_info("zat_a6_sultan_quest_kontra_lucian_dead") and sgm_g.has_several_info("zat_a6_sultan_quest_kontra_lucian_member_", "_dead", 1, 3) then
       give_info("zat_a6_sultan_quest_kontra_all_lucian_member_dead")
    end
    --/Квест:Приоритеты клана
    if has_alife_info("jup_b206_rasvet_prior_quest_ready_to_wait") and has_alife_info("jup_b206_rasvet_prior_quest_ready_to_wait_1") and sgm_g.dont_has_alife_info("jup_b206_rasvet_prior_quest_sutki_come") then
-      if check_game_timer("jup_quest_prior_1_timer") == nil then
-         start_game_timer("jup_quest_prior_1_timer", 1, "days")
-      elseif check_game_timer("jup_quest_prior_1_timer") then
+      if sgm_g.check_game_timer("jup_quest_prior_1_timer") == nil then
+         sgm_g.start_game_timer("jup_quest_prior_1_timer", 1, "days")
+      elseif sgm_g.check_game_timer("jup_quest_prior_1_timer") then
          give_info("jup_b206_rasvet_prior_quest_sutki_come")
          abort_game_timer("jup_quest_prior_1_timer")
       end
    end
    if has_alife_info("jup_b206_rasvet_prior_quest_ready_to_wait") and has_alife_info("jup_b206_rasvet_prior_quest_ready_to_wait_2") and sgm_g.dont_has_alife_info("jup_b206_rasvet_prior_quest_sutki_come") then
-      if check_game_timer("jup_quest_prior_2_timer") == nil then
-         start_game_timer("jup_quest_prior_2_timer", 6, "hours")
-      elseif check_game_timer("jup_quest_prior_2_timer") then
+      if sgm_g.check_game_timer("jup_quest_prior_2_timer") == nil then
+         sgm_g.start_game_timer("jup_quest_prior_2_timer", 6, "hours")
+      elseif sgm_g.check_game_timer("jup_quest_prior_2_timer") then
          give_info("jup_b206_rasvet_prior_quest_sutki_come")
          abort_game_timer("jup_quest_prior_2_timer")
       end
    end
    if has_alife_info("jup_b206_rasvet_prior_quest_ready_to_wait") and has_alife_info("jup_b206_rasvet_prior_quest_ready_to_wait_3") and sgm_g.dont_has_alife_info("jup_b206_rasvet_prior_quest_sutki_come") then
-      if check_game_timer("jup_quest_prior_3_timer") == nil then
-         start_game_timer("jup_quest_prior_3_timer", 12, "hours")
-      elseif check_game_timer("jup_quest_prior_3_timer") then
+      if sgm_g.check_game_timer("jup_quest_prior_3_timer") == nil then
+         sgm_g.start_game_timer("jup_quest_prior_3_timer", 12, "hours")
+      elseif sgm_g.check_game_timer("jup_quest_prior_3_timer") then
          give_info("jup_b206_rasvet_prior_quest_sutki_come")
          abort_game_timer("jup_quest_prior_3_timer")
       end
@@ -285,7 +285,7 @@ function task_update()
    end
    --/Квест:Диверсия Альфы
    if has_alife_info("zat_alfa_sabotage_start") and sgm_g.dont_has_alife_info("zat_alfa_sabotage_spawner") then
-      write_mod_param("zat_alfa_sabotage_charge_innocuous", 0)
+      sgm_g.write_mod_param("zat_alfa_sabotage_charge_innocuous", 0)
       create("zat_alfa_sabotage_meeting_place_spot", -426.75793457031, 39.997203826904, -393.04330444336, 138099, 306)
       create("zat_alfa_sabotage_inhabitants_spot", 127.98847961426, -7.3394284248352, 179.65113830566, 1186437, 297)
       create("zat_alfa_sabotage_commander", -426.6237487793, 39.999652862549, -394.59558105469, 138097, 306)
@@ -297,9 +297,9 @@ function task_update()
    end
    if has_alife_info("zat_alfa_sabotage_order_begin") and sgm_g.dont_has_alife_info("zat_alfa_sabotage_order_timer") then
       give_info("zat_alfa_sabotage_order_timer")
-      start_game_timer("zat_alfa_sabotage_order_timer", 6, "hours")
+      sgm_g.start_game_timer("zat_alfa_sabotage_order_timer", 6, "hours")
    end
-   if has_alife_info("zat_alfa_sabotage_order_timer") and sgm_g.dont_has_alife_info("zat_alfa_sabotage_order_executed") and check_game_timer("zat_alfa_sabotage_order_timer") then
+   if has_alife_info("zat_alfa_sabotage_order_timer") and sgm_g.dont_has_alife_info("zat_alfa_sabotage_order_executed") and sgm_g.check_game_timer("zat_alfa_sabotage_order_timer") then
       give_info("zat_alfa_sabotage_order_executed")
       abort_game_timer("zat_alfa_sabotage_order_timer")
    end
@@ -332,9 +332,9 @@ function task_update()
    end
    --/Квест:Неизвестная порода
    if has_alife_info("pri_a28_actor_in_zone_stay") and sgm_g.dont_has_alife_info("jup_search_anomal_prototype_tip") then
-      if check_game_timer("jup_search_anomal_prototype_tip") == nil then
-         start_game_timer("jup_search_anomal_prototype_tip", 2, "hours")
-      elseif check_game_timer("jup_search_anomal_prototype_tip") then
+      if sgm_g.check_game_timer("jup_search_anomal_prototype_tip") == nil then
+         sgm_g.start_game_timer("jup_search_anomal_prototype_tip", 2, "hours")
+      elseif sgm_g.check_game_timer("jup_search_anomal_prototype_tip") then
          give_info("jup_search_anomal_prototype_tip")
          news_manager.send_tip(db.actor, game.translate_string("jup_german_about_anomal_prototype_text"), 0,
             "portrait_German", 14000, nil, "jup_german_title")
@@ -343,16 +343,16 @@ function task_update()
    end
    if has_alife_info("jup_search_anomal_prototype_transform_start") and sgm_g.dont_has_alife_info("jup_search_anomal_prototype_transform_end") then
       if sgm_g.dont_has_alife_info("jup_search_anomal_prototype_transform_begin") then
-         if check_game_timer("jup_search_anomal_prototype_begin") == nil then
-            start_game_timer("jup_search_anomal_prototype_begin", 1, "hours")
-         elseif check_game_timer("jup_search_anomal_prototype_begin") then
+         if sgm_g.check_game_timer("jup_search_anomal_prototype_begin") == nil then
+            sgm_g.start_game_timer("jup_search_anomal_prototype_begin", 1, "hours")
+         elseif sgm_g.check_game_timer("jup_search_anomal_prototype_begin") then
             give_info("jup_search_anomal_prototype_transform_begin")
             abort_game_timer("jup_search_anomal_prototype_begin")
          end
       end
-      if check_game_timer("jup_search_anomal_prototype_transform") == nil then
-         start_game_timer("jup_search_anomal_prototype_transform", 6, "hours")
-      elseif check_game_timer("jup_search_anomal_prototype_transform") then
+      if sgm_g.check_game_timer("jup_search_anomal_prototype_transform") == nil then
+         sgm_g.start_game_timer("jup_search_anomal_prototype_transform", 6, "hours")
+      elseif sgm_g.check_game_timer("jup_search_anomal_prototype_transform") then
          give_info("jup_search_anomal_prototype_transform_end")
          news_manager.send_tip(db.actor, game.translate_string("jup_german_about_transform_end_text"), 0,
             "portrait_German", 12000, nil, "jup_german_title")
@@ -380,7 +380,7 @@ function task_update()
       if sgm_g.dont_has_alife_info("pri_zone_cleaning_robbery") then
          give_info("pri_zone_cleaning_robbery")
          if sgm_g.r_mod_params("bool", "freeplay_robbery_actor", false) == true then
-            write_mod_param("bankir_deposit_cash", 100)
+            sgm_g.write_mod_param("bankir_deposit_cash", 100)
             freeplay_inventory_clean(db.actor)
             db.actor:give_money(-db.actor:money())
             game_stats.money_quest_update(-db.actor:money())
@@ -402,7 +402,7 @@ function task_update()
    if has_alife_info("pri_a28_cutscenes_end") and sgm_g.dont_has_alife_info("pri_zone_cleaning_allow") then
       local psy_wave_timer = sgm_g.read_mod_param("pri_psy_wave_timer")
       if psy_wave_timer == nil then
-         write_mod_param("pri_psy_wave_timer", 0)
+         sgm_g.write_mod_param("pri_psy_wave_timer", 0)
       end
       if psy_wave_timer ~= nil then
          if sgm_flags.pri_freeplay_psy_wave_timer == 0 then
@@ -443,7 +443,7 @@ function task_update()
    end
    if has_alife_info("pri_zone_cleaning_allow") and sgm_g.dont_has_alife_info("pri_zone_cleaning_start") then
       give_info("pri_zone_cleaning_start")
-      write_mod_param("zone_cleaning_value", 400)
+      sgm_g.write_mod_param("zone_cleaning_value", 400)
       add_task("sgm_pri_zone_cleaning")
    end
    if has_alife_info("pri_zone_cleaning_start") and sgm_g.dont_has_alife_info("pri_zone_cleaning_interrupted") and sgm_g.read_mod_param("zone_cleaning_value") ~= nil and sgm_g.read_mod_param("zone_cleaning_value") <= 0 then
@@ -454,10 +454,10 @@ function task_update()
    --/Квест:Пространственная аномалия
    if has_alife_info("actor_come_to_labx8") and sgm_g.dont_has_alife_info("jup_darkvalley_travel_bubble_timer") and level_name ~= "labx8" then
       give_info("jup_darkvalley_travel_bubble_timer")
-      start_game_timer("jup_darkvalley_travel_bubble", 2, "hours")
+      sgm_g.start_game_timer("jup_darkvalley_travel_bubble", 2, "hours")
    end
    if has_alife_info("jup_darkvalley_travel_bubble_timer") and sgm_g.dont_has_alife_info("jup_darkvalley_travel_bubble_start") then
-      if check_game_timer("jup_darkvalley_travel_bubble") then
+      if sgm_g.check_game_timer("jup_darkvalley_travel_bubble") then
          news_manager.send_tip(db.actor, game.translate_string("jup_general_staff_about_darkvalley_travel_bubble_text"),
             0, "top_secret", 40000, nil, "jup_general_staff_title")
          give_info("jup_darkvalley_travel_bubble_start")
@@ -502,7 +502,7 @@ function task_update()
          end
          if sgm_g.dont_has_alife_info("zat_monsters_wave_1st_wave_end") and has_alife_info("zat_monsters_wave_1st_wave_begin") then
             if sgm_g.read_mod_param("zat_monster_w1_spawned") == nil then
-               write_mod_param("zat_monster_w1_spawned", 1)
+               sgm_g.write_mod_param("zat_monster_w1_spawned", 1)
             elseif sgm_g.read_mod_param("zat_monster_w1_spawned") <= 6 then
                if zat_monsters_wave_spawner == true then
                   if sgm_g.read_mod_param("zat_monster_w1_spawned") == 1 then
@@ -538,7 +538,7 @@ function task_update()
          end
          if sgm_g.dont_has_alife_info("zat_monsters_wave_2nd_wave_end") and has_alife_info("zat_monsters_wave_2nd_wave_begin") then
             if sgm_g.read_mod_param("zat_monster_w2_spawned") == nil then
-               write_mod_param("zat_monster_w2_spawned", 1)
+               sgm_g.write_mod_param("zat_monster_w2_spawned", 1)
             elseif sgm_g.read_mod_param("zat_monster_w2_spawned") <= 7 then
                if zat_monsters_wave_spawner == true then
                   if sgm_g.read_mod_param("zat_monster_w2_spawned") == 1 then
@@ -579,7 +579,7 @@ function task_update()
          end
          if sgm_g.dont_has_alife_info("zat_monsters_wave_3rd_wave_end") and has_alife_info("zat_monsters_wave_3rd_wave_begin") then
             if sgm_g.read_mod_param("zat_monster_w3_spawned") == nil then
-               write_mod_param("zat_monster_w3_spawned", 1)
+               sgm_g.write_mod_param("zat_monster_w3_spawned", 1)
             elseif sgm_g.read_mod_param("zat_monster_w3_spawned") <= 8 then
                if zat_monsters_wave_spawner == true then
                   if sgm_g.read_mod_param("zat_monster_w3_spawned") == 1 then
@@ -644,12 +644,12 @@ function task_update()
       end
       --/Квест:Поиск информации
       if sgm_g.dont_has_alife_info("zat_refer_parcel_intro_tip_1") and sgm_g.dont_has_alife_info("zat_refer_parcel_intro_tip_2") then
-         if check_game_timer("zat_refer_parcel") then
+         if sgm_g.check_game_timer("zat_refer_parcel") then
             news_manager.send_tip(db.actor, "zat_general_staff_about_refer_parcel_intro_tip_1_text", 0, "top_secret",
                22000, nil, "jup_general_staff_title")
             give_info("zat_refer_parcel_intro_tip_1")
             abort_game_timer("zat_refer_parcel")
-         elseif check_game_timer("zat_refer_parcel2") then
+         elseif sgm_g.check_game_timer("zat_refer_parcel2") then
             news_manager.send_tip(db.actor, "zat_general_staff_about_refer_parcel_intro_tip_2_text", 0, "top_secret",
                25000, nil, "jup_general_staff_title")
             give_info("zat_refer_parcel_intro_tip_2")
@@ -699,7 +699,7 @@ function task_update()
             give_info("zat_assault_bandit_base_eminence_spot")
          end
          if sgm_g.dont_has_alife_info("zat_assault_bandit_base_bandits_lost") then
-            if has_several_info("zat_bandit_base_bodyguard_", "_death", 1, 4) and has_alife_info("zat_bandit_base_leader_death") then
+            if sgm_g.has_several_info("zat_bandit_base_bodyguard_", "_death", 1, 4) and has_alife_info("zat_bandit_base_leader_death") then
                give_info("zat_assault_bandit_base_bandits_lost")
                game_autosave_assign("save_zat_assault_bandit_base_destroyed")
             end
@@ -718,7 +718,7 @@ function task_update()
       end
       --/Квест:Искупление Грехов
       if has_alife_info("pri_expiation_sin_2_start") and sgm_g.dont_has_alife_info("pri_expiation_sin_2_fail") and sgm_g.dont_has_alife_info("pri_expiation_sin_2_taynik_vse_zalogeni") then
-         if has_several_info("pri_expiation_sin_2_taynik_", "_zalogen", 1, 9) and sgm_g.dont_has_alife_info("pri_expiation_sin_2_taynik_vse_zalogeni") then
+         if sgm_g.has_several_info("pri_expiation_sin_2_taynik_", "_zalogen", 1, 9) and sgm_g.dont_has_alife_info("pri_expiation_sin_2_taynik_vse_zalogeni") then
             give_info("pri_expiation_sin_2_taynik_vse_zalogeni")
             game_autosave_assign("save_pri_expiation_sin_2_places_installed")
          end
@@ -751,7 +751,7 @@ function task_update()
       if has_alife_info("zat_homsa_find_quest_all_members_talking") and db.actor:object("zat_homsa_quests_special_info") and sgm_g.dont_has_alife_info("zat_homsa_find_quest_3_complete") then
          give_info("zat_homsa_find_quest_3_complete")
       end
-      if sgm_g.dont_has_alife_info("zat_homsa_find_quest_all_points_search") and has_several_info("zat_homsa_find_quest_", "_complete", 1, 3) then
+      if sgm_g.dont_has_alife_info("zat_homsa_find_quest_all_points_search") and sgm_g.has_several_info("zat_homsa_find_quest_", "_complete", 1, 3) then
          give_info("zat_homsa_find_quest_all_points_search")
       end
       if has_alife_info("zat_b106_stalker_gonta_b52_about_hunters_rasvet_dialog_talking") and sgm_g.dont_has_alife_info("zat_rassvet_homsa_ready_to_attack") then
@@ -782,7 +782,7 @@ function task_update()
          give_info("zat_homsa_from_monsters_safely")
       end
       --/Квест:Тайное противостояние
-      if sgm_g.dont_has_alife_info("zat_quest_the_spez_freedom_all_dead") and has_several_info("zat_quest_the_spez_freedom_1_", "_dead", 1, 5) then
+      if sgm_g.dont_has_alife_info("zat_quest_the_spez_freedom_all_dead") and sgm_g.has_several_info("zat_quest_the_spez_freedom_1_", "_dead", 1, 5) then
          create("zat_quest_the_spez_1_killer_wounded", 220.079, 21.617, -278.790, 1338690, 308)
          news_manager.send_tip(db.actor, game.translate_string("jup_duty_shulga_about_spez_1_text"), 0,
             "ui_icon_news_all", 14000, nil, "jup_duty_shulga_title")
@@ -791,7 +791,7 @@ function task_update()
       if has_alife_info("zat_b103_merc_fight") and has_alife_info("zat_b103_merc_task_spez_operation_begin") and sgm_g.dont_has_alife_info("zat_b103_merc_task_spez_killer_1_was_killed") then
          give_info("zat_b103_merc_task_spez_killer_1_was_killed")
       end
-      if sgm_g.dont_has_alife_info("zat_quest_the_spez_all_ecodolg_killed") and has_several_info("zat_quest_the_spez_dolg_2_", "_dead", 1, 4) and has_several_info("zat_quest_the_spez_ecolog_2_", "_dead", 1, 3) then
+      if sgm_g.dont_has_alife_info("zat_quest_the_spez_all_ecodolg_killed") and sgm_g.has_several_info("zat_quest_the_spez_dolg_2_", "_dead", 1, 4) and sgm_g.has_several_info("zat_quest_the_spez_ecolog_2_", "_dead", 1, 3) then
          give_info("zat_quest_the_spez_all_ecodolg_killed")
       end
       if has_alife_info("zat_b103_lost_merc_leader_spez_freedom_kom_talking") and sgm_g.dont_has_alife_info("zat_b103_lost_merc_leader_spez_2_actor_point") then
@@ -989,9 +989,9 @@ function task_update()
       end
       --/Квест:Странная активность
       if has_alife_info("jup_rasvet_eliminate_burrows_start") and sgm_g.dont_has_alife_info("jup_rasvet_eliminate_burrows_complete") and sgm_g.dont_has_alife_info("jup_rasvet_eliminate_burrows_fail") then
-         if sgm_g.dont_has_alife_info("jup_rasvet_eliminate_burrows_main_holes_deaths") and has_several_info("jup_rasvet_eliminate_burrows_", "_hole_death", 1, 4) then
+         if sgm_g.dont_has_alife_info("jup_rasvet_eliminate_burrows_main_holes_deaths") and sgm_g.has_several_info("jup_rasvet_eliminate_burrows_", "_hole_death", 1, 4) then
             give_info("jup_rasvet_eliminate_burrows_main_holes_deaths")
-         elseif sgm_g.dont_has_alife_info("jup_rasvet_eliminate_burrows_all_holes_deaths") and has_several_info("jup_rasvet_eliminate_burrows_", "_hole_death", 1, 5) then
+         elseif sgm_g.dont_has_alife_info("jup_rasvet_eliminate_burrows_all_holes_deaths") and sgm_g.has_several_info("jup_rasvet_eliminate_burrows_", "_hole_death", 1, 5) then
             give_info("jup_rasvet_eliminate_burrows_all_holes_deaths")
          end
          if sgm_g.dont_has_alife_info("jup_rasvet_eliminate_burrows_message_about_5_hole") and has_alife_info("jup_rasvet_eliminate_burrows_launch_last_hole") then
@@ -999,9 +999,9 @@ function task_update()
             xr_effects.jup_rasvet_eliminate_burrows_hole_5_launch()
          end
          if has_alife_info("jup_rasvet_eliminate_burrows_4_hole_death") and sgm_g.dont_has_alife_info("jup_rasvet_eliminate_burrows_launch_last_hole") then
-            if check_game_timer("jup_rasvet_eliminate_burrow_5_timer") == nil then
-               start_game_timer("jup_rasvet_eliminate_burrow_5_timer", 5)
-            elseif check_game_timer("jup_rasvet_eliminate_burrow_5_timer") then
+            if sgm_g.check_game_timer("jup_rasvet_eliminate_burrow_5_timer") == nil then
+               sgm_g.start_game_timer("jup_rasvet_eliminate_burrow_5_timer", 5)
+            elseif sgm_g.check_game_timer("jup_rasvet_eliminate_burrow_5_timer") then
                give_info("jup_rasvet_eliminate_burrows_launch_last_hole")
                abort_game_timer("jup_rasvet_eliminate_burrow_5_timer")
             end
@@ -1015,8 +1015,8 @@ function task_update()
       end
       if has_alife_info("jup_rasvet_polter_squad_killed") and sgm_g.dont_has_alife_info("jup_rasvet_polter_skauts_spawn") then
          create("jup_rasvet_polter_quest_skaut", 162.903, -4.574, 394.674, 994811, 571)
-         create_dead_body("jup_rasvet_polter_dead_1", "bio_bandage", 166.699, -4.517, 395.310, 1000292, 571)
-         create_dead_body("jup_rasvet_polter_dead_2", "bio_bandage", 159.860, -4.491, 392.362, 988840, 571)
+         sgm_g.create_dead_body("jup_rasvet_polter_dead_1", "bio_bandage", 166.699, -4.517, 395.310, 1000292, 571)
+         sgm_g.create_dead_body("jup_rasvet_polter_dead_2", "bio_bandage", 159.860, -4.491, 392.362, 988840, 571)
          give_info("jup_rasvet_polter_skauts_spawn")
       end
       if has_alife_info("jup_rasvet_polter_skauts_talking") and sgm_g.dont_has_alife_info("jup_rasvet_polter_skauts_to_returned") then
@@ -1066,7 +1066,7 @@ function task_update()
          create("jup_rasvet_gudvin_pda", -408.522, -2.768, 176.998, 32566, 644)
          give_info("jup_b206_rasvet_prior_quest_podquest_start")
       end
-      if has_alife_info("jup_b206_rasvet_prior_quest_podquest_start") and has_several_info("jup_rasvet_spez_taynik_", "_zalogen", 1, 5) and sgm_g.dont_has_alife_info("jup_b206_rasvet_all_tainiki_zalogeny") then
+      if has_alife_info("jup_b206_rasvet_prior_quest_podquest_start") and sgm_g.has_several_info("jup_rasvet_spez_taynik_", "_zalogen", 1, 5) and sgm_g.dont_has_alife_info("jup_b206_rasvet_all_tainiki_zalogeny") then
          xr_effects.jup_rasvet_prior_create_dead_body()
          give_info("jup_b206_rasvet_all_tainiki_zalogeny")
       end
@@ -1109,10 +1109,10 @@ function task_update()
       end
       --/Квест:Психо
       if has_alife_info("cop_storyline_restored") and sgm_g.dont_has_alife_info("red_psyho_trapper_timer") then
-         start_game_timer("red_psyho_trapper_call_timer", 15)
+         sgm_g.start_game_timer("red_psyho_trapper_call_timer", 15)
          give_info("red_psyho_trapper_timer")
       end
-      if has_alife_info("red_psyho_trapper_timer") and sgm_g.dont_has_alife_info("red_psyho_trapper_call") and check_game_timer("red_psyho_trapper_call_timer") then
+      if has_alife_info("red_psyho_trapper_timer") and sgm_g.dont_has_alife_info("red_psyho_trapper_call") and sgm_g.check_game_timer("red_psyho_trapper_call_timer") then
          give_info("red_psyho_trapper_call")
          news_manager.send_tip(db.actor, "red_psyho_trapper_call_text", 0, "portrait_Zveroboy", 9000, nil,
             "jup_b220_trapper_title")
@@ -1263,10 +1263,10 @@ function task_update()
       end
       --/Квест:Новая территория
       if has_alife_info("val_issue_secret_data_was_sent") and sgm_g.dont_has_alife_info("mil_come_to_military_timer") then
-         start_game_timer("mil_come_to_military_timer", 5)
+         sgm_g.start_game_timer("mil_come_to_military_timer", 5)
          give_info("mil_come_to_military_timer")
       end
-      if has_alife_info("mil_come_to_military_timer") and sgm_g.dont_has_alife_info("mil_come_to_military_start") and check_game_timer("mil_come_to_military_timer") then
+      if has_alife_info("mil_come_to_military_timer") and sgm_g.dont_has_alife_info("mil_come_to_military_start") and sgm_g.check_game_timer("mil_come_to_military_timer") then
          give_info("mil_come_to_military_start")
          add_task("mil_come_to_military")
          abort_game_timer("mil_come_to_military_timer")
@@ -1320,7 +1320,7 @@ function task_update()
          game_autosave_assign("save_val_shade_of_time_need_key")
       end
       --/Квест:Перехват
-      if (has_alife_info("val_assault_factory_pda_brought") or has_alife_info("val_alt_storyline_commenced")) and sgm_g.dont_has_alife_info("val_shade_of_time_start") and (has_alife_info("val_alt_storyline_commenced") or check_game_timer("val_shade_of_time")) then
+      if (has_alife_info("val_assault_factory_pda_brought") or has_alife_info("val_alt_storyline_commenced")) and sgm_g.dont_has_alife_info("val_shade_of_time_start") and (has_alife_info("val_alt_storyline_commenced") or sgm_g.check_game_timer("val_shade_of_time")) then
          create("val_b4_base_guard_rpg", 105.47113037109, 4.2215843200684, -15.48123550415, 274481, 1014)
          create("val_b4_baltazar", 97.170776367188, 4.2202553749084, -10.931589126587, 265375, 1014)
          create("val_b1_x18_door_spot", 123.1806640625, -2.8387684822083, -262.11514282227, 292451, 988)
@@ -1351,10 +1351,10 @@ function task_update()
          game_autosave_assign("save_val_first_coming_on_valley_on_base")
       end
       --/Квест:Загадка Прошлого
-      if has_alife_info("val_lucas_talking_antenna") and has_several_info("val_lucas_antenna_", "_done", 1, 3) and sgm_g.dont_has_alife_info("val_lucas_all_antenna_done") then
+      if has_alife_info("val_lucas_talking_antenna") and sgm_g.has_several_info("val_lucas_antenna_", "_done", 1, 3) and sgm_g.dont_has_alife_info("val_lucas_all_antenna_done") then
          give_info("val_lucas_all_antenna_done")
       end
-      if sgm_g.dont_has_alife_info("val_freedom_spez_agent_lucas_talking_all_dolg_dead") and has_several_info("val_dolg_spez_quad_", "_dead", 1, 4) then
+      if sgm_g.dont_has_alife_info("val_freedom_spez_agent_lucas_talking_all_dolg_dead") and sgm_g.has_several_info("val_dolg_spez_quad_", "_dead", 1, 4) then
          news_manager.send_tip(db.actor, game.translate_string("val_lucas_about_quest_text_1"), 0, "portrait_Freedom_3",
             14000, nil, "all_lucas_title")
          give_info("val_freedom_spez_agent_lucas_talking_all_dolg_dead")
@@ -1478,17 +1478,17 @@ function task_update()
       end
       --/Квест:Новая тропа
       if has_alife_info("mil_bolted_influence_reward") and sgm_g.dont_has_alife_info("agr_find_underground_way_news") then
-         start_game_timer("agr_find_underground_way_news", 10)
+         sgm_g.start_game_timer("agr_find_underground_way_news", 10)
          give_info("agr_find_underground_way_news")
       end
-      if has_alife_info("agr_find_underground_way_news") and sgm_g.dont_has_alife_info("agr_find_underground_way_timer") and check_game_timer("agr_find_underground_way_news") then
+      if has_alife_info("agr_find_underground_way_news") and sgm_g.dont_has_alife_info("agr_find_underground_way_timer") and sgm_g.check_game_timer("agr_find_underground_way_news") then
          news_manager.send_tip(db.actor, game.translate_string("agr_general_staff_about_underground_way_text"), 0,
             "top_secret", 15000, nil, "jup_general_staff_title")
          abort_game_timer("agr_find_underground_way_news")
-         start_game_timer("agr_find_underground_way_timer", 2)
+         sgm_g.start_game_timer("agr_find_underground_way_timer", 2)
          give_info("agr_find_underground_way_timer")
       end
-      if has_alife_info("agr_find_underground_way_timer") and sgm_g.dont_has_alife_info("agr_find_underground_way_start") and check_game_timer("agr_find_underground_way_timer") then
+      if has_alife_info("agr_find_underground_way_timer") and sgm_g.dont_has_alife_info("agr_find_underground_way_start") and sgm_g.check_game_timer("agr_find_underground_way_timer") then
          give_info("agr_find_underground_way_start")
          add_task("agr_find_underground_way")
          abort_game_timer("agr_find_underground_way_timer")
@@ -1776,132 +1776,132 @@ function task_update()
       end
       if has_alife_info("mil_defence_b1_start") and has_alife_info("mil_defence_b1_allow") and sgm_g.dont_has_alife_info("mil_alt_storyline_commenced") and sgm_g.dont_has_alife_info("mil_defence_b1_s3") then
          if sgm_g.dont_has_alife_info("mil_defence_b1_s1") then
-            start_game_timer("mil_defence_b1_spawn", 5)
+            sgm_g.start_game_timer("mil_defence_b1_spawn", 5)
             create_force("mil_b1_monster_1_squad", -265.5771484375, -16.736305236816, -17.875598907471, 67717, 1282)
             give_info("mil_defence_b1_s1")
-         elseif sgm_g.dont_has_alife_info("mil_defence_b1_s2") and check_game_timer("mil_defence_b1_spawn") then
-            start_game_timer("mil_defence_b1_spawn", 5)
+         elseif sgm_g.dont_has_alife_info("mil_defence_b1_s2") and sgm_g.check_game_timer("mil_defence_b1_spawn") then
+            sgm_g.start_game_timer("mil_defence_b1_spawn", 5)
             create_force("mil_b1_monster_2_squad", -145.51467895508, -3.1505608558655, 30.919124603271, 162921, 1283)
             give_info("mil_defence_b1_s2")
-         elseif sgm_g.dont_has_alife_info("mil_defence_b1_s3") and check_game_timer("mil_defence_b1_spawn") then
+         elseif sgm_g.dont_has_alife_info("mil_defence_b1_s3") and sgm_g.check_game_timer("mil_defence_b1_spawn") then
             abort_game_timer("mil_defence_b1_spawn")
             create_force("mil_b1_monster_3_squad", -289.13241577148, -6.3895344734192, 126.08106994629, 49707, 1417)
             give_info("mil_defence_b1_s3")
          end
       elseif has_alife_info("mil_defence_b2_start") and has_alife_info("mil_defence_b2_allow") and sgm_g.dont_has_alife_info("mil_alt_storyline_commenced") and sgm_g.dont_has_alife_info("mil_defence_b2_s3") then
          if sgm_g.dont_has_alife_info("mil_defence_b2_s1") then
-            start_game_timer("mil_defence_b2_spawn", 5)
+            sgm_g.start_game_timer("mil_defence_b2_spawn", 5)
             create_force("mil_b2_monster_1_squad", -191.78604125977, -11.790300369263, 256.17407226563, 124011, 1261)
             give_info("mil_defence_b2_s1")
-         elseif sgm_g.dont_has_alife_info("mil_defence_b2_s2") and check_game_timer("mil_defence_b2_spawn") then
-            start_game_timer("mil_defence_b2_spawn", 5)
+         elseif sgm_g.dont_has_alife_info("mil_defence_b2_s2") and sgm_g.check_game_timer("mil_defence_b2_spawn") then
+            sgm_g.start_game_timer("mil_defence_b2_spawn", 5)
             create_force("mil_b2_monster_2_squad", -296.98626708984, -14.978174209595, 320.79739379883, 43929, 1404)
             give_info("mil_defence_b2_s2")
-         elseif sgm_g.dont_has_alife_info("mil_defence_b2_s3") and check_game_timer("mil_defence_b2_spawn") then
+         elseif sgm_g.dont_has_alife_info("mil_defence_b2_s3") and sgm_g.check_game_timer("mil_defence_b2_spawn") then
             abort_game_timer("mil_defence_b2_spawn")
             create_force("mil_b2_monster_3_squad", -345.67150878906, -13.285115242004, 171.59674072266, 10163, 1412)
             give_info("mil_defence_b2_s3")
          end
       elseif has_alife_info("mil_defence_b3_start") and has_alife_info("mil_defence_b3_allow") and sgm_g.dont_has_alife_info("mil_alt_storyline_commenced") and sgm_g.dont_has_alife_info("mil_defence_b3_s3") then
          if sgm_g.dont_has_alife_info("mil_defence_b3_s1") then
-            start_game_timer("mil_defence_b3_spawn", 5)
+            sgm_g.start_game_timer("mil_defence_b3_spawn", 5)
             create_force("mil_b3_monster_1_squad", -270.43542480469, -7.5619378089905, 403.20883178711, 64645, 1386)
             give_info("mil_defence_b3_s1")
-         elseif sgm_g.dont_has_alife_info("mil_defence_b3_s2") and check_game_timer("mil_defence_b3_spawn") then
-            start_game_timer("mil_defence_b3_spawn", 5)
+         elseif sgm_g.dont_has_alife_info("mil_defence_b3_s2") and sgm_g.check_game_timer("mil_defence_b3_spawn") then
+            sgm_g.start_game_timer("mil_defence_b3_spawn", 5)
             create_force("mil_b3_monster_2_squad", -302.03961181641, -13.52307510376, 325.08654785156, 40334, 1404)
             give_info("mil_defence_b3_s2")
-         elseif sgm_g.dont_has_alife_info("mil_defence_b3_s3") and check_game_timer("mil_defence_b3_spawn") then
+         elseif sgm_g.dont_has_alife_info("mil_defence_b3_s3") and sgm_g.check_game_timer("mil_defence_b3_spawn") then
             abort_game_timer("mil_defence_b3_spawn")
             create_force("mil_b3_monster_3_squad", -246.86123657227, -14.323375701904, 376.75689697266, 81852, 1384)
             give_info("mil_defence_b3_s3")
          end
       elseif has_alife_info("mil_defence_b4_start") and has_alife_info("mil_defence_b4_allow") and sgm_g.dont_has_alife_info("mil_alt_storyline_commenced") and sgm_g.dont_has_alife_info("mil_defence_b4_s3") then
          if sgm_g.dont_has_alife_info("mil_defence_b4_s1") then
-            start_game_timer("mil_defence_b4_spawn", 5)
+            sgm_g.start_game_timer("mil_defence_b4_spawn", 5)
             create_force("mil_b4_monster_1_squad", -241.01593017578, -15.509099960327, 370.9013671875, 86538, 1262)
             give_info("mil_defence_b4_s1")
-         elseif sgm_g.dont_has_alife_info("mil_defence_b4_s2") and check_game_timer("mil_defence_b4_spawn") then
-            start_game_timer("mil_defence_b4_spawn", 5)
+         elseif sgm_g.dont_has_alife_info("mil_defence_b4_s2") and sgm_g.check_game_timer("mil_defence_b4_spawn") then
+            sgm_g.start_game_timer("mil_defence_b4_spawn", 5)
             create_force("mil_b4_monster_2_squad", -104.54344177246, -17.986875534058, 372.98922729492, 199362, 1299)
             give_info("mil_defence_b4_s2")
-         elseif sgm_g.dont_has_alife_info("mil_defence_b4_s3") and check_game_timer("mil_defence_b4_spawn") then
+         elseif sgm_g.dont_has_alife_info("mil_defence_b4_s3") and sgm_g.check_game_timer("mil_defence_b4_spawn") then
             abort_game_timer("mil_defence_b4_spawn")
             create_force("mil_b4_monster_3_squad", -201.98222351074, -1.4216885566711, 426.57788085938, 116063, 1385)
             give_info("mil_defence_b4_s3")
          end
       elseif has_alife_info("mil_defence_b5_start") and has_alife_info("mil_defence_b5_allow") and sgm_g.dont_has_alife_info("mil_alt_storyline_commenced") and sgm_g.dont_has_alife_info("mil_defence_b5_s3") then
          if sgm_g.dont_has_alife_info("mil_defence_b5_s1") then
-            start_game_timer("mil_defence_b5_spawn", 5)
+            sgm_g.start_game_timer("mil_defence_b5_spawn", 5)
             create_force("mil_b5_monster_1_squad", -23.3343334198, -22.128900527954, 236.13064575195, 268487, 1246)
             give_info("mil_defence_b5_s1")
-         elseif sgm_g.dont_has_alife_info("mil_defence_b5_s2") and check_game_timer("mil_defence_b5_spawn") then
-            start_game_timer("mil_defence_b5_spawn", 5)
+         elseif sgm_g.dont_has_alife_info("mil_defence_b5_s2") and sgm_g.check_game_timer("mil_defence_b5_spawn") then
+            sgm_g.start_game_timer("mil_defence_b5_spawn", 5)
             create_force("mil_b5_monster_2_squad", -138.84400939941, -15.506790161133, 166.12881469727, 169217, 1272)
             give_info("mil_defence_b5_s2")
-         elseif sgm_g.dont_has_alife_info("mil_defence_b5_s3") and check_game_timer("mil_defence_b5_spawn") then
+         elseif sgm_g.dont_has_alife_info("mil_defence_b5_s3") and sgm_g.check_game_timer("mil_defence_b5_spawn") then
             abort_game_timer("mil_defence_b5_spawn")
             create_force("mil_b5_monster_3_squad", -165.89956665039, -6.997594833374, 274.90390014648, 145162, 1261)
             give_info("mil_defence_b5_s3")
          end
       elseif has_alife_info("mil_defence_b6_start") and has_alife_info("mil_defence_b6_allow") and sgm_g.dont_has_alife_info("mil_alt_storyline_commenced") and sgm_g.dont_has_alife_info("mil_defence_b6_complete") then
          if sgm_g.dont_has_alife_info("mil_defence_b6_s1_1") then
-            start_game_timer("mil_defence_b6_spawn", 5)
+            sgm_g.start_game_timer("mil_defence_b6_spawn", 5)
             create_force("mil_b6_monster_1_1_squad", 99.480834960938, -13.413173675537, 424.06475830078, 366807, 1398)
             xr_effects.mil_b6_wave_counter_inc(db.actor, nil)
             give_info("mil_defence_b6_s1_1")
-         elseif sgm_g.dont_has_alife_info("mil_defence_b6_s1_2") and check_game_timer("mil_defence_b6_spawn") then
-            start_game_timer("mil_defence_b6_spawn", 5)
+         elseif sgm_g.dont_has_alife_info("mil_defence_b6_s1_2") and sgm_g.check_game_timer("mil_defence_b6_spawn") then
+            sgm_g.start_game_timer("mil_defence_b6_spawn", 5)
             create_force("mil_b6_monster_1_2_squad", -9.3376874923706, -14.482172966003, 360.31167602539, 281610, 1303)
             xr_effects.mil_b6_wave_counter_inc(db.actor, nil)
             give_info("mil_defence_b6_s1_2")
-         elseif sgm_g.dont_has_alife_info("mil_defence_b6_s1_3") and check_game_timer("mil_defence_b6_spawn") then
-            start_game_timer("mil_defence_b6_spawn", 5)
+         elseif sgm_g.dont_has_alife_info("mil_defence_b6_s1_3") and sgm_g.check_game_timer("mil_defence_b6_spawn") then
+            sgm_g.start_game_timer("mil_defence_b6_spawn", 5)
             create_force("mil_b6_monster_1_3_squad", 80.377258300781, -10.583157539368, 221.33985900879, 353554, 1288)
             xr_effects.mil_b6_wave_counter_inc(db.actor, nil)
             give_info("mil_defence_b6_s1_3")
-         elseif sgm_g.dont_has_alife_info("mil_defence_b6_s1_4") and check_game_timer("mil_defence_b6_spawn") then
-            start_game_timer("mil_defence_b6_spawn", 5)
+         elseif sgm_g.dont_has_alife_info("mil_defence_b6_s1_4") and sgm_g.check_game_timer("mil_defence_b6_spawn") then
+            sgm_g.start_game_timer("mil_defence_b6_spawn", 5)
             create_force("mil_b6_monster_1_4_squad", 99.480834960938, -13.413173675537, 424.06475830078, 366807, 1398)
             xr_effects.mil_b6_wave_counter_inc(db.actor, nil)
             give_info("mil_defence_b6_s1_4")
-         elseif sgm_g.dont_has_alife_info("mil_defence_b6_s2_1") and sgm_g.read_mod_param("mil_b6_wave_counter") < 4 and check_game_timer("mil_defence_b6_spawn") then
-            start_game_timer("mil_defence_b6_spawn", 3)
+         elseif sgm_g.dont_has_alife_info("mil_defence_b6_s2_1") and sgm_g.read_mod_param("mil_b6_wave_counter") < 4 and sgm_g.check_game_timer("mil_defence_b6_spawn") then
+            sgm_g.start_game_timer("mil_defence_b6_spawn", 3)
             create_force("mil_b6_monster_2_1_squad", -9.3376874923706, -14.482172966003, 360.31167602539, 281610, 1303)
             xr_effects.mil_b6_wave_counter_inc(db.actor, nil)
             give_info("mil_defence_b6_s2_1")
-         elseif sgm_g.dont_has_alife_info("mil_defence_b6_s2_2") and sgm_g.read_mod_param("mil_b6_wave_counter") < 4 and check_game_timer("mil_defence_b6_spawn") then
-            start_game_timer("mil_defence_b6_spawn", 3)
+         elseif sgm_g.dont_has_alife_info("mil_defence_b6_s2_2") and sgm_g.read_mod_param("mil_b6_wave_counter") < 4 and sgm_g.check_game_timer("mil_defence_b6_spawn") then
+            sgm_g.start_game_timer("mil_defence_b6_spawn", 3)
             create_force("mil_b6_monster_2_2_squad", 80.377258300781, -10.583157539368, 221.33985900879, 353554, 1288)
             xr_effects.mil_b6_wave_counter_inc(db.actor, nil)
             give_info("mil_defence_b6_s2_2")
-         elseif sgm_g.dont_has_alife_info("mil_defence_b6_s2_3") and sgm_g.read_mod_param("mil_b6_wave_counter") < 4 and check_game_timer("mil_defence_b6_spawn") then
-            start_game_timer("mil_defence_b6_spawn", 3)
+         elseif sgm_g.dont_has_alife_info("mil_defence_b6_s2_3") and sgm_g.read_mod_param("mil_b6_wave_counter") < 4 and sgm_g.check_game_timer("mil_defence_b6_spawn") then
+            sgm_g.start_game_timer("mil_defence_b6_spawn", 3)
             create_force("mil_b6_monster_2_3_squad", 99.480834960938, -13.413173675537, 424.06475830078, 366807, 1398)
             xr_effects.mil_b6_wave_counter_inc(db.actor, nil)
             give_info("mil_defence_b6_s2_3")
-         elseif sgm_g.dont_has_alife_info("mil_defence_b6_s2_4") and sgm_g.read_mod_param("mil_b6_wave_counter") < 4 and check_game_timer("mil_defence_b6_spawn") then
-            start_game_timer("mil_defence_b6_spawn", 2)
+         elseif sgm_g.dont_has_alife_info("mil_defence_b6_s2_4") and sgm_g.read_mod_param("mil_b6_wave_counter") < 4 and sgm_g.check_game_timer("mil_defence_b6_spawn") then
+            sgm_g.start_game_timer("mil_defence_b6_spawn", 2)
             create_force("mil_b6_monster_2_4_squad", -9.3376874923706, -14.482172966003, 360.31167602539, 281610, 1303)
             xr_effects.mil_b6_wave_counter_inc(db.actor, nil)
             give_info("mil_defence_b6_s2_4")
-         elseif sgm_g.dont_has_alife_info("mil_defence_b6_s3_1") and sgm_g.read_mod_param("mil_b6_wave_counter") < 4 and check_game_timer("mil_defence_b6_spawn") then
-            start_game_timer("mil_defence_b6_spawn", 2)
+         elseif sgm_g.dont_has_alife_info("mil_defence_b6_s3_1") and sgm_g.read_mod_param("mil_b6_wave_counter") < 4 and sgm_g.check_game_timer("mil_defence_b6_spawn") then
+            sgm_g.start_game_timer("mil_defence_b6_spawn", 2)
             create_force("mil_b6_monster_3_1_squad", 80.377258300781, -10.583157539368, 221.33985900879, 353554, 1288)
             xr_effects.mil_b6_wave_counter_inc(db.actor, nil)
             give_info("mil_defence_b6_s3_1")
-         elseif sgm_g.dont_has_alife_info("mil_defence_b6_s3_2") and sgm_g.read_mod_param("mil_b6_wave_counter") < 4 and check_game_timer("mil_defence_b6_spawn") then
-            start_game_timer("mil_defence_b6_spawn", 2)
+         elseif sgm_g.dont_has_alife_info("mil_defence_b6_s3_2") and sgm_g.read_mod_param("mil_b6_wave_counter") < 4 and sgm_g.check_game_timer("mil_defence_b6_spawn") then
+            sgm_g.start_game_timer("mil_defence_b6_spawn", 2)
             create_force("mil_b6_monster_3_2_squad", 99.480834960938, -13.413173675537, 424.06475830078, 366807, 1398)
             xr_effects.mil_b6_wave_counter_inc(db.actor, nil)
             give_info("mil_defence_b6_s3_2")
-         elseif sgm_g.dont_has_alife_info("mil_defence_b6_s3_3") and sgm_g.read_mod_param("mil_b6_wave_counter") < 4 and check_game_timer("mil_defence_b6_spawn") then
-            start_game_timer("mil_defence_b6_spawn", 2)
+         elseif sgm_g.dont_has_alife_info("mil_defence_b6_s3_3") and sgm_g.read_mod_param("mil_b6_wave_counter") < 4 and sgm_g.check_game_timer("mil_defence_b6_spawn") then
+            sgm_g.start_game_timer("mil_defence_b6_spawn", 2)
             create_force("mil_b6_monster_3_3_squad", -9.3376874923706, -14.482172966003, 360.31167602539, 281610, 1303)
             xr_effects.mil_b6_wave_counter_inc(db.actor, nil)
             give_info("mil_defence_b6_s3_3")
-         elseif sgm_g.dont_has_alife_info("mil_defence_b6_s3_4") and sgm_g.read_mod_param("mil_b6_wave_counter") < 4 and check_game_timer("mil_defence_b6_spawn") then
-            start_game_timer("mil_defence_b6_spawn", 2)
+         elseif sgm_g.dont_has_alife_info("mil_defence_b6_s3_4") and sgm_g.read_mod_param("mil_b6_wave_counter") < 4 and sgm_g.check_game_timer("mil_defence_b6_spawn") then
+            sgm_g.start_game_timer("mil_defence_b6_spawn", 2)
             create_force("mil_b6_monster_3_4_squad", -9.3376874923706, -14.482172966003, 360.31167602539, 281610, 1303)
             xr_effects.mil_b6_wave_counter_inc(db.actor, nil)
             give_info("mil_defence_b6_s3_4")
@@ -1912,62 +1912,62 @@ function task_update()
          end
       elseif has_alife_info("mil_defence_b7_start") and has_alife_info("mil_defence_b7_allow") and sgm_g.dont_has_alife_info("mil_alt_storyline_commenced") and sgm_g.dont_has_alife_info("mil_defence_b7_complete") then
          if sgm_g.dont_has_alife_info("mil_defence_b7_s1_1") then
-            start_game_timer("mil_defence_b7_spawn", 5)
+            sgm_g.start_game_timer("mil_defence_b7_spawn", 5)
             create_force("mil_b7_monster_1_1_squad", 43.816783905029, -6.2895078659058, 105.77521514893, 326021, 1286)
             xr_effects.mil_b7_wave_counter_inc(db.actor, nil)
             give_info("mil_defence_b7_s1_1")
-         elseif sgm_g.dont_has_alife_info("mil_defence_b7_s1_2") and check_game_timer("mil_defence_b7_spawn") then
-            start_game_timer("mil_defence_b7_spawn", 5)
+         elseif sgm_g.dont_has_alife_info("mil_defence_b7_s1_2") and sgm_g.check_game_timer("mil_defence_b7_spawn") then
+            sgm_g.start_game_timer("mil_defence_b7_spawn", 5)
             create_force("mil_b7_monster_1_2_squad", -11.752632141113, -17.214389801025, 160.5245513916, 278748, 1252)
             xr_effects.mil_b7_wave_counter_inc(db.actor, nil)
             give_info("mil_defence_b7_s1_2")
-         elseif sgm_g.dont_has_alife_info("mil_defence_b7_s1_3") and check_game_timer("mil_defence_b7_spawn") then
-            start_game_timer("mil_defence_b7_spawn", 5)
+         elseif sgm_g.dont_has_alife_info("mil_defence_b7_s1_3") and sgm_g.check_game_timer("mil_defence_b7_spawn") then
+            sgm_g.start_game_timer("mil_defence_b7_spawn", 5)
             create_force("mil_b7_monster_1_3_squad", -49.0671043396, -14.581699371338, 134.64549255371, 246124, 1379)
             xr_effects.mil_b7_wave_counter_inc(db.actor, nil)
             give_info("mil_defence_b7_s1_3")
-         elseif sgm_g.dont_has_alife_info("mil_defence_b7_s1_4") and check_game_timer("mil_defence_b7_spawn") then
-            start_game_timer("mil_defence_b7_spawn", 5)
+         elseif sgm_g.dont_has_alife_info("mil_defence_b7_s1_4") and sgm_g.check_game_timer("mil_defence_b7_spawn") then
+            sgm_g.start_game_timer("mil_defence_b7_spawn", 5)
             create_force("mil_b7_monster_1_4_squad", 43.816783905029, -6.2895078659058, 105.77521514893, 326021, 1286)
             xr_effects.mil_b7_wave_counter_inc(db.actor, nil)
             give_info("mil_defence_b7_s1_4")
-         elseif sgm_g.dont_has_alife_info("mil_defence_b7_s2_1") and check_game_timer("mil_defence_b7_spawn") then
-            start_game_timer("mil_defence_b7_spawn", 3)
+         elseif sgm_g.dont_has_alife_info("mil_defence_b7_s2_1") and sgm_g.check_game_timer("mil_defence_b7_spawn") then
+            sgm_g.start_game_timer("mil_defence_b7_spawn", 3)
             create_force("mil_b7_monster_2_1_squad", -11.752632141113, -17.214389801025, 160.5245513916, 278748, 1252)
             xr_effects.mil_b7_wave_counter_inc(db.actor, nil)
             give_info("mil_defence_b7_s2_1")
-         elseif sgm_g.dont_has_alife_info("mil_defence_b7_s2_2") and check_game_timer("mil_defence_b7_spawn") then
-            start_game_timer("mil_defence_b7_spawn", 3)
+         elseif sgm_g.dont_has_alife_info("mil_defence_b7_s2_2") and sgm_g.check_game_timer("mil_defence_b7_spawn") then
+            sgm_g.start_game_timer("mil_defence_b7_spawn", 3)
             create_force("mil_b7_monster_2_2_squad", -49.0671043396, -14.581699371338, 134.64549255371, 246124, 1379)
             xr_effects.mil_b7_wave_counter_inc(db.actor, nil)
             give_info("mil_defence_b7_s2_2")
-         elseif sgm_g.dont_has_alife_info("mil_defence_b7_s2_3") and sgm_g.read_mod_param("mil_b7_wave_counter") < 6 and check_game_timer("mil_defence_b7_spawn") then
-            start_game_timer("mil_defence_b7_spawn", 3)
+         elseif sgm_g.dont_has_alife_info("mil_defence_b7_s2_3") and sgm_g.read_mod_param("mil_b7_wave_counter") < 6 and sgm_g.check_game_timer("mil_defence_b7_spawn") then
+            sgm_g.start_game_timer("mil_defence_b7_spawn", 3)
             create_force("mil_b7_monster_2_3_squad", 83.490676879883, -10.593253135681, 72.842163085938, 355626, 1313)
             xr_effects.mil_b7_wave_counter_inc(db.actor, nil)
             give_info("mil_defence_b7_s2_3")
-         elseif sgm_g.dont_has_alife_info("mil_defence_b7_s2_4") and sgm_g.read_mod_param("mil_b7_wave_counter") < 6 and check_game_timer("mil_defence_b7_spawn") then
-            start_game_timer("mil_defence_b7_spawn", 2)
+         elseif sgm_g.dont_has_alife_info("mil_defence_b7_s2_4") and sgm_g.read_mod_param("mil_b7_wave_counter") < 6 and sgm_g.check_game_timer("mil_defence_b7_spawn") then
+            sgm_g.start_game_timer("mil_defence_b7_spawn", 2)
             create_force("mil_b7_monster_2_4_squad", 100.88254547119, -7.0102977752686, 26.270305633545, 367446, 1429)
             xr_effects.mil_b7_wave_counter_inc(db.actor, nil)
             give_info("mil_defence_b7_s2_4")
-         elseif sgm_g.dont_has_alife_info("mil_defence_b7_s3_1") and sgm_g.read_mod_param("mil_b7_wave_counter") < 6 and check_game_timer("mil_defence_b7_spawn") then
-            start_game_timer("mil_defence_b7_spawn", 3)
+         elseif sgm_g.dont_has_alife_info("mil_defence_b7_s3_1") and sgm_g.read_mod_param("mil_b7_wave_counter") < 6 and sgm_g.check_game_timer("mil_defence_b7_spawn") then
+            sgm_g.start_game_timer("mil_defence_b7_spawn", 3)
             create_force("mil_b7_monster_3_1_squad", 43.816783905029, -6.2895078659058, 105.77521514893, 326021, 1286)
             xr_effects.mil_b7_wave_counter_inc(db.actor, nil)
             give_info("mil_defence_b7_s3_1")
-         elseif sgm_g.dont_has_alife_info("mil_defence_b7_s3_2") and sgm_g.read_mod_param("mil_b7_wave_counter") < 6 and check_game_timer("mil_defence_b7_spawn") then
-            start_game_timer("mil_defence_b7_spawn", 3)
+         elseif sgm_g.dont_has_alife_info("mil_defence_b7_s3_2") and sgm_g.read_mod_param("mil_b7_wave_counter") < 6 and sgm_g.check_game_timer("mil_defence_b7_spawn") then
+            sgm_g.start_game_timer("mil_defence_b7_spawn", 3)
             create_force("mil_b7_monster_3_2_squad", 83.490676879883, -10.593253135681, 72.842163085938, 355626, 1313)
             xr_effects.mil_b7_wave_counter_inc(db.actor, nil)
             give_info("mil_defence_b7_s3_2")
-         elseif sgm_g.dont_has_alife_info("mil_defence_b7_s3_3") and sgm_g.read_mod_param("mil_b7_wave_counter") < 6 and check_game_timer("mil_defence_b7_spawn") then
-            start_game_timer("mil_defence_b7_spawn", 3)
+         elseif sgm_g.dont_has_alife_info("mil_defence_b7_s3_3") and sgm_g.read_mod_param("mil_b7_wave_counter") < 6 and sgm_g.check_game_timer("mil_defence_b7_spawn") then
+            sgm_g.start_game_timer("mil_defence_b7_spawn", 3)
             create_force("mil_b7_monster_3_3_squad", -99.884765625, -12.418152809143, -36.953197479248, 202531, 1420)
             xr_effects.mil_b7_wave_counter_inc(db.actor, nil)
             give_info("mil_defence_b7_s3_3")
-         elseif sgm_g.dont_has_alife_info("mil_defence_b7_s3_4") and sgm_g.read_mod_param("mil_b7_wave_counter") < 6 and check_game_timer("mil_defence_b7_spawn") then
-            start_game_timer("mil_defence_b7_spawn", 5)
+         elseif sgm_g.dont_has_alife_info("mil_defence_b7_s3_4") and sgm_g.read_mod_param("mil_b7_wave_counter") < 6 and sgm_g.check_game_timer("mil_defence_b7_spawn") then
+            sgm_g.start_game_timer("mil_defence_b7_spawn", 5)
             create_force("mil_b7_monster_3_4_squad", -49.191467285156, -12.976804733276, 45.146057128906, 246011, 1318)
             xr_effects.mil_b7_wave_counter_inc(db.actor, nil)
             give_info("mil_defence_b7_s3_4")
@@ -2102,16 +2102,22 @@ function task_update()
          local rnd_ecologs = math.random(1, 3)
          if rnd_ecologs == 1 then
             create("agru_dead_ecolog", 98.943916320801, -9.2205476760864, -31.003540039063, 2717, 1587)
-            create_dead_body("ecolog_dead_body_2", nil, 122.90145874023, -7.8816556930542, -37.568447113037, 4729, 1587)
-            create_dead_body("ecolog_dead_body_3", nil, 94.454917907715, -7.7611527442932, -53.365688323975, 2183, 1587)
+            sgm_g.create_dead_body("ecolog_dead_body_2", nil, 122.90145874023, -7.8816556930542, -37.568447113037, 4729,
+               1587)
+            sgm_g.create_dead_body("ecolog_dead_body_3", nil, 94.454917907715, -7.7611527442932, -53.365688323975, 2183,
+               1587)
          elseif rnd_ecologs == 2 then
             create("agru_dead_ecolog", 122.90145874023, -7.8816556930542, -37.568447113037, 4729, 1587)
-            create_dead_body("ecolog_dead_body_2", nil, 98.943916320801, -9.2205476760864, -31.003540039063, 2717, 1587)
-            create_dead_body("ecolog_dead_body_3", nil, 94.454917907715, -7.7611527442932, -53.365688323975, 2183, 1587)
+            sgm_g.create_dead_body("ecolog_dead_body_2", nil, 98.943916320801, -9.2205476760864, -31.003540039063, 2717,
+               1587)
+            sgm_g.create_dead_body("ecolog_dead_body_3", nil, 94.454917907715, -7.7611527442932, -53.365688323975, 2183,
+               1587)
          else
             create("agru_dead_ecolog", 94.454917907715, -7.7611527442932, -53.365688323975, 2183, 1587)
-            create_dead_body("ecolog_dead_body_2", nil, 122.90145874023, -7.8816556930542, -37.568447113037, 4729, 1587)
-            create_dead_body("ecolog_dead_body_3", nil, 98.943916320801, -9.2205476760864, -31.003540039063, 2717, 1587)
+            sgm_g.create_dead_body("ecolog_dead_body_2", nil, 122.90145874023, -7.8816556930542, -37.568447113037, 4729,
+               1587)
+            sgm_g.create_dead_body("ecolog_dead_body_3", nil, 98.943916320801, -9.2205476760864, -31.003540039063, 2717,
+               1587)
          end
          create("agru_secret_docks_1", 69.037391662598, -5.6635899543762, 99.37718963623, 1222, 1589)
          create("agru_secret_docks_2", 102.40983581543, -19.464685440063, 12.431848526001, 2570, 1587)
@@ -2195,9 +2201,9 @@ function task_update()
          give_info("esc_atp_annex_assault_launch")
          create("esc_b3_signal_charge_1", 106.16342163086, -6.2748441696167, -17.306570053101, 435363, 1931)
          create("esc_b3_signal_charge_2", 142.15689086914, -7.231201171875, -45.093395233154, 474318, 2058)
-         start_game_timer("esc_atp_annex_assault_timer", 2)
+         sgm_g.start_game_timer("esc_atp_annex_assault_timer", 2)
       end
-      if has_alife_info("esc_atp_annex_assault_launch") and sgm_g.dont_has_alife_info("esc_atp_annex_assault") and check_game_timer("esc_atp_annex_assault_timer") then
+      if has_alife_info("esc_atp_annex_assault_launch") and sgm_g.dont_has_alife_info("esc_atp_annex_assault") and sgm_g.check_game_timer("esc_atp_annex_assault_timer") then
          give_info("esc_atp_annex_signal_launch")
          abort_game_timer("esc_atp_annex_assault_timer")
       end
@@ -2217,21 +2223,21 @@ function task_update()
          give_info("esc_village_annex_defence_end")
       end
       if has_alife_info("esc_village_annex_cellar_explored") and sgm_g.dont_has_alife_info("esc_village_annex_defence_timer") then
-         start_game_timer("esc_village_annex_defence_timer", 4)
+         sgm_g.start_game_timer("esc_village_annex_defence_timer", 4)
          give_info("esc_village_annex_defence_timer")
       end
-      if has_alife_info("esc_village_annex_defence_timer") and sgm_g.dont_has_alife_info("esc_village_annex_defence_w1") and check_game_timer("esc_village_annex_defence_timer") then
+      if has_alife_info("esc_village_annex_defence_timer") and sgm_g.dont_has_alife_info("esc_village_annex_defence_w1") and sgm_g.check_game_timer("esc_village_annex_defence_timer") then
          give_info("esc_village_annex_defence_start")
          give_info("esc_village_annex_defence_w1")
          create_force("esc_a2_monster_wave_1_squad", -256.12887573242, -8.804349899292, -66.180244445801, 9517, 1993)
-         start_game_timer("esc_village_annex_defence_timer", 3)
+         sgm_g.start_game_timer("esc_village_annex_defence_timer", 3)
       end
-      if has_alife_info("esc_village_annex_defence_w1") and sgm_g.dont_has_alife_info("esc_village_annex_defence_w2") and check_game_timer("esc_village_annex_defence_timer") then
+      if has_alife_info("esc_village_annex_defence_w1") and sgm_g.dont_has_alife_info("esc_village_annex_defence_w2") and sgm_g.check_game_timer("esc_village_annex_defence_timer") then
          give_info("esc_village_annex_defence_w2")
          create_force("esc_a2_monster_wave_2_squad", -120.77253723145, -3.7988245487213, -90.480163574219, 136489, 2050)
-         start_game_timer("esc_village_annex_defence_timer", 3)
+         sgm_g.start_game_timer("esc_village_annex_defence_timer", 3)
       end
-      if has_alife_info("esc_village_annex_defence_w2") and sgm_g.dont_has_alife_info("esc_village_annex_defence_w3") and check_game_timer("esc_village_annex_defence_timer") then
+      if has_alife_info("esc_village_annex_defence_w2") and sgm_g.dont_has_alife_info("esc_village_annex_defence_w3") and sgm_g.check_game_timer("esc_village_annex_defence_timer") then
          give_info("esc_village_annex_defence_w3")
          create_force("esc_a2_monster_wave_3_squad", -191.66888427734, -17.048210144043, -197.23458862305, 59234, 1996)
          abort_game_timer("esc_village_annex_defence_timer")
@@ -2254,33 +2260,33 @@ function task_update()
       --/Квест:Миноискатель
       if has_alife_info("mar_mine_detector_device_developed") and sgm_g.dont_has_alife_info("mar_mine_detector_timer") then
          give_info("mar_mine_detector_timer")
-         start_game_timer("mar_mine_detector_timer", 65)
+         sgm_g.start_game_timer("mar_mine_detector_timer", 65)
       end
-      if has_alife_info("mar_mine_detector_timer") and sgm_g.dont_has_alife_info("mar_mine_detector_device_done") and check_game_timer("mar_mine_detector_timer") then
+      if has_alife_info("mar_mine_detector_timer") and sgm_g.dont_has_alife_info("mar_mine_detector_device_done") and sgm_g.check_game_timer("mar_mine_detector_timer") then
          give_info("mar_mine_detector_device_done")
          abort_game_timer("mar_mine_detector_timer")
       end
       --/Квест:Оборона блокпоста
       if has_alife_info("mar_mine_detector_talk") and sgm_g.dont_has_alife_info("esc_blockpost_protection_launch") and sgm_g.dont_has_alife_info("esc_b1_commander_dead") and (not db.actor:is_talking()) then
          give_info("esc_blockpost_protection_launch")
-         start_game_timer("esc_blockpost_protection_timer", 2)
+         sgm_g.start_game_timer("esc_blockpost_protection_timer", 2)
       end
-      if has_alife_info("esc_blockpost_protection_launch") and sgm_g.dont_has_alife_info("esc_blockpost_protection_start") and check_game_timer("esc_blockpost_protection_timer") then
+      if has_alife_info("esc_blockpost_protection_launch") and sgm_g.dont_has_alife_info("esc_blockpost_protection_start") and sgm_g.check_game_timer("esc_blockpost_protection_timer") then
          give_info("esc_blockpost_protection_start")
          news_manager.send_tip(db.actor, game.translate_string("esc_blockpost_protection_began_text"), 0,
             "portrait_neutral_nauch", 12000, nil, "esc_b1_base_commander_title")
          abort_game_timer("esc_blockpost_protection")
          give_info("esc_blockpost_protection_w1")
          create_force("esc_a1_monster_wave_1_squad", -199.44058227539, -36.945888519287, -289.68209838867, 52376, 2063)
-         start_game_timer("esc_blockpost_protection_defence_timer", 5)
+         sgm_g.start_game_timer("esc_blockpost_protection_defence_timer", 5)
          add_task("esc_blockpost_protection")
       end
-      if has_alife_info("esc_blockpost_protection_w1") and sgm_g.dont_has_alife_info("esc_blockpost_protection_w2") and check_game_timer("esc_blockpost_protection_defence_timer") then
+      if has_alife_info("esc_blockpost_protection_w1") and sgm_g.dont_has_alife_info("esc_blockpost_protection_w2") and sgm_g.check_game_timer("esc_blockpost_protection_defence_timer") then
          give_info("esc_blockpost_protection_w2")
          create_force("esc_a1_monster_wave_2_squad", -101.28200531006, -30.709276199341, -280.1965637207, 161228, 1862)
-         start_game_timer("esc_blockpost_protection_defence_timer", 7)
+         sgm_g.start_game_timer("esc_blockpost_protection_defence_timer", 7)
       end
-      if has_alife_info("esc_blockpost_protection_w2") and sgm_g.dont_has_alife_info("esc_blockpost_protection_w3") and check_game_timer("esc_blockpost_protection_defence_timer") then
+      if has_alife_info("esc_blockpost_protection_w2") and sgm_g.dont_has_alife_info("esc_blockpost_protection_w3") and sgm_g.check_game_timer("esc_blockpost_protection_defence_timer") then
          give_info("esc_blockpost_protection_w3")
          create_force("esc_a1_monster_wave_3_squad", -88.246910095215, -33.566860198975, -321.18255615234, 180393, 2064)
          abort_game_timer("esc_blockpost_protection_defence_timer")
@@ -2345,11 +2351,11 @@ function task_update()
       --/Квест:Армейская поклажа
       if has_alife_info("mar_army_cargo_talk_mechanic") and sgm_g.dont_has_alife_info("mar_army_cargo_georadar_timer") then
          give_info("mar_army_cargo_georadar_timer")
-         start_game_timer("mar_georadar_timer", 50)
+         sgm_g.start_game_timer("mar_georadar_timer", 50)
          create_force("mar_b2_bandit_invaders_1_squad", "mar_smart_terrain_11")
          create_force("mar_b2_bandit_invaders_2_squad", "mar_smart_terrain_14")
       end
-      if has_alife_info("mar_army_cargo_georadar_timer") and sgm_g.dont_has_alife_info("mar_army_cargo_order_performed") and check_game_timer("mar_georadar_timer") then
+      if has_alife_info("mar_army_cargo_georadar_timer") and sgm_g.dont_has_alife_info("mar_army_cargo_order_performed") and sgm_g.check_game_timer("mar_georadar_timer") then
          give_info("mar_army_cargo_order_performed")
          abort_game_timer("mar_georadar_timer")
       end
@@ -2452,9 +2458,9 @@ function task_update()
          create("red_psyho_controller", -87.81169128418, 2.3018217086792, -55.969261169434, 12641, 2190)
          create_force("simulation_chimera", "red_monster_burrow_5")
          give_info("red_psyho_halt_3_delay_founded")
-         start_game_timer("red_psyho_halt_3_delay_timer", 2)
+         sgm_g.start_game_timer("red_psyho_halt_3_delay_timer", 2)
       end
-      if has_alife_info("red_psyho_halt_3_delay_founded") and sgm_g.dont_has_alife_info("red_psyho_halt_3_founded") and check_game_timer("red_psyho_halt_3_delay_timer") then
+      if has_alife_info("red_psyho_halt_3_delay_founded") and sgm_g.dont_has_alife_info("red_psyho_halt_3_founded") and sgm_g.check_game_timer("red_psyho_halt_3_delay_timer") then
          give_info("red_psyho_halt_3_founded")
          abort_game_timer("red_psyho_halt_3_delay_timer")
       end

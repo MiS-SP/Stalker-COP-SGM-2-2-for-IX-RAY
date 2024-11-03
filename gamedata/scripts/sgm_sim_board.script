@@ -1,4 +1,3 @@
---/ SGM in
 function init() end
 
 sim_board.simulation_bad_levels = { { "l04u_labx18" }, { "military" }, { "agroprom" }, { "agroprom_underground" }, { "escape" }, { "marsh" }, { "red_forest" } }
@@ -159,11 +158,12 @@ function sim_board.sim_board:fill_start_position_for_bad_levels()
 	end
 end
 
-local old_fill_start_position = sim_board.fill_start_position
-function sim_board.sim_board:fill_start_position()
+local old_fill_start_position = sim_board.sim_board.fill_start_position
+function fill_start_position(self)
 	old_fill_start_position(self)
 	sim_board:fill_start_position_for_bad_levels()
 end
+sim_board.sim_board.fill_start_position = fill_start_position
 
 function sim_board.sim_board:get_smart_population_by_name(smart_name)
 	return self.smarts[self:get_smart_by_name(smart_name).id].stayed_squad_quan
@@ -188,5 +188,3 @@ function sim_board.sim_board:check_community_in_smart(smart_name, need_community
 	end
 	return result
 end
-
---/ SGM out

@@ -193,7 +193,7 @@ function CGeneralTask:give_task(community)
 	end
 	if self.descr_end == nil or self.descr_end == "nil" then
 		if exists(self.execution_time) then
-			start_game_timer("timer_quest_" .. self.id, tonumber(self.execution_time))
+			sgm_g.start_game_timer("timer_quest_" .. self.id, tonumber(self.execution_time))
 			if exists(utils.cfg_get_string(self.task_ini, self.id, "on_expired", nil, false, "", "nil")) then
 				if sgm_g.find_in_string(self.id, "employer_find_item") and sgm_g.find_in_string(self.current_descr, "text0") then
 					local employer_find_item_name = game.translate_string(sgm_functions.ReadCaption(sgm_g.read_mod_param(
@@ -348,8 +348,8 @@ function CGeneralTask:check_task(tm)
 				if exists(utils.cfg_get_string(self.task_ini, self.id, "on_expired", nil, false, "", "nil")) then
 					if sgm_g.find_in_string(self.id, "employer_find_item") and sgm_g.find_in_string(self.current_descr, "text0") then
 						local employer_find_item_name = game.translate_string(sgm_functions.ReadCaption(sgm_g
-						.read_mod_param(
-							"employer_currert_target")))
+							.read_mod_param(
+								"employer_currert_target")))
 						self.t:set_description(game.translate_string(t_descr) ..
 							" " ..
 							employer_find_item_name ..
@@ -373,8 +373,8 @@ function CGeneralTask:check_task(tm)
 				else
 					if sgm_g.find_in_string(self.id, "employer_find_item") and sgm_g.find_in_string(self.current_descr, "text0") then
 						local employer_find_item_name = game.translate_string(sgm_functions.ReadCaption(sgm_g
-						.read_mod_param(
-							"employer_currert_target")))
+							.read_mod_param(
+								"employer_currert_target")))
 						self.t:set_description(game.translate_string(t_descr) ..
 							" " ..
 							employer_find_item_name ..

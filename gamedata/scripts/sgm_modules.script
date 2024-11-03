@@ -137,15 +137,15 @@ function submodule_section_cfg(object, type)
       if object:alive() and sgm_g.exists(get_spot) then
          local spot_cfg = sgm_functions.check_section_stick(system_ini(), object:section(), "spot", nil)
          if sgm_g.exists(spot_cfg[3]) and has_alife_info(tostring(spot_cfg[3])) then
-            add_spot_on_map(object:id(), tostring(spot_cfg[1]), tostring(spot_cfg[2]))
+            sgm_g.add_spot_on_map(object:id(), tostring(spot_cfg[1]), tostring(spot_cfg[2]))
          elseif sgm_g.exists(spot_cfg[4]) then
             if has_alife_info(tostring(spot_cfg[4])) then
                sgm_g.remove_spot_on_map(object:id(), tostring(spot_cfg[1]))
             else
-               add_spot_on_map(object:id(), tostring(spot_cfg[1]), tostring(spot_cfg[2]))
+               sgm_g.add_spot_on_map(object:id(), tostring(spot_cfg[1]), tostring(spot_cfg[2]))
             end
          elseif (not sgm_g.exists(spot_cfg[3])) and (not sgm_g.exists(spot_cfg[4])) then
-            add_spot_on_map(object:id(), tostring(spot_cfg[1]), tostring(spot_cfg[2]))
+            sgm_g.add_spot_on_map(object:id(), tostring(spot_cfg[1]), tostring(spot_cfg[2]))
          end
       end
       local get_online_cond = sgm_functions.ReadOnlineCond(object:section())
@@ -189,20 +189,20 @@ function submodule_spots_control(object)
                sgm_g.remove_spot_on_map(npc_id, v[3])
             elseif distance_between_safe(db.actor, npc) <= 140 and npc:alive() then
                if v[4] == "its_bodyguard" then
-                  add_spot_on_map(npc_id, v[3],
+                  sgm_g.add_spot_on_map(npc_id, v[3],
                      game.translate_string(v[2]) ..
                      "\\n" ..
                      game.translate_string("st_bodyguard_price") ..
                      " " .. v[5] .. " " .. game.translate_string("st_bodyguard_price_ru"))
                elseif v[4] == "its_trader" then
-                  add_spot_on_map(npc_id, v[3],
+                  sgm_g.add_spot_on_map(npc_id, v[3],
                      game.translate_string(npc:character_community()) ..
                      "\\n" ..
                      game.translate_string(v[2]) .. "\\n" .. game.translate_string("st_trader_order_count") .. " " ..
                      v[5])
                elseif v[4] == "its_bankir" then
                   if percent_data ~= nil and deposit_data ~= nil and deposit_data ~= 0 and percent_data ~= 0 then
-                     add_spot_on_map(npc_id, v[3],
+                     sgm_g.add_spot_on_map(npc_id, v[3],
                         game.translate_string(npc:character_community()) ..
                         "\\n" ..
                         game.translate_string(v[2]) ..
@@ -211,51 +211,51 @@ function submodule_spots_control(object)
                         " " .. deposit_data .. "\\n" ..
                         game.translate_string("st_bankir_percent_title") .. " " .. percent_data)
                   else
-                     add_spot_on_map(npc_id, v[3],
+                     sgm_g.add_spot_on_map(npc_id, v[3],
                         game.translate_string(npc:character_community()) .. "\\n" .. game.translate_string(v[2]))
                   end
                elseif v[4] == "its_breeder" then
-                  add_spot_on_map(npc_id, v[3],
+                  sgm_g.add_spot_on_map(npc_id, v[3],
                      game.translate_string(npc:character_community()) ..
                      "\\n" .. game.translate_string(v[2]) .. "\\n" .. game.translate_string(v[5]))
                elseif v[4] == "its_informer" then
-                  add_spot_on_map(npc_id, v[3],
+                  sgm_g.add_spot_on_map(npc_id, v[3],
                      game.translate_string(npc:character_community()) .. "\\n" .. game.translate_string(v[2]))
                elseif v[4] == "its_employer" then
-                  add_spot_on_map(npc_id, v[3],
+                  sgm_g.add_spot_on_map(npc_id, v[3],
                      game.translate_string(npc:character_community()) .. "\\n" .. game.translate_string(v[2]))
                elseif v[4] == "its_boss" then
-                  add_spot_on_map(npc_id, v[3],
+                  sgm_g.add_spot_on_map(npc_id, v[3],
                      game.translate_string(npc:character_community()) .. "\\n" .. game.translate_string(v[2]))
                elseif v[4] == "its_quest" then
                   if sgm_g.dont_has_alife_info(v[5]) then
-                     add_spot_on_map(npc_id, v[3],
+                     sgm_g.add_spot_on_map(npc_id, v[3],
                         game.translate_string(npc:character_community()) .. "\\n" .. game.translate_string(v[2]))
                   else
                      sgm_g.remove_spot_on_map(npc_id, v[3])
                   end
                elseif v[4] == "its_quest_var1" then
                   if sgm_g.dont_has_alife_info(v[5]) and sgm_g.dont_has_alife_info(v[6]) then
-                     add_spot_on_map(npc_id, v[3],
+                     sgm_g.add_spot_on_map(npc_id, v[3],
                         game.translate_string(npc:character_community()) .. "\\n" .. game.translate_string(v[2]))
                   else
                      sgm_g.remove_spot_on_map(npc_id, v[3])
                   end
                elseif v[4] == "its_quest_var2" then
                   if has_alife_info(v[5]) and sgm_g.dont_has_alife_info(v[6]) and sgm_g.dont_has_alife_info(v[7]) then
-                     add_spot_on_map(npc_id, v[3],
+                     sgm_g.add_spot_on_map(npc_id, v[3],
                         game.translate_string(npc:character_community()) .. "\\n" .. game.translate_string(v[2]))
                   else
                      sgm_g.remove_spot_on_map(npc_id, v[3])
                   end
                elseif v[4] == "its_special" then
                   if has_alife_info(v[5]) then
-                     add_spot_on_map(npc_id, v[3], game.translate_string(v[2]))
+                     sgm_g.add_spot_on_map(npc_id, v[3], game.translate_string(v[2]))
                   else
                      sgm_g.remove_spot_on_map(npc_id, v[3])
                   end
                elseif v[4] == "its_other" then
-                  add_spot_on_map(npc_id, v[3],
+                  sgm_g.add_spot_on_map(npc_id, v[3],
                      game.translate_string(npc:character_community()) .. "\\n" .. game.translate_string(v[2]))
                end
             end
@@ -269,7 +269,7 @@ function submodule_inventory_box_control(object)
       local add_exceptions = true --/find_out_string(object:section(),"p_secret_7")
       if has_alife_info("sgm_achievements_pathfinder") then
          if sgm_g.find_in_string(object:section(), "_secret_") and (sgm_g.find_in_string(object:section(), "_a") or sgm_g.find_in_string(object:section(), "_b") or sgm_g.find_in_string(object:section(), "_c")) and add_exceptions and level.map_has_object_spot(object:id(), sgm_flags.spot_secret_v1) == 0 and object:is_inv_box_empty() == false then
-            add_spot_on_map(object:id(), sgm_flags.spot_secret_v1, "st_taynik_name")
+            sgm_g.add_spot_on_map(object:id(), sgm_flags.spot_secret_v1, "st_taynik_name")
          elseif sgm_g.find_in_string(object:section(), "_secret_") and (sgm_g.find_in_string(object:section(), "_a") or sgm_g.find_in_string(object:section(), "_b") or sgm_g.find_in_string(object:section(), "_c")) and level.map_has_object_spot(object:id(), sgm_flags.spot_secret_v1) ~= 0 and object:is_inv_box_empty() == true then
             sgm_g.remove_spot_on_map(object:id(), sgm_flags.spot_secret_v1)
          end
@@ -292,14 +292,14 @@ function submodule_mines_control(object)
                if db.actor:object("minetrap_elite_detector") then
                   if level.object_by_id(k) ~= nil and distance_between(level.object_by_id(k), db.actor) <= 145 and level.map_has_object_spot(k, sgm_flags.spot_ground_trap) == 0 then
                      play_snd_at_actor([[ambient\special\marsh_beep_1]])
-                     add_spot_on_map(k, sgm_flags.spot_ground_trap, "st_minetrap_name")
+                     sgm_g.add_spot_on_map(k, sgm_flags.spot_ground_trap, "st_minetrap_name")
                   elseif level.object_by_id(k) ~= nil and distance_between(level.object_by_id(k), db.actor) > 145 then
                      sgm_g.remove_spot_on_map(k, sgm_flags.spot_ground_trap)
                   end
                else
                   if level.object_by_id(k) ~= nil and distance_between(level.object_by_id(k), db.actor) <= 50 and level.map_has_object_spot(k, sgm_flags.spot_ground_trap) == 0 then
                      play_snd_at_actor([[ambient\special\marsh_beep_1]])
-                     add_spot_on_map(k, sgm_flags.spot_ground_trap, "st_minetrap_name")
+                     sgm_g.add_spot_on_map(k, sgm_flags.spot_ground_trap, "st_minetrap_name")
                   elseif level.object_by_id(k) ~= nil and distance_between(level.object_by_id(k), db.actor) > 50 then
                      sgm_g.remove_spot_on_map(k, sgm_flags.spot_ground_trap)
                   end
@@ -326,14 +326,14 @@ function submodule_anomaly_control(object)
          if db.actor:object("minetrap_elite_detector") then
             if sgm_g.find_in_string(object:section(), "_mine_field") and distance_between(object, db.actor) <= 145 and level.map_has_object_spot(object:id(), sgm_flags.spot_ground_trap) == 0 then
                play_snd_at_actor([[ambient\special\marsh_beep_1]])
-               add_spot_on_map(object:id(), sgm_flags.spot_ground_trap, "st_mine_field_name")
+               sgm_g.add_spot_on_map(object:id(), sgm_flags.spot_ground_trap, "st_mine_field_name")
             elseif sgm_g.find_in_string(object:section(), "_mine_field") and distance_between(object, db.actor) > 145 then
                sgm_g.remove_spot_on_map(object:id(), sgm_flags.spot_ground_trap)
             end
          else
             if sgm_g.find_in_string(object:section(), "_mine_field") and distance_between(object, db.actor) <= 50 and level.map_has_object_spot(object:id(), sgm_flags.spot_ground_trap) == 0 then
                play_snd_at_actor([[ambient\special\marsh_beep_1]])
-               add_spot_on_map(object:id(), sgm_flags.spot_ground_trap, "st_mine_field_name")
+               sgm_g.add_spot_on_map(object:id(), sgm_flags.spot_ground_trap, "st_mine_field_name")
             elseif sgm_g.find_in_string(object:section(), "_mine_field") and distance_between(object, db.actor) > 50 then
                sgm_g.remove_spot_on_map(object:id(), sgm_flags.spot_ground_trap)
             end
@@ -347,7 +347,7 @@ function submodule_anomaly_control(object)
    if sgm_g.check_seconds(1) and has_alife_info("mar_mine_detector_talk") and sgm_g.dont_has_alife_info("mar_army_cargo_complete") then
       if db.actor:object("mar_mine_detector") then
          if sgm_g.find_in_string(object:section(), "_mine_field") and distance_between(object, db.actor) <= 40 and level.map_has_object_spot(object:id(), "mar_mine_trap_location") == 0 then
-            add_spot_on_map(object:id(), "mar_mine_trap_location", "st_mine_field_name")
+            sgm_g.add_spot_on_map(object:id(), "mar_mine_trap_location", "st_mine_field_name")
          elseif sgm_g.find_in_string(object:section(), "_mine_field") and distance_between(object, db.actor) > 40 then
             sgm_g.remove_spot_on_map(object:id(), "mar_mine_trap_location")
          end
@@ -368,7 +368,7 @@ end
 
 function submodule_smart_terrain_control(object)
    if sgm_flags.bool_show_smarts == true then
-      add_spot_on_map(object:id(), sgm_flags.spot_ground_trap, object:name())
+      sgm_g.add_spot_on_map(object:id(), sgm_flags.spot_ground_trap, object:name())
    else
       sgm_g.remove_spot_on_map(object:id(), sgm_flags.spot_ground_trap)
    end
@@ -400,7 +400,7 @@ function submodule_artefact_control(object)
             if sgm_functions.ReadRadarAccuracy(detector_in_slot:section()) == true then
                af_spot_descr = game.translate_string(sgm_functions.ReadCaption(af_sect))
             end
-            add_spot_on_map(object:id(), sgm_flags.spot_artefact_discovered, af_spot_descr)
+            sgm_g.add_spot_on_map(object:id(), sgm_flags.spot_artefact_discovered, af_spot_descr)
          elseif distance_to_object(object, ">", 5, true) == false then
             sgm_g.remove_spot_on_map(object:id(), sgm_flags.spot_artefact_discovered)
          else
@@ -546,7 +546,7 @@ function submodule_capture_monster(object)
          end
          if sgm_flags.timer_monster_cap_charge == 1 then
             sgm_flags.timer_monster_cap_charge = 0
-            write_mod_param(m_cap_prefix .. "_charge", m_cap_charge - 1)
+            sgm_g.write_mod_param(m_cap_prefix .. "_charge", m_cap_charge - 1)
          end
          if m_cap_charge <= 0 then
             disable_info("capture_meal_active")
@@ -576,7 +576,7 @@ function submodule_capture_monster(object)
                end
                if sgm_flags.timer_monster_cap_control == 1 then
                   sgm_flags.timer_monster_cap_control = 0
-                  write_mod_param(m_cap_prefix .. "_control", m_cap_control - 1)
+                  sgm_g.write_mod_param(m_cap_prefix .. "_control", m_cap_control - 1)
                end
             end
             if m_cap_control <= 0 then
@@ -636,25 +636,25 @@ function submodule_on_create(who, id)
    end
    if who == "remote_charge" then
       if sgm_g.read_mod_param("remote_charge_1_id") == 0 then
-         write_mod_param("remote_charge_1_id", id)
-         if ui_mod_elements.cfg_remote_charge_delay ~= 0 then
-            write_mod_param("remote_charge_1_timer", ui_mod_elements.cfg_remote_charge_delay)
+         sgm_g.write_mod_param("remote_charge_1_id", id)
+         if sgm_ui_mod_elements.cfg_remote_charge_delay ~= 0 then
+            sgm_g.write_mod_param("remote_charge_1_timer", sgm_ui_mod_elements.cfg_remote_charge_delay)
          else
-            write_mod_param("remote_charge_1_timer", 100)
+            sgm_g.write_mod_param("remote_charge_1_timer", 100)
          end
       elseif sgm_g.read_mod_param("remote_charge_2_id") == 0 then
-         write_mod_param("remote_charge_2_id", id)
-         if ui_mod_elements.cfg_remote_charge_delay ~= 0 then
-            write_mod_param("remote_charge_2_timer", ui_mod_elements.cfg_remote_charge_delay)
+         sgm_g.write_mod_param("remote_charge_2_id", id)
+         if sgm_ui_mod_elements.cfg_remote_charge_delay ~= 0 then
+            sgm_g.write_mod_param("remote_charge_2_timer", sgm_ui_mod_elements.cfg_remote_charge_delay)
          else
-            write_mod_param("remote_charge_2_timer", 100)
+            sgm_g.write_mod_param("remote_charge_2_timer", 100)
          end
       elseif sgm_g.read_mod_param("remote_charge_3_id") == 0 then
-         write_mod_param("remote_charge_3_id", id)
-         if ui_mod_elements.cfg_remote_charge_delay ~= 0 then
-            write_mod_param("remote_charge_3_timer", ui_mod_elements.cfg_remote_charge_delay)
+         sgm_g.write_mod_param("remote_charge_3_id", id)
+         if sgm_ui_mod_elements.cfg_remote_charge_delay ~= 0 then
+            sgm_g.write_mod_param("remote_charge_3_timer", sgm_ui_mod_elements.cfg_remote_charge_delay)
          else
-            write_mod_param("remote_charge_3_timer", 100)
+            sgm_g.write_mod_param("remote_charge_3_timer", 100)
          end
       end
    end
@@ -684,7 +684,7 @@ function monster_modules_inject()
 end
 
 function physic_obj_modules_inject()
-   load_scheme("ph_universal", "ph_universal", stype_item)
+   load_scheme("sgm_ph_universal", "sgm_ph_universal", stype_item)
 end
 
 function helicopter_modules_inject()

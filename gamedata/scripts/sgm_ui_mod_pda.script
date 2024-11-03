@@ -54,14 +54,14 @@ end
 function personal_pda:InitControls()
    self:SetWndRect(Frect():set(0, 0, 1024, 768))
    local xml = CScriptXmlInit()
-   xml:ParseFile("ui_mod_elements.xml")
+   xml:ParseFile("sgm_ui_mod_elements.xml")
    self.personal_pda_form = xml:InitStatic("personal_pda_form", self)
    ----------------
    -- Переменные --
    ----------------
    self.equipments_section = {}
    self:set_pda_section(0)
-   for i = 1, get_table_lines(achievements_names) do
+   for i = 1, sgm_g.get_table_lines(achievements_names) do
       self["achievements_" .. achievements_names[i] .. "_status"] = "not_to_know"
    end
    ------------------------
@@ -111,7 +111,7 @@ function personal_pda:InitControls()
    -- Строки достижений --
    -----------------------
    self:register_element(xml, "achievements_field")
-   for i = 1, get_table_lines(achievements_names) do
+   for i = 1, sgm_g.get_table_lines(achievements_names) do
       self:register_element(xml, "achievements_table_" .. achievements_names[i])
       self:register_element(xml, "achievements_icon_" .. achievements_names[i])
       self:register_element(xml, "achievements_name_" .. achievements_names[i])
@@ -138,7 +138,7 @@ function personal_pda:InitControls()
    self:register_check(xml, "diplomatia_agreement_check_enemy", sgm_functions.info_get_boolean("agreement_check_enemy"))
    self:register_element(xml, "diplomatia_check_area")
    self:register_element(xml, "diplomatia_field")
-   for i = 1, get_table_lines(diplomatia_names) do
+   for i = 1, sgm_g.get_table_lines(diplomatia_names) do
       self:register_button(xml, "diplomatia_button_t_" .. diplomatia_names[i])
       self:register_element(xml, "diplomatia_table_" .. diplomatia_names[i])
       self:register_element(xml, "diplomatia_logo_" .. diplomatia_names[i])
@@ -202,7 +202,7 @@ function personal_pda:InitControls()
       table.insert(self.achievements_bools_2, self["achievements_table_" .. achievements_names[i]])
       table.insert(self.achievements_bools_2, self["achievements_icon_" .. achievements_names[i]])
    end
-   for i = 1, get_table_lines(diplomatia_names) do
+   for i = 1, sgm_g.get_table_lines(diplomatia_names) do
       table.insert(self.diplomatia_table, self["diplomatia_title_" .. diplomatia_names[i]])
       table.insert(self.diplomatia_table, self["diplomatia_need_title_" .. diplomatia_names[i]])
       table.insert(self.diplomatia_table, self["diplomatia_need_box_" .. diplomatia_names[i]])
@@ -228,7 +228,7 @@ function personal_pda:InitControls()
    self:register_message_box("help_box")
    self:register_message_box("diplomatia_box_fail")
    self:register_message_box("diplomatia_box_no_location")
-   for i = 1, get_table_lines(diplomatia_names) do
+   for i = 1, sgm_g.get_table_lines(diplomatia_names) do
       self:register_message_box("diplomatia_box_" .. diplomatia_names[i])
       self:register_message_box("diplomatia_box_" .. diplomatia_names[i] .. "_final")
    end
@@ -256,7 +256,7 @@ function personal_pda:InitCallBacks()
    self:AddCallback("diplomatia_box_fail", ui_events.MESSAGE_BOX_OK_CLICKED, self.diplomatia_box_fail_ok, self)
    self:AddCallback("diplomatia_box_no_location", ui_events.MESSAGE_BOX_OK_CLICKED, self.diplomatia_box_no_location_ok,
       self)
-   for i = 1, get_table_lines(diplomatia_names) do
+   for i = 1, sgm_g.get_table_lines(diplomatia_names) do
       self:AddCallback("diplomatia_button_t_" .. diplomatia_names[i], ui_events.BUTTON_CLICKED,
          self["button_t_" .. diplomatia_names[i]], self)
       self:AddCallback("diplomatia_box_" .. diplomatia_names[i], ui_events.MESSAGE_BOX_YES_CLICKED,
@@ -372,7 +372,7 @@ function personal_pda:Update()
       self.statistic_line_4_value:TextControl():SetText(string.format(math.floor(get_actor_state("toxicity_percent"))) ..
          "%")
       self.statistic_line_5_title:TextControl():SetText(game.translate_string("st_statistic_zarabotano_web_money"))
-      self.statistic_line_5_value:TextControl():SetText(math.floor(get_web_money()))
+      self.statistic_line_5_value:TextControl():SetText(math.floor(sgm_g.get_web_money()))
       self.statistic_line_6_title:TextControl():SetText(game.translate_string("st_statistic_actor_rank"))
       self.statistic_line_6_value:TextControl():SetText(sgm_g.get_actor_rank())
       self.statistic_line_7_title:TextControl():SetText(game.translate_string("st_statistic_weapon_shots"))
@@ -601,7 +601,7 @@ function personal_pda:Update()
       end
    elseif self:get_pda_section() == 4 then
       self:exclude_unnecessary_for(4)
-      for i = 1, get_table_lines(diplomatia_names) do
+      for i = 1, sgm_g.get_table_lines(diplomatia_names) do
          self["diplomatia_table_" .. diplomatia_names[i]]:Show(true)
          self["diplomatia_logo_" .. diplomatia_names[i]]:Show(true)
          self["diplomatia_title_" .. diplomatia_names[i]]:TextControl():SetText(game.translate_string(
@@ -653,26 +653,26 @@ function personal_pda:Update()
    elseif self:get_pda_section() == 6 then
       self:exclude_unnecessary_for(6)
    end
-   for i = 1, get_table_lines(achievements_names) do
+   for i = 1, sgm_g.get_table_lines(achievements_names) do
       self:change_achievement_status(achievements_names[i])
    end
 end
 
 function pda_update()
-   mod_param_set_safe("stat_taynikov")
-   mod_param_set_safe("stat_kvestov")
-   mod_param_set_safe("stat_weapon_shots")
-   mod_param_set_safe("stat_headshots")
-   mod_param_set_safe("stat_books")
-   mod_param_set_safe("stat_deserves")
-   mod_param_set_safe("stat_s_trupov")
-   mod_param_set_safe("stat_ubil_bosov")
-   mod_param_set_safe("stat_dostigeniy")
-   mod_param_set_safe("stat_medaley")
-   mod_param_set_safe("stat_guidebook")
-   mod_param_set_safe("stat_help_wounded")
-   mod_param_set_safe("stat_executed_orders")
-   mod_param_set_safe("stat_community", "no_community")
+   sgm_g.mod_param_set_safe("stat_taynikov")
+   sgm_g.mod_param_set_safe("stat_kvestov")
+   sgm_g.mod_param_set_safe("stat_weapon_shots")
+   sgm_g.mod_param_set_safe("stat_headshots")
+   sgm_g.mod_param_set_safe("stat_books")
+   sgm_g.mod_param_set_safe("stat_deserves")
+   sgm_g.mod_param_set_safe("stat_s_trupov")
+   sgm_g.mod_param_set_safe("stat_ubil_bosov")
+   sgm_g.mod_param_set_safe("stat_dostigeniy")
+   sgm_g.mod_param_set_safe("stat_medaley")
+   sgm_g.mod_param_set_safe("stat_guidebook")
+   sgm_g.mod_param_set_safe("stat_help_wounded")
+   sgm_g.mod_param_set_safe("stat_executed_orders")
+   sgm_g.mod_param_set_safe("stat_community", "no_community")
    if sgm_g.r_mod_params("bool", "disable_sgm_achievements", false) == false then
       achievements_update()
    end
@@ -938,13 +938,13 @@ function achievements_marauder_update()
 end
 
 function achievements_magnate_update()
-   local pre = get_web_money()
+   local pre = sgm_g.get_web_money()
    if pre ~= nil and pre >= 20000 and sgm_g.dont_has_alife_info("sgm_achievements_magnate") then
       give_info("sgm_achievements_magnate")
       inc_mod_param("stat_dostigeniy", 1)
       news_manager.send_tip(db.actor, "st_achievement_magnate_text", 0, "sgm_achievement_magnate", 10000, nil,
          "st_achievement_tip_title")
-      write_mod_param("web_money_course", 125 / 100)
+      sgm_g.write_mod_param("web_money_course", 125 / 100)
    end
 end
 

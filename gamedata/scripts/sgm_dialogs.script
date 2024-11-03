@@ -415,7 +415,7 @@ end
 
 function zat_actor_set_bandit(actor, npc)
    db.actor:set_character_community("actor_bandit", 0, 0)
-   write_mod_param("stat_community", "actor_bandit")
+   sgm_g.write_mod_param("stat_community", "actor_bandit")
    give_info("actor_entry_in_bandit")
    disable_info("actor_entry_in_rasvet")
    disable_info("actor_entry_in_monolith")
@@ -428,7 +428,7 @@ end
 
 function zat_actor_exit_bandit(actor, npc)
    db.actor:set_character_community("actor", 0, 0)
-   write_mod_param("stat_community", "no_community")
+   sgm_g.write_mod_param("stat_community", "no_community")
    disable_info("actor_entry_in_bandit")
    disable_info("actor_entry_in_rasvet")
    disable_info("actor_entry_in_monolith")
@@ -741,7 +741,7 @@ end
 
 function jup_actor_set_rasvet(actor, npc)
    db.actor:set_character_community("actor_rasvet", 0, 0)
-   write_mod_param("stat_community", "actor_rasvet")
+   sgm_g.write_mod_param("stat_community", "actor_rasvet")
    disable_info("jup_rasvet_base_actor_hit")
    disable_info("jup_rasvet_base_hit")
    create_base_treasure("jup_rasvet_base_treasure", -346.514, 3.733, 412.493, 130860, 435)
@@ -759,7 +759,7 @@ end
 
 function jup_actor_exit_rasvet(actor, npc)
    db.actor:set_character_community("actor", 0, 0)
-   write_mod_param("stat_community", "no_community")
+   sgm_g.write_mod_param("stat_community", "no_community")
    disable_info("actor_entry_in_bandit")
    disable_info("actor_entry_in_rasvet")
    disable_info("actor_entry_in_monolith")
@@ -905,7 +905,7 @@ end
 
 function jup_actor_set_killer(actor, npc)
    db.actor:set_character_community("actor_killer", 0, 0)
-   write_mod_param("stat_community", "actor_killer")
+   sgm_g.write_mod_param("stat_community", "actor_killer")
    disable_info("jup_killer_base_actor_hit")
    disable_info("actor_entry_in_bandit")
    disable_info("actor_entry_in_rasvet")
@@ -918,7 +918,7 @@ end
 
 function jup_actor_exit_killer(actor, npc)
    db.actor:set_character_community("actor", 0, 0)
-   write_mod_param("stat_community", "no_community")
+   sgm_g.write_mod_param("stat_community", "no_community")
    disable_info("actor_entry_in_bandit")
    disable_info("actor_entry_in_rasvet")
    disable_info("actor_entry_in_monolith")
@@ -929,7 +929,7 @@ end
 
 function jup_actor_set_freedom(actor, npc)
    db.actor:set_character_community("actor_freedom", 0, 0)
-   write_mod_param("stat_community", "actor_freedom")
+   sgm_g.write_mod_param("stat_community", "actor_freedom")
    give_info("actor_entry_in_freedom")
    disable_info("actor_entry_in_rasvet")
    disable_info("actor_entry_in_monolith")
@@ -944,7 +944,7 @@ end
 
 function jup_actor_set_dolg(actor, npc)
    db.actor:set_character_community("actor_dolg", 0, 0)
-   write_mod_param("stat_community", "actor_dolg")
+   sgm_g.write_mod_param("stat_community", "actor_dolg")
    give_info("actor_entry_in_dolg")
    disable_info("actor_entry_in_rasvet")
    disable_info("actor_entry_in_monolith")
@@ -959,7 +959,7 @@ end
 
 function jup_actor_exit_dolg(actor, npc)
    db.actor:set_character_community("actor", 0, 0)
-   write_mod_param("stat_community", "no_community")
+   sgm_g.write_mod_param("stat_community", "no_community")
    disable_info("actor_entry_in_bandit")
    disable_info("actor_entry_in_rasvet")
    disable_info("actor_entry_in_monolith")
@@ -970,7 +970,7 @@ end
 
 function jup_actor_exit_freedom(actor, npc)
    db.actor:set_character_community("actor", 0, 0)
-   write_mod_param("stat_community", "no_community")
+   sgm_g.write_mod_param("stat_community", "no_community")
    disable_info("actor_entry_in_bandit")
    disable_info("actor_entry_in_rasvet")
    disable_info("actor_entry_in_monolith")
@@ -1222,7 +1222,7 @@ function pri_kill_kasilov_reward(actor, npc)
    give_skill_book()
    dialogs.relocate_money(npc, r_quest_params("number", "pri_deliver_monolith_reward_cell5", 5000), "in")
    db.actor:set_character_community("actor_monolit", 0, 0)
-   write_mod_param("stat_community", "actor_monolit")
+   sgm_g.write_mod_param("stat_community", "actor_monolit")
    disable_info("actor_entry_in_bandit")
    disable_info("actor_entry_in_rasvet")
    disable_info("actor_entry_in_killer")
@@ -1236,7 +1236,7 @@ end
 
 function pri_actor_exit_monolith(actor, npc)
    db.actor:set_character_community("actor", 0, 0)
-   write_mod_param("stat_community", "no_community")
+   sgm_g.write_mod_param("stat_community", "no_community")
    disable_info("actor_entry_in_bandit")
    disable_info("actor_entry_in_rasvet")
    disable_info("actor_entry_in_monolith")
@@ -1391,7 +1391,7 @@ end
 function pri_signaller_toolkit_1_reward(actor, npc)
    dialogs.relocate_money(npc, 2000, "in")
    if sgm_g.read_mod_param("pri_mechanic_stripping") ~= nil then
-      write_mod_param("pri_mechanic_stripping", sgm_g.read_mod_param("pri_mechanic_stripping") + 1)
+      sgm_g.write_mod_param("pri_mechanic_stripping", sgm_g.read_mod_param("pri_mechanic_stripping") + 1)
    end
 end
 
@@ -1406,7 +1406,7 @@ end
 function pri_signaller_toolkit_2_reward(actor, npc)
    dialogs.relocate_money(npc, 3200, "in")
    if sgm_g.read_mod_param("pri_mechanic_stripping") ~= nil then
-      write_mod_param("pri_mechanic_stripping", sgm_g.read_mod_param("pri_mechanic_stripping") + 3)
+      sgm_g.write_mod_param("pri_mechanic_stripping", sgm_g.read_mod_param("pri_mechanic_stripping") + 3)
    end
 end
 
@@ -1429,7 +1429,7 @@ function pri_fenix_vendetta_give_reward(actor, npc)
 end
 
 function val_shade_of_time(actor, npc)
-   start_game_timer("val_shade_of_time", 3)
+   sgm_g.start_game_timer("val_shade_of_time", 3)
 end
 
 function val_first_coming_valley_spawn(actor, npc)
@@ -1463,9 +1463,9 @@ end
 function val_assault_factory_spawn(actor, npc)
    create_force("val_a2_snork_squad", "val_monster_burrow_2")
    create_force("val_a6_snork_squad", "val_monster_burrow_6")
-   write_mod_param("val_assault_factory_stalker_counts", 7)
-   write_mod_param("val_assault_factory_cover_1_done", 0)
-   write_mod_param("val_assault_factory_cover_2_done", 0)
+   sgm_g.write_mod_param("val_assault_factory_stalker_counts", 7)
+   sgm_g.write_mod_param("val_assault_factory_cover_1_done", 0)
+   sgm_g.write_mod_param("val_assault_factory_cover_2_done", 0)
    create("val_b2_assault_b1_commander", -57.065, 0.063, -473.439, 105145, 1076)
    create("val_b2_assault_b1_soldier_1", -60.007, -0.035, -467.341, 101622, 1076)
    create("val_b2_assault_b1_soldier_2", -61.131, 0.156, -476.030, 100745, 1076)
@@ -2004,7 +2004,7 @@ end
 
 function jup_find_gromoboy_vintar(actor, npc)
    create("jup_monolith_thief", -335.597, 1.494, 263.818, 149065, 380)
-   create_dead_body("monolith_dead_body_2", nil, 389.342, 0.600, 321.431, 1330578, 351)
+   sgm_g.create_dead_body("monolith_dead_body_2", nil, 389.342, 0.600, 321.431, 1330578, 351)
    add_task("sgm_jup_find_gromoboy_vintar")
 end
 
@@ -2037,7 +2037,7 @@ function jup_destroy_night_killers(actor, npc)
 end
 
 function jup_follow_scientists(actor, npc)
-   write_mod_param("jup_fw_scientists_deaths", 0)
+   sgm_g.write_mod_param("jup_fw_scientists_deaths", 0)
    create("jup_mine_zombied_1", -45.294, 23.780, -335.701, 642480, 326)
    create("jup_mine_zombied_2", -77.302, 23.883, -33.869, 591810, 481)
    create("jup_mine_zombied_3", -98.973, 24.025, -330.878, 555829, 467)
@@ -2444,14 +2444,15 @@ end
 ------------------------------------------------------------------------------
 function start_minigame_21_point(actor, npc)
    local enemy_name = who_is_npc(actor, npc)
-   run_dynamic_element(ui_mod_elements.card_game_21_point(), false, true)
+   run_dynamic_element(sgm_ui_mod_elements.card_game_21_point(), false, true)
    if enemy_name ~= nil then
-      ui_mod_elements.card_game_21_enemy_name = game.translate_string(level.object_by_id(enemy_name:id()):character_name())
+      sgm_ui_mod_elements.card_game_21_enemy_name = game.translate_string(level.object_by_id(enemy_name:id())
+      :character_name())
    end
 end
 
 function start_question_game(actor, npc)
-   run_dynamic_element(ui_mod_elements.question_game(), false, true)
+   run_dynamic_element(sgm_ui_mod_elements.question_game(), false, true)
 end
 
 ------------------------------------------------------------------------------
@@ -2766,7 +2767,7 @@ end
 
 function bankir_capital_add(npc, val)
    local currert = sgm_g.read_mod_param("bankir_capital_cash")
-   write_mod_param("bankir_capital_cash", currert + val)
+   sgm_g.write_mod_param("bankir_capital_cash", currert + val)
    last_add_capital = last_add_capital + val
    dialogs.relocate_money(npc, val, "out")
 end
@@ -2830,7 +2831,7 @@ end
 function bankir_capital_convert(npc, val, perc)
    local currert = sgm_g.read_mod_param("bankir_capital_cash")
    dialogs.relocate_money(npc, val - (val * perc), "in")
-   write_mod_param("bankir_capital_cash", currert - val)
+   sgm_g.write_mod_param("bankir_capital_cash", currert - val)
 end
 
 function bankir_capital_10_convert_1000(actor, npc)
@@ -2862,13 +2863,13 @@ function bankir_capital_10_convert_all(actor, npc)
    local percent = math.floor(currert * 0.1)
    local result = currert - percent
    dialogs.relocate_money(npc, result, "in")
-   write_mod_param("bankir_capital_cash", 0)
+   sgm_g.write_mod_param("bankir_capital_cash", 0)
 end
 
 function bankir_capital_10_convert_all2(actor, npc)
    local currert = sgm_g.read_mod_param("bankir_capital_cash")
    dialogs.relocate_money(npc, currert, "in")
-   write_mod_param("bankir_capital_cash", 0)
+   sgm_g.write_mod_param("bankir_capital_cash", 0)
 end
 
 function bankir_capital_20_convert_1000(actor, npc)
@@ -2900,13 +2901,13 @@ function bankir_capital_20_convert_all(actor, npc)
    local percent = math.floor(currert * 0.2)
    local result = currert - percent
    dialogs.relocate_money(npc, result, "in")
-   write_mod_param("bankir_capital_cash", 0)
+   sgm_g.write_mod_param("bankir_capital_cash", 0)
 end
 
 function bankir_capital_20_convert_all2(actor, npc)
    local currert = sgm_g.read_mod_param("bankir_capital_cash")
    dialogs.relocate_money(npc, currert, "in")
-   write_mod_param("bankir_capital_cash", 0)
+   sgm_g.write_mod_param("bankir_capital_cash", 0)
 end
 
 ------------------------------------------------------------------------------
@@ -2971,13 +2972,13 @@ end
 
 function bankir_deposit_add(npc, val)
    local currert = sgm_g.read_mod_param("bankir_deposit_cash")
-   write_mod_param("bankir_deposit_cash", currert + val)
+   sgm_g.write_mod_param("bankir_deposit_cash", currert + val)
    dialogs.relocate_money(npc, val, "out")
    local currert3 = sgm_g.read_mod_param("bankir_deposit_passed_time")
    if currert3 == level.get_time_days() then
-      write_mod_param("bankir_deposit_passed_time", level.get_time_days() + 1)
+      sgm_g.write_mod_param("bankir_deposit_passed_time", level.get_time_days() + 1)
    elseif currert3 ~= level.get_time_days() then
-      write_mod_param("bankir_deposit_passed_time", level.get_time_days() + 1)
+      sgm_g.write_mod_param("bankir_deposit_passed_time", level.get_time_days() + 1)
    end
 end
 
@@ -3024,14 +3025,14 @@ end
 function bankir_deposit_convert_percent(actor, npc)
    local percent = sgm_g.read_mod_param("bankir_deposit_percent")
    dialogs.relocate_money(npc, percent, "in")
-   write_mod_param("bankir_deposit_percent", 0)
+   sgm_g.write_mod_param("bankir_deposit_percent", 0)
 end
 
 function bankir_deposit_convert_all(actor, npc)
    local currert = sgm_g.read_mod_param("bankir_deposit_cash")
    dialogs.relocate_money(npc, currert, "in")
-   write_mod_param("bankir_deposit_cash", 0)
-   write_mod_param("bankir_deposit_percent", 0)
+   sgm_g.write_mod_param("bankir_deposit_cash", 0)
+   sgm_g.write_mod_param("bankir_deposit_percent", 0)
 end
 
 ------------------------------------------------------------------------------
@@ -6174,9 +6175,9 @@ function reveal_toolkit(section, new)
       if obj and reveal_step == 0 then
          if obj:section_name() ~= nil and sgm_g.find_in_string(obj:section_name(), section) and ((new == false and find_out_string(obj:section_name(), "signaller")) or new == true) and level.map_has_object_spot(obj.id, sgm_flags.spot_toolkit_place) == 0 and (level.object_by_id(obj.id) == nil or level.object_by_id(obj.id):parent() == nil) then
             if new == true then
-               add_spot_on_map(obj.id, sgm_flags.spot_toolkit_place, "st_military_instruments_name")
+               sgm_g.add_spot_on_map(obj.id, sgm_flags.spot_toolkit_place, "st_military_instruments_name")
             else
-               add_spot_on_map(obj.id, sgm_flags.spot_toolkit_place, "st_simply_instruments_name")
+               sgm_g.add_spot_on_map(obj.id, sgm_flags.spot_toolkit_place, "st_simply_instruments_name")
             end
             toolkit_level = get_level_by_game_vertex(obj.m_game_vertex_id)
             reveal_step = 1
@@ -6560,10 +6561,10 @@ function employer_setup(actor, npc)
       random_quest = math.random(1, 4)
       employer_quest = "mil_employer_" .. employer_type .. "_" .. random_quest
    end
-   local employer_target = read_string(employer_quest, "employer_target", "misc\\tasks\\tm_employer.ltx")
-   write_mod_param("employer_currert_quest", employer_quest)
-   write_mod_param("employer_currert_target", employer_target)
-   write_mod_param("employer_currert_type", employer_type)
+   local employer_target = sgm_g.read_string(employer_quest, "employer_target", "misc\\tasks\\tm_employer.ltx")
+   sgm_g.write_mod_param("employer_currert_quest", employer_quest)
+   sgm_g.write_mod_param("employer_currert_target", employer_target)
+   sgm_g.write_mod_param("employer_currert_type", employer_type)
 end
 
 function employer_deliver_quest(actor, npc)
@@ -6574,11 +6575,11 @@ function employer_deliver_quest(actor, npc)
    --/create_inventory_item(sgm_g.read_mod_param("employer_currert_target"),"default_inventory_box",tonumber(currert_place[1]),tonumber(currert_place[2]),tonumber(currert_place[3]),tonumber(currert_place[4]),tonumber(currert_place[5]))
    create(sgm_g.read_mod_param("employer_currert_target"), tonumber(currert_place[1]), tonumber(currert_place[2]),
       tonumber(currert_place[3]), tonumber(currert_place[4]), tonumber(currert_place[5]))
-   write_mod_param("employer_activate", "true")
+   sgm_g.write_mod_param("employer_activate", "true")
    local distance_to_target = db.actor:position():distance_to(
       vector():set(tonumber(currert_place[1]), tonumber(currert_place[2]), tonumber(currert_place[3])),
       tonumber(currert_place[4]), tonumber(currert_place[5]))
-   write_mod_param("employer_currert_distance", math.floor(distance_to_target))
+   sgm_g.write_mod_param("employer_currert_distance", math.floor(distance_to_target))
    add_task(sgm_g.read_mod_param("employer_currert_quest"))
 end
 
@@ -6694,7 +6695,7 @@ function employer_give_reward(actor, npc)
    local calculate_reward = reward_main + reward_bonus
    dialogs.relocate_money(npc, math.floor(calculate_reward), "in")
    give_info("employer_" .. sgm_g.read_mod_param("employer_currert_type") .. "_reward")
-   start_game_timer("employer_break_timer", break_timer)
+   sgm_g.start_game_timer("employer_break_timer", break_timer)
 end
 
 -------------------------------------------------makdm
@@ -6938,7 +6939,7 @@ function relocate_item_section_from_actor(first_speaker, second_speaker, section
 end
 
 function medic_magic_potion(first_speaker, second_speaker)
-   write_mod_param("actor_toxicity", -1.0)
+   sgm_g.write_mod_param("actor_toxicity", -1.0)
 end
 
 function actor_needs_bless(first_speaker, second_speaker)

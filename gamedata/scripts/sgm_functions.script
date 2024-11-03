@@ -1316,9 +1316,9 @@ function relocate_web_money(num, type, with_news, show_time)
    if web_money == nil then web_money = 0 end
    if db.actor then
       if type == "in" then
-         write_mod_param("actor_web_money", web_money + num)
+         sgm_g.write_mod_param("actor_web_money", web_money + num)
       elseif type == "out" then
-         write_mod_param("actor_web_money", web_money - num)
+         sgm_g.write_mod_param("actor_web_money", web_money - num)
       end
       if with_news == nil or with_news == true then
          news_manager.relocate_web_money(db.actor, type, num, show_time)
@@ -1483,11 +1483,11 @@ function check_section_comma(ini, section, line, def_val, count)
    local d_value = ""
    if def_val == nil then d_value = nil else d_value = def_val end
    if ini == nil then
-      return parse_comma_names(section, line, true)
+      return sgm_g.parse_comma_names(section, line, true)
    end
    local p_line = sgm_functions.cfg_get_string(ini, section, line, d_value)
    if p_line ~= nil then
-      return parse_comma_names(p_line, count, true)
+      return sgm_g.parse_comma_names(p_line, count, true)
    else
       return nil
    end

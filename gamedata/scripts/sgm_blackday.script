@@ -22,13 +22,13 @@ function CBlackDay:update()
    if sgm_g.read_mod_param("blackday_main_timer") then
       local blackday_stage = sgm_g.read_mod_param("blackday_stage")
       --/self:show_blackday_info()
-      if blackday_stage == "step_end" and check_game_timer("blackday_main_timer") then
+      if blackday_stage == "step_end" and sgm_g.check_game_timer("blackday_main_timer") then
          self:blackday_start()
       end
-      if blackday_stage == "step_1" and check_blackday_precond() == true then
+      if blackday_stage == "step_1" and sgm_g.check_blackday_precond() == true then
          self:blackday_preparate()
       end
-      if blackday_stage == "step_2" and check_game_timer("blackday_length_timer") and check_blackday_precond() == true then
+      if blackday_stage == "step_2" and sgm_g.check_game_timer("blackday_length_timer") and sgm_g.check_blackday_precond() == true then
          self:blackday_end()
       end
       if has_alife_info("blackday_is_active") and has_alife_info("vibros_is_active") then
@@ -40,34 +40,38 @@ end
 
 function CBlackDay:blackday_start()
    if sgm_g.find_in_string(level.get_weather(), "default") then
-      if has_alife_info("opt_deactivate_blackday") or check_blackday_precond() == false then
-         start_game_timer("blackday_main_timer", math.random(get_blackday_frequency(1), get_blackday_frequency(2)))
+      if has_alife_info("opt_deactivate_blackday") or sgm_g.check_blackday_precond() == false then
+         sgm_g.start_game_timer("blackday_main_timer",
+            math.random(sgm_g.get_blackday_frequency(1), sgm_g.get_blackday_frequency(2)))
       elseif present_night() then
-         start_game_timer("blackday_main_timer",
-            math.random(get_blackday_frequency(1, "night"), get_blackday_frequency(2, "night")))
+         sgm_g.start_game_timer("blackday_main_timer",
+            math.random(sgm_g.get_blackday_frequency(1, "night"), sgm_g.get_blackday_frequency(2, "night")))
       elseif sgm_g.dont_has_alife_info("vibros_is_active") then
          self:blackday_weather_start()
-         write_mod_param("blackday_stage", "step_1")
-         start_game_timer("blackday_length_timer", self.blackday_duration)
+         sgm_g.write_mod_param("blackday_stage", "step_1")
+         sgm_g.start_game_timer("blackday_length_timer", self.blackday_duration)
          give_info("blackday_is_active")
       else
-         start_game_timer("blackday_main_timer", math.random(get_blackday_frequency(1), get_blackday_frequency(2)))
+         sgm_g.start_game_timer("blackday_main_timer",
+            math.random(sgm_g.get_blackday_frequency(1), sgm_g.get_blackday_frequency(2)))
       end
    else
-      start_game_timer("blackday_main_timer", math.random(get_blackday_frequency(1), get_blackday_frequency(2)))
+      sgm_g.start_game_timer("blackday_main_timer",
+         math.random(sgm_g.get_blackday_frequency(1), sgm_g.get_blackday_frequency(2)))
    end
 end
 
 function CBlackDay:blackday_preparate()
    self:blackday_weather_start()
-   write_mod_param("blackday_stage", "step_2")
+   sgm_g.write_mod_param("blackday_stage", "step_2")
    sgm_callbacks.on_black_day_began()
 end
 
 function CBlackDay:blackday_end()
    self:blackday_weather_end()
-   write_mod_param("blackday_stage", "step_end")
-   start_game_timer("blackday_main_timer", math.random(get_blackday_frequency(1), get_blackday_frequency(2)))
+   sgm_g.write_mod_param("blackday_stage", "step_end")
+   sgm_g.start_game_timer("blackday_main_timer",
+      math.random(sgm_g.get_blackday_frequency(1), sgm_g.get_blackday_frequency(2)))
    abort_game_timer("blackday_length_timer")
    disable_info("blackday_is_active")
    self:blackday_birth()
@@ -75,8 +79,9 @@ function CBlackDay:blackday_end()
 end
 
 function CBlackDay:blackday_abort()
-   write_mod_param("blackday_stage", "step_end")
-   start_game_timer("blackday_main_timer", math.random(get_blackday_frequency(1), get_blackday_frequency(2)))
+   sgm_g.write_mod_param("blackday_stage", "step_end")
+   sgm_g.start_game_timer("blackday_main_timer",
+      math.random(sgm_g.get_blackday_frequency(1), sgm_g.get_blackday_frequency(2)))
    abort_game_timer("blackday_length_timer")
    disable_info("blackday_is_active")
    self:blackday_birth()
@@ -84,8 +89,8 @@ function CBlackDay:blackday_abort()
 end
 
 function CBlackDay:blackday_safe(blackday_stage)
-   if check_blackday_precond() == false and blackday_stage ~= "step_end" then
-      write_mod_param("blackday_stage", "step_end")
+   if sgm_g.check_blackday_precond() == false and blackday_stage ~= "step_end" then
+      sgm_g.write_mod_param("blackday_stage", "step_end")
    end
 end
 
@@ -107,7 +112,7 @@ end
 
 function CBlackDay:blackday_birth()
    local ltx_ini = system_ini()
-   if check_blackday_precond() then
+   if sgm_g.check_blackday_precond() then
       local g_artefacts = sgm_functions.cfg_get_string(self.ini, self.birth_section, "artefacts", nil)
       local g_probability = to_number(sgm_functions.check_section_condlist(self.ini, self.birth_section, "probability",
          0.0))
@@ -120,7 +125,7 @@ function CBlackDay:blackday_birth()
             "point_" .. g_random_point, nil, 5)
          local g_selected_probability = g_probability * 100
          if math.random(100) <= g_selected_probability then
-            local g_artefact = get_random_line(g_artefacts)
+            local g_artefact = sgm_g.get_random_line(g_artefacts)
             create(g_artefact, tonumber(g_selected_point[1]), tonumber(g_selected_point[2]),
                tonumber(g_selected_point[3]), tonumber(g_selected_point[4]), tonumber(g_selected_point[5]))
          end
@@ -145,7 +150,7 @@ end
 function CBlackDay:show_blackday_info()
    show_hud_message("real=" ..
       get_general_game_time() ..
-      "|target_time=" .. check_game_timer("blackday_main_timer", true) .. "|weather=" .. level.get_weather())
+      "|target_time=" .. sgm_g.check_game_timer("blackday_main_timer", true) .. "|weather=" .. level.get_weather())
 end
 
 function get_black_day()

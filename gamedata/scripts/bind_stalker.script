@@ -550,12 +550,15 @@ end
 
 -- Weapon functions
 function hide_weapon(zone_id)
-	printf("[WEAPON_CONTROL]:hiding weapon from zone [%s] in section [%s]!!!", zone_id, db.storage[zone_id].active_section)
+	-- if db.storage[zone_id] == nil then
+	-- 	sgm_g.abort("zone_id [%s] not found!", zone_id)
+	-- end
+	-- printf("[WEAPON_CONTROL]:hiding weapon from zone [%s] in section [%s]!!!", zone_id, db.storage[zone_id].active_section)
 	weapon_hide[zone_id] = true
 end
 
 function restore_weapon(zone_id)
-	printf("[WEAPON_CONTROL]:restoring weapon from zone [%s] in section [%s]!!!", zone_id, db.storage[zone_id].active_section)
+	-- printf("[WEAPON_CONTROL]:restoring weapon from zone [%s] in section [%s]!!!", zone_id, db.storage[zone_id].active_section)
 	weapon_hide[zone_id] = false
 end
 

@@ -1,10 +1,10 @@
 ---==================================================================================================---
 --------------------------------------------------------------------------------------------------------
-----------------------------------------(ƒËÌ‡ÏË˜ÂÒÍËÂ ÓÍÌ‡)---------------------------------------------
+----------------------------------------(–î–∏–Ω–∞–º–∏—á–µ—Å–∫–∏–µ –æ–∫–Ω–∞)---------------------------------------------
 --------------------------------------------------------------------------------------------------------
 ---==================================================================================================---
 ------------------------------------------------------------------------------
---                                 Ãœ-3 ÔÎÂÂ                               --
+--                                 –ú–ü-3 –ø–ª–µ–µ—Ä                               --
 ------------------------------------------------------------------------------
 local mp3_obj
 local mp3_info = ""
@@ -15,310 +15,310 @@ local mp3_played_list = nil
 local mp3_player_section = 1
 mp3_length_position, mp3_last_position, mp3_plays = 0, 0, nil
 local mp3_table_merry = {
-   { sound = [[¬ÂÒÂÎ‡ˇ\“ÂÍ_1]], title = "ƒÓÓÊÍ‡ 1", author = "ÀÂÌËÌ„‡‰ - ¿„ÂÌÚ 007", id = 1 },
-   { sound = [[¬ÂÒÂÎ‡ˇ\“ÂÍ_2]], title = "ƒÓÓÊÍ‡ 2", author = "-",                     id = 2 },
-   { sound = [[¬ÂÒÂÎ‡ˇ\“ÂÍ_3]], title = "ƒÓÓÊÍ‡ 3", author = "-",                     id = 3 },
-   { sound = [[¬ÂÒÂÎ‡ˇ\“ÂÍ_4]], title = "ƒÓÓÊÍ‡ 4", author = "-",                     id = 4 },
-   { sound = [[¬ÂÒÂÎ‡ˇ\“ÂÍ_5]], title = "ƒÓÓÊÍ‡ 5", author = "-",                     id = 5 },
-   { sound = [[¬ÂÒÂÎ‡ˇ\“ÂÍ_6]], title = "ƒÓÓÊÍ‡ 6", author = "-",                     id = 6 },
-   { sound = [[¬ÂÒÂÎ‡ˇ\“ÂÍ_7]], title = "ƒÓÓÊÍ‡ 7", author = "-",                     id = 7 },
-   { sound = [[¬ÂÒÂÎ‡ˇ\“ÂÍ_8]], title = "ƒÓÓÊÍ‡ 8", author = "Chakaron - El Mudo",    id = 8 }
+   { sound = [[–í–µ—Å–µ–ª–∞—è\–¢—Ä–µ–∫_1]], title = "–î–æ—Ä–æ–∂–∫–∞ 1", author = "–õ–µ–Ω–∏–Ω–≥—Ä–∞–¥ - –ê–≥–µ–Ω—Ç 007", id = 1 },
+   { sound = [[–í–µ—Å–µ–ª–∞—è\–¢—Ä–µ–∫_2]], title = "–î–æ—Ä–æ–∂–∫–∞ 2", author = "-", id = 2 },
+   { sound = [[–í–µ—Å–µ–ª–∞—è\–¢—Ä–µ–∫_3]], title = "–î–æ—Ä–æ–∂–∫–∞ 3", author = "-", id = 3 },
+   { sound = [[–í–µ—Å–µ–ª–∞—è\–¢—Ä–µ–∫_4]], title = "–î–æ—Ä–æ–∂–∫–∞ 4", author = "-", id = 4 },
+   { sound = [[–í–µ—Å–µ–ª–∞—è\–¢—Ä–µ–∫_5]], title = "–î–æ—Ä–æ–∂–∫–∞ 5", author = "-", id = 5 },
+   { sound = [[–í–µ—Å–µ–ª–∞—è\–¢—Ä–µ–∫_6]], title = "–î–æ—Ä–æ–∂–∫–∞ 6", author = "-", id = 6 },
+   { sound = [[–í–µ—Å–µ–ª–∞—è\–¢—Ä–µ–∫_7]], title = "–î–æ—Ä–æ–∂–∫–∞ 7", author = "-", id = 7 },
+   { sound = [[–í–µ—Å–µ–ª–∞—è\–¢—Ä–µ–∫_8]], title = "–î–æ—Ä–æ–∂–∫–∞ 8", author = "Chakaron - El Mudo", id = 8 }
 }
 local mp3_table_dance = {
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_1]],   title = "ƒÓÓÊÍ‡ 1",   author = "Fatboy Slim - Weapon Of Choice 2010",                                 id = 1 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_2]],   title = "ƒÓÓÊÍ‡ 2",   author = "The Prodigy - Omen",                                                  id = 2 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_3]],   title = "ƒÓÓÊÍ‡ 3",   author = "-",                                                                   id = 3 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_4]],   title = "ƒÓÓÊÍ‡ 4",   author = "Dj Winner - Electro zhest",                                           id = 4 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_5]],   title = "ƒÓÓÊÍ‡ 5",   author = "Dj Xeon - Sweet Pill's 4",                                            id = 5 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_6]],   title = "ƒÓÓÊÍ‡ 6",   author = "DJ Romantic & Andi Vax - I Feel You",                                 id = 6 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_7]],   title = "ƒÓÓÊÍ‡ 7",   author = "-",                                                                   id = 7 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_8]],   title = "ƒÓÓÊÍ‡ 8",   author = "-",                                                                   id = 8 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_9]],   title = "ƒÓÓÊÍ‡ 9",   author = "Bald Bros feat Levie - Love in Redlight",                             id = 9 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_10]],  title = "ƒÓÓÊÍ‡ 10",  author = "-",                                                                   id = 10 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_11]],  title = "ƒÓÓÊÍ‡ 11",  author = "-",                                                                   id = 11 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_12]],  title = "ƒÓÓÊÍ‡ 12",  author = "-",                                                                   id = 12 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_13]],  title = "ƒÓÓÊÍ‡ 13",  author = "-",                                                                   id = 13 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_14]],  title = "ƒÓÓÊÍ‡ 14",  author = "Antoine Clamaran - Gold",                                             id = 14 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_15]],  title = "ƒÓÓÊÍ‡ 15",  author = "-",                                                                   id = 15 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_16]],  title = "ƒÓÓÊÍ‡ 16",  author = "Fragma - Forever and a day",                                          id = 16 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_17]],  title = "ƒÓÓÊÍ‡ 17",  author = "-",                                                                   id = 17 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_18]],  title = "ƒÓÓÊÍ‡ 18",  author = "Max Creative & DJ Cross - Rock This",                                 id = 18 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_19]],  title = "ƒÓÓÊÍ‡ 19",  author = "—Ï˚ÒÎÓ‚˚Â „‡ÎÎ˛ˆËÌ‡ˆËË - ¬Â˜ÌÓ ÏÓÎÓ‰ÓÈ",                              id = 19 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_20]],  title = "ƒÓÓÊÍ‡ 20",  author = "-",                                                                   id = 20 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_21]],  title = "ƒÓÓÊÍ‡ 21",  author = "Klaas - Feel The Love",                                               id = 21 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_22]],  title = "ƒÓÓÊÍ‡ 22",  author = "-",                                                                   id = 22 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_23]],  title = "ƒÓÓÊÍ‡ 23",  author = "-",                                                                   id = 23 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_24]],  title = "ƒÓÓÊÍ‡ 24",  author = "Denis The Menace - Show Me A Reason",                                 id = 24 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_25]],  title = "ƒÓÓÊÍ‡ 25",  author = "Serge Devant - Take Me With You",                                     id = 25 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_26]],  title = "ƒÓÓÊÍ‡ 26",  author = "Serge Devant - Addicted",                                             id = 26 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_27]],  title = "ƒÓÓÊÍ‡ 27",  author = "Chase And Status Feat. Plan B - End Credits",                         id = 27 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_28]],  title = "ƒÓÓÊÍ‡ 28",  author = "Promodj - Only for you mix",                                          id = 28 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_29]],  title = "ƒÓÓÊÍ‡ 29",  author = "Stromae - Alors on Danse",                                            id = 29 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_30]],  title = "ƒÓÓÊÍ‡ 30",  author = "-",                                                                   id = 30 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_31]],  title = "ƒÓÓÊÍ‡ 31",  author = "Laselva Feat Charlotte Spink - Take Me Away",                         id = 31 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_32]],  title = "ƒÓÓÊÍ‡ 32",  author = "-",                                                                   id = 32 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_33]],  title = "ƒÓÓÊÍ‡ 33",  author = "-",                                                                   id = 33 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_34]],  title = "ƒÓÓÊÍ‡ 34",  author = "-",                                                                   id = 34 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_35]],  title = "ƒÓÓÊÍ‡ 35",  author = "-",                                                                   id = 35 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_36]],  title = "ƒÓÓÊÍ‡ 36",  author = "Sonique - Sky",                                                       id = 36 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_37]],  title = "ƒÓÓÊÍ‡ 37",  author = "-",                                                                   id = 37 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_38]],  title = "ƒÓÓÊÍ‡ 38",  author = "-",                                                                   id = 38 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_39]],  title = "ƒÓÓÊÍ‡ 39",  author = "-",                                                                   id = 39 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_40]],  title = "ƒÓÓÊÍ‡ 40",  author = "-",                                                                   id = 40 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_41]],  title = "ƒÓÓÊÍ‡ 41",  author = "-",                                                                   id = 41 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_42]],  title = "ƒÓÓÊÍ‡ 42",  author = "-",                                                                   id = 42 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_43]],  title = "ƒÓÓÊÍ‡ 43",  author = "-",                                                                   id = 43 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_44]],  title = "ƒÓÓÊÍ‡ 44",  author = "-",                                                                   id = 44 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_45]],  title = "ƒÓÓÊÍ‡ 45",  author = "-",                                                                   id = 45 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_46]],  title = "ƒÓÓÊÍ‡ 46",  author = "-",                                                                   id = 46 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_47]],  title = "ƒÓÓÊÍ‡ 47",  author = "-",                                                                   id = 47 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_48]],  title = "ƒÓÓÊÍ‡ 48",  author = "-",                                                                   id = 48 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_49]],  title = "ƒÓÓÊÍ‡ 49",  author = "Tiesto - In The Dark",                                                id = 49 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_50]],  title = "ƒÓÓÊÍ‡ 50",  author = "DVJ Bazuka - Saw",                                                    id = 50 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_51]],  title = "ƒÓÓÊÍ‡ 51",  author = "DVJ Bazuka - Slipin Away",                                            id = 51 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_52]],  title = "ƒÓÓÊÍ‡ 52",  author = "-",                                                                   id = 52 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_53]],  title = "ƒÓÓÊÍ‡ 53",  author = "-",                                                                   id = 53 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_54]],  title = "ƒÓÓÊÍ‡ 54",  author = "-",                                                                   id = 54 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_55]],  title = "ƒÓÓÊÍ‡ 55",  author = "-",                                                                   id = 55 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_56]],  title = "ƒÓÓÊÍ‡ 56",  author = "Dj Natasha Rostova - 17-01-2009",                                     id = 56 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_57]],  title = "ƒÓÓÊÍ‡ 57",  author = "Marcel Woods - Tomorrow",                                             id = 57 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_58]],  title = "ƒÓÓÊÍ‡ 58",  author = "Sultan & Ned Shepard feat Dirty Vegas - Crimson Sun",                 id = 58 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_59]],  title = "ƒÓÓÊÍ‡ 59",  author = "Armin Van Buuren feat. sophie Ellis Bextor - not giving up on loves", id = 59 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_60]],  title = "ƒÓÓÊÍ‡ 60",  author = "David Guetta - love dont let me go",                                  id = 60 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_61]],  title = "ƒÓÓÊÍ‡ 61",  author = "David Guetta - the world is mine",                                    id = 61 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_62]],  title = "ƒÓÓÊÍ‡ 62",  author = "David Guetta - winner of the game",                                   id = 62 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_63]],  title = "ƒÓÓÊÍ‡ 63",  author = "Dj Kaffein - Follow Me",                                              id = 63 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_64]],  title = "ƒÓÓÊÍ‡ 64",  author = "Moonbeam & Marrow Dojah - Insincere",                                 id = 64 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_65]],  title = "ƒÓÓÊÍ‡ 65",  author = "Moonbeam - 7 seconds",                                                id = 65 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_66]],  title = "ƒÓÓÊÍ‡ 66",  author = "Moonbeam - i love mornings extended mix",                             id = 66 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_67]],  title = "ƒÓÓÊÍ‡ 67",  author = "Smart Apes - One Day You Won't See The Sunrise",                      id = 67 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_68]],  title = "ƒÓÓÊÍ‡ 68",  author = "Tiga - you gonna want me",                                            id = 68 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_69]],  title = "ƒÓÓÊÍ‡ 69",  author = "-",                                                                   id = 69 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_70]],  title = "ƒÓÓÊÍ‡ 70",  author = "Underworld - Always Loved A Film",                                    id = 70 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_71]],  title = "ƒÓÓÊÍ‡ 71",  author = "AnnaGrace - Don't Let Go",                                            id = 71 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_72]],  title = "ƒÓÓÊÍ‡ 72",  author = "AnnaGrace - You Do Want Me",                                          id = 72 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_73]],  title = "ƒÓÓÊÍ‡ 73",  author = "Sgt Slick - Like This",                                               id = 73 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_74]],  title = "ƒÓÓÊÍ‡ 74",  author = "Paul Johns Feat. Umberto Tabbi - Ciao Siciliano",                     id = 74 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_75]],  title = "ƒÓÓÊÍ‡ 75",  author = "TV Rock & Zoe Badwi -  Release Me",                                   id = 75 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_76]],  title = "ƒÓÓÊÍ‡ 76",  author = "Schiller feat. September - Breathe",                                  id = 76 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_77]],  title = "ƒÓÓÊÍ‡ 77",  author = "Maurizio Inzaghi - Searching For Love",                               id = 77 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_78]],  title = "ƒÓÓÊÍ‡ 78",  author = "Supermode - Tell Me Why 2009",                                        id = 78 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_79]],  title = "ƒÓÓÊÍ‡ 79",  author = "Annagrace - You Make Me Feel",                                        id = 79 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_80]],  title = "ƒÓÓÊÍ‡ 80",  author = "Moby - Disco Lies",                                                   id = 80 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_81]],  title = "ƒÓÓÊÍ‡ 81",  author = "Roger Sanchez - Not Enough",                                          id = 81 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_82]],  title = "ƒÓÓÊÍ‡ 82",  author = "A.G.Trio - Jungle",                                                   id = 82 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_83]],  title = "ƒÓÓÊÍ‡ 83",  author = "Blank & Jones - Miracle Cure",                                        id = 83 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_84]],  title = "ƒÓÓÊÍ‡ 84",  author = "Everything But The Girls - Missing",                                  id = 84 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_85]],  title = "ƒÓÓÊÍ‡ 85",  author = "Fukkk Offf - Brain Rock",                                             id = 85 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_86]],  title = "ƒÓÓÊÍ‡ 86",  author = "Michael Jackson - Who Is It",                                         id = 86 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_87]],  title = "ƒÓÓÊÍ‡ 87",  author = "-",                                                                   id = 87 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_88]],  title = "ƒÓÓÊÍ‡ 88",  author = "Jozhy & Angel - Wait For Tomorrow",                                   id = 88 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_89]],  title = "ƒÓÓÊÍ‡ 89",  author = "4 Strings - Take Me Away",                                            id = 89 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_90]],  title = "ƒÓÓÊÍ‡ 90",  author = "Lara Fabian - I Will Love Again",                                     id = 90 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_91]],  title = "ƒÓÓÊÍ‡ 91",  author = "DJ Free Pink - Please Dont Leave",                                    id = 91 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_92]],  title = "ƒÓÓÊÍ‡ 92",  author = "Eurythmics - Sweet Dreams",                                           id = 92 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_93]],  title = "ƒÓÓÊÍ‡ 93",  author = "Levi Star - Melt Inside",                                             id = 93 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_94]],  title = "ƒÓÓÊÍ‡ 94",  author = "Armin Van Buuren - Mirage",                                           id = 94 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_95]],  title = "ƒÓÓÊÍ‡ 95",  author = "Plan B - Prayin",                                                     id = 95 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_96]],  title = "ƒÓÓÊÍ‡ 96",  author = "Plan B - She Said Original",                                          id = 96 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_97]],  title = "ƒÓÓÊÍ‡ 97",  author = "Christina Aguilera - Not Myself Tonight",                             id = 97 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_98]],  title = "ƒÓÓÊÍ‡ 98",  author = "David Guetta - Love Is Gone",                                         id = 98 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_99]],  title = "ƒÓÓÊÍ‡ 99",  author = "Jaydee - Plastic Dreams",                                             id = 99 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_100]], title = "ƒÓÓÊÍ‡ 100", author = "Spencer & Hill - Dub Disco",                                          id = 100 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_101]], title = "ƒÓÓÊÍ‡ 101", author = "Eminem ft. Rihanna - Love The Way You Lie",                           id = 101 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_102]], title = "ƒÓÓÊÍ‡ 102", author = "Kato & Dj Jose & Jon - Turn the lights off",                          id = 102 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_103]], title = "ƒÓÓÊÍ‡ 103", author = "Supermode - Tell me why",                                             id = 103 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_104]], title = "ƒÓÓÊÍ‡ 104", author = "Massive Attack - Paradise Circus",                                    id = 104 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_105]], title = "ƒÓÓÊÍ‡ 105", author = "Melanie C - I Turn To You",                                           id = 105 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_106]], title = "ƒÓÓÊÍ‡ 106", author = "September - Cry For You",                                             id = 106 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_107]], title = "ƒÓÓÊÍ‡ 107", author = "Mondotek - Alive",                                                    id = 107 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_108]], title = "ƒÓÓÊÍ‡ 108", author = "Jay-Z - 99 Problems",                                                 id = 108 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_109]], title = "ƒÓÓÊÍ‡ 109", author = "Prodigy - Mescaline",                                                 id = 109 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_110]], title = "ƒÓÓÊÍ‡ 110", author = "Dj Miller - Makes Me Happy",                                          id = 110 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_111]], title = "ƒÓÓÊÍ‡ 111", author = "Britney Spears - Till The World Ends",                                id = 111 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_112]], title = "ƒÓÓÊÍ‡ 112", author = "Bobina - Invincible Touch",                                           id = 112 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_113]], title = "ƒÓÓÊÍ‡ 113", author = "Deepside Deejays - Never Be Alone Radio Edit",                        id = 113 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_114]], title = "ƒÓÓÊÍ‡ 114", author = "Ferry Corsten - Punk Arty",                                           id = 114 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_115]], title = "ƒÓÓÊÍ‡ 115", author = "Ian Carey - Redlight",                                                id = 115 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_116]], title = "ƒÓÓÊÍ‡ 116", author = "Justin Timberlake - Cry Me A River",                                  id = 116 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_117]], title = "ƒÓÓÊÍ‡ 117", author = "Katy Perry - Last Friday Night",                                      id = 117 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_118]], title = "ƒÓÓÊÍ‡ 118", author = "Lenny Kravitz - Where Are We Runnin",                                 id = 118 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_119]], title = "ƒÓÓÊÍ‡ 119", author = "Lenny Kravitz - Fly Away",                                            id = 119 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_120]], title = "ƒÓÓÊÍ‡ 120", author = "Lenny Kravitz - I Belong To You",                                     id = 120 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_121]], title = "ƒÓÓÊÍ‡ 121", author = "Lenny Kravitz - If You Cant Say No",                                  id = 121 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_122]], title = "ƒÓÓÊÍ‡ 122", author = "Lenny Kravitz - Ill Be Waiting",                                      id = 122 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_123]], title = "ƒÓÓÊÍ‡ 123", author = "Lenny Kravitz - Let Love Rule",                                       id = 123 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_124]], title = "ƒÓÓÊÍ‡ 124", author = "Lenny Kravitz - Love Love Love",                                      id = 124 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_125]], title = "ƒÓÓÊÍ‡ 125", author = "Madcon - Beggin Ost Step Up",                                         id = 125 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_126]], title = "ƒÓÓÊÍ‡ 126", author = "Martin Solveig - Jealousy",                                           id = 126 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_127]], title = "ƒÓÓÊÍ‡ 127", author = "Martin Solveig - Madan",                                              id = 127 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_128]], title = "ƒÓÓÊÍ‡ 128", author = "Martin Solveig - Rejection",                                          id = 128 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_129]], title = "ƒÓÓÊÍ‡ 129", author = "Meck - Windmills",                                                    id = 129 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_130]], title = "ƒÓÓÊÍ‡ 130", author = "Miley Cyrus - Who Owns My Heart",                                     id = 130 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_131]], title = "ƒÓÓÊÍ‡ 131", author = "Narcotic Thrust - I Like It",                                         id = 131 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_132]], title = "ƒÓÓÊÍ‡ 132", author = "Richard Durand & Ellie Lawson - Wide Awake",                          id = 132 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_133]], title = "ƒÓÓÊÍ‡ 133", author = "Rihanna - Sandm",                                                     id = 133 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_134]], title = "ƒÓÓÊÍ‡ 134", author = "Robbie Williams - Bodies",                                            id = 134 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_135]], title = "ƒÓÓÊÍ‡ 135", author = "Sandra - In The Heat Of The Night",                                   id = 135 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_136]], title = "ƒÓÓÊÍ‡ 136", author = "Techno Mafia - Openair Silence",                                      id = 136 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_137]], title = "ƒÓÓÊÍ‡ 137", author = "The Cranberries - Zombie",                                            id = 137 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_138]], title = "ƒÓÓÊÍ‡ 138", author = "-",                                                                   id = 138 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_139]], title = "ƒÓÓÊÍ‡ 139", author = "-",                                                                   id = 139 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_140]], title = "ƒÓÓÊÍ‡ 140", author = "-",                                                                   id = 140 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_141]], title = "ƒÓÓÊÍ‡ 141", author = "-",                                                                   id = 141 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_142]], title = "ƒÓÓÊÍ‡ 142", author = "-",                                                                   id = 142 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_143]], title = "ƒÓÓÊÍ‡ 143", author = "-",                                                                   id = 143 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_144]], title = "ƒÓÓÊÍ‡ 144", author = "-",                                                                   id = 144 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_145]], title = "ƒÓÓÊÍ‡ 145", author = "-",                                                                   id = 145 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_146]], title = "ƒÓÓÊÍ‡ 146", author = "-",                                                                   id = 146 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_147]], title = "ƒÓÓÊÍ‡ 147", author = "-",                                                                   id = 147 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_148]], title = "ƒÓÓÊÍ‡ 148", author = "Solid Base feat Robson - Mirror Mirror",                              id = 148 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_149]], title = "ƒÓÓÊÍ‡ 149", author = "The Kdms - Tonight",                                                  id = 149 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_150]], title = "ƒÓÓÊÍ‡ 150", author = "We Once Had An Empire",                                               id = 150 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_151]], title = "ƒÓÓÊÍ‡ 151", author = "G Spott - Sadness",                                                   id = 151 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_152]], title = "ƒÓÓÊÍ‡ 152", author = "The White Stripes - Seven Nation Army",                               id = 152 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_153]], title = "ƒÓÓÊÍ‡ 153", author = "Nero - Guilt",                                                        id = 153 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_154]], title = "ƒÓÓÊÍ‡ 154", author = "Nero - Must Be The Feeling",                                          id = 154 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_155]], title = "ƒÓÓÊÍ‡ 155", author = "Example - Changed The Way You Kiss Me",                               id = 155 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_156]], title = "ƒÓÓÊÍ‡ 156", author = "Swanky Tunes - Wanna Be Your Dog",                                    id = 156 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_157]], title = "ƒÓÓÊÍ‡ 157", author = "Michael Calfan - Resurrection",                                       id = 157 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_158]], title = "ƒÓÓÊÍ‡ 158", author = "Borshit - Neuropi",                                                   id = 158 },
-   { sound = [[ ÎÛ·Ì‡ˇ\“ÂÍ_159]], title = "ƒÓÓÊÍ‡ 159", author = "Starkillers & Alex Kenji - Pressure",                                 id = 159 }
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_1]], title = "–î–æ—Ä–æ–∂–∫–∞ 1", author = "Fatboy Slim - Weapon Of Choice 2010", id = 1 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_2]], title = "–î–æ—Ä–æ–∂–∫–∞ 2", author = "The Prodigy - Omen", id = 2 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_3]], title = "–î–æ—Ä–æ–∂–∫–∞ 3", author = "-", id = 3 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_4]], title = "–î–æ—Ä–æ–∂–∫–∞ 4", author = "Dj Winner - Electro zhest", id = 4 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_5]], title = "–î–æ—Ä–æ–∂–∫–∞ 5", author = "Dj Xeon - Sweet Pill's 4", id = 5 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_6]], title = "–î–æ—Ä–æ–∂–∫–∞ 6", author = "DJ Romantic & Andi Vax - I Feel You", id = 6 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_7]], title = "–î–æ—Ä–æ–∂–∫–∞ 7", author = "-", id = 7 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_8]], title = "–î–æ—Ä–æ–∂–∫–∞ 8", author = "-", id = 8 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_9]], title = "–î–æ—Ä–æ–∂–∫–∞ 9", author = "Bald Bros feat Levie - Love in Redlight", id = 9 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_10]], title = "–î–æ—Ä–æ–∂–∫–∞ 10", author = "-", id = 10 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_11]], title = "–î–æ—Ä–æ–∂–∫–∞ 11", author = "-", id = 11 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_12]], title = "–î–æ—Ä–æ–∂–∫–∞ 12", author = "-", id = 12 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_13]], title = "–î–æ—Ä–æ–∂–∫–∞ 13", author = "-", id = 13 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_14]], title = "–î–æ—Ä–æ–∂–∫–∞ 14", author = "Antoine Clamaran - Gold", id = 14 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_15]], title = "–î–æ—Ä–æ–∂–∫–∞ 15", author = "-", id = 15 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_16]], title = "–î–æ—Ä–æ–∂–∫–∞ 16", author = "Fragma - Forever and a day", id = 16 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_17]], title = "–î–æ—Ä–æ–∂–∫–∞ 17", author = "-", id = 17 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_18]], title = "–î–æ—Ä–æ–∂–∫–∞ 18", author = "Max Creative & DJ Cross - Rock This", id = 18 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_19]], title = "–î–æ—Ä–æ–∂–∫–∞ 19", author = "–°–º—ã—Å–ª–æ–≤—ã–µ –≥–∞–ª–ª—é—Ü–∏–Ω–∞—Ü–∏–∏ - –í–µ—á–Ω–æ –º–æ–ª–æ–¥–æ–π", id = 19 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_20]], title = "–î–æ—Ä–æ–∂–∫–∞ 20", author = "-", id = 20 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_21]], title = "–î–æ—Ä–æ–∂–∫–∞ 21", author = "Klaas - Feel The Love", id = 21 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_22]], title = "–î–æ—Ä–æ–∂–∫–∞ 22", author = "-", id = 22 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_23]], title = "–î–æ—Ä–æ–∂–∫–∞ 23", author = "-", id = 23 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_24]], title = "–î–æ—Ä–æ–∂–∫–∞ 24", author = "Denis The Menace - Show Me A Reason", id = 24 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_25]], title = "–î–æ—Ä–æ–∂–∫–∞ 25", author = "Serge Devant - Take Me With You", id = 25 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_26]], title = "–î–æ—Ä–æ–∂–∫–∞ 26", author = "Serge Devant - Addicted", id = 26 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_27]], title = "–î–æ—Ä–æ–∂–∫–∞ 27", author = "Chase And Status Feat. Plan B - End Credits", id = 27 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_28]], title = "–î–æ—Ä–æ–∂–∫–∞ 28", author = "Promodj - Only for you mix", id = 28 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_29]], title = "–î–æ—Ä–æ–∂–∫–∞ 29", author = "Stromae - Alors on Danse", id = 29 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_30]], title = "–î–æ—Ä–æ–∂–∫–∞ 30", author = "-", id = 30 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_31]], title = "–î–æ—Ä–æ–∂–∫–∞ 31", author = "Laselva Feat Charlotte Spink - Take Me Away", id = 31 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_32]], title = "–î–æ—Ä–æ–∂–∫–∞ 32", author = "-", id = 32 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_33]], title = "–î–æ—Ä–æ–∂–∫–∞ 33", author = "-", id = 33 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_34]], title = "–î–æ—Ä–æ–∂–∫–∞ 34", author = "-", id = 34 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_35]], title = "–î–æ—Ä–æ–∂–∫–∞ 35", author = "-", id = 35 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_36]], title = "–î–æ—Ä–æ–∂–∫–∞ 36", author = "Sonique - Sky", id = 36 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_37]], title = "–î–æ—Ä–æ–∂–∫–∞ 37", author = "-", id = 37 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_38]], title = "–î–æ—Ä–æ–∂–∫–∞ 38", author = "-", id = 38 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_39]], title = "–î–æ—Ä–æ–∂–∫–∞ 39", author = "-", id = 39 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_40]], title = "–î–æ—Ä–æ–∂–∫–∞ 40", author = "-", id = 40 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_41]], title = "–î–æ—Ä–æ–∂–∫–∞ 41", author = "-", id = 41 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_42]], title = "–î–æ—Ä–æ–∂–∫–∞ 42", author = "-", id = 42 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_43]], title = "–î–æ—Ä–æ–∂–∫–∞ 43", author = "-", id = 43 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_44]], title = "–î–æ—Ä–æ–∂–∫–∞ 44", author = "-", id = 44 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_45]], title = "–î–æ—Ä–æ–∂–∫–∞ 45", author = "-", id = 45 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_46]], title = "–î–æ—Ä–æ–∂–∫–∞ 46", author = "-", id = 46 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_47]], title = "–î–æ—Ä–æ–∂–∫–∞ 47", author = "-", id = 47 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_48]], title = "–î–æ—Ä–æ–∂–∫–∞ 48", author = "-", id = 48 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_49]], title = "–î–æ—Ä–æ–∂–∫–∞ 49", author = "Tiesto - In The Dark", id = 49 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_50]], title = "–î–æ—Ä–æ–∂–∫–∞ 50", author = "DVJ Bazuka - Saw", id = 50 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_51]], title = "–î–æ—Ä–æ–∂–∫–∞ 51", author = "DVJ Bazuka - Slipin Away", id = 51 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_52]], title = "–î–æ—Ä–æ–∂–∫–∞ 52", author = "-", id = 52 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_53]], title = "–î–æ—Ä–æ–∂–∫–∞ 53", author = "-", id = 53 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_54]], title = "–î–æ—Ä–æ–∂–∫–∞ 54", author = "-", id = 54 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_55]], title = "–î–æ—Ä–æ–∂–∫–∞ 55", author = "-", id = 55 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_56]], title = "–î–æ—Ä–æ–∂–∫–∞ 56", author = "Dj Natasha Rostova - 17-01-2009", id = 56 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_57]], title = "–î–æ—Ä–æ–∂–∫–∞ 57", author = "Marcel Woods - Tomorrow", id = 57 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_58]], title = "–î–æ—Ä–æ–∂–∫–∞ 58", author = "Sultan & Ned Shepard feat Dirty Vegas - Crimson Sun", id = 58 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_59]], title = "–î–æ—Ä–æ–∂–∫–∞ 59", author = "Armin Van Buuren feat. sophie Ellis Bextor - not giving up on loves", id = 59 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_60]], title = "–î–æ—Ä–æ–∂–∫–∞ 60", author = "David Guetta - love dont let me go", id = 60 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_61]], title = "–î–æ—Ä–æ–∂–∫–∞ 61", author = "David Guetta - the world is mine", id = 61 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_62]], title = "–î–æ—Ä–æ–∂–∫–∞ 62", author = "David Guetta - winner of the game", id = 62 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_63]], title = "–î–æ—Ä–æ–∂–∫–∞ 63", author = "Dj Kaffein - Follow Me", id = 63 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_64]], title = "–î–æ—Ä–æ–∂–∫–∞ 64", author = "Moonbeam & Marrow Dojah - Insincere", id = 64 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_65]], title = "–î–æ—Ä–æ–∂–∫–∞ 65", author = "Moonbeam - 7 seconds", id = 65 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_66]], title = "–î–æ—Ä–æ–∂–∫–∞ 66", author = "Moonbeam - i love mornings extended mix", id = 66 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_67]], title = "–î–æ—Ä–æ–∂–∫–∞ 67", author = "Smart Apes - One Day You Won't See The Sunrise", id = 67 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_68]], title = "–î–æ—Ä–æ–∂–∫–∞ 68", author = "Tiga - you gonna want me", id = 68 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_69]], title = "–î–æ—Ä–æ–∂–∫–∞ 69", author = "-", id = 69 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_70]], title = "–î–æ—Ä–æ–∂–∫–∞ 70", author = "Underworld - Always Loved A Film", id = 70 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_71]], title = "–î–æ—Ä–æ–∂–∫–∞ 71", author = "AnnaGrace - Don't Let Go", id = 71 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_72]], title = "–î–æ—Ä–æ–∂–∫–∞ 72", author = "AnnaGrace - You Do Want Me", id = 72 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_73]], title = "–î–æ—Ä–æ–∂–∫–∞ 73", author = "Sgt Slick - Like This", id = 73 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_74]], title = "–î–æ—Ä–æ–∂–∫–∞ 74", author = "Paul Johns Feat. Umberto Tabbi - Ciao Siciliano", id = 74 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_75]], title = "–î–æ—Ä–æ–∂–∫–∞ 75", author = "TV Rock & Zoe Badwi -  Release Me", id = 75 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_76]], title = "–î–æ—Ä–æ–∂–∫–∞ 76", author = "Schiller feat. September - Breathe", id = 76 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_77]], title = "–î–æ—Ä–æ–∂–∫–∞ 77", author = "Maurizio Inzaghi - Searching For Love", id = 77 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_78]], title = "–î–æ—Ä–æ–∂–∫–∞ 78", author = "Supermode - Tell Me Why 2009", id = 78 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_79]], title = "–î–æ—Ä–æ–∂–∫–∞ 79", author = "Annagrace - You Make Me Feel", id = 79 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_80]], title = "–î–æ—Ä–æ–∂–∫–∞ 80", author = "Moby - Disco Lies", id = 80 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_81]], title = "–î–æ—Ä–æ–∂–∫–∞ 81", author = "Roger Sanchez - Not Enough", id = 81 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_82]], title = "–î–æ—Ä–æ–∂–∫–∞ 82", author = "A.G.Trio - Jungle", id = 82 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_83]], title = "–î–æ—Ä–æ–∂–∫–∞ 83", author = "Blank & Jones - Miracle Cure", id = 83 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_84]], title = "–î–æ—Ä–æ–∂–∫–∞ 84", author = "Everything But The Girls - Missing", id = 84 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_85]], title = "–î–æ—Ä–æ–∂–∫–∞ 85", author = "Fukkk Offf - Brain Rock", id = 85 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_86]], title = "–î–æ—Ä–æ–∂–∫–∞ 86", author = "Michael Jackson - Who Is It", id = 86 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_87]], title = "–î–æ—Ä–æ–∂–∫–∞ 87", author = "-", id = 87 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_88]], title = "–î–æ—Ä–æ–∂–∫–∞ 88", author = "Jozhy & Angel - Wait For Tomorrow", id = 88 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_89]], title = "–î–æ—Ä–æ–∂–∫–∞ 89", author = "4 Strings - Take Me Away", id = 89 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_90]], title = "–î–æ—Ä–æ–∂–∫–∞ 90", author = "Lara Fabian - I Will Love Again", id = 90 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_91]], title = "–î–æ—Ä–æ–∂–∫–∞ 91", author = "DJ Free Pink - Please Dont Leave", id = 91 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_92]], title = "–î–æ—Ä–æ–∂–∫–∞ 92", author = "Eurythmics - Sweet Dreams", id = 92 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_93]], title = "–î–æ—Ä–æ–∂–∫–∞ 93", author = "Levi Star - Melt Inside", id = 93 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_94]], title = "–î–æ—Ä–æ–∂–∫–∞ 94", author = "Armin Van Buuren - Mirage", id = 94 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_95]], title = "–î–æ—Ä–æ–∂–∫–∞ 95", author = "Plan B - Prayin", id = 95 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_96]], title = "–î–æ—Ä–æ–∂–∫–∞ 96", author = "Plan B - She Said Original", id = 96 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_97]], title = "–î–æ—Ä–æ–∂–∫–∞ 97", author = "Christina Aguilera - Not Myself Tonight", id = 97 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_98]], title = "–î–æ—Ä–æ–∂–∫–∞ 98", author = "David Guetta - Love Is Gone", id = 98 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_99]], title = "–î–æ—Ä–æ–∂–∫–∞ 99", author = "Jaydee - Plastic Dreams", id = 99 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_100]], title = "–î–æ—Ä–æ–∂–∫–∞ 100", author = "Spencer & Hill - Dub Disco", id = 100 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_101]], title = "–î–æ—Ä–æ–∂–∫–∞ 101", author = "Eminem ft. Rihanna - Love The Way You Lie", id = 101 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_102]], title = "–î–æ—Ä–æ–∂–∫–∞ 102", author = "Kato & Dj Jose & Jon - Turn the lights off", id = 102 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_103]], title = "–î–æ—Ä–æ–∂–∫–∞ 103", author = "Supermode - Tell me why", id = 103 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_104]], title = "–î–æ—Ä–æ–∂–∫–∞ 104", author = "Massive Attack - Paradise Circus", id = 104 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_105]], title = "–î–æ—Ä–æ–∂–∫–∞ 105", author = "Melanie C - I Turn To You", id = 105 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_106]], title = "–î–æ—Ä–æ–∂–∫–∞ 106", author = "September - Cry For You", id = 106 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_107]], title = "–î–æ—Ä–æ–∂–∫–∞ 107", author = "Mondotek - Alive", id = 107 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_108]], title = "–î–æ—Ä–æ–∂–∫–∞ 108", author = "Jay-Z - 99 Problems", id = 108 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_109]], title = "–î–æ—Ä–æ–∂–∫–∞ 109", author = "Prodigy - Mescaline", id = 109 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_110]], title = "–î–æ—Ä–æ–∂–∫–∞ 110", author = "Dj Miller - Makes Me Happy", id = 110 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_111]], title = "–î–æ—Ä–æ–∂–∫–∞ 111", author = "Britney Spears - Till The World Ends", id = 111 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_112]], title = "–î–æ—Ä–æ–∂–∫–∞ 112", author = "Bobina - Invincible Touch", id = 112 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_113]], title = "–î–æ—Ä–æ–∂–∫–∞ 113", author = "Deepside Deejays - Never Be Alone Radio Edit", id = 113 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_114]], title = "–î–æ—Ä–æ–∂–∫–∞ 114", author = "Ferry Corsten - Punk Arty", id = 114 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_115]], title = "–î–æ—Ä–æ–∂–∫–∞ 115", author = "Ian Carey - Redlight", id = 115 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_116]], title = "–î–æ—Ä–æ–∂–∫–∞ 116", author = "Justin Timberlake - Cry Me A River", id = 116 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_117]], title = "–î–æ—Ä–æ–∂–∫–∞ 117", author = "Katy Perry - Last Friday Night", id = 117 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_118]], title = "–î–æ—Ä–æ–∂–∫–∞ 118", author = "Lenny Kravitz - Where Are We Runnin", id = 118 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_119]], title = "–î–æ—Ä–æ–∂–∫–∞ 119", author = "Lenny Kravitz - Fly Away", id = 119 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_120]], title = "–î–æ—Ä–æ–∂–∫–∞ 120", author = "Lenny Kravitz - I Belong To You", id = 120 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_121]], title = "–î–æ—Ä–æ–∂–∫–∞ 121", author = "Lenny Kravitz - If You Cant Say No", id = 121 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_122]], title = "–î–æ—Ä–æ–∂–∫–∞ 122", author = "Lenny Kravitz - Ill Be Waiting", id = 122 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_123]], title = "–î–æ—Ä–æ–∂–∫–∞ 123", author = "Lenny Kravitz - Let Love Rule", id = 123 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_124]], title = "–î–æ—Ä–æ–∂–∫–∞ 124", author = "Lenny Kravitz - Love Love Love", id = 124 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_125]], title = "–î–æ—Ä–æ–∂–∫–∞ 125", author = "Madcon - Beggin Ost Step Up", id = 125 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_126]], title = "–î–æ—Ä–æ–∂–∫–∞ 126", author = "Martin Solveig - Jealousy", id = 126 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_127]], title = "–î–æ—Ä–æ–∂–∫–∞ 127", author = "Martin Solveig - Madan", id = 127 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_128]], title = "–î–æ—Ä–æ–∂–∫–∞ 128", author = "Martin Solveig - Rejection", id = 128 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_129]], title = "–î–æ—Ä–æ–∂–∫–∞ 129", author = "Meck - Windmills", id = 129 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_130]], title = "–î–æ—Ä–æ–∂–∫–∞ 130", author = "Miley Cyrus - Who Owns My Heart", id = 130 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_131]], title = "–î–æ—Ä–æ–∂–∫–∞ 131", author = "Narcotic Thrust - I Like It", id = 131 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_132]], title = "–î–æ—Ä–æ–∂–∫–∞ 132", author = "Richard Durand & Ellie Lawson - Wide Awake", id = 132 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_133]], title = "–î–æ—Ä–æ–∂–∫–∞ 133", author = "Rihanna - Sandm", id = 133 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_134]], title = "–î–æ—Ä–æ–∂–∫–∞ 134", author = "Robbie Williams - Bodies", id = 134 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_135]], title = "–î–æ—Ä–æ–∂–∫–∞ 135", author = "Sandra - In The Heat Of The Night", id = 135 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_136]], title = "–î–æ—Ä–æ–∂–∫–∞ 136", author = "Techno Mafia - Openair Silence", id = 136 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_137]], title = "–î–æ—Ä–æ–∂–∫–∞ 137", author = "The Cranberries - Zombie", id = 137 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_138]], title = "–î–æ—Ä–æ–∂–∫–∞ 138", author = "-", id = 138 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_139]], title = "–î–æ—Ä–æ–∂–∫–∞ 139", author = "-", id = 139 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_140]], title = "–î–æ—Ä–æ–∂–∫–∞ 140", author = "-", id = 140 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_141]], title = "–î–æ—Ä–æ–∂–∫–∞ 141", author = "-", id = 141 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_142]], title = "–î–æ—Ä–æ–∂–∫–∞ 142", author = "-", id = 142 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_143]], title = "–î–æ—Ä–æ–∂–∫–∞ 143", author = "-", id = 143 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_144]], title = "–î–æ—Ä–æ–∂–∫–∞ 144", author = "-", id = 144 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_145]], title = "–î–æ—Ä–æ–∂–∫–∞ 145", author = "-", id = 145 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_146]], title = "–î–æ—Ä–æ–∂–∫–∞ 146", author = "-", id = 146 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_147]], title = "–î–æ—Ä–æ–∂–∫–∞ 147", author = "-", id = 147 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_148]], title = "–î–æ—Ä–æ–∂–∫–∞ 148", author = "Solid Base feat Robson - Mirror Mirror", id = 148 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_149]], title = "–î–æ—Ä–æ–∂–∫–∞ 149", author = "The Kdms - Tonight", id = 149 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_150]], title = "–î–æ—Ä–æ–∂–∫–∞ 150", author = "We Once Had An Empire", id = 150 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_151]], title = "–î–æ—Ä–æ–∂–∫–∞ 151", author = "G Spott - Sadness", id = 151 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_152]], title = "–î–æ—Ä–æ–∂–∫–∞ 152", author = "The White Stripes - Seven Nation Army", id = 152 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_153]], title = "–î–æ—Ä–æ–∂–∫–∞ 153", author = "Nero - Guilt", id = 153 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_154]], title = "–î–æ—Ä–æ–∂–∫–∞ 154", author = "Nero - Must Be The Feeling", id = 154 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_155]], title = "–î–æ—Ä–æ–∂–∫–∞ 155", author = "Example - Changed The Way You Kiss Me", id = 155 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_156]], title = "–î–æ—Ä–æ–∂–∫–∞ 156", author = "Swanky Tunes - Wanna Be Your Dog", id = 156 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_157]], title = "–î–æ—Ä–æ–∂–∫–∞ 157", author = "Michael Calfan - Resurrection", id = 157 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_158]], title = "–î–æ—Ä–æ–∂–∫–∞ 158", author = "Borshit - Neuropi", id = 158 },
+   { sound = [[–ö–ª—É–±–Ω–∞—è\–¢—Ä–µ–∫_159]], title = "–î–æ—Ä–æ–∂–∫–∞ 159", author = "Starkillers & Alex Kenji - Pressure", id = 159 }
 }
 local mp3_table_theme = {
-   { sound = [[—‡ÛÌ‰ÚÂÍË\“ÂÍ_1]],  title = "ƒÓÓÊÍ‡ 1",  author = "-",                                    id = 1 },
-   { sound = [[—‡ÛÌ‰ÚÂÍË\“ÂÍ_2]],  title = "ƒÓÓÊÍ‡ 2",  author = "-",                                    id = 2 },
-   { sound = [[—‡ÛÌ‰ÚÂÍË\“ÂÍ_3]],  title = "ƒÓÓÊÍ‡ 3",  author = "-",                                    id = 3 },
-   { sound = [[—‡ÛÌ‰ÚÂÍË\“ÂÍ_4]],  title = "ƒÓÓÊÍ‡ 4",  author = "-",                                    id = 4 },
-   { sound = [[—‡ÛÌ‰ÚÂÍË\“ÂÍ_5]],  title = "ƒÓÓÊÍ‡ 5",  author = "-",                                    id = 5 },
-   { sound = [[—‡ÛÌ‰ÚÂÍË\“ÂÍ_6]],  title = "ƒÓÓÊÍ‡ 6",  author = "-",                                    id = 6 },
-   { sound = [[—‡ÛÌ‰ÚÂÍË\“ÂÍ_7]],  title = "ƒÓÓÊÍ‡ 7",  author = "Soundtrack - Resident evil",           id = 7 },
-   { sound = [[—‡ÛÌ‰ÚÂÍË\“ÂÍ_8]],  title = "ƒÓÓÊÍ‡ 8",  author = "Fluke - Absurd",                       id = 8 },
-   { sound = [[—‡ÛÌ‰ÚÂÍË\“ÂÍ_9]],  title = "ƒÓÓÊÍ‡ 9",  author = "Hans Zimmer - Discombobulate",         id = 9 },
-   { sound = [[—‡ÛÌ‰ÚÂÍË\“ÂÍ_10]], title = "ƒÓÓÊÍ‡ 10", author = "Hell March 3",                         id = 10 },
-   { sound = [[—‡ÛÌ‰ÚÂÍË\“ÂÍ_11]], title = "ƒÓÓÊÍ‡ 11", author = "-",                                    id = 11 },
-   { sound = [[—‡ÛÌ‰ÚÂÍË\“ÂÍ_12]], title = "ƒÓÓÊÍ‡ 12", author = "-",                                    id = 12 },
-   { sound = [[—‡ÛÌ‰ÚÂÍË\“ÂÍ_13]], title = "ƒÓÓÊÍ‡ 13", author = "-",                                    id = 13 },
-   { sound = [[—‡ÛÌ‰ÚÂÍË\“ÂÍ_14]], title = "ƒÓÓÊÍ‡ 14", author = "-",                                    id = 14 },
-   { sound = [[—‡ÛÌ‰ÚÂÍË\“ÂÍ_15]], title = "ƒÓÓÊÍ‡ 15", author = "-",                                    id = 15 },
-   { sound = [[—‡ÛÌ‰ÚÂÍË\“ÂÍ_16]], title = "ƒÓÓÊÍ‡ 16", author = "Alexandre Desplat - The Ghost Writer", id = 16 },
-   { sound = [[—‡ÛÌ‰ÚÂÍË\“ÂÍ_17]], title = "ƒÓÓÊÍ‡ 17", author = "-",                                    id = 17 }
+   { sound = [[–°–∞—É–Ω–¥—Ç—Ä–µ–∫–∏\–¢—Ä–µ–∫_1]], title = "–î–æ—Ä–æ–∂–∫–∞ 1", author = "-", id = 1 },
+   { sound = [[–°–∞—É–Ω–¥—Ç—Ä–µ–∫–∏\–¢—Ä–µ–∫_2]], title = "–î–æ—Ä–æ–∂–∫–∞ 2", author = "-", id = 2 },
+   { sound = [[–°–∞—É–Ω–¥—Ç—Ä–µ–∫–∏\–¢—Ä–µ–∫_3]], title = "–î–æ—Ä–æ–∂–∫–∞ 3", author = "-", id = 3 },
+   { sound = [[–°–∞—É–Ω–¥—Ç—Ä–µ–∫–∏\–¢—Ä–µ–∫_4]], title = "–î–æ—Ä–æ–∂–∫–∞ 4", author = "-", id = 4 },
+   { sound = [[–°–∞—É–Ω–¥—Ç—Ä–µ–∫–∏\–¢—Ä–µ–∫_5]], title = "–î–æ—Ä–æ–∂–∫–∞ 5", author = "-", id = 5 },
+   { sound = [[–°–∞—É–Ω–¥—Ç—Ä–µ–∫–∏\–¢—Ä–µ–∫_6]], title = "–î–æ—Ä–æ–∂–∫–∞ 6", author = "-", id = 6 },
+   { sound = [[–°–∞—É–Ω–¥—Ç—Ä–µ–∫–∏\–¢—Ä–µ–∫_7]], title = "–î–æ—Ä–æ–∂–∫–∞ 7", author = "Soundtrack - Resident evil", id = 7 },
+   { sound = [[–°–∞—É–Ω–¥—Ç—Ä–µ–∫–∏\–¢—Ä–µ–∫_8]], title = "–î–æ—Ä–æ–∂–∫–∞ 8", author = "Fluke - Absurd", id = 8 },
+   { sound = [[–°–∞—É–Ω–¥—Ç—Ä–µ–∫–∏\–¢—Ä–µ–∫_9]], title = "–î–æ—Ä–æ–∂–∫–∞ 9", author = "Hans Zimmer - Discombobulate", id = 9 },
+   { sound = [[–°–∞—É–Ω–¥—Ç—Ä–µ–∫–∏\–¢—Ä–µ–∫_10]], title = "–î–æ—Ä–æ–∂–∫–∞ 10", author = "Hell March 3", id = 10 },
+   { sound = [[–°–∞—É–Ω–¥—Ç—Ä–µ–∫–∏\–¢—Ä–µ–∫_11]], title = "–î–æ—Ä–æ–∂–∫–∞ 11", author = "-", id = 11 },
+   { sound = [[–°–∞—É–Ω–¥—Ç—Ä–µ–∫–∏\–¢—Ä–µ–∫_12]], title = "–î–æ—Ä–æ–∂–∫–∞ 12", author = "-", id = 12 },
+   { sound = [[–°–∞—É–Ω–¥—Ç—Ä–µ–∫–∏\–¢—Ä–µ–∫_13]], title = "–î–æ—Ä–æ–∂–∫–∞ 13", author = "-", id = 13 },
+   { sound = [[–°–∞—É–Ω–¥—Ç—Ä–µ–∫–∏\–¢—Ä–µ–∫_14]], title = "–î–æ—Ä–æ–∂–∫–∞ 14", author = "-", id = 14 },
+   { sound = [[–°–∞—É–Ω–¥—Ç—Ä–µ–∫–∏\–¢—Ä–µ–∫_15]], title = "–î–æ—Ä–æ–∂–∫–∞ 15", author = "-", id = 15 },
+   { sound = [[–°–∞—É–Ω–¥—Ç—Ä–µ–∫–∏\–¢—Ä–µ–∫_16]], title = "–î–æ—Ä–æ–∂–∫–∞ 16", author = "Alexandre Desplat - The Ghost Writer", id = 16 },
+   { sound = [[–°–∞—É–Ω–¥—Ç—Ä–µ–∫–∏\–¢—Ä–µ–∫_17]], title = "–î–æ—Ä–æ–∂–∫–∞ 17", author = "-", id = 17 }
 }
 local mp3_table_other = {
-   { sound = [[ƒÛ„‡ˇ\“ÂÍ_1]],  title = "ƒÓÓÊÍ‡ 1",  author = "-",                                                  id = 1 },
-   { sound = [[ƒÛ„‡ˇ\“ÂÍ_2]],  title = "ƒÓÓÊÍ‡ 2",  author = "-",                                                  id = 2 },
-   { sound = [[ƒÛ„‡ˇ\“ÂÍ_3]],  title = "ƒÓÓÊÍ‡ 3",  author = "-",                                                  id = 3 },
-   { sound = [[ƒÛ„‡ˇ\“ÂÍ_4]],  title = "ƒÓÓÊÍ‡ 4",  author = "-",                                                  id = 4 },
-   { sound = [[ƒÛ„‡ˇ\“ÂÍ_5]],  title = "ƒÓÓÊÍ‡ 5",  author = "-",                                                  id = 5 },
-   { sound = [[ƒÛ„‡ˇ\“ÂÍ_6]],  title = "ƒÓÓÊÍ‡ 6",  author = "-",                                                  id = 6 },
-   { sound = [[ƒÛ„‡ˇ\“ÂÍ_7]],  title = "ƒÓÓÊÍ‡ 7",  author = "-",                                                  id = 7 },
-   { sound = [[ƒÛ„‡ˇ\“ÂÍ_8]],  title = "ƒÓÓÊÍ‡ 8",  author = "-",                                                  id = 8 },
-   { sound = [[ƒÛ„‡ˇ\“ÂÍ_9]],  title = "ƒÓÓÊÍ‡ 9",  author = "-",                                                  id = 9 },
-   { sound = [[ƒÛ„‡ˇ\“ÂÍ_10]], title = "ƒÓÓÊÍ‡ 10", author = "-",                                                  id = 10 },
-   { sound = [[ƒÛ„‡ˇ\“ÂÍ_11]], title = "ƒÓÓÊÍ‡ 11", author = "-",                                                  id = 11 },
-   { sound = [[ƒÛ„‡ˇ\“ÂÍ_12]], title = "ƒÓÓÊÍ‡ 12", author = "-",                                                  id = 12 },
-   { sound = [[ƒÛ„‡ˇ\“ÂÍ_13]], title = "ƒÓÓÊÍ‡ 13", author = "-",                                                  id = 13 },
-   { sound = [[ƒÛ„‡ˇ\“ÂÍ_14]], title = "ƒÓÓÊÍ‡ 14", author = "-",                                                  id = 14 },
-   { sound = [[ƒÛ„‡ˇ\“ÂÍ_15]], title = "ƒÓÓÊÍ‡ 15", author = "-",                                                  id = 15 },
-   { sound = [[ƒÛ„‡ˇ\“ÂÍ_16]], title = "ƒÓÓÊÍ‡ 16", author = "17-Apocalyptica-Path Vol.2 Feat. Sandra Nasic",      id = 16 },
-   { sound = [[ƒÛ„‡ˇ\“ÂÍ_17]], title = "ƒÓÓÊÍ‡ 17", author = "-",                                                  id = 17 },
-   { sound = [[ƒÛ„‡ˇ\“ÂÍ_18]], title = "ƒÓÓÊÍ‡ 18", author = "-",                                                  id = 18 },
-   { sound = [[ƒÛ„‡ˇ\“ÂÍ_19]], title = "ƒÓÓÊÍ‡ 19", author = "Shitlist (Natural Born Killers)",                    id = 19 },
-   { sound = [[ƒÛ„‡ˇ\“ÂÍ_20]], title = "ƒÓÓÊÍ‡ 20", author = "Shiny Toy Guns - Le Disko",                          id = 20 },
-   { sound = [[ƒÛ„‡ˇ\“ÂÍ_21]], title = "ƒÓÓÊÍ‡ 21", author = "-aFx-",                                              id = 21 },
-   { sound = [[ƒÛ„‡ˇ\“ÂÍ_22]], title = "ƒÓÓÊÍ‡ 22", author = "ACDC - Hells Bells",                                 id = 22 },
-   { sound = [[ƒÛ„‡ˇ\“ÂÍ_23]], title = "ƒÓÓÊÍ‡ 23", author = "ACDC - Highway To Hell",                             id = 23 },
-   { sound = [[ƒÛ„‡ˇ\“ÂÍ_24]], title = "ƒÓÓÊÍ‡ 24", author = "Black Sabbath - Seventh Star",                       id = 24 },
-   { sound = [[ƒÛ„‡ˇ\“ÂÍ_25]], title = "ƒÓÓÊÍ‡ 25", author = "Def Leppard - Woman",                                id = 25 },
-   { sound = [[ƒÛ„‡ˇ\“ÂÍ_26]], title = "ƒÓÓÊÍ‡ 26", author = "Guns'N'Roses - Don't cry",                           id = 26 },
-   { sound = [[ƒÛ„‡ˇ\“ÂÍ_27]], title = "ƒÓÓÊÍ‡ 27", author = "Manowar - Warriors Of The World",                    id = 27 },
-   { sound = [[ƒÛ„‡ˇ\“ÂÍ_28]], title = "ƒÓÓÊÍ‡ 28", author = "Metallica - Nothing Else Matters",                   id = 28 },
-   { sound = [[ƒÛ„‡ˇ\“ÂÍ_29]], title = "ƒÓÓÊÍ‡ 29", author = "Queen - The show must go on",                        id = 29 },
-   { sound = [[ƒÛ„‡ˇ\“ÂÍ_30]], title = "ƒÓÓÊÍ‡ 30", author = "Scorpions - Still loving you",                       id = 30 },
-   { sound = [[ƒÛ„‡ˇ\“ÂÍ_31]], title = "ƒÓÓÊÍ‡ 31", author = "Limp Bizkit - Take A Look Around",                   id = 31 },
-   { sound = [[ƒÛ„‡ˇ\“ÂÍ_32]], title = "ƒÓÓÊÍ‡ 32", author = "Rammstein - Spookshow Baby",                         id = 32 },
-   { sound = [[ƒÛ„‡ˇ\“ÂÍ_33]], title = "ƒÓÓÊÍ‡ 33", author = "System Of A Down - Toxicity",                        id = 33 },
-   { sound = [[ƒÛ„‡ˇ\“ÂÍ_34]], title = "ƒÓÓÊÍ‡ 34", author = "Black Strobe - Im A Man",                            id = 34 },
-   { sound = [[ƒÛ„‡ˇ\“ÂÍ_35]], title = "ƒÓÓÊÍ‡ 35", author = "Adriano Celentano - Ja Tebia Liubliu",               id = 35 },
-   { sound = [[ƒÛ„‡ˇ\“ÂÍ_36]], title = "ƒÓÓÊÍ‡ 36", author = "Carl Douglas - Kung Fu Fighting",                    id = 36 },
-   { sound = [[ƒÛ„‡ˇ\“ÂÍ_37]], title = "ƒÓÓÊÍ‡ 37", author = "Coolio - Ganstas Paradise",                          id = 37 },
-   { sound = [[ƒÛ„‡ˇ\“ÂÍ_38]], title = "ƒÓÓÊÍ‡ 38", author = "David Usher - Black Black Heart",                    id = 38 },
-   { sound = [[ƒÛ„‡ˇ\“ÂÍ_39]], title = "ƒÓÓÊÍ‡ 39", author = "Joe Cocker - Noubliez Jamais",                       id = 39 },
-   { sound = [[ƒÛ„‡ˇ\“ÂÍ_40]], title = "ƒÓÓÊÍ‡ 40", author = "Madonna - Youl ll See",                              id = 40 },
-   { sound = [[ƒÛ„‡ˇ\“ÂÍ_41]], title = "ƒÓÓÊÍ‡ 41", author = "Madonna - Frozen",                                   id = 41 },
-   { sound = [[ƒÛ„‡ˇ\“ÂÍ_42]], title = "ƒÓÓÊÍ‡ 42", author = "Mylene Farmer - Appelle Mon Numero",                 id = 42 },
-   { sound = [[ƒÛ„‡ˇ\“ÂÍ_43]], title = "ƒÓÓÊÍ‡ 43", author = "Mylene Farmer - California",                         id = 43 },
-   { sound = [[ƒÛ„‡ˇ\“ÂÍ_44]], title = "ƒÓÓÊÍ‡ 44", author = "Mylene Farmer - Desenchantee",                       id = 44 },
-   { sound = [[ƒÛ„‡ˇ\“ÂÍ_45]], title = "ƒÓÓÊÍ‡ 45", author = "Mylene Farmer - Je Te Rends Ton Amour",              id = 45 },
-   { sound = [[ƒÛ„‡ˇ\“ÂÍ_46]], title = "ƒÓÓÊÍ‡ 46", author = "Mylene Farmer - Lamour Nest Rien",                   id = 46 },
-   { sound = [[ƒÛ„‡ˇ\“ÂÍ_47]], title = "ƒÓÓÊÍ‡ 47", author = "Mylene Farmer - Pourvu Quelles",                     id = 47 },
-   { sound = [[ƒÛ„‡ˇ\“ÂÍ_48]], title = "ƒÓÓÊÍ‡ 48", author = "No Doubt - Dont Speak",                              id = 48 },
-   { sound = [[ƒÛ„‡ˇ\“ÂÍ_49]], title = "ƒÓÓÊÍ‡ 49", author = "Roxette - Real Sugar",                               id = 49 },
-   { sound = [[ƒÛ„‡ˇ\“ÂÍ_50]], title = "ƒÓÓÊÍ‡ 50", author = "Sting - Shape Of My Heart",                          id = 50 },
-   { sound = [[ƒÛ„‡ˇ\“ÂÍ_51]], title = "ƒÓÓÊÍ‡ 51", author = "Sting - Desert Rose",                                id = 51 },
-   { sound = [[ƒÛ„‡ˇ\“ÂÍ_52]], title = "ƒÓÓÊÍ‡ 52", author = "Sting - Ill Be Missing You",                         id = 52 },
-   { sound = [[ƒÛ„‡ˇ\“ÂÍ_53]], title = "ƒÓÓÊÍ‡ 53", author = "Sting - Mad About You",                              id = 53 },
-   { sound = [[ƒÛ„‡ˇ\“ÂÍ_54]], title = "ƒÓÓÊÍ‡ 54", author = "Sugababes - Stronger",                               id = 54 },
-   { sound = [[ƒÛ„‡ˇ\“ÂÍ_55]], title = "ƒÓÓÊÍ‡ 55", author = "Tarkan - Nu Gece",                                   id = 55 },
-   { sound = [[ƒÛ„‡ˇ\“ÂÍ_56]], title = "ƒÓÓÊÍ‡ 56", author = "22-22 - Immortal",                                   id = 56 },
-   { sound = [[ƒÛ„‡ˇ\“ÂÍ_57]], title = "ƒÓÓÊÍ‡ 57", author = "Aelyn - Believe In Us",                              id = 57 },
-   { sound = [[ƒÛ„‡ˇ\“ÂÍ_58]], title = "ƒÓÓÊÍ‡ 58", author = "Aelyn - In And Out Of Love",                         id = 58 },
-   { sound = [[ƒÛ„‡ˇ\“ÂÍ_59]], title = "ƒÓÓÊÍ‡ 59", author = "Bruno Mars - It Will Rain",                          id = 59 },
-   { sound = [[ƒÛ„‡ˇ\“ÂÍ_60]], title = "ƒÓÓÊÍ‡ 60", author = "Headstrong Feat Kirsty Hawkshaw - Love Calls",       id = 60 },
-   { sound = [[ƒÛ„‡ˇ\“ÂÍ_61]], title = "ƒÓÓÊÍ‡ 61", author = "House Massive feat J Golubeva - Apologize",          id = 61 },
-   { sound = [[ƒÛ„‡ˇ\“ÂÍ_62]], title = "ƒÓÓÊÍ‡ 62", author = "Iio - Rapture",                                      id = 62 },
-   { sound = [[ƒÛ„‡ˇ\“ÂÍ_63]], title = "ƒÓÓÊÍ‡ 63", author = "Jazzamor - Caminho",                                 id = 63 },
-   { sound = [[ƒÛ„‡ˇ\“ÂÍ_64]], title = "ƒÓÓÊÍ‡ 64", author = "Kirsty Hawkshaw meets Tenishia - Reason To Forgive", id = 64 },
-   { sound = [[ƒÛ„‡ˇ\“ÂÍ_65]], title = "ƒÓÓÊÍ‡ 65", author = "Kosmopolitans - I Belong To You",                    id = 65 },
-   { sound = [[ƒÛ„‡ˇ\“ÂÍ_66]], title = "ƒÓÓÊÍ‡ 66", author = "Lowland - Children",                                 id = 66 },
-   { sound = [[ƒÛ„‡ˇ\“ÂÍ_67]], title = "ƒÓÓÊÍ‡ 67", author = "ReUnited - Sing It Back",                            id = 67 },
-   { sound = [[ƒÛ„‡ˇ\“ÂÍ_68]], title = "ƒÓÓÊÍ‡ 68", author = "The Tone - Relax Take It Easy",                      id = 68 },
-   { sound = [[ƒÛ„‡ˇ\“ÂÍ_69]], title = "ƒÓÓÊÍ‡ 69", author = "Tina Cousins - Wonderful Life",                      id = 69 },
-   { sound = [[ƒÛ„‡ˇ\“ÂÍ_70]], title = "ƒÓÓÊÍ‡ 70", author = "Thomas Anders - Why Do You Cry",                     id = 70 },
-   { sound = [[ƒÛ„‡ˇ\“ÂÍ_71]], title = "ƒÓÓÊÍ‡ 71", author = "Gary Jules - Mad World",                             id = 71 },
-   { sound = [[ƒÛ„‡ˇ\“ÂÍ_72]], title = "ƒÓÓÊÍ‡ 72", author = "Sade - Love Is Found",                               id = 72 }
+   { sound = [[–î—Ä—É–≥–∞—è\–¢—Ä–µ–∫_1]], title = "–î–æ—Ä–æ–∂–∫–∞ 1", author = "-", id = 1 },
+   { sound = [[–î—Ä—É–≥–∞—è\–¢—Ä–µ–∫_2]], title = "–î–æ—Ä–æ–∂–∫–∞ 2", author = "-", id = 2 },
+   { sound = [[–î—Ä—É–≥–∞—è\–¢—Ä–µ–∫_3]], title = "–î–æ—Ä–æ–∂–∫–∞ 3", author = "-", id = 3 },
+   { sound = [[–î—Ä—É–≥–∞—è\–¢—Ä–µ–∫_4]], title = "–î–æ—Ä–æ–∂–∫–∞ 4", author = "-", id = 4 },
+   { sound = [[–î—Ä—É–≥–∞—è\–¢—Ä–µ–∫_5]], title = "–î–æ—Ä–æ–∂–∫–∞ 5", author = "-", id = 5 },
+   { sound = [[–î—Ä—É–≥–∞—è\–¢—Ä–µ–∫_6]], title = "–î–æ—Ä–æ–∂–∫–∞ 6", author = "-", id = 6 },
+   { sound = [[–î—Ä—É–≥–∞—è\–¢—Ä–µ–∫_7]], title = "–î–æ—Ä–æ–∂–∫–∞ 7", author = "-", id = 7 },
+   { sound = [[–î—Ä—É–≥–∞—è\–¢—Ä–µ–∫_8]], title = "–î–æ—Ä–æ–∂–∫–∞ 8", author = "-", id = 8 },
+   { sound = [[–î—Ä—É–≥–∞—è\–¢—Ä–µ–∫_9]], title = "–î–æ—Ä–æ–∂–∫–∞ 9", author = "-", id = 9 },
+   { sound = [[–î—Ä—É–≥–∞—è\–¢—Ä–µ–∫_10]], title = "–î–æ—Ä–æ–∂–∫–∞ 10", author = "-", id = 10 },
+   { sound = [[–î—Ä—É–≥–∞—è\–¢—Ä–µ–∫_11]], title = "–î–æ—Ä–æ–∂–∫–∞ 11", author = "-", id = 11 },
+   { sound = [[–î—Ä—É–≥–∞—è\–¢—Ä–µ–∫_12]], title = "–î–æ—Ä–æ–∂–∫–∞ 12", author = "-", id = 12 },
+   { sound = [[–î—Ä—É–≥–∞—è\–¢—Ä–µ–∫_13]], title = "–î–æ—Ä–æ–∂–∫–∞ 13", author = "-", id = 13 },
+   { sound = [[–î—Ä—É–≥–∞—è\–¢—Ä–µ–∫_14]], title = "–î–æ—Ä–æ–∂–∫–∞ 14", author = "-", id = 14 },
+   { sound = [[–î—Ä—É–≥–∞—è\–¢—Ä–µ–∫_15]], title = "–î–æ—Ä–æ–∂–∫–∞ 15", author = "-", id = 15 },
+   { sound = [[–î—Ä—É–≥–∞—è\–¢—Ä–µ–∫_16]], title = "–î–æ—Ä–æ–∂–∫–∞ 16", author = "17-Apocalyptica-Path Vol.2 Feat. Sandra Nasic", id = 16 },
+   { sound = [[–î—Ä—É–≥–∞—è\–¢—Ä–µ–∫_17]], title = "–î–æ—Ä–æ–∂–∫–∞ 17", author = "-", id = 17 },
+   { sound = [[–î—Ä—É–≥–∞—è\–¢—Ä–µ–∫_18]], title = "–î–æ—Ä–æ–∂–∫–∞ 18", author = "-", id = 18 },
+   { sound = [[–î—Ä—É–≥–∞—è\–¢—Ä–µ–∫_19]], title = "–î–æ—Ä–æ–∂–∫–∞ 19", author = "Shitlist (Natural Born Killers)", id = 19 },
+   { sound = [[–î—Ä—É–≥–∞—è\–¢—Ä–µ–∫_20]], title = "–î–æ—Ä–æ–∂–∫–∞ 20", author = "Shiny Toy Guns - Le Disko", id = 20 },
+   { sound = [[–î—Ä—É–≥–∞—è\–¢—Ä–µ–∫_21]], title = "–î–æ—Ä–æ–∂–∫–∞ 21", author = "-aFx-", id = 21 },
+   { sound = [[–î—Ä—É–≥–∞—è\–¢—Ä–µ–∫_22]], title = "–î–æ—Ä–æ–∂–∫–∞ 22", author = "ACDC - Hells Bells", id = 22 },
+   { sound = [[–î—Ä—É–≥–∞—è\–¢—Ä–µ–∫_23]], title = "–î–æ—Ä–æ–∂–∫–∞ 23", author = "ACDC - Highway To Hell", id = 23 },
+   { sound = [[–î—Ä—É–≥–∞—è\–¢—Ä–µ–∫_24]], title = "–î–æ—Ä–æ–∂–∫–∞ 24", author = "Black Sabbath - Seventh Star", id = 24 },
+   { sound = [[–î—Ä—É–≥–∞—è\–¢—Ä–µ–∫_25]], title = "–î–æ—Ä–æ–∂–∫–∞ 25", author = "Def Leppard - Woman", id = 25 },
+   { sound = [[–î—Ä—É–≥–∞—è\–¢—Ä–µ–∫_26]], title = "–î–æ—Ä–æ–∂–∫–∞ 26", author = "Guns'N'Roses - Don't cry", id = 26 },
+   { sound = [[–î—Ä—É–≥–∞—è\–¢—Ä–µ–∫_27]], title = "–î–æ—Ä–æ–∂–∫–∞ 27", author = "Manowar - Warriors Of The World", id = 27 },
+   { sound = [[–î—Ä—É–≥–∞—è\–¢—Ä–µ–∫_28]], title = "–î–æ—Ä–æ–∂–∫–∞ 28", author = "Metallica - Nothing Else Matters", id = 28 },
+   { sound = [[–î—Ä—É–≥–∞—è\–¢—Ä–µ–∫_29]], title = "–î–æ—Ä–æ–∂–∫–∞ 29", author = "Queen - The show must go on", id = 29 },
+   { sound = [[–î—Ä—É–≥–∞—è\–¢—Ä–µ–∫_30]], title = "–î–æ—Ä–æ–∂–∫–∞ 30", author = "Scorpions - Still loving you", id = 30 },
+   { sound = [[–î—Ä—É–≥–∞—è\–¢—Ä–µ–∫_31]], title = "–î–æ—Ä–æ–∂–∫–∞ 31", author = "Limp Bizkit - Take A Look Around", id = 31 },
+   { sound = [[–î—Ä—É–≥–∞—è\–¢—Ä–µ–∫_32]], title = "–î–æ—Ä–æ–∂–∫–∞ 32", author = "Rammstein - Spookshow Baby", id = 32 },
+   { sound = [[–î—Ä—É–≥–∞—è\–¢—Ä–µ–∫_33]], title = "–î–æ—Ä–æ–∂–∫–∞ 33", author = "System Of A Down - Toxicity", id = 33 },
+   { sound = [[–î—Ä—É–≥–∞—è\–¢—Ä–µ–∫_34]], title = "–î–æ—Ä–æ–∂–∫–∞ 34", author = "Black Strobe - Im A Man", id = 34 },
+   { sound = [[–î—Ä—É–≥–∞—è\–¢—Ä–µ–∫_35]], title = "–î–æ—Ä–æ–∂–∫–∞ 35", author = "Adriano Celentano - Ja Tebia Liubliu", id = 35 },
+   { sound = [[–î—Ä—É–≥–∞—è\–¢—Ä–µ–∫_36]], title = "–î–æ—Ä–æ–∂–∫–∞ 36", author = "Carl Douglas - Kung Fu Fighting", id = 36 },
+   { sound = [[–î—Ä—É–≥–∞—è\–¢—Ä–µ–∫_37]], title = "–î–æ—Ä–æ–∂–∫–∞ 37", author = "Coolio - Ganstas Paradise", id = 37 },
+   { sound = [[–î—Ä—É–≥–∞—è\–¢—Ä–µ–∫_38]], title = "–î–æ—Ä–æ–∂–∫–∞ 38", author = "David Usher - Black Black Heart", id = 38 },
+   { sound = [[–î—Ä—É–≥–∞—è\–¢—Ä–µ–∫_39]], title = "–î–æ—Ä–æ–∂–∫–∞ 39", author = "Joe Cocker - Noubliez Jamais", id = 39 },
+   { sound = [[–î—Ä—É–≥–∞—è\–¢—Ä–µ–∫_40]], title = "–î–æ—Ä–æ–∂–∫–∞ 40", author = "Madonna - Youl ll See", id = 40 },
+   { sound = [[–î—Ä—É–≥–∞—è\–¢—Ä–µ–∫_41]], title = "–î–æ—Ä–æ–∂–∫–∞ 41", author = "Madonna - Frozen", id = 41 },
+   { sound = [[–î—Ä—É–≥–∞—è\–¢—Ä–µ–∫_42]], title = "–î–æ—Ä–æ–∂–∫–∞ 42", author = "Mylene Farmer - Appelle Mon Numero", id = 42 },
+   { sound = [[–î—Ä—É–≥–∞—è\–¢—Ä–µ–∫_43]], title = "–î–æ—Ä–æ–∂–∫–∞ 43", author = "Mylene Farmer - California", id = 43 },
+   { sound = [[–î—Ä—É–≥–∞—è\–¢—Ä–µ–∫_44]], title = "–î–æ—Ä–æ–∂–∫–∞ 44", author = "Mylene Farmer - Desenchantee", id = 44 },
+   { sound = [[–î—Ä—É–≥–∞—è\–¢—Ä–µ–∫_45]], title = "–î–æ—Ä–æ–∂–∫–∞ 45", author = "Mylene Farmer - Je Te Rends Ton Amour", id = 45 },
+   { sound = [[–î—Ä—É–≥–∞—è\–¢—Ä–µ–∫_46]], title = "–î–æ—Ä–æ–∂–∫–∞ 46", author = "Mylene Farmer - Lamour Nest Rien", id = 46 },
+   { sound = [[–î—Ä—É–≥–∞—è\–¢—Ä–µ–∫_47]], title = "–î–æ—Ä–æ–∂–∫–∞ 47", author = "Mylene Farmer - Pourvu Quelles", id = 47 },
+   { sound = [[–î—Ä—É–≥–∞—è\–¢—Ä–µ–∫_48]], title = "–î–æ—Ä–æ–∂–∫–∞ 48", author = "No Doubt - Dont Speak", id = 48 },
+   { sound = [[–î—Ä—É–≥–∞—è\–¢—Ä–µ–∫_49]], title = "–î–æ—Ä–æ–∂–∫–∞ 49", author = "Roxette - Real Sugar", id = 49 },
+   { sound = [[–î—Ä—É–≥–∞—è\–¢—Ä–µ–∫_50]], title = "–î–æ—Ä–æ–∂–∫–∞ 50", author = "Sting - Shape Of My Heart", id = 50 },
+   { sound = [[–î—Ä—É–≥–∞—è\–¢—Ä–µ–∫_51]], title = "–î–æ—Ä–æ–∂–∫–∞ 51", author = "Sting - Desert Rose", id = 51 },
+   { sound = [[–î—Ä—É–≥–∞—è\–¢—Ä–µ–∫_52]], title = "–î–æ—Ä–æ–∂–∫–∞ 52", author = "Sting - Ill Be Missing You", id = 52 },
+   { sound = [[–î—Ä—É–≥–∞—è\–¢—Ä–µ–∫_53]], title = "–î–æ—Ä–æ–∂–∫–∞ 53", author = "Sting - Mad About You", id = 53 },
+   { sound = [[–î—Ä—É–≥–∞—è\–¢—Ä–µ–∫_54]], title = "–î–æ—Ä–æ–∂–∫–∞ 54", author = "Sugababes - Stronger", id = 54 },
+   { sound = [[–î—Ä—É–≥–∞—è\–¢—Ä–µ–∫_55]], title = "–î–æ—Ä–æ–∂–∫–∞ 55", author = "Tarkan - Nu Gece", id = 55 },
+   { sound = [[–î—Ä—É–≥–∞—è\–¢—Ä–µ–∫_56]], title = "–î–æ—Ä–æ–∂–∫–∞ 56", author = "22-22 - Immortal", id = 56 },
+   { sound = [[–î—Ä—É–≥–∞—è\–¢—Ä–µ–∫_57]], title = "–î–æ—Ä–æ–∂–∫–∞ 57", author = "Aelyn - Believe In Us", id = 57 },
+   { sound = [[–î—Ä—É–≥–∞—è\–¢—Ä–µ–∫_58]], title = "–î–æ—Ä–æ–∂–∫–∞ 58", author = "Aelyn - In And Out Of Love", id = 58 },
+   { sound = [[–î—Ä—É–≥–∞—è\–¢—Ä–µ–∫_59]], title = "–î–æ—Ä–æ–∂–∫–∞ 59", author = "Bruno Mars - It Will Rain", id = 59 },
+   { sound = [[–î—Ä—É–≥–∞—è\–¢—Ä–µ–∫_60]], title = "–î–æ—Ä–æ–∂–∫–∞ 60", author = "Headstrong Feat Kirsty Hawkshaw - Love Calls", id = 60 },
+   { sound = [[–î—Ä—É–≥–∞—è\–¢—Ä–µ–∫_61]], title = "–î–æ—Ä–æ–∂–∫–∞ 61", author = "House Massive feat J Golubeva - Apologize", id = 61 },
+   { sound = [[–î—Ä—É–≥–∞—è\–¢—Ä–µ–∫_62]], title = "–î–æ—Ä–æ–∂–∫–∞ 62", author = "Iio - Rapture", id = 62 },
+   { sound = [[–î—Ä—É–≥–∞—è\–¢—Ä–µ–∫_63]], title = "–î–æ—Ä–æ–∂–∫–∞ 63", author = "Jazzamor - Caminho", id = 63 },
+   { sound = [[–î—Ä—É–≥–∞—è\–¢—Ä–µ–∫_64]], title = "–î–æ—Ä–æ–∂–∫–∞ 64", author = "Kirsty Hawkshaw meets Tenishia - Reason To Forgive", id = 64 },
+   { sound = [[–î—Ä—É–≥–∞—è\–¢—Ä–µ–∫_65]], title = "–î–æ—Ä–æ–∂–∫–∞ 65", author = "Kosmopolitans - I Belong To You", id = 65 },
+   { sound = [[–î—Ä—É–≥–∞—è\–¢—Ä–µ–∫_66]], title = "–î–æ—Ä–æ–∂–∫–∞ 66", author = "Lowland - Children", id = 66 },
+   { sound = [[–î—Ä—É–≥–∞—è\–¢—Ä–µ–∫_67]], title = "–î–æ—Ä–æ–∂–∫–∞ 67", author = "ReUnited - Sing It Back", id = 67 },
+   { sound = [[–î—Ä—É–≥–∞—è\–¢—Ä–µ–∫_68]], title = "–î–æ—Ä–æ–∂–∫–∞ 68", author = "The Tone - Relax Take It Easy", id = 68 },
+   { sound = [[–î—Ä—É–≥–∞—è\–¢—Ä–µ–∫_69]], title = "–î–æ—Ä–æ–∂–∫–∞ 69", author = "Tina Cousins - Wonderful Life", id = 69 },
+   { sound = [[–î—Ä—É–≥–∞—è\–¢—Ä–µ–∫_70]], title = "–î–æ—Ä–æ–∂–∫–∞ 70", author = "Thomas Anders - Why Do You Cry", id = 70 },
+   { sound = [[–î—Ä—É–≥–∞—è\–¢—Ä–µ–∫_71]], title = "–î–æ—Ä–æ–∂–∫–∞ 71", author = "Gary Jules - Mad World", id = 71 },
+   { sound = [[–î—Ä—É–≥–∞—è\–¢—Ä–µ–∫_72]], title = "–î–æ—Ä–æ–∂–∫–∞ 72", author = "Sade - Love Is Found", id = 72 }
 }
 local mp3_table_bonus = {
-   { sound = [[¡ÓÌÛÒ˚\¡ÓÌÛÒ_1]],  title = "¡ÓÌÛÒ 1",  author = "Armin van Buuren Feat. Sharon den Adel - In And Out Of Love", id = 1,  precond = "mp3_bonus_1" },
-   { sound = [[¡ÓÌÛÒ˚\¡ÓÌÛÒ_2]],  title = "¡ÓÌÛÒ 2",  author = "-",                                                           id = 2,  precond = "mp3_bonus_2" },
-   { sound = [[¡ÓÌÛÒ˚\¡ÓÌÛÒ_3]],  title = "¡ÓÌÛÒ 3",  author = "Freemasons feat. Sophie Ellis-Bextor - Heartbreak",           id = 3,  precond = "mp3_bonus_3" },
-   { sound = [[¡ÓÌÛÒ˚\¡ÓÌÛÒ_4]],  title = "¡ÓÌÛÒ 4",  author = "Klaxons - It's Not Over Yet",                                 id = 4,  precond = "mp3_bonus_4" },
-   { sound = [[¡ÓÌÛÒ˚\¡ÓÌÛÒ_5]],  title = "¡ÓÌÛÒ 5",  author = "-",                                                           id = 5,  precond = "mp3_bonus_5" },
-   { sound = [[¡ÓÌÛÒ˚\¡ÓÌÛÒ_6]],  title = "¡ÓÌÛÒ 6",  author = "-",                                                           id = 6,  precond = "mp3_bonus_6" },
-   { sound = [[¡ÓÌÛÒ˚\¡ÓÌÛÒ_7]],  title = "¡ÓÌÛÒ 7",  author = "Benny Benassi - Happiness Factory",                           id = 7,  precond = "mp3_bonus_7" },
-   { sound = [[¡ÓÌÛÒ˚\¡ÓÌÛÒ_8]],  title = "¡ÓÌÛÒ 8",  author = "David Guetta & Kelly Rowland - When Love Takes Over",         id = 8,  precond = "mp3_bonus_8" },
-   { sound = [[¡ÓÌÛÒ˚\¡ÓÌÛÒ_9]],  title = "¡ÓÌÛÒ 9",  author = "Dj Tiesto - I Will Be Here",                                  id = 9,  precond = "mp3_bonus_9" },
-   { sound = [[¡ÓÌÛÒ˚\¡ÓÌÛÒ_10]], title = "¡ÓÌÛÒ 10", author = "-",                                                           id = 10, precond = "mp3_bonus_10" },
-   { sound = [[¡ÓÌÛÒ˚\¡ÓÌÛÒ_11]], title = "¡ÓÌÛÒ 11", author = "-",                                                           id = 11, precond = "mp3_bonus_11" },
-   { sound = [[¡ÓÌÛÒ˚\¡ÓÌÛÒ_12]], title = "¡ÓÌÛÒ 12", author = "-",                                                           id = 12, precond = "mp3_bonus_12" },
-   { sound = [[¡ÓÌÛÒ˚\¡ÓÌÛÒ_13]], title = "¡ÓÌÛÒ 13", author = "Milk And Sugar - Let The Sun Shine",                          id = 13, precond = "mp3_bonus_13" },
-   { sound = [[¡ÓÌÛÒ˚\¡ÓÌÛÒ_14]], title = "¡ÓÌÛÒ 14", author = "-",                                                           id = 14, precond = "mp3_bonus_14" },
-   { sound = [[¡ÓÌÛÒ˚\¡ÓÌÛÒ_15]], title = "¡ÓÌÛÒ 15", author = "-",                                                           id = 15, precond = "mp3_bonus_15" },
-   { sound = [[¡ÓÌÛÒ˚\¡ÓÌÛÒ_16]], title = "¡ÓÌÛÒ 16", author = "04 Laurent Wolf - Club Fg Le Dancefloor",                     id = 16, precond = "mp3_bonus_16" },
-   { sound = [[¡ÓÌÛÒ˚\¡ÓÌÛÒ_17]], title = "¡ÓÌÛÒ 17", author = "-",                                                           id = 17, precond = "mp3_bonus_17" },
-   { sound = [[¡ÓÌÛÒ˚\¡ÓÌÛÒ_18]], title = "¡ÓÌÛÒ 18", author = "Sander Van Doorn & Purple Haze - Bliksem",                    id = 18, precond = "mp3_bonus_18" },
-   { sound = [[¡ÓÌÛÒ˚\¡ÓÌÛÒ_19]], title = "¡ÓÌÛÒ 19", author = "-",                                                           id = 19, precond = "mp3_bonus_19" },
-   { sound = [[¡ÓÌÛÒ˚\¡ÓÌÛÒ_20]], title = "¡ÓÌÛÒ 20", author = "Black & Jones - Catch",                                       id = 20, precond = "mp3_bonus_20" },
-   { sound = [[¡ÓÌÛÒ˚\¡ÓÌÛÒ_21]], title = "¡ÓÌÛÒ 21", author = "Angel Tears - Marrakech Atrium",                              id = 21, precond = "mp3_bonus_21" },
-   { sound = [[¡ÓÌÛÒ˚\¡ÓÌÛÒ_22]], title = "¡ÓÌÛÒ 22", author = "ATB - Behind",                                                id = 22, precond = "mp3_bonus_22" },
-   { sound = [[¡ÓÌÛÒ˚\¡ÓÌÛÒ_23]], title = "¡ÓÌÛÒ 23", author = "Blank & Jones - Lazy Life",                                   id = 23, precond = "mp3_bonus_23" },
-   { sound = [[¡ÓÌÛÒ˚\¡ÓÌÛÒ_24]], title = "¡ÓÌÛÒ 24", author = "Casanovy - I Need Your Lovin",                                id = 24, precond = "mp3_bonus_24" },
-   { sound = [[¡ÓÌÛÒ˚\¡ÓÌÛÒ_25]], title = "¡ÓÌÛÒ 25", author = "Ciaran McAuley - Forgotten",                                  id = 25, precond = "mp3_bonus_25" },
-   { sound = [[¡ÓÌÛÒ˚\¡ÓÌÛÒ_26]], title = "¡ÓÌÛÒ 26", author = "Dinka - Hopelessly Devoted",                                  id = 26, precond = "mp3_bonus_26" },
-   { sound = [[¡ÓÌÛÒ˚\¡ÓÌÛÒ_27]], title = "¡ÓÌÛÒ 27", author = "Imogen Heap - Hide And Seek",                                 id = 27, precond = "mp3_bonus_27" },
-   { sound = [[¡ÓÌÛÒ˚\¡ÓÌÛÒ_28]], title = "¡ÓÌÛÒ 28", author = "Moonbeam - Emotion",                                          id = 28, precond = "mp3_bonus_28" },
-   { sound = [[¡ÓÌÛÒ˚\¡ÓÌÛÒ_29]], title = "¡ÓÌÛÒ 29", author = "Richard Durand - No Way Home",                                id = 29, precond = "mp3_bonus_29" },
-   { sound = [[¡ÓÌÛÒ˚\¡ÓÌÛÒ_30]], title = "¡ÓÌÛÒ 30", author = "Roger Sanchez - Lost",                                        id = 30, precond = "mp3_bonus_30" },
-   { sound = [[¡ÓÌÛÒ˚\¡ÓÌÛÒ_31]], title = "¡ÓÌÛÒ 31", author = "Superbass Feat Delline Bass - New Life",                      id = 31, precond = "mp3_bonus_31" },
-   { sound = [[¡ÓÌÛÒ˚\¡ÓÌÛÒ_32]], title = "¡ÓÌÛÒ 32", author = "Yuri Kane - Right Back",                                      id = 32, precond = "mp3_bonus_32" },
-   { sound = [[¡ÓÌÛÒ˚\¡ÓÌÛÒ_33]], title = "¡ÓÌÛÒ 33", author = "Adam Lambert - Want From Me",                                 id = 33, precond = "mp3_bonus_33" },
-   { sound = [[¡ÓÌÛÒ˚\¡ÓÌÛÒ_34]], title = "¡ÓÌÛÒ 34", author = "September - Cry For You",                                     id = 34, precond = "mp3_bonus_34" },
-   { sound = [[¡ÓÌÛÒ˚\¡ÓÌÛÒ_35]], title = "¡ÓÌÛÒ 35", author = "Duran Duran - Come Undone",                                   id = 35, precond = "mp3_bonus_35" },
-   { sound = [[¡ÓÌÛÒ˚\¡ÓÌÛÒ_36]], title = "¡ÓÌÛÒ 36", author = "Oceana - Cry Cry",                                            id = 36, precond = "mp3_bonus_36" },
-   { sound = [[¡ÓÌÛÒ˚\¡ÓÌÛÒ_37]], title = "¡ÓÌÛÒ 37", author = "Garbage - The World Is Not Enough",                           id = 37, precond = "mp3_bonus_37" },
-   { sound = [[¡ÓÌÛÒ˚\¡ÓÌÛÒ_38]], title = "¡ÓÌÛÒ 38", author = "Keri Hilson - I Like",                                        id = 38, precond = "mp3_bonus_38" },
-   { sound = [[¡ÓÌÛÒ˚\¡ÓÌÛÒ_39]], title = "¡ÓÌÛÒ 39", author = "Madonna - The Power Of Goodbye",                              id = 39, precond = "mp3_bonus_39" },
-   { sound = [[¡ÓÌÛÒ˚\¡ÓÌÛÒ_40]], title = "¡ÓÌÛÒ 40", author = "Youssou Ndour & Neneh Cherry - 7 Seconds",                    id = 40, precond = "mp3_bonus_40" }
+   { sound = [[–ë–æ–Ω—É—Å—ã\–ë–æ–Ω—É—Å_1]], title = "–ë–æ–Ω—É—Å 1", author = "Armin van Buuren Feat. Sharon den Adel - In And Out Of Love", id = 1, precond = "mp3_bonus_1" },
+   { sound = [[–ë–æ–Ω—É—Å—ã\–ë–æ–Ω—É—Å_2]], title = "–ë–æ–Ω—É—Å 2", author = "-", id = 2, precond = "mp3_bonus_2" },
+   { sound = [[–ë–æ–Ω—É—Å—ã\–ë–æ–Ω—É—Å_3]], title = "–ë–æ–Ω—É—Å 3", author = "Freemasons feat. Sophie Ellis-Bextor - Heartbreak", id = 3, precond = "mp3_bonus_3" },
+   { sound = [[–ë–æ–Ω—É—Å—ã\–ë–æ–Ω—É—Å_4]], title = "–ë–æ–Ω—É—Å 4", author = "Klaxons - It's Not Over Yet", id = 4, precond = "mp3_bonus_4" },
+   { sound = [[–ë–æ–Ω—É—Å—ã\–ë–æ–Ω—É—Å_5]], title = "–ë–æ–Ω—É—Å 5", author = "-", id = 5, precond = "mp3_bonus_5" },
+   { sound = [[–ë–æ–Ω—É—Å—ã\–ë–æ–Ω—É—Å_6]], title = "–ë–æ–Ω—É—Å 6", author = "-", id = 6, precond = "mp3_bonus_6" },
+   { sound = [[–ë–æ–Ω—É—Å—ã\–ë–æ–Ω—É—Å_7]], title = "–ë–æ–Ω—É—Å 7", author = "Benny Benassi - Happiness Factory", id = 7, precond = "mp3_bonus_7" },
+   { sound = [[–ë–æ–Ω—É—Å—ã\–ë–æ–Ω—É—Å_8]], title = "–ë–æ–Ω—É—Å 8", author = "David Guetta & Kelly Rowland - When Love Takes Over", id = 8, precond = "mp3_bonus_8" },
+   { sound = [[–ë–æ–Ω—É—Å—ã\–ë–æ–Ω—É—Å_9]], title = "–ë–æ–Ω—É—Å 9", author = "Dj Tiesto - I Will Be Here", id = 9, precond = "mp3_bonus_9" },
+   { sound = [[–ë–æ–Ω—É—Å—ã\–ë–æ–Ω—É—Å_10]], title = "–ë–æ–Ω—É—Å 10", author = "-", id = 10, precond = "mp3_bonus_10" },
+   { sound = [[–ë–æ–Ω—É—Å—ã\–ë–æ–Ω—É—Å_11]], title = "–ë–æ–Ω—É—Å 11", author = "-", id = 11, precond = "mp3_bonus_11" },
+   { sound = [[–ë–æ–Ω—É—Å—ã\–ë–æ–Ω—É—Å_12]], title = "–ë–æ–Ω—É—Å 12", author = "-", id = 12, precond = "mp3_bonus_12" },
+   { sound = [[–ë–æ–Ω—É—Å—ã\–ë–æ–Ω—É—Å_13]], title = "–ë–æ–Ω—É—Å 13", author = "Milk And Sugar - Let The Sun Shine", id = 13, precond = "mp3_bonus_13" },
+   { sound = [[–ë–æ–Ω—É—Å—ã\–ë–æ–Ω—É—Å_14]], title = "–ë–æ–Ω—É—Å 14", author = "-", id = 14, precond = "mp3_bonus_14" },
+   { sound = [[–ë–æ–Ω—É—Å—ã\–ë–æ–Ω—É—Å_15]], title = "–ë–æ–Ω—É—Å 15", author = "-", id = 15, precond = "mp3_bonus_15" },
+   { sound = [[–ë–æ–Ω—É—Å—ã\–ë–æ–Ω—É—Å_16]], title = "–ë–æ–Ω—É—Å 16", author = "04 Laurent Wolf - Club Fg Le Dancefloor", id = 16, precond = "mp3_bonus_16" },
+   { sound = [[–ë–æ–Ω—É—Å—ã\–ë–æ–Ω—É—Å_17]], title = "–ë–æ–Ω—É—Å 17", author = "-", id = 17, precond = "mp3_bonus_17" },
+   { sound = [[–ë–æ–Ω—É—Å—ã\–ë–æ–Ω—É—Å_18]], title = "–ë–æ–Ω—É—Å 18", author = "Sander Van Doorn & Purple Haze - Bliksem", id = 18, precond = "mp3_bonus_18" },
+   { sound = [[–ë–æ–Ω—É—Å—ã\–ë–æ–Ω—É—Å_19]], title = "–ë–æ–Ω—É—Å 19", author = "-", id = 19, precond = "mp3_bonus_19" },
+   { sound = [[–ë–æ–Ω—É—Å—ã\–ë–æ–Ω—É—Å_20]], title = "–ë–æ–Ω—É—Å 20", author = "Black & Jones - Catch", id = 20, precond = "mp3_bonus_20" },
+   { sound = [[–ë–æ–Ω—É—Å—ã\–ë–æ–Ω—É—Å_21]], title = "–ë–æ–Ω—É—Å 21", author = "Angel Tears - Marrakech Atrium", id = 21, precond = "mp3_bonus_21" },
+   { sound = [[–ë–æ–Ω—É—Å—ã\–ë–æ–Ω—É—Å_22]], title = "–ë–æ–Ω—É—Å 22", author = "ATB - Behind", id = 22, precond = "mp3_bonus_22" },
+   { sound = [[–ë–æ–Ω—É—Å—ã\–ë–æ–Ω—É—Å_23]], title = "–ë–æ–Ω—É—Å 23", author = "Blank & Jones - Lazy Life", id = 23, precond = "mp3_bonus_23" },
+   { sound = [[–ë–æ–Ω—É—Å—ã\–ë–æ–Ω—É—Å_24]], title = "–ë–æ–Ω—É—Å 24", author = "Casanovy - I Need Your Lovin", id = 24, precond = "mp3_bonus_24" },
+   { sound = [[–ë–æ–Ω—É—Å—ã\–ë–æ–Ω—É—Å_25]], title = "–ë–æ–Ω—É—Å 25", author = "Ciaran McAuley - Forgotten", id = 25, precond = "mp3_bonus_25" },
+   { sound = [[–ë–æ–Ω—É—Å—ã\–ë–æ–Ω—É—Å_26]], title = "–ë–æ–Ω—É—Å 26", author = "Dinka - Hopelessly Devoted", id = 26, precond = "mp3_bonus_26" },
+   { sound = [[–ë–æ–Ω—É—Å—ã\–ë–æ–Ω—É—Å_27]], title = "–ë–æ–Ω—É—Å 27", author = "Imogen Heap - Hide And Seek", id = 27, precond = "mp3_bonus_27" },
+   { sound = [[–ë–æ–Ω—É—Å—ã\–ë–æ–Ω—É—Å_28]], title = "–ë–æ–Ω—É—Å 28", author = "Moonbeam - Emotion", id = 28, precond = "mp3_bonus_28" },
+   { sound = [[–ë–æ–Ω—É—Å—ã\–ë–æ–Ω—É—Å_29]], title = "–ë–æ–Ω—É—Å 29", author = "Richard Durand - No Way Home", id = 29, precond = "mp3_bonus_29" },
+   { sound = [[–ë–æ–Ω—É—Å—ã\–ë–æ–Ω—É—Å_30]], title = "–ë–æ–Ω—É—Å 30", author = "Roger Sanchez - Lost", id = 30, precond = "mp3_bonus_30" },
+   { sound = [[–ë–æ–Ω—É—Å—ã\–ë–æ–Ω—É—Å_31]], title = "–ë–æ–Ω—É—Å 31", author = "Superbass Feat Delline Bass - New Life", id = 31, precond = "mp3_bonus_31" },
+   { sound = [[–ë–æ–Ω—É—Å—ã\–ë–æ–Ω—É—Å_32]], title = "–ë–æ–Ω—É—Å 32", author = "Yuri Kane - Right Back", id = 32, precond = "mp3_bonus_32" },
+   { sound = [[–ë–æ–Ω—É—Å—ã\–ë–æ–Ω—É—Å_33]], title = "–ë–æ–Ω—É—Å 33", author = "Adam Lambert - Want From Me", id = 33, precond = "mp3_bonus_33" },
+   { sound = [[–ë–æ–Ω—É—Å—ã\–ë–æ–Ω—É—Å_34]], title = "–ë–æ–Ω—É—Å 34", author = "September - Cry For You", id = 34, precond = "mp3_bonus_34" },
+   { sound = [[–ë–æ–Ω—É—Å—ã\–ë–æ–Ω—É—Å_35]], title = "–ë–æ–Ω—É—Å 35", author = "Duran Duran - Come Undone", id = 35, precond = "mp3_bonus_35" },
+   { sound = [[–ë–æ–Ω—É—Å—ã\–ë–æ–Ω—É—Å_36]], title = "–ë–æ–Ω—É—Å 36", author = "Oceana - Cry Cry", id = 36, precond = "mp3_bonus_36" },
+   { sound = [[–ë–æ–Ω—É—Å—ã\–ë–æ–Ω—É—Å_37]], title = "–ë–æ–Ω—É—Å 37", author = "Garbage - The World Is Not Enough", id = 37, precond = "mp3_bonus_37" },
+   { sound = [[–ë–æ–Ω—É—Å—ã\–ë–æ–Ω—É—Å_38]], title = "–ë–æ–Ω—É—Å 38", author = "Keri Hilson - I Like", id = 38, precond = "mp3_bonus_38" },
+   { sound = [[–ë–æ–Ω—É—Å—ã\–ë–æ–Ω—É—Å_39]], title = "–ë–æ–Ω—É—Å 39", author = "Madonna - The Power Of Goodbye", id = 39, precond = "mp3_bonus_39" },
+   { sound = [[–ë–æ–Ω—É—Å—ã\–ë–æ–Ω—É—Å_40]], title = "–ë–æ–Ω—É—Å 40", author = "Youssou Ndour & Neneh Cherry - 7 Seconds", id = 40, precond = "mp3_bonus_40" }
 }
 function mp3_update()
    if has_alife_info("mp3_player_repeat") then
@@ -332,7 +332,7 @@ function mp3_update()
       if mp3_obj ~= nil then
          if mp3_obj:playing() == false then
             mp3_obj:play(db.actor, 0, sound_object.s2d)
-            mp3_obj.volume = sgm_g.read_mod_param("mp3_currert_volume")
+            mp3_obj.volume = read_mod_param("mp3_currert_volume")
             mp3_last_position = string.format(math.floor(time_global() / 1000))
             mp3_length_position = string.format(math.floor(time_global() / 1000)) - mp3_last_position
             mp3_obj.min_distance, mp3_obj.max_distance = 2, 6
@@ -346,7 +346,7 @@ function mp3_update()
                for k, v in pairs(mp3_played_list) do
                   if v.title == mp3_plays then
                      local next_id = v.id + 1
-                     if next_id > get_table_lines(mp3_played_list) then
+                     if next_id > sgm_g.get_table_lines(mp3_played_list) then
                         next_id = 1
                      end
                      for a, s in pairs(mp3_played_list) do
@@ -368,7 +368,7 @@ function mp3_update()
                mp3_info = next_title .. " (" .. mp3_player():get_sound_length(mp3_obj) .. ")"
             end
             mp3_obj:play(db.actor, 0, sound_object.s2d)
-            mp3_obj.volume = sgm_g.read_mod_param("mp3_currert_volume")
+            mp3_obj.volume = read_mod_param("mp3_currert_volume")
             mp3_last_position = string.format(math.floor(time_global() / 1000))
             mp3_length_position = string.format(math.floor(time_global() / 1000)) - mp3_last_position
             mp3_obj.min_distance, mp3_obj.max_distance = 2, 6
@@ -385,7 +385,7 @@ function mp3_update()
          end
       end
    end
-   if db.actor and check_ui_worked() and (not db.actor:object("mp3_player")) then
+   if db.actor and sgm_g.check_ui_worked() and (not db.actor:object("mp3_player")) then
       if mp3_obj ~= nil then
          if mp3_obj:playing() == true then
             mp3_obj:stop()
@@ -399,7 +399,7 @@ function mp3_update()
 end
 
 function add_mp3_bonus(info_name)
-   if sgm_g.dont_has_alife_info(info_name) then
+   if dont_has_alife_info(info_name) then
       news_manager.send_tip(db.actor, "st_mp3_new_content_descr", 0, "mp3_player", 3500, nil, "st_mp3_new_content_title")
    end
    give_info(info_name)
@@ -469,7 +469,7 @@ end
 function mp3_player:InitControls()
    self:SetWndRect(Frect():set(0, 0, 1024, 768))
    local xml = CScriptXmlInit()
-   xml:ParseFile("ui_mod_elements.xml")
+   xml:ParseFile("sgm_ui_mod_elements.xml")
    self.mp3_player_form = xml:InitStatic("mp3_player_form", self)
    self:Register(xml:Init3tButton("mp3_player_form:btn_dance", self.mp3_player_form), "btn_dance")
    self:Register(xml:Init3tButton("mp3_player_form:btn_merry", self.mp3_player_form), "btn_merry")
@@ -514,8 +514,8 @@ function mp3_player:Update()
    if not object_alive(db.actor) then
       self:btn_close()
    end
-   if sgm_g.read_mod_param("mp3_currert_volume") ~= nil then
-      self.volume_number:TextControl():SetText(string.format(math.floor(sgm_g.read_mod_param("mp3_currert_volume") * 100)))
+   if read_mod_param("mp3_currert_volume") ~= nil then
+      self.volume_number:TextControl():SetText(string.format(math.floor(read_mod_param("mp3_currert_volume") * 100)))
    end
    if self.mp3_info:TextControl():GetText() ~= mp3_info then
       self.mp3_info:TextControl():SetText(mp3_info)
@@ -559,16 +559,16 @@ function mp3_player:check_config_update()
 end
 
 function mp3_player:btn_volume_minus()
-   write_mod_param("mp3_currert_volume", sgm_g.read_mod_param("mp3_currert_volume") - mp3_add_value)
+   sgm_g.write_mod_param("mp3_currert_volume", read_mod_param("mp3_currert_volume") - mp3_add_value)
    if mp3_obj ~= nil then
-      mp3_obj.volume = sgm_g.read_mod_param("mp3_currert_volume")
+      mp3_obj.volume = read_mod_param("mp3_currert_volume")
    end
 end
 
 function mp3_player:btn_volume_plus()
-   write_mod_param("mp3_currert_volume", sgm_g.read_mod_param("mp3_currert_volume") + mp3_add_value)
+   sgm_g.write_mod_param("mp3_currert_volume", read_mod_param("mp3_currert_volume") + mp3_add_value)
    if mp3_obj ~= nil then
-      mp3_obj.volume = sgm_g.read_mod_param("mp3_currert_volume")
+      mp3_obj.volume = read_mod_param("mp3_currert_volume")
    end
 end
 
@@ -787,7 +787,7 @@ function mp3_player:btn_play()
    end
    mp3_obj = sound_object(sound_name)
    mp3_obj:play(db.actor, 0, sound_object.s2d)
-   mp3_obj.volume = sgm_g.read_mod_param("mp3_currert_volume")
+   mp3_obj.volume = read_mod_param("mp3_currert_volume")
    mp3_plays = sound_title
    mp3_last_position = string.format(math.floor(time_global() / 1000))
    mp3_length_position = string.format(math.floor(time_global() / 1000)) - mp3_last_position
@@ -816,7 +816,7 @@ function mp3_player:btn_close()
 end
 
 ------------------------------------------------------------------------------
---                      –ÂÏÍÓÏÔÎÂÍÚ ‰Îˇ ÓÛÊËˇ                              --
+--                      –†–µ–º–∫–æ–º–ø–ª–µ–∫—Ç –¥–ª—è –æ—Ä—É–∂–∏—è                              --
 ------------------------------------------------------------------------------
 local repair_weapon_excluded = "pri_a17_gauss_rifle"
 class "repair_weapon_box" (CUIScriptWnd)
@@ -835,7 +835,7 @@ end
 function repair_weapon_box:InitControls()
    self:SetWndRect(Frect():set(0, 0, 1024, 768))
    local xml = CScriptXmlInit()
-   xml:ParseFile("ui_mod_elements.xml")
+   xml:ParseFile("sgm_ui_mod_elements.xml")
    self.repair_wpn_form = xml:InitStatic("repair_wpn_form", self)
    self:Register(xml:Init3tButton("repair_wpn_form:btn_repair", self.repair_wpn_form), "btn_repair")
    self:Register(xml:Init3tButton("repair_wpn_form:btn_close", self.repair_wpn_form), "btn_close")
@@ -896,10 +896,10 @@ function repair_weapon_box:check_included_cond(type)
    local exclude_table = utils.parse_spawns(repair_weapon_excluded)
    local exclude_count = get_table_names(exclude_table)
    for k, v in pairs(exclude_table) do
-      if type == 1 and sgm_g.find_in_string(self.repair_weapon_slot_1:section(), v.section) then
+      if type == 1 and find_in_string(self.repair_weapon_slot_1:section(), v.section) then
          exclude_1_result = false
       end
-      if type == 2 and sgm_g.find_in_string(self.repair_weapon_slot_2:section(), v.section) then
+      if type == 2 and find_in_string(self.repair_weapon_slot_2:section(), v.section) then
          exclude_2_result = false
       end
    end
@@ -1025,7 +1025,7 @@ end
 function repair_weapon_box_used:InitControls()
    self:SetWndRect(Frect():set(0, 0, 1024, 768))
    local xml = CScriptXmlInit()
-   xml:ParseFile("ui_mod_elements.xml")
+   xml:ParseFile("sgm_ui_mod_elements.xml")
    self.repair_wpn_form = xml:InitStatic("repair_wpn_form", self)
    self:Register(xml:Init3tButton("repair_wpn_form:btn_repair", self.repair_wpn_form), "btn_repair")
    self:Register(xml:Init3tButton("repair_wpn_form:btn_close", self.repair_wpn_form), "btn_close")
@@ -1086,10 +1086,10 @@ function repair_weapon_box_used:check_included_cond(type)
    local exclude_table = utils.parse_spawns(repair_weapon_excluded)
    local exclude_count = get_table_names(exclude_table)
    for k, v in pairs(exclude_table) do
-      if type == 1 and sgm_g.find_in_string(self.repair_weapon_slot_1:section(), v.section) then
+      if type == 1 and find_in_string(self.repair_weapon_slot_1:section(), v.section) then
          exclude_1_result = false
       end
-      if type == 2 and sgm_g.find_in_string(self.repair_weapon_slot_2:section(), v.section) then
+      if type == 2 and find_in_string(self.repair_weapon_slot_2:section(), v.section) then
          exclude_2_result = false
       end
    end
@@ -1173,7 +1173,7 @@ function repair_weapon_box_used:btn_close()
 end
 
 ------------------------------------------------------------------------------
---                        –ÂÏÍÓÏÔÎÂÍÚ ‰Îˇ ·ÓÌÂÍÓÒÚ˛ÏÓ‚                     --
+--                        –†–µ–º–∫–æ–º–ø–ª–µ–∫—Ç –¥–ª—è –±—Ä–æ–Ω–µ–∫–æ—Å—Ç—é–º–æ–≤                     --
 ------------------------------------------------------------------------------
 local repair_outfit_excluded = ""
 class "repair_outfit_box" (CUIScriptWnd)
@@ -1192,7 +1192,7 @@ end
 function repair_outfit_box:InitControls()
    self:SetWndRect(Frect():set(0, 0, 1024, 768))
    local xml = CScriptXmlInit()
-   xml:ParseFile("ui_mod_elements.xml")
+   xml:ParseFile("sgm_ui_mod_elements.xml")
    self.repair_outfit_form = xml:InitStatic("repair_outfit_form", self)
    self:Register(xml:Init3tButton("repair_outfit_form:btn_repair", self.repair_outfit_form), "btn_repair")
    self:Register(xml:Init3tButton("repair_outfit_form:btn_close", self.repair_outfit_form), "btn_close")
@@ -1268,10 +1268,10 @@ function repair_outfit_box:check_included_cond(type)
    local exclude_table = utils.parse_spawns(repair_outfit_excluded)
    local exclude_count = get_table_names(exclude_table)
    for k, v in pairs(exclude_table) do
-      if type == 1 and sgm_g.find_in_string(self.repair_outfit_slot_1:section(), v.section) then
+      if type == 1 and find_in_string(self.repair_outfit_slot_1:section(), v.section) then
          exclude_1_result = false
       end
-      if type == 2 and sgm_g.find_in_string(self.repair_outfit_slot_2:section(), v.section) then
+      if type == 2 and find_in_string(self.repair_outfit_slot_2:section(), v.section) then
          exclude_2_result = false
       end
    end
@@ -1304,7 +1304,7 @@ function repair_outfit_box:choose_box_yes()
             passed1_bool = true
          end
       end
-      if self.repair_outfit_slot_1 ~= nil and sgm_g.find_in_string(self.repair_outfit_slot_1:section(), "reduce_") and have_item_count(self.repair_outfit_slot_1:section(), 2) then
+      if self.repair_outfit_slot_1 ~= nil and find_in_string(self.repair_outfit_slot_1:section(), "reduce_") and have_item_count(self.repair_outfit_slot_1:section(), 2) then
          if have_item_count(self.repair_outfit_slot_1:section(), 2) then
             self:spend_items(self.repair_outfit_slot_1:section(), 7)
             local slot_1_name = sgm_functions.ReadCaption(self.repair_outfit_slot_1:section())
@@ -1397,7 +1397,7 @@ end
 function repair_outfit_box_used:InitControls()
    self:SetWndRect(Frect():set(0, 0, 1024, 768))
    local xml = CScriptXmlInit()
-   xml:ParseFile("ui_mod_elements.xml")
+   xml:ParseFile("sgm_ui_mod_elements.xml")
    self.repair_outfit_form = xml:InitStatic("repair_outfit_form", self)
    self:Register(xml:Init3tButton("repair_outfit_form:btn_repair", self.repair_outfit_form), "btn_repair")
    self:Register(xml:Init3tButton("repair_outfit_form:btn_close", self.repair_outfit_form), "btn_close")
@@ -1479,10 +1479,10 @@ function repair_outfit_box_used:check_included_cond(type)
    local exclude_table = utils.parse_spawns(repair_outfit_excluded)
    local exclude_count = get_table_names(exclude_table)
    for k, v in pairs(exclude_table) do
-      if type == 1 and sgm_g.find_in_string(self.repair_outfit_slot_1:section(), v.section) then
+      if type == 1 and find_in_string(self.repair_outfit_slot_1:section(), v.section) then
          exclude_1_result = false
       end
-      if type == 2 and sgm_g.find_in_string(self.repair_outfit_slot_2:section(), v.section) then
+      if type == 2 and find_in_string(self.repair_outfit_slot_2:section(), v.section) then
          exclude_2_result = false
       end
    end
@@ -1515,7 +1515,7 @@ function repair_outfit_box_used:choose_box_yes()
             passed1_bool = true
          end
       end
-      if self.repair_outfit_slot_1 ~= nil and sgm_g.find_in_string(self.repair_outfit_slot_1:section(), "reduce_") and have_item_count(self.repair_outfit_slot_1:section(), 2) then
+      if self.repair_outfit_slot_1 ~= nil and find_in_string(self.repair_outfit_slot_1:section(), "reduce_") and have_item_count(self.repair_outfit_slot_1:section(), 2) then
          if have_item_count(self.repair_outfit_slot_1:section(), 2) then
             self:spend_items(self.repair_outfit_slot_1:section(), 7)
             local slot_1_name = sgm_functions.ReadCaption(self.repair_outfit_slot_1:section())
@@ -1562,7 +1562,7 @@ function repair_outfit_box_used:btn_close()
 end
 
 ------------------------------------------------------------------------------
---                              ¿ÏÂÈÒÍËÈ Ú‡ÈÏÂ                            --
+--                              –ê—Ä–º–µ–π—Å–∫–∏–π —Ç–∞–π–º–µ—Ä                            --
 ------------------------------------------------------------------------------
 army_timer_value = 0
 army_timer_deprive = 0
@@ -1581,7 +1581,7 @@ end
 function army_timer:InitControls()
    self:SetWndRect(Frect():set(0, 0, 1024, 768))
    local xml = CScriptXmlInit()
-   xml:ParseFile("ui_mod_elements.xml")
+   xml:ParseFile("sgm_ui_mod_elements.xml")
    self.army_timer_form = xml:InitStatic("army_timer_form", self)
    self:Register(xml:Init3tButton("army_timer_form:btn_start", self.army_timer_form), "btn_start")
    self:Register(xml:Init3tButton("army_timer_form:btn_close", self.army_timer_form), "btn_close")
@@ -1635,7 +1635,7 @@ function army_timer:btn_close()
 end
 
 ------------------------------------------------------------------------------
---                            ÓÌ‚ÂÚÂ ‰Îˇ „‡Ì‡Ú                          --
+--                           –ö–æ–Ω–≤–µ—Ä—Ç–µ—Ä –¥–ª—è –≥—Ä–∞–Ω–∞—Ç                          --
 ------------------------------------------------------------------------------
 class "conventer_grenade_box" (CUIScriptWnd)
 function conventer_grenade_box:__init(owner)
@@ -1651,7 +1651,7 @@ end
 function conventer_grenade_box:InitControls()
    self:SetWndRect(Frect():set(0, 0, 1024, 768))
    local xml = CScriptXmlInit()
-   xml:ParseFile("ui_mod_elements.xml")
+   xml:ParseFile("sgm_ui_mod_elements.xml")
    self.conventer_grenade_form = xml:InitStatic("conventer_grenade_form", self)
    self:Register(xml:Init3tButton("conventer_grenade_form:btn_1_slot", self.conventer_grenade_form), "btn_1_slot")
    self:Register(xml:Init3tButton("conventer_grenade_form:btn_2_slot", self.conventer_grenade_form), "btn_2_slot")
@@ -1773,7 +1773,7 @@ function conventer_grenade_box:btn_close()
 end
 
 ------------------------------------------------------------------------------
---                            œÂÒÓÌ‡Î¸Ì˚È Ï‡ˇÍ                             --
+--                            –ü–µ—Ä—Å–æ–Ω–∞–ª—å–Ω—ã–π –º–∞—è–∫                             --
 ------------------------------------------------------------------------------
 class "personal_marker" (CUIScriptWnd)
 function personal_marker:__init(owner)
@@ -1789,7 +1789,7 @@ end
 function personal_marker:InitControls()
    self:SetWndRect(Frect():set(0, 0, 1024, 768))
    local xml = CScriptXmlInit()
-   xml:ParseFile("ui_mod_elements.xml")
+   xml:ParseFile("sgm_ui_mod_elements.xml")
    self.personal_marker_form = xml:InitStatic("personal_marker_form", self)
    self:Register(xml:Init3tButton("personal_marker_form:btn_setup", self.personal_marker_form), "btn_setup")
    self:Register(xml:Init3tButton("personal_marker_form:btn_radius_hide", self.personal_marker_form), "btn_radius_hide")
@@ -1827,9 +1827,9 @@ function personal_marker:btn_setup()
    local sobj = alife():create("personal_marker", db.actor:position(), db.actor:level_vertex_id(),
       db.actor:game_vertex_id())
    if exists(self.enter_field:GetText()) and self.enter_field:GetText() ~= "" then
-      add_spot_on_map(sobj.id, sgm_flags.spot_map_marker, self.enter_field:GetText())
+      sgm_g.add_spot_on_map(sobj.id, sgm_flags.spot_map_marker, self.enter_field:GetText())
    else
-      add_spot_on_map(sobj.id, sgm_flags.spot_map_marker, "st_personal_marker_name")
+      sgm_g.add_spot_on_map(sobj.id, sgm_flags.spot_map_marker, "st_personal_marker_name")
    end
    self:HideDialog()
 end
@@ -1848,7 +1848,7 @@ function personal_marker:btn_cancel()
 end
 
 ------------------------------------------------------------------------------
---                          œÂÒÓÌ‡Î¸Ì˚È ˛ÍÁ‡Í                             --
+--                          –ü–µ—Ä—Å–æ–Ω–∞–ª—å–Ω—ã–π —Ä—é–∫–∑–∞–∫                             --
 ------------------------------------------------------------------------------
 class "personal_rukzak" (CUIScriptWnd)
 function personal_rukzak:__init(owner)
@@ -1864,7 +1864,7 @@ end
 function personal_rukzak:InitControls()
    self:SetWndRect(Frect():set(0, 0, 1024, 768))
    local xml = CScriptXmlInit()
-   xml:ParseFile("ui_mod_elements.xml")
+   xml:ParseFile("sgm_ui_mod_elements.xml")
    self.personal_rukzak_form = xml:InitStatic("personal_rukzak_form", self)
    self:Register(xml:Init3tButton("personal_rukzak_form:btn_leave", self.personal_rukzak_form), "btn_leave")
    self:Register(xml:Init3tButton("personal_rukzak_form:btn_radius_hide", self.personal_rukzak_form), "btn_radius_hide")
@@ -1907,9 +1907,9 @@ function personal_rukzak:btn_leave()
       local sobj = create("default_inventory_box", db.actor:position().x, db.actor:position().y, db.actor:position().z,
          db.actor:level_vertex_id(), db.actor:game_vertex_id())
       if exists(self.spot_name_field:GetText()) and self.spot_name_field:GetText() ~= "" then
-         add_spot_on_map(sobj.id, sgm_flags.spot_hero_rucksack, self.spot_name_field:GetText())
+         sgm_g.add_spot_on_map(sobj.id, sgm_flags.spot_hero_rucksack, self.spot_name_field:GetText())
       else
-         add_spot_on_map(sobj.id, sgm_flags.spot_hero_rucksack, "st_treasure_rukzak_name")
+         sgm_g.add_spot_on_map(sobj.id, sgm_flags.spot_hero_rucksack, "st_treasure_rukzak_name")
       end
       if self.check_with_take:GetCheck() == true then
          alife():create("use_personal_rukzak", vector(), 0, 0, sobj.id)
@@ -1938,7 +1938,7 @@ function personal_rukzak:btn_cancel()
 end
 
 ------------------------------------------------------------------------------
---                             «‡ˇ‰ –—-15                                  --
+--                             –ó–∞—Ä—è–¥ –†–°-15                                  --
 ------------------------------------------------------------------------------
 cfg_remote_charge_delay = 0
 class "remote_charge" (CUIScriptWnd)
@@ -1957,7 +1957,7 @@ end
 function remote_charge:InitControls()
    self:SetWndRect(Frect():set(0, 0, 1024, 768))
    local xml = CScriptXmlInit()
-   xml:ParseFile("ui_mod_elements.xml")
+   xml:ParseFile("sgm_ui_mod_elements.xml")
    self.remote_charge_form = xml:InitStatic("remote_charge_form", self)
    self:Register(xml:Init3tButton("remote_charge_form:btn_place", self.remote_charge_form), "btn_place")
    self:Register(xml:Init3tButton("remote_charge_form:btn_cancel", self.remote_charge_form), "btn_cancel")
@@ -2015,10 +2015,10 @@ function remote_charge:btn_place()
    local obj = create("remote_charge", db.actor:position().x, db.actor:position().y, db.actor:position().z,
       db.actor:level_vertex_id(), db.actor:game_vertex_id())
    if self.remote_charge_delay == 0 then
-      add_spot_on_map(obj.id, sgm_flags.spot_remote_charge, "st_remote_charge_spot")
+      sgm_g.add_spot_on_map(obj.id, sgm_flags.spot_remote_charge, "st_remote_charge_spot")
    else
       local charge_delay = self.remote_charge_delay / 1000
-      add_spot_on_map(obj.id, sgm_flags.spot_remote_charge,
+      sgm_g.add_spot_on_map(obj.id, sgm_flags.spot_remote_charge,
          game.translate_string("st_remote_charge_spot") ..
          ": " .. charge_delay .. " " .. game.translate_string("st_remote_charge_delay_value"))
    end
@@ -2032,7 +2032,7 @@ function remote_charge:btn_cancel()
 end
 
 ------------------------------------------------------------------------------
---                         ‡ÚÓ˜Ì‡ˇ Ë„‡: 21 Ó˜ÍÓ                           --
+--                        –ö–∞—Ä—Ç–æ—á–Ω–∞—è –∏–≥—Ä–∞: 21 –æ—á–∫–æ                           --
 ------------------------------------------------------------------------------
 card_game_21_stage = "need_rate"
 card_game_21_take_else = "empty_card"
@@ -2062,7 +2062,7 @@ end
 function card_game_21_point:InitControls()
    self:SetWndRect(Frect():set(0, 0, 1024, 768))
    xml = CScriptXmlInit()
-   xml:ParseFile("ui_mod_elements.xml")
+   xml:ParseFile("sgm_ui_mod_elements.xml")
    self.card_game_21_point_form = xml:InitStatic("card_game_21_point_form", self)
    self:start_button(xml, "btn_exit_game")
    self:start_button(xml, "btn_play_game")
@@ -2382,7 +2382,7 @@ function card_game_21_point:FillCardPoint(param, name, mask)
       result = 11
    end
    self[param]:InitTexture("ui_mod_card_" .. name .. "_" .. mask)
-   if sgm_g.find_in_string(param, "self_") then
+   if find_in_string(param, "self_") then
       card_game_21_your_points = card_game_21_your_points + result
    else
       card_game_21_enemy_points = card_game_21_enemy_points + result
@@ -2393,39 +2393,39 @@ function card_game_21_point:FillEnemyStep(step_num)
    local name, mask = get_random_string(card_game_21_existing_names), get_random_string(card_game_21_existing_masks)
    if card_game_21_difficulty == "hard" and get_rnd(1, 2) == 1 then
       if self:GetNearestPoint(card_game_21_enemy_points) == 11 then
-         name = get_random_line("T,10")
+         name = sgm_g.get_random_line("T,10")
       elseif self:GetNearestPoint(card_game_21_enemy_points) == 9 or self:GetNearestPoint(card_game_21_enemy_points) == 10 then
-         name = get_random_line("9,10")
+         name = sgm_g.get_random_line("9,10")
       elseif self:GetNearestPoint(card_game_21_enemy_points) == 8 then
-         name = get_random_line("8")
+         name = sgm_g.get_random_line("8")
       elseif self:GetNearestPoint(card_game_21_enemy_points) == 7 then
-         name = get_random_line("7,8")
+         name = sgm_g.get_random_line("7,8")
       elseif self:GetNearestPoint(card_game_21_enemy_points) == 6 then
-         name = get_random_line("6")
+         name = sgm_g.get_random_line("6")
       elseif self:GetNearestPoint(card_game_21_enemy_points) == 5 or self:GetNearestPoint(card_game_21_enemy_points) == 4 then
-         name = get_random_line("K,Q")
+         name = sgm_g.get_random_line("K,Q")
       elseif self:GetNearestPoint(card_game_21_enemy_points) == 3 then
-         name = get_random_line("Q,J")
+         name = sgm_g.get_random_line("Q,J")
       elseif self:GetNearestPoint(card_game_21_enemy_points) == 2 then
-         name = get_random_line("J")
+         name = sgm_g.get_random_line("J")
       end
    elseif card_game_21_difficulty == "normal" and get_rnd(1, 4) == 1 then
       if self:GetNearestPoint(card_game_21_enemy_points) == 11 then
-         name = get_random_line("T,10")
+         name = sgm_g.get_random_line("T,10")
       elseif self:GetNearestPoint(card_game_21_enemy_points) == 9 or self:GetNearestPoint(card_game_21_enemy_points) == 10 then
-         name = get_random_line("9,10")
+         name = sgm_g.get_random_line("9,10")
       elseif self:GetNearestPoint(card_game_21_enemy_points) == 8 then
-         name = get_random_line("7,8,9")
+         name = sgm_g.get_random_line("7,8,9")
       elseif self:GetNearestPoint(card_game_21_enemy_points) == 7 then
-         name = get_random_line("6,7,8")
+         name = sgm_g.get_random_line("6,7,8")
       elseif self:GetNearestPoint(card_game_21_enemy_points) == 6 then
-         name = get_random_line("6,K")
+         name = sgm_g.get_random_line("6,K")
       elseif self:GetNearestPoint(card_game_21_enemy_points) == 5 or self:GetNearestPoint(card_game_21_enemy_points) == 4 then
-         name = get_random_line("K,Q")
+         name = sgm_g.get_random_line("K,Q")
       elseif self:GetNearestPoint(card_game_21_enemy_points) == 3 then
-         name = get_random_line("K,Q,J")
+         name = sgm_g.get_random_line("K,Q,J")
       elseif self:GetNearestPoint(card_game_21_enemy_points) == 2 then
-         name = get_random_line("J")
+         name = sgm_g.get_random_line("J")
       end
    end
    self:FillCardPoint("enemy_card_" .. step_num, name, mask)
@@ -2494,7 +2494,7 @@ function card_game_21_point:btn_exit_game(hide)
 end
 
 function card_game_21_point:btn_play_game()
-   card_game_21_difficulty = get_random_line("easy,normal,hard")
+   card_game_21_difficulty = sgm_g.get_random_line("easy,normal,hard")
    if card_game_21_difficulty ~= "hard" and get_rnd(1, 6) == 1 then
       --/card_game_21_difficulty="hard"
    end
@@ -2515,19 +2515,19 @@ function card_game_21_point:btn_take_else()
    local name, mask = get_random_string(card_game_21_existing_names), get_random_string(card_game_21_existing_masks)
    if card_game_21_take_else == "empty_card" then
       if self:GetNearestPoint(card_game_21_your_points) <= 5 and get_rnd(1, 5) == 1 then
-         name = get_random_line("T,10,9,8")
+         name = sgm_g.get_random_line("T,10,9,8")
       end
       self:FillCardPoint("self_card_3", name, mask)
       card_game_21_take_else = "1st_card"
    elseif card_game_21_take_else == "1st_card" then
       if self:GetNearestPoint(card_game_21_your_points) <= 5 and get_rnd(1, 5) == 1 then
-         name = get_random_line("T,10,9,8")
+         name = sgm_g.get_random_line("T,10,9,8")
       end
       self:FillCardPoint("self_card_4", name, mask)
       card_game_21_take_else = "2nd_card"
    elseif card_game_21_take_else == "2nd_card" then
       if self:GetNearestPoint(card_game_21_your_points) <= 5 and get_rnd(1, 5) == 1 then
-         name = get_random_line("T,10,9,8")
+         name = sgm_g.get_random_line("T,10,9,8")
       end
       self:FillCardPoint("self_card_5", name, mask)
       card_game_21_take_else = "3rd_card"
@@ -2574,7 +2574,7 @@ function card_game_21_point:enemy_move_add_three()
 end
 
 function card_game_21_point:winner_reward()
-   if sgm_g.r_mod_params("bool", "card_game_21_rules_default", true) == true then
+   if r_mod_params("bool", "card_game_21_rules_default", true) == true then
       if self:GetTooManyPoint(card_game_21_your_points, true) == false and self:GetTooManyPoint(card_game_21_enemy_points, true) == true then
          card_game_21_winner = "your"
       elseif self:GetTooManyPoint(card_game_21_your_points, true) == true and self:GetTooManyPoint(card_game_21_enemy_points, true) == false then
@@ -2588,7 +2588,7 @@ function card_game_21_point:winner_reward()
             card_game_21_winner = "equally"
          end
       end
-   elseif sgm_g.r_mod_params("bool", "card_game_21_rules_default", true) == false then
+   elseif r_mod_params("bool", "card_game_21_rules_default", true) == false then
       if self:GetNearestPoint(card_game_21_your_points) == self:GetNearestPoint(card_game_21_enemy_points) then
          card_game_21_winner = "equally"
       elseif self:GetNearestPoint(card_game_21_your_points) < self:GetNearestPoint(card_game_21_enemy_points) then
@@ -2641,7 +2641,7 @@ function card_game_21_point:show_game_winner()
 end
 
 ------------------------------------------------------------------------------
---              ÃËÌË-Ë„‡: «‡˜ÂÏ? œÓ‰ ÍÂÏ? ¬Ó ÒÍÓÎ¸ÍÓ?                      --
+--              –ú–∏–Ω–∏-–∏–≥—Ä–∞: –ó–∞—á–µ–º? –ü–æ–¥ –∫–µ–º? –í–æ —Å–∫–æ–ª—å–∫–æ?                      --
 ------------------------------------------------------------------------------
 question_game_correct_answer_descr = { "st_question_game_correct_answer_1_text", "st_question_game_correct_answer_2_text",
    "st_question_game_correct_answer_3_text", "st_question_game_correct_answer_4_text" }
@@ -2682,7 +2682,7 @@ end
 function question_game:InitControls()
    self:SetWndRect(Frect():set(0, 0, 1024, 768))
    xml = CScriptXmlInit()
-   xml:ParseFile("ui_mod_elements.xml")
+   xml:ParseFile("sgm_ui_mod_elements.xml")
    self.question_game_form = xml:InitStatic("question_game_form", self)
    self.form_title = xml:InitStatic("question_game_form:form_title", self.question_game_form)
    self:start_button(xml, "btn_exit_game")
@@ -2941,13 +2941,13 @@ function question_game:select_random_question()
    local min_q, max_q = 1, question_game_q_count
    local rnd_q = "q_" .. string.sub(level.name(), 1, 1) .. "_cell_" .. math.random(min_q, max_q)
    for k, v in pairs(question_q_table) do
-      if k ~= nil and k == rnd_q and sgm_g.dont_has_alife_info(k) then
+      if k ~= nil and k == rnd_q and dont_has_alife_info(k) then
          question_game_q_s = k
          question_game_q_h_f = true
       end
    end
    if question_game_q_h_f == false then
-      if question_game_q_available > 0 and to_string(sgm_functions.check_section_condlist(question_game_ini, rnd_q, "cond", "true")) == "false" then
+      if question_game_q_available > 0 and sgm_g.to_string(sgm_functions.check_section_condlist(question_game_ini, rnd_q, "cond", "true")) == "false" then
          self:select_random_question()
       end
    end
@@ -2957,13 +2957,13 @@ function question_game:select_random_advice()
    local min_a, max_a = 1, question_game_a_count
    local rnd_a = "a_" .. string.sub(level.name(), 1, 1) .. "_cell_" .. math.random(min_a, max_a)
    for k, v in pairs(question_a_table) do
-      if k ~= nil and k == rnd_a and sgm_g.dont_has_alife_info(k) then
+      if k ~= nil and k == rnd_a and dont_has_alife_info(k) then
          question_game_a_s = k
          question_game_a_h_f = true
       end
    end
    if question_game_a_h_f == false then
-      if question_game_a_available > 0 and to_string(sgm_functions.check_section_condlist(question_game_ini, rnd_a, "cond", "true")) == "false" then
+      if question_game_a_available > 0 and sgm_g.to_string(sgm_functions.check_section_condlist(question_game_ini, rnd_a, "cond", "true")) == "false" then
          self:select_random_advice()
       end
    end
@@ -3019,7 +3019,7 @@ function question_game:parse_questions()
          for i = 0, items_count - 1 do
             result, item_section, str = question_game_ini:r_line(id, i, "", "")
             if item_section == "cond" then
-               par_cond = to_string(sgm_functions.check_section_condlist(question_game_ini, id, "cond", "false"))
+               par_cond = sgm_g.to_string(sgm_functions.check_section_condlist(question_game_ini, id, "cond", "false"))
             elseif item_section == "question" then
                par_question = game.translate_string(str)
             elseif item_section == "var_a" then
@@ -3081,7 +3081,7 @@ end
 
 function question_game:consider_available_questions()
    for k, v in pairs(question_q_table) do
-      if k ~= nil and sgm_g.dont_has_alife_info(k) then
+      if k ~= nil and dont_has_alife_info(k) then
          question_game_q_available = question_game_q_available + 1
       end
    end
@@ -3102,7 +3102,7 @@ function question_game:parse_advices()
          for i = 0, items_count - 1 do
             result, item_section, str = question_game_ini:r_line(id, i, "", "")
             if item_section == "cond" then
-               par_cond = to_string(sgm_functions.check_section_condlist(question_game_ini, id, "cond", "false"))
+               par_cond = sgm_g.to_string(sgm_functions.check_section_condlist(question_game_ini, id, "cond", "false"))
             elseif item_section == "advice" then
                par_advice = game.translate_string(str)
             elseif item_section == "reward_money" then
@@ -3139,7 +3139,7 @@ end
 
 function question_game:consider_available_advices()
    for k, v in pairs(question_a_table) do
-      if k ~= nil and sgm_g.dont_has_alife_info(k) then
+      if k ~= nil and dont_has_alife_info(k) then
          question_game_a_available = question_game_a_available + 1
       end
    end
@@ -3164,7 +3164,7 @@ function question_game:btn_manual()
 end
 
 ------------------------------------------------------------------------------
---                            ¬ÓÒÔÓËÁ‚Ó‰ËÚÂÎ¸ ˝ÙÙÂÍÚÓ‚                     --
+--                            –í–æ—Å–ø—Ä–æ–∏–∑–≤–æ–¥–∏—Ç–µ–ª—å —ç—Ñ—Ñ–µ–∫—Ç–æ–≤                     --
 ------------------------------------------------------------------------------
 local effect_player_section = 1
 local ppe_table = {
@@ -3279,7 +3279,7 @@ end
 function effect_player:InitControls()
    self:SetWndRect(Frect():set(0, 0, 1024, 768))
    local xml = CScriptXmlInit()
-   xml:ParseFile("ui_mod_elements.xml")
+   xml:ParseFile("sgm_ui_mod_elements.xml")
    self.effect_player_form = xml:InitStatic("effect_player_form", self)
    self:Register(xml:Init3tButton("effect_player_form:btn_ppe_effectors", self.effect_player_form), "btn_ppe_effectors")
    self:Register(xml:Init3tButton("effect_player_form:btn_cam_effectors", self.effect_player_form), "btn_cam_effectors")
@@ -3351,7 +3351,7 @@ function effect_player:btn_close()
 end
 
 ------------------------------------------------------------------------------
---                         –Â‰‡ÍÚÓ ÚÓ˜ÂÍ ÔÛÚÂÈ                             --
+--                         –†–µ–¥–∞–∫—Ç–æ—Ä —Ç–æ—á–µ–∫ –ø—É—Ç–µ–π                             --
 ------------------------------------------------------------------------------
 waypoint_name = ""
 waypoint_name_saved = ""
@@ -3376,7 +3376,7 @@ end
 function waypoint_editor:InitControls()
    self:SetWndRect(Frect():set(0, 0, 1024, 768))
    local xml = CScriptXmlInit()
-   xml:ParseFile("ui_mod_elements.xml")
+   xml:ParseFile("sgm_ui_mod_elements.xml")
    self.waypoint_editor_form = xml:InitStatic("waypoint_editor_form", self)
    self:Register(xml:Init3tButton("waypoint_editor_form:btn_print_waypoint", self.waypoint_editor_form),
       "btn_print_waypoint")
@@ -3472,19 +3472,19 @@ function waypoint_editor:btn_mark_point(close_activate)
       if (self.point_animation_field:GetText() == nil or self.point_animation_field:GetText() == "") and (self.point_signal_field:GetText() == nil or self.point_signal_field:GetText() == "") then
          waypoint_line_1 = "p" ..
              waypoint_points_counter .. ":name = wp0" .. waypoint_points_counter .. game.translate_string("\n")
-         if sgm_g.find_in_string(tostring(waypoint_name), "_walker_") then
+         if find_in_string(tostring(waypoint_name), "_walker_") then
             waypoint_line_1 = "p" ..
                 waypoint_points_counter .. ":name = wp0" .. waypoint_points_counter ..
                 "|a=patrol" .. game.translate_string("\n")
-         elseif sgm_g.find_in_string(tostring(waypoint_name), "_sniper_") and sgm_g.find_in_string(tostring(waypoint_name), "_look") then
+         elseif find_in_string(tostring(waypoint_name), "_sniper_") and find_in_string(tostring(waypoint_name), "_look") then
             waypoint_line_1 = "p" ..
                 waypoint_points_counter .. ":name = wp0" ..
                 waypoint_points_counter .. "|a=guard_na" .. game.translate_string("\n")
-         elseif sgm_g.find_in_string(tostring(waypoint_name), "_surge_") and sgm_g.find_in_string(tostring(waypoint_name), "_look") then
+         elseif find_in_string(tostring(waypoint_name), "_surge_") and find_in_string(tostring(waypoint_name), "_look") then
             waypoint_line_1 = "p" ..
                 waypoint_points_counter .. ":name = wp0" .. waypoint_points_counter .. "|a=sit" ..
                 game.translate_string("\n")
-         elseif sgm_g.find_in_string(tostring(waypoint_name), "_guard_") and sgm_g.find_in_string(tostring(waypoint_name), "_look") then
+         elseif find_in_string(tostring(waypoint_name), "_guard_") and find_in_string(tostring(waypoint_name), "_look") then
             waypoint_line_1 = "p" ..
                 waypoint_points_counter .. ":name = wp0" .. waypoint_points_counter ..
                 "|a=guard" .. game.translate_string("\n")
@@ -3510,11 +3510,11 @@ function waypoint_editor:btn_mark_point(close_activate)
              tostring(self.point_animation_field:GetText()) ..
              "|sig=" .. tostring(self.point_signal_field:GetText()) .. game.translate_string("\n")
       end
-      if self.check_empty_flags:GetCheck() or sgm_g.find_in_string(tostring(waypoint_name), "_spawn_point") or sgm_g.find_in_string(tostring(waypoint_name), "_home") or sgm_g.find_in_string(tostring(waypoint_name), "_traveller_") or sgm_g.find_in_string(tostring(waypoint_name), "_af_way_") then
+      if self.check_empty_flags:GetCheck() or find_in_string(tostring(waypoint_name), "_spawn_point") or find_in_string(tostring(waypoint_name), "_home") or find_in_string(tostring(waypoint_name), "_traveller_") or find_in_string(tostring(waypoint_name), "_af_way_") then
          waypoint_line_2 = ""
       else
          waypoint_line_2 = "p" .. waypoint_points_counter .. ":flags = 0x1" .. game.translate_string("\n")
-         if sgm_g.find_in_string(tostring(waypoint_name), "_sleep_") and waypoint_points_counter == 1 then
+         if find_in_string(tostring(waypoint_name), "_sleep_") and waypoint_points_counter == 1 then
             waypoint_line_2 = ""
          end
       end
@@ -3532,7 +3532,7 @@ function waypoint_editor:btn_mark_point(close_activate)
       else
          waypoint_line_6 = ""
       end
-      if sgm_g.find_in_string(tostring(waypoint_name), "_traveller_") then
+      if find_in_string(tostring(waypoint_name), "_traveller_") then
          waypoint_line_6 = ""
       end
       waypoint_line_attacher = "p" ..
@@ -3571,7 +3571,7 @@ function waypoint_editor:btn_print_waypoint()
        "[" .. tostring(waypoint_name) .. "]" ..
        game.translate_string("\n") .. waypoint_line_main .. waypoint_data .. waypoint_line_6
    debug_to_file("waypoints.txt", waypoint_assembly)
-   give_quick_news("œÛÚ¸ " .. waypoint_name .. " ÛÒÔÂ¯ÌÓ ÒÓÁ‰‡Ì.")
+   give_quick_news("–ü—É—Ç—å " .. waypoint_name .. " —É—Å–ø–µ—à–Ω–æ —Å–æ–∑–¥–∞–Ω.")
    waypoint_line_main = ""
    waypoint_points_counter = -1
    waypoint_assembly, waypoint_data = "", ""
@@ -3590,10 +3590,10 @@ function waypoint_editor:btn_close()
 end
 
 ------------------------------------------------------------------------------
---                          Œ·‡·ÓÚÍ‡ Ù‡ÈÎ‡ "all.spawn"                     --
+--                          –û–±—Ä–∞–±–æ—Ç–∫–∞ —Ñ–∞–π–ª–∞ "all.spawn"                     --
 ------------------------------------------------------------------------------
 local allspawn_cfg_radius = 1
-local allspawn_cfg_counting = 1 --/ Õ‡˜‡Î¸Ì˚È ÓÚÒ˜ÂÚ ÒÂÍˆËË
+local allspawn_cfg_counting = 1 --/ –ù–∞—á–∞–ª—å–Ω—ã–π –æ—Ç—Å—á–µ—Ç —Å–µ–∫—Ü–∏–∏
 local allspawn_cfg_magazine = 30
 local allspawn_cfg_prefix = "nil"
 local allspawn_cfg_suffix = "nil"
@@ -3604,7 +3604,7 @@ local allspawn_last_name = "nil"
 local allspawn_last_type = "nil"
 local allspawn_last_id = "nil"
 local allspawn_auto_print_mode = false
-local allspawn_auto_print_delay = 4000 --/ ◊‡ÒÚÓÚ‡ ‡‚ÚÓ-ÓÚÎ‡‰ÍË
+local allspawn_auto_print_delay = 4000 --/ –ß–∞—Å—Ç–æ—Ç–∞ –∞–≤—Ç–æ-–æ—Ç–ª–∞–¥–∫–∏
 local allspawn_def_name_1 = "auto"
 local allspawn_def_name_2 = "smart_terrain"
 local allspawn_def_logic_path = ""
@@ -4133,7 +4133,7 @@ end
 function allspawn_editor:InitControls()
    self:SetWndRect(Frect():set(0, 0, 1024, 768))
    local xml = CScriptXmlInit()
-   xml:ParseFile("ui_mod_elements.xml")
+   xml:ParseFile("sgm_ui_mod_elements.xml")
    self.allspawn_editor_form = xml:InitStatic("allspawn_editor_form", self)
    self.editor_title = xml:InitStatic("allspawn_editor_form:editor_title", self.allspawn_editor_form)
    self:start_button(xml, "btn_create")
@@ -4399,7 +4399,7 @@ function allspawn_editor:check_data_by_id(name, type, id, only_read)
    else
       if type == "space_restrictor" then
          if self.check_with_logic:GetCheck() then
-            if sgm_g.find_in_string(tostring(self.cfg_name_suffix_field:GetText()), "hiding_place") then
+            if find_in_string(tostring(self.cfg_name_suffix_field:GetText()), "hiding_place") then
                logic = "custom_data = <<END" ..
                    game.translate_string("\n") ..
                    "[secret]" ..
@@ -4460,7 +4460,7 @@ function allspawn_editor:check_data_by_id(name, type, id, only_read)
          end
       end
       if type == "space_restrictor" then
-         if sgm_g.find_in_string(tostring(self.cfg_name_suffix_field:GetText()), "hiding_place") then
+         if find_in_string(tostring(self.cfg_name_suffix_field:GetText()), "hiding_place") then
             data = game.translate_string("\n") ..
                 "[" ..
                 allspawn_cfg_counting ..
@@ -4837,7 +4837,7 @@ function allspawn_editor:check_data_by_id(name, type, id, only_read)
              game.translate_string("\n") .. "upgrades = " .. game.translate_string("\n") .. "upd:condition = 255"
       elseif type == "weapon" then
          local str_end = "upd:grenade_mode = 0"
-         if sgm_g.find_in_string(name, "rg-6") or sgm_g.find_in_string(name, "protecta") or sgm_g.find_in_string(name, "spas12") or sgm_g.find_in_string(name, "toz") or sgm_g.find_in_string(name, "wincheaster") or sgm_g.find_in_string(name, "bm16") or sgm_g.find_in_string(name, "mossberg") or sgm_g.find_in_string(name, "mossberg") then
+         if find_in_string(name, "rg-6") or find_in_string(name, "protecta") or find_in_string(name, "spas12") or find_in_string(name, "toz") or find_in_string(name, "wincheaster") or find_in_string(name, "bm16") or find_in_string(name, "mossberg") or find_in_string(name, "mossberg") then
             str_end = "upd:ammo_ids = 0"
          end
          data = game.translate_string("\n") ..
@@ -5115,7 +5115,7 @@ function allspawn_editor_update()
          end
       end
    end
-   local precond = allspawn_auto_print_mode == true and check_ui_worked()
+   local precond = allspawn_auto_print_mode == true and sgm_g.check_ui_worked()
    if precond then
       if sgm_flags.bool_allspawn_auto_print == false then
          sgm_flags.bool_allspawn_auto_print = true
@@ -5130,7 +5130,7 @@ function allspawn_editor_update()
 end
 
 ------------------------------------------------------------------------------
---         ŒÚÎ‡‰Í‡ ÔÓÁËˆËË √√ Ò ‚ÓÁÏÓÊÌÓÒÚ¸˛ ‚‚Ó‰‡ ÍÓÏÏÂÌÚ‡Ëˇ              --
+--         –û—Ç–ª–∞–¥–∫–∞ –ø–æ–∑–∏—Ü–∏–∏ –ì–ì —Å –≤–æ–∑–º–æ–∂–Ω–æ—Å—Ç—å—é –≤–≤–æ–¥–∞ –∫–æ–º–º–µ–Ω—Ç–∞—Ä–∏—è              --
 ------------------------------------------------------------------------------
 position_printer_last_comment = ""
 class "position_printer" (CUIScriptWnd)
@@ -5147,7 +5147,7 @@ end
 function position_printer:InitControls()
    self:SetWndRect(Frect():set(0, 0, 1024, 768))
    local xml = CScriptXmlInit()
-   xml:ParseFile("ui_mod_elements.xml")
+   xml:ParseFile("sgm_ui_mod_elements.xml")
    self.position_printer_form = xml:InitStatic("position_printer_form", self)
    self:Register(xml:Init3tButton("position_printer_form:btn_print_pos", self.position_printer_form), "btn_print_pos")
    self:Register(xml:Init3tButton("position_printer_form:btn_close", self.position_printer_form), "btn_close")
@@ -5182,8 +5182,8 @@ function position_printer:OnKeyboard(dik, keyboard_action)
 end
 
 function position_printer:btn_print_pos()
-   news_manager.send_tip(db.actor, " ÓÏÏÂÌÚ‡ËÈ: " .. self.position_comment_field:GetText(), 0, "mutant_hunter", 2000,
-      nil, "œÓÁËˆËˇ ÒÌˇÚ‡")
+   news_manager.send_tip(db.actor, "–ö–æ–º–º–µ–Ω—Ç–∞—Ä–∏–π: " .. self.position_comment_field:GetText(), 0, "mutant_hunter", 2000,
+      nil, "–ü–æ–∑–∏—Ü–∏—è —Å–Ω—è—Ç–∞")
    debug_to_file("printed_points.txt",
       self.object:position().x ..
       "," ..
@@ -5203,7 +5203,7 @@ function position_printer:btn_close()
 end
 
 ------------------------------------------------------------------------------
---                       «‡„ÛÁ˜ËÍ ËÌÙÓÏ‡ˆËÓÌÌ˚ı ·ÎÓÍÓ‚                    --
+--                       –ó–∞–≥—Ä—É–∑—á–∏–∫ –∏–Ω—Ñ–æ—Ä–º–∞—Ü–∏–æ–Ω–Ω—ã—Ö –±–ª–æ–∫–æ–≤                    --
 ------------------------------------------------------------------------------
 local information_control = nil
 class "information_block" (CUIScriptWnd)
@@ -5271,15 +5271,15 @@ end
 
 function information_block_show(mb_type, reason_type, text, extra_value)
    if information_control == nil then
-      information_control = ui_mod_elements.information_block()
+      information_control = sgm_ui_mod_elements.information_block()
    end
    information_control:Show(mb_type, reason_type, text, extra_value)
 end
 
 ------------------------------------------------------------------------------
---                         œÓÚ‡ÚË‚Ì˚È ‡ıË‚                                --
+--                         –ü–æ—Ä—Ç–∞—Ç–∏–≤–Ω—ã–π –∞—Ä—Ö–∏–≤                                --
 ------------------------------------------------------------------------------
-local mobile_tool_target_title = "œÂ‰ÏÂÚ ÌÂ ‚˚·‡Ì"
+local mobile_tool_target_title = "–ü—Ä–µ–¥–º–µ—Ç –Ω–µ –≤—ã–±—Ä–∞–Ω"
 local mobile_tool_items = {}
 local mobile_tool_available = 0
 local mobile_tool_universal = true
@@ -5330,7 +5330,7 @@ end
 
 function mobile_tool:find_available_items()
    local function calc(temp, item)
-      if find_out_string(item:section(), "_knife") and find_out_string(item:section(), "_binoc") and (sgm_g.find_in_string(item:section(), "outfit") or sgm_g.find_in_string(item:section(), "helm") or sgm_g.find_in_string(item:section(), "wpn_")) then
+      if find_out_string(item:section(), "_knife") and find_out_string(item:section(), "_binoc") and (find_in_string(item:section(), "outfit") or find_in_string(item:section(), "helm") or find_in_string(item:section(), "wpn_")) then
          mobile_tool_items[item:section()] = {}
          mobile_tool_items[item:section()].title = sgm_functions.ReadCaption(item:section())
          mobile_tool_items[item:section()].section = item:section()
@@ -5358,7 +5358,7 @@ end
 function mobile_tool:InitControls()
    self:SetWndRect(Frect():set(0, 0, 1024, 768))
    local xml = CScriptXmlInit()
-   xml:ParseFile("ui_mod_elements.xml")
+   xml:ParseFile("sgm_ui_mod_elements.xml")
    self.mobile_tool_form = xml:InitStatic("mobile_tool_form", self)
    self:Register(xml:Init3tButton("mobile_tool_form:btn_close", self.mobile_tool_form), "btn_close")
    self:Register(xml:Init3tButton("mobile_tool_form:tab_1", self.mobile_tool_form), "tab_1")
@@ -5408,7 +5408,7 @@ function mobile_tool:btn_close()
    mobile_tool_items = nil
    mobile_tool_items = {}
    mobile_tool_available = 0
-   mobile_tool_target_title = "œÂ‰ÏÂÚ ÌÂ ‚˚·‡Ì"
+   mobile_tool_target_title = "–ü—Ä–µ–¥–º–µ—Ç –Ω–µ –≤—ã–±—Ä–∞–Ω"
    give_object_to_actor("mobile_tool")
    set_ui_worked()
    level.show_weapon(true)
@@ -5455,27 +5455,27 @@ function mobile_tool:get_weapon_addons(section, type)
    local gl_s = read_number(section, "grenade_launcher_status")
    if type == "sc" then
       if sc_s == 0 then
-         return "ÌÂÚ"
+         return "–Ω–µ—Ç"
       elseif sc_s == 1 then
-         return "ÛÊÂ"
+         return "—É–∂–µ"
       elseif sc_s == 2 then
-         return "‰‡"
+         return "–¥–∞"
       end
    elseif type == "sl" then
       if sl_s == 0 then
-         return "ÌÂÚ"
+         return "–Ω–µ—Ç"
       elseif sl_s == 1 then
-         return "ÛÊÂ"
+         return "—É–∂–µ"
       elseif sl_s == 2 then
-         return "‰‡"
+         return "–¥–∞"
       end
    elseif type == "gl" then
       if gl_s == 0 then
-         return "ÌÂÚ"
+         return "–Ω–µ—Ç"
       elseif gl_s == 1 then
-         return "ÛÊÂ"
+         return "—É–∂–µ"
       elseif gl_s == 2 then
-         return "‰‡"
+         return "–¥–∞"
       end
    end
 end
@@ -5483,37 +5483,37 @@ end
 function mobile_tool:get_helm_antigas(section)
    local ha_s = read_boolean(section, "has_antigas")
    if ha_s == true then
-      return "‰‡"
+      return "–¥–∞"
    else
-      return "ÌÂÚ"
+      return "–Ω–µ—Ç"
    end
 end
 
 function mobile_tool:get_night_vision(section)
-   local hn_s = read_string(section, "nightvision_sect")
+   local hn_s = sgm_g.read_string(section, "nightvision_sect")
    if hn_s == "effector_nightvision_1" then
-      return "ÛÓ‚ÂÌ¸ 1"
+      return "—É—Ä–æ–≤–µ–Ω—å 1"
    elseif hn_s == "effector_nightvision_2" then
-      return "ÛÓ‚ÂÌ¸ 2"
+      return "—É—Ä–æ–≤–µ–Ω—å 2"
    elseif hn_s == "effector_nightvision_3" then
-      return "ÛÓ‚ÂÌ¸ 3"
+      return "—É—Ä–æ–≤–µ–Ω—å 3"
    else
-      return "ÓÚÒÛÚÒÚ‚ÛÂÚ"
+      return "–æ—Ç—Å—É—Ç—Å—Ç–≤—É–µ—Ç"
    end
 end
 
 function mobile_tool:get_obj_params(section)
    local obj_params
    if sgm_functions.ReadWeaponType(section) ~= "unknown" and sgm_functions.ReadWeaponType(section) ~= "grenade" then
-      local w_type = "“ËÔ ÓÛÊËˇ =" .. " " .. sgm_functions.ReadWeaponType(section)
-      local w_ammo = "¡ÓÂÔËÔ‡Ò˚ =" .. " " .. self:get_weapon_ammo_slots(section)
-      local w_sc = "”ÒÚ‡ÌÓ‚Í‡ ÓÔÚË˜ÂÒÍÓ„Ó ÔËˆÂÎ‡ =" .. " " .. self:get_weapon_addons(section, "sc")
-      local w_sl = "”ÒÚ‡ÌÓ‚Í‡ „ÎÛ¯ËÚÂÎˇ =" .. " " .. self:get_weapon_addons(section, "sl")
-      local w_gl = "”ÒÚ‡ÌÓ‚Í‡ ÔÓ‰ÒÚ‚ÓÎ¸ÌÓ„Ó „‡Ì‡ÚÓÏÂÚ‡ =" .. " " .. self:get_weapon_addons(section, "gl")
-      local w_sb = " ÌË„‡ Ì‡‚˚Í‡ =" ..
-          " " .. game.translate_string(sgm_functions.ReadCaption(read_string(section, "increasing_skill_info")))
-      local w_sd = "¡ÓÌÛÒ ÍÌË„Ë Ì‡‚˚Í‡ =" .. " " .. read_number(section, "increasing_skill_point")
-      local w_cs = "»ÁÌÓÒ ÔË ÒÚÂÎ¸·Â =" .. " " .. read_number(section, "condition_shot_dec")
+      local w_type = "–¢–∏–ø –æ—Ä—É–∂–∏—è =" .. " " .. sgm_functions.ReadWeaponType(section)
+      local w_ammo = "–ë–æ–µ–ø—Ä–∏–ø–∞—Å—ã =" .. " " .. self:get_weapon_ammo_slots(section)
+      local w_sc = "–£—Å—Ç–∞–Ω–æ–≤–∫–∞ –æ–ø—Ç–∏—á–µ—Å–∫–æ–≥–æ –ø—Ä–∏—Ü–µ–ª–∞ =" .. " " .. self:get_weapon_addons(section, "sc")
+      local w_sl = "–£—Å—Ç–∞–Ω–æ–≤–∫–∞ –≥–ª—É—à–∏—Ç–µ–ª—è =" .. " " .. self:get_weapon_addons(section, "sl")
+      local w_gl = "–£—Å—Ç–∞–Ω–æ–≤–∫–∞ –ø–æ–¥—Å—Ç–≤–æ–ª—å–Ω–æ–≥–æ –≥—Ä–∞–Ω–∞—Ç–æ–º–µ—Ç–∞ =" .. " " .. self:get_weapon_addons(section, "gl")
+      local w_sb = "–ö–Ω–∏–≥–∞ –Ω–∞–≤—ã–∫–∞ =" ..
+          " " .. game.translate_string(sgm_functions.ReadCaption(sgm_g.read_string(section, "increasing_skill_info")))
+      local w_sd = "–ë–æ–Ω—É—Å –∫–Ω–∏–≥–∏ –Ω–∞–≤—ã–∫–∞ =" .. " " .. read_number(section, "increasing_skill_point")
+      local w_cs = "–ò–∑–Ω–æ—Å –ø—Ä–∏ —Å—Ç—Ä–µ–ª—å–±–µ =" .. " " .. read_number(section, "condition_shot_dec")
       obj_params = w_type ..
           game.translate_string("; ") ..
           w_ammo ..
@@ -5525,13 +5525,13 @@ function mobile_tool:get_obj_params(section)
           w_gl .. game.translate_string("; ") .. w_sb .. game.translate_string("; ") ..
           w_sd .. game.translate_string("; ") .. w_cs
    elseif sgm_functions.ReadOutfitType(section) ~= "unknown" then
-      local o_type = "“ËÔ ·ÓÌÂÍÓÒÚ˛Ï‡ =" .. " " .. sgm_functions.ReadOutfitType(section)
-      local o_pl = " Ó˝ÙËˆËÂÌÚ Ú‡Ú˚ ÒËÎ Ì‡ ÔÂÂ‰‚ËÊÂÌËÂ ‚ ÍÓÒÚ˛ÏÂ =" .. " " .. read_number(section, "power_loss")
-      local o_ha = "¬ÌÛÚÂÌÌËÈ ÔÓÚË‚Ó„‡Á =" .. " " .. self:get_helm_antigas(section)
+      local o_type = "–¢–∏–ø –±—Ä–æ–Ω–µ–∫–æ—Å—Ç—é–º–∞ =" .. " " .. sgm_functions.ReadOutfitType(section)
+      local o_pl = "–ö–æ—ç—Ñ–∏—Ü–∏–µ–Ω—Ç —Ç—Ä–∞—Ç—ã —Å–∏–ª –Ω–∞ –ø–µ—Ä–µ–¥–≤–∏–∂–µ–Ω–∏–µ –≤ –∫–æ—Å—Ç—é–º–µ =" .. " " .. read_number(section, "power_loss")
+      local o_ha = "–í–Ω—É—Ç—Ä–µ–Ω–Ω–∏–π –ø—Ä–æ—Ç–∏–≤–æ–≥–∞–∑ =" .. " " .. self:get_helm_antigas(section)
       obj_params = o_type .. game.translate_string("; ") .. o_pl .. game.translate_string("; ") .. o_ha
    elseif sgm_functions.ReadHelmType(section) ~= "unknown" then
-      local h_type = "“ËÔ Á‡˘ËÚÌÓ„Ó ¯ÎÂÏ‡ =" .. " " .. sgm_functions.ReadHelmType(section)
-      local h_hn = "¬ÌÛÚÂÌÌËÈ œÕ¬ =" .. " " .. self:get_night_vision(section)
+      local h_type = "–¢–∏–ø –∑–∞—â–∏—Ç–Ω–æ–≥–æ —à–ª–µ–º–∞ =" .. " " .. sgm_functions.ReadHelmType(section)
+      local h_hn = "–í–Ω—É—Ç—Ä–µ–Ω–Ω–∏–π –ü–ù–í =" .. " " .. self:get_night_vision(section)
       obj_params = h_type .. game.translate_string("; ") .. h_hn
    else
       obj_params = ""
@@ -5556,7 +5556,7 @@ function mobile_tool:enter_tab_4()
 end
 
 ------------------------------------------------------------------------------
---                     –Â„ËÒÚ‡ˆËˇ Ë„ÓÍ‡ ‚ Sigerous Top                    --
+--                     –†–µ–≥–∏—Å—Ç—Ä–∞—Ü–∏—è –∏–≥—Ä–æ–∫–∞ –≤ Sigerous Top                    --
 ------------------------------------------------------------------------------
 sigerous_top_name = ""
 sigerous_top_location = ""
@@ -5575,7 +5575,7 @@ end
 function sigerous_top:InitControls()
    self:SetWndRect(Frect():set(0, 0, 1024, 768))
    local xml = CScriptXmlInit()
-   xml:ParseFile("ui_mod_elements.xml")
+   xml:ParseFile("sgm_ui_mod_elements.xml")
    self.sigerous_top_form = xml:InitStatic("sigerous_top_form", self)
    self:start_button(xml, "btn_register")
    self.register_name_field = xml:InitEditBox("sigerous_top_form:register_name_field", self.sigerous_top_form)

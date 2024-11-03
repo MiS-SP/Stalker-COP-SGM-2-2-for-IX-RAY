@@ -68,11 +68,14 @@ function effect_functor_a(param2, section, loading) --( string, string, int )
 		end
 		if sgm_g.r_mod_params("bool", "need_mechanic_details", true) then
 			if level.name() == "zaton" and sgm_g.read_mod_param("zat_mechanic_stripping") ~= nil then
-				write_mod_param("zat_mechanic_stripping", sgm_g.read_mod_param("zat_mechanic_stripping") - use_effect)
+				sgm_g.write_mod_param("zat_mechanic_stripping",
+					sgm_g.read_mod_param("zat_mechanic_stripping") - use_effect)
 			elseif level.name() == "jupiter" and sgm_g.read_mod_param("jup_mechanic_stripping") ~= nil and db.actor:position():distance_to(vector():set(-213.079, -3.567, 70.035), 356685, 385) > 100 then
-				write_mod_param("jup_mechanic_stripping", sgm_g.read_mod_param("jup_mechanic_stripping") - use_effect)
+				sgm_g.write_mod_param("jup_mechanic_stripping",
+					sgm_g.read_mod_param("jup_mechanic_stripping") - use_effect)
 			elseif level.name() == "pripyat" and sgm_g.read_mod_param("pri_mechanic_stripping") ~= nil and db.actor:position():distance_to(vector():set(-170.889, 0.548, -343.642), 40297, 800) > 100 and (sgm_g.dont_has_alife_info("pri_a28_actor_in_zone_stay")) then
-				write_mod_param("pri_mechanic_stripping", sgm_g.read_mod_param("pri_mechanic_stripping") - use_effect)
+				sgm_g.write_mod_param("pri_mechanic_stripping",
+					sgm_g.read_mod_param("pri_mechanic_stripping") - use_effect)
 			end
 		end
 	end

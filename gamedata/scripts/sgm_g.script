@@ -12,7 +12,6 @@ function start_game_callback_sgm_patching(squad_community_by_behaviour, monster_
    monster_classes[clsid.zombie_s] = true
 end
 
--- SGM in
 -- Крешнуть игру (после вывода сообщения об ошибке в лог)
 function abort(fmt, ...)
    if fmt ~= nil and ... ~= nil then
@@ -21,7 +20,6 @@ function abort(fmt, ...)
       sgm_callbacks.on_game_crash(log)
    end
 end
--- SGM out
 
 --=============================================================--
 --=======================/SGM/=================================--
@@ -1420,9 +1418,9 @@ end
 
 -- 'Создание файл с текстом внутри.
 function debug_to_file(filename, text)
-   local file = io.open(filename, "a+")
+   local file = io.open(filename, "w")
    file:write(tostring(text), "\n")
-   file:close(file)
+   file:close()
 end
 
 -- 'Отладка координат предмета.
@@ -3864,21 +3862,19 @@ end
 --          Система сохранения глобальных переменных в файл                 --
 ------------------------------------------------------------------------------
 -- 'Проверка на валидность уникального серийного номера игры.
+local fullPath = getFS():update_path("$app_data_root$", "sgm_data//save_data.sgm")
 function check_game_unique_id(value)
-   local result = false
-   local file = io.open("gamedata//configs//mod_parameters//save_data//save_data.sgm", "r")
-   if file ~= nil then
-      for line in file:lines() do
-         if find_in_string(tostring(line), "|" .. value .. "|0|") then
-            result = false
-         else
-            if (find_in_string(tostring(line), "|" .. value)) then
-            result = true
-            end
-         end
-      end
-      file:close()
+   local result=true
+   local file=io.open(fullPath,"r")
+   if file == nil then
+      return result
    end
+   for line in file:lines() do
+      if find_in_string(tostring(line),"|"..value.."|0|") then
+         result=false
+      end
+   end
+   file:close()
    return result
 end
 
@@ -3888,19 +3884,18 @@ function data_param_connect()
       local generate_id = math.random(1, 9999)
       if check_game_unique_id(generate_id) then
          sgm_functions.write_variable("new_game_unique_id", generate_id)
-         return true
+         if sgm_flags.bool_data_loaded == false then
+            sgm_flags.bool_data_loaded = true
+            if data_param_exist() then
+               data_param_load_all()
+               return true
+            end
+         end
       else
-         return false
+         data_param_connect()
+         return
       end
    end
-   if sgm_flags.bool_data_loaded == false then
-      sgm_flags.bool_data_loaded = true
-      if data_param_exist() then
-         data_param_load_all()
-         return true
-      end
-   end
-   return false
 end
 
 -- 'Коллбек на любое сохранение игры.
@@ -3912,7 +3907,7 @@ end
 function data_param_delete_game(save_n)
    local p_list = {}
    local counter = 1
-   local file = io.open("gamedata//configs//mod_parameters//save_data//save_data.sgm", "r")
+   local file = io.open(fullPath, "r")
    for line in file:lines() do
       if find_out_string(tostring(line), "save_data") then
          p_list["param" .. counter] = tostring(read_string_removal_r(line, "="))
@@ -3920,7 +3915,7 @@ function data_param_delete_game(save_n)
       end
    end
    file:close()
-   local file = io.open("gamedata//configs//mod_parameters//save_data//save_data.sgm", "w")
+   local file = io.open(fullPath, "w")
    file:write("[save_data]", "\n")
    for k, v in pairs(p_list) do
       if k ~= nil then
@@ -3997,7 +3992,7 @@ end
 
 -- 'Проверка содержания базы переменных.
 function data_param_exist()
-   local file_path = "gamedata//configs//mod_parameters//save_data//save_data.sgm"
+   local file_path = fullPath
    local file = io.open(file_path, "r")
    if file == nil then
       return false
@@ -4124,7 +4119,7 @@ end
 -- 'Переброска всех глобальных переменных в файл.
 function data_param_save_all()
    local counter = 1
-   local file = io.open("gamedata//configs//mod_parameters//save_data//save_data.sgm", "w")
+   local file = io.open(fullPath, "w")
    file:write("[save_data]", "\n")
    data_param_save_write()
    data_param_extend()
@@ -4160,7 +4155,7 @@ end
 
 -- 'Выгрузка всех глобальных переменных из файла в две таблицы.
 function data_param_load_all()
-   local file = io.open("gamedata//configs//mod_parameters//save_data//save_data.sgm", "r")
+   local file = io.open(fullPath, "r")
    if file == nil then
       return
    end

@@ -89,7 +89,7 @@ function action_bodyguard:execute()
    local scheme_param = sgm_flags.table_mod_schemes[npc_id]
    local best_danger = npc:best_danger()
    local danger_precond = best_danger and
-   (best_danger:type() == danger_object.grenade or best_danger:type() == danger_object.entity_attacked)
+       (best_danger:type() == danger_object.grenade or best_danger:type() == danger_object.entity_attacked)
    local npc_found_enemy = npc:best_enemy() ~= nil or danger_precond
    local npc_without_enemy = npc:best_enemy() == nil and not danger_precond
    if read_obj_mod_param(npc, "issued_rifle_weapon") ~= nil and not npc:object(read_obj_mod_param(npc, "issued_rifle_weapon")) then
@@ -191,11 +191,13 @@ function action_bodyguard:check_logic_condlists(npc, ini, section)
    local scheme_param           = sgm_flags.table_mod_schemes[npc:id()]
    --/if scheme_param.section==nil or (scheme_param.section~=nil and scheme_param.section~=self.st.saved_section) then --/Без постоянного обновления.
    --/   scheme_param.section = self.st.saved_section
-   scheme_param.bodyguard_pos   = to_number(sgm_functions.check_section_condlist(ini, section, "bodyguard_pos", 0))        --'Позиция телохранителя до найма.
-   scheme_param.bodyguard_look  = to_number(sgm_functions.check_section_condlist(ini, section, "bodyguard_look", 0))       --'Направление взгляда телохранителя до найма.
-   scheme_param.bodyguard_state = to_string(sgm_functions.check_section_condlist(ini, section, "bodyguard_state", "ward")) --'Анимация тела телохранителя до найма.
-   scheme_param.home_teleport   = to_string(sgm_functions.check_section_condlist(ini, section, "home_teleport", "false"))  --'Телепортация на рабочую позицию, при отходе от неё.
-   scheme_param.use_command     = to_string(sgm_functions.check_section_condlist(ini, section, "use_command", nil))        --'Команда, которую выполняет телохранитель.
+   scheme_param.bodyguard_pos   = to_number(sgm_functions.check_section_condlist(ini, section, "bodyguard_pos", 0))              --'Позиция телохранителя до найма.
+   scheme_param.bodyguard_look  = to_number(sgm_functions.check_section_condlist(ini, section, "bodyguard_look", 0))             --'Направление взгляда телохранителя до найма.
+   scheme_param.bodyguard_state = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section, "bodyguard_state",
+      "ward"))                                                                                                                   --'Анимация тела телохранителя до найма.
+   scheme_param.home_teleport   = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section, "home_teleport",
+      "false"))                                                                                                                  --'Телепортация на рабочую позицию, при отходе от неё.
+   scheme_param.use_command     = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section, "use_command", nil))        --'Команда, которую выполняет телохранитель.
    --/end
 end
 

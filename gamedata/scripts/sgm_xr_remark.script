@@ -1,72 +1,16 @@
-----------------------------------------------------------------------------------------------------
--- Remark
-----------------------------------------------------------------------------------------------------
-
-local state_initial = 0
-local state_animation = 1
-local state_sound = 2
-local state_finish = 3
-
-local body_state_free = 0
-local body_state_danger = 1
-
----------------------------------------------------------------------------------------------------------------------
-class "evaluator_need_remark" (property_evaluator)
-function evaluator_need_remark:__init(storage, name)
-	super(nil, name)
-	self.st = storage
-end
-
-function evaluator_need_remark:evaluate()
-	return xr_logic.is_active(self.object, self.st)
-end
-
-----------------------------------------------------------------------------------------------------------------------
-class "action_remark_activity" (action_base)
-function action_remark_activity:__init(npc_name, action_name, storage)
-	super(nil, action_name)
-	self.st = storage
-end
-
-function action_remark_activity:initialize()
-	action_base.initialize(self)
-	self.object:set_desired_position()
-	self.object:set_desired_direction()
-	--	xr_sound.set_sound(self.object, nil)
-end
-
-function action_remark_activity:activate_scheme()
-	self.st.signals = {}
-	--/ SGM in
+local old_activate_scheme = xr_remark.action_remark_activity.activate_scheme
+function activate_scheme(self)
 	sgm_flags.table_mod_schemes[self.object:id()] = {}
 	sgm_flags.table_mod_schemes[self.object:id()].avail_speak_bool = false
 	sgm_flags.table_mod_schemes[self.object:id() .. "avail_speak_timer"] = 0
 	sgm_flags.table_mod_schemes[self.object:id() .. "precond_start"] = 0
 	sgm_flags.table_mod_schemes[self.object:id() .. "precond_end"] = 0
-	--/ SGM out
-	self.sound_end_signalled = false
-	self.action_end_signalled = false
-	self.anim_end_signalled = false
-	-- Определим нужно ли нам отыгрывать анимацию/поворачиваться на объект.
-	self.anim_scheduled = true
-
-	-- Определим нужно ли нам отыгрывать отдельно звук после поворота.
-	if self.st.snd_anim_sync == false and
-		self.st.snd ~= nil
-	then
-		self.snd_scheduled = true
-	else
-		self.snd_scheduled = false
-	end
-
-	self.snd_started = false
-
-	-- Задаем стартовое состояние
-	self.state = state_initial
-	self.tips_sound = nil
+	old_activate_scheme(self)
 end
 
-function action_remark_activity:get_target()
+xr_remark.action_remark_activity.activate_scheme = activate_scheme
+
+xr_remark.get_target = function(self)
 	local look_tbl = {}
 	--' Если таргет не проинициализирован, то запускаем инициализатор.
 	self.st.target_position, self.st.target_id, self.st.target_init = init_target(self.object, self.st.target)
@@ -154,8 +98,7 @@ function action_remark_activity:update()
 		end
 	end
 end
-
-function action_remark_activity:execute()
+xr_remark.action_remark_activity.execute = function(self)
 	action_base.execute(self)
 	self:update()
 	--/ SGM in
@@ -207,19 +150,17 @@ function action_remark_activity:execute()
 	--/ SGM out
 end
 
---/ SGM in
-function action_remark_activity:check_logic_condlists(npc, ini, section)
+xr_remark.action_remark_activity.check_logic_condlists = function (self, npc, ini, section)
 	local scheme_param = sgm_flags.table_mod_schemes[npc:id()]
 	--/if scheme_param.section==nil or (scheme_param.section~=nil and scheme_param.section~=self.st.saved_section) then --/Без постоянного обновления.
 	--/   scheme_param.section = self.st.saved_section
 	scheme_param.approach_info = sgm_functions.check_section_stick(ini, section, "approach_info", nil)
-	scheme_param.precond_timer = to_string(sgm_functions.check_section_condlist(ini, section, "precond_timer", nil))
+	scheme_param.precond_timer = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section, "precond_timer", nil))
 	scheme_param.precond_action = sgm_functions.check_section_stick(ini, section, "precond_action", nil)
 	scheme_param.avail_speak = sgm_functions.check_section_stick(ini, section, "avail_speak", nil)
 	--/end
 end
-
-function action_remark_activity:check_avail_speak(npc, scheme_param)
+xr_remark.action_remark_activity.check_avail_speak = function (self, npc, scheme_param)
 	local npc_id = npc:id()
 	if exists(scheme_param.avail_speak) and exists(scheme_param.avail_speak[1]) then
 		if dont_talk and sgm_flags.table_mod_schemes[npc_id .. "avail_speak_timer"] ~= 0 then
@@ -249,88 +190,15 @@ function action_remark_activity:check_avail_speak(npc, scheme_param)
 		end
 	end
 end
-
---/ SGM out
-function action_remark_activity:finalize()
-	if self.tips_sound ~= nil then
-		self.tips_sound:stop()
-	end
-	action_base.finalize(self)
-end
-
-----------------------------------------------------------------------------------------------------------------------
---remark binder
-----------------------------------------------------------------------------------------------------------------------
-function add_to_binder(npc, ini, scheme, section, storage)
-	printf("DEBUG: add_to_binder [%s]: scheme='%s', section='%s'", npc:name(), scheme, section)
-	local operators                      = {}
-	local properties                     = {}
-
-	local manager                        = npc:motivation_action_manager()
-
-	properties["event"]                  = xr_evaluators_id.reaction
-	properties["need_remark"]            = xr_evaluators_id.zmey_remark_base + 1
-	properties["state_mgr_logic_active"] = xr_evaluators_id.state_mgr + 4
-
-	operators["action_remark"]           = xr_actions_id.zmey_remark_base + 1
-
-	-- evaluators
-	manager:add_evaluator(properties["need_remark"], this.evaluator_need_remark(storage, "remark_need_remark"))
-
-	local new_action = this.action_remark_activity(npc, "action_remark_activity", storage)
-	new_action:add_precondition(world_property(stalker_ids.property_alive, true))
-	new_action:add_precondition(world_property(stalker_ids.property_danger, false))
-	new_action:add_precondition(world_property(stalker_ids.property_enemy, false))
-	new_action:add_precondition(world_property(stalker_ids.property_anomaly, false))
-	new_action:add_precondition(world_property(properties["need_remark"], true))
-	xr_motivator.addCommonPrecondition(new_action)
-	new_action:add_effect(world_property(properties["need_remark"], false))
-	new_action:add_effect(world_property(properties["state_mgr_logic_active"], false))
-	manager:add_action(operators["action_remark"], new_action)
-
-	-- Зарегистрировать все actions, в которых должен быть вызван метод reset_scheme при изменении настроек схемы:
-	xr_logic.subscribe_action_for_events(npc, storage, new_action)
-	new_action = manager:action(xr_actions_id.alife)
-	new_action:add_precondition(world_property(properties["need_remark"], false))
-end
-
--- Включение схемы
+local old_set_scheme = xr_remark.set_scheme
 function set_scheme(npc, ini, scheme, section, gulag_name)
-	printf("DEBUG: set_scheme: scheme='%s', section='%s'", scheme, section)
-	local st = xr_logic.assign_storage_and_bind(npc, ini, scheme, section)
-	printf("DEBUG: set_scheme: storage assigned")
-
-	st.logic         = xr_logic.cfg_get_switch_conditions(ini, section, npc)
-
-	st.snd_anim_sync = utils.cfg_get_bool(ini, section, "snd_anim_sync", npc, false)
-
-	st.snd           = utils.cfg_get_string(ini, section, "snd", npc, false, "", nil)
-	st.anim          = xr_logic.parse_condlist(npc, "anim", "anim",
-		utils.cfg_get_string(ini, section, "anim", npc, false, "", "wait"))
-	st.tips_id       = utils.cfg_get_string(ini, section, "tips", npc, false, "")
-	if st.tips_id then
-		st.sender = utils.cfg_get_string(ini, section, "tips_sender", npc, false, "")
-	end
-	st.target          = utils.cfg_get_string(ini, section, "target", npc, false, "", "nil")
-	st.target_id       = nil
-	st.target_position = nil
-	--/ SGM in
+	old_set_scheme(npc, ini, scheme, section, gulag_name)
 	st.saved_ini       = ini
 	st.saved_section   = section
-	--/ SGM out
 end
+xr_remark.set_scheme = set_scheme
 
-local function instruction(obj, target_str)
-	abort("\nWrong target field for object [%s] in section [%s]!!!\n" ..
-		"Field [target] supports following:\n" ..
-		"   target = story | actor or story_id\n" ..
-		"   target = path  | patrol_path, point_id\n" ..
-		"   target = job   | job_section, smart_name\n" ..
-		"Your target field:\n" ..
-		"   target = %s", obj:name(), db.storage[obj:id()].active_section, target_str)
-end
-
-function init_target(obj, target_str)
+xr_remark.init_target = function(obj, target_str)
 	local function parse_target(target_str)
 		local pos = string.find(target_str, ",")
 		if pos then

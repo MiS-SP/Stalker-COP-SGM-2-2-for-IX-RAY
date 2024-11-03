@@ -10,7 +10,7 @@ function create_release_item_iterator(npc)
 	if sgm_g.find_in_string(npc:section(), "_trader") then
 		npc:iterate_inventory(release_all_immediately, npc)
 	end
-	if find_out_string(npc:section(), "_trader") and find_out_string(npc:section(), "dead_body_") then
+	if sgm_g.find_out_string(npc:section(), "_trader") and sgm_g.find_out_string(npc:section(), "dead_body_") then
 		npc:iterate_inventory(keep_item, npc)
 	end
 end
@@ -38,7 +38,7 @@ function create_release_item_post(npc)
 end
 
 function keep_item(npc, item)
-	if not check_death_item(section) then
+	if not sgm_g.check_death_item(section) then
 		alife():release(alife():object(item:id()), true)
 		return
 	end
@@ -54,7 +54,7 @@ end
 function corpse_exception(npc,item)
 	local section = item:section()
 	local ini = npc:spawn_ini()
-        if not check_death_item(section) then
+        if not sgm_g.check_death_item(section) then
            alife():release(alife():object(item:id()),true)
            return
         end
@@ -82,7 +82,7 @@ end
 function release_all_immediately(npc,item)
 	local section=item:section()
 	local ini = npc:spawn_ini()
-        if not check_death_item(section) then
+        if not sgm_g.check_death_item(section) then
            alife():release(alife():object(item:id()),true)
            return
         end

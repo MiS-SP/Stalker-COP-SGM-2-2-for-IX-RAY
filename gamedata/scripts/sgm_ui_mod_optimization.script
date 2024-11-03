@@ -1,92 +1,105 @@
 ---==================================================================================================---
 --------------------------------------------------------------------------------------------------------
------------------------------------(Опции оптимизации СГМа)---------------------------------------------
+-----------------------------------(????? ??????????? ????)---------------------------------------------
 --------------------------------------------------------------------------------------------------------
 ---==================================================================================================---
-local show_descr_box=true
+local show_descr_box = true
 class "mod_optimization" (CUIScriptWnd)
-function mod_optimization:__init(owner) super()
-   self.owner=owner
+function mod_optimization:__init(owner)
+   super()
+   self.owner = owner
    self:InitControls()
    self:InitCallBacks()
 end
+
 function mod_optimization:__finalize()
 end
+
 function mod_optimization:InitControls()
-   self:SetWndRect(Frect():set(0,0,1024,768))
+   self:SetWndRect(Frect():set(0, 0, 1024, 768))
    local xml = CScriptXmlInit()
    xml:ParseFile("ui_mod_options_optimization.xml")
-   xml:InitStatic("background",self)
-   self.form = xml:InitStatic("form",self)
-   self.options_field = xml:InitStatic("form:options_field",self.form)
-   xml:InitStatic("form:title",self.form)
-   self.apply_box=CUIMessageBoxEx()
-   self:Register(self.apply_box,"apply_box")
-   self.descr_box=CUIMessageBoxEx()
-   self:Register(self.descr_box,"descr_box")
+   xml:InitStatic("background", self)
+   self.form = xml:InitStatic("form", self)
+   self.options_field = xml:InitStatic("form:options_field", self.form)
+   xml:InitStatic("form:title", self.form)
+   self.apply_box = CUIMessageBoxEx()
+   self:Register(self.apply_box, "apply_box")
+   self.descr_box = CUIMessageBoxEx()
+   self:Register(self.descr_box, "descr_box")
    --/self:start_button(xml,"btn_apply")
-   self:start_button(xml,"btn_exit")
-   self:start_button(xml,"btn_hud")
-   self:register_special_button(xml,"clean_anomaly")
-   self:register_special_button(xml,"clean_mines")
-   self:register_special_button(xml,"clean_monsters")
+   self:start_button(xml, "btn_exit")
+   self:start_button(xml, "btn_hud")
+   self:register_special_button(xml, "clean_anomaly")
+   self:register_special_button(xml, "clean_mines")
+   self:register_special_button(xml, "clean_monsters")
    if show_descr_box then
    end
    sgm_version.show_version(self)
 end
+
 function mod_optimization:InitCallBacks()
-   self:AddCallback("btn_exit", ui_events.BUTTON_CLICKED,self.press_exit,self)
+   self:AddCallback("btn_exit", ui_events.BUTTON_CLICKED, self.press_exit, self)
    --/self:AddCallback("btn_apply",ui_events.BUTTON_CLICKED,self.press_apply,self)
-   self:AddCallback("btn_hud",ui_events.BUTTON_CLICKED,self.press_hud,self)
-   self:AddCallback("apply_box",ui_events.MESSAGE_BOX_YES_CLICKED,self.apply_box_ok,self)
-   self:AddCallback("apply_box",ui_events.MESSAGE_BOX_OK_CLICKED,self.apply_box_ok,self)
-   self:AddCallback("descr_box",ui_events.MESSAGE_BOX_YES_CLICKED,self.descr_box_ok,self)
-   self:AddCallback("descr_box",ui_events.MESSAGE_BOX_OK_CLICKED,self.descr_box_ok,self)
-   self:AddCallback("opt_clean_anomaly",ui_events.BUTTON_CLICKED,self.func_clean_anomaly,self)
-   self:AddCallback("clean_anomaly_box",ui_events.MESSAGE_BOX_YES_CLICKED,self.clean_anomaly_box_ok,self)
-   self:AddCallback("clean_anomaly_box",ui_events.MESSAGE_BOX_OK_CLICKED,self.clean_anomaly_box_ok,self)
-   self:AddCallback("opt_clean_mines",ui_events.BUTTON_CLICKED,self.func_clean_mines,self)
-   self:AddCallback("clean_mines_box",ui_events.MESSAGE_BOX_YES_CLICKED,self.clean_mines_box_ok,self)
-   self:AddCallback("clean_mines_box",ui_events.MESSAGE_BOX_OK_CLICKED,self.clean_mines_box_ok,self)
-   self:AddCallback("opt_clean_monsters",ui_events.BUTTON_CLICKED,self.func_clean_monsters,self)
-   self:AddCallback("clean_monsters_box",ui_events.MESSAGE_BOX_YES_CLICKED,self.clean_monsters_box_ok,self)
-   self:AddCallback("clean_monsters_box",ui_events.MESSAGE_BOX_OK_CLICKED,self.clean_monsters_box_ok,self)
+   self:AddCallback("btn_hud", ui_events.BUTTON_CLICKED, self.press_hud, self)
+   self:AddCallback("apply_box", ui_events.MESSAGE_BOX_YES_CLICKED, self.apply_box_ok, self)
+   self:AddCallback("apply_box", ui_events.MESSAGE_BOX_OK_CLICKED, self.apply_box_ok, self)
+   self:AddCallback("descr_box", ui_events.MESSAGE_BOX_YES_CLICKED, self.descr_box_ok, self)
+   self:AddCallback("descr_box", ui_events.MESSAGE_BOX_OK_CLICKED, self.descr_box_ok, self)
+   self:AddCallback("opt_clean_anomaly", ui_events.BUTTON_CLICKED, self.func_clean_anomaly, self)
+   self:AddCallback("clean_anomaly_box", ui_events.MESSAGE_BOX_YES_CLICKED, self.clean_anomaly_box_ok, self)
+   self:AddCallback("clean_anomaly_box", ui_events.MESSAGE_BOX_OK_CLICKED, self.clean_anomaly_box_ok, self)
+   self:AddCallback("opt_clean_mines", ui_events.BUTTON_CLICKED, self.func_clean_mines, self)
+   self:AddCallback("clean_mines_box", ui_events.MESSAGE_BOX_YES_CLICKED, self.clean_mines_box_ok, self)
+   self:AddCallback("clean_mines_box", ui_events.MESSAGE_BOX_OK_CLICKED, self.clean_mines_box_ok, self)
+   self:AddCallback("opt_clean_monsters", ui_events.BUTTON_CLICKED, self.func_clean_monsters, self)
+   self:AddCallback("clean_monsters_box", ui_events.MESSAGE_BOX_YES_CLICKED, self.clean_monsters_box_ok, self)
+   self:AddCallback("clean_monsters_box", ui_events.MESSAGE_BOX_OK_CLICKED, self.clean_monsters_box_ok, self)
 end
+
 function mod_optimization:func_clean_anomaly()
    clear_all_objects("anomaly")
    self.clean_anomaly_box:InitMessageBox("mb_options_clean_anomaly")
    self.clean_anomaly_box:ShowDialog(true)
 end
+
 function mod_optimization:func_clean_mines()
    clear_all_objects("mine")
    self.clean_mines_box:InitMessageBox("mb_options_clean_mines")
    self.clean_mines_box:ShowDialog(true)
 end
+
 function mod_optimization:clean_anomaly_box_ok()
    self.clean_anomaly_box:ShowDialog(false)
    self.clean_anomaly_box:HideDialog()
 end
+
 function mod_optimization:clean_mines_box_ok()
    self.clean_mines_box:ShowDialog(false)
    self.clean_mines_box:HideDialog()
 end
+
 function mod_optimization:func_clean_monsters()
    clear_all_objects("monster")
    self.clean_monsters_box:InitMessageBox("mb_options_clean_monsters")
    self.clean_monsters_box:ShowDialog(true)
 end
+
 function mod_optimization:clean_monsters_box_ok()
    self.clean_monsters_box:ShowDialog(false)
    self.clean_monsters_box:HideDialog()
 end
+
 function mod_optimization:apply_box_ok()
    self.apply_box:ShowDialog(false)
    self.apply_box:HideDialog()
 end
+
 function mod_optimization:descr_box_ok()
    self.descr_box:ShowDialog(false)
    self.descr_box:HideDialog()
 end
+
 function mod_optimization:press_hud()
    if self.mod_hud_dlg == nil then
       self.mod_hud_dlg = ui_mod_hud.mod_hud()
@@ -96,52 +109,57 @@ function mod_optimization:press_hud()
    self:HideDialog()
    self:Show(false)
 end
+
 function mod_optimization:press_exit()
    self.owner:ShowDialog(true)
    self:HideDialog()
    self.owner:Show(true)
 end
+
 function mod_optimization:press_apply()
    self:press_exit()
    self.apply_box:InitMessageBox("mb_mod_options_optimization_apply")
    self.apply_box:ShowDialog(true)
 end
-function mod_optimization:OnKeyboard(dik,keyboard_action)
-   CUIScriptWnd.OnKeyboard(self,dik,keyboard_action)
-   if keyboard_action==ui_events.WINDOW_KEY_PRESSED then
-      if dik==DIK_keys.DIK_ESCAPE then
+
+function mod_optimization:OnKeyboard(dik, keyboard_action)
+   CUIScriptWnd.OnKeyboard(self, dik, keyboard_action)
+   if keyboard_action == ui_events.WINDOW_KEY_PRESSED then
+      if dik == DIK_keys.DIK_ESCAPE then
          self:press_exit()
       end
-      if dik==DIK_keys.DIK_RETURN then
+      if dik == DIK_keys.DIK_RETURN then
          self:press_apply()
       end
    end
    return true
 end
-function mod_optimization:start_button(xml,button_name)
-   self["get_"..button_name]=xml:Init3tButton("form:"..button_name,self.form)
-   self:Register(self["get_"..button_name],button_name)
+
+function mod_optimization:start_button(xml, button_name)
+   self["get_" .. button_name] = xml:Init3tButton("form:" .. button_name, self.form)
+   self:Register(self["get_" .. button_name], button_name)
 end
+
 function mod_optimization:apply_option(opt_name)
-   sgm_functions.info_give_on_boolean(self["btn_"..opt_name]:GetCheck(),"opt_"..opt_name)
+   sgm_functions.info_give_on_boolean(self["btn_" .. opt_name]:GetCheck(), "opt_" .. opt_name)
 end
-function mod_optimization:register_descr_box(xml,box_name)
-   self:Register(xml:Init3tButton("form:options_field:"..box_name,self.options_field),box_name)
+
+function mod_optimization:register_descr_box(xml, box_name)
+   self:Register(xml:Init3tButton("form:options_field:" .. box_name, self.options_field), box_name)
 end
-function mod_optimization:register_check_option(xml,opt_name)
+
+function mod_optimization:register_check_option(xml, opt_name)
    local btn
-   btn = xml:InitCheck("form:options_field:btn_"..opt_name,self.options_field)
-   self:Register(btn,"btn_"..opt_name)
-   self["btn_"..opt_name]=btn
-   btn:SetCheck(sgm_functions.info_get_boolean("opt_"..opt_name))
+   btn = xml:InitCheck("form:options_field:btn_" .. opt_name, self.options_field)
+   self:Register(btn, "btn_" .. opt_name)
+   self["btn_" .. opt_name] = btn
+   btn:SetCheck(sgm_functions.info_get_boolean("opt_" .. opt_name))
 end
-function mod_optimization:register_special_button(xml,param_name)
-   self:Register(xml:Init3tButton("form:options_field:opt_"..param_name,self.options_field),"opt_"..param_name)
-   self[param_name.."_box"]=CUIMessageBoxEx()
-   self:Register(self[param_name.."_box"],param_name.."_box")
+
+function mod_optimization:register_special_button(xml, param_name)
+   self:Register(xml:Init3tButton("form:options_field:opt_" .. param_name, self.options_field), "opt_" .. param_name)
+   self[param_name .. "_box"] = CUIMessageBoxEx()
+   self:Register(self[param_name .. "_box"], param_name .. "_box")
 end
 
 ---------------------------------//Copyright GeJorge//-----------------------------------------------
-
-
-

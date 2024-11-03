@@ -9,7 +9,7 @@ end
 
 function queue_update()
    if sgm_g.check_seconds(3) then
-      if sgm_g.autosave_precond() and get_table_lines(sgm_flags.table_mod_autosaves) > 0 then
+      if sgm_g.autosave_precond() and sgm_g.get_table_lines(sgm_flags.table_mod_autosaves) > 0 then
          for k, v in pairs(sgm_flags.table_mod_autosaves) do
             if k ~= nil and v then
                if sgm_g.find_in_string(k, "st_") then
@@ -30,7 +30,7 @@ function queue_update()
          sgm_flags.value_throw_item_cond = 1.0
       end
    end
-   if get_table_lines(sgm_flags.table_mod_teleports) > 0 then
+   if sgm_g.get_table_lines(sgm_flags.table_mod_teleports) > 0 then
       for k, v in pairs(sgm_flags.table_mod_teleports) do
          if k ~= nil and get_story_object(k) ~= nil and (sgm_flags.table_mod_teleports[k].x ~= nil and sgm_flags.table_mod_teleports[k].y ~= nil and sgm_flags.table_mod_teleports[k].z ~= nil) then
             get_story_object(k):set_npc_position(vector():set(sgm_flags.table_mod_teleports[k].x,

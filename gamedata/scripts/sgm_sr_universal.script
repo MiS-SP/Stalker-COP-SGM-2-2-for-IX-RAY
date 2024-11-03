@@ -349,7 +349,7 @@ end
 function action_universal:level_change_setup_spots(scheme_param)
    if exists(scheme_param.level_change_spot[1]) then
       if scheme_param.level_change_spot[3] == "false" or (scheme_param.level_change_spot[3] == "true" and self.level_change_hidden_spots == false) then
-         add_spot_on_map(self.object:id(), scheme_param.level_change_spot[1], scheme_param.level_change_spot[2])
+         sgm_g.add_spot_on_map(self.object:id(), scheme_param.level_change_spot[1], scheme_param.level_change_spot[2])
       elseif scheme_param.level_change_spot[3] == "true" and self.level_change_hidden_spots == true then
          remove_spot_on_map(self.object:id(), scheme_param.level_change_spot[1])
       end
@@ -413,10 +413,12 @@ function action_universal:check_logic_condlists(obj, ini, section)
    --/if scheme_param.section==nil or (scheme_param.section~=nil and scheme_param.section~=self.st.saved_section) then --/Без постоянного обновления.
    --/   scheme_param.section = self.st.saved_section
    --\Общие команды\--
-   scheme_param.scheme_type = to_string(sgm_functions.check_section_condlist(ini, section, "scheme_type", "noweap_zone"))
+   scheme_param.scheme_type = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section, "scheme_type",
+      "noweap_zone"))
    --\Команды: NOWEAP_ZONE\--
    if scheme_param.scheme_type == "noweap_zone" then
-      scheme_param.noweap_zone_cond   = to_string(sgm_functions.check_section_condlist(ini, section, "noweap_zone_cond",
+      scheme_param.noweap_zone_cond   = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section,
+         "noweap_zone_cond",
          "true"))
       scheme_param.noweap_zone_radius = to_number(sgm_functions.check_section_condlist(ini, section, "noweap_zone_radius",
          0))
@@ -424,7 +426,8 @@ function action_universal:check_logic_condlists(obj, ini, section)
    --\Команды: THROW_ZONE\--
    if scheme_param.scheme_type == "throw_zone" then
       scheme_param.throw_zone_points  = sgm_functions.cfg_get_string(ini, section, "throw_zone_points", nil)
-      scheme_param.throw_zone_deprive = to_string(sgm_functions.check_section_condlist(ini, section, "throw_zone_deprive",
+      scheme_param.throw_zone_deprive = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section,
+         "throw_zone_deprive",
          "false"))
       if exists(scheme_param.throw_zone_points) then
          scheme_param.throw_zone_points_table = parse_names(scheme_param.throw_zone_points)
@@ -432,7 +435,8 @@ function action_universal:check_logic_condlists(obj, ini, section)
    end
    --\Команды: SOUND_ZONE\--
    if scheme_param.scheme_type == "sound_zone" then
-      scheme_param.sound_zone_cond      = to_string(sgm_functions.check_section_condlist(ini, section, "sound_zone_cond",
+      scheme_param.sound_zone_cond      = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section,
+         "sound_zone_cond",
          "true"))
       scheme_param.sound_zone_theme     = sgm_functions.cfg_get_string(ini, section, "sound_zone_theme", nil)
       scheme_param.sound_zone_volume    = to_number(sgm_functions.check_section_condlist(ini, section,
@@ -441,9 +445,9 @@ function action_universal:check_logic_condlists(obj, ini, section)
          "sound_zone_pause_min", 0))
       scheme_param.sound_zone_pause_max = to_number(sgm_functions.check_section_condlist(ini, section,
          "sound_zone_pause_max", 0))
-      scheme_param.sound_zone_range_min = to_string(sgm_functions.check_section_condlist(ini, section,
+      scheme_param.sound_zone_range_min = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section,
          "sound_zone_range_min", nil))
-      scheme_param.sound_zone_range_max = to_string(sgm_functions.check_section_condlist(ini, section,
+      scheme_param.sound_zone_range_max = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section,
          "sound_zone_range_max", nil))
       if exists(scheme_param.sound_zone_theme) then
          scheme_param.sound_zone_theme_table = parse_names(scheme_param.sound_zone_theme)
@@ -451,12 +455,12 @@ function action_universal:check_logic_condlists(obj, ini, section)
    end
    --\Команды: AMBUSH_ZONE\--
    if scheme_param.scheme_type == "ambush_zone" then
-      scheme_param.ambush_zone_cond       = to_string(sgm_functions.check_section_condlist(ini, section,
+      scheme_param.ambush_zone_cond       = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section,
          "ambush_zone_cond", "true"))
       scheme_param.ambush_zone_creatures  = sgm_functions.cfg_get_string(ini, section, "ambush_zone_creatures", nil)
-      scheme_param.ambush_zone_full_spawn = to_string(sgm_functions.check_section_condlist(ini, section,
+      scheme_param.ambush_zone_full_spawn = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section,
          "ambush_zone_full_spawn", "false"))
-      scheme_param.ambush_zone_reload     = to_string(sgm_functions.check_section_condlist(ini, section,
+      scheme_param.ambush_zone_reload     = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section,
          "ambush_zone_reload", "false"))
       scheme_param.ambush_zone_radius     = to_number(sgm_functions.check_section_condlist(ini, section,
          "ambush_zone_radius", 10))
@@ -468,14 +472,14 @@ function action_universal:check_logic_condlists(obj, ini, section)
    end
    --\Команды: CREATE_ZONE\--
    if scheme_param.scheme_type == "create_zone" then
-      scheme_param.create_zone_cond       = to_string(sgm_functions.check_section_condlist(ini, section,
+      scheme_param.create_zone_cond       = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section,
          "create_zone_cond", "true"))
-      scheme_param.create_zone_when       = to_string(sgm_functions.check_section_condlist(ini, section,
+      scheme_param.create_zone_when       = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section,
          "create_zone_when", "black_day"))
       scheme_param.create_zone_items      = sgm_functions.cfg_get_string(ini, section, "create_zone_items", nil)
-      scheme_param.create_zone_level      = to_string(sgm_functions.check_section_condlist(ini, section,
+      scheme_param.create_zone_level      = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section,
          "create_zone_level", "zaton"))
-      scheme_param.create_zone_full_spawn = to_string(sgm_functions.check_section_condlist(ini, section,
+      scheme_param.create_zone_full_spawn = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section,
          "create_zone_full_spawn", "false"))
       scheme_param.create_zone_radius     = to_number(sgm_functions.check_section_condlist(ini, section,
          "create_zone_radius", 5))
@@ -487,7 +491,7 @@ function action_universal:check_logic_condlists(obj, ini, section)
    end
    --\Команды: LEVEL_CHANGE_ZONE\--
    if scheme_param.scheme_type == "level_change_zone" then
-      scheme_param.level_change_cond               = to_string(sgm_functions.check_section_condlist(ini, section,
+      scheme_param.level_change_cond               = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section,
          "level_change_cond", "true"))
       scheme_param.level_change_on_use             = sgm_functions.cfg_get_string(ini, section, "level_change_on_use",
          nil)
@@ -501,15 +505,15 @@ function action_universal:check_logic_condlists(obj, ini, section)
          "level_change_travel_time", "1,00", 2)
       scheme_param.level_change_spot               = sgm_functions.check_section_comma(ini, section, "level_change_spot",
          "nil,nil,false", 3)
-      scheme_param.level_change_silent_travel      = to_string(sgm_functions.check_section_condlist(ini, section,
+      scheme_param.level_change_silent_travel      = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section,
          "level_change_silent_travel", "false"))
-      scheme_param.level_change_hidden_mode        = to_string(sgm_functions.check_section_condlist(ini, section,
+      scheme_param.level_change_hidden_mode        = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section,
          "level_change_hidden_mode", "false"))
-      scheme_param.level_change_autosave           = to_string(sgm_functions.check_section_condlist(ini, section,
+      scheme_param.level_change_autosave           = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section,
          "level_change_autosave", nil))
-      scheme_param.level_change_message_possible   = to_string(sgm_functions.check_section_condlist(ini, section,
+      scheme_param.level_change_message_possible   = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section,
          "level_change_message_possible", "st_level_change_zone_yes_no_text"))
-      scheme_param.level_change_message_impossible = to_string(sgm_functions.check_section_condlist(ini, section,
+      scheme_param.level_change_message_impossible = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section,
          "level_change_message_impossible", "st_level_change_zone_ok_text"))
    end
    --/end

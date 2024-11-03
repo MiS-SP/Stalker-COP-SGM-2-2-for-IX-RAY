@@ -159,19 +159,19 @@ end
 
 function on_slot_7()
    on_outfit_change()
-   set_item_activation(3000)
+   sgm_g.set_item_activation(3000)
 end
 
 function on_slot_12()
    on_outfit_change()
-   set_item_activation(3000)
+   sgm_g.set_item_activation(3000)
 end
 
 ------------------------------------------------------------------------------
 --                         На смену брони или шлема                         --
 ------------------------------------------------------------------------------
 function on_outfit_change()
-   if check_ui_worked(true) then
+   if sgm_g.check_ui_worked(true) then
       if check_slot_filled(12) == true then
          replace_actor_visual("actors\\stalker_hero\\stalker_hero_cs_heavy.ogf",
             [[actors\stalker_hero\stalker_hero_cs_heavy_h.ogf]], false, false)
@@ -439,7 +439,7 @@ function on_use_item(obj)
       dialogs.relocate_money(db.actor, s_val, "out2")
    end
    if sgm_functions.ReadActivationTime(item_name) > 0 then
-      set_item_activation(sgm_functions.ReadActivationTime(item_name) * 1000)
+      sgm_g.set_item_activation(sgm_functions.ReadActivationTime(item_name) * 1000)
    end
    if sgm_functions.ReadEatPsyHealth(item_name) > 0 then
       if sgm_g.dont_has_alife_info("red_psyho_start") or has_alife_info("red_psyho_back_to_jup") then
@@ -471,10 +471,10 @@ function on_use_item(obj)
          local cap_control = sgm_functions.ReadCaptureMealControl(item_name)
          local cap_charge = sgm_functions.ReadCaptureMealCharge(item_name)
          local cap_target = sgm_functions.ReadCaptureMealTarget(item_name)
-         write_mod_param(item_name .. "_radius", cap_radius)
-         write_mod_param(item_name .. "_control", cap_control)
-         write_mod_param(item_name .. "_charge", cap_charge)
-         write_mod_param(item_name .. "_target", cap_target)
+         sgm_g.write_mod_param(item_name .. "_radius", cap_radius)
+         sgm_g.write_mod_param(item_name .. "_control", cap_control)
+         sgm_g.write_mod_param(item_name .. "_charge", cap_charge)
+         sgm_g.write_mod_param(item_name .. "_target", cap_target)
          sgm_flags.string_capture_monster_target = cap_target
          sgm_flags.value_capture_meal_monster_id = 0
          give_info("capture_meal_active")
@@ -492,23 +492,23 @@ function on_use_item(obj)
       set_sleep_factor("+", 1)
    end
    if item_name == "personal_rukzak" then
-      run_dynamic_element(ui_mod_elements.personal_rukzak(), false)
+      run_dynamic_element(sgm_ui_mod_elements.personal_rukzak(), false)
    elseif item_name == "repair_arms_box" then
-      run_dynamic_element(ui_mod_elements.repair_weapon_box(), false)
+      run_dynamic_element(sgm_ui_mod_elements.repair_weapon_box(), false)
    elseif item_name == "repair_arms_box_used" then
-      run_dynamic_element(ui_mod_elements.repair_weapon_box_used(), false)
+      run_dynamic_element(sgm_ui_mod_elements.repair_weapon_box_used(), false)
    elseif item_name == "repair_outfit_box" then
-      run_dynamic_element(ui_mod_elements.repair_outfit_box(), false)
+      run_dynamic_element(sgm_ui_mod_elements.repair_outfit_box(), false)
    elseif item_name == "repair_outfit_box_used" then
-      run_dynamic_element(ui_mod_elements.repair_outfit_box_used(), false)
+      run_dynamic_element(sgm_ui_mod_elements.repair_outfit_box_used(), false)
    elseif item_name == "army_timer" then
-      run_dynamic_element(ui_mod_elements.army_timer(), false)
+      run_dynamic_element(sgm_ui_mod_elements.army_timer(), false)
    elseif item_name == "mp3_player" then
-      run_dynamic_element(ui_mod_elements.mp3_player(), true, true)
+      run_dynamic_element(sgm_ui_mod_elements.mp3_player(), true, true)
    elseif item_name == "conventer_grenade_box" then
-      run_dynamic_element(ui_mod_elements.conventer_grenade_box(), false)
+      run_dynamic_element(sgm_ui_mod_elements.conventer_grenade_box(), false)
    elseif item_name == "personal_pda" then
-      run_dynamic_element(ui_mod_pda.personal_pda(), true, true)
+      run_dynamic_element(sgm_ui_mod_pda.personal_pda(), true, true)
    elseif sgm_g.find_in_string(item_name, "guidebook_") then
       if level.name() == "zaton" or level.name() == "jupiter" or level.name() == "pripyat" or level.name() == "escape" or level.name() == "marsh" or level.name() == "agroprom" or level.name() == "red_forest" or level.name() == "darkvalley" or level.name() == "military" then
          if item_name == "guidebook_mono" then
@@ -534,7 +534,7 @@ function on_use_item(obj)
       game.start_tutorial("about_disk_breaking")
    elseif item_name == "remote_explosive_charge" then
       if get_remote_charge_full_installed() == false then
-         run_dynamic_element(ui_mod_elements.remote_charge(), false)
+         run_dynamic_element(sgm_ui_mod_elements.remote_charge(), false)
       else
          game_hide_menu()
          game.start_tutorial("about_remote_limit")
@@ -547,12 +547,12 @@ function on_use_item(obj)
          detonate_remote_charge(sgm_g.read_mod_param("remote_charge_3_id"), 3, true)
       end
    elseif item_name == "personal_marker" then
-      run_dynamic_element(ui_mod_elements.personal_marker(), false)
+      run_dynamic_element(sgm_ui_mod_elements.personal_marker(), false)
    elseif item_name == "mobile_tool" then
-      run_dynamic_element(ui_mod_elements.mobile_tool(), true, true)
+      run_dynamic_element(sgm_ui_mod_elements.mobile_tool(), true, true)
    elseif item_name == "drug_cat_eye" then
       level.add_pp_effector("drug_cat_eye.ppe", 19811, false)
-      start_game_timer("drug_cat_eye_timer", 60)
+      sgm_g.start_game_timer("drug_cat_eye_timer", 60)
    end
    if item_name == "flash_avoid_witnesses" then
       give_info("jup_avoid_witnesses_start")
@@ -607,7 +607,7 @@ function on_use_deserve(obj)
          end
       end
    end
-   add_spot_on_map(deserve.id, sgm_flags.spot_personal_secret, param_descr)
+   sgm_g.add_spot_on_map(deserve.id, sgm_flags.spot_personal_secret, param_descr)
    news_manager.send_deserve(param_title)
 end
 
@@ -634,14 +634,14 @@ function on_use_sleeping_bag(obj)
       use_power_mode(0.98, 1.00)
       use_immortal_mode(0.98, 1.00)
       level.add_pp_effector("mar_fade.ppe", 76424, false)
-      start_game_timer("sleeping_bag_timer", sleeping_bag_time, "hours")
+      sgm_g.start_game_timer("sleeping_bag_timer", sleeping_bag_time, "hours")
       start_flague_timer("timer_sleeping_bag", 3000)
       level.set_time_factor(1700)
       level.hide_indicators_safe()
       game_hide_menu()
       if sgm_g.r_mod_params("bool", "need_actor_dream", true) and sgm_g.read_mod_param("sleep_factor") ~= nil then
          local sleep_factor = sgm_g.read_mod_param("sleep_factor")
-         write_mod_param("sleep_factor", sleep_factor - 600)
+         sgm_g.write_mod_param("sleep_factor", sleep_factor - 600)
       end
    elseif check_is_dream_limited() == true then
       game_hide_menu(1)
@@ -859,13 +859,13 @@ function on_actor_sleep(sleep_hours, sleep_minutes)
       local sleep_factor = sgm_g.read_mod_param("sleep_factor")
       local sleep_coef = (sleep_hours * 150) + (sleep_minutes * 2.5)
       if sleep_hours >= 6 then
-         write_mod_param("sleep_factor", 0)
+         sgm_g.write_mod_param("sleep_factor", 0)
       elseif sleep_hours < 6 then
-         write_mod_param("sleep_factor", sleep_factor - sleep_coef)
+         sgm_g.write_mod_param("sleep_factor", sleep_factor - sleep_coef)
       end
    end
    if sgm_g.r_mod_params("number", "monsters_cleaner_interval", 0) > 0 then
-      start_game_timer("m_cleaner_timer", sgm_g.r_mod_params("number", "monsters_cleaner_interval", 0))
+      sgm_g.start_game_timer("m_cleaner_timer", sgm_g.r_mod_params("number", "monsters_cleaner_interval", 0))
    end
 end
 
@@ -1013,18 +1013,19 @@ end
 --                         На загрузку игры                                 --
 ------------------------------------------------------------------------------
 function on_game_load()
-   if sgm_g.data_param_connect() then
-      save_and_transform_ini_table("respawn\\respawn_abandoned.ltx", "abandoned", "table_mod_respawn", "respawn_abandoned",
-         true)
-      save_and_transform_ini_table("respawn\\respawn_monster.ltx", "monster_points", "table_mod_respawn", "respawn_monster",
-         true)
-      if sgm_g.find_in_string(read_string("freeplay_config", "levels", "respawn\\respawn_freeplay.ltx"), level.name()) then
-         save_and_transform_ini_table("respawn\\respawn_freeplay.ltx", "freeplay_points_" .. level.name(),
-            "table_mod_respawn", "respawn_freeplay", true)
-      end
-      if check_game_timer("drug_cat_eye_timer") == false then
-         level.add_pp_effector("drug_cat_eye.ppe", 19811, false)
-      end
+   sgm_g.data_param_connect()
+   sgm_g.save_and_transform_ini_table("respawn\\respawn_abandoned.ltx", "abandoned", "table_mod_respawn",
+      "respawn_abandoned",
+      true)
+   sgm_g.save_and_transform_ini_table("respawn\\respawn_monster.ltx", "monster_points", "table_mod_respawn",
+      "respawn_monster",
+      true)
+   if sgm_g.find_in_string(sgm_g.read_string("freeplay_config", "levels", "respawn\\respawn_freeplay.ltx"), level.name()) then
+      sgm_g.save_and_transform_ini_table("respawn\\respawn_freeplay.ltx", "freeplay_points_" .. level.name(),
+         "table_mod_respawn", "respawn_freeplay", true)
+   end
+   if sgm_g.check_game_timer("drug_cat_eye_timer") == false then
+      level.add_pp_effector("drug_cat_eye.ppe", 19811, false)
    end
 end
 
@@ -1032,7 +1033,8 @@ end
 --                        На вылет из игры                                  --
 ------------------------------------------------------------------------------
 function on_game_crash(crash_reason)
-   sgm_g.debug_to_file("mod_crash_log.txt",
+   local fullPath = getFS():update_path("$logs$", "//sgm_crash_log.txt")
+   sgm_g.debug_to_file(fullPath,
       "[start]" .. game.translate_string("\n") .. crash_reason .. game.translate_string("\n") .. "[end]")
 end
 

@@ -483,14 +483,14 @@ end
 
 function CHudManager:hud_utils()
    if sgm_g.check_seconds(2) then
-      if get_flag_value("bool_cheat_mode_activate") == true then
+      if sgm_g.get_flag_value("bool_cheat_mode_activate") == true then
          add_hud("hud_cheat_mode_static")
       else
          sgm_g.change_flag_value("hud_cheat_mode_static")
       end
    end
-   if ui_mod_elements.army_timer_active == true then
-      local data_timer = ui_mod_elements.army_timer_value
+   if sgm_ui_mod_elements.army_timer_active == true then
+      local data_timer = sgm_ui_mod_elements.army_timer_value
       add_hud("hud_timer_wnd", data_timer)
    else
       if sgm_g.check_seconds(2) then

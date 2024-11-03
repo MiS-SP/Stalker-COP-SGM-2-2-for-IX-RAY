@@ -10,7 +10,7 @@ end
 
 function news_update()
    if sgm_g.read_mod_param("bankir_deposit_percent", true) > 0 then
-      if level.get_time_hours() == 20 and level.get_time_minutes() <= 45 and sgm_g.dont_has_alife_info("about_bankir_percent") and check_ui_worked() and sgm_flags.table_mod_utils["on_forward_game_time_saved"] == nil then
+      if level.get_time_hours() == 20 and level.get_time_minutes() <= 45 and sgm_g.dont_has_alife_info("about_bankir_percent") and sgm_g.check_ui_worked() and sgm_flags.table_mod_utils["on_forward_game_time_saved"] == nil then
          if sgm_g.read_mod_param("bankir_deposit_passed_time") ~= nil and level.get_time_days() >= sgm_g.read_mod_param("bankir_deposit_passed_time") then
             news_manager.bankir_tip(db.actor, 0, "bankir", 18000, nil, "st_about_deposit_title", "st_about_deposit_part0",
                "st_about_deposit_part1", sgm_g.read_mod_param("bankir_deposit_percent", true), "st_about_deposit_part2",
@@ -22,7 +22,7 @@ function news_update()
    if ((level.get_time_hours() == 20 and level.get_time_minutes() > 45) or level.get_time_hours() >= 21 or level.get_time_hours() <= 19) and has_alife_info("about_bankir_percent") then
       disable_info("about_bankir_percent")
    end
-   if check_difference_missed_time(19, 59, "deposit_status_message") then
+   if sgm_g.check_difference_missed_time(19, 59, "deposit_status_message") then
       use_difference_missed_time("deposit_status_message")
       disable_info("about_bankir_percent")
    end

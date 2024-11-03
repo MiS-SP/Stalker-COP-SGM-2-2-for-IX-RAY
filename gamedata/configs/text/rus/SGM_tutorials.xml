@@ -97,7 +97,7 @@
 	<string id="jup_a6_azot_quest_cheked">
 		<text>Разблокировать электронный модуль ($$ACTION_USE$$)</text>
         </string>
-	<string id="st_ph_universal_default">
+	<string id="st_sgm_ph_universal_default">
 		<text>Использовать ($$ACTION_USE$$)</text>
 	</string>
 	<string id="st_set_radio_on">

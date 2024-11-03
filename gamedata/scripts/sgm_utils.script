@@ -8,9 +8,9 @@ function utils_main_1()
 end
 
 function utils_main_2()
-   check_actor_item_to_add("personal_pda")
-   check_actor_item_to_add("sleeping_bag")
-   check_actor_item_to_remove("use_personal_rukzak")
+   sgm_g.check_actor_item_to_add("personal_pda")
+   sgm_g.check_actor_item_to_add("sleeping_bag")
+   sgm_g.check_actor_item_to_remove("use_personal_rukzak")
 end
 
 function utils_update()
@@ -23,54 +23,54 @@ function utils_update()
    --//Респаун инструментов для механиков//-->
    if sgm_g.dont_has_alife_info("toolkit_rehide") then
       if sgm_g.dont_has_alife_info("toolkit_reload") then
-         release_objects_by_section("toolkit")
+         sgm_g.release_objects_by_section("toolkit")
          give_info("toolkit_reload")
       end
       local rnd_simply_toolkits = math.random(1, 3)
       local rnd_signaller_toolkits = math.random(1, 4)
       if rnd_simply_toolkits == 1 then
-         create("toolkit_1", 327.605, 44.370, -399.850, 1513907, 1)
-         create("toolkit_2", -169.014, -1.367, -250.869, 429022, 558)
-         create("toolkit_3", 292.121, -0.093, 251.465, 475273, 682)
-         create("toolkit_1", -322.218, 7.844, 24.794, 170652, 625)
-         create("toolkit_2", -420.992, 40.600, -399.736, 147944, 306)
-         create("toolkit_3", -178.490, -4.120, -198.838, 35783, 753)
+         sgm_g.create("toolkit_1", 327.605, 44.370, -399.850, 1513907, 1)
+         sgm_g.create("toolkit_2", -169.014, -1.367, -250.869, 429022, 558)
+         sgm_g.create("toolkit_3", 292.121, -0.093, 251.465, 475273, 682)
+         sgm_g.create("toolkit_1", -322.218, 7.844, 24.794, 170652, 625)
+         sgm_g.create("toolkit_2", -420.992, 40.600, -399.736, 147944, 306)
+         sgm_g.create("toolkit_3", -178.490, -4.120, -198.838, 35783, 753)
          give_info("toolkits_places_variable_1")
       elseif rnd_simply_toolkits == 2 then
-         create("toolkit_1", -181.985, 9.411, 79.730, 578901, 145)
-         create("toolkit_1", 456.818, 35.020, 61.825, 1714113, 293)
-         create("toolkit_2", 397.407, 28.391, -374.821, 1343031, 629)
-         create("toolkit_3", 439.866, -4.640, 414.025, 1413633, 521)
-         create("toolkit_3", 158.593, 0.547, 25.450, 388618, 667)
-         create("toolkit_2", 52.383, 5.358, 170.714, 268070, 761)
+         sgm_g.create("toolkit_1", -181.985, 9.411, 79.730, 578901, 145)
+         sgm_g.create("toolkit_1", 456.818, 35.020, 61.825, 1714113, 293)
+         sgm_g.create("toolkit_2", 397.407, 28.391, -374.821, 1343031, 629)
+         sgm_g.create("toolkit_3", 439.866, -4.640, 414.025, 1413633, 521)
+         sgm_g.create("toolkit_3", 158.593, 0.547, 25.450, 388618, 667)
+         sgm_g.create("toolkit_2", 52.383, 5.358, 170.714, 268070, 761)
          give_info("toolkits_places_variable_2")
       else
-         create("toolkit_1", 396.569, -5.609, 223.732, 1618523, 7)
-         create("toolkit_3", -445.980, 12.899, 6.569, 115931, 214)
-         create("toolkit_2", 398.255, 22.557, -366.182, 1343042, 629)
-         create("toolkit_3", -419.195, 14.750, 343.627, 19409, 422)
-         create("toolkit_1", 34.532, 0.328, -249.951, 242926, 702)
-         create("toolkit_2", -145.483, 0.162, -376.079, 55952, 716)
+         sgm_g.create("toolkit_1", 396.569, -5.609, 223.732, 1618523, 7)
+         sgm_g.create("toolkit_3", -445.980, 12.899, 6.569, 115931, 214)
+         sgm_g.create("toolkit_2", 398.255, 22.557, -366.182, 1343042, 629)
+         sgm_g.create("toolkit_3", -419.195, 14.750, 343.627, 19409, 422)
+         sgm_g.create("toolkit_1", 34.532, 0.328, -249.951, 242926, 702)
+         sgm_g.create("toolkit_2", -145.483, 0.162, -376.079, 55952, 716)
          give_info("toolkits_places_variable_3")
       end
       if rnd_signaller_toolkits == 1 then
-         create("signaller_toolkit_1", 190.753, 1.623, 74.102, 421762, 668)
-         create("signaller_toolkit_2", -184.516, -0.577, 30.443, 32345, 777)
+         sgm_g.create("signaller_toolkit_1", 190.753, 1.623, 74.102, 421762, 668)
+         sgm_g.create("signaller_toolkit_2", -184.516, -0.577, 30.443, 32345, 777)
       elseif rnd_signaller_toolkits == 2 then
-         create("signaller_toolkit_1", -59.120, -0.027, -61.666, 130125, 734)
-         create("signaller_toolkit_2", 164.128, -0.181, 342.862, 394121, 807)
+         sgm_g.create("signaller_toolkit_1", -59.120, -0.027, -61.666, 130125, 734)
+         sgm_g.create("signaller_toolkit_2", 164.128, -0.181, 342.862, 394121, 807)
       elseif rnd_signaller_toolkits == 3 then
-         create("signaller_toolkit_1", 190.753, 1.623, 74.102, 421762, 668)
-         create("signaller_toolkit_2", -59.120, -0.027, -61.666, 130125, 734)
+         sgm_g.create("signaller_toolkit_1", 190.753, 1.623, 74.102, 421762, 668)
+         sgm_g.create("signaller_toolkit_2", -59.120, -0.027, -61.666, 130125, 734)
       else
-         create("signaller_toolkit_1", -184.516, -0.577, 30.443, 32345, 777)
-         create("signaller_toolkit_2", 164.128, -0.181, 342.862, 394121, 807)
+         sgm_g.create("signaller_toolkit_1", -184.516, -0.577, 30.443, 32345, 777)
+         sgm_g.create("signaller_toolkit_2", 164.128, -0.181, 342.862, 394121, 807)
       end
       give_info("toolkit_rehide")
    end
    --//Возврат стандартных отношений ГГ к НПС//-->
    if has_alife_info("actor_noted_bandits") and has_alife_info("zat_bandit_base_leader_death") and db.actor:character_community() == "actor_bandit" then
-      write_mod_param("stat_community", "no_community")
+      sgm_g.write_mod_param("stat_community", "no_community")
       db.actor:set_character_community("actor", 0, 0)
       decrease_faction_goodwill("bandit", 1000)
       decrease_faction_goodwill("bandit_alies", 2000)
@@ -78,21 +78,21 @@ function utils_update()
       news_manager.send_tip(db.actor, "st_default_faction_b_event", 0, "diagterev", 8500, nil, "st_tip")
    end
    if has_alife_info("actor_noted_killers") and has_alife_info("jup_killer_base_leader_death") and db.actor:character_community() == "actor_killer" then
-      write_mod_param("stat_community", "no_community")
+      sgm_g.write_mod_param("stat_community", "no_community")
       db.actor:set_character_community("actor", 0, 0)
       decrease_faction_goodwill("killer_alies", 2000)
       disable_info("actor_entry_in_killer")
       news_manager.send_tip(db.actor, "st_default_faction_k_event", 0, "diagterev", 8500, nil, "st_tip")
    end
    if has_alife_info("actor_noted_rasvets") and has_alife_info("jup_rasvet_base_leader_death") and db.actor:character_community() == "actor_rasvet" then
-      write_mod_param("stat_community", "no_community")
+      sgm_g.write_mod_param("stat_community", "no_community")
       db.actor:set_character_community("actor", 0, 0)
       decrease_faction_goodwill("rasvet", 1000)
       disable_info("actor_entry_in_rasvet")
       news_manager.send_tip(db.actor, "st_default_faction_r_event", 0, "diagterev", 8500, nil, "st_tip")
    end
    if has_alife_info("actor_noted_monoliths") and has_alife_info("pri_monolit_base_leader_death") and db.actor:character_community() == "actor_monolit" then
-      write_mod_param("stat_community", "no_community")
+      sgm_g.write_mod_param("stat_community", "no_community")
       db.actor:set_character_community("actor", 0, 0)
       decrease_faction_goodwill("monolith", 1000)
       decrease_faction_goodwill("monolith_alies", 1000)
@@ -118,17 +118,17 @@ function utils_update()
    --//Регистрация в Sigerous Top//-->
    if has_alife_info("sigerous_top_register") then
       if check_game_timer("sigerous_top_register") == nil and device().precache_frame == 0 then
-         start_game_timer("sigerous_top_register", 1)
+         sgm_g.start_game_timer("sigerous_top_register", 1)
       elseif check_game_timer("sigerous_top_register") then
          give_info("sigerous_top_register")
          abort_game_timer("sigerous_top_register")
          local register_precond = check_item_count(
                 "exo_,af_,cev_plastin,scientific_outfit,heavy_outfit,military_outfit,army_outfit,detector_omega,guidebook_,repair_,medkit_elite,drug_engine,protecta,gauss,sig550,groza,vintorez,wpn_sv,wpn_rg,rpg7,g36,fn2000,pkm,_nimble,dv_,skill_book,money_meshochek,capture_meal",
                 1, true) == false and
-             get_flag_value("bool_cheat_mode_activate") ==
+             sgm_g.get_flag_value("bool_cheat_mode_activate") ==
              false                -- and find_out_string(command_line(),"-test")
          if register_precond then --find_out_string(command_line(),"-test")
-            run_dynamic_element(ui_mod_elements.sigerous_top(), false, true)
+            run_dynamic_element(sgm_ui_mod_elements.sigerous_top(), false, true)
          end
       end
    end

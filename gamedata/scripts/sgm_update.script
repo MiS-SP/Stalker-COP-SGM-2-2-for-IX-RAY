@@ -9,15 +9,15 @@ end
 
 function update_update()
    dunin_ammo.on_update()
-   ui_mod_elements.allspawn_editor_update()
+   sgm_ui_mod_elements.allspawn_editor_update()
    if sgm_g.check_seconds(2) then
-      ui_mod_elements.mp3_update()
+      sgm_ui_mod_elements.mp3_update()
    end
    if sgm_g.check_seconds(4) then
-      ui_mod_pda.pda_update()
+      sgm_ui_mod_pda.pda_update()
    end
    if sgm_g.check_seconds(5) then
-      if check_ui_worked(true) then
+      if sgm_g.check_ui_worked(true) then
          pda.check_and_found_pda_areas()
       end
    end
@@ -161,7 +161,7 @@ function update_update()
                end
             else
                if sgm_functions.read_variable("sigerous_top_allowed") == "false" then
-                  if not get_flag_value("bool_cheat_mode_activate") then
+                  if not sgm_g.get_flag_value("bool_cheat_mode_activate") then
                      sgm_functions.write_variable("sigerous_top_allowed", "true")
                   end
                end

@@ -376,7 +376,7 @@ function motivator_binder:use_callback(obj, who)
             local st = db.storage[self.object:id()]
             self.once_use_processed = true
             sgm_callbacks.on_use_corpse(self.object)
-            xr_additional.on_corpse_use(self.object, self.object:spawn_ini())
+            sgm_xr_additional.on_corpse_use(self.object, self.object:spawn_ini())
         end
         --/ SGM out
     end

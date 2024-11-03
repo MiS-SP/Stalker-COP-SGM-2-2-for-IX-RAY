@@ -90,7 +90,7 @@ end
 
 function main_menu:set_rich_actor()
 	dialogs.relocate_money(db.actor, 1000000, "in")
-	write_mod_param("actor_web_money", 1000000)
+	sgm_g.write_mod_param("actor_web_money", 1000000)
 end
 
 function main_menu:inc_actor_rank()

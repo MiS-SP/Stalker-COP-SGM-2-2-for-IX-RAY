@@ -7,164 +7,182 @@
 --           Условие              --
 ------------------------------------
 class "evaluator_corpse" (property_evaluator)
-function evaluator_corpse:__init(name, storage) super (nil, name)
+function evaluator_corpse:__init(name, storage)
+   super(nil, name)
    self.st = storage
 end
+
 function evaluator_corpse:evaluate()
-   if xr_logic.is_active(self.object,self.st) and self.object:alive() then
-   	return true
+   if xr_logic.is_active(self.object, self.st) and self.object:alive() then
+      return true
    end
    return false
 end
+
 ------------------------------------
 --           Действие             --
 ------------------------------------
 class "action_corpse" (action_base)
-function action_corpse:__init (npc,action_name,storage) super (nil,action_name)
+function action_corpse:__init(npc, action_name, storage)
+   super(nil, action_name)
    self.st = storage
 end
+
 function action_corpse:initialize()
    action_base.initialize(self)
    self.object:clear_animations()
    self.object:remove_all_restrictions()
 end
-function action_corpse:activate_scheme(loading,npc)
-   sgm_flags.table_mod_schemes[self.object:id()]={}
-   sgm_flags.table_mod_schemes[self.object:id().."life_timer"]=0
+
+function action_corpse:activate_scheme(loading, npc)
+   sgm_flags.table_mod_schemes[self.object:id()] = {}
+   sgm_flags.table_mod_schemes[self.object:id() .. "life_timer"] = 0
 end
+
 function action_corpse:execute()
    action_base.execute(self)
-   if sgm_flags.table_mod_schemes[self.object:id()].update==nil then
-      self:check_logic_condlists(self.object,self.st.saved_ini,self.st.saved_section)
-      sgm_flags.table_mod_schemes[self.object:id()].update=time_global()+2000
+   if sgm_flags.table_mod_schemes[self.object:id()].update == nil then
+      self:check_logic_condlists(self.object, self.st.saved_ini, self.st.saved_section)
+      sgm_flags.table_mod_schemes[self.object:id()].update = time_global() + 2000
    end
-   if sgm_flags.table_mod_schemes[self.object:id()].update~=nil then
-      if time_global()>=sgm_flags.table_mod_schemes[self.object:id()].update then
-         sgm_flags.table_mod_schemes[self.object:id()].update=nil
+   if sgm_flags.table_mod_schemes[self.object:id()].update ~= nil then
+      if time_global() >= sgm_flags.table_mod_schemes[self.object:id()].update then
+         sgm_flags.table_mod_schemes[self.object:id()].update = nil
       end
    end
-   local npc=self.object
-   local npc_id=npc:id()
-   local npc_name=npc:name()
-   local npc_pos=npc:level_vertex_id()
-   local npc_lv=npc:level_vertex_id()
-   local npc_profile=npc:profile_name()
-   local dont_talk=not npc:is_talking()
-   local scheme_param=sgm_flags.table_mod_schemes[npc_id]
-   if scheme_param.life_time~=nil and scheme_param.life_time~=0 and sgm_flags.table_mod_schemes[npc_id.."life_timer"]==0 then
-      sgm_flags.table_mod_schemes[npc_id.."life_timer"]=time_global()+scheme_param.life_time
+   local npc = self.object
+   local npc_id = npc:id()
+   local npc_name = npc:name()
+   local npc_pos = npc:level_vertex_id()
+   local npc_lv = npc:level_vertex_id()
+   local npc_profile = npc:profile_name()
+   local dont_talk = not npc:is_talking()
+   local scheme_param = sgm_flags.table_mod_schemes[npc_id]
+   if scheme_param.life_time ~= nil and scheme_param.life_time ~= 0 and sgm_flags.table_mod_schemes[npc_id .. "life_timer"] == 0 then
+      sgm_flags.table_mod_schemes[npc_id .. "life_timer"] = time_global() + scheme_param.life_time
    end
-   if sgm_flags.table_mod_schemes[npc_id.."life_timer"]~=0 and time_global()>sgm_flags.table_mod_schemes[npc_id.."life_timer"] then
-      sgm_flags.table_mod_schemes[npc_id.."life_timer"]=0
+   if sgm_flags.table_mod_schemes[npc_id .. "life_timer"] ~= 0 and time_global() > sgm_flags.table_mod_schemes[npc_id .. "life_timer"] then
+      sgm_flags.table_mod_schemes[npc_id .. "life_timer"] = 0
    end
-   if scheme_param.suicide_mode~=nil and scheme_param.suicide_mode[1]=="true" then
-      if distance_between_safe(db.actor,npc)<=tonumber(scheme_param.suicide_mode[2]) then
-         set_hit_damage_to(npc,hit.wound,1000,15)
+   if scheme_param.suicide_mode ~= nil and scheme_param.suicide_mode[1] == "true" then
+      if distance_between_safe(db.actor, npc) <= tonumber(scheme_param.suicide_mode[2]) then
+         set_hit_damage_to(npc, hit.wound, 1000, 15)
       else
-         if scheme_param.life_look~=nil and scheme_param.life_look~=0 then
-            sgm_functions.set_state_look_to(npc,scheme_param.life_anim,scheme_param.life_look)
+         if scheme_param.life_look ~= nil and scheme_param.life_look ~= 0 then
+            sgm_functions.set_state_look_to(npc, scheme_param.life_anim, scheme_param.life_look)
          else
-            sgm_functions.set_state(npc,scheme_param.life_anim,true)
+            sgm_functions.set_state(npc, scheme_param.life_anim, true)
          end
       end
       return
    end
-   if sgm_flags.table_mod_schemes[npc_id.."life_timer"]==0 then
-      set_hit_damage_to(npc,hit.wound,1000,15)
-      if scheme_param.only_choose=="true" then
+   if sgm_flags.table_mod_schemes[npc_id .. "life_timer"] == 0 then
+      set_hit_damage_to(npc, hit.wound, 1000, 15)
+      if scheme_param.only_choose == "true" then
          release_inventory(npc)
       end
-      if scheme_param.corpse_items~=nil then
-         for k,v in pairs(scheme_param.corpse_items_table) do
-            for i=1,v.prob do
-	       alife():create(v.section,npc:position(),npc:level_vertex_id(),npc:game_vertex_id(),npc:id())
+      if scheme_param.corpse_items ~= nil then
+         for k, v in pairs(scheme_param.corpse_items_table) do
+            for i = 1, v.prob do
+               alife():create(v.section, npc:position(), npc:level_vertex_id(), npc:game_vertex_id(), npc:id())
             end
          end
       end
-      if scheme_param.corpse_item~=nil then
+      if scheme_param.corpse_item ~= nil then
          if not npc:object(scheme_param.corpse_item) then
-	    alife():create(scheme_param.corpse_item,npc:position(),npc:level_vertex_id(),npc:game_vertex_id(),npc:id())
+            alife():create(scheme_param.corpse_item, npc:position(), npc:level_vertex_id(), npc:game_vertex_id(),
+               npc:id())
          end
       end
-      sgm_functions.check_section_condlist(self.st.saved_ini,self.st.saved_section,"death_action")
+      sgm_functions.check_section_condlist(self.st.saved_ini, self.st.saved_section, "death_action")
    else
-      if scheme_param.life_look~=nil and scheme_param.life_look~=0 then
-         sgm_functions.set_state_look_to(npc,scheme_param.life_anim,scheme_param.life_look)
+      if scheme_param.life_look ~= nil and scheme_param.life_look ~= 0 then
+         sgm_functions.set_state_look_to(npc, scheme_param.life_anim, scheme_param.life_look)
       else
-         sgm_functions.set_state(npc,scheme_param.life_anim,true)
+         sgm_functions.set_state(npc, scheme_param.life_anim, true)
       end
    end
 end
-function action_corpse:check_logic_condlists(npc,ini,section)
-   local scheme_param=sgm_flags.table_mod_schemes[npc:id()]
---/if scheme_param.section==nil or (scheme_param.section~=nil and scheme_param.section~=self.st.saved_section) then --/Без постоянного обновления.
---/   scheme_param.section = self.st.saved_section
-      scheme_param.corpse_item          = to_string(sgm_functions.check_section_condlist(ini,section,"corpse_item",nil))                                 --'Определенный предмет в трупе.
-      scheme_param.corpse_items         = sgm_functions.cfg_get_string(ini,section,"corpse_items",nil)                                                   --'Наименование предметов в трупе.
-      if exists(scheme_param.corpse_items) and scheme_param.corpse_items_table==nil then
-         scheme_param.corpse_items_table = utils.parse_spawns(scheme_param.corpse_items)
-      end
-      scheme_param.only_choose          = to_string(sgm_functions.check_section_condlist(ini,section,"only_choose","false"))                             --'Очищать ли труп от старых предметов. 
-      scheme_param.life_look            = to_number(sgm_functions.check_section_condlist(ini,section,"life_look",0))                                     --'Направление зрения еще живого НПС.
-      scheme_param.life_time            = to_number(sgm_functions.check_section_condlist(ini,section,"life_time",0))                                     --'Продолжительность жизни НПС.
-      scheme_param.life_anim            = to_string(sgm_functions.check_section_condlist(ini,section,"life_anim","wounded_heavy"))                       --'Анимация тела НПС при жизни.
-      scheme_param.suicide_mode         = sgm_functions.check_section_stick(ini,section,"suicide_mode",nil)
---/end
+
+function action_corpse:check_logic_condlists(npc, ini, section)
+   local scheme_param        = sgm_flags.table_mod_schemes[npc:id()]
+   --/if scheme_param.section==nil or (scheme_param.section~=nil and scheme_param.section~=self.st.saved_section) then --/Без постоянного обновления.
+   --/   scheme_param.section = self.st.saved_section
+   scheme_param.corpse_item  = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section, "corpse_item", nil))         --'Определенный предмет в трупе.
+   scheme_param.corpse_items = sgm_functions.cfg_get_string(ini, section, "corpse_items", nil)                                 --'Наименование предметов в трупе.
+   if exists(scheme_param.corpse_items) and scheme_param.corpse_items_table == nil then
+      scheme_param.corpse_items_table = utils.parse_spawns(scheme_param.corpse_items)
+   end
+   scheme_param.only_choose  = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section, "only_choose", "false"))               --'Очищать ли труп от старых предметов.
+   scheme_param.life_look    = to_number(sgm_functions.check_section_condlist(ini, section, "life_look", 0))                             --'Направление зрения еще живого НПС.
+   scheme_param.life_time    = to_number(sgm_functions.check_section_condlist(ini, section, "life_time", 0))                             --'Продолжительность жизни НПС.
+   scheme_param.life_anim    = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section, "life_anim",
+      "wounded_heavy"))                                                                                                                  --'Анимация тела НПС при жизни.
+   scheme_param.suicide_mode = sgm_functions.check_section_stick(ini, section, "suicide_mode", nil)
+   --/end
 end
-function action_corpse:hit_callback(victim,amount,local_direction,killer,bone_index)
-   local is_scheme_victim,is_scheme_killer=self.object:id()==victim:id(),self.object:id()==killer:id()
+
+function action_corpse:hit_callback(victim, amount, local_direction, killer, bone_index)
+   local is_scheme_victim, is_scheme_killer = self.object:id() == victim:id(), self.object:id() == killer:id()
 end
-function action_corpse:death_callback(victim,killer)
-   local is_scheme_victim,is_scheme_killer=self.object:id()==victim:id(),self.object:id()==killer:id()
-   local scheme_param=sgm_flags.table_mod_schemes[self.object:id()]
-   if scheme_param.suicide_mode~=nil and scheme_param.suicide_mode[1]=="true" then
-      if scheme_param.suicide_mode[3]~=nil then
-         activate_detonate_charge(self.object,tonumber(scheme_param.suicide_mode[3]),"invisible_small")
+
+function action_corpse:death_callback(victim, killer)
+   local is_scheme_victim, is_scheme_killer = self.object:id() == victim:id(), self.object:id() == killer:id()
+   local scheme_param = sgm_flags.table_mod_schemes[self.object:id()]
+   if scheme_param.suicide_mode ~= nil and scheme_param.suicide_mode[1] == "true" then
+      if scheme_param.suicide_mode[3] ~= nil then
+         activate_detonate_charge(self.object, tonumber(scheme_param.suicide_mode[3]), "invisible_small")
       else
-         activate_detonate_charge(self.object,100,"invisible_small")
+         activate_detonate_charge(self.object, 100, "invisible_small")
       end
    end
 end
-function action_corpse:use_callback(use_target,use_source)
-   local is_scheme_use_target,is_scheme_use_source=self.object:id()==use_target:id(),self.object:id()==use_source:id()
+
+function action_corpse:use_callback(use_target, use_source)
+   local is_scheme_use_target, is_scheme_use_source = self.object:id() == use_target:id(),
+       self.object:id() == use_source:id()
 end
+
 function action_corpse:finalize()
    action_base.finalize(self)
 end
+
 ------------------------------------
 --          Планировка            --
 ------------------------------------
 corpse_property = 81225
 corpse_action = corpse_property
-function add_to_binder(object,ini,scheme,section,storage)
+function add_to_binder(object, ini, scheme, section, storage)
    local manager = object:motivation_action_manager()
-   manager:add_evaluator(corpse_property,evaluator_corpse("corpse",storage))
-   local action = action_corpse(object,"corpse",storage)
-   action:add_precondition(world_property(stalker_ids.property_alive,true))
-   action:add_precondition(world_property(corpse_property,true))
-   action:add_effect(world_property(corpse_property,false))
-   manager:add_action(corpse_action,action)
-   xr_logic.subscribe_action_for_events(object,storage,action)
+   manager:add_evaluator(corpse_property, evaluator_corpse("corpse", storage))
+   local action = action_corpse(object, "corpse", storage)
+   action:add_precondition(world_property(stalker_ids.property_alive, true))
+   action:add_precondition(world_property(corpse_property, true))
+   action:add_effect(world_property(corpse_property, false))
+   manager:add_action(corpse_action, action)
+   xr_logic.subscribe_action_for_events(object, storage, action)
    action = manager:action(xr_actions_id.alife)
-   action:add_precondition(world_property(corpse_property,false))
+   action:add_precondition(world_property(corpse_property, false))
    action = manager:action(stalker_ids.action_combat_planner)
-   action:add_precondition(world_property(corpse_property,false))
+   action:add_precondition(world_property(corpse_property, false))
    action = manager:action(stalker_ids.action_danger_planner)
-   action:add_precondition(world_property(corpse_property,false))
+   action:add_precondition(world_property(corpse_property, false))
 end
+
 function set_scheme(npc, ini, scheme, section, gulag_name)
    printf("DEBUG: set_scheme: scheme='%s', section='%s'", scheme, section)
    local st = xr_logic.assign_storage_and_bind(npc, ini, scheme, section)
    printf("DEBUG: set_scheme: storage assigned")
-   st.logic     = xr_logic.cfg_get_switch_conditions(ini, section, npc)
-   st.saved_ini   = ini
+   st.logic         = xr_logic.cfg_get_switch_conditions(ini, section, npc)
+   st.saved_ini     = ini
    st.saved_section = section
 end
+
 function disable_scheme(npc, scheme)
-  local st = db.storage[npc:id()][scheme]
-  if st then
-     st.enabled = false
-  end
+   local st = db.storage[npc:id()][scheme]
+   if st then
+      st.enabled = false
+   end
 end
 
 ---------------------------------//Copyright GeJorge//-----------------------------------------------

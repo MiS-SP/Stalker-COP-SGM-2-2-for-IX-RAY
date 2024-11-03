@@ -3,83 +3,91 @@
 --------------------------------------(×èò ìåíþ ÑÃÌà)---------------------------------------------------
 --------------------------------------------------------------------------------------------------------
 ---==================================================================================================---
-local options_names={[1]="activate_immortal",[2]="activate_power",[3]="activate_bleeding",[4]="activate_repair",[5]="activate_ammo"}
+local options_names = { [1] = "activate_immortal", [2] = "activate_power", [3] = "activate_bleeding", [4] =
+"activate_repair", [5] = "activate_ammo" }
 class "mod_modes" (CUIScriptWnd)
-function mod_modes:__init(owner) super()
-   self.owner=owner
+function mod_modes:__init(owner)
+   super()
+   self.owner = owner
    self:InitControls()
    self:InitCallBacks()
 end
+
 function mod_modes:__finalize()
 end
+
 function mod_modes:InitControls()
-   self:SetWndRect(Frect():set(0,0,1024,768))
+   self:SetWndRect(Frect():set(0, 0, 1024, 768))
    local xml = CScriptXmlInit()
    xml:ParseFile("ui_mod_options_modes.xml")
-   xml:InitStatic("background",self)
-   self.modes_form = xml:InitStatic("modes_form",self)
-   self.apply_box=CUIMessageBoxEx()
-   self:Register(self.apply_box,"apply_box")
-   self:start_button(xml,"btn_back")
-   self:start_button(xml,"btn_apply")
-   for i=1,get_table_lines(options_names) do
-      self:register_check_option(xml,options_names[i])
+   xml:InitStatic("background", self)
+   self.modes_form = xml:InitStatic("modes_form", self)
+   self.apply_box = CUIMessageBoxEx()
+   self:Register(self.apply_box, "apply_box")
+   self:start_button(xml, "btn_back")
+   self:start_button(xml, "btn_apply")
+   for i = 1, sgm_g.get_table_lines(options_names) do
+      self:register_check_option(xml, options_names[i])
    end
    sgm_version.show_version(self)
 end
+
 function mod_modes:InitCallBacks()
-   self:AddCallback("btn_back",ui_events.BUTTON_CLICKED,self.press_back,self)
-   self:AddCallback("btn_apply",ui_events.BUTTON_CLICKED,self.press_apply,self)
-   self:AddCallback("apply_box",ui_events.MESSAGE_BOX_YES_CLICKED,self.apply_box_ok,self)
-   self:AddCallback("apply_box",ui_events.MESSAGE_BOX_OK_CLICKED,self.apply_box_ok,self)
+   self:AddCallback("btn_back", ui_events.BUTTON_CLICKED, self.press_back, self)
+   self:AddCallback("btn_apply", ui_events.BUTTON_CLICKED, self.press_apply, self)
+   self:AddCallback("apply_box", ui_events.MESSAGE_BOX_YES_CLICKED, self.apply_box_ok, self)
+   self:AddCallback("apply_box", ui_events.MESSAGE_BOX_OK_CLICKED, self.apply_box_ok, self)
 end
+
 function mod_modes:press_apply()
-   for i=1,get_table_lines(options_names) do
+   for i = 1, sgm_g.get_table_lines(options_names) do
       self:apply_option(options_names[i])
    end
    self:press_back()
    self.apply_box:InitMessageBox("mb_mod_options_modes_apply")
    self.apply_box:ShowDialog(true)
 end
+
 function mod_modes:apply_box_ok()
    self.apply_box:ShowDialog(false)
    self.apply_box:HideDialog()
 end
+
 function mod_modes:press_back()
    self.owner:ShowDialog(true)
    self:HideDialog()
    self.owner:Show(true)
 end
-function mod_modes:OnKeyboard(dik,keyboard_action)
-   CUIScriptWnd.OnKeyboard(self,dik,keyboard_action)
-   if keyboard_action==ui_events.WINDOW_KEY_PRESSED then
-      if dik==DIK_keys.DIK_ESCAPE then
+
+function mod_modes:OnKeyboard(dik, keyboard_action)
+   CUIScriptWnd.OnKeyboard(self, dik, keyboard_action)
+   if keyboard_action == ui_events.WINDOW_KEY_PRESSED then
+      if dik == DIK_keys.DIK_ESCAPE then
          self:press_back()
       end
    end
    return true
 end
-function mod_modes:start_button(xml,button_name)
-   self["get_"..button_name]=xml:Init3tButton("modes_form:"..button_name,self.modes_form)
-   self:Register(self["get_"..button_name],button_name)
+
+function mod_modes:start_button(xml, button_name)
+   self["get_" .. button_name] = xml:Init3tButton("modes_form:" .. button_name, self.modes_form)
+   self:Register(self["get_" .. button_name], button_name)
 end
+
 function mod_modes:apply_option(opt_name)
-   sgm_functions.info_give_on_boolean(self["btn_"..opt_name]:GetCheck(),"opt_"..opt_name)
+   sgm_functions.info_give_on_boolean(self["btn_" .. opt_name]:GetCheck(), "opt_" .. opt_name)
 end
-function mod_modes:register_descr_box(xml,box_name)
-   self:Register(xml:Init3tButton("modes_form:"..box_name,self.modes_form),box_name)
+
+function mod_modes:register_descr_box(xml, box_name)
+   self:Register(xml:Init3tButton("modes_form:" .. box_name, self.modes_form), box_name)
 end
-function mod_modes:register_check_option(xml,opt_name)
+
+function mod_modes:register_check_option(xml, opt_name)
    local btn
-   btn = xml:InitCheck("modes_form:btn_"..opt_name,self.modes_form)
-   self:Register(btn,"btn_"..opt_name)
-   self["btn_"..opt_name]=btn
-   btn:SetCheck(sgm_functions.info_get_boolean("opt_"..opt_name))
+   btn = xml:InitCheck("modes_form:btn_" .. opt_name, self.modes_form)
+   self:Register(btn, "btn_" .. opt_name)
+   self["btn_" .. opt_name] = btn
+   btn:SetCheck(sgm_functions.info_get_boolean("opt_" .. opt_name))
 end
-
-
 
 ---------------------------------//Copyright GeJorge//-----------------------------------------------
-
-
-

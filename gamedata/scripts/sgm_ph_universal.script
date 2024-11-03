@@ -8,99 +8,107 @@ function action_universal:__init(obj, storage)
    self.object = obj
    self.st = storage
 end
+
 function action_universal:reset_scheme()
    self.st.signals = {}
    self.object:set_nonscript_usable(true)
-   self.object:set_tip_text("st_ph_universal_default")
-   sgm_flags.table_mod_schemes[self.object:id()]={}
-   sgm_flags.table_mod_schemes[self.object:id()].sound_activated=true
-   sgm_flags.table_mod_schemes[self.object:id()].sound_played=nil
-   sgm_flags.table_mod_schemes[self.object:id()].sound_first=true
-   sgm_flags.table_mod_schemes[self.object:id()].sound_pause=0
-   sgm_flags.table_mod_schemes[self.object:id()].sound_setup=true
-   local f_state=sgm_functions.check_section_condlist(self.st.saved_ini,self.st.saved_section,"sound_object_first_state","on")
-   if f_state=="off" then
-      sgm_flags.table_mod_schemes[self.object:id()].sound_activated=false
+   self.object:set_tip_text("st_sgm_ph_universal_default")
+   sgm_flags.table_mod_schemes[self.object:id()] = {}
+   sgm_flags.table_mod_schemes[self.object:id()].sound_activated = true
+   sgm_flags.table_mod_schemes[self.object:id()].sound_played = nil
+   sgm_flags.table_mod_schemes[self.object:id()].sound_first = true
+   sgm_flags.table_mod_schemes[self.object:id()].sound_pause = 0
+   sgm_flags.table_mod_schemes[self.object:id()].sound_setup = true
+   local f_state = sgm_functions.check_section_condlist(self.st.saved_ini, self.st.saved_section,
+      "sound_object_first_state", "on")
+   if f_state == "off" then
+      sgm_flags.table_mod_schemes[self.object:id()].sound_activated = false
    end
-   if read_obj_mod_param(self.object,"sound_mode")~=nil then
-      if read_obj_mod_param(self.object,"sound_mode")=="true" then
-         sgm_flags.table_mod_schemes[self.object:id()].sound_activated=true
-      elseif read_obj_mod_param(self.object,"sound_mode")=="false" then
-         sgm_flags.table_mod_schemes[self.object:id()].sound_activated=false
+   if sgm_g.read_obj_mod_param(self.object, "sound_mode") ~= nil then
+      if sgm_g.read_obj_mod_param(self.object, "sound_mode") == "true" then
+         sgm_flags.table_mod_schemes[self.object:id()].sound_activated = true
+      elseif sgm_g.read_obj_mod_param(self.object, "sound_mode") == "false" then
+         sgm_flags.table_mod_schemes[self.object:id()].sound_activated = false
       end
    end
 end
+
 function action_universal:get_random_theme()
-   return sgm_flags.table_mod_schemes[self.object:id()].sound_object_theme_table[math.random(table.getn(sgm_flags.table_mod_schemes[self.object:id()].sound_object_theme_table))]
+   return sgm_flags.table_mod_schemes[self.object:id()].sound_object_theme_table
+   [math.random(table.getn(sgm_flags.table_mod_schemes[self.object:id()].sound_object_theme_table))]
 end
+
 function action_universal:update(delta)
-   local actor=db.actor
-   local obj=self.object
-   local scheme_param=sgm_flags.table_mod_schemes[self.object:id()]
-   if xr_logic.try_switch_to_another_section(self.object,self.st,actor) then
+   local actor = db.actor
+   local obj = self.object
+   local scheme_param = sgm_flags.table_mod_schemes[self.object:id()]
+   if xr_logic.try_switch_to_another_section(self.object, self.st, actor) then
       return
    end
-   if scheme_param.update==nil then
-      self:check_logic_condlists(self.object,self.st.saved_ini,self.st.saved_section)
-      scheme_param.update=time_global()+2500
+   if scheme_param.update == nil then
+      self:check_logic_condlists(self.object, self.st.saved_ini, self.st.saved_section)
+      scheme_param.update = time_global() + 2500
    end
-   if scheme_param.update~=nil then
-      if time_global()>=scheme_param.update then
-         scheme_param.update=nil
+   if scheme_param.update ~= nil then
+      if time_global() >= scheme_param.update then
+         scheme_param.update = nil
       end
    end
-   if read_obj_mod_param(self.object,"is_hitted") then
+   if sgm_g.read_obj_mod_param(self.object, "is_hitted") then
       self:deactivate(true)
-      if scheme_param.scheme_type=="minetrap_object" then
-         self:minetrap_object_waiting(scheme_param,true)
+      if scheme_param.scheme_type == "minetrap_object" then
+         self:minetrap_object_waiting(scheme_param, true)
       end
-      if scheme_param.scheme_type=="explosive_object" then
-         self:explosive_object_waiting(scheme_param,true)
+      if scheme_param.scheme_type == "explosive_object" then
+         self:explosive_object_waiting(scheme_param, true)
       end
       return
    end
-   if scheme_param.born_kick=="true" and not read_obj_mod_param(self.object,"is_kicked") then
-      set_hit_damage_to(self.object,hit.wound,1,1)
-      write_obj_mod_param(self.object,"is_kicked",true)
+   if scheme_param.born_kick == "true" and not sgm_g.read_obj_mod_param(self.object, "is_kicked") then
+      set_hit_damage_to(self.object, hit.wound, 1, 1)
+      write_obj_mod_param(self.object, "is_kicked", true)
    end
-   if scheme_param.scheme_type=="script_object" then
+   if scheme_param.scheme_type == "script_object" then
       self:script_object_update(scheme_param)
    end
-   if scheme_param.scheme_type=="treasure_object" then
+   if scheme_param.scheme_type == "treasure_object" then
       self:treasure_object_update(scheme_param)
    end
-   if scheme_param.scheme_type=="explosive_object" then
+   if scheme_param.scheme_type == "explosive_object" then
       self:explosive_object_update(scheme_param)
    end
-   if scheme_param.scheme_type=="minetrap_object" then
+   if scheme_param.scheme_type == "minetrap_object" then
       self:minetrap_object_update(scheme_param)
    end
-   if scheme_param.scheme_type=="sound_object" then
+   if scheme_param.scheme_type == "sound_object" then
       self:sound_object_update(scheme_param)
    end
-   if scheme_param.scheme_type=="default" then
+   if scheme_param.scheme_type == "default" then
       self:default_object_update(scheme_param)
    end
 end
+
 function action_universal:check_bomb_integrated(scheme_param)
-   if scheme_param.bomb_integrated=="true" then
-      if read_obj_mod_param(self.object,"detonate_source")~=nil then
-         if read_obj_mod_param(self.object,"detonate_timer")<=time_global() then
-            detonate_explosive_charge(read_obj_mod_param(self.object,"detonate_source"))
+   if scheme_param.bomb_integrated == "true" then
+      if sgm_g.read_obj_mod_param(self.object, "detonate_source") ~= nil then
+         if sgm_g.read_obj_mod_param(self.object, "detonate_timer") <= time_global() then
+            detonate_explosive_charge(sgm_g.read_obj_mod_param(self.object, "detonate_source"))
             self:wipe_mod_params()
             remove_object_by_id(self.object:id())
          end
       end
    end
 end
+
 function action_universal:default_object_update(scheme_param)
    self:check_bomb_integrated(scheme_param)
    self:deactivate(true)
 end
+
 function action_universal:script_object_update(scheme_param)
-   if scheme_param.script_object_cond=="true" then
+   if scheme_param.script_object_cond == "true" then
       if exists(scheme_param.script_object_code) then
-         if read_obj_mod_param(self.object,"access_resolved")==nil or read_obj_mod_param(self.object,"access_resolved")==false then
+         if sgm_g.read_obj_mod_param(self.object, "access_resolved") == nil or sgm_g.read_obj_mod_param(self.object, "access_resolved") == false then
             self:script_object_code(scheme_param)
             return
          end
@@ -112,14 +120,16 @@ function action_universal:script_object_update(scheme_param)
       self:deactivate(true)
    end
 end
+
 function action_universal:script_object_code(scheme_param)
    self.object:set_nonscript_usable(false)
    self.object:set_tip_text(scheme_param.script_object_code_tip)
 end
+
 function action_universal:treasure_object_update(scheme_param)
-   if scheme_param.treasure_object_cond=="true" then
+   if scheme_param.treasure_object_cond == "true" then
       if exists(scheme_param.treasure_object_code) then
-         if read_obj_mod_param(self.object,"access_resolved")==nil or read_obj_mod_param(self.object,"access_resolved")==false then
+         if sgm_g.read_obj_mod_param(self.object, "access_resolved") == nil or sgm_g.read_obj_mod_param(self.object, "access_resolved") == false then
             self:treasure_object_code(scheme_param)
             return
          end
@@ -131,37 +141,42 @@ function action_universal:treasure_object_update(scheme_param)
       self:deactivate(true)
    end
 end
+
 function action_universal:treasure_object_code(scheme_param)
    self.object:set_nonscript_usable(false)
    self.object:set_tip_text(scheme_param.treasure_object_code_tip)
 end
+
 function action_universal:minetrap_object_update(scheme_param)
-   if read_obj_mod_param(self.object,"detonate_source")==nil then
+   if sgm_g.read_obj_mod_param(self.object, "detonate_source") == nil then
       self.object:set_nonscript_usable(false)
       self.object:set_tip_text("")
-      if sgm_flags.table_mod_mineraps[self.object:id()]==nil then
-         sgm_flags.table_mod_mineraps[self.object:id()]=false
+      if sgm_flags.table_mod_mineraps[self.object:id()] == nil then
+         sgm_flags.table_mod_mineraps[self.object:id()] = false
       end
-      if sgm_flags.table_mod_mineraps[self.object:id()]==true then
-         sobj=create("minetrap_charge",self.object:position().x,self.object:position().y,self.object:position().z,self.object:level_vertex_id(),self.object:game_vertex_id())
-         write_obj_mod_param(self.object,"detonate_source",sobj.id)
-         write_obj_mod_param(self.object,"detonate_timer",time_global()+500)
+      if sgm_flags.table_mod_mineraps[self.object:id()] == true then
+         sobj = create("minetrap_charge", self.object:position().x, self.object:position().y, self.object:position().z,
+            self.object:level_vertex_id(), self.object:game_vertex_id())
+         write_obj_mod_param(self.object, "detonate_source", sobj.id)
+         write_obj_mod_param(self.object, "detonate_timer", time_global() + 500)
       end
    else
       self:deactivate(true)
       self:minetrap_object_waiting(scheme_param)
    end
 end
-function action_universal:minetrap_object_waiting(scheme_param,is_hitted)
-   if read_obj_mod_param(self.object,"detonate_timer")<=time_global() then
-      detonate_explosive_charge(read_obj_mod_param(self.object,"detonate_source"))
+
+function action_universal:minetrap_object_waiting(scheme_param, is_hitted)
+   if sgm_g.read_obj_mod_param(self.object, "detonate_timer") <= time_global() then
+      detonate_explosive_charge(sgm_g.read_obj_mod_param(self.object, "detonate_source"))
       self:wipe_mod_params()
-      sgm_flags.table_mod_mineraps[self.object:id()]=nil
+      sgm_flags.table_mod_mineraps[self.object:id()] = nil
       remove_object_by_id(self.object:id())
    end
 end
+
 function action_universal:explosive_object_update(scheme_param)
-   if read_obj_mod_param(self.object,"detonate_source")==nil then
+   if sgm_g.read_obj_mod_param(self.object, "detonate_source") == nil then
       if exists(scheme_param.explosive_object_tip) then
          self.object:set_nonscript_usable(true)
          self.object:set_tip_text(scheme_param.explosive_object_tip)
@@ -169,330 +184,385 @@ function action_universal:explosive_object_update(scheme_param)
          self.object:set_nonscript_usable(false)
          self.object:set_tip_text("")
       end
-      if scheme_param.explosive_object_launch_cond=="true" then
-         sobj=create(scheme_param.explosive_object_charge,self.object:position().x,self.object:position().y,self.object:position().z,self.object:level_vertex_id(),self.object:game_vertex_id())
-         write_obj_mod_param(self.object,"detonate_source",sobj.id)
-         write_obj_mod_param(self.object,"detonate_timer",time_global()+scheme_param.explosive_object_timer)
+      if scheme_param.explosive_object_launch_cond == "true" then
+         sobj = create(scheme_param.explosive_object_charge, self.object:position().x, self.object:position().y,
+            self.object:position().z, self.object:level_vertex_id(), self.object:game_vertex_id())
+         write_obj_mod_param(self.object, "detonate_source", sobj.id)
+         write_obj_mod_param(self.object, "detonate_timer", time_global() + scheme_param.explosive_object_timer)
       end
    else
       self:deactivate(true)
       self:explosive_object_waiting(scheme_param)
    end
 end
-function action_universal:explosive_object_waiting(scheme_param,is_hitted)
-   if exists(scheme_param.explosive_object_sound) and is_hitted~=true then
-      if scheme_param.bomb_sound_active==nil then
-         scheme_param.bomb_sound_active=true
-         scheme_param.bomb_sound=sound_object(scheme_param.explosive_object_sound)
-         scheme_param.bomb_sound:play_at_pos(self.object,self.object:position())
-         scheme_param.bomb_sound.min_distance=5
-         scheme_param.bomb_sound.max_distance=25
+
+function action_universal:explosive_object_waiting(scheme_param, is_hitted)
+   if exists(scheme_param.explosive_object_sound) and is_hitted ~= true then
+      if scheme_param.bomb_sound_active == nil then
+         scheme_param.bomb_sound_active = true
+         scheme_param.bomb_sound = sound_object(scheme_param.explosive_object_sound)
+         scheme_param.bomb_sound:play_at_pos(self.object, self.object:position())
+         scheme_param.bomb_sound.min_distance = 5
+         scheme_param.bomb_sound.max_distance = 25
       end
    end
-   if read_obj_mod_param(self.object,"detonate_timer")<=time_global() then
-      scheme_param.bomb_sound=nil
+   if sgm_g.read_obj_mod_param(self.object, "detonate_timer") <= time_global() then
+      scheme_param.bomb_sound = nil
       if exists(scheme_param.explosive_object_action) then
-         sgm_functions.execute_condlist(self.object,self.st.saved_section,scheme_param.explosive_object_action)
+         sgm_functions.execute_condlist(self.object, self.st.saved_section, scheme_param.explosive_object_action)
       end
-      detonate_explosive_charge(read_obj_mod_param(self.object,"detonate_source"))
+      detonate_explosive_charge(sgm_g.read_obj_mod_param(self.object, "detonate_source"))
       self:wipe_mod_params()
       remove_object_by_id(self.object:id())
    end
 end
+
 function action_universal:wipe_mod_params()
-   clear_obj_mod_param(self.object,"access_resolved")
-   clear_obj_mod_param(self.object,"detonate_source")
-   clear_obj_mod_param(self.object,"detonate_timer")
-   clear_obj_mod_param(self.object,"sound_mode")
-   clear_obj_mod_param(self.object,"is_hitted")
-   clear_obj_mod_param(self.object,"is_kicked")
+   clear_obj_mod_param(self.object, "access_resolved")
+   clear_obj_mod_param(self.object, "detonate_source")
+   clear_obj_mod_param(self.object, "detonate_timer")
+   clear_obj_mod_param(self.object, "sound_mode")
+   clear_obj_mod_param(self.object, "is_hitted")
+   clear_obj_mod_param(self.object, "is_kicked")
 end
+
 function action_universal:set_sound_mode(value)
-   write_obj_mod_param(self.object,"sound_mode",value)
+   write_obj_mod_param(self.object, "sound_mode", value)
 end
+
 function action_universal:sound_object_update(scheme_param)
-   if scheme_param.sound_activated==true then
+   if scheme_param.sound_activated == true then
       self.object:set_tip_text(scheme_param.sound_object_tip_off)
-      if scheme_param.sound_pause-device():time_global()>0 then return end
-      if scheme_param.sound_setup==true then
-         scheme_param.sound_setup=false
-	 scheme_param.sound_played=sound_object(self:get_random_theme())
-	 if scheme_param.sound_played~=nil then
-	    scheme_param.sound_played:play_at_pos(self.object,self.object:position())
+      if scheme_param.sound_pause - device():time_global() > 0 then return end
+      if scheme_param.sound_setup == true then
+         scheme_param.sound_setup = false
+         scheme_param.sound_played = sound_object(self:get_random_theme())
+         if scheme_param.sound_played ~= nil then
+            scheme_param.sound_played:play_at_pos(self.object, self.object:position())
             if exists(scheme_param.sound_object_range_min) and exists(scheme_param.sound_object_range_max) then
-	       scheme_param.sound_played.min_distance=tonumber(scheme_param.sound_object_range_min)
-	       scheme_param.sound_played.max_distance=tonumber(scheme_param.sound_object_range_max)
+               scheme_param.sound_played.min_distance = tonumber(scheme_param.sound_object_range_min)
+               scheme_param.sound_played.max_distance = tonumber(scheme_param.sound_object_range_max)
             else
-	       scheme_param.sound_played.min_distance=6
-	       scheme_param.sound_played.max_distance=16
+               scheme_param.sound_played.min_distance = 6
+               scheme_param.sound_played.max_distance = 16
             end
-	 else
-	    self.st.signals["sound_end"]=true
-	 end
-	 scheme_param.sound_first=false
+         else
+            self.st.signals["sound_end"] = true
+         end
+         scheme_param.sound_first = false
       end
-      if scheme_param.sound_played~=nil then 
-	 if scheme_param.sound_played:playing()==false then
-	    if scheme_param.sound_first==false then
-	       self.st.signals["sound_end"]=true
-	    end  
-	    scheme_param.sound_setup=true
-	    if scheme_param.sound_object_pause_min~=0 or scheme_param.sound_object_pause_max~=0 then
-	       local time=math.random(scheme_param.sound_object_pause_min,scheme_param.sound_object_pause_max)
-	       scheme_param.sound_pause=device():time_global()+time
-	    end 
-	    scheme_param.sound_first=false
-	 else
-            if scheme_param.snd_pos_timer==nil then
-               scheme_param.sound_played:set_position(self.object:position())
-               if scheme_param.sound_object_volume~=-1 then
-                  scheme_param.sound_played.volume=scheme_param.sound_object_volume
-               end
-               scheme_param.snd_pos_timer=time_global()+3000
-            elseif time_global()>=scheme_param.snd_pos_timer then
-               scheme_param.sound_played:set_position(self.object:position())
-               if scheme_param.sound_object_volume~=-1 then
-                  scheme_param.sound_played.volume=scheme_param.sound_object_volume
-               end
-               scheme_param.snd_pos_timer=time_global()+3000
+      if scheme_param.sound_played ~= nil then
+         if scheme_param.sound_played:playing() == false then
+            if scheme_param.sound_first == false then
+               self.st.signals["sound_end"] = true
             end
-	 end
-      end 
+            scheme_param.sound_setup = true
+            if scheme_param.sound_object_pause_min ~= 0 or scheme_param.sound_object_pause_max ~= 0 then
+               local time = math.random(scheme_param.sound_object_pause_min, scheme_param.sound_object_pause_max)
+               scheme_param.sound_pause = device():time_global() + time
+            end
+            scheme_param.sound_first = false
+         else
+            if scheme_param.snd_pos_timer == nil then
+               scheme_param.sound_played:set_position(self.object:position())
+               if scheme_param.sound_object_volume ~= -1 then
+                  scheme_param.sound_played.volume = scheme_param.sound_object_volume
+               end
+               scheme_param.snd_pos_timer = time_global() + 3000
+            elseif time_global() >= scheme_param.snd_pos_timer then
+               scheme_param.sound_played:set_position(self.object:position())
+               if scheme_param.sound_object_volume ~= -1 then
+                  scheme_param.sound_played.volume = scheme_param.sound_object_volume
+               end
+               scheme_param.snd_pos_timer = time_global() + 3000
+            end
+         end
+      end
    else
       self.object:set_tip_text(scheme_param.sound_object_tip_on)
-      if scheme_param.sound_played~=nil then
-         if scheme_param.sound_played:playing()==true then
-	    scheme_param.sound_played:stop()
+      if scheme_param.sound_played ~= nil then
+         if scheme_param.sound_played:playing() == true then
+            scheme_param.sound_played:stop()
          end
       end
    end
    self:check_bomb_integrated(scheme_param)
 end
-function action_universal:hit_callback(obj,amount,local_direction,who,bone_index)
-   local scheme_param=sgm_flags.table_mod_schemes[self.object:id()]
-   if amount>0 then
-      if scheme_param.hit_afraid=="true" then
-         if scheme_param.scheme_type=="minetrap_object" then
-            if read_obj_mod_param(self.object,"detonate_source")==nil then
-               sobj=create("minetrap_charge",self.object:position().x,self.object:position().y,self.object:position().z,self.object:level_vertex_id(),self.object:game_vertex_id())
-               write_obj_mod_param(self.object,"detonate_source",sobj.id)
-               write_obj_mod_param(self.object,"detonate_timer",time_global()+1000)
-               sgm_flags.table_mod_mineraps[self.object:id()]=true
+
+function action_universal:hit_callback(obj, amount, local_direction, who, bone_index)
+   local scheme_param = sgm_flags.table_mod_schemes[self.object:id()]
+   if amount > 0 then
+      if scheme_param.hit_afraid == "true" then
+         if scheme_param.scheme_type == "minetrap_object" then
+            if sgm_g.read_obj_mod_param(self.object, "detonate_source") == nil then
+               sobj = create("minetrap_charge", self.object:position().x, self.object:position().y,
+                  self.object:position().z, self.object:level_vertex_id(), self.object:game_vertex_id())
+               write_obj_mod_param(self.object, "detonate_source", sobj.id)
+               write_obj_mod_param(self.object, "detonate_timer", time_global() + 1000)
+               sgm_flags.table_mod_mineraps[self.object:id()] = true
             end
          end
-         if scheme_param.scheme_type=="explosive_object" then
-            if read_obj_mod_param(self.object,"detonate_source")==nil then
-               sobj=create(scheme_param.explosive_object_charge,self.object:position().x,self.object:position().y,self.object:position().z,self.object:level_vertex_id(),self.object:game_vertex_id())
-               write_obj_mod_param(self.object,"detonate_source",sobj.id)
-               write_obj_mod_param(self.object,"detonate_timer",time_global()+1000)
+         if scheme_param.scheme_type == "explosive_object" then
+            if sgm_g.read_obj_mod_param(self.object, "detonate_source") == nil then
+               sobj = create(scheme_param.explosive_object_charge, self.object:position().x, self.object:position().y,
+                  self.object:position().z, self.object:level_vertex_id(), self.object:game_vertex_id())
+               write_obj_mod_param(self.object, "detonate_source", sobj.id)
+               write_obj_mod_param(self.object, "detonate_timer", time_global() + 1000)
             end
          end
-         write_obj_mod_param(self.object,"is_hitted",true)
+         write_obj_mod_param(self.object, "is_hitted", true)
       end
    end
 end
-function action_universal:use_callback(obj,who)
-   local scheme_param=sgm_flags.table_mod_schemes[self.object:id()]
-   if scheme_param.bomb_integrated=="true" then
-      if read_obj_mod_param(self.object,"detonate_source")==nil then
-         sobj=create("detonation_charge_invisible_big",self.object:position().x,self.object:position().y,self.object:position().z,self.object:level_vertex_id(),self.object:game_vertex_id())
-         write_obj_mod_param(self.object,"detonate_source",sobj.id)
-         write_obj_mod_param(self.object,"detonate_timer",time_global()+1000)
+
+function action_universal:use_callback(obj, who)
+   local scheme_param = sgm_flags.table_mod_schemes[self.object:id()]
+   if scheme_param.bomb_integrated == "true" then
+      if sgm_g.read_obj_mod_param(self.object, "detonate_source") == nil then
+         sobj = create("detonation_charge_invisible_big", self.object:position().x, self.object:position().y,
+            self.object:position().z, self.object:level_vertex_id(), self.object:game_vertex_id())
+         write_obj_mod_param(self.object, "detonate_source", sobj.id)
+         write_obj_mod_param(self.object, "detonate_timer", time_global() + 1000)
       end
    end
-   if scheme_param.scheme_type=="explosive_object" then
-      if read_obj_mod_param(self.object,"detonate_source")==nil and exists(scheme_param.explosive_object_tip) then
-         sobj=create(scheme_param.explosive_object_charge,self.object:position().x,self.object:position().y,self.object:position().z,self.object:level_vertex_id(),self.object:game_vertex_id())
-         write_obj_mod_param(self.object,"detonate_source",sobj.id)
-         write_obj_mod_param(self.object,"detonate_timer",time_global()+scheme_param.explosive_object_timer)
+   if scheme_param.scheme_type == "explosive_object" then
+      if sgm_g.read_obj_mod_param(self.object, "detonate_source") == nil and exists(scheme_param.explosive_object_tip) then
+         sobj = create(scheme_param.explosive_object_charge, self.object:position().x, self.object:position().y,
+            self.object:position().z, self.object:level_vertex_id(), self.object:game_vertex_id())
+         write_obj_mod_param(self.object, "detonate_source", sobj.id)
+         write_obj_mod_param(self.object, "detonate_timer", time_global() + scheme_param.explosive_object_timer)
       end
    end
-   if scheme_param.scheme_type=="sound_object" then
-      if scheme_param.sound_activated==true then
-         scheme_param.sound_activated=false
+   if scheme_param.scheme_type == "sound_object" then
+      if scheme_param.sound_activated == true then
+         scheme_param.sound_activated = false
          self:set_sound_mode("false")
-      elseif scheme_param.sound_activated==false then
-         scheme_param.sound_activated=true
+      elseif scheme_param.sound_activated == false then
+         scheme_param.sound_activated = true
          self:set_sound_mode("true")
       end
    end
-   if scheme_param.scheme_type=="script_object" then
+   if scheme_param.scheme_type == "script_object" then
       if exists(scheme_param.script_object_code) then
-         if read_obj_mod_param(self.object,"access_resolved")==nil or read_obj_mod_param(self.object,"access_resolved")==false then
+         if sgm_g.read_obj_mod_param(self.object, "access_resolved") == nil or sgm_g.read_obj_mod_param(self.object, "access_resolved") == false then
             local numpad = ui_numpad.numpad(self)
             numpad:ShowDialog(true)
          end
       end
    end
-   if scheme_param.scheme_type=="treasure_object" then
+   if scheme_param.scheme_type == "treasure_object" then
       if exists(scheme_param.treasure_object_code) then
-         if read_obj_mod_param(self.object,"access_resolved")==nil or read_obj_mod_param(self.object,"access_resolved")==false then
+         if sgm_g.read_obj_mod_param(self.object, "access_resolved") == nil or sgm_g.read_obj_mod_param(self.object, "access_resolved") == false then
             local numpad = ui_numpad.numpad(self)
             numpad:ShowDialog(true)
          end
       end
    end
    if self.st.on_use then
-      if xr_logic.switch_to_section(self.object,self.st.saved_ini,xr_logic.pick_section_from_condlist(db.actor,self.object,self.st.on_use.condlist)) then
+      if xr_logic.switch_to_section(self.object, self.st.saved_ini, xr_logic.pick_section_from_condlist(db.actor, self.object, self.st.on_use.condlist)) then
          return true
       end
    end
 end
+
 function action_universal:OnNumberReceive(text)
-   local scheme_param=sgm_flags.table_mod_schemes[self.object:id()]
-   if scheme_param.scheme_type=="script_object" then
-       if exists(scheme_param.script_object_code) then
-         if text~=nil and text~="" and tonumber(text)==tonumber(scheme_param.script_object_code) then
-            write_obj_mod_param(self.object,"access_resolved",true)
+   local scheme_param = sgm_flags.table_mod_schemes[self.object:id()]
+   if scheme_param.scheme_type == "script_object" then
+      if exists(scheme_param.script_object_code) then
+         if text ~= nil and text ~= "" and tonumber(text) == tonumber(scheme_param.script_object_code) then
+            write_obj_mod_param(self.object, "access_resolved", true)
             self:correct_entering(scheme_param)
          end
       end
    end
-   if scheme_param.scheme_type=="treasure_object" then
-       if exists(scheme_param.treasure_object_code) then
-         if text~=nil and text~="" and get_spot_on_map(self.object:id(),sgm_flags.spot_unique_treasure) and tonumber(text)==tonumber(scheme_param.treasure_object_code) then
-            write_obj_mod_param(self.object,"access_resolved",true)
+   if scheme_param.scheme_type == "treasure_object" then
+      if exists(scheme_param.treasure_object_code) then
+         if text ~= nil and text ~= "" and get_spot_on_map(self.object:id(), sgm_flags.spot_unique_treasure) and tonumber(text) == tonumber(scheme_param.treasure_object_code) then
+            write_obj_mod_param(self.object, "access_resolved", true)
             self:correct_entering(scheme_param)
          end
       end
    end
 end
+
 function action_universal:correct_entering(scheme_param)
-   if scheme_param.scheme_type=="script_object" then
+   if scheme_param.scheme_type == "script_object" then
       if exists(scheme_param.script_object_code_action) then
-         sgm_functions.execute_condlist(self.object,self.st.saved_section,scheme_param.script_object_code_action)
+         sgm_functions.execute_condlist(self.object, self.st.saved_section, scheme_param.script_object_code_action)
       end
-      if scheme_param.script_object_code_items~=nil then
-         for k,v in pairs(scheme_param.script_object_code_items_table) do
-            for i=1,v.prob do
-	       alife():create(v.section,self.object:position(),self.object:level_vertex_id(),self.object:game_vertex_id(),self.object:id())
+      if scheme_param.script_object_code_items ~= nil then
+         for k, v in pairs(scheme_param.script_object_code_items_table) do
+            for i = 1, v.prob do
+               alife():create(v.section, self.object:position(), self.object:level_vertex_id(),
+                  self.object:game_vertex_id(), self.object:id())
             end
          end
       end
-      if scheme_param.script_object_code_item~=nil then
-         alife():create(scheme_param.script_object_code_item,self.object:position(),self.object:level_vertex_id(),self.object:game_vertex_id(),self.object:id())
+      if scheme_param.script_object_code_item ~= nil then
+         alife():create(scheme_param.script_object_code_item, self.object:position(), self.object:level_vertex_id(),
+            self.object:game_vertex_id(), self.object:id())
       end
    end
-   if scheme_param.scheme_type=="treasure_object" then
+   if scheme_param.scheme_type == "treasure_object" then
       if exists(scheme_param.treasure_object_code_action) then
-         sgm_functions.execute_condlist(self.object,self.st.saved_section,scheme_param.treasure_object_code_action)
+         sgm_functions.execute_condlist(self.object, self.st.saved_section, scheme_param.treasure_object_code_action)
       end
-      if scheme_param.treasure_object_code_items~=nil then
-         for k,v in pairs(scheme_param.treasure_object_code_items_table) do
-            for i=1,v.prob do
-	       alife():create(v.section,self.object:position(),self.object:level_vertex_id(),self.object:game_vertex_id(),self.object:id())
+      if scheme_param.treasure_object_code_items ~= nil then
+         for k, v in pairs(scheme_param.treasure_object_code_items_table) do
+            for i = 1, v.prob do
+               alife():create(v.section, self.object:position(), self.object:level_vertex_id(),
+                  self.object:game_vertex_id(), self.object:id())
             end
          end
       end
-      if scheme_param.treasure_object_code_item~=nil then
-         alife():create(scheme_param.treasure_object_code_item,self.object:position(),self.object:level_vertex_id(),self.object:game_vertex_id(),self.object:id())
+      if scheme_param.treasure_object_code_item ~= nil then
+         alife():create(scheme_param.treasure_object_code_item, self.object:position(), self.object:level_vertex_id(),
+            self.object:game_vertex_id(), self.object:id())
       end
-      if exists(scheme_param.treasure_object_code_fill_items_layers) and scheme_param.treasure_object_code_fill_items_layers>0 then
-         for i=1,scheme_param.treasure_object_code_fill_items_layers do
-            local layer_items_table=parse_general_names(scheme_param["treasure_object_code_fill_items_layer_"..i])
-            alife():create(get_random_string(layer_items_table),self.object:position(),self.object:level_vertex_id(),self.object:game_vertex_id(),self.object:id())
+      if exists(scheme_param.treasure_object_code_fill_items_layers) and scheme_param.treasure_object_code_fill_items_layers > 0 then
+         for i = 1, scheme_param.treasure_object_code_fill_items_layers do
+            local layer_items_table = parse_general_names(scheme_param["treasure_object_code_fill_items_layer_" .. i])
+            alife():create(get_random_string(layer_items_table), self.object:position(), self.object:level_vertex_id(),
+               self.object:game_vertex_id(), self.object:id())
          end
       end
-      remove_spot_on_map(self.object:id(),sgm_flags.spot_unique_treasure)
+      remove_spot_on_map(self.object:id(), sgm_flags.spot_unique_treasure)
    end
 end
-function action_universal:check_logic_condlists(obj,ini,section)
-   local scheme_param=sgm_flags.table_mod_schemes[obj:id()]
---/if scheme_param.section==nil or (scheme_param.section~=nil and scheme_param.section~=self.st.saved_section) then --/Без постоянного обновления.
---/   scheme_param.section = self.st.saved_section
-      --\Общие команды\--
-      scheme_param.scheme_type    = to_string(sgm_functions.check_section_condlist(ini,section,"scheme_type","default"))
-      scheme_param.hit_afraid     = to_string(sgm_functions.check_section_condlist(ini,section,"hit_afraid","false"))
-      scheme_param.born_kick      = to_string(sgm_functions.check_section_condlist(ini,section,"born_kick","false"))
-      scheme_param.bomb_integrated = to_string(sgm_functions.check_section_condlist(ini,section,"bomb_integrated","false"))
-      --\Команды: SCRIPT OBJECT\--
-      if scheme_param.scheme_type=="script_object" then
-         scheme_param.script_object_cond        = to_string(sgm_functions.check_section_condlist(ini,section,"script_object_cond","true"))
-         scheme_param.script_object_tip         = to_string(sgm_functions.check_section_condlist(ini,section,"script_object_tip","st_ph_universal_default"))
-         scheme_param.script_object_code        = to_number(sgm_functions.check_section_condlist(ini,section,"script_object_code",nil))
-         scheme_param.script_object_code_tip    = to_string(sgm_functions.check_section_condlist(ini,section,"script_object_code_tip","st_script_object_code_tip"))
-         scheme_param.script_object_code_action = to_string(sgm_functions.cfg_get_string(ini,section,"script_object_code_action",nil))
-         scheme_param.script_object_code_item   = to_string(sgm_functions.check_section_condlist(ini,section,"script_object_code_item",nil))                                 --'Определенный предмет в трупе.
-         scheme_param.script_object_code_items  = to_string(sgm_functions.cfg_get_string(ini,section,"script_object_code_items",nil))
-         if exists(scheme_param.script_object_code_items) and scheme_param.script_object_code_items_table==nil then
-            scheme_param.script_object_code_items_table = utils.parse_spawns(scheme_param.script_object_code_items)
+
+function action_universal:check_logic_condlists(obj, ini, section)
+   local scheme_param           = sgm_flags.table_mod_schemes[obj:id()]
+   --/if scheme_param.section==nil or (scheme_param.section~=nil and scheme_param.section~=self.st.saved_section) then --/Без постоянного обновления.
+   --/   scheme_param.section = self.st.saved_section
+   --\Общие команды\--
+   scheme_param.scheme_type     = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section, "scheme_type",
+      "default"))
+   scheme_param.hit_afraid      = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section, "hit_afraid",
+      "false"))
+   scheme_param.born_kick       = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section, "born_kick", "false"))
+   scheme_param.bomb_integrated = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section, "bomb_integrated",
+      "false"))
+   --\Команды: SCRIPT OBJECT\--
+   if scheme_param.scheme_type == "script_object" then
+      scheme_param.script_object_cond        = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section,
+         "script_object_cond", "true"))
+      scheme_param.script_object_tip         = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section,
+         "script_object_tip", "st_sgm_ph_universal_default"))
+      scheme_param.script_object_code        = to_number(sgm_functions.check_section_condlist(ini, section,
+         "script_object_code", nil))
+      scheme_param.script_object_code_tip    = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section,
+         "script_object_code_tip", "st_script_object_code_tip"))
+      scheme_param.script_object_code_action = sgm_g.to_string(sgm_functions.cfg_get_string(ini, section,
+         "script_object_code_action", nil))
+      scheme_param.script_object_code_item   = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section,
+         "script_object_code_item", nil))                                                                                                          --'Определенный предмет в трупе.
+      scheme_param.script_object_code_items  = sgm_g.to_string(sgm_functions.cfg_get_string(ini, section,
+         "script_object_code_items", nil))
+      if exists(scheme_param.script_object_code_items) and scheme_param.script_object_code_items_table == nil then
+         scheme_param.script_object_code_items_table = utils.parse_spawns(scheme_param.script_object_code_items)
+      end
+   end
+   --\Команды: TREASURE OBJECT\--
+   if scheme_param.scheme_type == "treasure_object" then
+      scheme_param.treasure_object_cond        = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section,
+         "treasure_object_cond", "true"))
+      scheme_param.treasure_object_tip         = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section,
+         "treasure_object_tip", "st_treasure_object_use_tip"))
+      scheme_param.treasure_object_code        = to_number(sgm_functions.check_section_condlist(ini, section,
+         "treasure_object_code", nil))
+      scheme_param.treasure_object_code_tip    = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section,
+         "treasure_object_code_tip", "st_treasure_object_code_tip"))
+      scheme_param.treasure_object_code_action = sgm_g.to_string(sgm_functions.cfg_get_string(ini, section,
+         "treasure_object_code_action", nil))
+      scheme_param.treasure_object_code_item   = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section,
+         "treasure_object_code_item", nil))                                                                                                            --'Определенный предмет в трупе.
+      scheme_param.treasure_object_code_items  = sgm_g.to_string(sgm_functions.cfg_get_string(ini, section,
+         "treasure_object_code_items", nil))
+      if exists(scheme_param.treasure_object_code_items) and scheme_param.treasure_object_code_items_table == nil then
+         scheme_param.treasure_object_code_items_table = utils.parse_spawns(scheme_param.treasure_object_code_items)
+      end
+      scheme_param.treasure_object_code_fill_items_layers = to_number(sgm_functions.check_section_condlist(ini, section,
+         "treasure_object_code_fill_items_layers", nil))
+      if exists(scheme_param.treasure_object_code_fill_items_layers) and scheme_param.treasure_object_code_fill_items_layers > 0 then
+         for i = 1, scheme_param.treasure_object_code_fill_items_layers do
+            scheme_param["treasure_object_code_fill_items_layer_" .. i] = sgm_g.to_string(sgm_functions.cfg_get_string(
+            ini, section, "treasure_object_code_fill_items_layer_" .. i, nil))
          end
       end
-      --\Команды: TREASURE OBJECT\--
-      if scheme_param.scheme_type=="treasure_object" then
-         scheme_param.treasure_object_cond      = to_string(sgm_functions.check_section_condlist(ini,section,"treasure_object_cond","true"))
-         scheme_param.treasure_object_tip       = to_string(sgm_functions.check_section_condlist(ini,section,"treasure_object_tip","st_treasure_object_use_tip"))
-         scheme_param.treasure_object_code        = to_number(sgm_functions.check_section_condlist(ini,section,"treasure_object_code",nil))
-         scheme_param.treasure_object_code_tip    = to_string(sgm_functions.check_section_condlist(ini,section,"treasure_object_code_tip","st_treasure_object_code_tip"))
-         scheme_param.treasure_object_code_action = to_string(sgm_functions.cfg_get_string(ini,section,"treasure_object_code_action",nil))
-         scheme_param.treasure_object_code_item   = to_string(sgm_functions.check_section_condlist(ini,section,"treasure_object_code_item",nil))                                 --'Определенный предмет в трупе.
-         scheme_param.treasure_object_code_items  = to_string(sgm_functions.cfg_get_string(ini,section,"treasure_object_code_items",nil))
-         if exists(scheme_param.treasure_object_code_items) and scheme_param.treasure_object_code_items_table==nil then
-            scheme_param.treasure_object_code_items_table = utils.parse_spawns(scheme_param.treasure_object_code_items)
-         end
-         scheme_param.treasure_object_code_fill_items_layers = to_number(sgm_functions.check_section_condlist(ini,section,"treasure_object_code_fill_items_layers",nil))
-         if exists(scheme_param.treasure_object_code_fill_items_layers) and scheme_param.treasure_object_code_fill_items_layers>0 then
-            for i=1,scheme_param.treasure_object_code_fill_items_layers do
-               scheme_param["treasure_object_code_fill_items_layer_"..i] = to_string(sgm_functions.cfg_get_string(ini,section,"treasure_object_code_fill_items_layer_"..i,nil))
-            end
-         end
+   end
+   --\Команды: EXPLOSIVE OBJECT\--
+   if scheme_param.scheme_type == "explosive_object" then
+      scheme_param.explosive_object_launch_cond = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section,
+         "explosive_object_launch_cond", "false"))
+      scheme_param.explosive_object_tip         = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section,
+         "explosive_object_tip", nil))
+      scheme_param.explosive_object_charge      = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section,
+         "explosive_object_charge", "detonation_charge_invisible_big"))
+      scheme_param.explosive_object_action      = sgm_g.to_string(sgm_functions.cfg_get_string(ini, section,
+         "explosive_object_action", nil))
+      scheme_param.explosive_object_timer       = to_number(sgm_functions.check_section_condlist(ini, section,
+         "explosive_object_timer", 1000))
+      scheme_param.explosive_object_sound       = sgm_functions.cfg_get_string(ini, section, "explosive_object_sound",
+         nil)
+      if exists(scheme_param.explosive_object_tip) and scheme_param.explosive_object_tip == "default" then
+         scheme_param.explosive_object_tip = "st_sgm_ph_universal_default"
       end
-      --\Команды: EXPLOSIVE OBJECT\--
-      if scheme_param.scheme_type=="explosive_object" then
-         scheme_param.explosive_object_launch_cond = to_string(sgm_functions.check_section_condlist(ini,section,"explosive_object_launch_cond","false"))
-         scheme_param.explosive_object_tip      = to_string(sgm_functions.check_section_condlist(ini,section,"explosive_object_tip",nil))
-         scheme_param.explosive_object_charge   = to_string(sgm_functions.check_section_condlist(ini,section,"explosive_object_charge","detonation_charge_invisible_big"))
-         scheme_param.explosive_object_action   = to_string(sgm_functions.cfg_get_string(ini,section,"explosive_object_action",nil))
-         scheme_param.explosive_object_timer    = to_number(sgm_functions.check_section_condlist(ini,section,"explosive_object_timer",1000))
-         scheme_param.explosive_object_sound    = sgm_functions.cfg_get_string(ini,section,"explosive_object_sound",nil)
-         if exists(scheme_param.explosive_object_tip) and scheme_param.explosive_object_tip=="default" then
-            scheme_param.explosive_object_tip = "st_ph_universal_default"
-         end
-         if exists(scheme_param.explosive_object_sound) and scheme_param.explosive_object_sound=="default" then
-            scheme_param.explosive_object_sound = [[detectors\bomb_timer]]
-         end
+      if exists(scheme_param.explosive_object_sound) and scheme_param.explosive_object_sound == "default" then
+         scheme_param.explosive_object_sound = [[detectors\bomb_timer]]
       end
-      --\Команды: MINETRAP OBJECT\--
-      if scheme_param.scheme_type=="minetrap_object" then
+   end
+   --\Команды: MINETRAP OBJECT\--
+   if scheme_param.scheme_type == "minetrap_object" then
+   end
+   --\Команды: SOUND OBJECT\--
+   if scheme_param.scheme_type == "sound_object" then
+      scheme_param.sound_object_theme       = sgm_functions.cfg_get_string(ini, section, "sound_object_theme", nil)
+      scheme_param.sound_object_first_state = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section,
+         "sound_object_first_state", "on"))
+      scheme_param.sound_object_volume      = to_number(sgm_functions.check_section_condlist(ini, section,
+         "sound_object_volume", -1))
+      scheme_param.sound_object_pause_min   = to_number(sgm_functions.check_section_condlist(ini, section,
+         "sound_object_pause_min", 0))
+      scheme_param.sound_object_pause_max   = to_number(sgm_functions.check_section_condlist(ini, section,
+         "sound_object_pause_max", 0))
+      scheme_param.sound_object_range_min   = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section,
+         "sound_object_range_min", nil))
+      scheme_param.sound_object_range_max   = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section,
+         "sound_object_range_max", nil))
+      scheme_param.sound_object_tip_on      = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section,
+         "sound_object_tip_on", "st_set_radio_on"))
+      scheme_param.sound_object_tip_off     = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section,
+         "sound_object_tip_off", "st_set_radio_off"))
+      if exists(scheme_param.sound_object_theme) then
+         scheme_param.sound_object_theme_table = parse_names(scheme_param.sound_object_theme)
       end
-      --\Команды: SOUND OBJECT\--
-      if scheme_param.scheme_type=="sound_object" then
-         scheme_param.sound_object_theme        = sgm_functions.cfg_get_string(ini,section,"sound_object_theme",nil)
-         scheme_param.sound_object_first_state  = to_string(sgm_functions.check_section_condlist(ini,section,"sound_object_first_state","on"))
-         scheme_param.sound_object_volume       = to_number(sgm_functions.check_section_condlist(ini,section,"sound_object_volume",-1))
-         scheme_param.sound_object_pause_min    = to_number(sgm_functions.check_section_condlist(ini,section,"sound_object_pause_min",0))
-         scheme_param.sound_object_pause_max    = to_number(sgm_functions.check_section_condlist(ini,section,"sound_object_pause_max",0))
-         scheme_param.sound_object_range_min    = to_string(sgm_functions.check_section_condlist(ini,section,"sound_object_range_min",nil))
-         scheme_param.sound_object_range_max    = to_string(sgm_functions.check_section_condlist(ini,section,"sound_object_range_max",nil))
-         scheme_param.sound_object_tip_on       = to_string(sgm_functions.check_section_condlist(ini,section,"sound_object_tip_on","st_set_radio_on"))
-         scheme_param.sound_object_tip_off      = to_string(sgm_functions.check_section_condlist(ini,section,"sound_object_tip_off","st_set_radio_off"))
-         if exists(scheme_param.sound_object_theme) then
-            scheme_param.sound_object_theme_table  = parse_names(scheme_param.sound_object_theme)
-         end
-      end
---/end
+   end
+   --/end
 end
+
 function action_universal:deactivate(forged)
-   local scheme_param=sgm_flags.table_mod_schemes[self.object:id()]
+   local scheme_param = sgm_flags.table_mod_schemes[self.object:id()]
    self.object:set_tip_text("")
    self.object:set_nonscript_usable(false)
-   if scheme_param.sound_played~=nil then
+   if scheme_param.sound_played ~= nil then
       scheme_param.sound_played:stop()
-      scheme_param.sound_played=nil
+      scheme_param.sound_played = nil
    end
 end
+
 ------------------------------------
 --           Планировка           --
 ------------------------------------
-function add_to_binder(npc,ini,scheme,section,storage)
+function add_to_binder(npc, ini, scheme, section, storage)
    printf("DEBUG: add_to_binder: scheme='%s', section='%s'", scheme, section)
    local new_action = action_universal(npc, storage)
    xr_logic.subscribe_action_for_events(npc, storage, new_action)
 end
-function set_scheme(npc,ini,scheme,section,gulag_name)
-   local st = xr_logic.assign_storage_and_bind(npc, ini, scheme, section)
-   st.logic = xr_logic.cfg_get_switch_conditions(ini, section, npc)
-   st.on_use = xr_logic.cfg_get_condlist(ini, section, "on_use", npc)
-   st.saved_ini   = ini
+
+function set_scheme(npc, ini, scheme, section, gulag_name)
+   local st         = xr_logic.assign_storage_and_bind(npc, ini, scheme, section)
+   st.logic         = xr_logic.cfg_get_switch_conditions(ini, section, npc)
+   st.on_use        = xr_logic.cfg_get_condlist(ini, section, "on_use", npc)
+   st.saved_ini     = ini
    st.saved_section = section
 end

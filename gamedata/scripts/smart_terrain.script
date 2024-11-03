@@ -620,11 +620,11 @@ function se_smart_terrain:select_npc_job(npc_info)
 		-- todo job_data будет nil если по какой-то причине сталкеру не нужна работа или её не было???
 		-- ! Сделаю пока проверку на nil а там посмотрим на поведение
 		local job_data = self.job_data[npc_info.job_id]
-		if job_data ~= nil then
+		-- if job_data ~= nil then
 		-- Начинаем выполнять работу
 		printf("[smart_terrain %s] gulag: beginJob: obj=%s job= %s", self:name(), npc_info.se_obj:name(),
 			job_data.section)
-		end
+		-- end
 		if job_data == nil then
 			printf("[smart_terrain %s] gulag: beginJob: obj=%s Contain error. Job not found(nil)", self:name(), npc_info.se_obj:name())
 		end

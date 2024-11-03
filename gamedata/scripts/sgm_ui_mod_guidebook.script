@@ -27,7 +27,7 @@ end
 function guidebook:InitControls()
    self:SetWndRect(Frect():set(0, 0, 1024, 768))
    local xml = CScriptXmlInit()
-   xml:ParseFile("ui_mod_elements.xml")
+   xml:ParseFile("sgm_ui_mod_elements.xml")
    self.guidebook_form = xml:InitStatic("guidebook_form", self)
    self.guidebook_background = xml:InitStatic("guidebook_form:guidebook_background", self.guidebook_form)
    self:start_button(xml, "btn_close")
