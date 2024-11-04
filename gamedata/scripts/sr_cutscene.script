@@ -26,6 +26,9 @@ function cam_effector_set:start_effect(eff)
 		level.add_cam_effector2("camera_effects\\"..eff.anim..".anm", 210408, false, "sr_cutscene.effector_callback", self.st.fov or db.actor:fov()*0.75)
 	end
 	self.playing = true
+	--/ SGM in
+	set_ui_disabled()
+	--/ SGM out
 end
 
 function cam_effector_set:stop_effect()
@@ -221,6 +224,11 @@ end
 --' Ивент об окончании пролета
 function action_cutscene:cutscene_callback()
 	if(self.motion.state=="release") then
+		--/ SGM in
+		if (sgm_g.dont_has_alife_info("pri_a28_cam_started")) or has_alife_info("pri_a28_actor_in_zone_stay") then
+			set_ui_worked()
+		end
+		--/ SGM out
 		self.motion = nil
 		if(self.motion_id<=#self.st.cam_effector) then
 			self:select_next_motion()
