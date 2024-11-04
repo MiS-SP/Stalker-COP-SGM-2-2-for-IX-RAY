@@ -15,7 +15,7 @@ function on_stalker_hit(victim, amount, local_direction, who, bone_index)
       sgm_flags.bool_headshot_s_allower = false
    end
    if sgm_flags.bool_headshot_s_allower == true and (bone_index == "from_death_callback") then
-      if (sgm_g.r_mod_params("bool", "grows_rank_for_neutral", true) or (sgm_g.r_mod_params("bool", "grows_rank_for_neutral", true) == false and check_relation_between(victim, db.actor) == "enemy")) then
+      if (sgm_g.r_mod_params("bool", "grows_rank_for_neutral", true) or (sgm_g.r_mod_params("bool", "grows_rank_for_neutral", true) == false and sgm_g.check_relation_between(victim, db.actor) == "enemy")) then
          sgm_g.inc_mod_param("stat_headshots", 1)
          sgm_flags.bool_headshot_s_waiting = true
       end
@@ -70,7 +70,7 @@ function on_stalker_hit(victim, amount, local_direction, who, bone_index)
       sgm_flags.table_s_skill_hits[victim:name()] = false
    end
    if sgm_flags.bool_headshot_s_waiting == true then
-      congratulate_with_headshot_event("add", 4500, 1)
+      sgm_g.congratulate_with_headshot_event("add", 4500, 1)
       sgm_flags.bool_headshot_s_waiting = false
    end
 end
@@ -143,7 +143,7 @@ function on_monster_hit(victim, amount, local_direction, who, bone_index)
       sgm_flags.table_m_skill_hits[victim:name()] = false
    end
    if sgm_flags.bool_headshot_m_waiting == true then
-      congratulate_with_headshot_event("add", 4500, 1)
+      sgm_g.congratulate_with_headshot_event("add", 4500, 1)
       sgm_flags.bool_headshot_m_waiting = false
    end
 end
@@ -222,7 +222,7 @@ end
 ------------------------------------------------------------------------------
 function on_use_box(obj)
    if sgm_g.find_in_string(obj:section(), "_secret_") then
-      remove_spot_on_map(obj:id(), sgm_flags.spot_secret_v2)
+      sgm_g.remove_spot_on_map(obj:id(), sgm_flags.spot_secret_v2)
    end
    if has_alife_info("val_shade_of_time_renegade_help") and sgm_g.dont_has_alife_info("val_shade_of_time_card_in_safe") and sgm_g.find_in_string(obj:name(), "val_b3_safe") then
       give_info("val_shade_of_time_card_in_safe")
@@ -292,7 +292,7 @@ function on_item_take(obj)
    local obj_name = obj:section()
    local obj_id = obj:id()
    if obj_name == "personal_marker" then
-      remove_spot_on_map(obj_id, sgm_flags.spot_map_marker)
+      sgm_g.remove_spot_on_map(obj_id, sgm_flags.spot_map_marker)
    end
    if obj:clsid() == clsid.wpn_ammo_s then
       dunin_ammo.on_take(obj)
@@ -311,7 +311,7 @@ function on_item_take(obj)
       elseif obj_name == "toolkit_3" and has_alife_info("actor_found_toolkit_3_1") and sgm_g.dont_has_alife_info("actor_found_toolkit_3_2") then
          give_info("actor_found_toolkit_3_2")
       end
-      remove_spot_on_map(obj_id, sgm_flags.spot_toolkit_place)
+      sgm_g.remove_spot_on_map(obj_id, sgm_flags.spot_toolkit_place)
    end
    if obj_name == "quest_bloodsucker_letter_2" and sgm_g.dont_has_alife_info("pri_bloodsucker_vaccine_box_spawn") then
       give_info("pri_bloodsucker_vaccine_box_spawn")
@@ -341,12 +341,12 @@ function on_take_item_from_box(box, item)
          sgm_functions.relocate_items_with_inv_box(box, db.actor)
       end
       news_manager.send_tip(db.actor, "st_treasure_rukzak_title", 0, "got_ammo", 3600, nil, "st_bring_obj")
-      give_object_to_actor("personal_rukzak")
-      game_hide_menu()
+      sgm_g.give_object_to_actor("personal_rukzak")
+      sgm_g.game_hide_menu()
       alife():release(alife():object(box:id()), true)
    end
    if sgm_g.find_in_string(box_name, "dv_") and sgm_g.find_in_string(box_name, "_case") then
-      remove_spot_on_map(box:id(), sgm_flags.spot_personal_secret)
+      sgm_g.remove_spot_on_map(box:id(), sgm_flags.spot_personal_secret)
    end
    if sgm_g.find_in_string(box_name, "base_treasure") or sgm_g.find_in_string(box_name, "lager_treasure") then
       local param_sc = sgm_functions.ReadSelfCommunity(box_name)
@@ -397,21 +397,21 @@ function on_use_item(obj)
       local parse_items_tbl = utils.parse_spawns(sgm_functions.ReadAfterUsedTransform(item_name))
       for k, v in pairs(parse_items_tbl) do
          for i = 1, v.prob do
-            give_object_to_actor(v.section)
+            sgm_g.give_object_to_actor(v.section)
          end
       end
    end
    if sgm_functions.ReadActivateKnife(item_name) then
       if sgm_functions.ReadActivateSection(db.actor:item_in_slot(1):section()) then
-         give_object_to_actor(sgm_functions.ReadActivateSection(db.actor:item_in_slot(1):section()))
+         sgm_g.give_object_to_actor(sgm_functions.ReadActivateSection(db.actor:item_in_slot(1):section()))
          remove_item_from_slot(db.actor, 1)
-         give_object_to_actor(sgm_functions.ReadActivateKnife(item_name))
+         sgm_g.give_object_to_actor(sgm_functions.ReadActivateKnife(item_name))
       end
    elseif sgm_functions.ReadActivateBinocular(item_name) then
       if sgm_functions.ReadActivateSection(db.actor:item_in_slot(5):section()) then
-         give_object_to_actor(sgm_functions.ReadActivateSection(db.actor:item_in_slot(5):section()))
+         sgm_g.give_object_to_actor(sgm_functions.ReadActivateSection(db.actor:item_in_slot(5):section()))
          remove_item_from_slot(db.actor, 5)
-         give_object_to_actor(sgm_functions.ReadActivateBinocular(item_name))
+         sgm_g.give_object_to_actor(sgm_functions.ReadActivateBinocular(item_name))
       end
    end
    if sgm_g.exists(sgm_functions.ReadCodeId(item_name)) then
@@ -421,8 +421,8 @@ function on_use_item(obj)
             ":" .. " " .. sgm_functions.ReadCodeId(item_name))
          news_manager.send_unique_treasure(item_name)
       else
-         game_hide_menu()
-         give_object_to_actor(item_name)
+         sgm_g.game_hide_menu()
+         sgm_g.give_object_to_actor(item_name)
          game.start_tutorial("about_unique_treasure_offline")
       end
    end
@@ -458,13 +458,13 @@ function on_use_item(obj)
       local m_before = sgm_functions.ReadMoneyBefore(item_name)
       dialogs.relocate_money(db.actor, math.random(m_from, m_before), "in")
    elseif sgm_g.find_in_string(item_name, "medkit") and sgm_g.find_out_string(item_name, "_used") then
-      set_sleep_factor("+", 2)
+      sgm_g.set_sleep_factor("+", 2)
    elseif sgm_g.find_in_string(item_name, "medkit") and sgm_g.find_in_string(item_name, "_used") then
-      set_sleep_factor("+", 1)
+      sgm_g.set_sleep_factor("+", 1)
    elseif sgm_g.find_in_string(item_name, "capture_meal_") then
       if has_alife_info("capture_meal_active") then
-         give_object_to_actor(item_name)
-         game_hide_menu()
+         sgm_g.give_object_to_actor(item_name)
+         sgm_g.game_hide_menu()
          game.start_tutorial("about_capture_meal_used")
       else
          local cap_radius = sgm_functions.ReadCaptureMealRadius(item_name)
@@ -481,15 +481,15 @@ function on_use_item(obj)
       end
    end
    if item_name == "psy_complex" then
-      set_sleep_factor("+", 1)
+      sgm_g.set_sleep_factor("+", 1)
    elseif item_name == "energy_drink" then
-      set_sleep_factor("-", 5)
+      sgm_g.set_sleep_factor("-", 5)
    elseif item_name == "wild_drink" then
-      set_sleep_factor("-", 8)
+      sgm_g.set_sleep_factor("-", 8)
    elseif item_name == "vodka" then
-      set_sleep_factor("+", 3)
+      sgm_g.set_sleep_factor("+", 3)
    elseif item_name == "beer" then
-      set_sleep_factor("+", 1)
+      sgm_g.set_sleep_factor("+", 1)
    end
    if item_name == "personal_rukzak" then
       run_dynamic_element(sgm_ui_mod_elements.personal_rukzak(), false)
@@ -519,26 +519,26 @@ function on_use_item(obj)
          give_info("guidebook_active")
          run_dynamic_element(sgm_ui_mod_guidebook.guidebook(), false)
       else
-         game_hide_menu()
+         sgm_g.game_hide_menu()
          if item_name == "guidebook_mono" then
             sgm_flags.value_guidebook_type = 1
          else
             sgm_flags.value_guidebook_type = 2
          end
-         give_object_to_actor(item_name)
+         sgm_g.give_object_to_actor(item_name)
          game.start_tutorial("about_guidebook_lock_use")
       end
    elseif item_name == "disk_breaking" then
-      game_hide_menu()
+      sgm_g.game_hide_menu()
       give_info("disk_breaking_installed")
       game.start_tutorial("about_disk_breaking")
    elseif item_name == "remote_explosive_charge" then
       if get_remote_charge_full_installed() == false then
          run_dynamic_element(sgm_ui_mod_elements.remote_charge(), false)
       else
-         game_hide_menu()
+         sgm_g.game_hide_menu()
          game.start_tutorial("about_remote_limit")
-         give_object_to_actor("remote_explosive_charge")
+         sgm_g.give_object_to_actor("remote_explosive_charge")
       end
    elseif item_name == "remote_charge_control" then
       if get_remote_charge_installed() then
@@ -638,17 +638,17 @@ function on_use_sleeping_bag(obj)
       start_flague_timer("timer_sleeping_bag", 3000)
       level.set_time_factor(1700)
       level.hide_indicators_safe()
-      game_hide_menu()
+      sgm_g.game_hide_menu()
       if sgm_g.r_mod_params("bool", "need_actor_dream", true) and sgm_g.read_mod_param("sleep_factor") ~= nil then
          local sleep_factor = sgm_g.read_mod_param("sleep_factor")
          sgm_g.write_mod_param("sleep_factor", sleep_factor - 600)
       end
    elseif check_is_dream_limited() == true then
-      game_hide_menu(1)
+      sgm_g.game_hide_menu(1)
       disable_info("actor_in_sleep")
       game.start_tutorial("about_sleep_limited")
    else
-      game_hide_menu(1)
+      sgm_g.game_hide_menu(1)
       disable_info("actor_in_sleep")
       game.start_tutorial("about_actor_no_sleep")
    end
@@ -711,21 +711,21 @@ function on_stalker_death(victim, killer)
       sgm_ranks.read_stalker_death(victim, killer, "default_death")
    end
    sgm_loot_manager.getter.container_stalker_death(sgm_loot_manager.getter, victim)
-   remove_spot_on_map(victim:id(), "alife_presentation_squad_friend")
-   remove_spot_on_map(victim:id(), "alife_presentation_squad_neutral")
-   remove_spot_on_map(victim:id(), sgm_flags.spot_actor_guard)
-   remove_spot_on_map(victim:id(), sgm_flags.spot_cash_keeper)
-   remove_spot_on_map(victim:id(), sgm_flags.spot_unique_trader)
-   remove_spot_on_map(victim:id(), sgm_flags.spot_artefact_chemist)
-   remove_spot_on_map(victim:id(), sgm_flags.spot_quest_person)
-   remove_spot_on_map(victim:id(), sgm_flags.spot_job_person)
-   remove_spot_on_map(victim:id(), sgm_flags.spot_base_commander)
-   remove_spot_on_map(victim:id(), sgm_flags.spot_info_dealer)
-   remove_spot_on_map(victim:id(), sgm_flags.spot_employer)
-   remove_spot_on_map(victim:id(), sgm_flags.spot_quest_tip)
-   remove_spot_on_map(victim:id(), sgm_flags.spot_quest_enemy_squad_1)
-   remove_spot_on_map(victim:id(), sgm_flags.spot_quest_enemy_squad_2)
-   cleasgm_g.r_mod_params_for_npc(victim:id())
+   sgm_g.remove_spot_on_map(victim:id(), "alife_presentation_squad_friend")
+   sgm_g.remove_spot_on_map(victim:id(), "alife_presentation_squad_neutral")
+   sgm_g.remove_spot_on_map(victim:id(), sgm_flags.spot_actor_guard)
+   sgm_g.remove_spot_on_map(victim:id(), sgm_flags.spot_cash_keeper)
+   sgm_g.remove_spot_on_map(victim:id(), sgm_flags.spot_unique_trader)
+   sgm_g.remove_spot_on_map(victim:id(), sgm_flags.spot_artefact_chemist)
+   sgm_g.remove_spot_on_map(victim:id(), sgm_flags.spot_quest_person)
+   sgm_g.remove_spot_on_map(victim:id(), sgm_flags.spot_job_person)
+   sgm_g.remove_spot_on_map(victim:id(), sgm_flags.spot_base_commander)
+   sgm_g.remove_spot_on_map(victim:id(), sgm_flags.spot_info_dealer)
+   sgm_g.remove_spot_on_map(victim:id(), sgm_flags.spot_employer)
+   sgm_g.remove_spot_on_map(victim:id(), sgm_flags.spot_quest_tip)
+   sgm_g.remove_spot_on_map(victim:id(), sgm_flags.spot_quest_enemy_squad_1)
+   sgm_g.remove_spot_on_map(victim:id(), sgm_flags.spot_quest_enemy_squad_2)
+   sgm_g.clear_mod_params_for_npc(victim:id())
    if sgm_g.dont_has_alife_info("jup_liquidate_valet_killed") and victim:profile_name() == "jup_a10_bandit_leader" then
       give_info("jup_liquidate_valet_killed")
    end
@@ -739,10 +739,10 @@ function on_monster_death(victim, killer)
       sgm_ranks.read_monster_death(victim, killer, "default_death")
    end
    sgm_loot_manager.getter.container_monster_death(sgm_loot_manager.getter, victim)
-   remove_spot_on_map(victim:id(), sgm_flags.spot_quest_tip)
-   remove_spot_on_map(victim:id(), sgm_flags.spot_quest_enemy_squad_1)
-   remove_spot_on_map(victim:id(), sgm_flags.spot_quest_enemy_squad_2)
-   remove_spot_on_map(victim:id(), sgm_flags.spot_captured_monster)
+   sgm_g.remove_spot_on_map(victim:id(), sgm_flags.spot_quest_tip)
+   sgm_g.remove_spot_on_map(victim:id(), sgm_flags.spot_quest_enemy_squad_1)
+   sgm_g.remove_spot_on_map(victim:id(), sgm_flags.spot_quest_enemy_squad_2)
+   sgm_g.remove_spot_on_map(victim:id(), sgm_flags.spot_captured_monster)
    sgm_flags.bool_aura_inactivity_inc = false
    sgm_particle.complex_stop(victim:id())
 end
@@ -798,7 +798,7 @@ function on_check_npc_enemy(npc, enemy)
             return false
          end
       end
-      if IsMonster(enemy) and sgm_g.find_in_string(enemy:section(), "captured") and check_relation_between(npc, db.actor) ~= "enemy" and (sgm_flags.table_m_capture_hits[enemy:id()] == nil or sgm_flags.table_m_capture_hits[enemy:id()] == false) then
+      if IsMonster(enemy) and sgm_g.find_in_string(enemy:section(), "captured") and sgm_g.check_relation_between(npc, db.actor) ~= "enemy" and (sgm_flags.table_m_capture_hits[enemy:id()] == nil or sgm_flags.table_m_capture_hits[enemy:id()] == false) then
          return false --/Игнорируем завербованных мутантов.
       elseif IsMonster(npc) and sgm_g.find_in_string(npc:section(), "captured") and IsMonster(enemy) and sgm_g.find_in_string(enemy:section(), "captured") and (sgm_flags.table_m_capture_hits[enemy:id()] == nil or sgm_flags.table_m_capture_hits[enemy:id()] == false) then
          return false --/Игнорируем завербованных мутантов, если мы такой же завербованный мутант.
@@ -806,9 +806,9 @@ function on_check_npc_enemy(npc, enemy)
          return false --/Игнорируем мутантов, которые находятся под воздействие препарата X8П25.
       elseif IsMonster(npc) and sgm_g.find_out_string(npc:section(), "captured") and IsMonster(enemy) and sgm_g.find_in_string(enemy:section(), "captured") and (sgm_flags.table_m_capture_hits[enemy:id()] == nil or sgm_flags.table_m_capture_hits[enemy:id()] == false) and has_alife_info("capture_meal_active") and sgm_flags.string_capture_monster_target ~= "none" and sgm_functions.ReadCommunity(enemy:section()) ~= nil and sgm_g.find_in_string(sgm_functions.ReadCommunity(enemy:section()), sgm_flags.string_capture_monster_target) then
          return false --/Игнорируем завербованных мутантов, если нас уже начинают потихоньку вербовать, вообщем переключаемся на ГГ.
-      elseif IsStalker(enemy) and sgm_g.find_in_string(sgm_functions.ReadCommunity(enemy:section()), "bodyguard") and (check_relation_between(npc, db.actor) ~= "enemy" or sgm_g.dont_has_alife_info(enemy:profile_name() .. "_pursue")) and check_relation_between(enemy, db.actor) ~= "enemy" then
+      elseif IsStalker(enemy) and sgm_g.find_in_string(sgm_functions.ReadCommunity(enemy:section()), "bodyguard") and (sgm_g.check_relation_between(npc, db.actor) ~= "enemy" or sgm_g.dont_has_alife_info(enemy:profile_name() .. "_pursue")) and sgm_g.check_relation_between(enemy, db.actor) ~= "enemy" then
          return false --/Игнорируем телохранителей, нанимаемых ГГ. Если мы и наш телоранитель дружественны к к ГГ, или телохранитель свободен.
-      elseif IsStalker(enemy) and sgm_g.find_in_string(sgm_functions.ReadCommunity(enemy:section()), "bodyguard") and sgm_g.find_out_string(sgm_functions.ReadCommunity(npc:section()), "bodyguard") and sgm_g.find_out_string(npc:section(), "captured") and check_relation_between(enemy, db.actor) == "enemy" then
+      elseif IsStalker(enemy) and sgm_g.find_in_string(sgm_functions.ReadCommunity(enemy:section()), "bodyguard") and sgm_g.find_out_string(sgm_functions.ReadCommunity(npc:section()), "bodyguard") and sgm_g.find_out_string(npc:section(), "captured") and sgm_g.check_relation_between(enemy, db.actor) == "enemy" then
          return false --/Игнорируем телохранителей, нанимаемых ГГ. Если мы не телохранители и не прирученные мутанты.
       end
    end
@@ -915,47 +915,47 @@ function on_update_inventory_box(box)
    if sgm_g.check_seconds(2) and has_alife_info("pri_expiation_sin_2_start") and sgm_g.dont_has_alife_info("pri_expiation_sin_2_taynik_vse_zalogeni") and sgm_g.dont_has_alife_info("pri_expiation_sin_2_fail") then
       if sgm_g.find_in_string(box:section(), "pri_monolith_taynik_1") and sgm_g.dont_has_alife_info("pri_expiation_sin_2_taynik_1_zalogen") then
          if get_item_section_f_inventory_box(box, "ammo_gauss") and get_item_section_f_inventory_box(box, "medkit") and get_item_section_f_inventory_box(box, "bandage") and (get_item_section_f_inventory_box(box, "antirad") or get_item_section_f_inventory_box(box, "psy_complex")) and ((get_item_section_f_inventory_box(box, "wpn_ak74") and get_item_section_f_inventory_box(box, "ammo_5.45x")) or (get_item_section_f_inventory_box(box, "wpn_lr300") and get_item_section_f_inventory_box(box, "ammo_5.56x")) or (get_item_section_f_inventory_box(box, "wpn_spas12") and get_item_section_f_inventory_box(box, "ammo_12x"))) then
-            game_hide_menu()
+            sgm_g.game_hide_menu()
             give_info("pri_expiation_sin_2_taynik_1_zalogen")
          end
       elseif sgm_g.find_in_string(box:section(), "pri_monolith_taynik_2") and has_alife_info("pri_expiation_sin_2_taynik_1_zalogen") and sgm_g.dont_has_alife_info("pri_expiation_sin_2_taynik_2_zalogen") then
          if get_item_section_f_inventory_box(box, "ammo_gauss") and get_item_section_f_inventory_box(box, "medkit") and get_item_section_f_inventory_box(box, "bandage") and (get_item_section_f_inventory_box(box, "antirad") or get_item_section_f_inventory_box(box, "psy_complex")) and ((get_item_section_f_inventory_box(box, "wpn_ak74") and get_item_section_f_inventory_box(box, "ammo_5.45x")) or (get_item_section_f_inventory_box(box, "wpn_lr300") and get_item_section_f_inventory_box(box, "ammo_5.56x")) or (get_item_section_f_inventory_box(box, "wpn_spas12") and get_item_section_f_inventory_box(box, "ammo_12x"))) then
-            game_hide_menu()
+            sgm_g.game_hide_menu()
             give_info("pri_expiation_sin_2_taynik_2_zalogen")
          end
       elseif sgm_g.find_in_string(box:section(), "pri_monolith_taynik_3") and has_alife_info("pri_expiation_sin_2_taynik_2_zalogen") and sgm_g.dont_has_alife_info("pri_expiation_sin_2_taynik_3_zalogen") then
          if get_item_section_f_inventory_box(box, "ammo_gauss") and get_item_section_f_inventory_box(box, "medkit") and get_item_section_f_inventory_box(box, "bandage") and (get_item_section_f_inventory_box(box, "antirad") or get_item_section_f_inventory_box(box, "psy_complex")) and ((get_item_section_f_inventory_box(box, "wpn_ak74") and get_item_section_f_inventory_box(box, "ammo_5.45x")) or (get_item_section_f_inventory_box(box, "wpn_lr300") and get_item_section_f_inventory_box(box, "ammo_5.56x")) or (get_item_section_f_inventory_box(box, "wpn_spas12") and get_item_section_f_inventory_box(box, "ammo_12x"))) then
-            game_hide_menu()
+            sgm_g.game_hide_menu()
             give_info("pri_expiation_sin_2_taynik_3_zalogen")
          end
       elseif sgm_g.find_in_string(box:section(), "pri_monolith_taynik_4") and has_alife_info("pri_expiation_sin_2_taynik_3_zalogen") and sgm_g.dont_has_alife_info("pri_expiation_sin_2_taynik_4_zalogen") then
          if get_item_section_f_inventory_box(box, "ammo_gauss") and get_item_section_f_inventory_box(box, "medkit") and get_item_section_f_inventory_box(box, "bandage") and (get_item_section_f_inventory_box(box, "antirad") or get_item_section_f_inventory_box(box, "psy_complex")) and ((get_item_section_f_inventory_box(box, "wpn_ak74") and get_item_section_f_inventory_box(box, "ammo_5.45x")) or (get_item_section_f_inventory_box(box, "wpn_lr300") and get_item_section_f_inventory_box(box, "ammo_5.56x")) or (get_item_section_f_inventory_box(box, "wpn_spas12") and get_item_section_f_inventory_box(box, "ammo_12x"))) then
-            game_hide_menu()
+            sgm_g.game_hide_menu()
             give_info("pri_expiation_sin_2_taynik_4_zalogen")
          end
       elseif sgm_g.find_in_string(box:section(), "pri_monolith_taynik_5") and has_alife_info("pri_expiation_sin_2_taynik_4_zalogen") and sgm_g.dont_has_alife_info("pri_expiation_sin_2_taynik_5_zalogen") then
          if get_item_section_f_inventory_box(box, "ammo_gauss") and get_item_section_f_inventory_box(box, "medkit") and get_item_section_f_inventory_box(box, "bandage") and (get_item_section_f_inventory_box(box, "antirad") or get_item_section_f_inventory_box(box, "psy_complex")) and ((get_item_section_f_inventory_box(box, "wpn_ak74") and get_item_section_f_inventory_box(box, "ammo_5.45x")) or (get_item_section_f_inventory_box(box, "wpn_lr300") and get_item_section_f_inventory_box(box, "ammo_5.56x")) or (get_item_section_f_inventory_box(box, "wpn_spas12") and get_item_section_f_inventory_box(box, "ammo_12x"))) then
-            game_hide_menu()
+            sgm_g.game_hide_menu()
             give_info("pri_expiation_sin_2_taynik_5_zalogen")
          end
       elseif sgm_g.find_in_string(box:section(), "pri_monolith_taynik_6") and has_alife_info("pri_expiation_sin_2_taynik_5_zalogen") and sgm_g.dont_has_alife_info("pri_expiation_sin_2_taynik_6_zalogen") then
          if get_item_section_f_inventory_box(box, "ammo_gauss") and get_item_section_f_inventory_box(box, "medkit") and get_item_section_f_inventory_box(box, "bandage") and (get_item_section_f_inventory_box(box, "antirad") or get_item_section_f_inventory_box(box, "psy_complex")) and ((get_item_section_f_inventory_box(box, "wpn_ak74") and get_item_section_f_inventory_box(box, "ammo_5.45x")) or (get_item_section_f_inventory_box(box, "wpn_lr300") and get_item_section_f_inventory_box(box, "ammo_5.56x")) or (get_item_section_f_inventory_box(box, "wpn_spas12") and get_item_section_f_inventory_box(box, "ammo_12x"))) then
-            game_hide_menu()
+            sgm_g.game_hide_menu()
             give_info("pri_expiation_sin_2_taynik_6_zalogen")
          end
       elseif sgm_g.find_in_string(box:section(), "pri_monolith_taynik_7") and has_alife_info("pri_expiation_sin_2_taynik_6_zalogen") and sgm_g.dont_has_alife_info("pri_expiation_sin_2_taynik_7_zalogen") then
          if get_item_section_f_inventory_box(box, "ammo_gauss") and get_item_section_f_inventory_box(box, "medkit") and get_item_section_f_inventory_box(box, "bandage") and (get_item_section_f_inventory_box(box, "antirad") or get_item_section_f_inventory_box(box, "psy_complex")) and ((get_item_section_f_inventory_box(box, "wpn_ak74") and get_item_section_f_inventory_box(box, "ammo_5.45x")) or (get_item_section_f_inventory_box(box, "wpn_lr300") and get_item_section_f_inventory_box(box, "ammo_5.56x")) or (get_item_section_f_inventory_box(box, "wpn_spas12") and get_item_section_f_inventory_box(box, "ammo_12x"))) then
-            game_hide_menu()
+            sgm_g.game_hide_menu()
             give_info("pri_expiation_sin_2_taynik_7_zalogen")
          end
       elseif sgm_g.find_in_string(box:section(), "pri_monolith_taynik_8") and has_alife_info("pri_expiation_sin_2_taynik_7_zalogen") and sgm_g.dont_has_alife_info("pri_expiation_sin_2_taynik_8_zalogen") then
          if get_item_section_f_inventory_box(box, "ammo_gauss") and get_item_section_f_inventory_box(box, "medkit") and get_item_section_f_inventory_box(box, "bandage") and (get_item_section_f_inventory_box(box, "antirad") or get_item_section_f_inventory_box(box, "psy_complex")) and ((get_item_section_f_inventory_box(box, "wpn_ak74") and get_item_section_f_inventory_box(box, "ammo_5.45x")) or (get_item_section_f_inventory_box(box, "wpn_lr300") and get_item_section_f_inventory_box(box, "ammo_5.56x")) or (get_item_section_f_inventory_box(box, "wpn_spas12") and get_item_section_f_inventory_box(box, "ammo_12x"))) then
-            game_hide_menu()
+            sgm_g.game_hide_menu()
             give_info("pri_expiation_sin_2_taynik_8_zalogen")
          end
       elseif sgm_g.find_in_string(box:section(), "pri_monolith_taynik_9") and has_alife_info("pri_expiation_sin_2_taynik_8_zalogen") and sgm_g.dont_has_alife_info("pri_expiation_sin_2_taynik_9_zalogen") then
          if get_item_section_f_inventory_box(box, "ammo_gauss") and get_item_section_f_inventory_box(box, "medkit") and get_item_section_f_inventory_box(box, "bandage") and (get_item_section_f_inventory_box(box, "antirad") or get_item_section_f_inventory_box(box, "psy_complex")) and ((get_item_section_f_inventory_box(box, "wpn_ak74") and get_item_section_f_inventory_box(box, "ammo_5.45x")) or (get_item_section_f_inventory_box(box, "wpn_lr300") and get_item_section_f_inventory_box(box, "ammo_5.56x")) or (get_item_section_f_inventory_box(box, "wpn_spas12") and get_item_section_f_inventory_box(box, "ammo_12x"))) then
-            game_hide_menu()
+            sgm_g.game_hide_menu()
             give_info("pri_expiation_sin_2_reward,pri_expiation_sin_2_reload,pri_expiation_sin_2_taynik_9_zalogen")
          end
       end
@@ -963,27 +963,27 @@ function on_update_inventory_box(box)
    if sgm_g.check_seconds(2) and has_alife_info("jup_b206_rasvet_prior_quest_ready_to_past") and sgm_g.dont_has_alife_info("jup_b206_rasvet_all_tainiki_zalogeny") and sgm_g.dont_has_alife_info("jup_b206_rasvet_prior_quest_fail") then
       if sgm_g.find_in_string(box:section(), "jup_rasvet_spez_taynik_1") and not has_alife_info("jup_rasvet_spez_taynik_1_zalogen") then
          if get_item_section_f_inventory_box(box, "detector_elite") and get_item_section_f_inventory_box(box, "medkit") and get_item_section_f_inventory_box(box, "bandage") and (get_item_section_f_inventory_box(box, "antirad") or get_item_section_f_inventory_box(box, "psy_complex")) and get_item_section_f_inventory_box(box, "cs_heavy_outfit") and ((get_item_section_f_inventory_box(box, "wpn_abakan") and get_item_section_f_inventory_box(box, "ammo_5.45x")) or (get_item_section_f_inventory_box(box, "wpn_l85") and get_item_section_f_inventory_box(box, "ammo_5.56x")) or (get_item_section_f_inventory_box(box, "wpn_wincheaster1300") and get_item_section_f_inventory_box(box, "ammo_12x"))) then
-            game_hide_menu()
+            sgm_g.game_hide_menu()
             give_info("jup_rasvet_spez_taynik_1_zalogen")
          end
       elseif sgm_g.find_in_string(box:section(), "jup_rasvet_spez_taynik_2") and not has_alife_info("jup_rasvet_spez_taynik_2_zalogen") then
          if get_item_section_f_inventory_box(box, "detector_elite") and get_item_section_f_inventory_box(box, "medkit") and get_item_section_f_inventory_box(box, "bandage") and (get_item_section_f_inventory_box(box, "antirad") or get_item_section_f_inventory_box(box, "psy_complex")) and get_item_section_f_inventory_box(box, "cs_heavy_outfit") and ((get_item_section_f_inventory_box(box, "wpn_abakan") and get_item_section_f_inventory_box(box, "ammo_5.45x")) or (get_item_section_f_inventory_box(box, "wpn_l85") and get_item_section_f_inventory_box(box, "ammo_5.56x")) or (get_item_section_f_inventory_box(box, "wpn_wincheaster1300") and get_item_section_f_inventory_box(box, "ammo_12x"))) then
-            game_hide_menu()
+            sgm_g.game_hide_menu()
             give_info("jup_rasvet_spez_taynik_2_zalogen")
          end
       elseif sgm_g.find_in_string(box:section(), "jup_rasvet_spez_taynik_3") and not has_alife_info("jup_rasvet_spez_taynik_3_zalogen") then
          if get_item_section_f_inventory_box(box, "detector_elite") and get_item_section_f_inventory_box(box, "medkit") and get_item_section_f_inventory_box(box, "bandage") and (get_item_section_f_inventory_box(box, "antirad") or get_item_section_f_inventory_box(box, "psy_complex")) and get_item_section_f_inventory_box(box, "cs_heavy_outfit") and ((get_item_section_f_inventory_box(box, "wpn_abakan") and get_item_section_f_inventory_box(box, "ammo_5.45x")) or (get_item_section_f_inventory_box(box, "wpn_l85") and get_item_section_f_inventory_box(box, "ammo_5.56x")) or (get_item_section_f_inventory_box(box, "wpn_wincheaster1300") and get_item_section_f_inventory_box(box, "ammo_12x"))) then
-            game_hide_menu()
+            sgm_g.game_hide_menu()
             give_info("jup_rasvet_spez_taynik_3_zalogen")
          end
       elseif sgm_g.find_in_string(box:section(), "jup_rasvet_spez_taynik_4") and not has_alife_info("jup_rasvet_spez_taynik_4_zalogen") then
          if get_item_section_f_inventory_box(box, "detector_elite") and get_item_section_f_inventory_box(box, "medkit") and get_item_section_f_inventory_box(box, "bandage") and (get_item_section_f_inventory_box(box, "antirad") or get_item_section_f_inventory_box(box, "psy_complex")) and get_item_section_f_inventory_box(box, "cs_heavy_outfit") and ((get_item_section_f_inventory_box(box, "wpn_abakan") and get_item_section_f_inventory_box(box, "ammo_5.45x")) or (get_item_section_f_inventory_box(box, "wpn_l85") and get_item_section_f_inventory_box(box, "ammo_5.56x")) or (get_item_section_f_inventory_box(box, "wpn_wincheaster1300") and get_item_section_f_inventory_box(box, "ammo_12x"))) then
-            game_hide_menu()
+            sgm_g.game_hide_menu()
             give_info("jup_rasvet_spez_taynik_4_zalogen")
          end
       elseif sgm_g.find_in_string(box:section(), "jup_rasvet_spez_taynik_5") and not has_alife_info("jup_rasvet_spez_taynik_5_zalogen") then
          if get_item_section_f_inventory_box(box, "detector_elite") and get_item_section_f_inventory_box(box, "medkit") and get_item_section_f_inventory_box(box, "bandage") and (get_item_section_f_inventory_box(box, "antirad") or get_item_section_f_inventory_box(box, "psy_complex")) and get_item_section_f_inventory_box(box, "cs_heavy_outfit") and ((get_item_section_f_inventory_box(box, "wpn_abakan") and get_item_section_f_inventory_box(box, "ammo_5.45x")) or (get_item_section_f_inventory_box(box, "wpn_l85") and get_item_section_f_inventory_box(box, "ammo_5.56x")) or (get_item_section_f_inventory_box(box, "wpn_wincheaster1300") and get_item_section_f_inventory_box(box, "ammo_12x"))) then
-            game_hide_menu()
+            sgm_g.game_hide_menu()
             give_info("jup_rasvet_spez_taynik_5_zalogen")
          end
       end

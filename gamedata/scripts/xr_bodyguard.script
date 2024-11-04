@@ -92,20 +92,20 @@ function action_bodyguard:execute()
    (best_danger:type() == danger_object.grenade or best_danger:type() == danger_object.entity_attacked)
    local npc_found_enemy = npc:best_enemy() ~= nil or danger_precond
    local npc_without_enemy = npc:best_enemy() == nil and not danger_precond
-   if read_obj_mod_param(npc, "issued_rifle_weapon") ~= nil and not npc:object(read_obj_mod_param(npc, "issued_rifle_weapon")) then
-      give_object_to_npc(read_obj_mod_param(npc, "issued_rifle_weapon"), npc)
-   elseif read_obj_mod_param(npc, "issued_pistol_weapon") ~= nil and not npc:object(read_obj_mod_param(npc, "issued_pistol_weapon")) then
-      give_object_to_npc(read_obj_mod_param(npc, "issued_pistol_weapon"), npc)
+   if sgm_g.read_obj_mod_param(npc, "issued_rifle_weapon") ~= nil and not npc:object(sgm_g.read_obj_mod_param(npc, "issued_rifle_weapon")) then
+      sgm_g.give_object_to_npc(sgm_g.read_obj_mod_param(npc, "issued_rifle_weapon"), npc)
+   elseif sgm_g.read_obj_mod_param(npc, "issued_pistol_weapon") ~= nil and not npc:object(sgm_g.read_obj_mod_param(npc, "issued_pistol_weapon")) then
+      sgm_g.give_object_to_npc(sgm_g.read_obj_mod_param(npc, "issued_pistol_weapon"), npc)
    end
-   if read_obj_mod_param(npc, "issued_medkit") ~= nil and npc.health < r_mod_params("number", "bodyguard_medkit_threshold", 0.35) and npc:object(read_obj_mod_param(npc, "issued_medkit")) ~= nil then
-      npc:eat(npc:object(read_obj_mod_param(npc, "issued_medkit")))
-      if read_obj_mod_param(npc, "issued_medkit") == "medkit" then
+   if sgm_g.read_obj_mod_param(npc, "issued_medkit") ~= nil and npc.health < r_mod_params("number", "bodyguard_medkit_threshold", 0.35) and npc:object(sgm_g.read_obj_mod_param(npc, "issued_medkit")) ~= nil then
+      npc:eat(npc:object(sgm_g.read_obj_mod_param(npc, "issued_medkit")))
+      if sgm_g.read_obj_mod_param(npc, "issued_medkit") == "medkit" then
          npc.health = 0.60
-      elseif read_obj_mod_param(npc, "issued_medkit") == "medkit_army" then
+      elseif sgm_g.read_obj_mod_param(npc, "issued_medkit") == "medkit_army" then
          npc.health = 0.70
-      elseif read_obj_mod_param(npc, "issued_medkit") == "medkit_scientic" then
+      elseif sgm_g.read_obj_mod_param(npc, "issued_medkit") == "medkit_scientic" then
          npc.health = 0.85
-      elseif read_obj_mod_param(npc, "issued_medkit") == "medkit_elite" then
+      elseif sgm_g.read_obj_mod_param(npc, "issued_medkit") == "medkit_elite" then
          npc.health = 1.00
       end
       clear_obj_mod_param(npc, "issued_medkit")
@@ -191,8 +191,8 @@ function action_bodyguard:check_logic_condlists(npc, ini, section)
    local scheme_param           = sgm_flags.table_mod_schemes[npc:id()]
    --/if scheme_param.section==nil or (scheme_param.section~=nil and scheme_param.section~=self.st.saved_section) then --/Без постоянного обновления.
    --/   scheme_param.section = self.st.saved_section
-   scheme_param.bodyguard_pos   = to_number(sgm_functions.check_section_condlist(ini, section, "bodyguard_pos", 0))              --'Позиция телохранителя до найма.
-   scheme_param.bodyguard_look  = to_number(sgm_functions.check_section_condlist(ini, section, "bodyguard_look", 0))             --'Направление взгляда телохранителя до найма.
+   scheme_param.bodyguard_pos   = sgm_g.to_number(sgm_functions.check_section_condlist(ini, section, "bodyguard_pos", 0))              --'Позиция телохранителя до найма.
+   scheme_param.bodyguard_look  = sgm_g.to_number(sgm_functions.check_section_condlist(ini, section, "bodyguard_look", 0))             --'Направление взгляда телохранителя до найма.
    scheme_param.bodyguard_state = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section, "bodyguard_state",
       "ward"))                                                                                                                   --'Анимация тела телохранителя до найма.
    scheme_param.home_teleport   = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section, "home_teleport",

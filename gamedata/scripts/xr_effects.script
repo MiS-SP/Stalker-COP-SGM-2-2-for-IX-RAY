@@ -764,7 +764,7 @@ function remove_npc(actor, npc, p)
 	end
 	--/ SGM in
 	if npc_id ~= nil and alife():object(npc_id) then
-		clear_mod_params_for_npc(npc_id)
+		sgm_g.clear_mod_params_for_npc(npc_id)
 		alife():release(alife():object(npc_id), true)
 	end
 	--/ SGM out
@@ -2007,7 +2007,7 @@ function remove_map_spot(actor, npc, p)
 				p[2] = "primary_task_location"
 			end
                         --/ SGM in
-                        remove_spot_on_map(id,p[2])
+                        sgm_g.remove_spot_on_map(id,p[2])
                         --/ SGM out
 		else
 			abort("Wrong story id or name [%s] for map spot function", tostring(story_id))
@@ -2235,10 +2235,10 @@ function scenario_autosave(actor, npc, p)
 		abort("You are trying to use scenario_autosave without save name")
 	end
 	--/ SGM in
-	if (autosave_precond() or find_in_string(save_name, "save_uni_travel")) and IsImportantSave() then
+	if (sgm_g.autosave_precond() or find_in_string(save_name, "save_uni_travel")) and IsImportantSave() then
 		local save_param = user_name() .. " - " .. game.translate_string(save_name)
 		sgm_flags.string_savegame_type = "autosave"
-		data_param_save_game(save_param)
+		sgm_g.data_param_save_game(save_param)
 		get_console():execute("save " .. save_param)
 	else
 		if sgm_flags.table_mod_autosaves[save_name] == nil and IsImportantSave() then
@@ -3474,7 +3474,7 @@ function bodyguard_command_4(actor, npc)
 	disable_info(npc:profile_name() .. "_stop")
 	disable_info(npc:profile_name() .. "_release")
 	disable_info(npc:profile_name() .. "_pursue")
-	remove_spot_on_map(npc:id(), sgm_flags.spot_actor_guard)
+	sgm_g.remove_spot_on_map(npc:id(), sgm_flags.spot_actor_guard)
 	for k, v in pairs(xr_bodyguard.bodyguards_config) do
 		if k ~= nil and npc:profile_name() == k then
 			xr_effects["respawn_" .. k](actor, npc)
@@ -4405,7 +4405,7 @@ end
 
 function delete_spot_on_self(actor, npc, p)
 	if p[1] == nil then return end
-	remove_spot_on_map(npc:id(), tostring(p[1]))
+	sgm_g.remove_spot_on_map(npc:id(), tostring(p[1]))
 end
 
 function sleep_place_spot_control(actor, npc, p)
@@ -4651,13 +4651,13 @@ end
 function deliver_skill_book(actor, npc, p)
 	if p ~= nil and p ~= "nil" then
 		if sgm_g.exists(p[1]) then
-			give_skill_book(p[1])
+			sgm_g.give_skill_book(p[1])
 		end
 		if sgm_g.exists(p[2]) then
-			give_skill_book(nil, p[2])
+			sgm_g.give_skill_book(nil, p[2])
 		end
 	else
-		give_skill_book()
+		sgm_g.give_skill_book()
 	end
 end
 
@@ -4765,7 +4765,7 @@ function release_npc(actor, npc)
 			unregister_story_id(npc:profile_name())
 		end
 		if alife():object(npc:id()) then
-			clear_mod_params_for_npc(npc:id())
+			sgm_g.clear_mod_params_for_npc(npc:id())
 			alife():release(alife():object(npc:id()), true)
 		end
 	end
@@ -4785,16 +4785,16 @@ function sleep_zone_activate(actor, npc)
 end
 
 function remove_mod_spots(actor, npc)
-	remove_spot_on_map(npc:id(), sgm_flags.spot_actor_guard)
-	remove_spot_on_map(npc:id(), sgm_flags.spot_cash_keeper)
-	remove_spot_on_map(npc:id(), sgm_flags.spot_unique_trader)
-	remove_spot_on_map(npc:id(), sgm_flags.spot_artefact_chemist)
-	remove_spot_on_map(npc:id(), sgm_flags.spot_quest_person)
-	remove_spot_on_map(npc:id(), sgm_flags.spot_job_person)
-	remove_spot_on_map(npc:id(), sgm_flags.spot_base_commander)
-	remove_spot_on_map(npc:id(), sgm_flags.spot_info_dealer)
-	remove_spot_on_map(npc:id(), sgm_flags.spot_employer)
-	remove_spot_on_map(npc:id(), sgm_flags.spot_quest_tip)
-	remove_spot_on_map(npc:id(), sgm_flags.spot_quest_enemy_squad_1)
-	remove_spot_on_map(npc:id(), sgm_flags.spot_quest_enemy_squad_2)
+	sgm_g.remove_spot_on_map(npc:id(), sgm_flags.spot_actor_guard)
+	sgm_g.remove_spot_on_map(npc:id(), sgm_flags.spot_cash_keeper)
+	sgm_g.remove_spot_on_map(npc:id(), sgm_flags.spot_unique_trader)
+	sgm_g.remove_spot_on_map(npc:id(), sgm_flags.spot_artefact_chemist)
+	sgm_g.remove_spot_on_map(npc:id(), sgm_flags.spot_quest_person)
+	sgm_g.remove_spot_on_map(npc:id(), sgm_flags.spot_job_person)
+	sgm_g.remove_spot_on_map(npc:id(), sgm_flags.spot_base_commander)
+	sgm_g.remove_spot_on_map(npc:id(), sgm_flags.spot_info_dealer)
+	sgm_g.remove_spot_on_map(npc:id(), sgm_flags.spot_employer)
+	sgm_g.remove_spot_on_map(npc:id(), sgm_flags.spot_quest_tip)
+	sgm_g.remove_spot_on_map(npc:id(), sgm_flags.spot_quest_enemy_squad_1)
+	sgm_g.remove_spot_on_map(npc:id(), sgm_flags.spot_quest_enemy_squad_2)
 end

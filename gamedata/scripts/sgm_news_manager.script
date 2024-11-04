@@ -1,5 +1,5 @@
 function merge_tips_icon(tips_icons)
-	local sgm_tips_icons = {
+	sgm_tips_icons = {
 		activated_item             = "ui_inGame2_Istoriya_dolga",
 		detector_battery           = "ui_inGame2_PD_Opitniy_stalker",
 		founded_area               = "ui_inGame2_Put_v_pripyat",
@@ -134,8 +134,8 @@ function send_tip(actor, news_id, timeout, sender, showtime, sender_id, title_id
 	local texture = "ui_iconsTotal_grouping"
 	if sender ~= nil then
 		if type(sender) == "string" then
-			if tips_icons[sender] then
-				texture = tips_icons[sender]
+			if sgm_tips_icons[sender] then
+				texture = sgm_tips_icons[sender]
 			end
 		elseif is_npc_stalker(sender:clsid()) then
 			texture = sender:character_icon()
@@ -193,8 +193,8 @@ function bodyguard_tip(actor, news_id, timeout, sender, showtime, sender_id, tit
 	local texture = "ui_iconsTotal_grouping"
 	if sender ~= nil then
 		if type(sender) == "string" then
-			if tips_icons[sender] then
-				texture = tips_icons[sender]
+			if sgm_tips_icons[sender] then
+				texture = sgm_tips_icons[sender]
 			end
 		elseif is_npc_stalker(sender:clsid()) then
 			texture = sender:character_icon()
@@ -239,8 +239,8 @@ function bankir_tip(actor, timeout, sender, showtime, sender_id, title_id, messa
 	local texture = "ui_iconsTotal_grouping"
 	if sender ~= nil then
 		if type(sender) == "string" then
-			if tips_icons[sender] then
-				texture = tips_icons[sender]
+			if sgm_tips_icons[sender] then
+				texture = sgm_tips_icons[sender]
 			end
 		elseif is_npc_stalker(sender:clsid()) then
 			texture = sender:character_icon()

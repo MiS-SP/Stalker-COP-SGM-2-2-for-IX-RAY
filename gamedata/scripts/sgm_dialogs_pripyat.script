@@ -2,9 +2,9 @@
 function pri_b301_zulus_reward(first_speaker, second_speaker)
 	dialogs.relocate_item_section_to_actor(first_speaker, second_speaker, "wpn_pkm_zulus")
 	if has_alife_info("leader_achievement_gained") then
-		give_reward("dv_stalker_zulus_case")
-		give_reward("dv_stalker_vano_case")
-		give_reward("dv_monolit_brodiaga_case")
+		sgm_g.give_reward("dv_stalker_zulus_case")
+		sgm_g.give_reward("dv_stalker_vano_case")
+		sgm_g.give_reward("dv_monolit_brodiaga_case")
 	end
 end
 
@@ -18,16 +18,16 @@ function pri_a17_reward(first_speaker, second_speaker)
 	--/ SGM in
 	if has_alife_info("pri_a17_reward_well") then
 		dialogs.relocate_money_to_actor(first_speaker, second_speaker, 7500)
-		give_secret(1)
+		sgm_g.give_secret(1)
 	elseif has_alife_info("pri_a17_reward_norm") then
 		dialogs.relocate_money_to_actor(first_speaker, second_speaker, 4000)
-		give_secret(1)
+		sgm_g.give_secret(1)
 	elseif has_alife_info("pri_a17_reward_bad") then
 		dialogs.relocate_money_to_actor(first_speaker, second_speaker, 3000)
-		give_secret(1)
+		sgm_g.give_secret(1)
 	end
-	give_mp3_bonus()
-	give_skill_book()
+	sgm_g.give_mp3_bonus()
+	sgm_g.give_skill_book()
 	--/ SGM out
 end
 
@@ -101,7 +101,7 @@ function pri_b35_give_actor_reward(first_speaker, second_speaker)
 	if has_alife_info("pri_b35_secondary") then amount = 3 end
 	dialogs.relocate_item_section_to_actor(first_speaker, second_speaker, "ammo_7.62x54_7h1", amount)
 	--/ SGM in
-	give_mp3_bonus()
+	sgm_g.give_mp3_bonus()
 	--/ SGM out
 end
 

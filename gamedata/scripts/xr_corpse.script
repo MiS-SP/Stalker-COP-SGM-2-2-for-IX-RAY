@@ -79,7 +79,7 @@ function action_corpse:execute()
    if sgm_flags.table_mod_schemes[npc_id .. "life_timer"] == 0 then
       sgm_g.set_hit_damage_to(npc, hit.wound, 1000, 15)
       if scheme_param.only_choose == "true" then
-         release_inventory(npc)
+         sgm_g.release_inventory(npc)
       end
       if scheme_param.corpse_items ~= nil then
          for k, v in pairs(scheme_param.corpse_items_table) do
@@ -131,9 +131,9 @@ function action_corpse:death_callback(victim, killer)
    local scheme_param = sgm_flags.table_mod_schemes[self.object:id()]
    if scheme_param.suicide_mode ~= nil and scheme_param.suicide_mode[1] == "true" then
       if scheme_param.suicide_mode[3] ~= nil then
-         activate_detonate_charge(self.object, tonumber(scheme_param.suicide_mode[3]), "invisible_small")
+         sgm_g.activate_detonate_charge(self.object, tonumber(scheme_param.suicide_mode[3]), "invisible_small")
       else
-         activate_detonate_charge(self.object, 100, "invisible_small")
+         sgm_g.activate_detonate_charge(self.object, 100, "invisible_small")
       end
    end
 end

@@ -188,7 +188,7 @@ function SGMLootManager:container_monster_death(victim)
    for k, v in pairs(self.lists.monster) do
       if monster_community ~= nil and monster_community == v[1] and math.random(100) <= v[3] * 100 then
          if sgm_flags.value_capture_meal_monster_id ~= monster_id then
-            create(v[2], monster_pos.x + 0.1, monster_pos.y, monster_pos.z - 0.1, victim:level_vertex_id(),
+            sgm_g.create(v[2], monster_pos.x + 0.1, monster_pos.y, monster_pos.z - 0.1, victim:level_vertex_id(),
                victim:game_vertex_id())
          end
       end

@@ -1,14 +1,14 @@
 -- b208
-function jup_b208_give_reward(first_speaker, second_speaker) --/Охота
+function jup_b208_sgm_g.give_reward(first_speaker, second_speaker) --/Охота
 	local amount = 5000
 	dialogs.relocate_money_to_actor(first_speaker, second_speaker, amount)
 	treasure_manager.get_treasure_manager():give_treasure("jup_hiding_place_18")
 	treasure_manager.get_treasure_manager():give_treasure("jup_hiding_place_35")
 	treasure_manager.get_treasure_manager():give_treasure("jup_hiding_place_45")
 	--/ SGM in
-	give_skill_book()
-	give_mp3_bonus()
-	give_secret(1)
+	sgm_g.give_skill_book()
+	sgm_g.give_mp3_bonus()
+	sgm_g.give_secret(1)
 	--/ SGM out
 end
 
@@ -355,9 +355,9 @@ end
 function jup_a10_actor_give_outfit_money(first_speaker, second_speaker) --/Долги
 	dialogs.relocate_money_from_actor(first_speaker, second_speaker, 5000)
 	--/ SGM in
-	give_skill_book()
-	give_mp3_bonus()
-	give_secret(1)
+	sgm_g.give_skill_book()
+	sgm_g.give_mp3_bonus()
+	sgm_g.give_secret(1)
 	--/ SGM out
 end
 
@@ -381,9 +381,9 @@ end
 function jupiter_b16_reward(first_speaker, second_speaker) --/Оазис
 	dialogs.relocate_money_to_actor(first_speaker, second_speaker, 7000)
 	--/ SGM in
-	give_skill_book()
-	give_mp3_bonus()
-	give_secret(2)
+	sgm_g.give_skill_book()
+	sgm_g.give_mp3_bonus()
+	sgm_g.give_secret(2)
 	--/ SGM out
 end
 
@@ -471,9 +471,9 @@ function jup_a12_transfer_5000_money_to_actor(first_speaker, second_speaker) --/
 	treasure_manager.get_treasure_manager():give_treasure("jup_hiding_place_40")
 	treasure_manager.get_treasure_manager():give_treasure("jup_hiding_place_34")
 	--/ SGM in
-	give_skill_book()
-	give_mp3_bonus()
-	give_secret(1)
+	sgm_g.give_skill_book()
+	sgm_g.give_mp3_bonus()
+	sgm_g.give_secret(1)
 	--/ SGM out
 end
 
@@ -559,13 +559,13 @@ function jup_b32_transfer_scanners_2(first_speaker, second_speaker)
 	dialogs.relocate_item_section_to_actor(first_speaker, second_speaker, "jup_b32_scanner_device", 2)
 end
 
-function jup_b32_give_reward_to_actor(first_speaker, second_speaker) --/Исследование аномалий
+function jup_b32_sgm_g.give_reward_to_actor(first_speaker, second_speaker) --/Исследование аномалий
 	local amount = 5000
 	dialogs.relocate_money_to_actor(first_speaker, second_speaker, amount)
 	--/ SGM in
-	give_skill_book()
-	give_mp3_bonus()
-	give_secret(1)
+	sgm_g.give_skill_book()
+	sgm_g.give_mp3_bonus()
+	sgm_g.give_secret(1)
 	--/ SGM out
 end
 
@@ -803,9 +803,9 @@ end
 function jup_b1_reward_actor(first_speaker, second_speaker) --/Переменное пси-излучение
 	dialogs.relocate_money_to_actor(first_speaker, second_speaker, 6000)
 	--/ SGM in
-	give_skill_book()
-	give_mp3_bonus()
-	give_secret(1)
+	sgm_g.give_skill_book()
+	sgm_g.give_mp3_bonus()
+	sgm_g.give_secret(1)
 	--/ SGM out
 end
 
@@ -1173,8 +1173,8 @@ function jup_b46_sell_duty_founder_pda_to_owl(first_speaker, second_speaker)
 	dialogs.relocate_item_section_from_actor(first_speaker, second_speaker, "jup_b46_duty_founder_pda")
 	dialogs.relocate_money_to_actor(first_speaker, second_speaker, 2500)
 	--/ SGM in
-	give_skill_book()
-	give_skill_book()
+	sgm_g.give_skill_book()
+	sgm_g.give_skill_book()
 	--/ SGM out
 	db.actor:give_info_portion("jup_b46_duty_founder_pda_sold")
 	db.actor:give_info_portion("jup_b46_duty_founder_pda_to_stalkers")
@@ -1191,9 +1191,9 @@ function jup_b46_sell_duty_founder_pda(first_speaker, second_speaker)
 		dialogs.relocate_item_section(actor, "wpn_sig550", "in", 1)
 		dialogs.relocate_item_section(actor, "ammo_5.56x45_ss190", "in", 5)
 		--/ SGM in
-		give_skill_book()
-		give_skill_book()
-		give_secret(1)
+		sgm_g.give_skill_book()
+		sgm_g.give_skill_book()
+		sgm_g.give_secret(1)
 		--/ SGM out
 	elseif has_alife_info("jup_b46_duty_founder_pda_to_duty") then
 		dialogs.relocate_money_to_actor(first_speaker, second_speaker, 4000)
@@ -1201,9 +1201,9 @@ function jup_b46_sell_duty_founder_pda(first_speaker, second_speaker)
 		dialogs.relocate_item_section(actor, "ammo_9x39_ap", "in", 2)
 		dialogs.relocate_item_section(actor, "ammo_vog-25", "in", 2)
 		--/ SGM in
-		give_skill_book()
-		give_skill_book()
-		give_secret(1)
+		sgm_g.give_skill_book()
+		sgm_g.give_skill_book()
+		sgm_g.give_secret(1)
 		--/ SGM out
 	end
 end
@@ -1364,8 +1364,8 @@ function jup_b47_bunker_guard_revard(first_speaker, second_speaker) --/Охрана Уч
 	dialogs.relocate_item_section(actor, "drug_antidot", "in", 3)
 	dialogs.relocate_item_section(actor, "drug_radioprotector", "in", 3)
 	--/ SGM in
-	give_skill_book()
-	give_secret(2)
+	sgm_g.give_skill_book()
+	sgm_g.give_secret(2)
 	--/ SGM out
 end
 
@@ -1424,9 +1424,9 @@ end
 function jup_b211_kill_bludsuckers_reward(first_speaker, second_speaker) --/Охота
 	dialogs.relocate_money_to_actor(second_speaker, first_speaker, 3000)
 	--/ SGM in
-	give_skill_book()
-	give_mp3_bonus()
-	give_secret(1)
+	sgm_g.give_skill_book()
+	sgm_g.give_mp3_bonus()
+	sgm_g.give_secret(1)
 	--/ SGM out
 end
 
@@ -1503,7 +1503,7 @@ end
 function jup_b19_reward(first_speaker, second_speaker)
 	treasure_manager.get_treasure_manager():give_treasure("jup_hiding_place_38")
 	--/ SGM in
-	give_skill_book()
+	sgm_g.give_skill_book()
 	--/ SGM out
 end
 
@@ -1629,7 +1629,7 @@ function jup_b206_rasvet_medik_give_arts(first_speaker, second_speaker)
 	dialogs.relocate_item_section_from_actor(first_speaker, second_speaker, "af_quest_b206_dyavol_flowers", 3)
 end
 
-function jup_b206_rasvet_medik_give_reward(first_speaker, second_speaker)
+function jup_b206_rasvet_medik_sgm_g.give_reward(first_speaker, second_speaker)
 	dialogs.relocate_money_to_actor(first_speaker, second_speaker, 10000)
 end
 
@@ -1741,7 +1741,7 @@ function jup_a6_azot_quest_mech_killer_money(first_speaker, second_speaker)
 	db.actor:give_money(-db.actor:money())
 end
 
-function jup_a6_azot_quest_mech_give_rewards(first_speaker, second_speaker)
+function jup_a6_azot_quest_mech_sgm_g.give_rewards(first_speaker, second_speaker)
 	dialogs.relocate_money_to_actor(first_speaker, second_speaker, 25000)
 end
 

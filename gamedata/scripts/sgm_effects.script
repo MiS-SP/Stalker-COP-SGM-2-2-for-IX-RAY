@@ -69,7 +69,7 @@ function effects_update()
    --//Детонация обьекта с бомбой//-->
    if sgm_g.read_mod_param("detonation_charge_id") ~= nil then
       if sgm_g.read_mod_param("detonation_charge_timer") ~= nil and sgm_g.read_mod_param("detonation_charge_timer") <= time_global() then
-         detonate_explosive_charge(sgm_g.read_mod_param("detonation_charge_id"), true)
+         sgm_g.detonate_explosive_charge(sgm_g.read_mod_param("detonation_charge_id"), true)
       end
    end
    sgm_g.check_remote_charge(1)
@@ -86,7 +86,7 @@ function effects_update()
       db.actor.psy_health = 0.25
       level.show_indicators()
       disable_info("actor_in_sleep")
-      abort_game_timer("sleeping_bag_timer")
+      sgm_g.abort_game_timer("sleeping_bag_timer")
    end
    --//Помутнение в глазах//-->
    if sgm_g.check_seconds(1) then

@@ -351,7 +351,7 @@ function action_universal:level_change_setup_spots(scheme_param)
       if scheme_param.level_change_spot[3] == "false" or (scheme_param.level_change_spot[3] == "true" and self.level_change_hidden_spots == false) then
          sgm_g.add_spot_on_map(self.object:id(), scheme_param.level_change_spot[1], scheme_param.level_change_spot[2])
       elseif scheme_param.level_change_spot[3] == "true" and self.level_change_hidden_spots == true then
-         remove_spot_on_map(self.object:id(), scheme_param.level_change_spot[1])
+         sgm_g.remove_spot_on_map(self.object:id(), scheme_param.level_change_spot[1])
       end
    end
 end

@@ -985,6 +985,7 @@ function add_exclusive_job(sect, work_field, smart_ini, job_table)
 		end
 
 		local condlist = xr_logic.parse_condlist(smart, "logic@"..work_field, "suitable", job_suitable)
+		-- ! сюда попадают багованые зомби из копачей без работы
 		local t = { _prior = new_prior,
 								_precondition_is_monster = is_monster,
 								job_id = {  section = "logic@"..work_field,

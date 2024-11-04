@@ -48,11 +48,11 @@ function mod_dialog_precond(first_speaker, second_speaker, dn)
 end
 
 function global_pattern_is_one(actor, npc)
-   return get_global_pattern() == 1
+   return sgm_g.get_global_pattern() == 1
 end
 
 function global_pattern_is_two(actor, npc)
-   return get_global_pattern() == 2
+   return sgm_g.get_global_pattern() == 2
 end
 
 function is_wounded(first_speaker, second_speaker)
@@ -135,8 +135,8 @@ end
 --                       Инфопортационные условия                           --
 ------------------------------------------------------------------------------
 function zat_boroda_gived_noah_message(actor, npc)
-   return has_any_info("zat_monsters_wave_reward,zat_monsters_wave_start,zat_b18_noah_dead,zat_monsters_wave_fail") or
-       dont_any_chosen_info("zat_b28_heli_3_searching,zat_b100_heli_2_searching,zat_b101_heli_5_searching")
+   return sgm_g.has_any_info("zat_monsters_wave_reward,zat_monsters_wave_start,zat_b18_noah_dead,zat_monsters_wave_fail") or
+       sgm_g.dont_any_chosen_info("zat_b28_heli_3_searching,zat_b100_heli_2_searching,zat_b101_heli_5_searching")
 end
 
 function zat_noah_no_new_quests(actor, npc)
@@ -151,15 +151,15 @@ end
 
 function jup_b6_scientist_nuclear_physicist_no_new_quests(actor, npc)
    return sgm_g.dont_has_alife_info("jup_search_anomal_prototype_tip") or
-       (has_alife_info("jup_search_anomal_prototype_tip") and has_any_info("jup_search_anomal_prototype_reward,jup_search_anomal_prototype_fail"))
+       (has_alife_info("jup_search_anomal_prototype_tip") and sgm_g.has_any_info("jup_search_anomal_prototype_reward,jup_search_anomal_prototype_fail"))
 end
 
 function jup_duty_leader_entering_to_dolg_precond(actor, npc)
-   return has_any_info("jup_b207_sell_dealers_pda_duty,jup_b46_duty_founder_pda_to_duty")
+   return sgm_g.has_any_info("jup_b207_sell_dealers_pda_duty,jup_b46_duty_founder_pda_to_duty")
 end
 
 function jup_svoboda_leader_entering_to_freedom_precond(actor, npc)
-   return has_any_info("jup_b207_sell_dealers_pda_freedom,jup_b46_duty_founder_pda_to_freedom")
+   return sgm_g.has_any_info("jup_b207_sell_dealers_pda_freedom,jup_b46_duty_founder_pda_to_freedom")
 end
 
 function pri_signaller_need_toolkits(actor, npc)
@@ -169,7 +169,7 @@ end
 
 function pri_assault_monolith_base_precond(actor, npc)
    if has_chosen_info("pri_a17_gauss_falled,pri_a20_task_gived") and sgm_g.dont_has_alife_info("pri_monolit_base_leader_death") then
-      if has_alife_info("zat_deliver_monolith_case_start") and has_any_info("zat_deliver_monolith_case_fail,zat_deliver_monolith_case_reward") then
+      if has_alife_info("zat_deliver_monolith_case_start") and sgm_g.has_any_info("zat_deliver_monolith_case_fail,zat_deliver_monolith_case_reward") then
          return true
       elseif sgm_g.dont_has_alife_info("zat_deliver_monolith_case_start") then
          return true
@@ -184,34 +184,34 @@ end
 
 function pri_rescue_underground_guide_precond(actor, npc)
    return sgm_g.dont_has_alife_info("pri_zone_cleaning_start") or
-       (has_alife_info("pri_zone_cleaning_start") and (has_any_info("pri_rescue_underground_guide_start,pri_rescue_underground_guide_fail")))
+       (has_alife_info("pri_zone_cleaning_start") and (sgm_g.has_any_info("pri_rescue_underground_guide_start,pri_rescue_underground_guide_fail")))
 end
 
 function pri_expiation_sin_job_precond(actor, npc)
    return has_chosen_info("actor_entry_in_monolith,pri_expiation_sin_1_allow") and
        (sgm_g.dont_has_alife_info("pri_expiation_sin_1_start") or (has_chosen_info("pri_expiation_sin_1_start,pri_expiation_sin_2_allow") and sgm_g.dont_has_alife_info("pri_expiation_sin_2_start")) or (has_chosen_info("pri_expiation_sin_2_start,pri_expiation_sin_3_allow") and sgm_g.dont_has_alife_info("pri_expiation_sin_3_start"))) and
-       dont_has_chosen_info("pri_expiation_sin_1_fail,pri_expiation_sin_2_fail,pri_expiation_sin_3_fail")
+       sgm_g.dont_has_chosen_info("pri_expiation_sin_1_fail,pri_expiation_sin_2_fail,pri_expiation_sin_3_fail")
 end
 
 function pri_expiation_sin_reward_precond(actor, npc)
-   return (has_alife_info("pri_expiation_sin_1_start") and dont_has_chosen_info("pri_expiation_sin_1_fail,pri_expiation_sin_1_bring_all")) or
-       (has_alife_info("pri_expiation_sin_2_start") and dont_has_chosen_info("pri_expiation_sin_2_fail,pri_expiation_sin_2_talk")) or
-       (has_alife_info("pri_expiation_sin_3_start") and dont_has_chosen_info("pri_expiation_sin_3_fail,pri_expiation_sin_3_kiborg_final_talk"))
+   return (has_alife_info("pri_expiation_sin_1_start") and sgm_g.dont_has_chosen_info("pri_expiation_sin_1_fail,pri_expiation_sin_1_bring_all")) or
+       (has_alife_info("pri_expiation_sin_2_start") and sgm_g.dont_has_chosen_info("pri_expiation_sin_2_fail,pri_expiation_sin_2_talk")) or
+       (has_alife_info("pri_expiation_sin_3_start") and sgm_g.dont_has_chosen_info("pri_expiation_sin_3_fail,pri_expiation_sin_3_kiborg_final_talk"))
 end
 
 function pri_expiation_sin_reward_1_precond(actor, npc)
    return has_alife_info("pri_expiation_sin_1_start") and
-       dont_has_chosen_info("pri_expiation_sin_1_fail,pri_expiation_sin_1_bring_all")
+       sgm_g.dont_has_chosen_info("pri_expiation_sin_1_fail,pri_expiation_sin_1_bring_all")
 end
 
 function pri_expiation_sin_reward_2_precond(actor, npc)
    return has_alife_info("pri_expiation_sin_2_start") and
-       dont_has_chosen_info("pri_expiation_sin_2_fail,pri_expiation_sin_2_talk")
+       sgm_g.dont_has_chosen_info("pri_expiation_sin_2_fail,pri_expiation_sin_2_talk")
 end
 
 function pri_expiation_sin_reward_3_precond(actor, npc)
    return has_alife_info("pri_expiation_sin_3_start") and
-       dont_has_chosen_info("pri_expiation_sin_3_fail,pri_expiation_sin_3_kiborg_final_talk")
+       sgm_g.dont_has_chosen_info("pri_expiation_sin_3_fail,pri_expiation_sin_3_kiborg_final_talk")
 end
 
 ------------------------------------------------------------------------------
@@ -277,12 +277,12 @@ end
 
 function zat_frequency_radio_reward(actor, npc)
    dialogs.relocate_money(npc, 2500, "in")
-   give_skill_book()
+   sgm_g.give_skill_book()
 end
 
 function zat_dat_letter_from_agent(actor, npc)
    dialogs.relocate_item_section(actor, "letter_from_agent", "in")
-   game_autosave_assign("save_zat_meet_authorities_agent_letter")
+   sgm_g.game_autosave_assign("save_zat_meet_authorities_agent_letter")
 end
 
 function has_bandit_prikid(actor, npc)
@@ -307,14 +307,14 @@ end
 
 function zat_dostavit_danger_parcel(actor, npc)
    dialogs.relocate_item_section(npc, "zat_danger_parcel", "out")
-   game_autosave_assign("save_zat_danger_parcel_referred")
+   sgm_g.game_autosave_assign("save_zat_danger_parcel_referred")
 end
 
 function zat_kanevskiy_reward(actor, npc)
    dialogs.relocate_money(npc, r_quest_params("number", "zat_avenger_for_parcel_reward", 1500), "in")
-   give_secret(1)
-   give_mp3_bonus()
-   give_skill_book()
+   sgm_g.give_secret(1)
+   sgm_g.give_mp3_bonus()
+   sgm_g.give_skill_book()
 end
 
 function zat_breed_give_acid_star(actor, npc)
@@ -326,36 +326,36 @@ function zat_give_postman_parcel(actor, npc)
 end
 
 function zat_elbrus_unpack(actor, npc)
-   give_reward("wpn_fort")
-   give_skill_book()
-   give_reward("ammo_9x18_pmm")
-   give_reward("ammo_5.45x39_fmj", 2)
-   give_reward("wild_drink", 2)
-   give_reward("medkit")
-   give_reward("bandage", 2)
-   give_mp3_bonus()
+   sgm_g.give_reward("wpn_fort")
+   sgm_g.give_skill_book()
+   sgm_g.give_reward("ammo_9x18_pmm")
+   sgm_g.give_reward("ammo_5.45x39_fmj", 2)
+   sgm_g.give_reward("wild_drink", 2)
+   sgm_g.give_reward("medkit")
+   sgm_g.give_reward("bandage", 2)
+   sgm_g.give_mp3_bonus()
 end
 
 function zat_member_reward1(actor, npc)
-   give_reward("af_cristall_flower")
-   give_reward("ammo_5.45x39_ap", 4)
-   give_reward("personal_rukzak")
-   give_reward("bag_medkit_1")
+   sgm_g.give_reward("af_cristall_flower")
+   sgm_g.give_reward("ammo_5.45x39_ap", 4)
+   sgm_g.give_reward("personal_rukzak")
+   sgm_g.give_reward("bag_medkit_1")
    dialogs.relocate_money(npc, r_quest_params("number", "zat_kill_chapaev_reward1", 2500), "in")
-   give_mp3_bonus()
-   give_secret(1)
-   give_skill_book()
+   sgm_g.give_mp3_bonus()
+   sgm_g.give_secret(1)
+   sgm_g.give_skill_book()
 end
 
 function zat_member_reward2(actor, npc)
-   give_reward("af_cristall_flower")
-   give_reward("ammo_5.45x39_ap", 4)
-   give_reward("personal_rukzak")
-   give_reward("bag_medkit_1")
+   sgm_g.give_reward("af_cristall_flower")
+   sgm_g.give_reward("ammo_5.45x39_ap", 4)
+   sgm_g.give_reward("personal_rukzak")
+   sgm_g.give_reward("bag_medkit_1")
    dialogs.relocate_money(npc, r_quest_params("number", "zat_kill_chapaev_reward2", 6000), "in")
-   give_mp3_bonus()
-   give_secret(2)
-   give_skill_book()
+   sgm_g.give_mp3_bonus()
+   sgm_g.give_secret(2)
+   sgm_g.give_skill_book()
 end
 
 function has_kasilov_pda(actor, npc)
@@ -372,11 +372,11 @@ end
 
 --------------------------------
 function zat_ostavit_wounded_medkit(actor, npc)
-   create("medkit", 434.579, 33.472, -312.569, 1679156, 74)
+   sgm_g.create("medkit", 434.579, 33.472, -312.569, 1679156, 74)
 end
 
 function zat_dat_monolith_case(actor, npc)
-   create("zat_intercepted_case", 431.563, 32.664, -291.537, 1676844, 74)
+   sgm_g.create("zat_intercepted_case", 431.563, 32.664, -291.537, 1676844, 74)
 end
 
 function zat_kill_shakal_have_weapon(actor, npc)
@@ -388,15 +388,15 @@ function zat_kill_shakal_give_weapon(actor, npc)
 end
 
 function zat_kill_shakal_chapaev_reward(actor, npc)
-   give_reward("ammo_box_10_vog")
-   give_reward("wpn_addon_grenade_launcher")
-   give_reward("ammo_5.45x39_ap", 5)
-   give_reward("repair_arms_box")
-   give_reward("conventer_grenade_box")
+   sgm_g.give_reward("ammo_box_10_vog")
+   sgm_g.give_reward("wpn_addon_grenade_launcher")
+   sgm_g.give_reward("ammo_5.45x39_ap", 5)
+   sgm_g.give_reward("repair_arms_box")
+   sgm_g.give_reward("conventer_grenade_box")
    dialogs.relocate_money(npc, r_quest_params("number", "zat_kill_shakal_reward", 5000), "in")
-   give_mp3_bonus()
-   give_secret(1)
-   give_skill_book()
+   sgm_g.give_mp3_bonus()
+   sgm_g.give_secret(1)
+   sgm_g.give_skill_book()
 end
 
 function zat_kill_shakal_predatel_give_weapon(actor, npc)
@@ -423,7 +423,7 @@ function zat_actor_set_bandit(actor, npc)
    disable_info("actor_entry_in_dolg")
    disable_info("actor_entry_in_freedom")
    give_info("actor_noted_bandits")
-   give_skill_book()
+   sgm_g.give_skill_book()
 end
 
 function zat_actor_exit_bandit(actor, npc)
@@ -446,18 +446,18 @@ function zat_bring_flash_light_otdat(actor, npc)
 end
 
 function zat_bring_flash_light_reward(actor, npc)
-   give_reward("ammo_9x18_pmm", 2)
-   give_reward("ammo_9x19_pbp", 2)
-   give_reward("ammo_12x76_zhekan", 2)
-   give_reward("ammo_5.45x39_ap", 2)
-   give_reward("grenade_f1", 3)
+   sgm_g.give_reward("ammo_9x18_pmm", 2)
+   sgm_g.give_reward("ammo_9x19_pbp", 2)
+   sgm_g.give_reward("ammo_12x76_zhekan", 2)
+   sgm_g.give_reward("ammo_5.45x39_ap", 2)
+   sgm_g.give_reward("grenade_f1", 3)
    dialogs.relocate_money(npc, r_quest_params("number", "zat_bring_flash_light_reward", 1500), "in")
-   give_secret(1)
-   give_skill_book()
+   sgm_g.give_secret(1)
+   sgm_g.give_skill_book()
 end
 
 function zat_bring_drink_beylis_spawn(actor, npc)
-   create("quest_drink_beylis", 14.202, 25.651, -186.700, 736134, 356)
+   sgm_g.create("quest_drink_beylis", 14.202, 25.651, -186.700, 736134, 356)
    give_info("guide_is_gratis")
 end
 
@@ -467,14 +467,14 @@ function zat_bring_drink_beylis_otdat(actor, npc)
 end
 
 function zat_bring_drink_beylis_reward(actor, npc)
-   give_reward("nuts", 3)
-   give_reward("wild_drink", 5)
-   give_reward("energy_drink", 6)
-   give_reward("af_cristall_flower")
+   sgm_g.give_reward("nuts", 3)
+   sgm_g.give_reward("wild_drink", 5)
+   sgm_g.give_reward("energy_drink", 6)
+   sgm_g.give_reward("af_cristall_flower")
    dialogs.relocate_money(npc, r_quest_params("number", "zat_bring_drink_beylis_reward", 2000), "in")
-   give_secret(1)
-   give_mp3_bonus()
-   give_skill_book()
+   sgm_g.give_secret(1)
+   sgm_g.give_mp3_bonus()
+   sgm_g.give_skill_book()
 end
 
 function zat_bring_sharpshooter_bino_otdat(actor, npc)
@@ -482,39 +482,39 @@ function zat_bring_sharpshooter_bino_otdat(actor, npc)
 end
 
 function zat_bring_sharpshooter_bino_reward(actor, npc)
-   give_reward("af_mincer_meat")
-   give_reward("ammo_dumdum")
-   give_reward("wpn_sig550")
-   give_reward("ammo_5.56x45_ap", 2)
-   give_reward("bio_bandage", 5)
-   give_reward("antirad", 5)
-   give_reward("bag_medkit_2")
+   sgm_g.give_reward("af_mincer_meat")
+   sgm_g.give_reward("ammo_dumdum")
+   sgm_g.give_reward("wpn_sig550")
+   sgm_g.give_reward("ammo_5.56x45_ap", 2)
+   sgm_g.give_reward("bio_bandage", 5)
+   sgm_g.give_reward("antirad", 5)
+   sgm_g.give_reward("bag_medkit_2")
    dialogs.relocate_money(npc, r_quest_params("number", "zat_bring_sharpshooter_bino_reward", 5000), "in")
-   give_secret(1)
-   give_mp3_bonus()
-   give_skill_book()
+   sgm_g.give_secret(1)
+   sgm_g.give_mp3_bonus()
+   sgm_g.give_skill_book()
 end
 
 function zat_monsters_wave_reward(actor, npc)
-   give_skill_book()
-   give_reward("af_geliy")
+   sgm_g.give_skill_book()
+   sgm_g.give_reward("af_geliy")
    local rnd_outfit = math.random(1, 3)
    if rnd_outfit == 1 then
-      give_reward("scientific_outfit")
+      sgm_g.give_reward("scientific_outfit")
    elseif rnd_outfit == 2 then
-      give_reward("svoboda_heavy_outfit")
+      sgm_g.give_reward("svoboda_heavy_outfit")
    else
-      give_reward("heavy_stalker_outfit")
+      sgm_g.give_reward("heavy_stalker_outfit")
    end
    if get_actor_slot_item("wpn_ak", "pistol") or get_actor_slot_item("wpn_ak", "rifle") then
-      give_reward("ammo_5.45x39_ap", 4)
+      sgm_g.give_reward("ammo_5.45x39_ap", 4)
    else
-      give_reward("ammo_5.56x45_ap", 4)
+      sgm_g.give_reward("ammo_5.56x45_ap", 4)
    end
-   give_reward("ammo_7.62x54_7h1", 2)
+   sgm_g.give_reward("ammo_7.62x54_7h1", 2)
    dialogs.relocate_money(npc, r_quest_params("number", "zat_monsters_wave_reward", 6000), "in")
-   give_secret(2)
-   give_mp3_bonus()
+   sgm_g.give_secret(2)
+   sgm_g.give_mp3_bonus()
 end
 
 function zat_wisdom_books_bring_books(actor, npc)
@@ -527,36 +527,36 @@ function zat_mad_dog_bring_alfa_pda(actor, npc)
    dialogs.relocate_item_section(npc, "zat_mad_dog_pda", "out")
 end
 
-function zat_wisdom_books_give_reward(actor, npc)
+function zat_wisdom_books_sgm_g.give_reward(actor, npc)
    dialogs.relocate_money(npc, r_quest_params("number", "zat_wisdom_books_reward", 4000), "in")
-   give_secret(1)
-   give_skill_book()
+   sgm_g.give_secret(1)
+   sgm_g.give_skill_book()
 end
 
-function zat_mad_dog_give_reward(actor, npc)
-   give_reward("ammo_5.56x45_ap", 2)
-   give_reward("ammo_5.45x39_ap", 2)
+function zat_mad_dog_sgm_g.give_reward(actor, npc)
+   sgm_g.give_reward("ammo_5.56x45_ap", 2)
+   sgm_g.give_reward("ammo_5.45x39_ap", 2)
    if get_rnd(1, 2) == 1 then
-      give_reward("repair_outfit_box")
+      sgm_g.give_reward("repair_outfit_box")
    else
-      give_reward("repair_arms_box")
+      sgm_g.give_reward("repair_arms_box")
    end
    dialogs.relocate_money(npc, r_quest_params("number", "zat_mad_dog_reward", 6000), "in")
-   give_secret(1)
-   give_skill_book()
+   sgm_g.give_secret(1)
+   sgm_g.give_skill_book()
 end
 
 function zat_carrying_antidote_bring_antidote(actor, npc)
    dialogs.relocate_item_section(npc, "zat_medic_antidote", "out")
 end
 
-function zat_carrying_antidote_give_reward(actor, npc)
-   give_reward("psy_complex", 2)
-   give_reward("bio_bandage", 5)
-   give_reward("medkit_scientic", 3)
+function zat_carrying_antidote_sgm_g.give_reward(actor, npc)
+   sgm_g.give_reward("psy_complex", 2)
+   sgm_g.give_reward("bio_bandage", 5)
+   sgm_g.give_reward("medkit_scientic", 3)
    dialogs.relocate_money(npc, r_quest_params("number", "zat_carrying_antidote_reward", 3000), "in")
-   give_secret(1)
-   give_skill_book()
+   sgm_g.give_secret(1)
+   sgm_g.give_skill_book()
 end
 
 function zat_alfa_sabotage_has_frequency_radio(actor, npc)
@@ -585,29 +585,29 @@ function zat_alfa_sabotage_order(actor, npc)
 end
 
 function zat_alfa_sabotage_spawn_simply_raciya(actor, npc)
-   create("jup_azot_simply_raciya", 343.4856262207, 28.387922286987, -371.89581298828, 1266369, 627)
+   sgm_g.create("jup_azot_simply_raciya", 343.4856262207, 28.387922286987, -371.89581298828, 1266369, 627)
 end
 
 function zat_alfa_sabotage_spawn_charges(actor, npc)
-   create("zat_alfa_sabotage_charge_1", 110.61460113525, 1.358048081398, 183.38803100586, 1154084, 316)
-   create("zat_alfa_sabotage_charge_2", 1.5656116008759, 7.1984701156616, 36.296241760254, 939821, 19)
-   create("zat_alfa_sabotage_charge_3", -56.464656829834, 3.4883720874786, 212.57615661621, 626115, 413)
-   create("zat_alfa_sabotage_charge_4", -218.9129486084, -3.5366911888123, 68.095611572266, 344679, 385)
-   create("zat_alfa_sabotage_charge_5", 54.211204528809, 25.035531997681, -169.15927124023, 809015, 357)
+   sgm_g.create("zat_alfa_sabotage_charge_1", 110.61460113525, 1.358048081398, 183.38803100586, 1154084, 316)
+   sgm_g.create("zat_alfa_sabotage_charge_2", 1.5656116008759, 7.1984701156616, 36.296241760254, 939821, 19)
+   sgm_g.create("zat_alfa_sabotage_charge_3", -56.464656829834, 3.4883720874786, 212.57615661621, 626115, 413)
+   sgm_g.create("zat_alfa_sabotage_charge_4", -218.9129486084, -3.5366911888123, 68.095611572266, 344679, 385)
+   sgm_g.create("zat_alfa_sabotage_charge_5", 54.211204528809, 25.035531997681, -169.15927124023, 809015, 357)
 end
 
 function zat_alfa_sabotage_reward_1(actor, npc)
    dialogs.relocate_money(npc, 6500, "in")
-   give_reward("ammo_5.56x45_ap", 3)
-   give_secret(1)
-   give_random_treasure()
+   sgm_g.give_reward("ammo_5.56x45_ap", 3)
+   sgm_g.give_secret(1)
+   sgm_g.give_random_treasure()
 end
 
 function zat_alfa_sabotage_reward_2(actor, npc)
    dialogs.relocate_money(npc, 7000, "in")
-   give_reward("ammo_5.45x39_ap", 3)
-   give_secret(1)
-   give_random_treasure()
+   sgm_g.give_reward("ammo_5.45x39_ap", 3)
+   sgm_g.give_secret(1)
+   sgm_g.give_random_treasure()
 end
 
 function jup_killer_base_chief_actor_has_outfit(actor, npc, p)
@@ -631,22 +631,22 @@ end
 function jup_bring_heavy_medkits_otdat(actor, npc)
    local rnd_spawn = math.random(1, 2)
    if rnd_spawn == 1 then
-      create("af_quest_b206_dyavol_flowers", 10.661, 8.974, -394.485, 964902, 8)
-      create("af_quest_b206_dyavol_flowers", -51.088, 24.606, 330.400, 852203, 60)
-      create("af_quest_b206_dyavol_flowers", 222.835, 11.968, -128.712, 1097175, 331)
+      sgm_g.create("af_quest_b206_dyavol_flowers", 10.661, 8.974, -394.485, 964902, 8)
+      sgm_g.create("af_quest_b206_dyavol_flowers", -51.088, 24.606, 330.400, 852203, 60)
+      sgm_g.create("af_quest_b206_dyavol_flowers", 222.835, 11.968, -128.712, 1097175, 331)
    else
-      create("af_quest_b206_dyavol_flowers", 13.686, 12.526, -407.086, 971831, 8)
-      create("af_quest_b206_dyavol_flowers", -22.177, 24.794, 321.172, 895898, 60)
-      create("af_quest_b206_dyavol_flowers", -395.112, 14.373, 350.727, 53091, 422)
+      sgm_g.create("af_quest_b206_dyavol_flowers", 13.686, 12.526, -407.086, 971831, 8)
+      sgm_g.create("af_quest_b206_dyavol_flowers", -22.177, 24.794, 321.172, 895898, 60)
+      sgm_g.create("af_quest_b206_dyavol_flowers", -395.112, 14.373, 350.727, 53091, 422)
    end
    dialogs.relocate_item_section(npc, "quest_heavy_medkits", "out")
 end
 
 function jup_bring_heavy_medkits_reward(actor, npc)
-   give_reward("geiger_counter")
+   sgm_g.give_reward("geiger_counter")
    dialogs.relocate_money(npc, r_quest_params("number", "jup_bring_heavy_medkits_reward", 3000), "in")
-   give_secret(1)
-   give_skill_book()
+   sgm_g.give_secret(1)
+   sgm_g.give_skill_book()
 end
 
 function jup_bring_photo_device_otdat(actor, npc)
@@ -654,12 +654,12 @@ function jup_bring_photo_device_otdat(actor, npc)
 end
 
 function jup_bring_photo_device_reward(actor, npc)
-   give_reward("repair_arms_box")
-   give_reward("drug_coagulant")
+   sgm_g.give_reward("repair_arms_box")
+   sgm_g.give_reward("drug_coagulant")
    dialogs.relocate_money(npc, r_quest_params("number", "jup_bring_photo_device_reward", 2000), "in")
-   give_secret(1)
-   give_mp3_bonus()
-   give_skill_book()
+   sgm_g.give_secret(1)
+   sgm_g.give_mp3_bonus()
+   sgm_g.give_skill_book()
 end
 
 function jup_bring_arms_case_otdat(actor, npc)
@@ -667,14 +667,14 @@ function jup_bring_arms_case_otdat(actor, npc)
 end
 
 function jup_bring_arms_case_reward(actor, npc)
-   give_reward("ammo_dumdum")
-   give_reward("ammo_5.45x39_ap", 6)
-   give_reward("remote_explosive_charge")
-   give_reward("af_electra_moonlight")
+   sgm_g.give_reward("ammo_dumdum")
+   sgm_g.give_reward("ammo_5.45x39_ap", 6)
+   sgm_g.give_reward("remote_explosive_charge")
+   sgm_g.give_reward("af_electra_moonlight")
    dialogs.relocate_money(npc, r_quest_params("number", "jup_bring_arms_case_reward", 6500), "in")
-   give_secret(2)
-   give_mp3_bonus()
-   give_skill_book()
+   sgm_g.give_secret(2)
+   sgm_g.give_mp3_bonus()
+   sgm_g.give_skill_book()
 end
 
 function jup_gromoboy_dont_vintar(actor, npc)
@@ -698,21 +698,21 @@ function jup_gromoboy_give_thief_pda(actor, npc)
 end
 
 function jup_find_gromoboy_vintar_reward(actor, npc)
-   give_reward("af_cristall")
-   give_reward("drug_anabiotic")
-   give_reward("repair_arms_box")
-   give_reward("ammo_5.45x39_ap", 3)
-   give_reward("ammo_7.62x54_7h1", 2)
+   sgm_g.give_reward("af_cristall")
+   sgm_g.give_reward("drug_anabiotic")
+   sgm_g.give_reward("repair_arms_box")
+   sgm_g.give_reward("ammo_5.45x39_ap", 3)
+   sgm_g.give_reward("ammo_7.62x54_7h1", 2)
    dialogs.relocate_money(npc, r_quest_params("number", "jup_find_gromoboy_vintar_reward1", 8000), "in")
-   give_mp3_bonus()
-   give_secret(1)
-   give_skill_book()
+   sgm_g.give_mp3_bonus()
+   sgm_g.give_secret(1)
+   sgm_g.give_skill_book()
 end
 
 function jup_find_gromoboy_vintar_fake_reward(actor, npc)
    dialogs.relocate_money(npc, r_quest_params("number", "jup_find_gromoboy_vintar_reward2", 16000), "in")
-   give_mp3_bonus()
-   give_skill_book()
+   sgm_g.give_mp3_bonus()
+   sgm_g.give_skill_book()
 end
 
 function jup_set_bad_stalker(actor, npc)
@@ -722,21 +722,21 @@ end
 
 function jup_beat_from_monsters_reward(actor, npc)
    dialogs.relocate_money(npc, r_quest_params("number", "jup_beat_from_monsters_reward", 5000), "in")
-   give_reward("repair_outfit_box")
-   give_reward("repair_arms_box")
-   give_reward("conventer_grenade_box")
-   give_mp3_bonus()
+   sgm_g.give_reward("repair_outfit_box")
+   sgm_g.give_reward("repair_arms_box")
+   sgm_g.give_reward("conventer_grenade_box")
+   sgm_g.give_mp3_bonus()
    clear_all_objects("monster", 10, 250)
-   give_secret(1)
-   give_skill_book()
+   sgm_g.give_secret(1)
+   sgm_g.give_skill_book()
 end
 
 function jup_rasvet_equipments(actor, npc)
-   give_reward("cs_heavy_outfit")
-   give_reward("wpn_mp5")
-   give_reward("ammo_9x19_pbp", 4)
-   give_reward("wpn_pb")
-   give_reward("ammo_9x18_pmm", 4)
+   sgm_g.give_reward("cs_heavy_outfit")
+   sgm_g.give_reward("wpn_mp5")
+   sgm_g.give_reward("ammo_9x19_pbp", 4)
+   sgm_g.give_reward("wpn_pb")
+   sgm_g.give_reward("ammo_9x18_pmm", 4)
 end
 
 function jup_actor_set_rasvet(actor, npc)
@@ -745,7 +745,7 @@ function jup_actor_set_rasvet(actor, npc)
    disable_info("jup_rasvet_base_actor_hit")
    disable_info("jup_rasvet_base_hit")
    create_base_treasure("jup_rasvet_base_treasure", -346.514, 3.733, 412.493, 130860, 435)
-   create("jup_rasvet_base_treasure_spot", -346.514, 3.733, 412.493, 130860, 435)
+   sgm_g.create("jup_rasvet_base_treasure_spot", -346.514, 3.733, 412.493, 130860, 435)
    disable_info("actor_entry_in_bandit")
    give_info("actor_entry_in_rasvet")
    disable_info("actor_entry_in_monolith")
@@ -754,7 +754,7 @@ function jup_actor_set_rasvet(actor, npc)
    disable_info("actor_entry_in_freedom")
    give_info("jup_search_treasure_start")
    give_info("actor_noted_rasvets")
-   add_task("sgm_jup_search_treasure")
+   sgm_g.add_task("sgm_jup_search_treasure")
 end
 
 function jup_actor_exit_rasvet(actor, npc)
@@ -770,38 +770,38 @@ end
 
 function jup_destroy_night_killers_reward(actor, npc)
    dialogs.relocate_money(npc, r_quest_params("number", "jup_destroy_night_killers_reward", 5000), "in")
-   give_reward("ammo_7.62x54_7h1", 2)
-   give_reward("repair_outfit_box")
-   give_mp3_bonus()
-   give_secret(1)
-   give_skill_book()
+   sgm_g.give_reward("ammo_7.62x54_7h1", 2)
+   sgm_g.give_reward("repair_outfit_box")
+   sgm_g.give_mp3_bonus()
+   sgm_g.give_secret(1)
+   sgm_g.give_skill_book()
 end
 
 function jup_rasvet_eliminate_burrows_reward(actor, npc)
    dialogs.relocate_money(npc, r_quest_params("number", "jup_rasvet_eliminate_burrow_reward", 10000), "in")
-   give_skill_book()
-   give_skill_book()
+   sgm_g.give_skill_book()
+   sgm_g.give_skill_book()
    local rnd_wpn_reward = math.random(1, 2)
    if rnd_wpn_reward == 1 then
-      give_reward("wpn_vintorez_m2")
-      give_reward("ammo_9x39_ap", 2)
+      sgm_g.give_reward("wpn_vintorez_m2")
+      sgm_g.give_reward("ammo_9x39_ap", 2)
    else
-      give_reward("wpn_groza_m3")
-      give_reward("ammo_9x39_ap", 2)
+      sgm_g.give_reward("wpn_groza_m3")
+      sgm_g.give_reward("ammo_9x39_ap", 2)
    end
-   give_reward("ammo_5.56x45_ap")
-   give_reward("ammo_5.45x39_ap")
-   give_reward("repair_outfit_box")
+   sgm_g.give_reward("ammo_5.56x45_ap")
+   sgm_g.give_reward("ammo_5.45x39_ap")
+   sgm_g.give_reward("repair_outfit_box")
    local rnd_af_reward = math.random(1, 3)
    if rnd_af_reward == 1 then
-      give_reward("af_gold_fish")
+      sgm_g.give_reward("af_gold_fish")
    elseif rnd_af_reward == 2 then
-      give_reward("af_baloon")
+      sgm_g.give_reward("af_baloon")
    else
-      give_reward("af_glass")
+      sgm_g.give_reward("af_glass")
    end
-   give_secret(2)
-   give_mp3_bonus()
+   sgm_g.give_secret(2)
+   sgm_g.give_mp3_bonus()
 end
 
 function jup_follow_scientists_reward(actor, npc)
@@ -811,12 +811,12 @@ function jup_follow_scientists_reward(actor, npc)
       if reward_fails == 0 then
          dialogs.relocate_money(npc, r_quest_params("number", "jup_follow_scientists_reward1", 4000), "in")
          if rnd_super_reward == 1 then
-            give_reward("drug_engine")
+            sgm_g.give_reward("drug_engine")
          end
       elseif reward_fails == 1 then
          dialogs.relocate_money(npc, r_quest_params("number", "jup_follow_scientists_reward2", 3000), "in")
          if rnd_super_reward == 2 then
-            give_reward("drug_engine")
+            sgm_g.give_reward("drug_engine")
          end
       elseif reward_fails == 2 then
          dialogs.relocate_money(npc, r_quest_params("number", "jup_follow_scientists_reward3", 2000), "in")
@@ -826,21 +826,21 @@ function jup_follow_scientists_reward(actor, npc)
          dialogs.relocate_money(npc, r_quest_params("number", "jup_follow_scientists_reward5", 500), "in")
       end
    end
-   give_reward("bio_bandage", 3)
-   give_reward("wild_drink", 2)
-   give_reward("af_electra_moonlight")
-   give_mp3_bonus()
+   sgm_g.give_reward("bio_bandage", 3)
+   sgm_g.give_reward("wild_drink", 2)
+   sgm_g.give_reward("af_electra_moonlight")
+   sgm_g.give_mp3_bonus()
    if sgm_g.read_mod_param("jup_fw_scientists_deaths") ~= nil then
       clear_mod_param("jup_fw_scientists_deaths")
    end
-   give_secret(1)
-   give_skill_book()
+   sgm_g.give_secret(1)
+   sgm_g.give_skill_book()
 end
 
 function jup_avoid_witnesses_reward(actor, npc)
-   give_reward("money_meshochek_4000_5000")
-   give_secret(1)
-   give_skill_book()
+   sgm_g.give_reward("money_meshochek_4000_5000")
+   sgm_g.give_secret(1)
+   sgm_g.give_skill_book()
 end
 
 function has_detector_modify_toolkit(actor, npc)
@@ -860,10 +860,10 @@ function jup_sokolov_gives_heli_key(actor, npc)
 end
 
 function jup_rasvet_destroy_snorks_reward(actor, npc)
-   give_reward("bag_medkit_2")
+   sgm_g.give_reward("bag_medkit_2")
    dialogs.relocate_money(npc, r_quest_params("number", "jup_rasvet_destroy_snorks_reward", 2500), "in")
-   give_secret(1)
-   give_skill_book()
+   sgm_g.give_secret(1)
+   sgm_g.give_skill_book()
 end
 
 function jup_mercenary_check_plant_has_medikaments(actor, npc)
@@ -876,7 +876,7 @@ end
 
 function jup_mercenary_check_plant_gives_medikaments(first_speaker, second_speaker)
    dialogs.relocate_item_section_from_actor(first_speaker, second_speaker, "psy_complex", 4)
-   game_autosave_assign("save_jup_mercenary_check_plant_psy_kit_otdani")
+   sgm_g.game_autosave_assign("save_jup_mercenary_check_plant_psy_kit_otdani")
 end
 
 function jup_mercenary_check_plant_supply_cash(actor, npc)
@@ -885,22 +885,22 @@ end
 
 function jup_mercenary_check_plant_reward(actor, npc)
    dialogs.relocate_money(npc, r_quest_params("number", "jup_mercenary_check_plant_reward", 8000), "in")
-   give_reward("af_gold_fish")
-   give_reward("wpn_lr300_m3")
-   give_reward("ammo_5.56x45_ap", 5)
-   give_reward("ammo_5.45x39_ap", 5)
-   give_reward("repair_outfit_box")
-   give_reward("repair_arms_box")
-   give_skill_book()
-   give_secret(2)
-   give_mp3_bonus()
+   sgm_g.give_reward("af_gold_fish")
+   sgm_g.give_reward("wpn_lr300_m3")
+   sgm_g.give_reward("ammo_5.56x45_ap", 5)
+   sgm_g.give_reward("ammo_5.45x39_ap", 5)
+   sgm_g.give_reward("repair_outfit_box")
+   sgm_g.give_reward("repair_arms_box")
+   sgm_g.give_skill_book()
+   sgm_g.give_secret(2)
+   sgm_g.give_mp3_bonus()
 end
 
 function jup_mercenary_check_plant_equipments(actor, npc)
-   give_reward("wpn_sig550_m3")
-   give_reward("ammo_5.56x45_ap", 5)
-   give_reward("wpn_sig220_m3")
-   give_reward("ammo_11.43x23_hydro", 5)
+   sgm_g.give_reward("wpn_sig550_m3")
+   sgm_g.give_reward("ammo_5.56x45_ap", 5)
+   sgm_g.give_reward("wpn_sig220_m3")
+   sgm_g.give_reward("ammo_11.43x23_hydro", 5)
 end
 
 function jup_actor_set_killer(actor, npc)
@@ -937,9 +937,9 @@ function jup_actor_set_freedom(actor, npc)
    disable_info("actor_entry_in_bandit")
    disable_info("actor_entry_in_dolg")
    give_info("actor_noted_freedoms")
-   give_reward("svoboda_light_outfit")
+   sgm_g.give_reward("svoboda_light_outfit")
    dialogs.relocate_money(npc, 2000, "in")
-   give_skill_book()
+   sgm_g.give_skill_book()
 end
 
 function jup_actor_set_dolg(actor, npc)
@@ -952,9 +952,9 @@ function jup_actor_set_dolg(actor, npc)
    disable_info("actor_entry_in_bandit")
    disable_info("actor_entry_in_freedom")
    give_info("actor_noted_dolgs")
-   give_reward("dolg_outfit")
+   sgm_g.give_reward("dolg_outfit")
    dialogs.relocate_money(npc, 2000, "in")
-   give_skill_book()
+   sgm_g.give_skill_book()
 end
 
 function jup_actor_exit_dolg(actor, npc)
@@ -980,11 +980,11 @@ function jup_actor_exit_freedom(actor, npc)
 end
 
 function jup_search_anomal_prototype_is_retail(actor, npc)
-   return not check_item_count("af_prodigy", 2, true)
+   return not sgm_g.check_item_count("af_prodigy", 2, true)
 end
 
 function jup_search_anomal_prototype_is_gross(actor, npc)
-   return check_item_count("af_prodigy", 2, true)
+   return sgm_g.check_item_count("af_prodigy", 2, true)
 end
 
 function jup_search_anomal_prototype_anyhas(actor, npc)
@@ -1033,9 +1033,9 @@ end
 
 function jup_search_anomal_prototype_mini_reward(actor, npc)
    dialogs.relocate_money(npc, r_quest_params("number", "jup_search_anomal_prototype_reward", 5000), "in")
-   give_secret(1)
-   give_mp3_bonus()
-   give_skill_book()
+   sgm_g.give_secret(1)
+   sgm_g.give_mp3_bonus()
+   sgm_g.give_skill_book()
    jup_search_anomal_prototype_bonus_spawner()
 end
 
@@ -1046,34 +1046,34 @@ function jup_search_anomal_prototype_full_reward(actor, npc)
    dialogs.relocate_item_section(actor, "af_prodigy_4_processed", "in")
    dialogs.relocate_item_section(actor, "af_prodigy_5_processed", "in")
    dialogs.relocate_item_section(actor, "af_prodigy_6_processed", "in")
-   give_secret(2)
-   give_mp3_bonus()
-   give_skill_book()
+   sgm_g.give_secret(2)
+   sgm_g.give_mp3_bonus()
+   sgm_g.give_skill_book()
    jup_search_anomal_prototype_bonus_spawner()
 end
 
 function jup_search_anomal_prototype_bonus_spawner()
    give_info("jup_search_anomal_prototype_gather_allowed")
    if get_rnd(1, 2) == 1 then
-      create("af_prodigy_" .. math.random(1, 6) .. "_danger", 373.508, 34.622, -21.3042, 1583613, 294)
-      create("af_prodigy_" .. math.random(1, 6) .. "_danger", 291.529, -2.278, -240.180, 1462319, 43)
+      sgm_g.create("af_prodigy_" .. math.random(1, 6) .. "_danger", 373.508, 34.622, -21.3042, 1583613, 294)
+      sgm_g.create("af_prodigy_" .. math.random(1, 6) .. "_danger", 291.529, -2.278, -240.180, 1462319, 43)
    else
-      create("af_prodigy_" .. math.random(1, 6) .. "_danger", 204.115, 25.240, -444.690, 1311890, 312)
-      create("af_prodigy_" .. math.random(1, 6) .. "_danger", -70.158, 7.920, 244.519, 771013, 36)
+      sgm_g.create("af_prodigy_" .. math.random(1, 6) .. "_danger", 204.115, 25.240, -444.690, 1311890, 312)
+      sgm_g.create("af_prodigy_" .. math.random(1, 6) .. "_danger", -70.158, 7.920, 244.519, 771013, 36)
    end
    if get_rnd(1, 2) == 1 then
-      create("af_prodigy_" .. math.random(1, 6) .. "_danger", -206.391, 3.342, -426.363, 366735, 480)
-      create("af_prodigy_" .. math.random(1, 6) .. "_danger", 454.237, 27.313, -458.344, 1436859, 555)
+      sgm_g.create("af_prodigy_" .. math.random(1, 6) .. "_danger", -206.391, 3.342, -426.363, 366735, 480)
+      sgm_g.create("af_prodigy_" .. math.random(1, 6) .. "_danger", 454.237, 27.313, -458.344, 1436859, 555)
    else
-      create("af_prodigy_" .. math.random(1, 6) .. "_danger", 231.155, -5.688, 432.597, 1111538, 514)
-      create("af_prodigy_" .. math.random(1, 6) .. "_danger", 103.302, 24.210, -175.352, 891699, 358)
+      sgm_g.create("af_prodigy_" .. math.random(1, 6) .. "_danger", 231.155, -5.688, 432.597, 1111538, 514)
+      sgm_g.create("af_prodigy_" .. math.random(1, 6) .. "_danger", 103.302, 24.210, -175.352, 891699, 358)
    end
    if get_rnd(1, 2) == 1 then
-      create("af_prodigy_" .. math.random(1, 6) .. "_danger", -28.861, -0.235, 130.624, 159879, 757)
-      create("af_prodigy_" .. math.random(1, 6) .. "_danger", -5.860, -0.421, -321.150, 189238, 781)
+      sgm_g.create("af_prodigy_" .. math.random(1, 6) .. "_danger", -28.861, -0.235, 130.624, 159879, 757)
+      sgm_g.create("af_prodigy_" .. math.random(1, 6) .. "_danger", -5.860, -0.421, -321.150, 189238, 781)
    else
-      create("af_prodigy_" .. math.random(1, 6) .. "_danger", -135.823, -0.526, 50.636, 64182, 744)
-      create("af_prodigy_" .. math.random(1, 6) .. "_danger", -193.646, -2.155, -40.579, 27225, 749)
+      sgm_g.create("af_prodigy_" .. math.random(1, 6) .. "_danger", -135.823, -0.526, 50.636, 64182, 744)
+      sgm_g.create("af_prodigy_" .. math.random(1, 6) .. "_danger", -193.646, -2.155, -40.579, 27225, 749)
    end
    disable_info("opt_deactivate_blackday")
 end
@@ -1083,72 +1083,72 @@ function jup_examine_caravan_bring_case(actor, npc)
 end
 
 function jup_examine_caravan_reward(actor, npc)
-   give_reward("af_gravi")
-   give_reward("wpn_addon_grenade_launcher_m203")
-   give_reward("ammo_5.56x45_ap", 3)
-   give_reward("medkit", 5)
+   sgm_g.give_reward("af_gravi")
+   sgm_g.give_reward("wpn_addon_grenade_launcher_m203")
+   sgm_g.give_reward("ammo_5.56x45_ap", 3)
+   sgm_g.give_reward("medkit", 5)
    dialogs.relocate_money(npc, r_quest_params("number", "jup_examine_caravan_reward", 5000), "in")
-   give_skill_book()
-   give_secret(1)
+   sgm_g.give_skill_book()
+   sgm_g.give_secret(1)
 end
 
 function jup_liquidate_valet_reward(actor, npc)
-   give_reward("wpn_addon_scope_susat_night")
-   give_reward("medkit_army", 4)
-   give_reward("af_soul_breeding_1,af_soul_breeding_2,af_soul_breeding_3")
+   sgm_g.give_reward("wpn_addon_scope_susat_night")
+   sgm_g.give_reward("medkit_army", 4)
+   sgm_g.give_reward("af_soul_breeding_1,af_soul_breeding_2,af_soul_breeding_3")
    dialogs.relocate_money(npc, r_quest_params("number", "jup_liquidate_valet_reward", 4000), "in")
-   give_skill_book()
-   give_secret(1)
+   sgm_g.give_skill_book()
+   sgm_g.give_secret(1)
 end
 
 function jup_weak_lighthouse_squad(actor, npc)
-   create("jup_killer_lighthouse_commander", 179.56494140625, 28.135843276978, -418.63854980469, 1021862, 610)
-   create("jup_killer_lighthouse_soldier1", 176.67922973633, 28.144834518433, -420.56182861328, 1015685, 610)
-   create("jup_killer_lighthouse_soldier2", 177.10800170898, 28.107587814331, -415.18139648438, 1016937, 610)
-   create("jup_killer_lighthouse_soldier3", 181.08056640625, 28.10871887207, -415.2333984375, 1024376, 610)
-   create("jup_killer_lighthouse_soldier4", 181.15676879883, 28.182388305664, -422.20678710938, 1024366, 610)
-   create("snork_normal", 402.08880615234, 24.160182952881, -376.27767944336, 1349065, 629)
-   create("snork_normal", 396.13754272461, 24.184753417969, -364.63595581055, 1339917, 629)
-   create("snork_normal", 411.87719726563, 24.361669540405, -388.25653076172, 1365417, 629)
-   create("snork_normal", 421.63070678711, 24.821136474609, -401.56262207031, 1381409, 629)
-   create("snork_normal", 421.32196044922, 24.457586288452, -382.21279907227, 1381437, 629)
-   create("snork_normal", 418.47958374023, 27.543142318726, -404.77630615234, 1376943, 629)
-   create("snork_normal", 398.91864013672, 27.821760177612, -391.13311767578, 1344097, 629)
-   create("snork_normal", 397.05432128906, 27.538522720337, -360.61999511719, 1340989, 629)
-   create("chimera_normal", 420.52215576172, 27.769445419312, -361.93817138672, 1380316, 629)
-   create("gigant_normal", 463.65618896484, 27.140417098999, -398.10949707031, 1450654, 630)
-   create("snork_normal", 457.96936035156, 27.324140548706, -285.80218505859, 1442196, 551)
-   create("snork_normal", 461.82836914063, 27.250383377075, -269.62600708008, 1448662, 640)
-   create("snork_normal", 491.35760498047, 27.306707382202, -246.55960083008, 1484675, 640)
-   create("snork_normal", 452.99761962891, 27.573652267456, -244.96725463867, 1434978, 640)
-   create("snork_normal", 379.3444519043, 27.978475570679, -232.49006652832, 1316464, 341)
-   create("tushkano_normal", 343.19793701172, 27.18360710144, -272.78341674805, 1263312, 549)
-   create("tushkano_normal", 345.06991577148, 27.976934432983, -240.26071166992, 1266513, 549)
-   create("tushkano_normal", 332.49676513672, 26.960063934326, -243.62512207031, 1247549, 549)
-   create("tushkano_normal", 316.85308837891, 27.135990142822, -264.75308227539, 1225712, 549)
-   create("tushkano_normal", 293.81079101563, 27.208528518677, -264.70513916016, 1194738, 633)
-   create("tushkano_normal", 276.20043945313, 26.931716918945, -266.60586547852, 1170410, 633)
-   create("tushkano_normal", 244.79202270508, 27.865791320801, -259.24957275391, 1131745, 636)
-   create("tushkano_normal", 274.86773681641, 27.622941970825, -232.66928100586, 1170452, 548)
-   create("snork_normal", 281.70709228516, 27.839157104492, -213.15856933594, 1178838, 653)
-   create("snork_normal", 292.87835693359, 27.992219924927, -183.56488037109, 1193065, 537)
-   create("snork_normal", 254.63273620605, 27.573883056641, -154.39839172363, 1144387, 654)
-   create("snork_normal", 206.34820556641, 27.492694854736, -164.76153564453, 1068853, 496)
-   create("snork_normal", 163.1883392334, 25.803382873535, -164.23678588867, 994111, 495)
-   create("snork_normal", 148.34350585938, 25.841579437256, -196.99366760254, 969144, 488)
-   create("snork_normal", 170.39407348633, 17.381929397583, -245.04219055176, 1005389, 488)
+   sgm_g.create("jup_killer_lighthouse_commander", 179.56494140625, 28.135843276978, -418.63854980469, 1021862, 610)
+   sgm_g.create("jup_killer_lighthouse_soldier1", 176.67922973633, 28.144834518433, -420.56182861328, 1015685, 610)
+   sgm_g.create("jup_killer_lighthouse_soldier2", 177.10800170898, 28.107587814331, -415.18139648438, 1016937, 610)
+   sgm_g.create("jup_killer_lighthouse_soldier3", 181.08056640625, 28.10871887207, -415.2333984375, 1024376, 610)
+   sgm_g.create("jup_killer_lighthouse_soldier4", 181.15676879883, 28.182388305664, -422.20678710938, 1024366, 610)
+   sgm_g.create("snork_normal", 402.08880615234, 24.160182952881, -376.27767944336, 1349065, 629)
+   sgm_g.create("snork_normal", 396.13754272461, 24.184753417969, -364.63595581055, 1339917, 629)
+   sgm_g.create("snork_normal", 411.87719726563, 24.361669540405, -388.25653076172, 1365417, 629)
+   sgm_g.create("snork_normal", 421.63070678711, 24.821136474609, -401.56262207031, 1381409, 629)
+   sgm_g.create("snork_normal", 421.32196044922, 24.457586288452, -382.21279907227, 1381437, 629)
+   sgm_g.create("snork_normal", 418.47958374023, 27.543142318726, -404.77630615234, 1376943, 629)
+   sgm_g.create("snork_normal", 398.91864013672, 27.821760177612, -391.13311767578, 1344097, 629)
+   sgm_g.create("snork_normal", 397.05432128906, 27.538522720337, -360.61999511719, 1340989, 629)
+   sgm_g.create("chimera_normal", 420.52215576172, 27.769445419312, -361.93817138672, 1380316, 629)
+   sgm_g.create("gigant_normal", 463.65618896484, 27.140417098999, -398.10949707031, 1450654, 630)
+   sgm_g.create("snork_normal", 457.96936035156, 27.324140548706, -285.80218505859, 1442196, 551)
+   sgm_g.create("snork_normal", 461.82836914063, 27.250383377075, -269.62600708008, 1448662, 640)
+   sgm_g.create("snork_normal", 491.35760498047, 27.306707382202, -246.55960083008, 1484675, 640)
+   sgm_g.create("snork_normal", 452.99761962891, 27.573652267456, -244.96725463867, 1434978, 640)
+   sgm_g.create("snork_normal", 379.3444519043, 27.978475570679, -232.49006652832, 1316464, 341)
+   sgm_g.create("tushkano_normal", 343.19793701172, 27.18360710144, -272.78341674805, 1263312, 549)
+   sgm_g.create("tushkano_normal", 345.06991577148, 27.976934432983, -240.26071166992, 1266513, 549)
+   sgm_g.create("tushkano_normal", 332.49676513672, 26.960063934326, -243.62512207031, 1247549, 549)
+   sgm_g.create("tushkano_normal", 316.85308837891, 27.135990142822, -264.75308227539, 1225712, 549)
+   sgm_g.create("tushkano_normal", 293.81079101563, 27.208528518677, -264.70513916016, 1194738, 633)
+   sgm_g.create("tushkano_normal", 276.20043945313, 26.931716918945, -266.60586547852, 1170410, 633)
+   sgm_g.create("tushkano_normal", 244.79202270508, 27.865791320801, -259.24957275391, 1131745, 636)
+   sgm_g.create("tushkano_normal", 274.86773681641, 27.622941970825, -232.66928100586, 1170452, 548)
+   sgm_g.create("snork_normal", 281.70709228516, 27.839157104492, -213.15856933594, 1178838, 653)
+   sgm_g.create("snork_normal", 292.87835693359, 27.992219924927, -183.56488037109, 1193065, 537)
+   sgm_g.create("snork_normal", 254.63273620605, 27.573883056641, -154.39839172363, 1144387, 654)
+   sgm_g.create("snork_normal", 206.34820556641, 27.492694854736, -164.76153564453, 1068853, 496)
+   sgm_g.create("snork_normal", 163.1883392334, 25.803382873535, -164.23678588867, 994111, 495)
+   sgm_g.create("snork_normal", 148.34350585938, 25.841579437256, -196.99366760254, 969144, 488)
+   sgm_g.create("snork_normal", 170.39407348633, 17.381929397583, -245.04219055176, 1005389, 488)
 end
 
 function jup_weak_lighthouse_reward(actor, npc)
-   give_reward("antirad", 2)
-   give_reward("medkit_scientic", 3)
-   give_reward("ammo_5.56x45_ap", 3)
-   give_reward("ammo_5.45x39_ap", 3)
-   give_reward("drug_engine")
-   give_reward("af_fuzz_kolobok_breeding_1,af_fuzz_kolobok_breeding_2,af_fuzz_kolobok_breeding_3")
+   sgm_g.give_reward("antirad", 2)
+   sgm_g.give_reward("medkit_scientic", 3)
+   sgm_g.give_reward("ammo_5.56x45_ap", 3)
+   sgm_g.give_reward("ammo_5.45x39_ap", 3)
+   sgm_g.give_reward("drug_engine")
+   sgm_g.give_reward("af_fuzz_kolobok_breeding_1,af_fuzz_kolobok_breeding_2,af_fuzz_kolobok_breeding_3")
    dialogs.relocate_money(npc, r_quest_params("number", "jup_weak_lighthouse_reward", 8000), "in")
-   give_skill_book()
-   give_secret(2)
+   sgm_g.give_skill_book()
+   sgm_g.give_secret(2)
 end
 
 function pri_actor_have_science_docks(actor, npc)
@@ -1169,57 +1169,57 @@ end
 
 function pri_give_monolith_case(actor, npc)
    dialogs.relocate_item_section(npc, "zat_intercepted_case", "out")
-   game_autosave_assign("save_zat_deliver_monolith_case_bring")
+   sgm_g.game_autosave_assign("save_zat_deliver_monolith_case_bring")
 end
 
 function pri_deliver_monolith_reward_first(actor, npc)
-   give_reward("af_dummy_dummy")
-   give_reward("conventer_grenade_box", 5)
-   give_reward("ammo_dumdum", 4)
-   give_reward("ammo_5.45x39_ap", 6)
-   give_skill_book()
+   sgm_g.give_reward("af_dummy_dummy")
+   sgm_g.give_reward("conventer_grenade_box", 5)
+   sgm_g.give_reward("ammo_dumdum", 4)
+   sgm_g.give_reward("ammo_5.45x39_ap", 6)
+   sgm_g.give_skill_book()
    dialogs.relocate_money(npc, r_quest_params("number", "pri_deliver_monolith_reward_cell1", 5000), "in")
-   give_mp3_bonus()
-   give_secret(1)
+   sgm_g.give_mp3_bonus()
+   sgm_g.give_secret(1)
 end
 
 function pri_deliver_monolith_reward_second(actor, npc)
-   give_reward("af_dummy_glassbeads")
-   give_reward("repair_arms_box", 3)
-   give_reward("wpn_addon_silencer_9x39")
-   give_reward("ammo_5.45x39_ap", 6)
-   give_skill_book()
+   sgm_g.give_reward("af_dummy_glassbeads")
+   sgm_g.give_reward("repair_arms_box", 3)
+   sgm_g.give_reward("wpn_addon_silencer_9x39")
+   sgm_g.give_reward("ammo_5.45x39_ap", 6)
+   sgm_g.give_skill_book()
    dialogs.relocate_money(npc, r_quest_params("number", "pri_deliver_monolith_reward_cell2", 3000), "in")
-   give_mp3_bonus()
-   give_secret(1)
+   sgm_g.give_mp3_bonus()
+   sgm_g.give_secret(1)
 end
 
 function pri_deliver_monolith_reward_third(actor, npc)
-   give_reward("repair_outfit_box", 2)
-   give_reward("af_dummy_battery")
-   give_reward("ammo_5.45x39_ap", 6)
-   give_skill_book()
+   sgm_g.give_reward("repair_outfit_box", 2)
+   sgm_g.give_reward("af_dummy_battery")
+   sgm_g.give_reward("ammo_5.45x39_ap", 6)
+   sgm_g.give_skill_book()
    dialogs.relocate_money(npc, r_quest_params("number", "pri_deliver_monolith_reward_cell3", 2000), "in")
-   give_mp3_bonus()
-   give_secret(1)
+   sgm_g.give_mp3_bonus()
+   sgm_g.give_secret(1)
 end
 
 function pri_deliver_monolith_reward_four(actor, npc)
-   give_reward("af_ice")
-   give_reward("emulator_brain_waves")
-   give_reward("ammo_box_10_m209", 2)
-   give_reward("ammo_5.45x39_ap", 6)
-   give_skill_book()
+   sgm_g.give_reward("af_ice")
+   sgm_g.give_reward("emulator_brain_waves")
+   sgm_g.give_reward("ammo_box_10_m209", 2)
+   sgm_g.give_reward("ammo_5.45x39_ap", 6)
+   sgm_g.give_skill_book()
    dialogs.relocate_money(npc, r_quest_params("number", "pri_deliver_monolith_reward_cell4", 4000), "in")
-   give_mp3_bonus()
-   give_secret(1)
+   sgm_g.give_mp3_bonus()
+   sgm_g.give_secret(1)
 end
 
 function pri_kill_kasilov_reward(actor, npc)
-   give_reward("ammo_7.62x54_7h1", 5)
-   give_reward("ammo_5.45x39_ap", 3)
-   give_reward("personal_rukzak")
-   give_skill_book()
+   sgm_g.give_reward("ammo_7.62x54_7h1", 5)
+   sgm_g.give_reward("ammo_5.45x39_ap", 3)
+   sgm_g.give_reward("personal_rukzak")
+   sgm_g.give_skill_book()
    dialogs.relocate_money(npc, r_quest_params("number", "pri_deliver_monolith_reward_cell5", 5000), "in")
    db.actor:set_character_community("actor_monolit", 0, 0)
    sgm_g.write_mod_param("stat_community", "actor_monolit")
@@ -1230,8 +1230,8 @@ function pri_kill_kasilov_reward(actor, npc)
    disable_info("actor_entry_in_freedom")
    give_info("actor_entry_in_monolith")
    give_info("actor_noted_monoliths")
-   give_mp3_bonus()
-   give_secret(1)
+   sgm_g.give_mp3_bonus()
+   sgm_g.give_secret(1)
 end
 
 function pri_actor_exit_monolith(actor, npc)
@@ -1264,13 +1264,13 @@ function pri_assault_monolith_base_reward(actor, npc)
    if reward > 0 then
       dialogs.relocate_money(npc, reward, "in")
    end
-   give_reward("repair_outfit_box")
-   give_reward("repair_arms_box")
-   give_reward("ammo_5.56x45_ap", 4)
-   give_reward("ammo_5.45x39_ap", 4)
-   give_secret(2)
-   give_mp3_bonus()
-   give_skill_book()
+   sgm_g.give_reward("repair_outfit_box")
+   sgm_g.give_reward("repair_arms_box")
+   sgm_g.give_reward("ammo_5.56x45_ap", 4)
+   sgm_g.give_reward("ammo_5.45x39_ap", 4)
+   sgm_g.give_secret(2)
+   sgm_g.give_mp3_bonus()
+   sgm_g.give_skill_book()
 end
 
 function pri_assault_back_to_home(actor, npc)
@@ -1281,17 +1281,17 @@ function pri_assault_back_to_home(actor, npc)
 end
 
 function pri_bloodsucker_vaccine_vidacha(actor, npc)
-   create("pri_bloodsucker_room_reward_spot", 61.821, 16.526, -125.120, 278969, 698)
-   create("pri_bloodsucker_half_human_2", 47.139, 16.540, -138.432, 260827, 698)
+   sgm_g.create("pri_bloodsucker_room_reward_spot", 61.821, 16.526, -125.120, 278969, 698)
+   sgm_g.create("pri_bloodsucker_half_human_2", 47.139, 16.540, -138.432, 260827, 698)
    dialogs.relocate_item_section(actor, "quest_bloodsucker_vaccine", "in")
 end
 
 function pri_expiation_sin_1_spawner1(actor, npc)
-   create("quest_medic_medkit", 322.347, 42.833, -404.514, 1507608, 1)
+   sgm_g.create("quest_medic_medkit", 322.347, 42.833, -404.514, 1507608, 1)
 end
 
 function pri_expiation_sin_1_spawner2(actor, npc)
-   create("quest_live_water", -34.601, 15.610, -324.846, 660275, 482)
+   sgm_g.create("quest_live_water", -34.601, 15.610, -324.846, 660275, 482)
 end
 
 function pri_expiation_sin_1_give_medic_medkit(actor, npc)
@@ -1304,31 +1304,31 @@ end
 
 function pri_expiation_sin_1_give_live_water(actor, npc)
    dialogs.relocate_item_section(npc, "quest_live_water", "out")
-   create("pri_monolit_brother_leader", 35.852, 1.163, 360.252, 245838, 736)
-   create("pri_monolit_brother_member1", 36.687, 1.206, 355.955, 246816, 736)
-   create("pri_monolit_brother_member2", 35.462, 1.204, 366.607, 245847, 736)
-   create("pri_monolit_brother_member3", 38.252, 1.206, 359.683, 249917, 736)
-   create("pri_monolit_brother_member4", 37.085, 1.203, 373.399, 247895, 736)
+   sgm_g.create("pri_monolit_brother_leader", 35.852, 1.163, 360.252, 245838, 736)
+   sgm_g.create("pri_monolit_brother_member1", 36.687, 1.206, 355.955, 246816, 736)
+   sgm_g.create("pri_monolit_brother_member2", 35.462, 1.204, 366.607, 245847, 736)
+   sgm_g.create("pri_monolit_brother_member3", 38.252, 1.206, 359.683, 249917, 736)
+   sgm_g.create("pri_monolit_brother_member4", 37.085, 1.203, 373.399, 247895, 736)
 end
 
 function pri_expiation_sin_1_book(actor, npc)
-   give_skill_book("skill_book_gauss")
+   sgm_g.give_skill_book("skill_book_gauss")
 end
 
 function pri_expiation_sin_1_reward(actor, npc)
    dialogs.relocate_money(npc, r_quest_params("number", "pri_expiation_sin_1_reward", 7500), "in")
-   give_reward("killer_outfit")
-   give_reward("ammo_5.56x45_ap", 4)
-   give_reward("ammo_5.45x39_ap", 4)
-   give_reward("ammo_9x19_pbp", 3)
-   give_secret(1)
+   sgm_g.give_reward("killer_outfit")
+   sgm_g.give_reward("ammo_5.56x45_ap", 4)
+   sgm_g.give_reward("ammo_5.45x39_ap", 4)
+   sgm_g.give_reward("ammo_9x19_pbp", 3)
+   sgm_g.give_secret(1)
 end
 
 function pri_expiation_sin_2_reward(actor, npc)
    dialogs.relocate_money(npc, r_quest_params("number", "pri_expiation_sin_2_reward", 8000), "in")
-   give_reward("ammo_5.45x39_ap", 4)
-   give_reward("ammo_dumdum", 5)
-   give_secret(2)
+   sgm_g.give_reward("ammo_5.45x39_ap", 4)
+   sgm_g.give_reward("ammo_dumdum", 5)
+   sgm_g.give_secret(2)
 end
 
 function pri_expiation_sin_3_reward(actor, npc)
@@ -1337,39 +1337,39 @@ function pri_expiation_sin_3_reward(actor, npc)
       m_reward = m_reward - 11000
    end
    dialogs.relocate_money(npc, m_reward, "in")
-   give_reward("ammo_dumdum", 2)
-   give_reward("ammo_5.45x39_ap", 4)
-   give_reward("ammo_5.45x39_ap", 4)
-   give_reward("ammo_5.56x45_ap", 4)
-   give_reward("ammo_5.45x39_ap", 4)
-   give_reward("ammo_7.62x54_7h1", 3)
-   give_reward("bag_medkit_4")
-   give_reward("bio_bandage", 5)
-   give_reward("drug_engine")
+   sgm_g.give_reward("ammo_dumdum", 2)
+   sgm_g.give_reward("ammo_5.45x39_ap", 4)
+   sgm_g.give_reward("ammo_5.45x39_ap", 4)
+   sgm_g.give_reward("ammo_5.56x45_ap", 4)
+   sgm_g.give_reward("ammo_5.45x39_ap", 4)
+   sgm_g.give_reward("ammo_7.62x54_7h1", 3)
+   sgm_g.give_reward("bag_medkit_4")
+   sgm_g.give_reward("bio_bandage", 5)
+   sgm_g.give_reward("drug_engine")
    local cev_plastin_chance = math.random(100)
    if cev_plastin_chance <= 25 then
-      give_reward("cev_plastin_5")
+      sgm_g.give_reward("cev_plastin_5")
    elseif cev_plastin_chance >= 85 then
-      give_reward("cev_plastin_4")
+      sgm_g.give_reward("cev_plastin_4")
    end
    if get_rnd(1, 2) == 1 then
-      give_reward("af_dragon_eye")
+      sgm_g.give_reward("af_dragon_eye")
    else
-      give_reward("af_monolit")
+      sgm_g.give_reward("af_monolit")
    end
-   give_secret(3)
+   sgm_g.give_secret(3)
 end
 
 function pri_rescue_underground_guide_reward(actor, npc)
-   give_reward("af_gold_fish_breeding_2")
-   give_reward("drug_engine")
-   give_reward("ammo_dumdum", 5)
+   sgm_g.give_reward("af_gold_fish_breeding_2")
+   sgm_g.give_reward("drug_engine")
+   sgm_g.give_reward("ammo_dumdum", 5)
    dialogs.relocate_money(npc, r_quest_params("number", "pri_rescue_guide_reward", 10000), "in")
-   give_secret(2)
+   sgm_g.give_secret(2)
 end
 
 function pri_rescue_underground_guide_teleport(actor, npc)
-   create("pri_hostage_miller", 170.738, -0.590, -233.381, 400081, 854)
+   sgm_g.create("pri_hostage_miller", 170.738, -0.590, -233.381, 400081, 854)
    db.actor:set_actor_position(vector():set(-7.679, 9.151, -138.181))
    give_info("level_change_to_pripyat_from_underground")
    refresh_game_time(0, 18)
@@ -1416,16 +1416,16 @@ function pri_fenix_vendetta_bring_medallion(actor, npc)
    dialogs.relocate_item_section(npc, "pri_inquisitor_pda_2", "out")
 end
 
-function pri_fenix_vendetta_give_reward(actor, npc)
-   give_reward("ammo_7.62x54_7h1", 3)
-   give_reward("ammo_5.56x45_ap", 5)
-   give_reward("ammo_5.45x39_ap", 5)
-   give_reward("af_dummy_dummy_breeding_1")
-   give_reward("drug_engine")
-   give_reward("drug_cat_eye")
+function pri_fenix_vendetta_sgm_g.give_reward(actor, npc)
+   sgm_g.give_reward("ammo_7.62x54_7h1", 3)
+   sgm_g.give_reward("ammo_5.56x45_ap", 5)
+   sgm_g.give_reward("ammo_5.45x39_ap", 5)
+   sgm_g.give_reward("af_dummy_dummy_breeding_1")
+   sgm_g.give_reward("drug_engine")
+   sgm_g.give_reward("drug_cat_eye")
    dialogs.relocate_money(npc, r_quest_params("number", "pri_fenix_vendetta_reward", 8500), "in")
-   give_secret(1)
-   give_skill_book()
+   sgm_g.give_secret(1)
+   sgm_g.give_skill_book()
 end
 
 function val_shade_of_time(actor, npc)
@@ -1433,48 +1433,48 @@ function val_shade_of_time(actor, npc)
 end
 
 function val_first_coming_valley_spawn(actor, npc)
-   create("val_b2_accompany_guider", -113.314, -2.657, -266.059, 44684, 1111)
-   create("val_b2_base_spot", -116.031, 0.651, -481.790, 41630, 1074)
+   sgm_g.create("val_b2_accompany_guider", -113.314, -2.657, -266.059, 44684, 1111)
+   sgm_g.create("val_b2_base_spot", -116.031, 0.651, -481.790, 41630, 1074)
 end
 
 function val_kill_night_predator_reward(actor, npc)
-   give_reward("drug_booster")
-   give_reward("bag_medkit_2")
-   give_reward("ammo_5.45x39_ap", 4)
-   give_reward("ammo_5.56x45_ap", 4)
-   give_reward("ammo_dumdum", 2)
+   sgm_g.give_reward("drug_booster")
+   sgm_g.give_reward("bag_medkit_2")
+   sgm_g.give_reward("ammo_5.45x39_ap", 4)
+   sgm_g.give_reward("ammo_5.56x45_ap", 4)
+   sgm_g.give_reward("ammo_dumdum", 2)
    if get_rnd(1, 2) == 1 then
-      give_reward("af_dummy_battery")
+      sgm_g.give_reward("af_dummy_battery")
    else
-      give_reward("af_ice")
+      sgm_g.give_reward("af_ice")
    end
    dialogs.relocate_money(npc, r_quest_params("number", "val_kill_night_predator_reward", 10000), "in")
-   give_mp3_bonus()
-   give_random_treasure()
-   give_skill_book()
+   sgm_g.give_mp3_bonus()
+   sgm_g.give_random_treasure()
+   sgm_g.give_skill_book()
 end
 
 function val_kill_night_predator_spawn(actor, npc)
-   create("val_b14_night_predator", 138.104, 4.032, -494.898, 306880, 1031)
-   create("val_b14_night_predator_hole_spot", 116.667, 2.708, -478.729, 285091, 1144)
-   create("val_b14_outpost_trap_spot", -40.959, 0.424, -518.592, 123749, 973)
+   sgm_g.create("val_b14_night_predator", 138.104, 4.032, -494.898, 306880, 1031)
+   sgm_g.create("val_b14_night_predator_hole_spot", 116.667, 2.708, -478.729, 285091, 1144)
+   sgm_g.create("val_b14_outpost_trap_spot", -40.959, 0.424, -518.592, 123749, 973)
 end
 
 function val_assault_factory_spawn(actor, npc)
-   create_force("val_a2_snork_squad", "val_monster_burrow_2")
-   create_force("val_a6_snork_squad", "val_monster_burrow_6")
+   sgm_g.create_force("val_a2_snork_squad", "val_monster_burrow_2")
+   sgm_g.create_force("val_a6_snork_squad", "val_monster_burrow_6")
    sgm_g.write_mod_param("val_assault_factory_stalker_counts", 7)
    sgm_g.write_mod_param("val_assault_factory_cover_1_done", 0)
    sgm_g.write_mod_param("val_assault_factory_cover_2_done", 0)
-   create("val_b2_assault_b1_commander", -57.065, 0.063, -473.439, 105145, 1076)
-   create("val_b2_assault_b1_soldier_1", -60.007, -0.035, -467.341, 101622, 1076)
-   create("val_b2_assault_b1_soldier_2", -61.131, 0.156, -476.030, 100745, 1076)
-   create("val_b2_assault_b1_soldier_3", -52.644, 0.202, -476.512, 110811, 1076)
-   create("val_b2_assault_b1_soldier_4", -52.114, 0.063, -468.977, 111580, 1076)
-   create("val_b2_assault_b1_soldier_5", -55.987, -0.103, -462.455, 106899, 1076)
-   create("val_b2_assault_b1_soldier_6", -64.885, 0.127, -473.325, 95852, 1107)
-   create("val_b1_courtyard_pipes_spot", 76.656, -1.576, -273.848, 241718, 1088)
-   create("val_b1_base_spot", 144.977, 0.162, -258.135, 315304, 988)
+   sgm_g.create("val_b2_assault_b1_commander", -57.065, 0.063, -473.439, 105145, 1076)
+   sgm_g.create("val_b2_assault_b1_soldier_1", -60.007, -0.035, -467.341, 101622, 1076)
+   sgm_g.create("val_b2_assault_b1_soldier_2", -61.131, 0.156, -476.030, 100745, 1076)
+   sgm_g.create("val_b2_assault_b1_soldier_3", -52.644, 0.202, -476.512, 110811, 1076)
+   sgm_g.create("val_b2_assault_b1_soldier_4", -52.114, 0.063, -468.977, 111580, 1076)
+   sgm_g.create("val_b2_assault_b1_soldier_5", -55.987, -0.103, -462.455, 106899, 1076)
+   sgm_g.create("val_b2_assault_b1_soldier_6", -64.885, 0.127, -473.325, 95852, 1107)
+   sgm_g.create("val_b1_courtyard_pipes_spot", 76.656, -1.576, -273.848, 241718, 1088)
+   sgm_g.create("val_b1_base_spot", 144.977, 0.162, -258.135, 315304, 988)
 end
 
 function val_assault_factory_brought_pda(actor, npc)
@@ -1493,17 +1493,17 @@ function val_assault_factory_reward_1(actor, npc)
 end
 
 function val_assault_factory_reward_2(actor, npc)
-   give_mp3_bonus()
-   give_random_treasure()
+   sgm_g.give_mp3_bonus()
+   sgm_g.give_random_treasure()
 end
 
-function val_brigand_give_reward(actor, npc)
-   give_reward("af_dummy_glassbeads_breeding_2")
-   give_reward("ammo_5.56x45_ap", 5)
-   give_reward("ammo_5.45x39_ap", 5)
-   give_reward("af_dummy_battery_breeding_1")
+function val_brigand_sgm_g.give_reward(actor, npc)
+   sgm_g.give_reward("af_dummy_glassbeads_breeding_2")
+   sgm_g.give_reward("ammo_5.56x45_ap", 5)
+   sgm_g.give_reward("ammo_5.45x39_ap", 5)
+   sgm_g.give_reward("af_dummy_battery_breeding_1")
    dialogs.relocate_money(npc, r_quest_params("number", "val_brigand_reward", 7000), "in")
-   give_random_treasure()
+   sgm_g.give_random_treasure()
 end
 
 function val_secret_development_give(actor, npc)
@@ -1516,8 +1516,8 @@ function val_secret_development_reward(actor, npc)
    else
    end
    dialogs.relocate_money(npc, r_quest_params("number", "val_secret_development_reward", 14000), "in")
-   give_random_treasure()
-   give_skill_book()
+   sgm_g.give_random_treasure()
+   sgm_g.give_skill_book()
 end
 
 function val_issue_secret_data_bring_docks(actor, npc)
@@ -1526,25 +1526,25 @@ function val_issue_secret_data_bring_docks(actor, npc)
    dialogs.relocate_item_section(npc, "x18_secret_docks_3", "out")
 end
 
-function val_issue_secret_data_give_reward(actor, npc)
-   give_reward("medkit_elite", 10)
-   give_reward("af_fire_breeding_2")
+function val_issue_secret_data_sgm_g.give_reward(actor, npc)
+   sgm_g.give_reward("medkit_elite", 10)
+   sgm_g.give_reward("af_fire_breeding_2")
    dialogs.relocate_money(npc, r_quest_params("number", "val_issue_secret_data_reward", 80000), "in")
-   give_random_treasure()
-   give_skill_book()
-   game_autosave_assign("save_val_issue_secret_data")
+   sgm_g.give_random_treasure()
+   sgm_g.give_skill_book()
+   sgm_g.game_autosave_assign("save_val_issue_secret_data")
 end
 
 function colmogor_create_freedom_lucas(first_speaker, second_speaker)
-   create("val_freedom_spez_agent_lucas", -160.180, 6.927, -139.410, 8283, 944)
+   sgm_g.create("val_freedom_spez_agent_lucas", -160.180, 6.927, -139.410, 8283, 944)
    task_manager.get_task_manager():give_task("geonezis_lucas_mistery_quest")
 end
 
 function lucas_give_antenna_quest_1(first_speaker, second_speaker)
    dialogs.relocate_item_section_to_actor(first_speaker, second_speaker, "val_lucas_spez_scanner")
-   create("val_lucas_quest_antenna_1_spot", -9.693120, -4.129715, -281.106455, 156776, 956)
-   create("val_lucas_quest_antenna_2_spot", -114.161697, 0.699540, -494.373413, 43681, 1074)
-   create("val_lucas_quest_antenna_3_spot", -42.534573, 9.651953, -8.805862, 122692, 985)
+   sgm_g.create("val_lucas_quest_antenna_1_spot", -9.693120, -4.129715, -281.106455, 156776, 956)
+   sgm_g.create("val_lucas_quest_antenna_2_spot", -114.161697, 0.699540, -494.373413, 43681, 1074)
+   sgm_g.create("val_lucas_quest_antenna_3_spot", -42.534573, 9.651953, -8.805862, 122692, 985)
    task_manager.get_task_manager():give_task("geonezis_lucas_mistery_quest_3")
    task_manager.get_task_manager():give_task("geonezis_lucas_mistery_quest_2")
    task_manager.get_task_manager():give_task("geonezis_lucas_mistery_quest_1")
@@ -1555,11 +1555,11 @@ function lucas_give_antenna_skaner(first_speaker, second_speaker)
 end
 
 function lucas_create_quad_dolg(first_speaker, second_speaker)
-   create("val_lucas_quest_first_spot", -76.448, -0.808, 52.107, 83943, 1021)
-   create("val_dolg_spez_quad_1", -70.008, 0.125, 59.806, 90879, 1021)
-   create("val_dolg_spez_quad_2", -76.825, -1.162, 47.088, 83165, 1021)
-   create("val_dolg_spez_quad_3", -83.558, -0.917, 54.829, 76840, 1021)
-   create("val_dolg_spez_quad_4", -67.502, 0.006, 52.212, 94061, 1021)
+   sgm_g.create("val_lucas_quest_first_spot", -76.448, -0.808, 52.107, 83943, 1021)
+   sgm_g.create("val_dolg_spez_quad_1", -70.008, 0.125, 59.806, 90879, 1021)
+   sgm_g.create("val_dolg_spez_quad_2", -76.825, -1.162, 47.088, 83165, 1021)
+   sgm_g.create("val_dolg_spez_quad_3", -83.558, -0.917, 54.829, 76840, 1021)
+   sgm_g.create("val_dolg_spez_quad_4", -67.502, 0.006, 52.212, 94061, 1021)
 end
 
 function to_lucas_give_documents(first_speaker, second_speaker)
@@ -1588,36 +1588,36 @@ function colmogor_create_equipment_2(first_speaker, second_speaker)
 end
 
 function lucas_create_quad_freedom(first_speaker, second_speaker)
-   create("val_lucas_quest_third_spot", -43.064, 0.436, -492.944, 121383, 997)
-   create("val_night_zam_leader_kolmogor_2", -8.670, -0.816, -522.623, 157762, 974)
-   create("val_freedom_spez_agent_member_1", 0.562, 0.105, -529.315, 166353, 974)
-   create("val_freedom_spez_agent_member_2", -19.802, -1.611, -527.757, 147277, 974)
+   sgm_g.create("val_lucas_quest_third_spot", -43.064, 0.436, -492.944, 121383, 997)
+   sgm_g.create("val_night_zam_leader_kolmogor_2", -8.670, -0.816, -522.623, 157762, 974)
+   sgm_g.create("val_freedom_spez_agent_member_1", 0.562, 0.105, -529.315, 166353, 974)
+   sgm_g.create("val_freedom_spez_agent_member_2", -19.802, -1.611, -527.757, 147277, 974)
 end
 
 function mil_dislodge_invaders_reward(actor, npc)
-   give_reward("ammo_5.45x39_fmj,ammo_5.45x39_ap", 3)
-   give_reward("drug_cat_eye")
-   give_reward("medkit_scientic", 3)
-   give_reward("antirad", 5)
-   give_reward("bio_bandage", 5)
+   sgm_g.give_reward("ammo_5.45x39_fmj,ammo_5.45x39_ap", 3)
+   sgm_g.give_reward("drug_cat_eye")
+   sgm_g.give_reward("medkit_scientic", 3)
+   sgm_g.give_reward("antirad", 5)
+   sgm_g.give_reward("bio_bandage", 5)
    dialogs.relocate_money(npc, r_quest_params("number", "mil_dislodge_invaders_reward", 25000), "in")
-   give_random_treasure()
-   give_random_treasure()
-   give_skill_book()
+   sgm_g.give_random_treasure()
+   sgm_g.give_random_treasure()
+   sgm_g.give_skill_book()
 end
 
 function mil_conduct_night_stalkers(actor, npc)
-   create("mil_b7_colonizer_commander", -246.89933776855, -23.83517074585, 101.58116149902, 81562, 1304)
-   create("mil_b7_colonizer_soldier_1", -246.22113037109, -23.625074386597, 103.8784866333, 82084, 1304)
-   create("mil_b7_colonizer_soldier_2", -245.11753845215, -23.67847442627, 100.14258575439, 83169, 1304)
-   create("mil_b7_colonizer_soldier_3", -244.43472290039, -23.402379989624, 102.07420349121, 83695, 1304)
-   create("mil_b7_colonizer_soldier_4", -243.96101379395, -23.208349227905, 107.15369415283, 83700, 1304)
-   create("mil_b7_colonizer_soldier_5", -243.08708190918, -23.103693008423, 104.6512298584, 84717, 1304)
-   add_task("mil_conduct_night_stalkers")
+   sgm_g.create("mil_b7_colonizer_commander", -246.89933776855, -23.83517074585, 101.58116149902, 81562, 1304)
+   sgm_g.create("mil_b7_colonizer_soldier_1", -246.22113037109, -23.625074386597, 103.8784866333, 82084, 1304)
+   sgm_g.create("mil_b7_colonizer_soldier_2", -245.11753845215, -23.67847442627, 100.14258575439, 83169, 1304)
+   sgm_g.create("mil_b7_colonizer_soldier_3", -244.43472290039, -23.402379989624, 102.07420349121, 83695, 1304)
+   sgm_g.create("mil_b7_colonizer_soldier_4", -243.96101379395, -23.208349227905, 107.15369415283, 83700, 1304)
+   sgm_g.create("mil_b7_colonizer_soldier_5", -243.08708190918, -23.103693008423, 104.6512298584, 84717, 1304)
+   sgm_g.add_task("mil_conduct_night_stalkers")
 end
 
 function mil_boarding_money_case_pre_reward(actor, npc)
-   give_reward("activate_knife_m9")
+   sgm_g.give_reward("activate_knife_m9")
 end
 
 function mil_boarding_money_case_bring(actor, npc)
@@ -1626,37 +1626,37 @@ end
 
 function mil_boarding_money_case_reward(actor, npc)
    dialogs.relocate_item_section(actor, "drug_radioprotector", "in")
-   give_reward("medkit_elite", 2)
-   give_reward("antirad", 4)
-   give_reward("bio_bandage", 3)
+   sgm_g.give_reward("medkit_elite", 2)
+   sgm_g.give_reward("antirad", 4)
+   sgm_g.give_reward("bio_bandage", 3)
    dialogs.relocate_money(npc, r_quest_params("number", "mil_boarding_money_case_reward", 20000), "in")
-   give_random_treasure()
-   give_random_treasure()
-   give_skill_book()
+   sgm_g.give_random_treasure()
+   sgm_g.give_random_treasure()
+   sgm_g.give_skill_book()
 end
 
 function mil_bolted_influence_spawn(actor, npc)
    if sgm_g.dont_has_alife_info("mil_bolted_influence_renegade_spawn") then
-      create_force("mil_b1_renegade_returned_squad", "mil_smart_terrain_1")
-      create_force("mil_b2_renegade_returned_squad", "mil_smart_terrain_2")
-      create_force("mil_b3_renegade_returned_squad", "mil_smart_terrain_3")
-      create_force("mil_b4_renegade_returned_squad", "mil_smart_terrain_4")
-      create_force("mil_b5_renegade_returned_squad", "mil_smart_terrain_5")
-      create_force("mil_b6_renegade_returned_squad", "mil_smart_terrain_6")
+      sgm_g.create_force("mil_b1_renegade_returned_squad", "mil_smart_terrain_1")
+      sgm_g.create_force("mil_b2_renegade_returned_squad", "mil_smart_terrain_2")
+      sgm_g.create_force("mil_b3_renegade_returned_squad", "mil_smart_terrain_3")
+      sgm_g.create_force("mil_b4_renegade_returned_squad", "mil_smart_terrain_4")
+      sgm_g.create_force("mil_b5_renegade_returned_squad", "mil_smart_terrain_5")
+      sgm_g.create_force("mil_b6_renegade_returned_squad", "mil_smart_terrain_6")
       give_info("mil_bolted_influence_renegade_spawn")
    end
 end
 
 function mil_bolted_influence_reward(actor, npc)
-   give_reward("ammo_gauss,ammo_gauss_cardan", 3)
-   give_reward("drug_engine")
-   give_reward("medkit_elite", 5)
-   give_reward("antirad", 5)
-   give_reward("bio_bandage", 6)
+   sgm_g.give_reward("ammo_gauss,ammo_gauss_cardan", 3)
+   sgm_g.give_reward("drug_engine")
+   sgm_g.give_reward("medkit_elite", 5)
+   sgm_g.give_reward("antirad", 5)
+   sgm_g.give_reward("bio_bandage", 6)
    dialogs.relocate_money(npc, r_quest_params("number", "mil_bolted_influence_reward", 75000), "in")
-   give_random_treasure()
-   give_random_treasure()
-   give_skill_book()
+   sgm_g.give_random_treasure()
+   sgm_g.give_random_treasure()
+   sgm_g.give_skill_book()
 end
 
 function agr_deliver_secret_docks_bring(actor, npc)
@@ -1665,12 +1665,12 @@ function agr_deliver_secret_docks_bring(actor, npc)
 end
 
 function agr_deliver_secret_docks_reward(actor, npc)
-   give_reward("af_vaselisk")
-   give_reward("medkit_elite", 5)
+   sgm_g.give_reward("af_vaselisk")
+   sgm_g.give_reward("medkit_elite", 5)
    dialogs.relocate_money(npc, 50000, "in")
-   give_random_treasure()
-   give_random_treasure()
-   give_random_treasure()
+   sgm_g.give_random_treasure()
+   sgm_g.give_random_treasure()
+   sgm_g.give_random_treasure()
 end
 
 function esc_whimsical_artefact_has(actor, npc)
@@ -1682,11 +1682,11 @@ function esc_whimsical_artefact_bring(actor, npc)
 end
 
 function esc_whimsical_artefact_reward(actor, npc)
-   give_reward("ammo_5.56x45_ap", 2)
-   give_reward("ammo_5.45x39_ap", 2)
+   sgm_g.give_reward("ammo_5.56x45_ap", 2)
+   sgm_g.give_reward("ammo_5.45x39_ap", 2)
    dialogs.relocate_money(npc, 4000, "in")
-   give_random_treasure()
-   give_random_treasure()
+   sgm_g.give_random_treasure()
+   sgm_g.give_random_treasure()
 end
 
 function esc_village_annex_bring(actor, npc)
@@ -1694,28 +1694,28 @@ function esc_village_annex_bring(actor, npc)
 end
 
 function esc_village_annex_reward(actor, npc)
-   give_reward("psy_complex", 2)
-   give_reward("bio_bandage", 4)
-   give_reward("medkit", 4)
-   give_reward("ammo_9x18_pmm", 3)
-   give_reward("ammo_9x19_pbp", 3)
-   give_reward("ammo_5.45x39_ap", 3)
+   sgm_g.give_reward("psy_complex", 2)
+   sgm_g.give_reward("bio_bandage", 4)
+   sgm_g.give_reward("medkit", 4)
+   sgm_g.give_reward("ammo_9x18_pmm", 3)
+   sgm_g.give_reward("ammo_9x19_pbp", 3)
+   sgm_g.give_reward("ammo_5.45x39_ap", 3)
    dialogs.relocate_money(npc, 5000, "in")
-   give_random_treasure()
+   sgm_g.give_random_treasure()
 end
 
 function esc_lull_before_borax_reward(actor, npc)
    ---------------------------------makdm
-   give_reward("drug_anabiotic")
+   sgm_g.give_reward("drug_anabiotic")
    --------------------------------------
-   give_reward("conventer_grenade_box")
-   give_reward("bandage", 5)
-   give_reward("medkit", 2)
-   give_reward("ammo_9x19_pbp", 2)
-   give_reward("ammo_12x76_zhekan", 3)
-   give_reward("ammo_5.45x39_fmj", 2)
+   sgm_g.give_reward("conventer_grenade_box")
+   sgm_g.give_reward("bandage", 5)
+   sgm_g.give_reward("medkit", 2)
+   sgm_g.give_reward("ammo_9x19_pbp", 2)
+   sgm_g.give_reward("ammo_12x76_zhekan", 3)
+   sgm_g.give_reward("ammo_5.45x39_fmj", 2)
    dialogs.relocate_money(npc, 3000, "in")
-   give_random_treasure()
+   sgm_g.give_random_treasure()
 end
 
 function esc_atp_annex_give_night_vision(actor, npc)
@@ -1727,25 +1727,25 @@ function esc_atp_annex_bring(actor, npc)
 end
 
 function esc_atp_annex_reward(actor, npc)
-   give_reward("remote_explosive_charge")
-   give_reward("psy_complex", 2)
+   sgm_g.give_reward("remote_explosive_charge")
+   sgm_g.give_reward("psy_complex", 2)
    --------------------------------------makdm
-   give_reward("drug_anabiotic")
+   sgm_g.give_reward("drug_anabiotic")
    -------------------------------------------
-   give_reward("bio_bandage", 3)
-   give_reward("medkit_army", 4)
-   give_reward("ammo_9x18_pmm", 4)
-   give_reward("ammo_9x19_pbp", 4)
-   give_reward("ammo_5.45x39_fmj", 2)
-   give_reward("ammo_5.45x39_ap", 2)
+   sgm_g.give_reward("bio_bandage", 3)
+   sgm_g.give_reward("medkit_army", 4)
+   sgm_g.give_reward("ammo_9x18_pmm", 4)
+   sgm_g.give_reward("ammo_9x19_pbp", 4)
+   sgm_g.give_reward("ammo_5.45x39_fmj", 2)
+   sgm_g.give_reward("ammo_5.45x39_ap", 2)
    dialogs.relocate_money(npc, 5000, "in")
-   give_random_treasure()
+   sgm_g.give_random_treasure()
 end
 
 function mar_army_cargo_give(actor, npc)
-   create("mar_army_cargo", 170.30877685547, 11.944862365723, 530.21343994141, 235352, 1827)
+   sgm_g.create("mar_army_cargo", 170.30877685547, 11.944862365723, 530.21343994141, 235352, 1827)
    dialogs.relocate_item_section(actor, "mar_georadar", "in")
-   game_autosave_assign("save_mar_army_cargo_georadar_received")
+   sgm_g.game_autosave_assign("save_mar_army_cargo_georadar_received")
 end
 
 function mar_army_cargo_bring(actor, npc)
@@ -1753,8 +1753,8 @@ function mar_army_cargo_bring(actor, npc)
 end
 
 function mar_army_cargo_reward(actor, npc)
-   give_random_treasure()
-   give_random_treasure()
+   sgm_g.give_random_treasure()
+   sgm_g.give_random_treasure()
 end
 
 function mar_mine_detector_bring(actor, npc)
@@ -1763,35 +1763,35 @@ end
 
 function mar_mine_detector_give(actor, npc)
    dialogs.relocate_item_section(actor, "mar_mine_detector", "in")
-   game_autosave_assign("save_mar_mine_detector_received")
+   sgm_g.game_autosave_assign("save_mar_mine_detector_received")
 end
 
 function mar_capture_church_reward(actor, npc)
-   give_reward("bio_bandage", 5)
-   give_reward("medkit", 5)
-   give_reward("ammo_9x18_pmm", 4)
-   give_reward("ammo_9x19_pbp", 4)
-   give_reward("ammo_5.45x39_ap", 4)
+   sgm_g.give_reward("bio_bandage", 5)
+   sgm_g.give_reward("medkit", 5)
+   sgm_g.give_reward("ammo_9x18_pmm", 4)
+   sgm_g.give_reward("ammo_9x19_pbp", 4)
+   sgm_g.give_reward("ammo_5.45x39_ap", 4)
    dialogs.relocate_money(npc, 5000, "in")
-   give_random_treasure()
-   give_random_treasure()
+   sgm_g.give_random_treasure()
+   sgm_g.give_random_treasure()
 end
 
 function red_psyho_dead_group(actor, npc)
-   create("red_psyho_scientific_halt_spot", -6.6774435043335, -2.3945868015289, -275.86642456055, 60703, 2200)
-   create("red_psyho_experiment_place_spot", 225.26860046387, -7.8777375221252, -102.09394836426, 140603, 2147)
-   create("red_psyho_security_corpse", -12.463531494141, -2.5266389846802, -276.50909423828, 55524, 2200)
-   create("red_psyho_ecolog_corpse", -8.5272779464722, -2.4809272289276, -280.61871337891, 59488, 2200)
+   sgm_g.create("red_psyho_scientific_halt_spot", -6.6774435043335, -2.3945868015289, -275.86642456055, 60703, 2200)
+   sgm_g.create("red_psyho_experiment_place_spot", 225.26860046387, -7.8777375221252, -102.09394836426, 140603, 2147)
+   sgm_g.create("red_psyho_security_corpse", -12.463531494141, -2.5266389846802, -276.50909423828, 55524, 2200)
+   sgm_g.create("red_psyho_ecolog_corpse", -8.5272779464722, -2.4809272289276, -280.61871337891, 59488, 2200)
 end
 
 function red_psyho_halt_1(actor, npc)
-   create("red_psyho_halt_place_1_spot", -86.309677124023, 0.053133428096771, -237.20504760742, 12774, 2196)
-   create("red_psyho_halt_1_ecolog_1", -88.583641052246, 0.23857054114342, -241.02226257324, 12424, 2196)
-   create("red_psyho_halt_1_ecolog_2", -88.002716064453, 0.17844703793526, -231.48352050781, 12530, 2196)
-   create("red_psyho_halt_1_security_3", -90.459457397461, 0.10313460230827, -235.88131713867, 12224, 2196)
-   create("red_psyho_halt_1_security_4", -91.653289794922, 0.12100675702095, -239.58142089844, 11983, 2196)
-   create("red_psyho_halt_1_security_5", -96.527000427246, 0.068396776914597, -232.6838684082, 11240, 2196)
-   release_objects_by_section("sgm_red_psyho_zone")
+   sgm_g.create("red_psyho_halt_place_1_spot", -86.309677124023, 0.053133428096771, -237.20504760742, 12774, 2196)
+   sgm_g.create("red_psyho_halt_1_ecolog_1", -88.583641052246, 0.23857054114342, -241.02226257324, 12424, 2196)
+   sgm_g.create("red_psyho_halt_1_ecolog_2", -88.002716064453, 0.17844703793526, -231.48352050781, 12530, 2196)
+   sgm_g.create("red_psyho_halt_1_security_3", -90.459457397461, 0.10313460230827, -235.88131713867, 12224, 2196)
+   sgm_g.create("red_psyho_halt_1_security_4", -91.653289794922, 0.12100675702095, -239.58142089844, 11983, 2196)
+   sgm_g.create("red_psyho_halt_1_security_5", -96.527000427246, 0.068396776914597, -232.6838684082, 11240, 2196)
+   sgm_g.release_objects_by_section("sgm_red_psyho_zone")
 end
 
 function red_psyho_give_group_pda(actor, npc)
@@ -1806,158 +1806,158 @@ function red_psyho_give_developments(actor, npc)
 end
 
 function red_psyho_reward(actor, npc)
-   give_reward("antirad", 3)
-   give_reward("medkit_scientic", 5)
-   give_reward("ammo_5.56x45_ap", 4)
-   give_reward("ammo_5.45x39_ap", 4)
+   sgm_g.give_reward("antirad", 3)
+   sgm_g.give_reward("medkit_scientic", 5)
+   sgm_g.give_reward("ammo_5.56x45_ap", 4)
+   sgm_g.give_reward("ammo_5.45x39_ap", 4)
    dialogs.relocate_money(npc, 10000, "in")
-   give_random_treasure()
-   give_random_treasure("red_forest")
-   give_secret(1)
-   give_skill_book()
+   sgm_g.give_random_treasure()
+   sgm_g.give_random_treasure("red_forest")
+   sgm_g.give_secret(1)
+   sgm_g.give_skill_book()
 end
 
 ------------------------------------------------------------------------------
 --                        Функции автосохранений                            --
 ------------------------------------------------------------------------------
 function save_pri_assault_monolith_base_began(actor, npc)
-   game_autosave_assign("save_pri_assault_monolith_base_began")
+   sgm_g.game_autosave_assign("save_pri_assault_monolith_base_began")
 end
 
 function save_pri_expiation_sin_3_follow_to_squad(actor, npc)
-   game_autosave_assign("save_pri_expiation_sin_3_follow_to_squad")
+   sgm_g.game_autosave_assign("save_pri_expiation_sin_3_follow_to_squad")
 end
 
 ------------------------------------------------------------------------------
 --                        Функции запуска квестов                           --
 ------------------------------------------------------------------------------
 function zat_meet_authorities_agent(actor, npc)
-   if get_global_pattern() == 1 then
-      create("zat_authorities_agent", -426.664, 36.196, -396.447, 138096, 306)
+   if sgm_g.get_global_pattern() == 1 then
+      sgm_g.create("zat_authorities_agent", -426.664, 36.196, -396.447, 138096, 306)
    else
-      create("zat_authorities_agent", -430.950, 2.888, 5.783, 133074, 14)
+      sgm_g.create("zat_authorities_agent", -430.950, 2.888, 5.783, 133074, 14)
    end
-   add_task("sgm_zat_meet_authorities_agent")
+   sgm_g.add_task("sgm_zat_meet_authorities_agent")
 end
 
 function zat_check_sbu_cell(actor, npc)
-   create("zat_sbu_cell_spot", 301.473, 19.531, 535.454, 1480920, 287)
+   sgm_g.create("zat_sbu_cell_spot", 301.473, 19.531, 535.454, 1480920, 287)
    local cell_items = "flash_avoid_witnesses,killer_outfit,helm_spectacles,money_meshochek_3000_4000"
    create_inventory_item(cell_items, "zat_avoid_witnesses_cell", 301.473, 19.531, 535.454, 1480920, 287)
-   add_task("sgm_zat_check_sbu_cell")
+   sgm_g.add_task("sgm_zat_check_sbu_cell")
 end
 
 function zat_danger_parcel(actor, npc)
-   if get_global_pattern() == 1 then
-      create("zat_duty_kanevskiy", 576.494, 10.687, -288.000, 1841060, 220)
-      create("zat_duty_kanevskiy_drug", 581.163, 10.810, -287.285, 1842173, 220)
+   if sgm_g.get_global_pattern() == 1 then
+      sgm_g.create("zat_duty_kanevskiy", 576.494, 10.687, -288.000, 1841060, 220)
+      sgm_g.create("zat_duty_kanevskiy_drug", 581.163, 10.810, -287.285, 1842173, 220)
    else
-      create("zat_duty_kanevskiy", -419.410, 25.774, -219.004, 149220, 93)
-      create("zat_duty_kanevskiy_drug", -414.496, 25.517, -216.123, 156542, 93)
+      sgm_g.create("zat_duty_kanevskiy", -419.410, 25.774, -219.004, 149220, 93)
+      sgm_g.create("zat_duty_kanevskiy_drug", -414.496, 25.517, -216.123, 156542, 93)
    end
-   add_task("sgm_zat_danger_parcel")
+   sgm_g.add_task("sgm_zat_danger_parcel")
 end
 
 function zat_meet_to_breeder(actor, npc)
-   add_task("sgm_zat_meet_to_breeder")
+   sgm_g.add_task("sgm_zat_meet_to_breeder")
 end
 
 function zat_breeder_search_unknown(actor, npc)
    local rnd_acid_star = math.random(1, 4)
-   if get_global_pattern() == 1 then
-      create("af_acid_star_spot", -422.45202636719, -7.3844261169434, 169.76614379883, 184065, 261)
+   if sgm_g.get_global_pattern() == 1 then
+      sgm_g.create("af_acid_star_spot", -422.45202636719, -7.3844261169434, 169.76614379883, 184065, 261)
       if rnd_acid_star == 1 then
-         create("af_acid_star", -443.27081298828, -9.3646364212036, 144.91583251953, 119885, 214)
+         sgm_g.create("af_acid_star", -443.27081298828, -9.3646364212036, 144.91583251953, 119885, 214)
       elseif rnd_acid_star == 2 then
-         create("af_acid_star", -442.24459838867, -8.9834318161011, 208.71829223633, 94634, 16)
+         sgm_g.create("af_acid_star", -442.24459838867, -8.9834318161011, 208.71829223633, 94634, 16)
       elseif rnd_acid_star == 3 then
-         create("af_acid_star", -417.15051269531, -10.735691070557, 209.33422851563, 94634, 16)
+         sgm_g.create("af_acid_star", -417.15051269531, -10.735691070557, 209.33422851563, 94634, 16)
       else
-         create("af_acid_star", -380.91165161133, -8.9488620758057, 185.72372436523, 188300, 261)
+         sgm_g.create("af_acid_star", -380.91165161133, -8.9488620758057, 185.72372436523, 188300, 261)
       end
    else
-      create("af_acid_star_spot", -282.26168823242, 17.576551437378, 358.14727783203, 380893, 115)
+      sgm_g.create("af_acid_star_spot", -282.26168823242, 17.576551437378, 358.14727783203, 380893, 115)
       if rnd_acid_star == 1 then
-         create("af_acid_star", -268.34039306641, 11.098146438599, 350.78839111328, 407305, 113)
+         sgm_g.create("af_acid_star", -268.34039306641, 11.098146438599, 350.78839111328, 407305, 113)
       elseif rnd_acid_star == 2 then
-         create("af_acid_star", -259.89730834961, 12.442667007446, 366.71011352539, 423844, 113)
+         sgm_g.create("af_acid_star", -259.89730834961, 12.442667007446, 366.71011352539, 423844, 113)
       elseif rnd_acid_star == 3 then
-         create("af_acid_star", -243.37937927246, 9.1299333572388, 361.09149169922, 456733, 113)
+         sgm_g.create("af_acid_star", -243.37937927246, 9.1299333572388, 361.09149169922, 456733, 113)
       else
-         create("af_acid_star", -269.69592285156, 12.474707603455, 353.48715209961, 404629, 113)
+         sgm_g.create("af_acid_star", -269.69592285156, 12.474707603455, 353.48715209961, 404629, 113)
       end
    end
-   add_task("sgm_zat_breeder_search_unknown")
+   sgm_g.add_task("sgm_zat_breeder_search_unknown")
 end
 
 function zat_accompany_to_boat(actor, npc)
-   create("zat_accompany_to_boat_spot", 148.695, -7.344, 183.552, 1220159, 295)
-   add_task("sgm_zat_accompany_to_boat")
+   sgm_g.create("zat_accompany_to_boat_spot", 148.695, -7.344, 183.552, 1220159, 295)
+   sgm_g.add_task("sgm_zat_accompany_to_boat")
 end
 
 function zat_refer_parcel(actor, npc)
-   add_task("sgm_zat_refer_parcel")
+   sgm_g.add_task("sgm_zat_refer_parcel")
    dialogs.relocate_item_section(actor, "zat_postman_parcel", "in")
 end
 
 function zat_assault_bandit_base(actor, npc)
-   add_task("sgm_zat_assault_bandit_base")
+   sgm_g.add_task("sgm_zat_assault_bandit_base")
 end
 
 function zat_deliver_monolith_case(actor, npc)
-   add_task("sgm_zat_deliver_monolith_case")
+   sgm_g.add_task("sgm_zat_deliver_monolith_case")
 end
 
 function zat_will_leave_jupiter(actor, npc)
-   add_task("sgm_zat_will_leave_jupiter")
+   sgm_g.add_task("sgm_zat_will_leave_jupiter")
 end
 
 function zat_bandit_kill_shakal(actor, npc)
-   create("zat_bandit_kill_shakal_spot", -130.121, 24.142, -417.739, 680773, 4)
-   create("zat_killer_shakal", -147.467, 23.585, -428.157, 646858, 4)
-   create("zat_shakal_bodyguard", -147.223, 23.582, -432.216, 648288, 4)
-   create("zat_shakal_interception", -148.964, 23.573, -423.975, 643965, 4)
-   create("zat_shakal_rpg_1", -133.013, 27.279, -389.703, 675531, 4)
-   create("zat_shakal_rpg_2", -138.134, 27.280, -389.639, 666298, 4)
-   add_task("sgm_zat_bandit_kill_shakal")
-   game_autosave_assign("save_zat_bandit_kill_shakal_search")
+   sgm_g.create("zat_bandit_kill_shakal_spot", -130.121, 24.142, -417.739, 680773, 4)
+   sgm_g.create("zat_killer_shakal", -147.467, 23.585, -428.157, 646858, 4)
+   sgm_g.create("zat_shakal_bodyguard", -147.223, 23.582, -432.216, 648288, 4)
+   sgm_g.create("zat_shakal_interception", -148.964, 23.573, -423.975, 643965, 4)
+   sgm_g.create("zat_shakal_rpg_1", -133.013, 27.279, -389.703, 675531, 4)
+   sgm_g.create("zat_shakal_rpg_2", -138.134, 27.280, -389.639, 666298, 4)
+   sgm_g.add_task("sgm_zat_bandit_kill_shakal")
+   sgm_g.game_autosave_assign("save_zat_bandit_kill_shakal_search")
 end
 
 function zat_bring_flash_light(actor, npc)
-   if get_global_pattern() == 1 then
-      create("quest_flash_light", -181.315, 20.005, -184.315, 578636, 57)
+   if sgm_g.get_global_pattern() == 1 then
+      sgm_g.create("quest_flash_light", -181.315, 20.005, -184.315, 578636, 57)
    else
-      create("quest_flash_light", -163.873, 8.219, 83.099, 613892, 246)
+      sgm_g.create("quest_flash_light", -163.873, 8.219, 83.099, 613892, 246)
    end
-   add_task("sgm_zat_bring_flash_light")
+   sgm_g.add_task("sgm_zat_bring_flash_light")
 end
 
 function zat_bring_drink_beylis(actor, npc)
-   add_task("sgm_zat_bring_drink_beylis")
+   sgm_g.add_task("sgm_zat_bring_drink_beylis")
 end
 
 function zat_bring_sharpshooter_bino(actor, npc)
-   create("zat_bandit_base_guider", 457.882, 37.498, -2.563, 1712008, 293)
-   if get_global_pattern() == 1 then
-      create("quest_sharpshooter_binocular", -395.200, 12.319, 10.139, 51661, 376)
+   sgm_g.create("zat_bandit_base_guider", 457.882, 37.498, -2.563, 1712008, 293)
+   if sgm_g.get_global_pattern() == 1 then
+      sgm_g.create("quest_sharpshooter_binocular", -395.200, 12.319, 10.139, 51661, 376)
    else
-      create("quest_sharpshooter_binocular", -192.696, 5.122, -278.327, 390282, 559)
+      sgm_g.create("quest_sharpshooter_binocular", -192.696, 5.122, -278.327, 390282, 559)
    end
-   add_task("sgm_zat_bring_sharpshooter_bino")
+   sgm_g.add_task("sgm_zat_bring_sharpshooter_bino")
 end
 
 function zat_monsters_wave_quest(actor, npc)
-   create("zat_barge_commander", 148.775, -6.824, -134.896, 1219831, 149)
-   create("zat_barge_stalker1", 132.121, -3.659, -142.520, 1192032, 150)
-   create("zat_barge_stalker2", 143.593, -4.202, -161.406, 1211195, 149)
-   create("zat_barge_stalker3", 142.008, -6.823, -142.053, 1208939, 149)
-   create("zat_barge_stalker4", 169.499, 3.800, -162.827, 1255930, 149)
-   create("zat_barge_stalker5", 138.512, -6.827, -142.066, 1203498, 149)
-   create("zat_barge_stalker6", 137.932, -6.824, -135.269, 1202391, 149)
-   create("zat_barge_stalker7", 158.784, -6.515, -132.784, 1238020, 13)
-   create("zat_noah_barge_main_spot", 151.455, -6.823, -138.430, 1224672, 13)
-   create("zat_noah_barge_firepos_spot", 132.904, -3.658, -135.626, 1196686, 150)
-   add_task("sgm_zat_monsters_wave")
+   sgm_g.create("zat_barge_commander", 148.775, -6.824, -134.896, 1219831, 149)
+   sgm_g.create("zat_barge_stalker1", 132.121, -3.659, -142.520, 1192032, 150)
+   sgm_g.create("zat_barge_stalker2", 143.593, -4.202, -161.406, 1211195, 149)
+   sgm_g.create("zat_barge_stalker3", 142.008, -6.823, -142.053, 1208939, 149)
+   sgm_g.create("zat_barge_stalker4", 169.499, 3.800, -162.827, 1255930, 149)
+   sgm_g.create("zat_barge_stalker5", 138.512, -6.827, -142.066, 1203498, 149)
+   sgm_g.create("zat_barge_stalker6", 137.932, -6.824, -135.269, 1202391, 149)
+   sgm_g.create("zat_barge_stalker7", 158.784, -6.515, -132.784, 1238020, 13)
+   sgm_g.create("zat_noah_barge_main_spot", 151.455, -6.823, -138.430, 1224672, 13)
+   sgm_g.create("zat_noah_barge_firepos_spot", 132.904, -3.658, -135.626, 1196686, 150)
+   sgm_g.add_task("sgm_zat_monsters_wave")
 end
 
 function zat_wisdom_books(actor, npc)
@@ -1972,471 +1972,471 @@ function zat_wisdom_books(actor, npc)
    create_random("zat_wisdom_book_3", 3, "-148.18193054199,24.089563369751,-429.84701538086,646856,4",
       "-179.21305847168,9.4111366271973,76.51448059082,582891,145",
       "105.87712097168,-0.61825501918793,188.03581237793,1149485,316")
-   add_task("sgm_zat_wisdom_books")
+   sgm_g.add_task("sgm_zat_wisdom_books")
 end
 
 function zat_mad_dog(actor, npc)
-   create_force("zat_mad_dog_squad", -349.61730957031, 39.804275512695, -294.8235168457, 256767, 303)
-   add_task("sgm_zat_mad_dog")
+   sgm_g.create_force("zat_mad_dog_squad", -349.61730957031, 39.804275512695, -294.8235168457, 256767, 303)
+   sgm_g.add_task("sgm_zat_mad_dog")
 end
 
 function zat_carrying_antidote(actor, npc)
    dialogs.relocate_item_section(actor, "zat_medic_antidote", "in")
-   add_task("sgm_zat_carrying_antidote")
+   sgm_g.add_task("sgm_zat_carrying_antidote")
 end
 
 function jup_bring_heavy_medkits(actor, npc)
-   create("quest_heavy_medkits", 348.967, 20.666, -314.291, 1273602, 369)
-   add_task("sgm_jup_bring_heavy_medkits")
+   sgm_g.create("quest_heavy_medkits", 348.967, 20.666, -314.291, 1273602, 369)
+   sgm_g.add_task("sgm_jup_bring_heavy_medkits")
 end
 
 function jup_bring_photo_device(actor, npc)
-   create("quest_photo_device", 12.862, 24.297, -408.320, 734792, 587)
-   add_task("sgm_jup_bring_photo_device")
+   sgm_g.create("quest_photo_device", 12.862, 24.297, -408.320, 734792, 587)
+   sgm_g.add_task("sgm_jup_bring_photo_device")
 end
 
 function jup_bring_arms_case(actor, npc)
-   create("quest_arms_case", 41.033, 0.369, -255.812, 252954, 702)
-   create("pri_monolith_case_guard_1", 35.032, 0.241, -252.660, 243954, 702)
-   create("pri_monolith_case_guard_2", 35.032, 0.241, -252.660, 243954, 702)
-   add_task("sgm_jup_bring_arms_case")
+   sgm_g.create("quest_arms_case", 41.033, 0.369, -255.812, 252954, 702)
+   sgm_g.create("pri_monolith_case_guard_1", 35.032, 0.241, -252.660, 243954, 702)
+   sgm_g.create("pri_monolith_case_guard_2", 35.032, 0.241, -252.660, 243954, 702)
+   sgm_g.add_task("sgm_jup_bring_arms_case")
 end
 
 function jup_find_gromoboy_vintar(actor, npc)
-   create("jup_monolith_thief", -335.597, 1.494, 263.818, 149065, 380)
+   sgm_g.create("jup_monolith_thief", -335.597, 1.494, 263.818, 149065, 380)
    sgm_g.create_dead_body("monolith_dead_body_2", nil, 389.342, 0.600, 321.431, 1330578, 351)
-   add_task("sgm_jup_find_gromoboy_vintar")
+   sgm_g.add_task("sgm_jup_find_gromoboy_vintar")
 end
 
 function jup_gromoboy_add_spawn(actor, npc)
-   create("jup_find_gromoboy_vintar_spot", 387.004, 0.599, 321.342, 1327486, 351)
+   sgm_g.create("jup_find_gromoboy_vintar_spot", 387.004, 0.599, 321.342, 1327486, 351)
    local rnd_gromoboy = math.random(1, 5)
    if rnd_gromoboy == 1 then
-      create("wpn_vintorez_bomber", 381.08807373047, 6.9604020118713, 311.65075683594, 1319054, 351)
+      sgm_g.create("wpn_vintorez_bomber", 381.08807373047, 6.9604020118713, 311.65075683594, 1319054, 351)
    elseif rnd_gromoboy == 2 then
-      create("wpn_vintorez_bomber", 362.90637207031, 1.0815975666046, 335.55255126953, 1293265, 352)
+      sgm_g.create("wpn_vintorez_bomber", 362.90637207031, 1.0815975666046, 335.55255126953, 1293265, 352)
    elseif rnd_gromoboy == 3 then
-      create("wpn_vintorez_bomber", 393.5439453125, 32.886432647705, 361.73297119141, 1336643, 350)
+      sgm_g.create("wpn_vintorez_bomber", 393.5439453125, 32.886432647705, 361.73297119141, 1336643, 350)
    elseif rnd_gromoboy == 4 then
-      create("wpn_vintorez_bomber", 390.89743041992, 4.7360033988953, 331.01290893555, 1331632, 350)
+      sgm_g.create("wpn_vintorez_bomber", 390.89743041992, 4.7360033988953, 331.01290893555, 1331632, 350)
    else
-      create("wpn_vintorez_bomber", 365.70455932617, 38.065956115723, 333.98034667969, 1296669, 349)
+      sgm_g.create("wpn_vintorez_bomber", 365.70455932617, 38.065956115723, 333.98034667969, 1296669, 349)
    end
 end
 
 function jup_destroy_night_killers(actor, npc)
-   create("jup_night_killers_spot", 224.694, -9.701, 163.109, 1101098, 507)
-   create("jup_night_killer_1", 226.305, -6.898, 170.862, 1096311, 507)
-   create("jup_night_killer_2", 221.680, -6.898, 170.785, 1096311, 507)
-   create("jup_night_killer_3", 224.125, -5.768, 166.798, 1096309, 507)
-   create("jup_night_killer_4", 224.155, -7.303, 156.093, 1099905, 507)
-   create("jup_night_killer_5", 220.178, -29.688, 154.252, 1093835, 504)
-   create("jup_night_killer_6", 230.813, -12.316, 189.934, 1111233, 507)
-   create("jup_night_killer_7", 229.419, -9.415, 192.021, 1103387, 507)
-   add_task("sgm_jup_destroy_night_killers")
+   sgm_g.create("jup_night_killers_spot", 224.694, -9.701, 163.109, 1101098, 507)
+   sgm_g.create("jup_night_killer_1", 226.305, -6.898, 170.862, 1096311, 507)
+   sgm_g.create("jup_night_killer_2", 221.680, -6.898, 170.785, 1096311, 507)
+   sgm_g.create("jup_night_killer_3", 224.125, -5.768, 166.798, 1096309, 507)
+   sgm_g.create("jup_night_killer_4", 224.155, -7.303, 156.093, 1099905, 507)
+   sgm_g.create("jup_night_killer_5", 220.178, -29.688, 154.252, 1093835, 504)
+   sgm_g.create("jup_night_killer_6", 230.813, -12.316, 189.934, 1111233, 507)
+   sgm_g.create("jup_night_killer_7", 229.419, -9.415, 192.021, 1103387, 507)
+   sgm_g.add_task("sgm_jup_destroy_night_killers")
 end
 
 function jup_follow_scientists(actor, npc)
    sgm_g.write_mod_param("jup_fw_scientists_deaths", 0)
-   create("jup_mine_zombied_1", -45.294, 23.780, -335.701, 642480, 326)
-   create("jup_mine_zombied_2", -77.302, 23.883, -33.869, 591810, 481)
-   create("jup_mine_zombied_3", -98.973, 24.025, -330.878, 555829, 467)
-   create("jup_mine_zombied_4", -124.607, 23.938, -332.254, 509581, 467)
-   create("jup_mine_zombied_5", -122.798, 24.586, -314.923, 513422, 467)
-   create("jup_mine_zombied_6", -117.867, 23.857, -302.533, 522437, 607)
-   create("jup_mine_zombied_7", -90.212, 23.807, -302.245, 569725, 606)
-   create("jup_mine_zombied_8", -53.059, 23.676, -307.369, 629844, 326)
-   create("jup_mine_zombied_1", -45.294, 23.780, -335.701, 642480, 326)
-   create("jup_mine_zombied_2", -77.302, 23.883, -33.869, 591810, 481)
-   create("jup_mine_zombied_3", -98.973, 24.025, -330.878, 555829, 467)
-   create("jup_mine_zombied_4", -124.607, 23.938, -332.254, 509581, 467)
-   create("jup_mine_zombied_5", -122.798, 24.586, -314.923, 513422, 467)
-   create("jup_mine_zombied_6", -117.867, 23.857, -302.533, 522437, 607)
-   create("jup_mine_zombied_7", -90.212, 23.807, -302.245, 569725, 606)
-   create("jup_mine_zombied_8", -53.059, 23.676, -307.369, 629844, 326)
-   create("jup_mine_zombied_9", -180.892, 3.331, -77.640, 410666, 393)
-   create("jup_mine_zombied_10", -169.949, 0.749, -153.351, 429141, 458)
-   create("jup_mine_zombied_11", -141.502, 2.363, -150.306, 480621, 459)
-   create("jup_mine_zombied_12", -164.128, -0.202, -87.584, 440684, 396)
-   add_task("sgm_jup_follow_scientists")
-   game_autosave_assign("save_jup_follow_scientists_init")
+   sgm_g.create("jup_mine_zombied_1", -45.294, 23.780, -335.701, 642480, 326)
+   sgm_g.create("jup_mine_zombied_2", -77.302, 23.883, -33.869, 591810, 481)
+   sgm_g.create("jup_mine_zombied_3", -98.973, 24.025, -330.878, 555829, 467)
+   sgm_g.create("jup_mine_zombied_4", -124.607, 23.938, -332.254, 509581, 467)
+   sgm_g.create("jup_mine_zombied_5", -122.798, 24.586, -314.923, 513422, 467)
+   sgm_g.create("jup_mine_zombied_6", -117.867, 23.857, -302.533, 522437, 607)
+   sgm_g.create("jup_mine_zombied_7", -90.212, 23.807, -302.245, 569725, 606)
+   sgm_g.create("jup_mine_zombied_8", -53.059, 23.676, -307.369, 629844, 326)
+   sgm_g.create("jup_mine_zombied_1", -45.294, 23.780, -335.701, 642480, 326)
+   sgm_g.create("jup_mine_zombied_2", -77.302, 23.883, -33.869, 591810, 481)
+   sgm_g.create("jup_mine_zombied_3", -98.973, 24.025, -330.878, 555829, 467)
+   sgm_g.create("jup_mine_zombied_4", -124.607, 23.938, -332.254, 509581, 467)
+   sgm_g.create("jup_mine_zombied_5", -122.798, 24.586, -314.923, 513422, 467)
+   sgm_g.create("jup_mine_zombied_6", -117.867, 23.857, -302.533, 522437, 607)
+   sgm_g.create("jup_mine_zombied_7", -90.212, 23.807, -302.245, 569725, 606)
+   sgm_g.create("jup_mine_zombied_8", -53.059, 23.676, -307.369, 629844, 326)
+   sgm_g.create("jup_mine_zombied_9", -180.892, 3.331, -77.640, 410666, 393)
+   sgm_g.create("jup_mine_zombied_10", -169.949, 0.749, -153.351, 429141, 458)
+   sgm_g.create("jup_mine_zombied_11", -141.502, 2.363, -150.306, 480621, 459)
+   sgm_g.create("jup_mine_zombied_12", -164.128, -0.202, -87.584, 440684, 396)
+   sgm_g.add_task("sgm_jup_follow_scientists")
+   sgm_g.game_autosave_assign("save_jup_follow_scientists_init")
 end
 
 function jup_hostage_dest_spot(actor, npc)
-   create("jup_hostage_dest_spot", -1.018, 3.413, 204.178, 714145, 409)
+   sgm_g.create("jup_hostage_dest_spot", -1.018, 3.413, 204.178, 714145, 409)
 end
 
 function jup_bring_detector_kit(actor, npc)
    local rnd_spawn = math.random(1, 2)
    if rnd_spawn == 1 then
-      create("detector_modify_toolkit", 481.422, 36.931, -406.290, 1453595, 630)
+      sgm_g.create("detector_modify_toolkit", 481.422, 36.931, -406.290, 1453595, 630)
    else
-      create("detector_modify_toolkit", 417.800, 32.372, -361.604, 1378094, 628)
+      sgm_g.create("detector_modify_toolkit", 417.800, 32.372, -361.604, 1378094, 628)
    end
-   add_task("sgm_jup_bring_detector_kit")
+   sgm_g.add_task("sgm_jup_bring_detector_kit")
 end
 
 function jup_rasvet_destroy_snorks(actor, npc)
-   create_force("jup_rasvet_snorks_squad", 25.590, 1.619, 306.063, 757495, 432)
-   add_task("sgm_jup_rasvet_destroy_snorks")
+   sgm_g.create_force("jup_rasvet_snorks_squad", 25.590, 1.619, 306.063, 757495, 432)
+   sgm_g.add_task("sgm_jup_rasvet_destroy_snorks")
 end
 
 function jup_mercenary_check_plant(actor, npc)
-   create("jup_plant_main_vhod_spot", 254.282, 27.201, -223.706, 1143400, 547)
-   create("jup_plant_perimetr_spot", 324.742, 26.870, -255.489, 1236544, 549)
-   create("jup_plant_second_stage_spot", 327.460, 34.593, -226.167, 1240512, 549)
-   create("jup_plant_building_exit_spot", 344.514, 26.869, -253.907, 1265463, 549)
-   add_task("sgm_jup_mercenary_check_plant")
+   sgm_g.create("jup_plant_main_vhod_spot", 254.282, 27.201, -223.706, 1143400, 547)
+   sgm_g.create("jup_plant_perimetr_spot", 324.742, 26.870, -255.489, 1236544, 549)
+   sgm_g.create("jup_plant_second_stage_spot", 327.460, 34.593, -226.167, 1240512, 549)
+   sgm_g.create("jup_plant_building_exit_spot", 344.514, 26.869, -253.907, 1265463, 549)
+   sgm_g.add_task("sgm_jup_mercenary_check_plant")
 end
 
 function jup_mercenary_check_plant_capture_plant(actor, npc)
-   create("jup_psi_controller_2", 347.689, 27.183, -277.183, 1270540, 549)
-   create("jup_psi_controller_3", 342.520, 27.975, -232.123, 1262289, 549)
-   create("jup_ambush_zombied_11", 298.274, 27.077, -267.674, 1200276, 633)
-   create("jup_ambush_zombied_12", 267.152, 26.924, -244.206, 1160457, 635)
-   create("jup_ambush_zombied_13", 278.499, 27.612, -231.468, 1175114, 548)
-   create("jup_ambush_zombied_14", 241.849, 28.025, -253.978, 1126950, 636)
-   create("jup_ambush_zombied_15", 290.338, 26.228, -239.453, 1190339, 634)
+   sgm_g.create("jup_psi_controller_2", 347.689, 27.183, -277.183, 1270540, 549)
+   sgm_g.create("jup_psi_controller_3", 342.520, 27.975, -232.123, 1262289, 549)
+   sgm_g.create("jup_ambush_zombied_11", 298.274, 27.077, -267.674, 1200276, 633)
+   sgm_g.create("jup_ambush_zombied_12", 267.152, 26.924, -244.206, 1160457, 635)
+   sgm_g.create("jup_ambush_zombied_13", 278.499, 27.612, -231.468, 1175114, 548)
+   sgm_g.create("jup_ambush_zombied_14", 241.849, 28.025, -253.978, 1126950, 636)
+   sgm_g.create("jup_ambush_zombied_15", 290.338, 26.228, -239.453, 1190339, 634)
 end
 
 function jup_mercenary_check_plant_squad(actor, npc)
-   create("jup_killer_first_squad_commander", 186.958, 28.213, -424.229, 1034208, 610)
-   create("jup_killer_first_squad_member1", 181.896, 28.165, -420.229, 1025636, 610)
-   create("jup_killer_first_squad_member2", 181.806, 28.178, -428.548, 1025624, 610)
-   create("jup_killer_first_squad_member3", 177.744, 28.165, -423.131, 1018165, 610)
+   sgm_g.create("jup_killer_first_squad_commander", 186.958, 28.213, -424.229, 1034208, 610)
+   sgm_g.create("jup_killer_first_squad_member1", 181.896, 28.165, -420.229, 1025636, 610)
+   sgm_g.create("jup_killer_first_squad_member2", 181.806, 28.178, -428.548, 1025624, 610)
+   sgm_g.create("jup_killer_first_squad_member3", 177.744, 28.165, -423.131, 1018165, 610)
 end
 
 function jup_mercenary_check_plant_again_squad(actor, npc)
-   create("jup_killer_second_squad_commander", 186.958, 28.213, -424.229, 1034208, 610)
-   create("jup_killer_second_squad_member1", 181.896, 28.165, -420.229, 1025636, 610)
-   create("jup_killer_second_squad_member2", 181.806, 28.178, -428.548, 1025624, 610)
-   create("jup_killer_second_squad_member3", 177.744, 28.165, -423.131, 1018165, 610)
+   sgm_g.create("jup_killer_second_squad_commander", 186.958, 28.213, -424.229, 1034208, 610)
+   sgm_g.create("jup_killer_second_squad_member1", 181.896, 28.165, -420.229, 1025636, 610)
+   sgm_g.create("jup_killer_second_squad_member2", 181.806, 28.178, -428.548, 1025624, 610)
+   sgm_g.create("jup_killer_second_squad_member3", 177.744, 28.165, -423.131, 1018165, 610)
 end
 
 function jup_rasvet_eliminate_burrows(actor, npc)
    xr_effects.jup_rasvet_eliminate_burrows_hole_1_launch()
-   add_task("sgm_jup_rasvet_eliminate_burrows")
+   sgm_g.add_task("sgm_jup_rasvet_eliminate_burrows")
 end
 
 function jup_search_anomal_prototype(actor, npc)
    dialogs.relocate_item_section(actor, "detector_serafim", "in")
    if get_rnd(1, 2) == 1 then
-      create("af_prodigy_1_danger", -350.127, 40.109, -368.417, 255474, 29)
-      create("af_prodigy_2_danger", 393.724, -5.444, 435.390, 1616516, 242)
+      sgm_g.create("af_prodigy_1_danger", -350.127, 40.109, -368.417, 255474, 29)
+      sgm_g.create("af_prodigy_2_danger", 393.724, -5.444, 435.390, 1616516, 242)
    else
-      create("af_prodigy_1_danger", -17.765, 24.970, 320.719, 908963, 237)
-      create("af_prodigy_2_danger", 15.353, 9.714, -392.285, 974688, 8)
+      sgm_g.create("af_prodigy_1_danger", -17.765, 24.970, 320.719, 908963, 237)
+      sgm_g.create("af_prodigy_2_danger", 15.353, 9.714, -392.285, 974688, 8)
    end
    if get_rnd(1, 2) == 1 then
-      create("af_prodigy_3_danger", 250.110, -29.630, 112.478, 1138454, 345)
-      create("af_prodigy_4_danger", -394.972, 14.576, 353.005, 53094, 422)
+      sgm_g.create("af_prodigy_3_danger", 250.110, -29.630, 112.478, 1138454, 345)
+      sgm_g.create("af_prodigy_4_danger", -394.972, 14.576, 353.005, 53094, 422)
    else
-      create("af_prodigy_3_danger", 84.821, 5.7357, 17.804, 860122, 553)
-      create("af_prodigy_4_danger", 366.424, -5.857, 370.567, 1297874, 611)
+      sgm_g.create("af_prodigy_3_danger", 84.821, 5.7357, 17.804, 860122, 553)
+      sgm_g.create("af_prodigy_4_danger", 366.424, -5.857, 370.567, 1297874, 611)
    end
    if get_rnd(1, 2) == 1 then
-      create("af_prodigy_5_danger", 126.023, -0.241, 207.342, 352774, 707)
-      create("af_prodigy_6_danger", -63.226, -0.422, -103.768, 126469, 772)
+      sgm_g.create("af_prodigy_5_danger", 126.023, -0.241, 207.342, 352774, 707)
+      sgm_g.create("af_prodigy_6_danger", -63.226, -0.422, -103.768, 126469, 772)
    else
-      create("af_prodigy_5_danger", 114.879, -0.536, -243.568, 340252, 856)
-      create("af_prodigy_6_danger", 192.634, -1.155, 287.737, 422584, 739)
+      sgm_g.create("af_prodigy_5_danger", 114.879, -0.536, -243.568, 340252, 856)
+      sgm_g.create("af_prodigy_6_danger", 192.634, -1.155, 287.737, 422584, 739)
    end
-   add_task("sgm_jup_search_anomal_prototype")
+   sgm_g.add_task("sgm_jup_search_anomal_prototype")
 end
 
 function jup_weak_lighthouse(actor, npc)
-   create("jup_weak_lighthouse", 393.38070678711, 22.838840484619, -369.36849975586, 1335828, 629)
-   add_task("sgm_jup_weak_lighthouse")
+   sgm_g.create("jup_weak_lighthouse", 393.38070678711, 22.838840484619, -369.36849975586, 1335828, 629)
+   sgm_g.add_task("sgm_jup_weak_lighthouse")
 end
 
 function jup_examine_caravan(actor, npc)
-   create("jup_killer_caravan_commander", -96.488662719727, 23.897964477539, -352.5168762207, 559366, 481)
-   create("jup_killer_caravan_member1", -90.16471862793, 23.899240493774, -356.07702636719, 569636, 481)
-   create("jup_killer_caravan_member2", -87.531158447266, 23.889177322388, -349.37356567383, 574433, 481)
-   create("jup_killer_caravan_member3", -101.53507232666, 23.897756576538, -352.02645874023, 551042, 481)
-   create("jup_caravan_gigant", -79.811882019043, 23.919052124023, -367.25283813477, 587193, 481)
-   create("bloodsucker_2_nightmare_hunter", -59.879100799561, 23.960222244263, -377.0764465332, 618792, 481)
-   add_task("sgm_jup_examine_caravan")
+   sgm_g.create("jup_killer_caravan_commander", -96.488662719727, 23.897964477539, -352.5168762207, 559366, 481)
+   sgm_g.create("jup_killer_caravan_member1", -90.16471862793, 23.899240493774, -356.07702636719, 569636, 481)
+   sgm_g.create("jup_killer_caravan_member2", -87.531158447266, 23.889177322388, -349.37356567383, 574433, 481)
+   sgm_g.create("jup_killer_caravan_member3", -101.53507232666, 23.897756576538, -352.02645874023, 551042, 481)
+   sgm_g.create("jup_caravan_gigant", -79.811882019043, 23.919052124023, -367.25283813477, 587193, 481)
+   sgm_g.create("bloodsucker_2_nightmare_hunter", -59.879100799561, 23.960222244263, -377.0764465332, 618792, 481)
+   sgm_g.add_task("sgm_jup_examine_caravan")
 end
 
 function jup_liquidate_valet(actor, npc)
-   add_task("sgm_jup_liquidate_valet")
+   sgm_g.add_task("sgm_jup_liquidate_valet")
 end
 
 function pri_necessary_kill_kasilov(actor, npc)
-   create("pri_army_kasilov", 182.344, -0.119, -187.372, 412041, 705)
-   create("pri_army_chasovoy", 173.549, -0.508, -187.101, 403066, 705)
-   add_task("sgm_pri_necessary_kill_kasilov")
+   sgm_g.create("pri_army_kasilov", 182.344, -0.119, -187.372, 412041, 705)
+   sgm_g.create("pri_army_chasovoy", 173.549, -0.508, -187.101, 403066, 705)
+   sgm_g.add_task("sgm_pri_necessary_kill_kasilov")
 end
 
 function pri_find_science_briefing(actor, npc)
-   create("pri_ecolog_briefing", 323.518, -8.536, 275.314, 485438, 682)
-   add_task("sgm_pri_find_science_briefing")
-   game_autosave_assign("save_jup_night_agent_meeting_talked")
+   sgm_g.create("pri_ecolog_briefing", 323.518, -8.536, 275.314, 485438, 682)
+   sgm_g.add_task("sgm_pri_find_science_briefing")
+   sgm_g.game_autosave_assign("save_jup_night_agent_meeting_talked")
 end
 
 function pri_science_briefing_reward_cell(actor, npc)
-   create("pri_briefing_reward_spot", 339.287, 30.279, -340.712, 1531915, 75)
+   sgm_g.create("pri_briefing_reward_spot", 339.287, 30.279, -340.712, 1531915, 75)
    cell_items = "money_meshochek_5000_10000,detector_omega,repair_arms_box,repair_outfit_box,bag_medkit_4"
    create_inventory_item(cell_items, "zat_science_briefing_cell", 339.287, 30.279, -340.712, 1531915, 75)
 end
 
 function pri_assault_monolith_base(actor, npc)
-   create("pri_assault_monolith_firepos_spot", 9.466, 4.493, 287.466, 210359, 712)
-   create("pri_assault_monolith_base_spot", 20.525, 4.904, 373.889, 224588, 694)
-   create("pri_assault_squad_leader", 128.864, -0.484, -160.310, 355556, 705)
-   create("pri_assault_squad_soldier1", 133.627, -0.475, -158.317, 361207, 705)
-   create("pri_assault_squad_soldier2", 133.230, -0.509, -151.146, 360363, 705)
-   create("pri_assault_squad_soldier3", 127.249, -0.469, -153.538, 353966, 705)
-   create("pri_assault_squad_soldier4", 136.070, -0.507, -163.228, 363780, 705)
-   add_task("sgm_pri_assault_monolith_base")
+   sgm_g.create("pri_assault_monolith_firepos_spot", 9.466, 4.493, 287.466, 210359, 712)
+   sgm_g.create("pri_assault_monolith_base_spot", 20.525, 4.904, 373.889, 224588, 694)
+   sgm_g.create("pri_assault_squad_leader", 128.864, -0.484, -160.310, 355556, 705)
+   sgm_g.create("pri_assault_squad_soldier1", 133.627, -0.475, -158.317, 361207, 705)
+   sgm_g.create("pri_assault_squad_soldier2", 133.230, -0.509, -151.146, 360363, 705)
+   sgm_g.create("pri_assault_squad_soldier3", 127.249, -0.469, -153.538, 353966, 705)
+   sgm_g.create("pri_assault_squad_soldier4", 136.070, -0.507, -163.228, 363780, 705)
+   sgm_g.add_task("sgm_pri_assault_monolith_base")
 end
 
 function pri_bloodsucker_vaccine(actor, npc)
-   create("pri_bloodsucker_room_spot", 47.655, 16.540, -139.592, 261694, 698)
-   add_task("sgm_pri_bloodsucker_vaccine")
+   sgm_g.create("pri_bloodsucker_room_spot", 47.655, 16.540, -139.592, 261694, 698)
+   sgm_g.add_task("sgm_pri_bloodsucker_vaccine")
 end
 
 function pri_expiation_sin_1_quest(actor, npc)
-   create("drug_anabiotic", 32.794, 0.048, 354.131, 241793, 736)
-   create("drug_anabiotic", 27.988, -2.934, 367.586, 235003, 694)
-   create("drug_anabiotic", 112.071, 1.110, 394.982, 336351, 809)
-   create("drug_anabiotic", 132.469, 5.194, -206.210, 361135, 709)
-   create("drug_anabiotic", -227.879, -2.307, 80.840, 331134, 385)
-   create("drug_anabiotic", -223.835, -2.375, 82.624, 335930, 385)
-   create("drug_anabiotic", 160.212, -8.607, 176.161, 1240735, 225)
-   give_item_to_sid("drug_anabiotic", "zat_a2_actor_treasure")
-   give_item_to_sid("drug_anabiotic", "jup_b202_actor_treasure")
-   give_item_to_sid("drug_anabiotic", "pri_a16_actor_treasure")
-   create("pri_monolit_brother_leader_zombied", 35.852, 1.163, 360.252, 245838, 736)
-   create("pri_monolit_brother_member1_zombied", 36.687, 1.206, 355.955, 246816, 736)
-   create("pri_monolit_brother_member2_zombied", 35.462, 1.204, 366.607, 245847, 736)
-   create("pri_monolit_brother_member3_zombied", 38.252, 1.206, 359.683, 249917, 736)
-   create("pri_monolit_brother_member4_zombied", 37.085, 1.203, 373.399, 247895, 736)
-   add_task("sgm_pri_expiation_sin_1")
+   sgm_g.create("drug_anabiotic", 32.794, 0.048, 354.131, 241793, 736)
+   sgm_g.create("drug_anabiotic", 27.988, -2.934, 367.586, 235003, 694)
+   sgm_g.create("drug_anabiotic", 112.071, 1.110, 394.982, 336351, 809)
+   sgm_g.create("drug_anabiotic", 132.469, 5.194, -206.210, 361135, 709)
+   sgm_g.create("drug_anabiotic", -227.879, -2.307, 80.840, 331134, 385)
+   sgm_g.create("drug_anabiotic", -223.835, -2.375, 82.624, 335930, 385)
+   sgm_g.create("drug_anabiotic", 160.212, -8.607, 176.161, 1240735, 225)
+   sgm_g.give_item_to_sid("drug_anabiotic", "zat_a2_actor_treasure")
+   sgm_g.give_item_to_sid("drug_anabiotic", "jup_b202_actor_treasure")
+   sgm_g.give_item_to_sid("drug_anabiotic", "pri_a16_actor_treasure")
+   sgm_g.create("pri_monolit_brother_leader_zombied", 35.852, 1.163, 360.252, 245838, 736)
+   sgm_g.create("pri_monolit_brother_member1_zombied", 36.687, 1.206, 355.955, 246816, 736)
+   sgm_g.create("pri_monolit_brother_member2_zombied", 35.462, 1.204, 366.607, 245847, 736)
+   sgm_g.create("pri_monolit_brother_member3_zombied", 38.252, 1.206, 359.683, 249917, 736)
+   sgm_g.create("pri_monolit_brother_member4_zombied", 37.085, 1.203, 373.399, 247895, 736)
+   sgm_g.add_task("sgm_pri_expiation_sin_1")
 end
 
 function pri_expiation_sin_2_quest(actor, npc)
-   create("pri_monolith_taynik_1", -292.939, 18.236, 352.931, 360299, 115)
-   create("pri_monolith_taynik_2", -133.369, 24.562, -399.488, 674213, 4)
-   create("pri_monolith_taynik_3", -168.219, 20.030, -169.211, 605084, 57)
-   create("pri_monolith_taynik_4", -367.163, 39.999, -327.279, 230164, 29)
-   create("pri_monolith_taynik_5", 237.024, 33.704, -332.134, 1370256, 310)
-   create("pri_monolith_taynik_6", 374.906, 34.314, -20.161, 1586333, 294)
-   create("pri_monolith_taynik_7", 389.957, -5.702, 229.289, 1608580, 7)
-   create("pri_monolith_taynik_8", 233.920, 8.422, -18.156, 1364159, 55)
-   create("pri_monolith_taynik_9", 76.783, -0.295, 31.003, 1021131, 19)
-   create("pri_expiation_sin_2_taynik_1_spot", -292.939, 18.236, 352.931, 360299, 115)
-   create("pri_expiation_sin_2_taynik_2_spot", -133.369, 24.562, -399.488, 674213, 4)
-   create("pri_expiation_sin_2_taynik_3_spot", -168.219, 20.030, -169.211, 605084, 57)
-   create("pri_expiation_sin_2_taynik_4_spot", -367.163, 39.999, -327.279, 230164, 29)
-   create("pri_expiation_sin_2_taynik_5_spot", 237.024, 33.704, -332.134, 1370256, 310)
-   create("pri_expiation_sin_2_taynik_6_spot", 374.906, 34.314, -20.161, 1586333, 294)
-   create("pri_expiation_sin_2_taynik_7_spot", 389.957, -5.702, 229.289, 1608580, 7)
-   create("pri_expiation_sin_2_taynik_8_spot", 233.920, 8.422, -18.156, 1364159, 55)
-   create("pri_expiation_sin_2_taynik_9_spot", 76.783, -0.295, 31.003, 1021131, 19)
-   add_task("sgm_pri_expiation_sin_2")
+   sgm_g.create("pri_monolith_taynik_1", -292.939, 18.236, 352.931, 360299, 115)
+   sgm_g.create("pri_monolith_taynik_2", -133.369, 24.562, -399.488, 674213, 4)
+   sgm_g.create("pri_monolith_taynik_3", -168.219, 20.030, -169.211, 605084, 57)
+   sgm_g.create("pri_monolith_taynik_4", -367.163, 39.999, -327.279, 230164, 29)
+   sgm_g.create("pri_monolith_taynik_5", 237.024, 33.704, -332.134, 1370256, 310)
+   sgm_g.create("pri_monolith_taynik_6", 374.906, 34.314, -20.161, 1586333, 294)
+   sgm_g.create("pri_monolith_taynik_7", 389.957, -5.702, 229.289, 1608580, 7)
+   sgm_g.create("pri_monolith_taynik_8", 233.920, 8.422, -18.156, 1364159, 55)
+   sgm_g.create("pri_monolith_taynik_9", 76.783, -0.295, 31.003, 1021131, 19)
+   sgm_g.create("pri_expiation_sin_2_taynik_1_spot", -292.939, 18.236, 352.931, 360299, 115)
+   sgm_g.create("pri_expiation_sin_2_taynik_2_spot", -133.369, 24.562, -399.488, 674213, 4)
+   sgm_g.create("pri_expiation_sin_2_taynik_3_spot", -168.219, 20.030, -169.211, 605084, 57)
+   sgm_g.create("pri_expiation_sin_2_taynik_4_spot", -367.163, 39.999, -327.279, 230164, 29)
+   sgm_g.create("pri_expiation_sin_2_taynik_5_spot", 237.024, 33.704, -332.134, 1370256, 310)
+   sgm_g.create("pri_expiation_sin_2_taynik_6_spot", 374.906, 34.314, -20.161, 1586333, 294)
+   sgm_g.create("pri_expiation_sin_2_taynik_7_spot", 389.957, -5.702, 229.289, 1608580, 7)
+   sgm_g.create("pri_expiation_sin_2_taynik_8_spot", 233.920, 8.422, -18.156, 1364159, 55)
+   sgm_g.create("pri_expiation_sin_2_taynik_9_spot", 76.783, -0.295, 31.003, 1021131, 19)
+   sgm_g.add_task("sgm_pri_expiation_sin_2")
 end
 
 function pri_expiation_sin_3_quest(actor, npc)
-   create("pri_knigi_vhod_spot", -169.344, 0.560, -358.036, 41200, 800)
-   create("pri_knigi_center_spot", -181.270, 0.710, -364.715, 33801, 800)
-   create("pri_knigi_antenni_spot", -173.870, 0.615, -345.086, 38576, 806)
-   create("pri_knigi_voice_spot", -184.795, 0.699, -364.489, 31547, 800)
-   add_task("sgm_pri_expiation_sin_3")
+   sgm_g.create("pri_knigi_vhod_spot", -169.344, 0.560, -358.036, 41200, 800)
+   sgm_g.create("pri_knigi_center_spot", -181.270, 0.710, -364.715, 33801, 800)
+   sgm_g.create("pri_knigi_antenni_spot", -173.870, 0.615, -345.086, 38576, 806)
+   sgm_g.create("pri_knigi_voice_spot", -184.795, 0.699, -364.489, 31547, 800)
+   sgm_g.add_task("sgm_pri_expiation_sin_3")
 end
 
 function pri_expiation_sin_3_create_base(actor, npc)
-   create("pri_monolith_bodyguard", -180.116, 0.668, -348.861, 34718, 806)
-   create("pri_monolith_library_base_leader", -184.544, 0.747, -343.627, 31565, 800)
-   create("pri_monolith_library_base_mechanic", -170.889, 0.548, -343.642, 40297, 800)
-   create("pri_monolith_library_base_saint_1", -173.804, 0.592, -346.318, 38574, 800)
-   create("pri_monolith_library_base_saint_2", -178.322, 0.569, -346.984, 35634, 800)
-   create("pri_monolith_library_base_saint_3", -175.208, 0.547, -342.163, 37734, 800)
-   create("pri_monolith_library_base_sentry_1", -183.862, 0.548, -352.536, 31982, 800)
-   create("pri_monolith_library_base_sentry_2", -189.003, 0.547, -367.837, 29335, 800)
-   create("pri_monolith_library_base_sentry_3", -174.933, 0.548, -356.054, 37724, 800)
-   create("pri_monolith_library_base_sentry_4", -166.767, 0.549, -370.279, 43176, 800)
-   create("pri_monolith_library_base_sentry_5", -168.454, 0.559, -363.206, 41694, 800)
-   create("pri_monolith_library_base_sentry_6", -182.486, 0.546, -368.317, 32842, 800)
-   create("pri_monolith_library_base_sentry_7", -160.429, 0.548, -353.332, 47423, 800)
-   create("pri_monolith_library_base_sentry_8", -160.554, 0.545, -335.640, 47449, 800)
-   create("pri_monolith_library_base_sentry_9", -162.358, 0.547, -364.874, 46049, 800)
-   create("pri_monolith_library_base_sentry_10", -162.548, 0.545, -370.912, 46044, 800)
+   sgm_g.create("pri_monolith_bodyguard", -180.116, 0.668, -348.861, 34718, 806)
+   sgm_g.create("pri_monolith_library_base_leader", -184.544, 0.747, -343.627, 31565, 800)
+   sgm_g.create("pri_monolith_library_base_mechanic", -170.889, 0.548, -343.642, 40297, 800)
+   sgm_g.create("pri_monolith_library_base_saint_1", -173.804, 0.592, -346.318, 38574, 800)
+   sgm_g.create("pri_monolith_library_base_saint_2", -178.322, 0.569, -346.984, 35634, 800)
+   sgm_g.create("pri_monolith_library_base_saint_3", -175.208, 0.547, -342.163, 37734, 800)
+   sgm_g.create("pri_monolith_library_base_sentry_1", -183.862, 0.548, -352.536, 31982, 800)
+   sgm_g.create("pri_monolith_library_base_sentry_2", -189.003, 0.547, -367.837, 29335, 800)
+   sgm_g.create("pri_monolith_library_base_sentry_3", -174.933, 0.548, -356.054, 37724, 800)
+   sgm_g.create("pri_monolith_library_base_sentry_4", -166.767, 0.549, -370.279, 43176, 800)
+   sgm_g.create("pri_monolith_library_base_sentry_5", -168.454, 0.559, -363.206, 41694, 800)
+   sgm_g.create("pri_monolith_library_base_sentry_6", -182.486, 0.546, -368.317, 32842, 800)
+   sgm_g.create("pri_monolith_library_base_sentry_7", -160.429, 0.548, -353.332, 47423, 800)
+   sgm_g.create("pri_monolith_library_base_sentry_8", -160.554, 0.545, -335.640, 47449, 800)
+   sgm_g.create("pri_monolith_library_base_sentry_9", -162.358, 0.547, -364.874, 46049, 800)
+   sgm_g.create("pri_monolith_library_base_sentry_10", -162.548, 0.545, -370.912, 46044, 800)
 end
 
 function pri_expiation_sin_3_reinforcement(actor, npc)
-   create("pri_monolit_brother_member5", -13.159, -0.424, 371.172, 180038, 694)
-   create("pri_monolit_brother_member6", -13.090, -0.440, 363.539, 180027, 694)
-   create("pri_monolit_brother_member7", -6.957, -0.326, 363.583, 188215, 694)
-   create("pri_monolit_brother_member8", -6.792, -0.240, 371.513, 188227, 694)
-   create("pri_killer_barricaded_1", -160.267, 0.696, -353.495, 47423, 800)
-   create("pri_killer_barricaded_2", -162.571, 0.545, -365.358, 46048, 800)
-   create("pri_killer_barricaded_3", -162.975, 0.547, -370.903, 45584, 800)
-   create("pri_killer_barricaded_4", -164.319, 0.548, -337.944, 44663, 800)
-   create("pri_killer_barricaded_5", -170.055, 0.547, -357.361, 40745, 800)
-   create("pri_killer_barricaded_6", -174.626, 0.547, -355.953, 38148, 800)
-   create("pri_killer_barricaded_7", -168.115, 0.547, -362.689, 42169, 800)
-   create("pri_killer_barricaded_8", -166.840, 0.558, -370.568, 43176, 800)
-   create("pri_killer_barricaded_9", -183.508, 0.675, -368.741, 32394, 800)
-   create("pri_killer_barricaded_10", -184.871, 0.548, -360.890, 31552, 800)
-   create("pri_killer_barricaded_11", -188.836, 0.546, -370.056, 29331, 800)
-   create("pri_killer_barricaded_12", -177.342, 0.552, -357.021, 36479, 800)
-   create("pri_killer_barricaded_13", -184.212, 0.546, -352.839, 31982, 800)
-   create("pri_killer_barricaded_14", -171.298, 0.548, -343.003, 39829, 800)
-   create("pri_killer_barricaded_15", -179.348, 0.670, -348.898, 35184, 800)
-   create("pri_killer_barricaded_16", -185.040, 0.746, -345.500, 31562, 800)
-   create("pri_killer_barricaded_17", -185.035, 0.737, -341.418, 31568, 800)
-   create("pri_killer_barricaded_18", -170.186, 0.613, -353.044, 40748, 800)
+   sgm_g.create("pri_monolit_brother_member5", -13.159, -0.424, 371.172, 180038, 694)
+   sgm_g.create("pri_monolit_brother_member6", -13.090, -0.440, 363.539, 180027, 694)
+   sgm_g.create("pri_monolit_brother_member7", -6.957, -0.326, 363.583, 188215, 694)
+   sgm_g.create("pri_monolit_brother_member8", -6.792, -0.240, 371.513, 188227, 694)
+   sgm_g.create("pri_killer_barricaded_1", -160.267, 0.696, -353.495, 47423, 800)
+   sgm_g.create("pri_killer_barricaded_2", -162.571, 0.545, -365.358, 46048, 800)
+   sgm_g.create("pri_killer_barricaded_3", -162.975, 0.547, -370.903, 45584, 800)
+   sgm_g.create("pri_killer_barricaded_4", -164.319, 0.548, -337.944, 44663, 800)
+   sgm_g.create("pri_killer_barricaded_5", -170.055, 0.547, -357.361, 40745, 800)
+   sgm_g.create("pri_killer_barricaded_6", -174.626, 0.547, -355.953, 38148, 800)
+   sgm_g.create("pri_killer_barricaded_7", -168.115, 0.547, -362.689, 42169, 800)
+   sgm_g.create("pri_killer_barricaded_8", -166.840, 0.558, -370.568, 43176, 800)
+   sgm_g.create("pri_killer_barricaded_9", -183.508, 0.675, -368.741, 32394, 800)
+   sgm_g.create("pri_killer_barricaded_10", -184.871, 0.548, -360.890, 31552, 800)
+   sgm_g.create("pri_killer_barricaded_11", -188.836, 0.546, -370.056, 29331, 800)
+   sgm_g.create("pri_killer_barricaded_12", -177.342, 0.552, -357.021, 36479, 800)
+   sgm_g.create("pri_killer_barricaded_13", -184.212, 0.546, -352.839, 31982, 800)
+   sgm_g.create("pri_killer_barricaded_14", -171.298, 0.548, -343.003, 39829, 800)
+   sgm_g.create("pri_killer_barricaded_15", -179.348, 0.670, -348.898, 35184, 800)
+   sgm_g.create("pri_killer_barricaded_16", -185.040, 0.746, -345.500, 31562, 800)
+   sgm_g.create("pri_killer_barricaded_17", -185.035, 0.737, -341.418, 31568, 800)
+   sgm_g.create("pri_killer_barricaded_18", -170.186, 0.613, -353.044, 40748, 800)
 end
 
 function pri_rescue_underground_guide(actor, npc)
-   create("pas_hostage_miller", 67.862, 3.093, 7.428, 39641, 918)
-   create("pas_guide_keeper_alfa_1", 67.910522460938, 3.0929253101349, 3.3474779129028, 39735, 918)
-   create("pas_guide_keeper_alfa_2", 64.623123168945, 3.0909745693207, 6.3886680603027, 39195, 918)
-   create("pas_guide_keeper_alfa_3", 53.440910339355, 1.8163622617722, -0.12416955828667, 36580, 918)
-   create("pas_guide_keeper_alfa_4", 44.966842651367, 1.9165991544724, -2.8190498352051, 33950, 918)
-   create("pas_guide_keeper_alfa_5", 43.5202293396, 1.9147347211838, -1.5195467472076, 33597, 918)
-   create("pas_guide_keeper_alfa_6", 31.860788345337, 1.5922700166702, -9.2163009643555, 30060, 917)
-   create("pas_guide_keeper_alfa_7", 43.933292388916, 1.5910373926163, -17.596403121948, 33411, 917)
-   create("pas_guide_keeper_alfa_8", 31.593544006348, 0.21451917290688, -33.719612121582, 30032, 916)
-   create("pas_guide_keeper_alfa_9", 35.105571746826, 0.16528853774071, -32.84704208374, 30968, 916)
-   create("pas_guide_keeper_alfa_10", 57.262401580811, 1.5892297029495, -34.300758361816, 37685, 916)
-   create("pas_guide_keeper_alfa_11", 49.033813476563, 1.5834773778915, -10.817937850952, 33941, 917)
-   create("pas_guide_keeper_alfa_12", 29.564182281494, -0.0020927786827087, 10.934850692749, 29516, 921)
-   create("pas_guide_keeper_alfa_13", 26.984773635864, -3.4451484680176e-005, 7.2493515014648, 28910, 921)
-   create("pas_guide_keeper_alfa_14", 16.088850021362, 1.4349075555801, -19.655681610107, 23612, 910)
-   create("pas_guide_keeper_alfa_15", -18.039449691772, 1.5915925502777, -30.046287536621, 5908, 913)
-   create("pas_guide_keeper_alfa_16", -14.069707870483, 1.5912865400314, 3.1127529144287, 6783, 911)
-   create("pas_guide_keeper_alfa_17", -26.830018997192, 3.379020690918, 0.18996165692806, 4351, 911)
-   create("pas_guide_keeper_alfa_18", -41.270706176758, 3.1834766864777, -17.463136672974, 1925, 913)
-   create("pas_guide_keeper_alfa_19", -18.275665283203, 1.5874129533768, 37.014610290527, 5996, 908)
-   create("pas_guide_keeper_alfa_20", 1.602419257164, 0.0063468515872955, 47.191032409668, 14241, 908)
-   create("pas_guide_keeper_alfa_21", 25.92430305481, 0.37503758072853, 30.084823608398, 28521, 921)
-   create("pri_underground_lowering_spot", 185.072, -0.509, -257.528, 414748, 696)
-   create("pri_miller_destination_spot", 132.434, -0.096, -180.161, 359500, 824)
-   add_task("sgm_pri_rescue_underground_guide")
+   sgm_g.create("pas_hostage_miller", 67.862, 3.093, 7.428, 39641, 918)
+   sgm_g.create("pas_guide_keeper_alfa_1", 67.910522460938, 3.0929253101349, 3.3474779129028, 39735, 918)
+   sgm_g.create("pas_guide_keeper_alfa_2", 64.623123168945, 3.0909745693207, 6.3886680603027, 39195, 918)
+   sgm_g.create("pas_guide_keeper_alfa_3", 53.440910339355, 1.8163622617722, -0.12416955828667, 36580, 918)
+   sgm_g.create("pas_guide_keeper_alfa_4", 44.966842651367, 1.9165991544724, -2.8190498352051, 33950, 918)
+   sgm_g.create("pas_guide_keeper_alfa_5", 43.5202293396, 1.9147347211838, -1.5195467472076, 33597, 918)
+   sgm_g.create("pas_guide_keeper_alfa_6", 31.860788345337, 1.5922700166702, -9.2163009643555, 30060, 917)
+   sgm_g.create("pas_guide_keeper_alfa_7", 43.933292388916, 1.5910373926163, -17.596403121948, 33411, 917)
+   sgm_g.create("pas_guide_keeper_alfa_8", 31.593544006348, 0.21451917290688, -33.719612121582, 30032, 916)
+   sgm_g.create("pas_guide_keeper_alfa_9", 35.105571746826, 0.16528853774071, -32.84704208374, 30968, 916)
+   sgm_g.create("pas_guide_keeper_alfa_10", 57.262401580811, 1.5892297029495, -34.300758361816, 37685, 916)
+   sgm_g.create("pas_guide_keeper_alfa_11", 49.033813476563, 1.5834773778915, -10.817937850952, 33941, 917)
+   sgm_g.create("pas_guide_keeper_alfa_12", 29.564182281494, -0.0020927786827087, 10.934850692749, 29516, 921)
+   sgm_g.create("pas_guide_keeper_alfa_13", 26.984773635864, -3.4451484680176e-005, 7.2493515014648, 28910, 921)
+   sgm_g.create("pas_guide_keeper_alfa_14", 16.088850021362, 1.4349075555801, -19.655681610107, 23612, 910)
+   sgm_g.create("pas_guide_keeper_alfa_15", -18.039449691772, 1.5915925502777, -30.046287536621, 5908, 913)
+   sgm_g.create("pas_guide_keeper_alfa_16", -14.069707870483, 1.5912865400314, 3.1127529144287, 6783, 911)
+   sgm_g.create("pas_guide_keeper_alfa_17", -26.830018997192, 3.379020690918, 0.18996165692806, 4351, 911)
+   sgm_g.create("pas_guide_keeper_alfa_18", -41.270706176758, 3.1834766864777, -17.463136672974, 1925, 913)
+   sgm_g.create("pas_guide_keeper_alfa_19", -18.275665283203, 1.5874129533768, 37.014610290527, 5996, 908)
+   sgm_g.create("pas_guide_keeper_alfa_20", 1.602419257164, 0.0063468515872955, 47.191032409668, 14241, 908)
+   sgm_g.create("pas_guide_keeper_alfa_21", 25.92430305481, 0.37503758072853, 30.084823608398, 28521, 921)
+   sgm_g.create("pri_underground_lowering_spot", 185.072, -0.509, -257.528, 414748, 696)
+   sgm_g.create("pri_miller_destination_spot", 132.434, -0.096, -180.161, 359500, 824)
+   sgm_g.add_task("sgm_pri_rescue_underground_guide")
 end
 
 function pri_fenix_vendetta(actor, npc)
-   create_force("pri_inquisitor_squad_1", 93.535469055176, -0.96859180927277, 200.90673828125, 316917, 691)
-   create_force("pri_inquisitor_squad_2", -46.890838623047, -0.38852578401566, -47.650688171387, 142097, 760)
-   create_force("pri_inquisitor_squad_3", -204.72320556641, -0.50906491279602, -277.34506225586, 20970, 786)
-   add_task("sgm_pri_fenix_vendetta")
+   sgm_g.create_force("pri_inquisitor_squad_1", 93.535469055176, -0.96859180927277, 200.90673828125, 316917, 691)
+   sgm_g.create_force("pri_inquisitor_squad_2", -46.890838623047, -0.38852578401566, -47.650688171387, 142097, 760)
+   sgm_g.create_force("pri_inquisitor_squad_3", -204.72320556641, -0.50906491279602, -277.34506225586, 20970, 786)
+   sgm_g.add_task("sgm_pri_fenix_vendetta")
 end
 
 function val_brigand(actor, npc)
-   create_force("val_b15_renegade_squad", "val_smart_terrain_15")
-   add_task("val_brigand")
+   sgm_g.create_force("val_b15_renegade_squad", "val_smart_terrain_15")
+   sgm_g.add_task("val_brigand")
 end
 
 function val_secret_development(actor, npc)
-   create("x18_secret_gs67", 22.988, -14.817, 76.644, 5829, 1227)
-   add_task("val_secret_development")
+   sgm_g.create("x18_secret_gs67", 22.988, -14.817, 76.644, 5829, 1227)
+   sgm_g.add_task("val_secret_development")
 end
 
 function mil_dislodge_invaders(actor, npc)
-   add_task("mil_dislodge_invaders")
+   sgm_g.add_task("mil_dislodge_invaders")
 end
 
 function mil_defence_b1(actor, npc)
-   create("mil_monster_hole_spot", -202.91529846191, 5.3421750068665, 452.26483154297, 115559, 1385)
-   add_task("mil_defence_b1")
+   sgm_g.create("mil_monster_hole_spot", -202.91529846191, 5.3421750068665, 452.26483154297, 115559, 1385)
+   sgm_g.add_task("mil_defence_b1")
 end
 
 function mil_boarding_money_case(actor, npc)
-   create_force("val_b3_renegade_collector_squad", "val_smart_terrain_3")
-   add_task("mil_boarding_money_case")
+   sgm_g.create_force("val_b3_renegade_collector_squad", "val_smart_terrain_3")
+   sgm_g.add_task("mil_boarding_money_case")
 end
 
 function mil_bolted_influence(actor, npc)
-   add_task("mil_bolted_influence")
+   sgm_g.add_task("mil_bolted_influence")
 end
 
 function mil_meet_with_morten(actor, npc)
-   add_task("mil_meet_with_morten")
+   sgm_g.add_task("mil_meet_with_morten")
 end
 
 function esc_whimsical_artefact(actor, npc)
    local rnd_spawn = math.random(1, 3)
    if rnd_spawn == 1 then
-      create("af_shapoklak", -254.26504516602, -14.175067901611, -19.347557067871, 10499, 1873)
+      sgm_g.create("af_shapoklak", -254.26504516602, -14.175067901611, -19.347557067871, 10499, 1873)
    elseif rnd_spawn == 2 then
-      create("af_shapoklak", 336.00494384766, 14.95620059967, 213.35205078125, 613081, 1878)
+      sgm_g.create("af_shapoklak", 336.00494384766, 14.95620059967, 213.35205078125, 613081, 1878)
    else
-      create("af_shapoklak", 216.22799682617, 20.169467926025, 200.26403808594, 535158, 2086)
+      sgm_g.create("af_shapoklak", 216.22799682617, 20.169467926025, 200.26403808594, 535158, 2086)
    end
-   add_task("esc_whimsical_artefact")
+   sgm_g.add_task("esc_whimsical_artefact")
 end
 
 function esc_renew_spares(actor, npc)
    create_inventory_item(
       "ammo_9x18_fmj,ammo_9x19_fmj,ammo_5.45x39_fmj,ammo_12x70_buck,2,grenade_rgd5,2,wpn_addon_silencer,antirad,psy_complex,medkit,2,bandage,2",
       "esc_b1_ammunition_box", -140.7580871582, -28.67959022522, -352.5341796875, 114868, 1938)
-   create("esc_b1_ammunition_box_spot", -140.7580871582, -28.67959022522, -352.5341796875, 114868, 1938)
-   add_task("esc_renew_spares")
+   sgm_g.create("esc_b1_ammunition_box_spot", -140.7580871582, -28.67959022522, -352.5341796875, 114868, 1938)
+   sgm_g.add_task("esc_renew_spares")
 end
 
 function esc_village_annex(actor, npc)
-   create_force("esc_b2_stalker_invaders_squad", -157.87911987305, -30.243263244629, -329.14279174805, 92770, 1861)
-   create("esc_b2_tamerlan", -246.2395324707, -24.808156967163, -135.27490234375, 14372, 1859)
-   add_task("esc_village_annex")
+   sgm_g.create_force("esc_b2_stalker_invaders_squad", -157.87911987305, -30.243263244629, -329.14279174805, 92770, 1861)
+   sgm_g.create("esc_b2_tamerlan", -246.2395324707, -24.808156967163, -135.27490234375, 14372, 1859)
+   sgm_g.add_task("esc_village_annex")
 end
 
 function esc_lull_before_borax(actor, npc)
-   create_force("esc_a2_monster_squad", "esc_monster_burrow_2")
-   add_task("esc_lull_before_borax")
+   sgm_g.create_force("esc_a2_monster_squad", "esc_monster_burrow_2")
+   sgm_g.add_task("esc_lull_before_borax")
 end
 
 function esc_atp_annex(actor, npc)
    create_inventory_item("esc_b3_safe_flash", "esc_b3_bandit_safe", 108.42806243896, 0.41786095499992, 4.0751585960388,
       439428, 1927)
-   create("esc_atp_annex_selfpos_spot", 21.268035888672, -0.97833907604218, -75.040618896484, 329380, 2044)
-   add_task("esc_atp_annex")
+   sgm_g.create("esc_atp_annex_selfpos_spot", 21.268035888672, -0.97833907604218, -75.040618896484, 329380, 2044)
+   sgm_g.add_task("esc_atp_annex")
 end
 
 function esc_spy_meeting(actor, npc)
-   create("esc_spy_meeting_place_spot", 332.04925537109, 15.744373321533, -14.692591667175, 609649, 2061)
-   add_task("esc_spy_meeting")
+   sgm_g.create("esc_spy_meeting_place_spot", 332.04925537109, 15.744373321533, -14.692591667175, 609649, 2061)
+   sgm_g.add_task("esc_spy_meeting")
 end
 
 function esc_uncoupling(actor, npc)
-   create("esc_b1_stalker_mechanic", -140.90934753418, -25.441181182861, -356.85256958008, 114051, 1938)
-   add_task("esc_uncoupling")
+   sgm_g.create("esc_b1_stalker_mechanic", -140.90934753418, -25.441181182861, -356.85256958008, 114051, 1938)
+   sgm_g.add_task("esc_uncoupling")
 end
 
 function esc_army_halt(actor, npc)
-   create("esc_army_halt_1", -12.365184783936, 0.86760592460632, 260.91003417969, 286075, 1928)
-   create("esc_army_halt_2", 25.660511016846, 16.518115997314, 685.83953857422, 336405, 1850)
-   create("esc_army_halt_1_spot", 131.40768432617, -0.71342599391937, 328.90283203125, 464662, 2028)
-   create("esc_army_halt_2_spot", 1.0518981218338, 0.45629617571831, 275.21478271484, 303725, 1921)
-   create("esc_army_halt_3_spot", 17.362344741821, 15.94375038147, 665.86407470703, 325633, 2054)
-   add_task("esc_army_halt_3")
-   add_task("esc_army_halt_2")
-   add_task("esc_army_halt_1")
+   sgm_g.create("esc_army_halt_1", -12.365184783936, 0.86760592460632, 260.91003417969, 286075, 1928)
+   sgm_g.create("esc_army_halt_2", 25.660511016846, 16.518115997314, 685.83953857422, 336405, 1850)
+   sgm_g.create("esc_army_halt_1_spot", 131.40768432617, -0.71342599391937, 328.90283203125, 464662, 2028)
+   sgm_g.create("esc_army_halt_2_spot", 1.0518981218338, 0.45629617571831, 275.21478271484, 303725, 1921)
+   sgm_g.create("esc_army_halt_3_spot", 17.362344741821, 15.94375038147, 665.86407470703, 325633, 2054)
+   sgm_g.add_task("esc_army_halt_3")
+   sgm_g.add_task("esc_army_halt_2")
+   sgm_g.add_task("esc_army_halt_1")
 end
 
 function mar_army_cargo(actor, npc)
-   add_task("mar_army_cargo")
+   sgm_g.add_task("mar_army_cargo")
 end
 
 function mar_mine_detector(actor, npc)
-   add_task("mar_mine_detector")
+   sgm_g.add_task("mar_mine_detector")
 end
 
 function mar_army_cargo_mechanic(actor, npc)
-   create("mar_b2_stalker_mechanic", -6.1877589225769, 3.3588407039642, 12.140656471252, 135981, 1634)
+   sgm_g.create("mar_b2_stalker_mechanic", -6.1877589225769, 3.3588407039642, 12.140656471252, 135981, 1634)
 end
 
 function mar_mine_detector_sensor(actor, npc)
-   create("mar_mine_sensor", -185.05250549316, 2.2925968170166, 534.27502441406, 110573, 1714)
-   create("mar_mine_sensor_passage_spot", -55.97981262207, 0.30250319838524, 450.84841918945, 110573, 1714)
-   create("mar_b4_charge", 411.21154785156, 4.1378383636475, 233.91334533691, 410938, 1696)
+   sgm_g.create("mar_mine_sensor", -185.05250549316, 2.2925968170166, 534.27502441406, 110573, 1714)
+   sgm_g.create("mar_mine_sensor_passage_spot", -55.97981262207, 0.30250319838524, 450.84841918945, 110573, 1714)
+   sgm_g.create("mar_b4_charge", 411.21154785156, 4.1378383636475, 233.91334533691, 410938, 1696)
 end
 
 function red_psyho(actor, npc)
-   create("jup_scientific_workman", -220.75009155273, -3.5371994972229, 67.087188720703, 343413, 385)
-   add_task("red_psyho")
+   sgm_g.create("jup_scientific_workman", -220.75009155273, -3.5371994972229, 67.087188720703, 343413, 385)
+   sgm_g.add_task("red_psyho")
 end
 
 ------------------------------------------------------------------------------
@@ -2444,7 +2444,7 @@ end
 ------------------------------------------------------------------------------
 function start_minigame_21_point(actor, npc)
    local enemy_name = who_is_npc(actor, npc)
-   run_dynamic_element(sgm_ui_mod_elements.card_game_21_point(), false, true)
+   sgm_g.run_dynamic_element(sgm_ui_mod_elements.card_game_21_point(), false, true)
    if enemy_name ~= nil then
       sgm_ui_mod_elements.card_game_21_enemy_name = game.translate_string(level.object_by_id(enemy_name:id())
          :character_name())
@@ -2452,7 +2452,7 @@ function start_minigame_21_point(actor, npc)
 end
 
 function start_question_game(actor, npc)
-   run_dynamic_element(sgm_ui_mod_elements.question_game(), false, true)
+   sgm_g.run_dynamic_element(sgm_ui_mod_elements.question_game(), false, true)
 end
 
 ------------------------------------------------------------------------------
@@ -3048,7 +3048,7 @@ function bankir_show_web_money_course(first_speaker, second_speaker)
       "iconed_answer_item")
    db.actor:give_talk_message2("",
       game.translate_string("st_bankir_web_money_course_2") ..
-      " " .. math.floor(get_web_money()) .. " " .. game.translate_string("st_bankir_web_money_course_5"),
+      " " .. math.floor(sgm_g.get_web_money()) .. " " .. game.translate_string("st_bankir_web_money_course_5"),
       "ui_iconsTotal_found_thing", "iconed_answer_item")
 end
 
@@ -3059,7 +3059,7 @@ function reward_web_money(val)
 end
 
 function actor_have_1000_web_money(actor, npc)
-   return get_web_money() >= 1000
+   return sgm_g.get_web_money() >= 1000
 end
 
 function actor_give_1000_web_money(actor, npc)
@@ -3067,7 +3067,7 @@ function actor_give_1000_web_money(actor, npc)
 end
 
 function actor_have_2000_web_money(actor, npc)
-   return get_web_money() >= 2000
+   return sgm_g.get_web_money() >= 2000
 end
 
 function actor_give_2000_web_money(actor, npc)
@@ -3075,7 +3075,7 @@ function actor_give_2000_web_money(actor, npc)
 end
 
 function actor_have_3000_web_money(actor, npc)
-   return get_web_money() >= 3000
+   return sgm_g.get_web_money() >= 3000
 end
 
 function actor_give_3000_web_money(actor, npc)
@@ -3083,7 +3083,7 @@ function actor_give_3000_web_money(actor, npc)
 end
 
 function actor_have_4000_web_money(actor, npc)
-   return get_web_money() >= 4000
+   return sgm_g.get_web_money() >= 4000
 end
 
 function actor_give_4000_web_money(actor, npc)
@@ -3091,7 +3091,7 @@ function actor_give_4000_web_money(actor, npc)
 end
 
 function actor_have_5000_web_money(actor, npc)
-   return get_web_money() >= 5000
+   return sgm_g.get_web_money() >= 5000
 end
 
 function actor_give_5000_web_money(actor, npc)
@@ -3099,7 +3099,7 @@ function actor_give_5000_web_money(actor, npc)
 end
 
 function actor_have_6000_web_money(actor, npc)
-   return get_web_money() >= 6000
+   return sgm_g.get_web_money() >= 6000
 end
 
 function actor_give_6000_web_money(actor, npc)
@@ -3107,7 +3107,7 @@ function actor_give_6000_web_money(actor, npc)
 end
 
 function actor_have_7000_web_money(actor, npc)
-   return get_web_money() >= 7000
+   return sgm_g.get_web_money() >= 7000
 end
 
 function actor_give_7000_web_money(actor, npc)
@@ -3115,7 +3115,7 @@ function actor_give_7000_web_money(actor, npc)
 end
 
 function actor_have_8000_web_money(actor, npc)
-   return get_web_money() >= 8000
+   return sgm_g.get_web_money() >= 8000
 end
 
 function actor_give_8000_web_money(actor, npc)
@@ -3123,7 +3123,7 @@ function actor_give_8000_web_money(actor, npc)
 end
 
 function actor_have_9000_web_money(actor, npc)
-   return get_web_money() >= 9000
+   return sgm_g.get_web_money() >= 9000
 end
 
 function actor_give_9000_web_money(actor, npc)
@@ -3131,7 +3131,7 @@ function actor_give_9000_web_money(actor, npc)
 end
 
 function actor_have_10000_web_money(actor, npc)
-   return get_web_money() >= 10000
+   return sgm_g.get_web_money() >= 10000
 end
 
 function actor_give_10000_web_money(actor, npc)
@@ -3139,15 +3139,15 @@ function actor_give_10000_web_money(actor, npc)
 end
 
 function actor_give_all_web_money(actor, npc)
-   reward_web_money(get_web_money())
+   reward_web_money(sgm_g.get_web_money())
 end
 
 function actor_have_something_web_money(actor, npc)
-   return get_web_money() > 0
+   return sgm_g.get_web_money() > 0
 end
 
 function actor_dont_something_web_money(actor, npc)
-   return get_web_money() == 0
+   return sgm_g.get_web_money() == 0
 end
 
 ------------------------------------------------------------------------------
@@ -4494,44 +4494,44 @@ function s_show_available_tasks(first_speaker, second_speaker)
 end
 
 function shustriy_give_find_1_quest(actor, npc)
-   add_task("sgm_shustriy_find_1")
+   sgm_g.add_task("sgm_shustriy_find_1")
 end
 
 function shustriy_give_find_2_quest(actor, npc)
-   add_task("sgm_shustriy_find_2")
+   sgm_g.add_task("sgm_shustriy_find_2")
 end
 
 function shustriy_give_find_3_quest(actor, npc)
-   add_task("sgm_shustriy_find_3")
+   sgm_g.add_task("sgm_shustriy_find_3")
 end
 
 function shustriy_give_find_4_quest(actor, npc)
-   add_task("sgm_shustriy_find_4")
+   sgm_g.add_task("sgm_shustriy_find_4")
 end
 
 function shustriy_give_find_1_spawn(actor, npc)
    local rnd_spawn = math.random(1, 4)
    if rnd_spawn == 1 then
-      create("shustriy_ingram_m10", -168.658, 23.334, -154.524, 607901, 57)
+      sgm_g.create("shustriy_ingram_m10", -168.658, 23.334, -154.524, 607901, 57)
    elseif rnd_spawn == 2 then
-      create("shustriy_ingram_m10", 412.489, 43.874, -26.262, 1642568, 293)
+      sgm_g.create("shustriy_ingram_m10", 412.489, 43.874, -26.262, 1642568, 293)
    elseif rnd_spawn == 3 then
-      create("shustriy_ingram_m10", -157.691, 23.828, -173.725, 626644, 57)
+      sgm_g.create("shustriy_ingram_m10", -157.691, 23.828, -173.725, 626644, 57)
    else
-      create("shustriy_ingram_m10", 313.457, 41.873, -420.498, 1497289, 1)
+      sgm_g.create("shustriy_ingram_m10", 313.457, 41.873, -420.498, 1497289, 1)
    end
 end
 
 function shustriy_give_find_2_spawn(actor, npc)
-   create("shustriy_ak47", 313.724, 35.632, -233.085, 1222905, 549)
+   sgm_g.create("shustriy_ak47", 313.724, 35.632, -233.085, 1222905, 549)
 end
 
 function shustriy_give_find_3_spawn(actor, npc)
-   create("shustriy_mossberg_590mk", -422.774, 0.010, -371.828, 16230, 324)
+   sgm_g.create("shustriy_mossberg_590mk", -422.774, 0.010, -371.828, 16230, 324)
 end
 
 function shustriy_give_find_4_spawn(actor, npc)
-   create("shustriy_steyr_aug_ss190", 5.438, 4.531, 270.509, 205088, 713)
+   sgm_g.create("shustriy_steyr_aug_ss190", 5.438, 4.531, 270.509, 205088, 713)
 end
 
 function there_available_tasks(actor, npc)
@@ -4555,7 +4555,7 @@ end
 function s_order_1_reward(actor, npc)
    local s_tasks = sgm_g.read_mod_param("shustriy_available_tasks")
    dialogs.relocate_item_section(actor, "remote_explosive_charge", "in")
-   give_reward("conventer_grenade_box")
+   sgm_g.give_reward("conventer_grenade_box")
    dialogs.relocate_money(npc, math.random(1500, 3000), "in")
    give_info("shustriy_find_1_reward")
    disable_info("shustriy_find_is_active")
@@ -4593,10 +4593,10 @@ function s_order_3_reward(actor, npc)
    local s_tasks = sgm_g.read_mod_param("shustriy_available_tasks")
    dialogs.relocate_item_section(actor, "remote_explosive_charge", "in", 2)
    dialogs.relocate_item_section(actor, "wpn_usp", "in")
-   give_reward("ammo_11.43x23_hydro", 2)
+   sgm_g.give_reward("ammo_11.43x23_hydro", 2)
    dialogs.relocate_item_section(actor, "af_gravi", "in")
-   give_reward("ammo_5.45x39_ap", 2)
-   give_reward("ammo_5.56x45_ap", 2)
+   sgm_g.give_reward("ammo_5.45x39_ap", 2)
+   sgm_g.give_reward("ammo_5.56x45_ap", 2)
    dialogs.relocate_money(npc, math.random(7000, 9000), "in")
    give_info("shustriy_find_3_reward")
    disable_info("shustriy_find_is_active")
@@ -6063,7 +6063,7 @@ function pre_remained_any_toolkits(actor, npc)
          end
       end
    end
-   return has_any_info("zat_a2_mechanic_toolkit_search,jup_b217_tech_instruments_start") and
+   return sgm_g.has_any_info("zat_a2_mechanic_toolkit_search,jup_b217_tech_instruments_start") and
        (toolkit_1_counter > 0 or toolkit_2_counter > 0 or toolkit_3_counter > 0 or (has_alife_info("actor_come_to_pripyat") and (toolkit_4_counter > 0 or toolkit_5_counter > 0)))
 end
 
@@ -6390,79 +6390,79 @@ function web_money_treasure_select_military(actor, npc)
 end
 
 function actor_have_web_money_to_1_treasure(actor, npc)
-   return get_web_money() >= 1000
+   return sgm_g.get_web_money() >= 1000
 end
 
 function actor_give_web_money_to_1_treasure(actor, npc)
    sgm_functions.relocate_web_money(1000, "out")
-   give_random_treasure(web_money_treasure_level, 1)
+   sgm_g.give_random_treasure(web_money_treasure_level, 1)
 end
 
 function actor_have_web_money_to_2_treasure(actor, npc)
-   return get_web_money() >= 2000
+   return sgm_g.get_web_money() >= 2000
 end
 
 function actor_give_web_money_to_2_treasure(actor, npc)
    sgm_functions.relocate_web_money(2000, "out")
-   give_random_treasure(web_money_treasure_level, 2)
+   sgm_g.give_random_treasure(web_money_treasure_level, 2)
 end
 
 function actor_have_web_money_to_3_treasure(actor, npc)
-   return get_web_money() >= 3000
+   return sgm_g.get_web_money() >= 3000
 end
 
 function actor_give_web_money_to_3_treasure(actor, npc)
    sgm_functions.relocate_web_money(3000, "out")
-   give_random_treasure(web_money_treasure_level, 3)
+   sgm_g.give_random_treasure(web_money_treasure_level, 3)
 end
 
 function actor_have_web_money_to_4_treasure(actor, npc)
-   return get_web_money() >= 4000
+   return sgm_g.get_web_money() >= 4000
 end
 
 function actor_give_web_money_to_4_treasure(actor, npc)
    sgm_functions.relocate_web_money(4000, "out")
-   give_random_treasure(web_money_treasure_level, 4)
+   sgm_g.give_random_treasure(web_money_treasure_level, 4)
 end
 
 function actor_have_web_money_to_5_treasure(actor, npc)
-   return get_web_money() >= 5000
+   return sgm_g.get_web_money() >= 5000
 end
 
 function actor_give_web_money_to_5_treasure(actor, npc)
    sgm_functions.relocate_web_money(5000, "out")
-   give_random_treasure(web_money_treasure_level, 5)
+   sgm_g.give_random_treasure(web_money_treasure_level, 5)
 end
 
 function actor_have_web_money_to_6_treasure(actor, npc)
-   return get_web_money() >= 6000
+   return sgm_g.get_web_money() >= 6000
 end
 
 function actor_give_web_money_to_6_treasure(actor, npc)
    sgm_functions.relocate_web_money(6000, "out")
-   give_random_treasure(web_money_treasure_level, 6)
+   sgm_g.give_random_treasure(web_money_treasure_level, 6)
 end
 
 function actor_have_web_money_to_7_treasure(actor, npc)
-   return get_web_money() >= 7000
+   return sgm_g.get_web_money() >= 7000
 end
 
 function actor_give_web_money_to_7_treasure(actor, npc)
    sgm_functions.relocate_web_money(7000, "out")
-   give_random_treasure(web_money_treasure_level, 7)
+   sgm_g.give_random_treasure(web_money_treasure_level, 7)
 end
 
 function actor_have_web_money_to_8_treasure(actor, npc)
-   return get_web_money() >= 8000
+   return sgm_g.get_web_money() >= 8000
 end
 
 function actor_give_web_money_to_8_treasure(actor, npc)
    sgm_functions.relocate_web_money(8000, "out")
-   give_random_treasure(web_money_treasure_level, 8)
+   sgm_g.give_random_treasure(web_money_treasure_level, 8)
 end
 
 function actor_less_web_money_to_treasure(actor, npc)
-   return get_web_money() < 1000
+   return sgm_g.get_web_money() < 1000
 end
 
 ------------------------------------------------------------------------------
@@ -6471,11 +6471,11 @@ end
 local german_reward = 0
 local german_sample_cost = 5000
 function german_sample_is_retail(actor, npc)
-   return not check_item_count("_danger", 2, true)
+   return not sgm_g.check_item_count("_danger", 2, true)
 end
 
 function german_sample_is_gross(actor, npc)
-   return check_item_count("_danger", 2, true)
+   return sgm_g.check_item_count("_danger", 2, true)
 end
 
 function german_sample_anyhas(actor, npc)
@@ -6573,14 +6573,14 @@ function employer_deliver_quest(actor, npc)
    local currert_place = sgm_functions.check_section_comma(ini, sgm_g.read_mod_param("employer_currert_quest"),
       "employer_place_" .. random_place, nil, 5)
    --/create_inventory_item(sgm_g.read_mod_param("employer_currert_target"),"default_inventory_box",tonumber(currert_place[1]),tonumber(currert_place[2]),tonumber(currert_place[3]),tonumber(currert_place[4]),tonumber(currert_place[5]))
-   create(sgm_g.read_mod_param("employer_currert_target"), tonumber(currert_place[1]), tonumber(currert_place[2]),
+   sgm_g.create(sgm_g.read_mod_param("employer_currert_target"), tonumber(currert_place[1]), tonumber(currert_place[2]),
       tonumber(currert_place[3]), tonumber(currert_place[4]), tonumber(currert_place[5]))
    sgm_g.write_mod_param("employer_activate", "true")
    local distance_to_target = db.actor:position():distance_to(
       vector():set(tonumber(currert_place[1]), tonumber(currert_place[2]), tonumber(currert_place[3])),
       tonumber(currert_place[4]), tonumber(currert_place[5]))
    sgm_g.write_mod_param("employer_currert_distance", math.floor(distance_to_target))
-   add_task(sgm_g.read_mod_param("employer_currert_quest"))
+   sgm_g.add_task(sgm_g.read_mod_param("employer_currert_quest"))
 end
 
 function employer_is_activated(actor, npc)
@@ -6631,7 +6631,7 @@ function employer_bring_item(actor, npc)
    dialogs.relocate_item_section(npc, sgm_g.read_mod_param("employer_currert_target"), "out")
 end
 
-function employer_give_reward(actor, npc)
+function employer_sgm_g.give_reward(actor, npc)
    local get_npc = who_is_npc(actor, npc)
    local npc_profile = get_npc:profile_name()
    local t_remained_value = check_game_timer("timer_quest_" .. sgm_g.read_mod_param("employer_currert_quest"), true) -
@@ -6701,8 +6701,8 @@ end
 -------------------------------------------------makdm
 
 function red_geyger_respawn()
-   release_objects_by_section("geiger_counter")
-   create("geiger_counter", 14.9601459503174, 4.22950077056885, 35.063549041748, 74235, 2186)
+   sgm_g.release_objects_by_section("geiger_counter")
+   sgm_g.create("geiger_counter", 14.9601459503174, 4.22950077056885, 35.063549041748, 74235, 2186)
 end
 
 function set_smart_clear(smart_name)
@@ -6725,7 +6725,7 @@ function fix_red_forest()
    set_squad_removed("red_6_simulation_snork")
    set_squad_removed("red_7_simulation_snork")
    set_squad_removed("red_8_simulation_snork")
-   release_objects_by_section("sgm_red_psyho_zone_2")
+   sgm_g.release_objects_by_section("sgm_red_psyho_zone_2")
 end
 
 ------------------------
@@ -6820,13 +6820,6 @@ function relocate_money(victim, num, type, show_time)
       end
       news_manager.relocate_money(db.actor, type, num, show_time)
    end
-end
-
-function not_level_pripyat(first_speaker, second_speaker)
-   --/ SGM in
-   return level.name() ~= "pripyat" and level.name() ~= "escape" and level.name() ~= "marsh" and
-       level.name() ~= "agroprom" and level.name() ~= "red_forest"
-   --/ SGM out
 end
 
 function relocate_item_section_to_actor(first_speaker, second_speaker, section, amount, show_time)

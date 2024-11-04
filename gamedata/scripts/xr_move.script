@@ -265,17 +265,17 @@ function action_move:stage_avail_speak(npc, scheme_param, is_center)
       if sgm_flags.table_mod_schemes[npc_id .. "avail_speak_timer"] ~= 0 then
          if time_global() >= sgm_flags.table_mod_schemes[npc_id .. "avail_speak_timer"] then
             if scheme_param.move_avail_speak[4] == "false" and sgm_flags.table_mod_schemes[npc_id].avail_speak_bool == false then
-               if find_in_string(scheme_param.move_avail_speak[2], "=") or find_in_string(scheme_param.move_avail_speak[2], "+") or find_in_string(scheme_param.move_avail_speak[2], "-") then
+               if sgm_g.find_in_string(scheme_param.move_avail_speak[2], "=") or sgm_g.find_in_string(scheme_param.move_avail_speak[2], "+") or sgm_g.find_in_string(scheme_param.move_avail_speak[2], "-") then
                   sgm_functions.execute_condlist(npc, self.st.saved_section, scheme_param.move_avail_speak[2])
                else
-                  play_theme_snd(npc, scheme_param.move_avail_speak[2])
+                  sgm_g.play_theme_snd(npc, scheme_param.move_avail_speak[2])
                end
                sgm_flags.table_mod_schemes[npc_id].avail_speak_bool = true
             elseif scheme_param.move_avail_speak[4] == "true" then
-               if find_in_string(scheme_param.move_avail_speak[2], "=") or find_in_string(scheme_param.move_avail_speak[2], "+") or find_in_string(scheme_param.move_avail_speak[2], "-") then
+               if sgm_g.find_in_string(scheme_param.move_avail_speak[2], "=") or sgm_g.find_in_string(scheme_param.move_avail_speak[2], "+") or sgm_g.find_in_string(scheme_param.move_avail_speak[2], "-") then
                   sgm_functions.execute_condlist(npc, self.st.saved_section, scheme_param.move_avail_speak[2])
                else
-                  play_theme_snd(npc, scheme_param.move_avail_speak[2])
+                  sgm_g.play_theme_snd(npc, scheme_param.move_avail_speak[2])
                end
             end
             sgm_flags.table_mod_schemes[npc_id .. "avail_speak_timer"] = 0
@@ -1057,10 +1057,10 @@ function action_move:setup_patrol_path(victim, next_path, scheme_param, next_des
       end
       if currert_wait ~= 0 then
          if sgm_g.exists(path_sound) and scheme_param.patrol_path_sound_bool == false then
-            if find_in_string(path_sound, "characters_voice") then
+            if sgm_g.find_in_string(path_sound, "characters_voice") then
                play_snd_at_pos(victim, path_sound)
             else
-               play_theme_snd(victim, path_sound)
+               sgm_g.play_theme_snd(victim, path_sound)
             end
             scheme_param.patrol_path_sound_bool = true
          end
@@ -1079,10 +1079,10 @@ function action_move:setup_patrol_path(victim, next_path, scheme_param, next_des
             give_info(path_info)
          end
          if sgm_g.exists(path_sound) and scheme_param.patrol_path_sound_bool == false then
-            if find_in_string(path_sound, "characters_voice") then
+            if sgm_g.find_in_string(path_sound, "characters_voice") then
                play_snd_at_pos(victim, path_sound)
             else
-               play_theme_snd(victim, path_sound)
+               sgm_g.play_theme_snd(victim, path_sound)
             end
             scheme_param.patrol_path_sound_bool = true
          end
@@ -1105,10 +1105,10 @@ function action_move:setup_patrol_path(victim, next_path, scheme_param, next_des
             give_info(path_info)
          end
          if sgm_g.exists(path_sound) and scheme_param.patrol_path_sound_bool == false then
-            if find_in_string(path_sound, "characters_voice") then
+            if sgm_g.find_in_string(path_sound, "characters_voice") then
                play_snd_at_pos(victim, path_sound)
             else
-               play_theme_snd(victim, path_sound)
+               sgm_g.play_theme_snd(victim, path_sound)
             end
             scheme_param.patrol_path_sound_bool = true
          end
@@ -1126,42 +1126,45 @@ function action_move:check_logic_condlists(npc, ini, section)
    --/   scheme_param.section = self.st.saved_section
    --\Общие команды\--
    scheme_param.scheme_type      = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section, "scheme_type",
-      "move"))                                                                                                                --'Тип схемы.
-   scheme_param.surge_hide_point = sgm_g.to_number(sgm_functions.check_section_condlist(ini, section, "surge_hide_point", nil))     --'Идти: к укрытие.
-   scheme_param.approach_info    = sgm_functions.check_section_stick(ini, section, "approach_info", nil)                      --'Выдача инфопортации на определённой дистанции (инфа|дистанция|знак).
-   scheme_param.approach_state   = sgm_functions.check_section_stick(ini, section, "approach_state", nil)                     --'Применение анимации тела на определённых дистанциях.
-   scheme_param.death_cleaning   = sgm_functions.check_section_stick(ini, section, "death_cleaning", "false|all")             --'Удаление предметов НПС, после его гибели (да_или_нет|all,weapon,outfit).
+      "move"))                                                                                                                  --'Тип схемы.
+   scheme_param.surge_hide_point = sgm_g.to_number(sgm_functions.check_section_condlist(ini, section, "surge_hide_point",
+      nil))                                                                                                                     --'Идти: к укрытие.
+   scheme_param.approach_info    = sgm_functions.check_section_stick(ini, section, "approach_info", nil)                        --'Выдача инфопортации на определённой дистанции (инфа|дистанция|знак).
+   scheme_param.approach_state   = sgm_functions.check_section_stick(ini, section, "approach_state", nil)                       --'Применение анимации тела на определённых дистанциях.
+   scheme_param.death_cleaning   = sgm_functions.check_section_stick(ini, section, "death_cleaning", "false|all")               --'Удаление предметов НПС, после его гибели (да_или_нет|all,weapon,outfit).
    scheme_param.precond_timer    = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section, "precond_timer",
-      nil))                                                                                                                   --'Таймер определённых действий. Как только значение ключа равно true, сразу включается таймер этого действия.
+      nil))                                                                                                                     --'Таймер определённых действий. Как только значение ключа равно true, сразу включается таймер этого действия.
    if scheme_param.precond_timer ~= nil then
-      scheme_param.precond_action = sgm_functions.check_section_stick(ini, section, "precond_action", nil)                    --'Выполнение действия {} %% по достижении определённого значения таймера (значение_таймера|действие).
+      scheme_param.precond_action = sgm_functions.check_section_stick(ini, section, "precond_action", nil)                      --'Выполнение действия {} %% по достижении определённого значения таймера (значение_таймера|действие).
    end
    --\Команды: MOVE\--
    scheme_param.move_flashlight        = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section,
       "move_flashlight",
-      "true"))                                                                                                   --'Доступен ли НПС фонарик.
-   scheme_param.move_dest_number       = sgm_g.to_number(sgm_functions.check_section_condlist(ini, section, "move_dest_number",
-      0))                                                                                                        --'Идти: к вертексу.
+      "true")) --'Доступен ли НПС фонарик.
+   scheme_param.move_dest_number       = sgm_g.to_number(sgm_functions.check_section_condlist(ini, section,
+      "move_dest_number",
+      0))      --'Идти: к вертексу.
    scheme_param.move_dest_actor        = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section,
       "move_dest_actor",
-      "false"))                                                                                                  --'Идти: к ГГ.
+      "false")) --'Идти: к ГГ.
    scheme_param.move_avail_cond        = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section,
       "move_avail_cond",
-      nil))                                                                                                      --'Условие при котором НПС может идти.
+      nil))                        --'Условие при котором НПС может идти.
    scheme_param.move_approach_actor    = sgm_g.to_number(sgm_functions.check_section_condlist(ini, section,
-      "move_approach_actor", nil))                                                                               --'Приближаться к ГГ. Значение параметра указывает дистанцию до ГГ, по преодолению которой НПС остановится. Режим №1.
+      "move_approach_actor", nil)) --'Приближаться к ГГ. Значение параметра указывает дистанцию до ГГ, по преодолению которой НПС остановится. Режим №1.
    scheme_param.move_look_subject      = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section,
       "move_look_subject",
-      nil))                                                                                                      --'Смотреть: на обьект.
+      nil)) --'Смотреть: на обьект.
    scheme_param.move_look_vertex       = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section,
       "move_look_vertex",
-      nil))                                                                                                      --'Смотреть: на вертекс.
+      nil))                               --'Смотреть: на вертекс.
    scheme_param.move_state_when_center = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section,
-      "move_state_when_center", "guard"))                                                                        --'Анимация тела по достижении пункта назначения.
+      "move_state_when_center", "guard")) --'Анимация тела по достижении пункта назначения.
    scheme_param.move_state_when_move   = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section,
-      "move_state_when_move", "walk"))                                                                           --'Анимация тела для движения к пункту назначения.
-   scheme_param.move_stand_time        = sgm_g.to_number(sgm_functions.check_section_condlist(ini, section, "move_stand_time",
-      0))                                                                                                        --'Задержка в пункте назначения.
+      "move_state_when_move", "walk"))    --'Анимация тела для движения к пункту назначения.
+   scheme_param.move_stand_time        = sgm_g.to_number(sgm_functions.check_section_condlist(ini, section,
+      "move_stand_time",
+      0))                                 --'Задержка в пункте назначения.
    scheme_param.move_pursue_actor      = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section,
       "move_pursue_actor",
       "false"))                                                                                                  --'Охранять ГГ. Режим №2.
@@ -1180,18 +1183,18 @@ function action_move:check_logic_condlists(npc, ini, section)
    end
    scheme_param.move_center_info    = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section,
       "move_center_info",
-      nil))                                                                                                                  --'Выдать инфопортацию по достижении пункта назначения.
+      nil)) --'Выдать инфопортацию по достижении пункта назначения.
    scheme_param.move_center_action  = sgm_g.to_string(sgm_functions.cfg_get_string(ini, section, "move_center_action",
-      nil))                                                                                                                  --'Выполнить действие {} %% по достижении пункта назначения.
+      nil)) --'Выполнить действие {} %% по достижении пункта назначения.
    scheme_param.move_combat_disable = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section,
       "move_combat_disable",
-      "false"))                                                                                                              --'Запретить ли реакцию на раздражители.
+      "false")) --'Запретить ли реакцию на раздражители.
    scheme_param.move_stop_on_talk   = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section,
       "move_stop_on_talk",
-      "false"))                                                                                                              --'Останавливаться при диалоге.
+      "false")) --'Останавливаться при диалоге.
    scheme_param.move_free_behaviour = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section,
       "move_free_behaviour",
-      "false"))                                                                                                              --'НПС находится под схемой, но она его не использует. Режим №4.
+      "false")) --'НПС находится под схемой, но она его не использует. Режим №4.
    if scheme_param.move_free_behaviour == "true" then
       scheme_param.move_free_anim_c = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section,
          "move_free_anim_c",
@@ -1201,7 +1204,7 @@ function action_move:check_logic_condlists(npc, ini, section)
          nil)) --'Анимация тела НПС бегущего на место.
    end
    scheme_param.move_quick_animation = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section,
-      "move_quick_animation", "true"))                                                                          --'Быстро ли применять анимацию тела.
+      "move_quick_animation", "true")) --'Быстро ли применять анимацию тела.
    scheme_param.move_home_teleport   = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section,
       "move_home_teleport",
       "false"))                                                                                                 --'Телепортация в пункт назначения, при отходе от него.
@@ -1210,9 +1213,10 @@ function action_move:check_logic_condlists(npc, ini, section)
    --\Команды: DEPEND\--
    if scheme_param.scheme_type == "depend" then
       scheme_param.depend_home_point     = sgm_g.to_number(sgm_functions.check_section_condlist(ini, section,
-         "depend_home_point", 0))           --'Рабочий вертекс, в радиусе depend_holder от которого будет ходить НПС.
-      scheme_param.depend_holder         = sgm_g.to_number(sgm_functions.check_section_condlist(ini, section, "depend_holder",
-         15))                               --'Радиус рабочего вертекса.
+         "depend_home_point", 0)) --'Рабочий вертекс, в радиусе depend_holder от которого будет ходить НПС.
+      scheme_param.depend_holder         = sgm_g.to_number(sgm_functions.check_section_condlist(ini, section,
+         "depend_holder",
+         15))                     --'Радиус рабочего вертекса.
       scheme_param.depend_anim           = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section,
          "depend_anim",
          "walk"))                           --'Анимация тела для передвижения НПС.
@@ -1221,39 +1225,43 @@ function action_move:check_logic_condlists(npc, ini, section)
    end
    --\Команды: SHOOTER\--
    if scheme_param.scheme_type == "shooter" then
-      scheme_param.shooter_pos           = sgm_g.to_number(sgm_functions.check_section_condlist(ini, section, "shooter_pos", 0))       --'Рабочая позиция НПС.
+      scheme_param.shooter_pos           = sgm_g.to_number(sgm_functions.check_section_condlist(ini, section,
+         "shooter_pos", 0))                                                                                                       --'Рабочая позиция НПС.
       scheme_param.shooter_fire_look     = sgm_g.to_string(sgm_functions.cfg_get_string(ini, section, "shooter_fire_look",
-         nil))                                                                                                                   --'Цель-вертекс в режиме огня.
+         nil))                                                                                                                    --'Цель-вертекс в режиме огня.
       scheme_param.shooter_idle_look     = sgm_g.to_string(sgm_functions.cfg_get_string(ini, section, "shooter_idle_look",
-         nil))                                                                                                                   --'Цель-вертекс в режиме прицеливания.
-      scheme_param.shooter_clip          = sgm_g.to_number(sgm_functions.check_section_condlist(ini, section, "shooter_clip", 0))      --'Количество патронов или зарядов у НПС. Значение -1 означает бесконечность.
-      scheme_param.shooter_reload        = sgm_g.to_number(sgm_functions.check_section_condlist(ini, section, "shooter_reload",
-         0))                                                                                                                     --'Время между выстрелами.
+         nil))                                                                                                                    --'Цель-вертекс в режиме прицеливания.
+      scheme_param.shooter_clip          = sgm_g.to_number(sgm_functions.check_section_condlist(ini, section,
+         "shooter_clip", 0))                                                                                                      --'Количество патронов или зарядов у НПС. Значение -1 означает бесконечность.
+      scheme_param.shooter_reload        = sgm_g.to_number(sgm_functions.check_section_condlist(ini, section,
+         "shooter_reload",
+         0))                                                                                                                      --'Время между выстрелами.
       scheme_param.shooter_type_wpn      = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section,
-         "shooter_type_wpn", "grenade_launcher"))                                                                                --'Тип оружия. Может быть: grenade_launcher, rifle, sniper.
+         "shooter_type_wpn", "grenade_launcher"))                                                                                 --'Тип оружия. Может быть: grenade_launcher, rifle, sniper.
       scheme_param.shooter_move_state    = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section,
-         "shooter_move_state", "patrol"))                                                                                        --'Анимация тела для движения к назначенной позиции.
+         "shooter_move_state", "patrol"))                                                                                         --'Анимация тела для движения к назначенной позиции.
       scheme_param.shooter_idle_state    = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section,
-         "shooter_idle_state", "threat"))                                                                                        --'Анимация тела по достижении назначенной позиции, в режиме прицеливания.
+         "shooter_idle_state", "threat"))                                                                                         --'Анимация тела по достижении назначенной позиции, в режиме прицеливания.
       scheme_param.shooter_fire_state    = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section,
-         "shooter_fire_state", "threat_fire"))                                                                                   --'Анимация тела по достижении назначенной позиции, в режиме огня.
-      scheme_param.shooter_delay         = sgm_g.to_number(sgm_functions.check_section_condlist(ini, section, "shooter_delay",
-         0))                                                                                                                     --'Время задержки перед началом прицеливания.
+         "shooter_fire_state", "threat_fire"))                                                                                    --'Анимация тела по достижении назначенной позиции, в режиме огня.
+      scheme_param.shooter_delay         = sgm_g.to_number(sgm_functions.check_section_condlist(ini, section,
+         "shooter_delay",
+         0))                                                                                                                      --'Время задержки перед началом прицеливания.
       scheme_param.shooter_avail_cond    = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section,
-         "shooter_avail_cond", nil))                                                                                             --'Условие входа в режим огня.
+         "shooter_avail_cond", nil))                                                                                              --'Условие входа в режим огня.
       scheme_param.shooter_end_action    = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section,
-         "shooter_end_action", nil))                                                                                             --'Выполнение действия {} %% после завершения обстрела.
+         "shooter_end_action", nil))                                                                                              --'Выполнение действия {} %% после завершения обстрела.
       scheme_param.shooter_need_dist     = sgm_g.to_number(sgm_functions.check_section_condlist(ini, section,
-         "shooter_need_dist", 80))                                                                                               --'Дальность ведения огня.
+         "shooter_need_dist", 80))                                                                                                --'Дальность ведения огня.
       scheme_param.shooter_need_see      = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section,
-         "shooter_need_see", "false"))                                                                                           --'Необходимо ли видеть цель, чтобы войти в режим огня.
+         "shooter_need_see", "false"))                                                                                            --'Необходимо ли видеть цель, чтобы войти в режим огня.
       scheme_param.shooter_ignore_actor  = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section,
-         "shooter_ignore_actor", "false"))                                                                                       --'Игнорировать ли ГГ.
+         "shooter_ignore_actor", "false"))                                                                                        --'Игнорировать ли ГГ.
       scheme_param.shooter_home_teleport = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section,
-         "shooter_home_teleport", "false"))                                                                                      --'Телепортация на рабочую позицию, при отходе от неё.
+         "shooter_home_teleport", "false"))                                                                                       --'Телепортация на рабочую позицию, при отходе от неё.
       if scheme_param.shooter_fire_look ~= nil then
          scheme_param.shooter_fire_look_table = parse_names(scheme_param.shooter_fire_look)
-         if find_in_string(scheme_param.shooter_fire_look, ",") then
+         if sgm_g.find_in_string(scheme_param.shooter_fire_look, ",") then
             scheme_param.fire_rnd_bool = true
          else
             scheme_param.fire_rnd_bool = false
@@ -1262,8 +1270,9 @@ function action_move:check_logic_condlists(npc, ini, section)
    end
    --\Команды: PATROL\--
    if scheme_param.scheme_type == "patrol" then
-      scheme_param.patrol_count_path  = sgm_g.to_number(sgm_functions.check_section_condlist(ini, section, "patrol_count_path",
-         2))       --'Количество точек в патрульном пути.
+      scheme_param.patrol_count_path  = sgm_g.to_number(sgm_functions.check_section_condlist(ini, section,
+         "patrol_count_path",
+         2)) --'Количество точек в патрульном пути.
       scheme_param.patrol_countdown   = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section,
          "patrol_countdown",
          "false")) --'Обратный ли проход по точкам. Не с 1 по 20, а с 20 по 1.
@@ -1275,11 +1284,12 @@ function action_move:check_logic_condlists(npc, ini, section)
          "false")) --'Замкнутый ли патрульный путь.
       scheme_param.patrol_quick_anim  = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section,
          "patrol_quick_anim",
-         "true"))  --'Быстро ли применять анимацию тела.
+         "true")) --'Быстро ли применять анимацию тела.
       if scheme_param.patrol_countdown == "true" then
          for i = 1, 20 do
             local i_c                                       = 21 - i
-            scheme_param["patrol_path_" .. i_c]             = sgm_g.to_number(sgm_functions.check_section_condlist(ini, section,
+            scheme_param["patrol_path_" .. i_c]             = sgm_g.to_number(sgm_functions.check_section_condlist(ini,
+               section,
                "patrol_path_" .. i_c, 0))
             scheme_param["patrol_path_" .. i_c .. "_look"]  = sgm_g.to_string(sgm_functions.check_section_condlist(ini,
                section,
@@ -1290,7 +1300,8 @@ function action_move:check_logic_condlists(npc, ini, section)
             scheme_param["patrol_path_" .. i_c .. "_anim"]  = sgm_g.to_string(sgm_functions.check_section_condlist(ini,
                section,
                "patrol_path_" .. i_c .. "_anim", "guard"))
-            scheme_param["patrol_path_" .. i_c .. "_wait"]  = sgm_g.to_number(sgm_functions.check_section_condlist(ini, section,
+            scheme_param["patrol_path_" .. i_c .. "_wait"]  = sgm_g.to_number(sgm_functions.check_section_condlist(ini,
+               section,
                "patrol_path_" .. i_c .. "_wait", 0))
             scheme_param["patrol_path_" .. i_c .. "_info"]  = sgm_g.to_string(sgm_functions.check_section_condlist(ini,
                section,
@@ -1301,7 +1312,8 @@ function action_move:check_logic_condlists(npc, ini, section)
          end
       else
          for i = 1, 20 do
-            scheme_param["patrol_path_" .. i]             = sgm_g.to_number(sgm_functions.check_section_condlist(ini, section,
+            scheme_param["patrol_path_" .. i]             = sgm_g.to_number(sgm_functions.check_section_condlist(ini,
+            section,
                "patrol_path_" .. i, 0))
             scheme_param["patrol_path_" .. i .. "_look"]  = sgm_g.to_string(sgm_functions.check_section_condlist(ini,
                section,
@@ -1312,7 +1324,8 @@ function action_move:check_logic_condlists(npc, ini, section)
             scheme_param["patrol_path_" .. i .. "_anim"]  = sgm_g.to_string(sgm_functions.check_section_condlist(ini,
                section,
                "patrol_path_" .. i .. "_anim", "guard"))
-            scheme_param["patrol_path_" .. i .. "_wait"]  = sgm_g.to_number(sgm_functions.check_section_condlist(ini, section,
+            scheme_param["patrol_path_" .. i .. "_wait"]  = sgm_g.to_number(sgm_functions.check_section_condlist(ini,
+               section,
                "patrol_path_" .. i .. "_wait", 0))
             scheme_param["patrol_path_" .. i .. "_info"]  = sgm_g.to_string(sgm_functions.check_section_condlist(ini,
                section,

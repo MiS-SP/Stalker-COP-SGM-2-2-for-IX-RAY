@@ -107,7 +107,7 @@ function timers_update()
       if sgm_g.check_game_timer("community_war_respawn_timer") == nil then
          sgm_g.start_game_timer("community_war_respawn_timer", 30)
       elseif sgm_g.check_game_timer("community_war_respawn_timer") then
-         check_and_respawn_community_war()
+         sgm_g.check_and_respawn_community_war()
          sgm_g.start_game_timer("community_war_respawn_timer", 30)
       end
    end

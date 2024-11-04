@@ -240,9 +240,9 @@ function zat_b7_give_bandit_reward_to_actor(first_speaker, second_speaker) --/На
 	dialogs.relocate_money_to_actor(first_speaker, second_speaker, amount)
 	treasure_manager.get_treasure_manager():give_treasure("zat_hiding_place_30")
 	--/ SGM in
-	give_skill_book()
-	give_mp3_bonus()
-	give_secret(1)
+	sgm_g.give_skill_book()
+	sgm_g.give_mp3_bonus()
+	sgm_g.give_secret(1)
 	--/ SGM out
 end
 
@@ -262,9 +262,9 @@ function zat_b7_give_stalker_reward_to_actor(first_speaker, second_speaker) --/Н
 	end
 	treasure_manager.get_treasure_manager():give_treasure("zat_hiding_place_29")
 	--/ SGM in
-	give_skill_book()
-	give_mp3_bonus()
-	give_secret(1)
+	sgm_g.give_skill_book()
+	sgm_g.give_mp3_bonus()
+	sgm_g.give_secret(1)
 	--/ SGM out
 end
 
@@ -411,8 +411,8 @@ function zat_b33_transfer_first_item(first_speaker, second_speaker) --/Недоступн
 	local actor = dialogs.who_is_actor(first_speaker, second_speaker)
 	dialogs.relocate_item_section(actor, "wpn_fort_snag", "in")
 	--/ SGM in
-	give_mp3_bonus()
-	give_secret(1)
+	sgm_g.give_mp3_bonus()
+	sgm_g.give_secret(1)
 	--/ SGM out
 end
 
@@ -422,8 +422,8 @@ function zat_b33_transfer_second_item(first_speaker, second_speaker) --/Недоступ
 	dialogs.relocate_item_section(actor, "antirad", "in", 3)
 	dialogs.relocate_item_section(actor, "bandage", "in", 5)
 	--/ SGM in
-	give_mp3_bonus()
-	give_secret(1)
+	sgm_g.give_mp3_bonus()
+	sgm_g.give_secret(1)
 	--/ SGM out
 end
 
@@ -431,8 +431,8 @@ function zat_b33_transfer_third_item(first_speaker, second_speaker) --/Недоступн
 	local actor = dialogs.who_is_actor(first_speaker, second_speaker)
 	dialogs.relocate_item_section(actor, "wpn_ak74u_snag", "in")
 	--/ SGM in
-	give_mp3_bonus()
-	give_secret(1)
+	sgm_g.give_mp3_bonus()
+	sgm_g.give_secret(1)
 	--/ SGM out
 end
 
@@ -440,8 +440,8 @@ function zat_b33_transfer_fourth_item(first_speaker, second_speaker) --/Недоступ
 	local actor = dialogs.who_is_actor(first_speaker, second_speaker)
 	dialogs.relocate_item_section(actor, "af_vyvert", "in")
 	--/ SGM in
-	give_mp3_bonus()
-	give_secret(1)
+	sgm_g.give_mp3_bonus()
+	sgm_g.give_secret(1)
 	--/ SGM out
 end
 
@@ -449,8 +449,8 @@ function zat_b33_transfer_fifth_item(first_speaker, second_speaker) --/Недоступн
 	local actor = dialogs.who_is_actor(first_speaker, second_speaker)
 	dialogs.relocate_item_section(actor, "helm_hardhat_snag", "in")
 	--/ SGM in
-	give_mp3_bonus()
-	give_secret(1)
+	sgm_g.give_mp3_bonus()
+	sgm_g.give_secret(1)
 	--/ SGM out
 end
 
@@ -855,8 +855,8 @@ function zat_b30_transfer_af_from_actor(first_speaker, second_speaker) --/Исчезн
 	treasure_manager.get_treasure_manager():give_treasure("zat_hiding_place_49")
 	treasure_manager.get_treasure_manager():give_treasure("zat_hiding_place_15")
 	--/ SGM in
-	give_skill_book()
-	give_secret(1)
+	sgm_g.give_skill_book()
+	sgm_g.give_secret(1)
 	--/ SGM out
 end
 
@@ -1431,8 +1431,8 @@ function zat_b40_transfer_notebook(first_speaker, second_speaker) --/Лагерь наём
 	db.actor:give_info_portion("zat_b40_notebook_saled")
 	dialogs.relocate_money_to_actor(first_speaker, second_speaker, 2000)
 	--/ SGM in
-	give_skill_book()
-	give_mp3_bonus()
+	sgm_g.give_skill_book()
+	sgm_g.give_mp3_bonus()
 	--/ SGM out
 end
 
@@ -1609,10 +1609,10 @@ function zat_b106_soroka_reward(first_speaker, second_speaker)
 	if has_alife_info("jup_b25_flint_blame_done_to_duty") or has_alife_info("jup_b25_flint_blame_done_to_freedom") then
 		dialogs.relocate_money_to_actor(first_speaker, second_speaker, 1000)
 		--/ SGM in
-		give_skill_book()
+		sgm_g.give_skill_book()
 	else
 		dialogs.relocate_money_to_actor(first_speaker, second_speaker, 3000)
-		give_skill_book()
+		sgm_g.give_skill_book()
 		--/ SGM out
 	end
 end
@@ -1671,14 +1671,14 @@ end
 function zat_b5_dealer_full_revard(first_speaker, second_speaker) --/Сделка
 	dialogs.relocate_money_to_actor(first_speaker, second_speaker, 6000)
 	--/ SGM in
-	give_skill_book()
+	sgm_g.give_skill_book()
 	--/ SGM out
 end
 
 function zat_b5_dealer_easy_revard(first_speaker, second_speaker) --/Сделка
 	dialogs.relocate_money_to_actor(first_speaker, second_speaker, 3000)
 	--/ SGM in
-	give_skill_book()
+	sgm_g.give_skill_book()
 	--/ SGM out
 end
 
@@ -1686,15 +1686,15 @@ function zat_b5_bandits_revard(first_speaker, second_speaker) --/Логово кровосос
 	dialogs.relocate_money_to_actor(first_speaker, second_speaker, 5000)
 	treasure_manager.get_treasure_manager():give_treasure("zat_hiding_place_20")
 	--/ SGM in
-	give_skill_book()
-	give_mp3_bonus()
+	sgm_g.give_skill_book()
+	sgm_g.give_mp3_bonus()
 	--/ SGM out
 end
 
-function zat_b106_give_reward(first_speaker, second_speaker)
+function zat_b106_sgm_g.give_reward(first_speaker, second_speaker)
 	treasure_manager.get_treasure_manager():give_treasure("zat_hiding_place_50")
 	--/ SGM in
-	give_skill_book()
+	sgm_g.give_skill_book()
 	--/ SGM out
 end
 
@@ -1770,7 +1770,7 @@ function zat_b106_stalker_homsa_quest_create_rasvet(first_speaker, second_speake
 	create("zat_rasvet_quest_homsa_member_3", -527.522, 8.680, 49.481, 21099, 232)
 end
 
-function zat_b106_stalker_homsa_quest_give_reward(first_speaker, second_speaker)
+function zat_b106_stalker_homsa_quest_sgm_g.give_reward(first_speaker, second_speaker)
 	local amount = 10000
 	dialogs.relocate_money_to_actor(first_speaker, second_speaker, amount)
 end
@@ -1842,7 +1842,7 @@ function zat_a6_sultan_quest_kontra_relocate_info(first_speaker, second_speaker)
 	end
 end
 
-function zat_a6_sultan_quest_kontra_give_reward(first_speaker, second_speaker)
+function zat_a6_sultan_quest_kontra_sgm_g.give_reward(first_speaker, second_speaker)
 	local amount = 10000
 	dialogs.relocate_money_to_actor(first_speaker, second_speaker, amount)
 end

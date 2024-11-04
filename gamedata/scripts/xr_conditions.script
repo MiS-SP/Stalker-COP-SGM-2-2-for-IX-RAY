@@ -1908,11 +1908,11 @@ function task_time_remained(actor, npc, p)
 end
 
 function trader_stage(actor, npc, p)
-	return read_mod_param("trader_supplies_stage") == p[1]
+	return sgm_g.read_mod_param("trader_supplies_stage") == p[1]
 end
 
 function trader_stage_interval(actor, npc, p)
-	local stage = read_mod_param("trader_supplies_stage")
+	local stage = sgm_g.read_mod_param("trader_supplies_stage")
 	if stage >= p[1] and (p[2] == nil or (p[2] ~= nil and stage < p[2])) then
 		return true
 	else
@@ -1945,7 +1945,7 @@ function check_actor_rank(actor, npc, p)
 end
 
 function check_actor_community(actor, npc, p)
-	if read_mod_param("stat_community") ~= nil and read_mod_param("stat_community") == p[1] then
+	if sgm_g.read_mod_param("stat_community") ~= nil and sgm_g.read_mod_param("stat_community") == p[1] then
 		return true
 	else
 		return false
@@ -2093,8 +2093,8 @@ end
 
 function check_counter(actor, npc, p)
 	if p[1] == nil or p[3] == nil then return end
-	if read_mod_param(p[1]) == nil then return false end
-	if (p[2] == "me" and read_mod_param(p[1]) >= p[3]) or (p[2] == "m" and read_mod_param(p[1]) > p[3]) or (p[2] == "le" and read_mod_param(p[1]) <= p[3]) or (p[2] == "l" and read_mod_param(p[1]) < p[3]) or ((p[2] == nil or p[2] == "nil" or p[2] == "is") and read_mod_param(p[1]) == p[3]) then
+	if sgm_g.read_mod_param(p[1]) == nil then return false end
+	if (p[2] == "me" and sgm_g.read_mod_param(p[1]) >= p[3]) or (p[2] == "m" and sgm_g.read_mod_param(p[1]) > p[3]) or (p[2] == "le" and sgm_g.read_mod_param(p[1]) <= p[3]) or (p[2] == "l" and sgm_g.read_mod_param(p[1]) < p[3]) or ((p[2] == nil or p[2] == "nil" or p[2] == "is") and sgm_g.read_mod_param(p[1]) == p[3]) then
 		return true
 	else
 		return false
@@ -2102,8 +2102,8 @@ function check_counter(actor, npc, p)
 end
 
 function check_difference_counter(actor, npc, p)
-	if read_mod_param(p[1]) == nil or read_mod_param(p[2]) == nil then return false end
-	if read_mod_param(p[1]) - read_mod_param(p[2]) <= 0 then
+	if sgm_g.read_mod_param(p[1]) == nil or sgm_g.read_mod_param(p[2]) == nil then return false end
+	if sgm_g.read_mod_param(p[1]) - sgm_g.read_mod_param(p[2]) <= 0 then
 		if p[3] == true then
 			return false
 		else
@@ -2194,20 +2194,20 @@ function need_rank_hint(actor, npc, p)
 			game.translate_string("st_need_rank") ..
 			" " .. p[1] .. " [" .. game.translate_string("st_currert_rank") .. actor_rnk .. "]")
 	end
-	if level.name() == "zaton" and read_mod_param("zat_mechanic_stripping") ~= nil then
-		if read_mod_param("zat_mechanic_stripping") < 1 and r_mod_params("bool", "need_mechanic_details", true) then
+	if level.name() == "zaton" and sgm_g.read_mod_param("zat_mechanic_stripping") ~= nil then
+		if sgm_g.read_mod_param("zat_mechanic_stripping") < 1 and r_mod_params("bool", "need_mechanic_details", true) then
 			table.insert(hint_table, "st_upgr_need_completing")
 		else
 			allow = true
 		end
-	elseif level.name() == "jupiter" and read_mod_param("jup_mechanic_stripping") ~= nil then
-		if read_mod_param("jup_mechanic_stripping") < 1 and r_mod_params("bool", "need_mechanic_details", true) and db.actor:position():distance_to_sqr(vector():set(-213.079, -3.567, 70.035), 356685, 385) > 100 then
+	elseif level.name() == "jupiter" and sgm_g.read_mod_param("jup_mechanic_stripping") ~= nil then
+		if sgm_g.read_mod_param("jup_mechanic_stripping") < 1 and r_mod_params("bool", "need_mechanic_details", true) and db.actor:position():distance_to_sqr(vector():set(-213.079, -3.567, 70.035), 356685, 385) > 100 then
 			table.insert(hint_table, "st_upgr_need_completing")
 		else
 			allow = true
 		end
-	elseif level.name() == "pripyat" and read_mod_param("pri_mechanic_stripping") ~= nil then
-		if read_mod_param("pri_mechanic_stripping") < 1 and r_mod_params("bool", "need_mechanic_details", true) and sgm_g.dont_has_alife_info("pri_a28_actor_in_zone_stay") then
+	elseif level.name() == "pripyat" and sgm_g.read_mod_param("pri_mechanic_stripping") ~= nil then
+		if sgm_g.read_mod_param("pri_mechanic_stripping") < 1 and r_mod_params("bool", "need_mechanic_details", true) and sgm_g.dont_has_alife_info("pri_a28_actor_in_zone_stay") then
 			table.insert(hint_table, "st_upgr_need_completing")
 		else
 			allow = true
@@ -2219,20 +2219,20 @@ end
 
 function need_details(actor, npc)
 	local hint_table = {}
-	if level.name() == "zaton" and read_mod_param("zat_mechanic_stripping") ~= nil then
-		if read_mod_param("zat_mechanic_stripping") < 1 and r_mod_params("bool", "need_mechanic_details", true) then
+	if level.name() == "zaton" and sgm_g.read_mod_param("zat_mechanic_stripping") ~= nil then
+		if sgm_g.read_mod_param("zat_mechanic_stripping") < 1 and r_mod_params("bool", "need_mechanic_details", true) then
 			table.insert(hint_table, "st_upgr_need_completing")
 		else
 			return true
 		end
-	elseif level.name() == "jupiter" and read_mod_param("jup_mechanic_stripping") ~= nil then
-		if read_mod_param("jup_mechanic_stripping") < 1 and r_mod_params("bool", "need_mechanic_details", true) then
+	elseif level.name() == "jupiter" and sgm_g.read_mod_param("jup_mechanic_stripping") ~= nil then
+		if sgm_g.read_mod_param("jup_mechanic_stripping") < 1 and r_mod_params("bool", "need_mechanic_details", true) then
 			table.insert(hint_table, "st_upgr_need_completing")
 		else
 			return true
 		end
-	elseif level.name() == "pripyat" and read_mod_param("pri_mechanic_stripping") ~= nil then
-		if read_mod_param("pri_mechanic_stripping") < 1 and r_mod_params("bool", "need_mechanic_details", true) then
+	elseif level.name() == "pripyat" and sgm_g.read_mod_param("pri_mechanic_stripping") ~= nil then
+		if sgm_g.read_mod_param("pri_mechanic_stripping") < 1 and r_mod_params("bool", "need_mechanic_details", true) then
 			table.insert(hint_table, "st_upgr_need_completing")
 		else
 			return true
@@ -2248,12 +2248,12 @@ function signaller_hint(actor, npc, p)
 		if sgm_g.dont_has_alife_info("pri_signaller_toolkit_1_returned") then
 			table.insert(hint_table, "st_upgr_signaller_toolkit_1")
 		end
-		if read_mod_param("pri_mechanic_stripping") ~= nil and read_mod_param("pri_mechanic_stripping") < 1 and r_mod_params("bool", "need_mechanic_details", true) then
+		if sgm_g.read_mod_param("pri_mechanic_stripping") ~= nil and sgm_g.read_mod_param("pri_mechanic_stripping") < 1 and r_mod_params("bool", "need_mechanic_details", true) then
 			table.insert(hint_table, "st_upgr_need_completing")
 		end
 		inventory_upgrades.cur_hint = hint_table
 		return has_alife_info("pri_signaller_toolkit_1_returned") and
-		(read_mod_param("pri_mechanic_stripping") >= 1 or r_mod_params("bool", "need_mechanic_details", true) == false)
+		(sgm_g.read_mod_param("pri_mechanic_stripping") >= 1 or r_mod_params("bool", "need_mechanic_details", true) == false)
 	elseif p[1] == 2 then
 		if has_alife_info("pri_signaller_toolkit_1_returned") and sgm_g.dont_has_alife_info("pri_signaller_toolkit_2_returned") then
 			table.insert(hint_table, "st_upgr_signaller_toolkit_2")
@@ -2265,12 +2265,12 @@ function signaller_hint(actor, npc, p)
 			table.insert(hint_table, "st_upgr_signaller_toolkit_1")
 			table.insert(hint_table, "st_upgr_signaller_toolkit_2")
 		end
-		if read_mod_param("pri_mechanic_stripping") ~= nil and read_mod_param("pri_mechanic_stripping") < 1 and r_mod_params("bool", "need_mechanic_details", true) then
+		if sgm_g.read_mod_param("pri_mechanic_stripping") ~= nil and sgm_g.read_mod_param("pri_mechanic_stripping") < 1 and r_mod_params("bool", "need_mechanic_details", true) then
 			table.insert(hint_table, "st_upgr_need_completing")
 		end
 		inventory_upgrades.cur_hint = hint_table
 		return has_alife_info("pri_signaller_toolkit_1_returned") and has_alife_info("pri_signaller_toolkit_2_returned") and
-		(read_mod_param("pri_mechanic_stripping") >= 1 or r_mod_params("bool", "need_mechanic_details", true) == false)
+		(sgm_g.read_mod_param("pri_mechanic_stripping") >= 1 or r_mod_params("bool", "need_mechanic_details", true) == false)
 	end
 	return false
 end
@@ -2340,8 +2340,8 @@ function upgrade_hint_kardan(actor, npc, p)
 	else
 		can_upgrade = can_upgrade + 1
 	end
-	if read_mod_param("zat_mechanic_stripping") ~= nil and r_mod_params("bool", "need_mechanic_details", true) then
-		if read_mod_param("zat_mechanic_stripping") < 1 then
+	if sgm_g.read_mod_param("zat_mechanic_stripping") ~= nil and r_mod_params("bool", "need_mechanic_details", true) then
+		if sgm_g.read_mod_param("zat_mechanic_stripping") < 1 then
 			table.insert(hint_table, "st_upgr_need_completing")
 		else
 			can_upgrade = can_upgrade + 1
@@ -2407,8 +2407,8 @@ function upgrade_hint_azot(actor, npc, p)
 	else
 		can_upgrade = can_upgrade + 2
 	end
-	if read_mod_param("jup_mechanic_stripping") ~= nil and r_mod_params("bool", "need_mechanic_details", true) then
-		if read_mod_param("jup_mechanic_stripping") < 1 then
+	if sgm_g.read_mod_param("jup_mechanic_stripping") ~= nil and r_mod_params("bool", "need_mechanic_details", true) then
+		if sgm_g.read_mod_param("jup_mechanic_stripping") < 1 then
 			table.insert(hint_table, "st_upgr_need_completing")
 		else
 			can_upgrade = can_upgrade + 1

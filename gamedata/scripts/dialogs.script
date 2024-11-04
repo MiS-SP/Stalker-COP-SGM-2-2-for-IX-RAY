@@ -207,7 +207,10 @@ function not_level_jupiter(first_speaker, second_speaker)
 end
 
 function not_level_pripyat(first_speaker, second_speaker)
-	return sgm_dialogs.not_level_pripyat(first_speaker, second_speaker)
+	--/ SGM in
+	return level.name() ~= "pripyat" and level.name() ~= "escape" and level.name() ~= "marsh" and
+		level.name() ~= "agroprom" and level.name() ~= "red_forest"
+	--/ SGM out
 end
 
 -----------------------------------------------------------------------------------

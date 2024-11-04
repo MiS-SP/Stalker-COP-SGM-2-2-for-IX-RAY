@@ -6,16 +6,16 @@ function pri_a17_reward(first_speaker, second_speaker)
 	--/ SGM in
 	if has_alife_info("pri_a17_reward_well") then
 		dialogs.relocate_money_to_actor(first_speaker, second_speaker, 7500)
-		give_secret(1)
+		sgm_g.give_secret(1)
 	elseif has_alife_info("pri_a17_reward_norm") then
 		dialogs.relocate_money_to_actor(first_speaker, second_speaker, 4000)
-		give_secret(1)
+		sgm_g.give_secret(1)
 	elseif has_alife_info("pri_a17_reward_bad") then
 		dialogs.relocate_money_to_actor(first_speaker, second_speaker, 3000)
-		give_secret(1)
+		sgm_g.give_secret(1)
 	end
-	give_mp3_bonus()
-	give_skill_book()
+	sgm_g.give_mp3_bonus()
+	sgm_g.give_skill_book()
 	--/ SGM out
 end
 
@@ -89,7 +89,7 @@ function pri_b35_give_actor_reward(first_speaker, second_speaker)
 	if has_alife_info("pri_b35_secondary") then amount = 3 end
 	dialogs.relocate_item_section_to_actor(first_speaker, second_speaker, "ammo_7.62x54_7h1", amount)
 	--/ SGM in
-	give_mp3_bonus()
+	sgm_g.give_mp3_bonus()
 	--/ SGM out
 end
 
@@ -278,42 +278,42 @@ end
 
 function pri_alf_actor_dont_has_info(first_speaker, second_speaker)
 	return db.actor:object("pri_alf_info_1") == nil or db.actor:object("pri_alf_info_2") == nil or
-	db.actor:object("pri_alf_info_3") == nil
+		db.actor:object("pri_alf_info_3") == nil
 end
 
 function pri_alf_actor_has_info_1(first_speaker, second_speaker)
 	return db.actor:object("pri_alf_info_1") ~= nil and db.actor:object("pri_alf_info_2") == nil and
-	db.actor:object("pri_alf_info_3") == nil
+		db.actor:object("pri_alf_info_3") == nil
 end
 
 function pri_alf_actor_has_info_2(first_speaker, second_speaker)
 	return db.actor:object("pri_alf_info_2") ~= nil and db.actor:object("pri_alf_info_1") == nil and
-	db.actor:object("pri_alf_info_3") == nil
+		db.actor:object("pri_alf_info_3") == nil
 end
 
 function pri_alf_actor_has_info_3(first_speaker, second_speaker)
 	return db.actor:object("pri_alf_info_3") ~= nil and db.actor:object("pri_alf_info_1") == nil and
-	db.actor:object("pri_alf_info_2") == nil
+		db.actor:object("pri_alf_info_2") == nil
 end
 
 function pri_alf_actor_has_info_12(first_speaker, second_speaker)
 	return db.actor:object("pri_alf_info_1") ~= nil and db.actor:object("pri_alf_info_2") ~= nil and
-	db.actor:object("pri_alf_info_3") == nil
+		db.actor:object("pri_alf_info_3") == nil
 end
 
 function pri_alf_actor_has_info_13(first_speaker, second_speaker)
 	return db.actor:object("pri_alf_info_1") ~= nil and db.actor:object("pri_alf_info_3") ~= nil and
-	db.actor:object("pri_alf_info_2") == nil
+		db.actor:object("pri_alf_info_2") == nil
 end
 
 function pri_alf_actor_has_info_23(first_speaker, second_speaker)
 	return db.actor:object("pri_alf_info_2") ~= nil and db.actor:object("pri_alf_info_3") ~= nil and
-	db.actor:object("pri_alf_info_1") == nil
+		db.actor:object("pri_alf_info_1") == nil
 end
 
 function pri_alf_actor_has_info_all(first_speaker, second_speaker)
 	return db.actor:object("pri_alf_info_1") ~= nil and db.actor:object("pri_alf_info_2") ~= nil and
-	db.actor:object("pri_alf_info_3") ~= nil
+		db.actor:object("pri_alf_info_3") ~= nil
 end
 
 function pri_alf_actor_relocate_info_all(first_speaker, second_speaker)
