@@ -9,97 +9,109 @@ function mob_move:__init(obj, storage)
    self.st = storage
    self:activate_scheme()
 end
+
 function mob_move:activate_scheme()
    self.st.signals = {}
-   sgm_flags.table_mod_schemes[self.object:id()]={}
-   sgm_flags.table_mod_schemes[self.object:id()].in_center_signalled=false
-   sgm_flags.table_mod_schemes[self.object:id().."precond_start"]=0
-   sgm_flags.table_mod_schemes[self.object:id().."precond_end"]=0
-   xr_logic.mob_capture(self.object,true)
+   sgm_flags.table_mod_schemes[self.object:id()] = {}
+   sgm_flags.table_mod_schemes[self.object:id()].in_center_signalled = false
+   sgm_flags.table_mod_schemes[self.object:id() .. "precond_start"] = 0
+   sgm_flags.table_mod_schemes[self.object:id() .. "precond_end"] = 0
+   xr_logic.mob_capture(self.object, true)
 end
+
 function mob_move:update(delta)
    if not self.object:alive() then
       xr_logic.mob_release(self.object)
       return
    end
-   if sgm_flags.table_mod_schemes[self.object:id()].update==nil then
-      self:check_logic_condlists(self.object,self.st.saved_ini,self.st.saved_section)
-      sgm_flags.table_mod_schemes[self.object:id()].update=time_global()+2000
+   if sgm_flags.table_mod_schemes[self.object:id()].update == nil then
+      self:check_logic_condlists(self.object, self.st.saved_ini, self.st.saved_section)
+      sgm_flags.table_mod_schemes[self.object:id()].update = time_global() + 2000
    end
-   if sgm_flags.table_mod_schemes[self.object:id()].update~=nil then
-      if time_global()>=sgm_flags.table_mod_schemes[self.object:id()].update then
-         sgm_flags.table_mod_schemes[self.object:id()].update=nil
+   if sgm_flags.table_mod_schemes[self.object:id()].update ~= nil then
+      if time_global() >= sgm_flags.table_mod_schemes[self.object:id()].update then
+         sgm_flags.table_mod_schemes[self.object:id()].update = nil
       end
    end
-   local monster=self.object
-   local monster_id=monster:id()
-   local monster_lv=monster:level_vertex_id()
-   local actor_lv=db.actor:level_vertex_id()
-   local scheme_param=sgm_flags.table_mod_schemes[monster_id]
-   if scheme_param.approach_info~=nil and scheme_param.approach_info[1]~=nil and scheme_param.approach_info[2]~=nil and dont_has_alife_info(scheme_param.approach_info[1]) then
-      local dist_type="<="
-      if scheme_param.approach_info[3]~=nil then dist_type=scheme_param.approach_info[3] end
-      if dist_type=="<=" and distance_between(db.actor,monster)<=tonumber(scheme_param.approach_info[2]) then give_info(scheme_param.approach_info[1])
-      elseif dist_type==">=" and distance_between(db.actor,monster)>=tonumber(scheme_param.approach_info[2]) then give_info(scheme_param.approach_info[1])
-      elseif dist_type=="<" and distance_between(db.actor,monster)<tonumber(scheme_param.approach_info[2]) then give_info(scheme_param.approach_info[1])
-      elseif dist_type==">" and distance_between(db.actor,monster)>tonumber(scheme_param.approach_info[2]) then give_info(scheme_param.approach_info[1])
-      elseif dist_type=="=" and distance_between(db.actor,monster)==tonumber(scheme_param.approach_info[2]) then give_info(scheme_param.approach_info[1])
+   local monster = self.object
+   local monster_id = monster:id()
+   local monster_lv = monster:level_vertex_id()
+   local actor_lv = db.actor:level_vertex_id()
+   local scheme_param = sgm_flags.table_mod_schemes[monster_id]
+   if scheme_param.approach_info ~= nil and scheme_param.approach_info[1] ~= nil and scheme_param.approach_info[2] ~= nil and dont_has_alife_info(scheme_param.approach_info[1]) then
+      local dist_type = "<="
+      if scheme_param.approach_info[3] ~= nil then dist_type = scheme_param.approach_info[3] end
+      if dist_type == "<=" and distance_between(db.actor, monster) <= tonumber(scheme_param.approach_info[2]) then
+         give_info(scheme_param.approach_info[1])
+      elseif dist_type == ">=" and distance_between(db.actor, monster) >= tonumber(scheme_param.approach_info[2]) then
+         give_info(scheme_param.approach_info[1])
+      elseif dist_type == "<" and distance_between(db.actor, monster) < tonumber(scheme_param.approach_info[2]) then
+         give_info(scheme_param.approach_info[1])
+      elseif dist_type == ">" and distance_between(db.actor, monster) > tonumber(scheme_param.approach_info[2]) then
+         give_info(scheme_param.approach_info[1])
+      elseif dist_type == "=" and distance_between(db.actor, monster) == tonumber(scheme_param.approach_info[2]) then
+         give_info(scheme_param.approach_info[1])
       end
    end
-   if scheme_param.monster_dead=="true" then
-      set_hit_damage_to(monster,hit.wound,1000,1)
+   if scheme_param.monster_dead == "true" then
+      sgm_g.set_hit_damage_to(monster, hit.wound, 1000, 1)
    end
-   if scheme_param.target_point~=nil and scheme_param.target_point=="actor" then
-      sgm_functions.mob_send_to(monster,actor_lv)
+   if scheme_param.target_point ~= nil and scheme_param.target_point == "actor" then
+      sgm_functions.mob_send_to(monster, actor_lv)
       sgm_functions.mob_recapture(self.object)
-   elseif scheme_param.target_point~=nil and scheme_param.target_point~="actor" then
-      sgm_functions.mob_send_to(monster,scheme_param.target_point)
+   elseif scheme_param.target_point ~= nil and scheme_param.target_point ~= "actor" then
+      sgm_functions.mob_send_to(monster, scheme_param.target_point)
       sgm_functions.mob_recapture(self.object)
-      if monster_lv==scheme_param.target_point then
-         if scheme_param.in_center_signalled==false then
-            scheme_param.in_center_signalled=true
-            self.st.signals["in_center"]=true
+      if monster_lv == scheme_param.target_point then
+         if scheme_param.in_center_signalled == false then
+            scheme_param.in_center_signalled = true
+            self.st.signals["in_center"] = true
          end
       else
-         sgm_functions.mob_teleport_to_home_position(monster,scheme_param.target_point,scheme_param.home_teleport)
+         sgm_functions.mob_teleport_to_home_position(monster, scheme_param.target_point, scheme_param.home_teleport)
       end
    end
-   if scheme_param.captured_actor=="true" then
-      if sgm_flags.table_m_capture_hits[monster_id]==nil or sgm_flags.table_m_capture_hits[monster_id]==false then
-         add_spot_on_map(monster_id,sgm_flags.spot_captured_monster,"st_captured_monster_name")
+   if scheme_param.captured_actor == "true" then
+      if sgm_flags.table_m_capture_hits[monster_id] == nil or sgm_flags.table_m_capture_hits[monster_id] == false then
+         sgm_g.add_spot_on_map(monster_id, sgm_flags.spot_captured_monster, "st_captured_monster_name")
          sgm_functions.mob_recapture(monster)
          sgm_functions.mob_teleport_to_actor(monster)
-         if distance_to_object(monster,">",6) then
-	    sgm_functions.mob_send_to(monster,actor_lv)
-         elseif distance_to_object(monster,"<=",6) then
-	    sgm_functions.mob_look_to(monster,actor_lv)
+         if distance_to_object(monster, ">", 6) then
+            sgm_functions.mob_send_to(monster, actor_lv)
+         elseif distance_to_object(monster, "<=", 6) then
+            sgm_functions.mob_look_to(monster, actor_lv)
          end
       else
-         remove_spot_on_map(monster_id,sgm_flags.spot_captured_monster)
+         sgm_g.remove_spot_on_map(monster_id, sgm_flags.spot_captured_monster)
          xr_logic.mob_release(monster)
       end
    end
 end
-function mob_move:check_logic_condlists(monster,ini,section)
-   local scheme_param=sgm_flags.table_mod_schemes[monster:id()]
---/if scheme_param.section==nil or (scheme_param.section~=nil and scheme_param.section~=self.st.saved_section) then --/Без постоянного обновления.
---/   scheme_param.section = self.st.saved_section
-      scheme_param.approach_info  = sgm_functions.check_section_stick(ini,section,"approach_info",nil)                                                   --'Выдача инфопортации на определённой дистанции (инфа|дистанция|знак).
-      scheme_param.target_point   = to_string(sgm_functions.check_section_condlist(ini,section,"target_point",nil))                                      --'Назначенный вертекс движения.
-      scheme_param.monster_dead   = to_string(sgm_functions.check_section_condlist(ini,section,"monster_dead","false"))                                  --'Будет ли монстр изначально мёртвым.
-      scheme_param.captured_actor = to_string(sgm_functions.check_section_condlist(ini,section,"captured_actor","false"))                                --'Находится ли монстр под контролем ГГ.
-      scheme_param.home_teleport  = to_string(sgm_functions.check_section_condlist(ini,section,"home_teleport","false"))                                 --'Телепортация в пункт назначения, при отходе от него.
---/end
+
+function mob_move:check_logic_condlists(monster, ini, section)
+   local scheme_param          = sgm_flags.table_mod_schemes[monster:id()]
+   --/if scheme_param.section==nil or (scheme_param.section~=nil and scheme_param.section~=self.st.saved_section) then --/Без постоянного обновления.
+   --/   scheme_param.section = self.st.saved_section
+   scheme_param.approach_info  = sgm_functions.check_section_stick(ini, section, "approach_info", nil)                    --'Выдача инфопортации на определённой дистанции (инфа|дистанция|знак).
+   scheme_param.target_point   = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section, "target_point", nil))       --'Назначенный вертекс движения.
+   scheme_param.monster_dead   = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section, "monster_dead", "false"))   --'Будет ли монстр изначально мёртвым.
+   scheme_param.captured_actor = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section, "captured_actor", "false")) --'Находится ли монстр под контролем ГГ.
+   scheme_param.home_teleport  = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section, "home_teleport", "false"))  --'Телепортация в пункт назначения, при отходе от него.
+   --/end
 end
-function mob_move:hit_callback(victim,amount,local_direction,killer,bone_index)
-   local is_scheme_victim,is_scheme_killer=self.object:id()==victim:id(),self.object:id()==killer:id()
+
+function mob_move:hit_callback(victim, amount, local_direction, killer, bone_index)
+   local is_scheme_victim, is_scheme_killer = self.object:id() == victim:id(), self.object:id() == killer:id()
 end
-function mob_move:death_callback(victim,killer)
-   local is_scheme_victim,is_scheme_killer=self.object:id()==victim:id(),self.object:id()==killer:id()
+
+function mob_move:death_callback(victim, killer)
+   local is_scheme_victim, is_scheme_killer = self.object:id() == victim:id(), self.object:id() == killer:id()
 end
+
 function mob_move:deactivate()
-   xr_logic.mob_capture(self.object,true)
+   xr_logic.mob_capture(self.object, true)
 end
+
 ------------------------------------
 --           Планировка           --
 ------------------------------------
@@ -108,12 +120,13 @@ function add_to_binder(npc, ini, scheme, section, storage)
    local new_action = mob_move(npc, storage)
    xr_logic.subscribe_action_for_events(npc, storage, new_action)
 end
+
 function set_scheme(npc, ini, scheme, section, gulag_name)
-   local st = xr_logic.assign_storage_and_bind(npc, ini, scheme, section)
-   st.logic   = xr_logic.cfg_get_switch_conditions(ini, section, npc)
-   st.state     = mob_state_mgr.get_state(ini, section, npc)
-   st.no_reset     = utils.cfg_get_bool(ini,section,"no_reset",npc,false)
-   st.saved_ini   = ini
+   local st         = xr_logic.assign_storage_and_bind(npc, ini, scheme, section)
+   st.logic         = xr_logic.cfg_get_switch_conditions(ini, section, npc)
+   st.state         = mob_state_mgr.get_state(ini, section, npc)
+   st.no_reset      = utils.cfg_get_bool(ini, section, "no_reset", npc, false)
+   st.saved_ini     = ini
    st.saved_section = section
 end
 
