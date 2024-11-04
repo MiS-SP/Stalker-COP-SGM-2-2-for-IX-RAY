@@ -673,26 +673,22 @@ end
 ------------------------------------------------------------------------------
 --                            Inject Funcs                                  --
 ------------------------------------------------------------------------------
-function stalker_modules_inject()
-   load_scheme("xr_move", "move", stype_stalker)
-   load_scheme("xr_bodyguard", "bodyguard", stype_stalker)
-   load_scheme("xr_corpse", "corpse", stype_stalker)
-   return
+function sgm_stalker_schemas()
+   load_scheme("xr_move", "move", modules.stype_stalker)
+   load_scheme("xr_bodyguard", "bodyguard", modules.stype_stalker)
+   load_scheme("xr_corpse", "corpse", modules.stype_stalker)
 end
 
-function monster_modules_inject()
-   load_scheme("mob_move", "mob_move", stype_mobile)
-   return
+function sgm_monster_schemas()
+   load_scheme("mob_move", "mob_move", modules.stype_mobile)
 end
 
-function physic_obj_modules_inject()
-   load_scheme("sgm_ph_universal", "sgm_ph_universal", stype_item)
-   return
+function sgm_physic_obj_schemas()
+   load_scheme("sgm_ph_universal", "sgm_ph_universal", modules.stype_item)
 end
 
-function restrictor_modules_inject()
-   load_scheme("sgm_sr_universal", "sgm_sr_universal", stype_restrictor)
-   return
+function sgm_restrictor_schemas()
+   load_scheme("sgm_sr_universal", "sgm_sr_universal", modules.stype_restrictor)
 end
 
 -------------------------------------//Copyright GeJorge//-------------------------------------------------

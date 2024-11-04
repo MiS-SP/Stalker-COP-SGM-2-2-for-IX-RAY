@@ -155,7 +155,8 @@ function action_universal:minetrap_object_update(scheme_param)
          sgm_flags.table_mod_mineraps[self.object:id()] = false
       end
       if sgm_flags.table_mod_mineraps[self.object:id()] == true then
-         sobj = sgm_g.create("minetrap_charge", self.object:position().x, self.object:position().y, self.object:position().z,
+         sobj = sgm_g.create("minetrap_charge", self.object:position().x, self.object:position().y,
+            self.object:position().z,
             self.object:level_vertex_id(), self.object:game_vertex_id())
          sgm_g.write_obj_mod_param(self.object, "detonate_source", sobj.id)
          sgm_g.write_obj_mod_param(self.object, "detonate_timer", time_global() + 500)
@@ -304,7 +305,8 @@ function action_universal:hit_callback(obj, amount, local_direction, who, bone_i
          end
          if scheme_param.scheme_type == "explosive_object" then
             if sgm_g.read_obj_mod_param(self.object, "detonate_source") == nil then
-               sobj = sgm_g.create(scheme_param.explosive_object_charge, self.object:position().x, self.object:position().y,
+               sobj = sgm_g.create(scheme_param.explosive_object_charge, self.object:position().x,
+                  self.object:position().y,
                   self.object:position().z, self.object:level_vertex_id(), self.object:game_vertex_id())
                sgm_g.write_obj_mod_param(self.object, "detonate_source", sobj.id)
                sgm_g.write_obj_mod_param(self.object, "detonate_timer", time_global() + 1000)
@@ -393,13 +395,13 @@ function action_universal:correct_entering(scheme_param)
       if scheme_param.script_object_code_items ~= nil then
          for k, v in pairs(scheme_param.script_object_code_items_table) do
             for i = 1, v.prob do
-               alife():sgm_g.create(v.section, self.object:position(), self.object:level_vertex_id(),
+               alife():create(v.section, self.object:position(), self.object:level_vertex_id(),
                   self.object:game_vertex_id(), self.object:id())
             end
          end
       end
       if scheme_param.script_object_code_item ~= nil then
-         alife():sgm_g.create(scheme_param.script_object_code_item, self.object:position(), self.object:level_vertex_id(),
+         alife():create(scheme_param.script_object_code_item, self.object:position(), self.object:level_vertex_id(),
             self.object:game_vertex_id(), self.object:id())
       end
    end
@@ -410,23 +412,23 @@ function action_universal:correct_entering(scheme_param)
       if scheme_param.treasure_object_code_items ~= nil then
          for k, v in pairs(scheme_param.treasure_object_code_items_table) do
             for i = 1, v.prob do
-               alife():sgm_g.create(v.section, self.object:position(), self.object:level_vertex_id(),
+               alife():create(v.section, self.object:position(), self.object:level_vertex_id(),
                   self.object:game_vertex_id(), self.object:id())
             end
          end
       end
       if scheme_param.treasure_object_code_item ~= nil then
-         alife():sgm_g.create(scheme_param.treasure_object_code_item, self.object:position(), self.object:level_vertex_id(),
+         alife():create(scheme_param.treasure_object_code_item, self.object:position(), self.object:level_vertex_id(),
             self.object:game_vertex_id(), self.object:id())
       end
       if sgm_g.exists(scheme_param.treasure_object_code_fill_items_layers) and scheme_param.treasure_object_code_fill_items_layers > 0 then
          for i = 1, scheme_param.treasure_object_code_fill_items_layers do
             local layer_items_table = parse_general_names(scheme_param["treasure_object_code_fill_items_layer_" .. i])
-            alife():sgm_g.create(get_random_string(layer_items_table), self.object:position(), self.object:level_vertex_id(),
+            alife():create(get_random_string(layer_items_table), self.object:position(), self.object:level_vertex_id(),
                self.object:game_vertex_id(), self.object:id())
          end
       end
-      remove_spot_on_map(self.object:id(), sgm_flags.spot_unique_treasure)
+      sgm_g.remove_spot_on_map(self.object:id(), sgm_flags.spot_unique_treasure)
    end
 end
 

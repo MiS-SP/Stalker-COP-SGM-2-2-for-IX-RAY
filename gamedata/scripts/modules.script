@@ -11,7 +11,7 @@ stype_restrictor	= 4
 ----------------------------------------------------------------------
 -- Загрузка модулей сталкеров:
 ----------------------------------------------------------------------
-sgm_modules.stalker_modules_inject()
+sgm_modules.sgm_stalker_schemas()
 load_scheme("xr_danger",						"danger",			stype_stalker)
 load_scheme("xr_gather_items",					"gather_items",		stype_stalker)
 load_scheme("xr_abuse",							"abuse",			stype_stalker)
@@ -40,7 +40,7 @@ load_scheme("xr_reach_task",					"reach_task",		stype_stalker)
 ----------------------------------------------------------------------
 -- Загрузка модулей монстров:
 ----------------------------------------------------------------------
-sgm_modules.monster_modules_inject()
+sgm_modules.sgm_monster_schemas()
 load_scheme("mob_remark",						"mob_remark",		stype_mobile)
 load_scheme("mob_walker",						"mob_walker",		stype_mobile)
 load_scheme("mob_combat",						"mob_combat",		stype_mobile)
@@ -50,7 +50,7 @@ load_scheme("mob_home",							"mob_home",			stype_mobile)
 ----------------------------------------------------------------------
 -- Загрузка модулей физических объектов:
 ----------------------------------------------------------------------
-sgm_modules.physic_obj_modules_inject()
+sgm_modules.sgm_physic_obj_schemas()
 load_scheme("ph_door",							"ph_door",			stype_item)
 load_scheme("ph_idle",							"ph_idle",			stype_item)
 load_scheme("ph_hit",							"ph_hit",			stype_item)
@@ -64,12 +64,11 @@ load_scheme("ph_oscillate",						"ph_oscillate",		stype_item)
 ----------------------------------------------------------------------
 -- Загрузка модулей вертолёта:
 ----------------------------------------------------------------------
-sgm_modules.helicopter_modules_inject()
 load_scheme("heli_move",      					"heli_move",		stype_heli)
 ----------------------------------------------------------------------
 -- Загрузка модулей рестрикторов:
 ----------------------------------------------------------------------
-sgm_modules.restrictor_modules_inject()
+sgm_modules.sgm_restrictor_schemas()
 load_scheme("sr_no_weapon",						"sr_no_weapon",		stype_restrictor)
 load_scheme("sr_teleport",						"sr_teleport",		stype_restrictor)
 load_scheme("sr_idle",							"sr_idle",			stype_restrictor)
