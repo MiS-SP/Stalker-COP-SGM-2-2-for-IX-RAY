@@ -85,7 +85,7 @@
 	<string id="st_wpn_mp5_m2">
 		<text>ÌÏ-5 «Ì2»</text>
 	</string>
-	<string id="st_wpn_spas12_m2">
+	<string id="st_wpn_spas12_m2" override="replace">
 		<text>SPAS 12 «Ì2»</text>
 	</string>
 	<string id="st_wpn_sig220_m2">
