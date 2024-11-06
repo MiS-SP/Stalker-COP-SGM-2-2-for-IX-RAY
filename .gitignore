@@ -91,6 +91,7 @@ helpers
 *.seq
 *.omf
 *.ttf
+all.spawn
 
 # original files
 .orig
