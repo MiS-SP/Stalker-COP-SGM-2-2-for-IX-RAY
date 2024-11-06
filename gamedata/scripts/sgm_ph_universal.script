@@ -452,7 +452,7 @@ function action_universal:check_logic_condlists(obj, ini, section)
          "script_object_cond", "true"))
       scheme_param.script_object_tip         = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section,
          "script_object_tip", "st_sgm_ph_universal_default"))
-      scheme_param.script_object_code        = to_number(sgm_functions.check_section_condlist(ini, section,
+      scheme_param.script_object_code        = sgm_g.to_number(sgm_functions.check_section_condlist(ini, section,
          "script_object_code", nil))
       scheme_param.script_object_code_tip    = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section,
          "script_object_code_tip", "st_script_object_code_tip"))
@@ -472,7 +472,7 @@ function action_universal:check_logic_condlists(obj, ini, section)
          "treasure_object_cond", "true"))
       scheme_param.treasure_object_tip         = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section,
          "treasure_object_tip", "st_treasure_object_use_tip"))
-      scheme_param.treasure_object_code        = to_number(sgm_functions.check_section_condlist(ini, section,
+      scheme_param.treasure_object_code        = sgm_g.to_number(sgm_functions.check_section_condlist(ini, section,
          "treasure_object_code", nil))
       scheme_param.treasure_object_code_tip    = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section,
          "treasure_object_code_tip", "st_treasure_object_code_tip"))
@@ -485,7 +485,7 @@ function action_universal:check_logic_condlists(obj, ini, section)
       if sgm_g.exists(scheme_param.treasure_object_code_items) and scheme_param.treasure_object_code_items_table == nil then
          scheme_param.treasure_object_code_items_table = utils.parse_spawns(scheme_param.treasure_object_code_items)
       end
-      scheme_param.treasure_object_code_fill_items_layers = to_number(sgm_functions.check_section_condlist(ini, section,
+      scheme_param.treasure_object_code_fill_items_layers = sgm_g.to_number(sgm_functions.check_section_condlist(ini, section,
          "treasure_object_code_fill_items_layers", nil))
       if sgm_g.exists(scheme_param.treasure_object_code_fill_items_layers) and scheme_param.treasure_object_code_fill_items_layers > 0 then
          for i = 1, scheme_param.treasure_object_code_fill_items_layers do
@@ -505,7 +505,7 @@ function action_universal:check_logic_condlists(obj, ini, section)
          "explosive_object_charge", "detonation_charge_invisible_big"))
       scheme_param.explosive_object_action      = sgm_g.to_string(sgm_functions.cfg_get_string(ini, section,
          "explosive_object_action", nil))
-      scheme_param.explosive_object_timer       = to_number(sgm_functions.check_section_condlist(ini, section,
+      scheme_param.explosive_object_timer       = sgm_g.to_number(sgm_functions.check_section_condlist(ini, section,
          "explosive_object_timer", 1000))
       scheme_param.explosive_object_sound       = sgm_functions.cfg_get_string(ini, section, "explosive_object_sound",
          nil)
@@ -524,11 +524,11 @@ function action_universal:check_logic_condlists(obj, ini, section)
       scheme_param.sound_object_theme       = sgm_functions.cfg_get_string(ini, section, "sound_object_theme", nil)
       scheme_param.sound_object_first_state = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section,
          "sound_object_first_state", "on"))
-      scheme_param.sound_object_volume      = to_number(sgm_functions.check_section_condlist(ini, section,
+      scheme_param.sound_object_volume      = sgm_g.to_number(sgm_functions.check_section_condlist(ini, section,
          "sound_object_volume", -1))
-      scheme_param.sound_object_pause_min   = to_number(sgm_functions.check_section_condlist(ini, section,
+      scheme_param.sound_object_pause_min   = sgm_g.to_number(sgm_functions.check_section_condlist(ini, section,
          "sound_object_pause_min", 0))
-      scheme_param.sound_object_pause_max   = to_number(sgm_functions.check_section_condlist(ini, section,
+      scheme_param.sound_object_pause_max   = sgm_g.to_number(sgm_functions.check_section_condlist(ini, section,
          "sound_object_pause_max", 0))
       scheme_param.sound_object_range_min   = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section,
          "sound_object_range_min", nil))

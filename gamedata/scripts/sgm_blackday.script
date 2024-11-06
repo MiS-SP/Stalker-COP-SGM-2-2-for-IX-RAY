@@ -114,9 +114,11 @@ function CBlackDay:blackday_birth()
    local ltx_ini = system_ini()
    if sgm_g.check_blackday_precond() then
       local g_artefacts = sgm_functions.cfg_get_string(self.ini, self.birth_section, "artefacts", nil)
-      local g_probability = to_number(sgm_functions.check_section_condlist(self.ini, self.birth_section, "probability",
+      local g_probability = sgm_g.to_number(sgm_functions.check_section_condlist(self.ini, self.birth_section,
+         "probability",
          0.0))
-      local g_points_num = to_number(sgm_functions.check_section_condlist(self.ini, self.birth_section, "points_num", 1))
+      local g_points_num = sgm_g.to_number(sgm_functions.check_section_condlist(self.ini, self.birth_section,
+         "points_num", 1))
       local g_spawn_count = sgm_functions.check_section_comma(self.ini, self.birth_section, "spawn_count", "1,1", 2)
       local g_selected_count = math.random(tonumber(g_spawn_count[1]), tonumber(g_spawn_count[2]))
       for i = 1, g_selected_count do
@@ -131,7 +133,8 @@ function CBlackDay:blackday_birth()
          end
       end
       if has_alife_info("jup_search_anomal_prototype_gather_allowed") and ltx_ini:section_exist(self.prodigy_section) then
-         local g_points_num = to_number(sgm_functions.check_section_condlist(self.ini, self.prodigy_section, "points_num",
+         local g_points_num = sgm_g.to_number(sgm_functions.check_section_condlist(self.ini, self.prodigy_section,
+            "points_num",
             1))
          local g_spawn_count = sgm_functions.check_section_comma(self.ini, self.prodigy_section, "spawn_count", "1,1", 2)
          local g_selected_count = math.random(tonumber(g_spawn_count[1]), tonumber(g_spawn_count[2]))

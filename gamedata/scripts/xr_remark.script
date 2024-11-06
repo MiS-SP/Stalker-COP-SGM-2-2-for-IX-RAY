@@ -231,14 +231,14 @@ function action_remark_activity:check_avail_speak(npc, scheme_param)
 					if find_in_string(scheme_param.avail_speak[2], "=") or find_in_string(scheme_param.avail_speak[2], "+") or find_in_string(scheme_param.avail_speak[2], "-") then
 						sgm_functions.execute_condlist(npc, self.st.saved_section, scheme_param.avail_speak[2])
 					else
-						play_theme_snd(npc, scheme_param.avail_speak[2])
+						sgm_g.play_theme_snd(npc, scheme_param.avail_speak[2])
 					end
 					sgm_flags.table_mod_schemes[npc_id].avail_speak_bool = true
 				elseif scheme_param.avail_speak[3] == "true" then
 					if find_in_string(scheme_param.avail_speak[2], "=") or find_in_string(scheme_param.avail_speak[2], "+") or find_in_string(scheme_param.avail_speak[2], "-") then
 						sgm_functions.execute_condlist(npc, self.st.saved_section, scheme_param.avail_speak[2])
 					else
-						play_theme_snd(npc, scheme_param.avail_speak[2])
+						sgm_g.play_theme_snd(npc, scheme_param.avail_speak[2])
 					end
 				end
 				sgm_flags.table_mod_schemes[npc_id .. "avail_speak_timer"] = 0

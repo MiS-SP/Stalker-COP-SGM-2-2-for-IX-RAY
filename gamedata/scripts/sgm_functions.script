@@ -1464,7 +1464,7 @@ function get_side_stick_value(string, value_num)
    if value_num == nil or s_string == nil then
       return s_string
    else
-      return s_string[to_number(value_num)]
+      return s_string[sgm_g.to_number(value_num)]
    end
 end
 

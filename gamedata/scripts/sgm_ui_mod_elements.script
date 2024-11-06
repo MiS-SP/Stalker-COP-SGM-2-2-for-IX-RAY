@@ -3034,7 +3034,7 @@ function question_game:parse_questions()
             elseif item_section == "correct" then
                par_correct = str
             elseif item_section == "cost" then
-               par_cost = to_number(sgm_functions.check_section_condlist(question_game_ini, id, "cost", 10))
+               par_cost = sgm_g.to_number(sgm_functions.check_section_condlist(question_game_ini, id, "cost", 10))
             end
          end
          if par_cond == "true" and ((question_q_table[id] == nil or question_q_table[id].question == nil) or (question_q_table[id] ~= nil and question_q_table[id].question == nil)) then
@@ -3108,7 +3108,7 @@ function question_game:parse_advices()
             elseif item_section == "advice" then
                par_advice = game.translate_string(str)
             elseif item_section == "reward_money" then
-               par_reward_money = to_number(sgm_functions.check_section_condlist(question_game_ini, id, "reward_money",
+               par_reward_money = sgm_g.to_number(sgm_functions.check_section_condlist(question_game_ini, id, "reward_money",
                   500))
             elseif item_section == "items" then
                par_items = str
