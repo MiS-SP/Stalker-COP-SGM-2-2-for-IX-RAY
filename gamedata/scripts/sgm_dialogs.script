@@ -831,7 +831,7 @@ function jup_follow_scientists_reward(actor, npc)
    sgm_g.give_reward("af_electra_moonlight")
    sgm_g.give_mp3_bonus()
    if sgm_g.read_mod_param("jup_fw_scientists_deaths") ~= nil then
-      clear_mod_param("jup_fw_scientists_deaths")
+      sgm_g.clear_mod_param("jup_fw_scientists_deaths")
    end
    sgm_g.give_secret(1)
    sgm_g.give_skill_book()
@@ -1961,15 +1961,15 @@ function zat_monsters_wave_quest(actor, npc)
 end
 
 function zat_wisdom_books(actor, npc)
-   create_random("zat_wisdom_book_1", 4, "-427.88925170898,40.906017303467,-391.25476074219,138100,306",
+   sgm_g.create_random("zat_wisdom_book_1", 4, "-427.88925170898,40.906017303467,-391.25476074219,138100,306",
       "350.15295410156,33.24275970459,-392.08786010742,1548489,1",
       "411.13562011719,-5.7521514892578,232.09036254883,1637745,7",
       "-176.5627746582,19.940221786499,-153.60710144043,587876,57")
-   create_random("zat_wisdom_book_2", 4, "-385.26831054688,6.8968181610107,-16.33740234375,200474,52",
+   sgm_g.create_random("zat_wisdom_book_2", 4, "-385.26831054688,6.8968181610107,-16.33740234375,200474,52",
       "-315.65933227539,13.372056007385,428.24304199219,316479,0",
       "64.273132324219,-4.5504374504089,29.154445648193,1073479,19",
       "152.62382507324,-6.3037400245667,-142.84803771973,1227071,13")
-   create_random("zat_wisdom_book_3", 3, "-148.18193054199,24.089563369751,-429.84701538086,646856,4",
+   sgm_g.create_random("zat_wisdom_book_3", 3, "-148.18193054199,24.089563369751,-429.84701538086,646856,4",
       "-179.21305847168,9.4111366271973,76.51448059082,582891,145",
       "105.87712097168,-0.61825501918793,188.03581237793,1149485,316")
    sgm_g.add_task("sgm_zat_wisdom_books")
@@ -6620,11 +6620,11 @@ function employer_type_is_kill_stalker(actor, npc)
 end
 
 function employer_available(actor, npc)
-   return check_game_timer("employer_break_timer") == nil or check_game_timer("employer_break_timer")
+   return sgm_g.check_game_timer("employer_break_timer") == nil or sgm_g.check_game_timer("employer_break_timer")
 end
 
 function employer_dont_available(actor, npc)
-   return check_game_timer("employer_break_timer") == false
+   return sgm_g.check_game_timer("employer_break_timer") == false
 end
 
 function employer_bring_item(actor, npc)
@@ -6634,8 +6634,8 @@ end
 function employer_sgm_g.give_reward(actor, npc)
    local get_npc = who_is_npc(actor, npc)
    local npc_profile = get_npc:profile_name()
-   local t_remained_value = check_game_timer("timer_quest_" .. sgm_g.read_mod_param("employer_currert_quest"), true) -
-       get_general_game_time()
+   local t_remained_value = sgm_g.check_game_timer("timer_quest_" .. sgm_g.read_mod_param("employer_currert_quest"), true) -
+       sgm_g.get_general_game_time()
    local reward_main = 500
    local reward_bonus = 0
    local break_timer = 30

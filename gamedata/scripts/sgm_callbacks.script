@@ -235,7 +235,7 @@ function on_use_box(obj)
       give_info("esc_village_annex_need_c4")
    end
    if sgm_g.dont_has_alife_info("agru_search_door_key_start") and sgm_g.find_in_string(obj:name(), "agru_door_3") then
-      add_task("agru_search_door_key")
+      sgm_g.add_task("agru_search_door_key")
       give_info("agru_search_door_key_start")
    end
    --/give_quick_news(obj:name())
@@ -258,7 +258,7 @@ function on_run_tutorial(tutorial_name)
       game.start_tutorial(tutorial_name)
    elseif tutorial_name == "storyline_no_heli_key" and sgm_g.dont_has_alife_info("zat_get_wireing_heli_key_has") and sgm_g.dont_has_alife_info("zat_get_wireing_heli_key_start") then
       game.start_tutorial(tutorial_name)
-      add_task("sgm_zat_get_wireing_heli_key")
+      sgm_g.add_task("sgm_zat_get_wireing_heli_key")
       give_info("zat_get_wireing_heli_key_start")
    end
 end
@@ -427,7 +427,7 @@ function on_use_item(obj)
       end
    end
    if sgm_functions.ReadThisIsAmmoContainer(item_name) then
-      give_ammo_with_container()
+      sgm_g.create_objects_random()
    end
    if sgm_g.exists(sgm_functions.ReadOnUseInfo(item_name)) then
       give_info(sgm_functions.ReadOnUseInfo(item_name))
@@ -873,7 +873,7 @@ end
 --                        На пропуск времени                                --
 ------------------------------------------------------------------------------
 function on_forward_game_time(forward_hours, forward_minutes)
-   sgm_flags.table_mod_utils["on_forward_game_time_saved"] = get_general_game_time()
+   sgm_flags.table_mod_utils["on_forward_game_time_saved"] = sgm_g.get_general_game_time()
 end
 
 ------------------------------------------------------------------------------

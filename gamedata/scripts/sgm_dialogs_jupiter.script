@@ -1599,7 +1599,7 @@ function jup_b6_novikov_quest_det_relocate_info(first_speaker, second_speaker)
 end
 
 function jup_b220_trapper_quest_snorks_create(first_speaker, second_speaker)
-	create_force("jup_b220_trapper_snorks_squad_1", -245.823, 1.300, -116.477, 299821, 449)
+	sgm_g.create_force("jup_b220_trapper_snorks_squad_1", -245.823, 1.300, -116.477, 299821, 449)
 	task_manager.get_task_manager():give_task("geonezis_jup_b220_trapper_snorks")
 end
 

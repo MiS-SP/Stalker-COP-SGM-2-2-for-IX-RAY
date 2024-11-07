@@ -293,7 +293,7 @@ end
 -- у монстров нету метода profile_name()
 function se_smart_terrain:fill_npc_info(obj)
 	local npc_info = {}
-	printf("filling npc_info for obj [%s]", tostring(obj:name()))
+	-- printf("filling npc_info for obj [%s]", tostring(obj:name()))
 
 	local is_stalker    = IsStalker(obj)
 	npc_info.se_obj     = obj
@@ -323,7 +323,7 @@ end
 
 -- добавить npc в smart terrain.
 function se_smart_terrain:register_npc(obj)
-	printf("[smart_terrain %s] register called obj=%s", self:name(), obj:name())
+	-- printf("[smart_terrain %s] register called obj=%s", self:name(), obj:name())
 	self.population = self.population + 1
 
 	if self.b_registred == false then
@@ -374,7 +374,7 @@ end
 -- отпустить npc
 function se_smart_terrain:unregister_npc(obj)
 	--callstack()
-	printf("smart [%s] unregister npc [%s]", self:name(), obj:name())
+	-- printf("smart [%s] unregister npc [%s]", self:name(), obj:name())
 
 	self.population = self.population - 1
 
@@ -592,7 +592,7 @@ function se_smart_terrain:select_npc_job(npc_info)
 	-- Назначаем работу
 	if selected_job_id ~= npc_info.job_id and selected_job_link ~= nil then
 		-- Установить себе выбранную работу
-		printf("NPC %s FOUND JOB %s SECTION %s", npc_info.se_obj:name(), selected_job_id, self.job_data[selected_job_link.job_id].section)
+		-- printf("NPC %s FOUND JOB %s SECTION %s", npc_info.se_obj:name(), selected_job_id, self.job_data[selected_job_link.job_id].section)
 		-- Если НПС был на работе - выгоняем его с нее.
 		if npc_info.job_link ~= nil then
 			self.npc_by_job_section[self.job_data[npc_info.job_link.job_id].section] = nil
@@ -622,11 +622,12 @@ function se_smart_terrain:select_npc_job(npc_info)
 		local job_data = self.job_data[npc_info.job_id]
 		-- if job_data ~= nil then
 		-- Начинаем выполнять работу
-		printf("[smart_terrain %s] gulag: beginJob: obj=%s job= %s", self:name(), npc_info.se_obj:name(),
-			job_data.section)
+		-- printf("[smart_terrain %s] gulag: beginJob: obj=%s job= %s", self:name(), npc_info.se_obj:name(),
+		-- 	job_data.section)
 		-- end
-		if job_data == nil then
-			printf("[smart_terrain %s] gulag: beginJob: obj=%s Contain error. Job not found(nil)", self:name(), npc_info.se_obj:name())
+		if job_data ~= nil then
+		else
+			printf("[smart_terrain %s] gulag: beginJob: obj=%s Contain error. Job not found(nil) %s, %s, %s", self:name(), npc_info.se_obj:name(), self.population, self.initialized, self.b_registred)
 		end
 		-- Смена работы, очищаем память для оффлайнового обьекта.
 		db.offline_objects[npc_info.se_obj.id] = {}

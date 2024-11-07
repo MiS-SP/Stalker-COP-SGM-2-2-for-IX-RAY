@@ -146,7 +146,7 @@ end
 function guidebook:btn_close()
    self:HideDialog()
    if sgm_flags.value_guidebook_type == 1 then
-      give_object_to_actor("guidebook_mono")
+      sgm_g.give_object_to_actor("guidebook_mono")
    end
    disable_info("guidebook_active")
 end

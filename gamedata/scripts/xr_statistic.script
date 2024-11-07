@@ -95,19 +95,19 @@ artefacts_table = {
 taken_artefacts = {}
 --/ SGM in
 function add_10_actor_rank()
-	write_mod_param("actor_rank", read_mod_param("actor_rank") + 10)
+	sgm_g.write_mod_param("actor_rank", sgm_g.read_mod_param("actor_rank") + 10)
 end
 
 function add_50_actor_rank()
-	write_mod_param("actor_rank", read_mod_param("actor_rank") + 50)
+	sgm_g.write_mod_param("actor_rank", sgm_g.read_mod_param("actor_rank") + 50)
 end
 
 function add_100_actor_rank()
-	write_mod_param("actor_rank", read_mod_param("actor_rank") + 100)
+	sgm_g.write_mod_param("actor_rank", sgm_g.read_mod_param("actor_rank") + 100)
 end
 
 function add_100_trade_rank()
-	write_mod_param("actor_rank", read_mod_param("actor_rank") + 100)
+	sgm_g.write_mod_param("actor_rank", sgm_g.read_mod_param("actor_rank") + 100)
 end
 
 --/ SGM out

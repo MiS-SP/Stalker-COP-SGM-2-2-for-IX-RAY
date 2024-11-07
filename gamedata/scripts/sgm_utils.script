@@ -117,9 +117,9 @@ function utils_update()
    end
    --//Регистрация в Sigerous Top//-->
    if has_alife_info("sigerous_top_register") then
-      if check_game_timer("sigerous_top_register") == nil and device().precache_frame == 0 then
+      if sgm_g.check_game_timer("sigerous_top_register") == nil and device().precache_frame == 0 then
          sgm_g.start_game_timer("sigerous_top_register", 1)
-      elseif check_game_timer("sigerous_top_register") then
+      elseif sgm_g.check_game_timer("sigerous_top_register") then
          give_info("sigerous_top_register")
          abort_game_timer("sigerous_top_register")
          local register_precond = check_item_count(
@@ -159,7 +159,7 @@ function utils_update()
    end
    if level_name == "labx8" and sgm_g.dont_has_alife_info("actor_come_to_labx8") then
       give_info(
-      "actor_come_to_labx8")
+         "actor_come_to_labx8")
    end
    if level_name == "l04u_labx18" and sgm_g.dont_has_alife_info("actor_come_to_x18") then
       give_info("actor_come_to_x18")

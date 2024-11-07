@@ -66,7 +66,7 @@ function CBatteryManager:battery_select()
       self.active_battery_id = db.actor:object("detector_battery_3"):id()
       self.active_battery_power = sgm_functions.ReadBatteryPower("detector_battery_3")
    end
-   give_object_to_actor("detector_accum_" .. self.active_battery_type .. "_activated")
+   sgm_g.give_object_to_actor("detector_accum_" .. self.active_battery_type .. "_activated")
 end
 
 function CBatteryManager:battery_choose(value)

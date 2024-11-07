@@ -809,7 +809,7 @@ function mp3_player:btn_stop()
 end
 
 function mp3_player:btn_close()
-   give_object_to_actor("mp3_player")
+   sgm_g.give_object_to_actor("mp3_player")
    self:HideDialog()
    set_ui_worked()
    level.show_weapon(true)
@@ -948,9 +948,9 @@ function repair_weapon_box:choose_box_yes()
       else
          news_manager.send_tip(db.actor, "st_no_repair", 0, "remont", 4000, nil, "st_no_repair_title")
       end
-      give_object_to_actor("repair_arms_box")
+      sgm_g.give_object_to_actor("repair_arms_box")
    elseif passed1_bool == true or passed2_bool == true then
-      give_object_to_actor("repair_arms_box_used")
+      sgm_g.give_object_to_actor("repair_arms_box_used")
    end
    self.choose_box:ShowDialog(false)
    self.choose_box:HideDialog()
@@ -980,7 +980,7 @@ function repair_weapon_box:choose_box_no()
       end
    end
    if passed1_bool == false and passed2_bool == false then
-      give_object_to_actor("repair_arms_box")
+      sgm_g.give_object_to_actor("repair_arms_box")
       news_manager.send_tip(db.actor, "st_no_repair", 0, "remont", 4000, nil, "st_no_repair_title")
    end
    self.choose_box:ShowDialog(false)
@@ -1006,7 +1006,7 @@ end
 
 function repair_weapon_box:btn_close()
    self:HideDialog()
-   give_object_to_actor("repair_arms_box")
+   sgm_g.give_object_to_actor("repair_arms_box")
 end
 
 class "repair_weapon_box_used" (CUIScriptWnd)
@@ -1138,7 +1138,7 @@ function repair_weapon_box_used:choose_box_yes()
       else
          news_manager.send_tip(db.actor, "st_no_repair", 0, "remont", 4000, nil, "st_no_repair_title")
       end
-      give_object_to_actor("repair_arms_box_used")
+      sgm_g.give_object_to_actor("repair_arms_box_used")
    end
    self.choose_box:ShowDialog(false)
    self.choose_box:HideDialog()
@@ -1169,7 +1169,7 @@ end
 
 function repair_weapon_box_used:btn_close()
    self:HideDialog()
-   give_object_to_actor("repair_arms_box_used")
+   sgm_g.give_object_to_actor("repair_arms_box_used")
 end
 
 ------------------------------------------------------------------------------
@@ -1337,9 +1337,9 @@ function repair_outfit_box:choose_box_yes()
       else
          news_manager.send_tip(db.actor, "st_no_repair", 0, "remont", 4000, nil, "st_no_repair_title")
       end
-      give_object_to_actor("repair_outfit_box")
+      sgm_g.give_object_to_actor("repair_outfit_box")
    elseif passed1_bool == true or passed2_bool == true then
-      give_object_to_actor("repair_outfit_box_used")
+      sgm_g.give_object_to_actor("repair_outfit_box_used")
    end
    self.choose_box:ShowDialog(false)
    self.choose_box:HideDialog()
@@ -1369,7 +1369,7 @@ function repair_outfit_box:choose_box_no()
       end
    end
    if passed1_bool == false and passed2_bool == false then
-      give_object_to_actor("repair_outfit_box")
+      sgm_g.give_object_to_actor("repair_outfit_box")
       news_manager.send_tip(db.actor, "st_no_repair", 0, "remont", 4000, nil, "st_no_repair_title")
    end
    self:HideDialog()
@@ -1378,7 +1378,7 @@ end
 
 function repair_outfit_box:btn_close()
    self:HideDialog()
-   give_object_to_actor("repair_outfit_box")
+   sgm_g.give_object_to_actor("repair_outfit_box")
 end
 
 class "repair_outfit_box_used" (CUIScriptWnd)
@@ -1548,7 +1548,7 @@ function repair_outfit_box_used:choose_box_yes()
       else
          news_manager.send_tip(db.actor, "st_no_repair", 0, "remont", 4000, nil, "st_no_repair_title")
       end
-      give_object_to_actor("repair_outfit_box_used")
+      sgm_g.give_object_to_actor("repair_outfit_box_used")
    end
    self.choose_box:ShowDialog(false)
    self.choose_box:HideDialog()
@@ -1558,7 +1558,7 @@ end
 
 function repair_outfit_box_used:btn_close()
    self:HideDialog()
-   give_object_to_actor("repair_outfit_box_used")
+   sgm_g.give_object_to_actor("repair_outfit_box_used")
 end
 
 ------------------------------------------------------------------------------
@@ -1630,7 +1630,7 @@ function army_timer:btn_stop()
 end
 
 function army_timer:btn_close()
-   give_object_to_actor("army_timer")
+   sgm_g.give_object_to_actor("army_timer")
    self:HideDialog()
 end
 
@@ -1746,7 +1746,7 @@ function conventer_grenade_box:spend_granades(granade_name)
          alife():release(alife():object(v), true)
       end
    end
-   give_object_to_actor(granade_name .. "_double")
+   sgm_g.give_object_to_actor(granade_name .. "_double")
 end
 
 function conventer_grenade_box:get_release_granades(granade_name)
@@ -1768,7 +1768,7 @@ function conventer_grenade_box:get_release_granades(granade_name)
 end
 
 function conventer_grenade_box:btn_close()
-   give_object_to_actor("conventer_grenade_box")
+   sgm_g.give_object_to_actor("conventer_grenade_box")
    self:HideDialog()
 end
 
@@ -1843,7 +1843,7 @@ function personal_marker:btn_all_hide()
 end
 
 function personal_marker:btn_cancel()
-   give_object_to_actor("personal_marker")
+   sgm_g.give_object_to_actor("personal_marker")
    self:HideDialog()
 end
 
@@ -1904,7 +1904,8 @@ end
 
 function personal_rukzak:btn_leave()
    if self.check_with_spot:GetCheck() == true then
-      local sobj = create("default_inventory_box", db.actor:position().x, db.actor:position().y, db.actor:position().z,
+      local sobj = sgm_g.create("default_inventory_box", db.actor:position().x, db.actor:position().y,
+         db.actor:position().z,
          db.actor:level_vertex_id(), db.actor:game_vertex_id())
       if sgm_g.exists(self.spot_name_field:GetText()) and self.spot_name_field:GetText() ~= "" then
          sgm_g.add_spot_on_map(sobj.id, sgm_flags.spot_hero_rucksack, self.spot_name_field:GetText())
@@ -1915,7 +1916,8 @@ function personal_rukzak:btn_leave()
          alife():create("use_personal_rukzak", vector(), 0, 0, sobj.id)
       end
    else
-      local sobj = create("default_inventory_box", db.actor:position().x, db.actor:position().y, db.actor:position().z,
+      local sobj = sgm_g.create("default_inventory_box", db.actor:position().x, db.actor:position().y,
+         db.actor:position().z,
          db.actor:level_vertex_id(), db.actor:game_vertex_id())
       if self.check_with_take:GetCheck() == true then
          alife():create("use_personal_rukzak", vector(), 0, 0, sobj.id)
@@ -1933,7 +1935,7 @@ function personal_rukzak:btn_all_hide()
 end
 
 function personal_rukzak:btn_cancel()
-   give_object_to_actor("personal_rukzak")
+   sgm_g.give_object_to_actor("personal_rukzak")
    self:HideDialog()
 end
 
@@ -2012,7 +2014,7 @@ end
 
 function remote_charge:btn_place()
    cfg_remote_charge_delay = self.remote_charge_delay
-   local obj = create("remote_charge", db.actor:position().x, db.actor:position().y, db.actor:position().z,
+   local obj = sgm_g.create("remote_charge", db.actor:position().x, db.actor:position().y, db.actor:position().z,
       db.actor:level_vertex_id(), db.actor:game_vertex_id())
    if self.remote_charge_delay == 0 then
       sgm_g.add_spot_on_map(obj.id, sgm_flags.spot_remote_charge, "st_remote_charge_spot")
@@ -2027,7 +2029,7 @@ function remote_charge:btn_place()
 end
 
 function remote_charge:btn_cancel()
-   give_object_to_actor("remote_explosive_charge")
+   sgm_g.give_object_to_actor("remote_explosive_charge")
    self:HideDialog()
 end
 
@@ -3108,7 +3110,8 @@ function question_game:parse_advices()
             elseif item_section == "advice" then
                par_advice = game.translate_string(str)
             elseif item_section == "reward_money" then
-               par_reward_money = sgm_g.to_number(sgm_functions.check_section_condlist(question_game_ini, id, "reward_money",
+               par_reward_money = sgm_g.to_number(sgm_functions.check_section_condlist(question_game_ini, id,
+                  "reward_money",
                   500))
             elseif item_section == "items" then
                par_items = str
@@ -5041,7 +5044,8 @@ function allspawn_editor:check_data_by_id(name, type, id, only_read)
    else
       if self.check_another_mode:GetCheck() then
          debug_to_file("allspawn_another_mode.txt", data)
-         create(name, db.actor:position().x, db.actor:position().y, db.actor:position().z, db.actor:level_vertex_id(),
+         sgm_g.create(name, db.actor:position().x, db.actor:position().y, db.actor:position().z,
+            db.actor:level_vertex_id(),
             db.actor:game_vertex_id())
       else
          debug_to_file("allspawn_default_mode.txt", data)
@@ -5411,7 +5415,7 @@ function mobile_tool:btn_close()
    mobile_tool_items = {}
    mobile_tool_available = 0
    mobile_tool_target_title = "Предмет не выбран"
-   give_object_to_actor("mobile_tool")
+   sgm_g.give_object_to_actor("mobile_tool")
    set_ui_worked()
    level.show_weapon(true)
 end

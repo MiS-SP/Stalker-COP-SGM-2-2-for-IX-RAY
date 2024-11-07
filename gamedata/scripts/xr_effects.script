@@ -3483,37 +3483,37 @@ function bodyguard_command_4(actor, npc)
 end
 
 function respawn_zat_stalker_bodyguard(actor, npc)
-	create("zat_stalker_bodyguard", 105.417, -1.338, 179.173, 1148335, 316)
+	sgm_g.create("zat_stalker_bodyguard", 105.417, -1.338, 179.173, 1148335, 316)
 	disable_info("zat_stalker_bodyguard_init", "zat_stalker_bodyguard_danger")
 end
 
 function respawn_zat_bandit_bodyguard(actor, npc)
-	create("zat_bandit_bodyguard", 405.858, 39.446, -18.573, 1633413, 293)
+	sgm_g.create("zat_bandit_bodyguard", 405.858, 39.446, -18.573, 1633413, 293)
 	disable_info("zat_bandit_bodyguard_init", "zat_bandit_bodyguard_danger")
 end
 
 function respawn_jup_freedom_bodyguard(actor, npc)
-	create("jup_freedom_bodyguard", -58.776, 3.487, 190.235, 621642, 368)
+	sgm_g.create("jup_freedom_bodyguard", -58.776, 3.487, 190.235, 621642, 368)
 	disable_info("jup_freedom_bodyguard_init", "jup_freedom_bodyguard_danger")
 end
 
 function respawn_jup_army_bodyguard(actor, npc)
-	create("jup_army_bodyguard", -58.776, 3.487, 190.235, 621642, 368)
+	sgm_g.create("jup_army_bodyguard", -58.776, 3.487, 190.235, 621642, 368)
 	disable_info("jup_army_bodyguard_init", "jup_army_bodyguard_danger")
 end
 
 function respawn_jup_killer_bodyguard(actor, npc)
-	create("jup_killer_bodyguard", 230.462, 28.146, -420.110, 1109403, 610)
+	sgm_g.create("jup_killer_bodyguard", 230.462, 28.146, -420.110, 1109403, 610)
 	disable_info("jup_killer_bodyguard_init", "jup_killer_bodyguard_danger")
 end
 
 function respawn_pri_army_bodyguard(actor, npc)
-	create("pri_army_bodyguard", 147.369, -0.095, -185.508, 377149, 708)
+	sgm_g.create("pri_army_bodyguard", 147.369, -0.095, -185.508, 377149, 708)
 	disable_info("pri_army_bodyguard_init", "pri_army_bodyguard_danger")
 end
 
 function respawn_pri_monolith_bodyguard(actor, npc)
-	create("pri_monolith_bodyguard", -180.116, 0.668, -348.861, 34718, 806)
+	sgm_g.create("pri_monolith_bodyguard", -180.116, 0.668, -348.861, 34718, 806)
 	disable_info("pri_monolith_bodyguard_init", "pri_monolith_bodyguard_danger")
 end
 
@@ -3521,11 +3521,11 @@ end
 --                            Функции для квестов                           --
 ------------------------------------------------------------------------------
 function zat_accompany_stalker_ambush_action(actor, npc)
-	create("boar_normal", 128.99235534668, 1.4472534656525, 390.87936401367, 1187887, 134)
-	create("boar_strong", 126.70880889893, 3.1739783287048, 370.45471191406, 1184330, 134)
-	create("boar_normal", 88.661109924316, 8.7471570968628, 368.44290161133, 1119433, 135)
-	create("boar_strong", 56.869701385498, 13.433298110962, 382.32415771484, 1059309, 137)
-	create("boar_normal", 52.019958496094, 13.558873176575, 409.54943847656, 1049705, 197)
+	sgm_g.create("boar_normal", 128.99235534668, 1.4472534656525, 390.87936401367, 1187887, 134)
+	sgm_g.create("boar_strong", 126.70880889893, 3.1739783287048, 370.45471191406, 1184330, 134)
+	sgm_g.create("boar_normal", 88.661109924316, 8.7471570968628, 368.44290161133, 1119433, 135)
+	sgm_g.create("boar_strong", 56.869701385498, 13.433298110962, 382.32415771484, 1059309, 137)
+	sgm_g.create("boar_normal", 52.019958496094, 13.558873176575, 409.54943847656, 1049705, 197)
 end
 
 function zat_chimera_zagon_final_tip(actor, npc)
@@ -3534,49 +3534,49 @@ end
 
 function zat_accompany_to_boat(actor, npc)
 	if sgm_g.dont_has_alife_info("zat_accompany_to_boat_i_am_alone") then
-		create("zat_accompany_to_boat_spot", 148.695, -7.344, 183.552, 1220159, 295)
+		sgm_g.create("zat_accompany_to_boat_spot", 148.695, -7.344, 183.552, 1220159, 295)
 		give_info("zat_accompany_to_boat_alt")
 		give_info("zat_accompany_to_boat_start")
-		add_task("sgm_zat_accompany_to_boat")
+		sgm_g.add_task("sgm_zat_accompany_to_boat")
 	end
 end
 
 function zat_duty_kanevskiy_charge(actor, npc)
 	if get_global_pattern() == 1 then
 		activate_detonate_charge(npc, math.random(5000, 6000), "visible_big", 576.815, 10.850, -288.893, 1841058, 220)
-		create("snork_normal", 518.00732421875, 9.1930103302002, -293.25762939453, 1797434, 83)
-		create("snork_normal", 524.24975585938, 18.880195617676, -338.07827758789, 1804512, 82)
-		create("snork_normal", 533.1416015625, -1.9498739242554, -245.36294555664, 1814147, 220)
-		create("snork_normal_hunter", 545.13287353516, -0.87468135356903, -242.7574005127, 1827065, 220)
+		sgm_g.create("snork_normal", 518.00732421875, 9.1930103302002, -293.25762939453, 1797434, 83)
+		sgm_g.create("snork_normal", 524.24975585938, 18.880195617676, -338.07827758789, 1804512, 82)
+		sgm_g.create("snork_normal", 533.1416015625, -1.9498739242554, -245.36294555664, 1814147, 220)
+		sgm_g.create("snork_normal_hunter", 545.13287353516, -0.87468135356903, -242.7574005127, 1827065, 220)
 	else
 		activate_detonate_charge(npc, math.random(5000, 6000), "visible_big", -419.209, 25.620, -216.804, 149223, 93)
-		create("snork_normal", -436.53112792969, 13.097826004028, -161.74021911621, 126567, 39)
-		create("snork_normal", -430.52825927734, 13.314255714417, -168.42752075195, 133696, 39)
-		create("snork_normal", -407.05767822266, 20.789720535278, -161.07034301758, 166994, 39)
-		create("snork_strong_hunter", -429.6042175293, 13.857533454895, -138.47366333008, 134614, 94)
+		sgm_g.create("snork_normal", -436.53112792969, 13.097826004028, -161.74021911621, 126567, 39)
+		sgm_g.create("snork_normal", -430.52825927734, 13.314255714417, -168.42752075195, 133696, 39)
+		sgm_g.create("snork_normal", -407.05767822266, 20.789720535278, -161.07034301758, 166994, 39)
+		sgm_g.create("snork_strong_hunter", -429.6042175293, 13.857533454895, -138.47366333008, 134614, 94)
 	end
 end
 
 function zat_ambush_vobla_sniper(actor, npc)
-	create("zat_vobla_protection_sniper", 412.876, 5.907, 258.636, 1645736, 7)
+	sgm_g.create("zat_vobla_protection_sniper", 412.876, 5.907, 258.636, 1645736, 7)
 end
 
 function zat_ambush_heli_5(actor, npc)
-	create("zat_heli_5_sniper", -447.016, -1.728, 92.031, 115302, 214)
+	sgm_g.create("zat_heli_5_sniper", -447.016, -1.728, 92.031, 115302, 214)
 end
 
 function zat_breeder_reborn(actor, npc)
-	create("zat_stalker_breeder2", 114.681, -7.348, 186.171, 1163606, 316)
+	sgm_g.create("zat_stalker_breeder2", 114.681, -7.348, 186.171, 1163606, 316)
 end
 
 function zat_monsters_1st_wave_update(actor, npc)
 	if sgm_g.dont_has_alife_info("zat_monsters_wave_1st_wave_end") then
 		sgm_g.inc_mod_param("zat_monster_w1_deaths")
-		if read_mod_param("zat_monster_w1_deaths") >= 30 then
+		if sgm_g.read_mod_param("zat_monster_w1_deaths") >= 30 then
 			clear_all_objects("monster", 1, 150)
 			give_info("zat_monsters_wave_1st_wave_end")
-			clear_mod_param("zat_monster_w1_deaths")
-			clear_mod_param("zat_monster_w1_spawned")
+			sgm_g.clear_mod_param("zat_monster_w1_deaths")
+			sgm_g.clear_mod_param("zat_monster_w1_spawned")
 			game_autosave_assign("save_zat_monsters_1st_wave_end")
 		end
 	end
@@ -3585,11 +3585,11 @@ end
 function zat_monsters_2nd_wave_update(actor, npc)
 	if sgm_g.dont_has_alife_info("zat_monsters_wave_2nd_wave_end") then
 		sgm_g.inc_mod_param("zat_monster_w2_deaths")
-		if read_mod_param("zat_monster_w2_deaths") >= 36 then
+		if sgm_g.read_mod_param("zat_monster_w2_deaths") >= 36 then
 			clear_all_objects("monster", 1, 150)
 			give_info("zat_monsters_wave_2nd_wave_end")
-			clear_mod_param("zat_monster_w2_deaths")
-			clear_mod_param("zat_monster_w2_spawned")
+			sgm_g.clear_mod_param("zat_monster_w2_deaths")
+			sgm_g.clear_mod_param("zat_monster_w2_spawned")
 			game_autosave_assign("save_zat_monsters_2nd_wave_end")
 		end
 	end
@@ -3598,11 +3598,11 @@ end
 function zat_monsters_3rd_wave_update(actor, npc)
 	if sgm_g.dont_has_alife_info("zat_monsters_wave_3rd_wave_end") then
 		sgm_g.inc_mod_param("zat_monster_w3_deaths")
-		if read_mod_param("zat_monster_w3_deaths") >= 42 then
+		if sgm_g.read_mod_param("zat_monster_w3_deaths") >= 42 then
 			clear_all_objects("monster", 1, 250)
 			give_info("zat_monsters_wave_3rd_wave_end")
-			clear_mod_param("zat_monster_w3_deaths")
-			clear_mod_param("zat_monster_w3_spawned")
+			sgm_g.clear_mod_param("zat_monster_w3_deaths")
+			sgm_g.clear_mod_param("zat_monster_w3_spawned")
 			game_autosave_assign("save_zat_monsters_3rd_wave_end")
 		end
 	end
@@ -3641,9 +3641,9 @@ end
 function zat_homsa_attacked_update_1(actor, npc)
 	if sgm_g.dont_has_alife_info("zat_homsa_from_monsters_wave_1") then
 		sgm_g.inc_mod_param("zat_homsa_attacked_monsters_deaths_1")
-		if read_mod_param("zat_homsa_attacked_monsters_deaths_1") >= 3 then
+		if sgm_g.read_mod_param("zat_homsa_attacked_monsters_deaths_1") >= 3 then
 			give_info("zat_homsa_from_monsters_wave_1")
-			clear_mod_param("zat_homsa_attacked_monsters_deaths_1")
+			sgm_g.clear_mod_param("zat_homsa_attacked_monsters_deaths_1")
 		end
 	end
 end
@@ -3651,9 +3651,9 @@ end
 function zat_homsa_attacked_update_2(actor, npc)
 	if sgm_g.dont_has_alife_info("zat_homsa_from_monsters_wave_2") then
 		sgm_g.inc_mod_param("zat_homsa_attacked_monsters_deaths_2")
-		if read_mod_param("zat_homsa_attacked_monsters_deaths_2") >= 3 then
+		if sgm_g.read_mod_param("zat_homsa_attacked_monsters_deaths_2") >= 3 then
 			give_info("zat_homsa_from_monsters_wave_2")
-			clear_mod_param("zat_homsa_attacked_monsters_deaths_2")
+			sgm_g.clear_mod_param("zat_homsa_attacked_monsters_deaths_2")
 		end
 	end
 end
@@ -3661,22 +3661,22 @@ end
 function zat_homsa_attacked_update_3(actor, npc)
 	if sgm_g.dont_has_alife_info("zat_homsa_from_monsters_wave_3") then
 		sgm_g.inc_mod_param("zat_homsa_attacked_monsters_deaths_3")
-		if read_mod_param("zat_homsa_attacked_monsters_deaths_3") >= 2 then
+		if sgm_g.read_mod_param("zat_homsa_attacked_monsters_deaths_3") >= 2 then
 			give_info("zat_homsa_from_monsters_wave_3")
-			clear_mod_param("zat_homsa_attacked_monsters_deaths_3")
+			sgm_g.clear_mod_param("zat_homsa_attacked_monsters_deaths_3")
 		end
 	end
 end
 
 function zat_b103_merc_task_spez_1_create(actor, npc)
 	if sgm_g.dont_has_alife_info("zat_quest_the_spez_freedom_all_dead") then
-		create("zat_quest_the_spez_1_spot", -497.307, 28.247, -224.915, 58005, 38)
-		create("zat_ecolog_spez_case", 179.622, 4.821, -191.095, 1273476, 78)
-		create("zat_quest_the_spez_freedom_1_1", -507.797, 30.262, -232.305, 44475, 38)
-		create("zat_quest_the_spez_freedom_1_2", -517.463, 31.208, -225.713, 32511, 38)
-		create("zat_quest_the_spez_freedom_1_3", -530.278, 33.182, -222.015, 17887, 38)
-		create("zat_quest_the_spez_freedom_1_4", -491.417, 28.930, -241.236, 65130, 38)
-		create("zat_quest_the_spez_freedom_1_5", -520.189, 30.845, -209.555, 29305, 38)
+		sgm_g.create("zat_quest_the_spez_1_spot", -497.307, 28.247, -224.915, 58005, 38)
+		sgm_g.create("zat_ecolog_spez_case", 179.622, 4.821, -191.095, 1273476, 78)
+		sgm_g.create("zat_quest_the_spez_freedom_1_1", -507.797, 30.262, -232.305, 44475, 38)
+		sgm_g.create("zat_quest_the_spez_freedom_1_2", -517.463, 31.208, -225.713, 32511, 38)
+		sgm_g.create("zat_quest_the_spez_freedom_1_3", -530.278, 33.182, -222.015, 17887, 38)
+		sgm_g.create("zat_quest_the_spez_freedom_1_4", -491.417, 28.930, -241.236, 65130, 38)
+		sgm_g.create("zat_quest_the_spez_freedom_1_5", -520.189, 30.845, -209.555, 29305, 38)
 		create_dead_body("zat_quest_the_spez_dolg_1_dead_1", "bio_bandage", 186.669, 4.821, -188.737, 1285026, 78)
 		create_dead_body("zat_quest_the_spez_dolg_1_dead_2", "bio_bandage", 179.224, 4.821, -185.916, 1272319, 78)
 		create_dead_body("zat_quest_the_spez_dolg_1_dead_3", "bio_bandage", 182.748, 4.821, -179.858, 1278168, 78)
@@ -3689,44 +3689,44 @@ end
 
 function zat_b103_merc_task_spez_2_create(actor, npc)
 	if sgm_g.dont_has_alife_info("zat_quest_the_spez_all_ecodolg_killed") then
-		create("zat_quest_the_spez_2_spot", 523.335, -7.074, -168.535, 1803082, 83)
-		create("zat_quest_the_spez_freedom_2_1", 475.759, 31.968, -433.542, 1740924, 82)
-		create("zat_quest_the_spez_freedom_2_2", 472.630, 31.717, -440.119, 1735847, 74)
-		create("zat_quest_the_spez_freedom_2_3", 463.886, 31.541, -439.264, 1723576, 74)
-		create("zat_quest_the_spez_freedom_2_4", 475.322, 31.735, -442.787, 1739919, 82)
-		create("zat_quest_the_spez_freedom_2_5", 481.279, 32.086, -443.815, 1748102, 82)
+		sgm_g.create("zat_quest_the_spez_2_spot", 523.335, -7.074, -168.535, 1803082, 83)
+		sgm_g.create("zat_quest_the_spez_freedom_2_1", 475.759, 31.968, -433.542, 1740924, 82)
+		sgm_g.create("zat_quest_the_spez_freedom_2_2", 472.630, 31.717, -440.119, 1735847, 74)
+		sgm_g.create("zat_quest_the_spez_freedom_2_3", 463.886, 31.541, -439.264, 1723576, 74)
+		sgm_g.create("zat_quest_the_spez_freedom_2_4", 475.322, 31.735, -442.787, 1739919, 82)
+		sgm_g.create("zat_quest_the_spez_freedom_2_5", 481.279, 32.086, -443.815, 1748102, 82)
 	end
 end
 
 function zat_b103_merc_task_spez_3_create(actor, npc)
 	if sgm_g.dont_has_alife_info("zat_quest_the_spez_all_ecodolg_killed") then
-		create("zat_ecolog_spez_case", 569.290, -7.367, -195.043, 1838561, 220)
-		create("zat_quest_the_spez_ecolog_2_1", 575.513, -5.884, -201.112, 1840389, 220)
-		create("zat_quest_the_spez_ecolog_2_2", 574.887, -6.418, -200.279, 1840203, 220)
-		create("zat_quest_the_spez_ecolog_2_3", 574.096, -6.903, -199.103, 1839820, 220)
-		create("zat_quest_the_spez_dolg_2_1", 573.080, -7.138, -197.977, 1839820, 220)
-		create("zat_quest_the_spez_dolg_2_2", 571.863, -7.170, -198.591, 1839820, 220)
-		create("zat_quest_the_spez_dolg_2_3", 571.143, -7.158, -201.207, 1839627, 220)
-		create("zat_quest_the_spez_dolg_2_4", 570.565, -7.149, -203.440, 1839429, 220)
-		create("zat_quest_the_spez_killer_razvodayshi", 434.788, 33.471, -231.101, 1672074, 73)
+		sgm_g.create("zat_ecolog_spez_case", 569.290, -7.367, -195.043, 1838561, 220)
+		sgm_g.create("zat_quest_the_spez_ecolog_2_1", 575.513, -5.884, -201.112, 1840389, 220)
+		sgm_g.create("zat_quest_the_spez_ecolog_2_2", 574.887, -6.418, -200.279, 1840203, 220)
+		sgm_g.create("zat_quest_the_spez_ecolog_2_3", 574.096, -6.903, -199.103, 1839820, 220)
+		sgm_g.create("zat_quest_the_spez_dolg_2_1", 573.080, -7.138, -197.977, 1839820, 220)
+		sgm_g.create("zat_quest_the_spez_dolg_2_2", 571.863, -7.170, -198.591, 1839820, 220)
+		sgm_g.create("zat_quest_the_spez_dolg_2_3", 571.143, -7.158, -201.207, 1839627, 220)
+		sgm_g.create("zat_quest_the_spez_dolg_2_4", 570.565, -7.149, -203.440, 1839429, 220)
+		sgm_g.create("zat_quest_the_spez_killer_razvodayshi", 434.788, 33.471, -231.101, 1672074, 73)
 	end
 end
 
 function zat_a6_sultan_quest_kontra_create_enemy(actor, npc)
 	if sgm_g.dont_has_alife_info("zat_a6_sultan_quest_kontra_all_lucian_member_dead") then
-		create("zat_bandit_kontrabanda_lucian_2", 483.578, -5.846, 199.974, 1475874, 519)
-		create("zat_bandit_kontrabanda_killer_1_2", 478.171, -6.404, 199.471, 1470114, 519)
-		create("zat_bandit_kontrabanda_killer_2_2", 474.305, -6.497, 193.143, 1465791, 524)
-		create("zat_bandit_kontrabanda_killer_3_2", 474.526, -6.533, 215.412, 1465818, 519)
+		sgm_g.create("zat_bandit_kontrabanda_lucian_2", 483.578, -5.846, 199.974, 1475874, 519)
+		sgm_g.create("zat_bandit_kontrabanda_killer_1_2", 478.171, -6.404, 199.471, 1470114, 519)
+		sgm_g.create("zat_bandit_kontrabanda_killer_2_2", 474.305, -6.497, 193.143, 1465791, 524)
+		sgm_g.create("zat_bandit_kontrabanda_killer_3_2", 474.526, -6.533, 215.412, 1465818, 519)
 	end
 end
 
 function zat_alfa_sabotage_squad_update(actor, npc)
 	if sgm_g.dont_has_alife_info("zat_alfa_sabotage_alfa_dead") then
 		sgm_g.inc_mod_param("zat_alfa_sabotage_squad_deaths")
-		if read_mod_param("zat_alfa_sabotage_squad_deaths") >= 4 then
+		if sgm_g.read_mod_param("zat_alfa_sabotage_squad_deaths") >= 4 then
 			give_info("zat_alfa_sabotage_alfa_dead")
-			clear_mod_param("zat_alfa_sabotage_squad_deaths")
+			sgm_g.clear_mod_param("zat_alfa_sabotage_squad_deaths")
 		end
 	end
 end
@@ -3746,7 +3746,7 @@ function jup_replace_on_tower_2(actor, npc)
 end
 
 function jup_rasvet_eliminate_burrows_hole_1_launch(actor, npc)
-	create_force("jup_rasvet_monsters_1_hole_squad", 382.375, -5.818, 465.765, 1321140, 563)
+	sgm_g.create_force("jup_rasvet_monsters_1_hole_squad", 382.375, -5.818, 465.765, 1321140, 563)
 	give_info("jup_rasvet_eliminate_burrows_1_hole_spawn")
 end
 
@@ -3754,7 +3754,7 @@ function jup_rasvet_eliminate_burrows_hole_2_launch(actor, npc)
 	if sgm_g.dont_has_alife_info("jup_rasvet_eliminate_burrows_fail") then
 		news_manager.send_tip(db.actor, "jup_rasvet_leader_about_eliminate_burrow_2_text", 0, "portrait_Nebo_3", 7000,
 			nil, "jup_rasvet_leader_title", false)
-		create_force("jup_rasvet_monsters_2_hole_squad", 417.749, 27.089, -424.699, 1370173, 555)
+		sgm_g.create_force("jup_rasvet_monsters_2_hole_squad", 417.749, 27.089, -424.699, 1370173, 555)
 		give_info("jup_rasvet_eliminate_burrows_2_hole_spawn")
 		game_autosave_assign("save_jup_rasvet_monsters_hole_1_destroyed")
 	end
@@ -3764,7 +3764,7 @@ function jup_rasvet_eliminate_burrows_hole_3_launch(actor, npc)
 	if sgm_g.dont_has_alife_info("jup_rasvet_eliminate_burrows_fail") then
 		news_manager.send_tip(db.actor, "jup_rasvet_leader_about_eliminate_burrow_3_text", 0, "portrait_Nebo_3", 7000,
 			nil, "jup_rasvet_leader_title", false)
-		create_force("jup_rasvet_monsters_3_hole_squad", -280.001, 5.959, -443.465, 240801, 576)
+		sgm_g.create_force("jup_rasvet_monsters_3_hole_squad", -280.001, 5.959, -443.465, 240801, 576)
 		give_info("jup_rasvet_eliminate_burrows_3_hole_spawn")
 		game_autosave_assign("save_jup_rasvet_monsters_hole_2_destroyed")
 	end
@@ -3774,7 +3774,7 @@ function jup_rasvet_eliminate_burrows_hole_4_launch(actor, npc)
 	if sgm_g.dont_has_alife_info("jup_rasvet_eliminate_burrows_fail") then
 		news_manager.send_tip(db.actor, "jup_rasvet_leader_about_eliminate_burrow_4_text", 0, "portrait_Nebo_3", 7000,
 			nil, "jup_rasvet_leader_title", false)
-		create_force("jup_rasvet_monsters_4_hole_squad", -240.671, 1.456, -119.465, 308289, 449)
+		sgm_g.create_force("jup_rasvet_monsters_4_hole_squad", -240.671, 1.456, -119.465, 308289, 449)
 		give_info("jup_rasvet_eliminate_burrows_4_hole_spawn")
 		game_autosave_assign("save_jup_rasvet_monsters_hole_3_destroyed")
 	end
@@ -3784,7 +3784,7 @@ function jup_rasvet_eliminate_burrows_hole_5_launch(actor, npc)
 	if sgm_g.dont_has_alife_info("jup_rasvet_eliminate_burrows_fail") then
 		news_manager.send_tip(db.actor, "jup_rasvet_leader_about_eliminate_burrow_5_text", 0, "portrait_Nebo_3", 7000,
 			nil, "jup_rasvet_leader_title", false)
-		create_force("jup_rasvet_monsters_5_hole_squad", -406.648, 4.255, -108.928, 35167, 451)
+		sgm_g.create_force("jup_rasvet_monsters_5_hole_squad", -406.648, 4.255, -108.928, 35167, 451)
 		give_info("jup_rasvet_eliminate_burrows_5_hole_spawn")
 	end
 end
@@ -3798,20 +3798,20 @@ function jup_rasvet_eliminate_burrows_hole_5_victory(actor, npc)
 end
 
 function jup_psi_spawner(actor, npc)
-	create("jup_psi_controller_1", 315.936, 34.592, -232.588, 1223840, 549)
+	sgm_g.create("jup_psi_controller_1", 315.936, 34.592, -232.588, 1223840, 549)
 end
 
 function jup_ambush_zombied_spawner(actor, npc)
-	create("jup_ambush_zombied_1", 334.939, 27.179, -268.859, 1250657, 549)
-	create("jup_ambush_zombied_2", 330.469, 26.866, -254.539, 1244500, 549)
-	create("jup_ambush_zombied_3", 303.445, 27.289, -262.975, 1207137, 633)
-	create("jup_ambush_zombied_4", 316.412, 26.872, -248.719, 1224770, 633)
-	create("jup_ambush_zombied_5", 344.804, 27.979, -240.368, 1266513, 549)
-	create("jup_ambush_zombied_6", 355.324, 27.161, -260.047, 1279815, 549)
+	sgm_g.create("jup_ambush_zombied_1", 334.939, 27.179, -268.859, 1250657, 549)
+	sgm_g.create("jup_ambush_zombied_2", 330.469, 26.866, -254.539, 1244500, 549)
+	sgm_g.create("jup_ambush_zombied_3", 303.445, 27.289, -262.975, 1207137, 633)
+	sgm_g.create("jup_ambush_zombied_4", 316.412, 26.872, -248.719, 1224770, 633)
+	sgm_g.create("jup_ambush_zombied_5", 344.804, 27.979, -240.368, 1266513, 549)
+	sgm_g.create("jup_ambush_zombied_6", 355.324, 27.161, -260.047, 1279815, 549)
 end
 
 function jup_killer_first_squad_controler(actor, npc)
-	create("jup_psi_controller_1", 315.936, 34.592, -232.588, 1223840, 549)
+	sgm_g.create("jup_psi_controller_1", 315.936, 34.592, -232.588, 1223840, 549)
 end
 
 function jup_killer_first_squad_1_mutation(actor, npc)
@@ -3840,13 +3840,13 @@ end
 function jup_psi_controller_check(actor, npc)
 	if sgm_g.dont_has_alife_info("jup_mercenary_check_plant_snorks") then
 		sgm_g.inc_mod_param("jup_ambush_zombied_deaths")
-		if read_mod_param("jup_ambush_zombied_deaths") >= 12 then
-			create("jup_after_fight_snork_1", 282.904, 27.866, -212.074, 1180670, 653)
-			create("jup_after_fight_snork_2", 414.830, 27.297, -240.032, 1371492, 641)
-			create("jup_after_fight_snork_3", 405.413, 27.131, -266.837, 1354848, 637)
-			create("jup_after_fight_snork_4", 381.892, 27.976, -239.890, 1320306, 642)
-			create("jup_after_fight_snork_5", 265.964, 28.271, -179.728, 1159642, 537)
-			clear_mod_param("jup_ambush_zombied_deaths")
+		if sgm_g.read_mod_param("jup_ambush_zombied_deaths") >= 12 then
+			sgm_g.create("jup_after_fight_snork_1", 282.904, 27.866, -212.074, 1180670, 653)
+			sgm_g.create("jup_after_fight_snork_2", 414.830, 27.297, -240.032, 1371492, 641)
+			sgm_g.create("jup_after_fight_snork_3", 405.413, 27.131, -266.837, 1354848, 637)
+			sgm_g.create("jup_after_fight_snork_4", 381.892, 27.976, -239.890, 1320306, 642)
+			sgm_g.create("jup_after_fight_snork_5", 265.964, 28.271, -179.728, 1159642, 537)
+			sgm_g.clear_mod_param("jup_ambush_zombied_deaths")
 			give_info("jup_mercenary_check_plant_snorks")
 		end
 	end
@@ -3856,20 +3856,20 @@ function jup_psi_controller_check(actor, npc)
 end
 
 function jup_beylis_ambush_effect(actor, npc)
-	create("chimera_normal", 72.532, 24.061, -168.847, 839146, 363)
-	create("bloodsucker_strong", 72.532, 24.061, -168.847, 839146, 363)
+	sgm_g.create("chimera_normal", 72.532, 24.061, -168.847, 839146, 363)
+	sgm_g.create("bloodsucker_strong", 72.532, 24.061, -168.847, 839146, 363)
 end
 
 function jup_train_zasada(actor, npc)
-	create("jup_train_bandit_sniper", -95.290, 5.250, 203.518, 564533, 592)
+	sgm_g.create("jup_train_bandit_sniper", -95.290, 5.250, 203.518, 564533, 592)
 end
 
 function jup_rasvet_attacked_update(actor, npc)
 	if sgm_g.dont_has_alife_info("jup_beat_from_monsters_safely") then
 		sgm_g.inc_mod_param("jup_attacked_monsters_deaths")
-		if read_mod_param("jup_attacked_monsters_deaths") >= 19 then
+		if sgm_g.read_mod_param("jup_attacked_monsters_deaths") >= 19 then
 			give_info("jup_beat_from_monsters_safely")
-			clear_mod_param("jup_attacked_monsters_deaths")
+			sgm_g.clear_mod_param("jup_attacked_monsters_deaths")
 		end
 	end
 end
@@ -3879,8 +3879,8 @@ function jup_night_killers_check(actor, npc)
 		give_info("jup_destroy_night_killers_perebil")
 	end
 	if has_several_info("jup_night_killer_", "_death", 1, 7) and sgm_g.dont_has_alife_info("jup_destroy_night_killers_esche") then
-		create("jup_night_killer_8", 263.041, -17.519, 193.630, 1154748, 614)
-		create("jup_night_killer_9", 423.285, 4.455, -72.301, 1384995, 527)
+		sgm_g.create("jup_night_killer_8", 263.041, -17.519, 193.630, 1154748, 614)
+		sgm_g.create("jup_night_killer_9", 423.285, 4.455, -72.301, 1384995, 527)
 		give_info("jup_destroy_night_killers_esche")
 	end
 end
@@ -3896,9 +3896,9 @@ end
 function jup_witnesses_members_update(actor, npc)
 	if sgm_g.dont_has_alife_info("jup_avoid_witnesses_cleaned") then
 		sgm_g.inc_mod_param("jup_witnesses_deaths")
-		if read_mod_param("jup_witnesses_deaths") >= 11 then
+		if sgm_g.read_mod_param("jup_witnesses_deaths") >= 11 then
 			give_info("jup_avoid_witnesses_cleaned")
-			clear_mod_param("jup_witnesses_deaths")
+			sgm_g.clear_mod_param("jup_witnesses_deaths")
 			game_autosave_assign("save_jup_avoid_witnesses_rescued")
 		end
 	end
@@ -3942,9 +3942,9 @@ function jup_rasvet_prior_create_dead_body(actor, npc)
 	if sgm_g.dont_has_alife_info("jup_b206_rasvet_prior_quest_fail") then
 		news_manager.send_tip(db.actor, "jup_rasvet_leader_quest_about_dead_patrol_text", 0, "portrait_Nebo_3", 18000,
 			nil, "jup_rasvet_leader_title", false)
-		create("jup_rasvet_gudvin_letter", -194.194, 5.516, -76.940, 385941, 390)
-		create("jup_rasvet_prior_quest_spot_1", -435.352, 9.615, -2.013, 5287, 376)
-		create("jup_rasvet_prior_quest_spot_2", -200.808, 3.491, -439.198, 376193, 480)
+		sgm_g.create("jup_rasvet_gudvin_letter", -194.194, 5.516, -76.940, 385941, 390)
+		sgm_g.create("jup_rasvet_prior_quest_spot_1", -435.352, 9.615, -2.013, 5287, 376)
+		sgm_g.create("jup_rasvet_prior_quest_spot_2", -200.808, 3.491, -439.198, 376193, 480)
 		create_dead_body("jup_rasvet_prior_patrol_dead_1", "bio_bandage", -401.678, -2.680, 176.045, 42739, 644)
 		create_dead_body("jup_rasvet_prior_patrol_dead_2", "bio_bandage", -406.250, -2.707, 168.987, 36537, 644)
 		create_dead_body("jup_rasvet_prior_patrol_dead_3", "bio_bandage", -411.953, -2.670, 170.436, 27802, 644)
@@ -3954,18 +3954,18 @@ end
 
 function jup_rasvet_prior_create_enemy_himera(actor, npc)
 	if sgm_g.dont_has_alife_info("jup_b206_rasvet_prior_quest_fail") then
-		create("jup_rasvet_quest_prior_himera_1", -406.241, 10.798, -9.445, 36294, 376)
-		create("jup_rasvet_quest_prior_himera_2", -407.667, 9.858, -17.224, 34297, 376)
+		sgm_g.create("jup_rasvet_quest_prior_himera_1", -406.241, 10.798, -9.445, 36294, 376)
+		sgm_g.create("jup_rasvet_quest_prior_himera_2", -407.667, 9.858, -17.224, 34297, 376)
 	end
 end
 
 function jup_rasvet_prior_create_enemy_angel(actor, npc)
 	if sgm_g.dont_has_alife_info("jup_b206_rasvet_prior_quest_fail") then
-		create("jup_rasvet_prior_zas_black_angel_1", -226.175, 3.405, -360.943, 332918, 480)
-		create("jup_rasvet_prior_zas_black_angel_2", -219.538, 3.484, -360.620, 344092, 480)
-		create("jup_rasvet_prior_zas_black_angel_3", -209.997, 5.487, -361.854, 360854, 480)
-		create("jup_rasvet_prior_zas_black_angel_4", -232.104, 3.826, -365.464, 322358, 480)
-		create("jup_rasvet_prior_zas_black_angel_5", -223.236, 3.422, -360.593, 337807, 480)
+		sgm_g.create("jup_rasvet_prior_zas_black_angel_1", -226.175, 3.405, -360.943, 332918, 480)
+		sgm_g.create("jup_rasvet_prior_zas_black_angel_2", -219.538, 3.484, -360.620, 344092, 480)
+		sgm_g.create("jup_rasvet_prior_zas_black_angel_3", -209.997, 5.487, -361.854, 360854, 480)
+		sgm_g.create("jup_rasvet_prior_zas_black_angel_4", -232.104, 3.826, -365.464, 322358, 480)
+		sgm_g.create("jup_rasvet_prior_zas_black_angel_5", -223.236, 3.422, -360.593, 337807, 480)
 	end
 end
 
@@ -3985,7 +3985,7 @@ end
 
 function jup_a6_azot_quest_cheked_plant_3(actor, npc)
 	if xr_conditions.actor_in_zone(actor, npc, { "jup_a6_azot_restr_plant_3" }) then
-		create("jup_a6_azat_quest_mechanik_kurier_2", 407.324, 27.297, -465.436, 1358134, 555)
+		sgm_g.create("jup_a6_azat_quest_mechanik_kurier_2", 407.324, 27.297, -465.436, 1358134, 555)
 		db.actor:give_info_portion("jup_b206_modul_restr_3_searched")
 		give_actor(db.actor, nil, { "jup_b12_plant_memory_3" })
 	end
@@ -4008,7 +4008,7 @@ function pri_quest_bloodsucker_sleep1_activate(actor, npc)
 	_G.amb_vol = get_console():get_float("snd_volume_eff")
 	get_console():execute("snd_volume_music 0")
 	get_console():execute("snd_volume_eff 0")
-	create("quest_bloodsucker_letter_1", 44.696, 17.434, -138.663, 259128, 698)
+	sgm_g.create("quest_bloodsucker_letter_1", 44.696, 17.434, -138.663, 259128, 698)
 end
 
 function pri_quest_bloodsucker_sleep1_callback1()
@@ -4038,7 +4038,7 @@ function pri_quest_bloodsucker_sleep2_activate(actor, npc)
 	_G.amb_vol = get_console():get_float("snd_volume_eff")
 	get_console():execute("snd_volume_music 0")
 	get_console():execute("snd_volume_eff 0")
-	create("quest_bloodsucker_letter_2", 44.696, 17.434, -138.663, 259128, 698)
+	sgm_g.create("quest_bloodsucker_letter_2", 44.696, 17.434, -138.663, 259128, 698)
 end
 
 function pri_quest_bloodsucker_sleep2_callback1()
@@ -4063,16 +4063,16 @@ end
 function pass_guide_keeper_alfa_update(actor, npc)
 	if sgm_g.dont_has_alife_info("pri_rescue_underground_guide_terrain_is_secured") then
 		sgm_g.inc_mod_param("pass_keeper_alfa_deaths")
-		if read_mod_param("pass_keeper_alfa_deaths") >= 21 then
+		if sgm_g.read_mod_param("pass_keeper_alfa_deaths") >= 21 then
 			give_info("pri_rescue_underground_guide_terrain_is_secured")
-			clear_mod_param("pass_keeper_alfa_deaths")
+			sgm_g.clear_mod_param("pass_keeper_alfa_deaths")
 			game_autosave_assign("save_pri_rescue_guide_terrain_is_secured")
 		end
 	end
 end
 
 function val_b2_accompany_guider_ambush_action(actor, npc)
-	create("boar_normal_hunter", -129.554, -1.352, -279.815, 28670, 1111)
+	sgm_g.create("boar_normal_hunter", -129.554, -1.352, -279.815, 28670, 1111)
 end
 
 function val_b2_assault_b1_commander_death_1(actor, npc)
@@ -4086,9 +4086,9 @@ end
 function val_lucas_attacked_update_1(actor, npc)
 	if sgm_g.dont_has_alife_info("val_beat_from_monsters_wave_1") then
 		sgm_g.inc_mod_param("val_attacked_monsters_deaths_1")
-		if read_mod_param("val_attacked_monsters_deaths_1") >= 7 then
+		if sgm_g.read_mod_param("val_attacked_monsters_deaths_1") >= 7 then
 			give_info("val_beat_from_monsters_wave_1")
-			clear_mod_param("val_attacked_monsters_deaths_1")
+			sgm_g.clear_mod_param("val_attacked_monsters_deaths_1")
 		end
 	end
 end
@@ -4096,9 +4096,9 @@ end
 function val_lucas_attacked_update_2(actor, npc)
 	if sgm_g.dont_has_alife_info("val_beat_from_monsters_wave_2") then
 		sgm_g.inc_mod_param("val_attacked_monsters_deaths_2")
-		if read_mod_param("val_attacked_monsters_deaths_2") >= 9 then
+		if sgm_g.read_mod_param("val_attacked_monsters_deaths_2") >= 9 then
 			give_info("val_beat_from_monsters_wave_2")
-			clear_mod_param("val_attacked_monsters_deaths_2")
+			sgm_g.clear_mod_param("val_attacked_monsters_deaths_2")
 		end
 	end
 end
@@ -4106,9 +4106,9 @@ end
 function val_lucas_attacked_update_3(actor, npc)
 	if sgm_g.dont_has_alife_info("val_beat_from_monsters_wave_3") then
 		sgm_g.inc_mod_param("val_attacked_monsters_deaths_3")
-		if read_mod_param("val_attacked_monsters_deaths_3") >= 3 then
+		if sgm_g.read_mod_param("val_attacked_monsters_deaths_3") >= 3 then
 			give_info("val_beat_from_monsters_wave_3")
-			clear_mod_param("val_attacked_monsters_deaths_3")
+			sgm_g.clear_mod_param("val_attacked_monsters_deaths_3")
 		end
 	end
 end
@@ -4135,13 +4135,13 @@ function val_lucas_quest_antenner_3(actor, npc)
 end
 
 function mil_create_hole_bomb(actor, npc)
-	create("mil_hole_bomb", -61.090858459473, -5.8885412216187, -12.620957374573, 236559, 1366)
+	sgm_g.create("mil_hole_bomb", -61.090858459473, -5.8885412216187, -12.620957374573, 236559, 1366)
 end
 
 function mil_b4_place_hole_bomb(actor, npc)
 	if xr_conditions.actor_in_zone(actor, npc, { "mil_b4_hole_bomb" }) then
 		give_info("mil_smash_monster_hole_bomb_setuped")
-		create("remote_charge", db.actor:position().x, db.actor:position().y, db.actor:position().z,
+		sgm_g.create("remote_charge", db.actor:position().x, db.actor:position().y, db.actor:position().z,
 			db.actor:level_vertex_id(), db.actor:game_vertex_id())
 		check_actor_item_to_add("mil_hole_bomb_control")
 	end
@@ -4149,8 +4149,8 @@ end
 
 function mil_b6_wave_counter_inc(actor, npc)
 	if sgm_g.dont_has_alife_info("mil_defence_b6_complete") and sgm_g.dont_has_alife_info("mil_alt_storyline_commenced") then
-		if read_mod_param("mil_b6_wave_counter") == nil then
-			write_mod_param("mil_b6_wave_counter", 1)
+		if sgm_g.read_mod_param("mil_b6_wave_counter") == nil then
+			sgm_g.write_mod_param("mil_b6_wave_counter", 1)
 		else
 			sgm_g.inc_mod_param("mil_b6_wave_counter")
 		end
@@ -4159,7 +4159,7 @@ end
 
 function mil_b6_wave_counter_dec(actor, npc)
 	if sgm_g.dont_has_alife_info("mil_defence_b6_complete") and sgm_g.dont_has_alife_info("mil_alt_storyline_commenced") then
-		if read_mod_param("mil_b6_wave_counter") ~= nil and read_mod_param("mil_b6_wave_counter") > 0 then
+		if sgm_g.read_mod_param("mil_b6_wave_counter") ~= nil and sgm_g.read_mod_param("mil_b6_wave_counter") > 0 then
 			dec_mod_param("mil_b6_wave_counter")
 		end
 	end
@@ -4167,8 +4167,8 @@ end
 
 function mil_b7_wave_counter_inc(actor, npc)
 	if sgm_g.dont_has_alife_info("mil_defence_b7_complete") and sgm_g.dont_has_alife_info("mil_alt_storyline_commenced") then
-		if read_mod_param("mil_b7_wave_counter") == nil then
-			write_mod_param("mil_b7_wave_counter", 1)
+		if sgm_g.read_mod_param("mil_b7_wave_counter") == nil then
+			sgm_g.write_mod_param("mil_b7_wave_counter", 1)
 		else
 			sgm_g.inc_mod_param("mil_b7_wave_counter")
 		end
@@ -4177,7 +4177,7 @@ end
 
 function mil_b7_wave_counter_dec(actor, npc)
 	if sgm_g.dont_has_alife_info("mil_defence_b7_complete") and sgm_g.dont_has_alife_info("mil_alt_storyline_commenced") then
-		if read_mod_param("mil_b7_wave_counter") ~= nil and read_mod_param("mil_b7_wave_counter") > 0 then
+		if sgm_g.read_mod_param("mil_b7_wave_counter") ~= nil and sgm_g.read_mod_param("mil_b7_wave_counter") > 0 then
 			dec_mod_param("mil_b7_wave_counter")
 		end
 	end
@@ -4245,34 +4245,34 @@ function mil_smash_monster_hole_done(actor, npc)
 end
 
 function esc_b2_create_bomb(actor, npc)
-	create("esc_b2_bomb", -185.15017700195, -21.729053497314, -131.43598937988, 64305, 1865)
+	sgm_g.create("esc_b2_bomb", -185.15017700195, -21.729053497314, -131.43598937988, 64305, 1865)
 end
 
 function esc_b2_place_bomb(actor, npc)
 	if xr_conditions.actor_in_zone(actor, npc, { "esc_b2_bomb_place" }) then
 		give_info("esc_village_annex_placed_c4")
-		create("remote_charge", db.actor:position().x, db.actor:position().y, db.actor:position().z,
+		sgm_g.create("remote_charge", db.actor:position().x, db.actor:position().y, db.actor:position().z,
 			db.actor:level_vertex_id(), db.actor:game_vertex_id())
 		check_actor_item_to_add("esc_b2_bomb_control")
 	end
 end
 
 function esc_a2_monster_squad_death(actor, npc)
-	create_force("esc_a1_monster_squad", "esc_monster_burrow_1")
+	sgm_g.create_force("esc_a1_monster_squad", "esc_monster_burrow_1")
 end
 
 function esc_a1_monster_squad_death(actor, npc)
-	create_force("esc_a3_monster_squad", "esc_monster_burrow_3")
+	sgm_g.create_force("esc_a3_monster_squad", "esc_monster_burrow_3")
 end
 
 function esc_a3_monster_squad_death(actor, npc)
-	create_force("esc_a5_monster_squad", "esc_monster_burrow_5")
+	sgm_g.create_force("esc_a5_monster_squad", "esc_monster_burrow_5")
 end
 
 function esc_blockpost_protection_bonus_inc(actor, npc)
 	if sgm_g.dont_has_alife_info("esc_blockpost_protection_done") then
-		if read_mod_param("esc_blockpost_protection_bonus") == nil then
-			write_mod_param("esc_blockpost_protection_bonus", 1)
+		if sgm_g.read_mod_param("esc_blockpost_protection_bonus") == nil then
+			sgm_g.write_mod_param("esc_blockpost_protection_bonus", 1)
 		else
 			sgm_g.inc_mod_param("esc_blockpost_protection_bonus")
 		end
@@ -4280,7 +4280,7 @@ function esc_blockpost_protection_bonus_inc(actor, npc)
 end
 
 function mar_create_army_wounded(actor, npc)
-	create("mar_army_wounded", -250.73123168945, 0.33261534571648, -117.54051208496, 18393, 1763)
+	sgm_g.create("mar_army_wounded", -250.73123168945, 0.33261534571648, -117.54051208496, 18393, 1763)
 end
 
 function mar_destroy_mines(actor, npc)
@@ -4547,13 +4547,13 @@ function edit_counter(actor, npc, p)
 	local counter_name = p[1]
 	local to_value = p[2]
 	local action = p[3]
-	if read_mod_param(counter_name) ~= nil then
+	if sgm_g.read_mod_param(counter_name) ~= nil then
 		if (action == true or action == "true" or action == "+" or action == "plus" or action == nil) then
-			local counter = read_mod_param(counter_name)
-			write_mod_param(counter_name, counter + to_value)
+			local counter = sgm_g.read_mod_param(counter_name)
+			sgm_g.write_mod_param(counter_name, counter + to_value)
 		elseif (action == false or action == "false" or action == "-" or action == "minus") then
-			local counter = read_mod_param(counter_name)
-			write_mod_param(counter_name, counter - to_value)
+			local counter = sgm_g.read_mod_param(counter_name)
+			sgm_g.write_mod_param(counter_name, counter - to_value)
 		end
 	end
 end
@@ -4561,22 +4561,22 @@ end
 function increase_counter(actor, npc, p)
 	local counter_name = p[1]
 	local add_value = p[2]
-	if read_mod_param(counter_name) == nil then write_mod_param(counter_name, 0) end
+	if sgm_g.read_mod_param(counter_name) == nil then sgm_g.write_mod_param(counter_name, 0) end
 	if add_value == nil then add_value = 1 end
-	if read_mod_param(counter_name) ~= nil then
-		local counter = read_mod_param(counter_name)
-		write_mod_param(counter_name, counter + add_value)
+	if sgm_g.read_mod_param(counter_name) ~= nil then
+		local counter = sgm_g.read_mod_param(counter_name)
+		sgm_g.write_mod_param(counter_name, counter + add_value)
 	end
 end
 
 function decrease_counter(actor, npc, p)
 	local counter_name = p[1]
 	local add_value = p[2]
-	if read_mod_param(counter_name) == nil then write_mod_param(counter_name, 0) end
+	if sgm_g.read_mod_param(counter_name) == nil then sgm_g.write_mod_param(counter_name, 0) end
 	if add_value == nil then add_value = 1 end
-	if read_mod_param(counter_name) ~= nil then
-		local counter = read_mod_param(counter_name)
-		write_mod_param(counter_name, counter - add_value)
+	if sgm_g.read_mod_param(counter_name) ~= nil then
+		local counter = sgm_g.read_mod_param(counter_name)
+		sgm_g.write_mod_param(counter_name, counter - add_value)
 	end
 end
 
@@ -4586,11 +4586,11 @@ function release_counter(actor, npc, p)
 	local counter_3_name = p[3]
 	local counter_4_name = p[4]
 	local counter_5_name = p[5]
-	if read_mod_param(counter_1_name) ~= nil then clear_mod_param(counter_1_name) end
-	if read_mod_param(counter_2_name) ~= nil then clear_mod_param(counter_2_name) end
-	if read_mod_param(counter_3_name) ~= nil then clear_mod_param(counter_3_name) end
-	if read_mod_param(counter_4_name) ~= nil then clear_mod_param(counter_4_name) end
-	if read_mod_param(counter_5_name) ~= nil then clear_mod_param(counter_5_name) end
+	if sgm_g.read_mod_param(counter_1_name) ~= nil then sgm_g.clear_mod_param(counter_1_name) end
+	if sgm_g.read_mod_param(counter_2_name) ~= nil then sgm_g.clear_mod_param(counter_2_name) end
+	if sgm_g.read_mod_param(counter_3_name) ~= nil then sgm_g.clear_mod_param(counter_3_name) end
+	if sgm_g.read_mod_param(counter_4_name) ~= nil then sgm_g.clear_mod_param(counter_4_name) end
+	if sgm_g.read_mod_param(counter_5_name) ~= nil then sgm_g.clear_mod_param(counter_5_name) end
 end
 
 function delete_counter(actor, npc, p)
@@ -4643,7 +4643,7 @@ function autosave_game(actor, npc, p)
 end
 
 function create_game_timer(actor, npc, p)
-	if check_game_timer(p[1]) == nil then
+	if sgm_g.check_game_timer(p[1]) == nil then
 		start_game_timer(p[1], p[2], p[3])
 	end
 end
@@ -4667,11 +4667,12 @@ end
 
 function add_actor_rank(actor, npc, p)
 	local rank_bonus = p[1]
-	if read_mod_param("actor_rank") ~= nil and rank_bonus ~= nil then
-		write_mod_param("actor_rank", read_mod_param("actor_rank") + (rank_bonus * sgm_ranks.game_multiplier()))
+	if sgm_g.read_mod_param("actor_rank") ~= nil and rank_bonus ~= nil then
+		sgm_g.write_mod_param("actor_rank",
+			sgm_g.read_mod_param("actor_rank") + (rank_bonus * sgm_ranks.game_multiplier()))
 		congratulate_with_rank_event("add", 8500, rank_bonus * sgm_ranks.game_multiplier())
-	elseif read_mod_param("actor_rank") ~= nil and rank_bonus == nil then
-		write_mod_param("actor_rank", read_mod_param("actor_rank") + 1)
+	elseif sgm_g.read_mod_param("actor_rank") ~= nil and rank_bonus == nil then
+		sgm_g.write_mod_param("actor_rank", sgm_g.read_mod_param("actor_rank") + 1)
 		congratulate_with_rank_event("add", 8500, 1)
 	end
 end
@@ -4723,23 +4724,23 @@ function chicken_rabua_activate_1(actor, npc)
 	local x, y, z, lv, gv = npc:position().x, npc:position().y, npc:position().z, npc:level_vertex_id(),
 		npc:game_vertex_id()
 	remove_object_by_id(npc:id())
-	create("chicken_rabua", x, y, z, lv, gv)
-	create("chicken_rabua_egg", x, y + 0.5, z, lv, gv)
+	sgm_g.create("chicken_rabua", x, y, z, lv, gv)
+	sgm_g.create("chicken_rabua_egg", x, y + 0.5, z, lv, gv)
 end
 
 function chicken_rabua_activate_2(actor, npc)
 	local x, y, z, lv, gv = npc:position().x, npc:position().y, npc:position().z, npc:level_vertex_id(),
 		npc:game_vertex_id()
 	remove_object_by_id(npc:id())
-	create("chicken_rabua", x, y, z, lv, gv)
+	sgm_g.create("chicken_rabua", x, y, z, lv, gv)
 end
 
 function employer_quest_complete(actor, npc)
-	write_mod_param("employer_activate", "false")
-	clear_mod_param("employer_currert_quest")
-	clear_mod_param("employer_currert_target")
-	clear_mod_param("employer_currert_distance")
-	clear_mod_param("employer_currert_type")
+	sgm_g.write_mod_param("employer_activate", "false")
+	sgm_g.clear_mod_param("employer_currert_quest")
+	sgm_g.clear_mod_param("employer_currert_target")
+	sgm_g.clear_mod_param("employer_currert_distance")
+	sgm_g.clear_mod_param("employer_currert_type")
 	disable_info("employer_find_item_reward")
 	disable_info("employer_find_item_complete")
 	disable_info("employer_kill_stalker_reward")

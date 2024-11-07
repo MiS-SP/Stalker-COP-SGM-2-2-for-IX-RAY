@@ -29,7 +29,7 @@ function variables_update()
       local r_dream_limited = sgm_g.r_mod_params("number", "dream_limited_interval", 60)
       if (r_dream_limited == 0 or sgm_flags.string_approach_sleep_color ~= "normal") and sgm_g.read_mod_param("dream_limited") ~= "none" then
          sgm_g.write_mod_param("dream_limited", "none")
-      elseif r_dream_limited > 0 and sgm_g.read_mod_param("dream_limited") ~= "none" and get_general_game_time() - sgm_g.read_mod_param("dream_limited") >= r_dream_limited then
+      elseif r_dream_limited > 0 and sgm_g.read_mod_param("dream_limited") ~= "none" and sgm_g.get_general_game_time() - sgm_g.read_mod_param("dream_limited") >= r_dream_limited then
          sgm_g.write_mod_param("dream_limited", "none")
       end
    end

@@ -905,7 +905,7 @@ function squad_in_zone(actor, npc, p)
 
 	for k in squad:squad_members() do
 		local position = (db.storage[k.id] and db.storage[k.id].object and db.storage[k.id].object:position()) or
-		k.object.position
+			k.object.position
 		if zone:inside(position) then
 			return true
 		end
@@ -961,7 +961,7 @@ function squad_in_zone_all(actor, npc, p)
 	local al = alife()
 	for k in squad:squad_members() do
 		local position = (db.storage[k.id] and db.storage[k.id].object and db.storage[k.id].object:position()) or
-		k.object.position
+			k.object.position
 		if not zone:inside(position) then
 			return false
 		end
@@ -1431,7 +1431,7 @@ function jup_b221_who_will_start(actor, npc, p) -- доступные параметры: ability 
 	elseif tostring(p[1]) == "choose" then
 		---------Выберем рандомам елемент составленой таблицы и проверим к какой груперовки он пренадлежит :)
 		return reachable_theme[math.random(1, #reachable_theme)] <=
-		6                                                       -- если меньше 6-ти значит ДОЛГ если больше 6-ти значит СВОБОДА
+			6 -- если меньше 6-ти значит ДОЛГ если больше 6-ти значит СВОБОДА
 	else
 		abort("Wrong parameters in function 'jup_b221_who_will_start'")
 	end
@@ -1589,12 +1589,12 @@ end
 
 function jup_b25_senya_spawn_condition(actor, npc)
 	return (has_alife_info("jup_b16_oasis_found") or has_alife_info("zat_b57_bloodsucker_lair_clear") or has_alife_info("jup_b6_complete_end") or has_alife_info("zat_b215_gave_maps")) and
-	has_alife_info("zat_b106_search_soroka")
+		has_alife_info("zat_b106_search_soroka")
 end
 
 function jup_b25_flint_gone_condition(actor, npc)
 	return has_alife_info("jup_b25_flint_blame_done_to_duty") or has_alife_info("jup_b25_flint_blame_done_to_freedom") or
-	has_alife_info("zat_b106_found_soroka_done")
+		has_alife_info("zat_b106_found_soroka_done")
 end
 
 -------------------------------------------------------------------------------------------------------------------------------------------
@@ -1822,24 +1822,24 @@ end
 function can_release_base_member(actor, npc)
 	local npc_profile = npc:profile_name()
 	local npc_cond = npc:position():distance_to_sqr(actor:position()) >= 140 * 140 and
-	r_mod_params("bool", "can_release_base_members", false) == true
+		r_mod_params("bool", "can_release_base_members", false) == true
 	if npc_profile == "zat_bandit_trader" then
 		return npc_cond and has_alife_info("zat_bandit_base_leader_death") and
-		(sgm_g.dont_has_alife_info("zat_bring_flash_light_start") or (has_alife_info("zat_bring_flash_light_start") and (has_alife_info("zat_bring_flash_light_complete") or has_alife_info("zat_bring_flash_light_fail"))))
+			(sgm_g.dont_has_alife_info("zat_bring_flash_light_start") or (has_alife_info("zat_bring_flash_light_start") and (has_alife_info("zat_bring_flash_light_complete") or has_alife_info("zat_bring_flash_light_fail"))))
 	elseif npc_profile == "zat_bandit_bodyguard" then
 		return npc_cond and has_alife_info("zat_bandit_base_leader_death") and
-		sgm_g.dont_has_alife_info("zat_bandit_bodyguard_pursue")
+			sgm_g.dont_has_alife_info("zat_bandit_bodyguard_pursue")
 	elseif npc_profile == "jup_rasvet_trader" then
 		return npc_cond and has_alife_info("jup_rasvet_base_leader_death")
 	elseif npc_profile == "jup_killer_base_trader" then
 		return npc_cond and has_alife_info("jup_killer_base_leader_death")
 	elseif npc_profile == "jup_killer_bodyguard" then
 		return npc_cond and has_alife_info("jup_killer_base_leader_death") and
-		sgm_g.dont_has_alife_info("jup_killer_bodyguard_pursue")
+			sgm_g.dont_has_alife_info("jup_killer_bodyguard_pursue")
 	elseif npc_profile == "pri_monolit_base_trader" then
 		return npc_cond and has_alife_info("pri_monolit_base_leader_death") and
-		(has_alife_info("zat_deliver_monolith_case_complete") or has_alife_info("zat_deliver_monolith_case_fail") or sgm_g.dont_has_alife_info("zat_deliver_monolith_case_start")) and
-		(has_alife_info("pri_expiation_sin_3_complete") or has_alife_info("pri_expiation_sin_3_fail") or sgm_g.dont_has_alife_info("pri_expiation_sin_3_start"))
+			(has_alife_info("zat_deliver_monolith_case_complete") or has_alife_info("zat_deliver_monolith_case_fail") or sgm_g.dont_has_alife_info("zat_deliver_monolith_case_start")) and
+			(has_alife_info("pri_expiation_sin_3_complete") or has_alife_info("pri_expiation_sin_3_fail") or sgm_g.dont_has_alife_info("pri_expiation_sin_3_start"))
 	elseif npc_profile == "mil_b7_trader" or npc_profile == "mil_b7_bankir" then
 		return npc_cond and has_alife_info("mil_alt_storyline_commenced")
 	elseif npc_profile == "val_b2_trader" then
@@ -1850,22 +1850,22 @@ end
 
 function zat_b5_stalker_task_hindrance_precond(actor, npc)
 	return has_alife_info("zat_b5_actor_with_stalkers") and has_alife_info("zat_b5_task_start") and
-	sgm_g.dont_has_alife_info("zat_b5_task_end")
+		sgm_g.dont_has_alife_info("zat_b5_task_end")
 end
 
 function zat_noah_barge_door_no_shoot(actor, npc)
 	return has_alife_info("zat_monsters_wave_start") and sgm_g.dont_has_alife_info("zat_monsters_wave_reward") and
-	sgm_g.dont_has_alife_info("zat_monsters_wave_fail")
+		sgm_g.dont_has_alife_info("zat_monsters_wave_fail")
 end
 
 function zat_bandit_base_defeat(actor, npc)
 	return has_several_info("zat_bandit_base_bodyguard_", "_death", 1, 4) and
-	has_alife_info("zat_bandit_base_west_chief_death") and has_alife_info("zat_bandit_base_south_chief_death")
+		has_alife_info("zat_bandit_base_west_chief_death") and has_alife_info("zat_bandit_base_south_chief_death")
 end
 
 function jup_rasvet_base_defeat(actor, npc)
 	return has_several_info("jup_rasvet_base_guard_", "_death", 1, 10) and
-	has_several_info("jup_rasvet_base_bodyguard_", "_death", 1, 2)
+		has_several_info("jup_rasvet_base_bodyguard_", "_death", 1, 2)
 end
 
 function jup_killer_base_part_1_defeat(actor, npc)
@@ -1878,14 +1878,14 @@ end
 
 function pri_monolit_base_defeat(actor, npc)
 	return has_several_info("pri_monolit_base_guard_", "_death", 1, 10) and
-	has_several_info("pri_monolit_base_sniper_", "_death", 1, 3) and
-	has_several_info("pri_monolit_base_sentry_", "_death", 1, 3)
+		has_several_info("pri_monolit_base_sniper_", "_death", 1, 3) and
+		has_several_info("pri_monolit_base_sentry_", "_death", 1, 3)
 end
 
 function val_b2_assault_b1_commander_death(actor, npc)
 	return has_alife_info("val_assault_factory_start") and
-	sgm_g.dont_has_alife_info("val_assault_factory_squad_in_assault") and
-	sgm_g.dont_has_alife_info("val_alt_storyline_commenced")
+		sgm_g.dont_has_alife_info("val_assault_factory_squad_in_assault") and
+		sgm_g.dont_has_alife_info("val_alt_storyline_commenced")
 end
 
 ------------------------------------------------------------------------------
@@ -1899,7 +1899,7 @@ end
 function task_time_remained(actor, npc, p)
 	local t_name = p[1]
 	local t_remained = p[2]
-	local t_remained_value = check_game_timer("timer_quest_" .. t_name, true) - get_general_game_time()
+	local t_remained_value = sgm_g.check_game_timer("timer_quest_" .. t_name, true) - sgm_g.get_general_game_time()
 	if t_remained_value >= t_remained then
 		return true
 	else
@@ -1999,7 +1999,7 @@ end
 function sid_thinks_actor_is_enemy(actor, npc, p)
 	local soid = get_story_object_id(p[1])
 	return soid ~= nil and level.object_by_id(soid) ~= nil and
-	check_relation_between(level.object_by_id(soid), db.actor) == "enemy"
+		sgm_g.check_relation_between(level.object_by_id(soid), db.actor) == "enemy"
 end
 
 function is_enemy_pertains(actor, npc, p)
@@ -2135,9 +2135,9 @@ end
 function stalker_enemy_on_attitude_actor(actor, npc)
 	local enemy_id = db.storage[npc:id()].enemy_id
 	local enemy = db.storage[enemy_id] and db.storage[enemy_id].object
-	local cond1 = (enemy and enemy:alive() and enemy:id() ~= db.actor:id() and IsStalker(enemy) and check_relation_between(enemy, db.actor) ~= "enemy")
-	local cond2 = (enemy and enemy:alive() and enemy:id() ~= db.actor:id() and IsMonster(enemy) and (check_relation_between(enemy, db.actor) ~= "enemy" or find_in_string(enemy:section(), "dog_noah")))
-	local cond3 = (enemy and enemy:alive() and enemy:id() ~= db.actor:id() and IsMonster(enemy) and check_relation_between(enemy, db.actor) == "enemy" and find_in_string(enemy:section(), "captured") and (sgm_flags.table_m_capture_hits[enemy:id()] == nil or sgm_flags.table_m_capture_hits[enemy:id()] == false))
+	local cond1 = (enemy and enemy:alive() and enemy:id() ~= db.actor:id() and IsStalker(enemy) and sgm_g.check_relation_between(enemy, db.actor) ~= "enemy")
+	local cond2 = (enemy and enemy:alive() and enemy:id() ~= db.actor:id() and IsMonster(enemy) and (sgm_g.check_relation_between(enemy, db.actor) ~= "enemy" or find_in_string(enemy:section(), "dog_noah")))
+	local cond3 = (enemy and enemy:alive() and enemy:id() ~= db.actor:id() and IsMonster(enemy) and sgm_g.check_relation_between(enemy, db.actor) == "enemy" and find_in_string(enemy:section(), "captured") and (sgm_flags.table_m_capture_hits[enemy:id()] == nil or sgm_flags.table_m_capture_hits[enemy:id()] == false))
 	if cond1 or cond2 or cond3 then
 		return true
 	end
@@ -2148,9 +2148,9 @@ function monster_enemy_on_attitude_actor(actor, npc)
 	local enemy_id = db.storage[npc:id()].enemy_id
 	local enemy = db.storage[enemy_id] and db.storage[enemy_id].object
 	local cond1 = (enemy and enemy:alive() and enemy:id() == db.actor:id() and (sgm_flags.table_m_capture_hits[npc:id()] == nil or sgm_flags.table_m_capture_hits[npc:id()] == false))
-	local cond2 = (enemy and enemy:alive() and enemy:id() ~= db.actor:id() and IsStalker(enemy) and check_relation_between(enemy, db.actor) ~= "enemy")
-	local cond3 = (enemy and enemy:alive() and enemy:id() ~= db.actor:id() and IsMonster(enemy) and (check_relation_between(enemy, db.actor) ~= "enemy" or find_in_string(enemy:section(), "dog_noah")))
-	local cond4 = (enemy and enemy:alive() and enemy:id() ~= db.actor:id() and IsMonster(enemy) and check_relation_between(enemy, db.actor) == "enemy" and find_in_string(enemy:section(), "captured") and (sgm_flags.table_m_capture_hits[enemy:id()] == nil or sgm_flags.table_m_capture_hits[enemy:id()] == false))
+	local cond2 = (enemy and enemy:alive() and enemy:id() ~= db.actor:id() and IsStalker(enemy) and sgm_g.check_relation_between(enemy, db.actor) ~= "enemy")
+	local cond3 = (enemy and enemy:alive() and enemy:id() ~= db.actor:id() and IsMonster(enemy) and (sgm_g.check_relation_between(enemy, db.actor) ~= "enemy" or find_in_string(enemy:section(), "dog_noah")))
+	local cond4 = (enemy and enemy:alive() and enemy:id() ~= db.actor:id() and IsMonster(enemy) and sgm_g.check_relation_between(enemy, db.actor) == "enemy" and find_in_string(enemy:section(), "captured") and (sgm_flags.table_m_capture_hits[enemy:id()] == nil or sgm_flags.table_m_capture_hits[enemy:id()] == false))
 	if cond1 or cond2 or cond3 or cond4 then
 		return true
 	end
@@ -2160,9 +2160,9 @@ end
 function bodyguard_ignore_precond(actor, npc)
 	local enemy_id = db.storage[npc:id()].enemy_id
 	local enemy = db.storage[enemy_id] and db.storage[enemy_id].object
-	local cond1 = (enemy and enemy:alive() and enemy:id() ~= db.actor:id() and IsStalker(enemy) and check_relation_between(enemy, db.actor) ~= "enemy")
-	local cond2 = (enemy and enemy:alive() and enemy:id() ~= db.actor:id() and IsMonster(enemy) and (check_relation_between(enemy, db.actor) ~= "enemy" or find_in_string(enemy:section(), "dog_noah")))
-	local cond3 = (enemy and enemy:alive() and enemy:id() ~= db.actor:id() and IsMonster(enemy) and check_relation_between(enemy, db.actor) == "enemy" and find_in_string(enemy:section(), "captured") and (sgm_flags.table_m_capture_hits[enemy:id()] == nil or sgm_flags.table_m_capture_hits[enemy:id()] == false))
+	local cond1 = (enemy and enemy:alive() and enemy:id() ~= db.actor:id() and IsStalker(enemy) and sgm_g.check_relation_between(enemy, db.actor) ~= "enemy")
+	local cond2 = (enemy and enemy:alive() and enemy:id() ~= db.actor:id() and IsMonster(enemy) and (sgm_g.check_relation_between(enemy, db.actor) ~= "enemy" or find_in_string(enemy:section(), "dog_noah")))
+	local cond3 = (enemy and enemy:alive() and enemy:id() ~= db.actor:id() and IsMonster(enemy) and sgm_g.check_relation_between(enemy, db.actor) == "enemy" and find_in_string(enemy:section(), "captured") and (sgm_flags.table_m_capture_hits[enemy:id()] == nil or sgm_flags.table_m_capture_hits[enemy:id()] == false))
 	if cond1 or cond2 or cond3 then
 		return true
 	end
@@ -2173,9 +2173,9 @@ function captured_monster_ignore_precond(actor, npc)
 	local enemy_id = db.storage[npc:id()].enemy_id
 	local enemy = db.storage[enemy_id] and db.storage[enemy_id].object
 	local cond1 = (enemy and enemy:alive() and enemy:id() == db.actor:id() and (sgm_flags.table_m_capture_hits[npc:id()] == nil or sgm_flags.table_m_capture_hits[npc:id()] == false))
-	local cond2 = (enemy and enemy:alive() and enemy:id() ~= db.actor:id() and IsStalker(enemy) and check_relation_between(enemy, db.actor) ~= "enemy")
-	local cond3 = (enemy and enemy:alive() and enemy:id() ~= db.actor:id() and IsMonster(enemy) and (check_relation_between(enemy, db.actor) ~= "enemy" or find_in_string(enemy:section(), "dog_noah")))
-	local cond4 = (enemy and enemy:alive() and enemy:id() ~= db.actor:id() and IsMonster(enemy) and check_relation_between(enemy, db.actor) == "enemy" and find_in_string(enemy:section(), "captured") and (sgm_flags.table_m_capture_hits[enemy:id()] == nil or sgm_flags.table_m_capture_hits[enemy:id()] == false))
+	local cond2 = (enemy and enemy:alive() and enemy:id() ~= db.actor:id() and IsStalker(enemy) and sgm_g.check_relation_between(enemy, db.actor) ~= "enemy")
+	local cond3 = (enemy and enemy:alive() and enemy:id() ~= db.actor:id() and IsMonster(enemy) and (sgm_g.check_relation_between(enemy, db.actor) ~= "enemy" or find_in_string(enemy:section(), "dog_noah")))
+	local cond4 = (enemy and enemy:alive() and enemy:id() ~= db.actor:id() and IsMonster(enemy) and sgm_g.check_relation_between(enemy, db.actor) == "enemy" and find_in_string(enemy:section(), "captured") and (sgm_flags.table_m_capture_hits[enemy:id()] == nil or sgm_flags.table_m_capture_hits[enemy:id()] == false))
 	if cond1 or cond2 or cond3 or cond4 then
 		return true
 	end
@@ -2253,7 +2253,7 @@ function signaller_hint(actor, npc, p)
 		end
 		inventory_upgrades.cur_hint = hint_table
 		return has_alife_info("pri_signaller_toolkit_1_returned") and
-		(sgm_g.read_mod_param("pri_mechanic_stripping") >= 1 or r_mod_params("bool", "need_mechanic_details", true) == false)
+			(sgm_g.read_mod_param("pri_mechanic_stripping") >= 1 or r_mod_params("bool", "need_mechanic_details", true) == false)
 	elseif p[1] == 2 then
 		if has_alife_info("pri_signaller_toolkit_1_returned") and sgm_g.dont_has_alife_info("pri_signaller_toolkit_2_returned") then
 			table.insert(hint_table, "st_upgr_signaller_toolkit_2")
@@ -2270,7 +2270,7 @@ function signaller_hint(actor, npc, p)
 		end
 		inventory_upgrades.cur_hint = hint_table
 		return has_alife_info("pri_signaller_toolkit_1_returned") and has_alife_info("pri_signaller_toolkit_2_returned") and
-		(sgm_g.read_mod_param("pri_mechanic_stripping") >= 1 or r_mod_params("bool", "need_mechanic_details", true) == false)
+			(sgm_g.read_mod_param("pri_mechanic_stripping") >= 1 or r_mod_params("bool", "need_mechanic_details", true) == false)
 	end
 	return false
 end

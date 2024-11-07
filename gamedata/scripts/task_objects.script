@@ -328,7 +328,8 @@ function CGeneralTask:check_task(tm)
 		local t_descr = task_functor[self.descr_functor](self.id, "descr", self.descr)
 		if sgm_g.exists(self.execution_time) then
 			self.current_descr = t_descr
-			local currert_execution_time = check_game_timer("timer_quest_" .. self.id, true) - get_general_game_time()
+			local currert_execution_time = sgm_g.check_game_timer("timer_quest_" .. self.id, true) -
+				sgm_g.get_general_game_time()
 			if currert_execution_time <= 0 then
 				if sgm_g.find_in_string(self.id, "employer_find_item") and sgm_g.find_in_string(self.current_descr, "text0") then
 					local employer_find_item_name = game.translate_string(sgm_functions.ReadCaption(sgm_g.read_mod_param(

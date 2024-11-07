@@ -559,10 +559,10 @@ function submodule_capture_monster(object)
             sgm_g.change_flag_value("hud_monster_capture_icon_tushkano")
             sgm_g.change_flag_value("hud_monster_capture_icon_pseudodog")
             sgm_g.change_flag_value("hud_monster_capture_icon_snork")
-            clear_mod_param(m_cap_prefix .. "_radius")
-            clear_mod_param(m_cap_prefix .. "_control")
-            clear_mod_param(m_cap_prefix .. "_charge")
-            clear_mod_param(m_cap_prefix .. "_target")
+            sgm_g.clear_mod_param(m_cap_prefix .. "_radius")
+            sgm_g.clear_mod_param(m_cap_prefix .. "_control")
+            sgm_g.clear_mod_param(m_cap_prefix .. "_charge")
+            sgm_g.clear_mod_param(m_cap_prefix .. "_target")
             sgm_flags.string_capture_monster_target = "none"
             sgm_flags.table_m_capture_hits[m_id] = false
             sgm_flags.timer_monster_cap_charge = 0
@@ -592,10 +592,10 @@ function submodule_capture_monster(object)
                sgm_g.change_flag_value("hud_monster_capture_icon_tushkano")
                sgm_g.change_flag_value("hud_monster_capture_icon_pseudodog")
                sgm_g.change_flag_value("hud_monster_capture_icon_snork")
-               clear_mod_param(m_cap_prefix .. "_radius")
-               clear_mod_param(m_cap_prefix .. "_control")
-               clear_mod_param(m_cap_prefix .. "_charge")
-               clear_mod_param(m_cap_prefix .. "_target")
+               sgm_g.clear_mod_param(m_cap_prefix .. "_radius")
+               sgm_g.clear_mod_param(m_cap_prefix .. "_control")
+               sgm_g.clear_mod_param(m_cap_prefix .. "_charge")
+               sgm_g.clear_mod_param(m_cap_prefix .. "_target")
                sgm_flags.string_capture_monster_target = "none"
                sgm_flags.table_m_capture_hits[m_id] = false
                sgm_flags.timer_monster_cap_charge = 0

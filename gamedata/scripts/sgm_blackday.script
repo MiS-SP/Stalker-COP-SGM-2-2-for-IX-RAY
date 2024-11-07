@@ -152,7 +152,7 @@ end
 
 function CBlackDay:show_blackday_info()
    show_hud_message("real=" ..
-      get_general_game_time() ..
+      sgm_g.get_general_game_time() ..
       "|target_time=" .. sgm_g.check_game_timer("blackday_main_timer", true) .. "|weather=" .. level.get_weather())
 end
 

@@ -15,9 +15,9 @@ function respawn_main()
          if sgm_g.dont_has_alife_info("pri_zone_cleaning_" .. level.name() .. "_done") then
             respawn_freeplay()
          end
-         if check_game_timer("pri_zone_cleaning_" .. level.name() .. "_timer") == nil and sgm_g.dont_has_alife_info("pri_zone_cleaning_" .. level.name() .. "_done") then
+         if sgm_g.check_game_timer("pri_zone_cleaning_" .. level.name() .. "_timer") == nil and sgm_g.dont_has_alife_info("pri_zone_cleaning_" .. level.name() .. "_done") then
             sgm_g.start_game_timer("pri_zone_cleaning_" .. level.name() .. "_timer", 3)
-         elseif check_game_timer("pri_zone_cleaning_" .. level.name() .. "_timer") then
+         elseif sgm_g.check_game_timer("pri_zone_cleaning_" .. level.name() .. "_timer") then
             give_info("pri_zone_cleaning_" .. level.name() .. "_done")
             abort_game_timer("pri_zone_cleaning_" .. level.name() .. "_timer")
          end
