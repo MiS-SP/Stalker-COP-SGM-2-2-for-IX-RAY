@@ -7,22 +7,20 @@ function condlist(id, field, p)
 	local parsed_condlist = xr_logic.parse_condlist(nil, "task", "task_condlist", cond_string)
 	return xr_logic.pick_section_from_condlist(get_story_object("actor"), nil, parsed_condlist)
 end
-
 function zat_b29_adv_title(id, field, p)
 	local actor = get_story_object("actor")
 	for i = 16, 23 do
 		if (has_alife_info(dialogs_zaton.zat_b29_infop_bring_table[i]) and actor:object(dialogs_zaton.zat_b29_af_table[i])) then
-			title = "zat_b29_simple_bring_title_" .. i
+			title = "zat_b29_simple_bring_title_"..i
 			break
 		elseif has_alife_info(dialogs_zaton.zat_b29_infop_bring_table[i]) then
-			title = "zat_b29_simple_find_title_" .. i
+			title = "zat_b29_simple_find_title_"..i
 			break
 		end
 	end
 
 	return title
 end
-
 function zat_b29_adv_descr(id, field, p)
 	local descr
 	local f_af = 0
@@ -51,34 +49,31 @@ function zat_b29_adv_descr(id, field, p)
 				return descr
 			elseif has_alife_info("zat_b29_stalker_rival_2_found_af") and has_alife_info("zat_b29_second_rival_taken_out") and f_af ~= 0 then
 				return descr
-			elseif has_alife_info("zat_b29_linker_take_af_from_rival") then
-				descr = "zat_b29_simple_find_text_4"
-			elseif has_alife_info("zat_b29_stalkers_rivals_found_af") then
-				descr = "zat_b29_simple_find_text_3"
-			elseif has_alife_info("zat_b29_rivals_search") and has_alife_info("zat_b29_exclusive_conditions") then
-				descr = "zat_b29_simple_find_text_1"
-			elseif has_alife_info("zat_b29_rivals_search") then
-				descr = "zat_b29_simple_find_text_2"
-			end
+				elseif has_alife_info("zat_b29_linker_take_af_from_rival") then
+					descr = "zat_b29_simple_find_text_4"
+				elseif has_alife_info("zat_b29_stalkers_rivals_found_af") then
+					descr = "zat_b29_simple_find_text_3"
+				elseif has_alife_info("zat_b29_rivals_search") and has_alife_info("zat_b29_exclusive_conditions") then
+					descr = "zat_b29_simple_find_text_1"
+				elseif has_alife_info("zat_b29_rivals_search") then
+					descr = "zat_b29_simple_find_text_2"
+				end
 			break
 		end
 	end
 
 	return descr
 end
-
 function surge_task_title(id, field, p)
-	if (surge_manager.actor_in_cover()) then
+	if(surge_manager.actor_in_cover()) then
 		return "hide_from_surge_name_2"
 	else
 		return "hide_from_surge_name_1"
 	end
 end
-
 function surge_task_descr(id, field, p)
 	return surge_manager.get_task_descr()
 end
-
 --'*************************************************************************************
 --' ‘ункторы цели квеста (должны возвращать id персонажа)
 --'*************************************************************************************
@@ -88,27 +83,26 @@ function target_condlist(id, field, p)
 	local value = xr_logic.pick_section_from_condlist(get_story_object("actor"), nil, parsed_condlist)
 	if value == nil then
 		return nil
-	end
+        end
 	local target_obj_id = get_story_object_id(value)
 	if target_obj_id == nil then
 	end
 	return target_obj_id
 end
-
 function zat_b29_adv_target(id, field, p)
 	local target_obj_id = "zat_a2_stalker_barmen"
 	local af = nil
 	local actor = get_story_object("actor")
 	for i = 16, 23 do
 		if (has_alife_info(dialogs_zaton.zat_b29_infop_bring_table[i])
-				and actor:object(dialogs_zaton.zat_b29_af_table[i])) then
+			and actor:object(dialogs_zaton.zat_b29_af_table[i])) then
 			af = dialogs_zaton.zat_b29_af_table[i]
 			break
 		end
 	end
-	if (sgm_g.dont_has_alife_info("zat_b29_linker_take_af_from_rival") and has_alife_info("zat_b29_stalkers_rivals_found_af")) then
+	if (dont_has_alife_info("zat_b29_linker_take_af_from_rival") and has_alife_info("zat_b29_stalkers_rivals_found_af")) then
 		if has_alife_info("zat_b29_stalker_rival_1_found_af") then
-			if sgm_g.dont_has_alife_info("zat_b29_first_rival_taken_out") then
+			if dont_has_alife_info("zat_b29_first_rival_taken_out") then
 				if has_alife_info("zat_b29_exclusive_conditions") then
 					target_obj_id = "zat_b29_stalker_rival_1"
 				else
@@ -122,14 +116,14 @@ function zat_b29_adv_target(id, field, p)
 				end
 			end
 		elseif has_alife_info("zat_b29_stalker_rival_2_found_af") then
-			if sgm_g.dont_has_alife_info("zat_b29_second_rival_taken_out") then
+			if dont_has_alife_info("zat_b29_second_rival_taken_out") then
 				if has_alife_info("zat_b29_exclusive_conditions") then
 					target_obj_id = "zat_b29_stalker_rival_2"
 				else
 					target_obj_id = "zat_b29_stalker_rival_default_2"
 				end
 			elseif af == nil then
-				if has_alife_info("zat_b29_exclusive_conditions") then
+ 				if has_alife_info("zat_b29_exclusive_conditions") then
 					target_obj_id = "zat_b29_stalker_rival_2"
 				else
 					target_obj_id = "zat_b29_stalker_rival_default_2"
@@ -145,21 +139,16 @@ function zat_b29_adv_target(id, field, p)
 
 	return nil
 end
-
 function surge_task_target(id, field, p)
 	return surge_manager.get_task_target()
 end
-
 --'*************************************************************************************
 --' ƒописка к описани€м и заголовкам квестов от SGM
 --'*************************************************************************************
 function pri_zone_cleaning_end()
-	if sgm_g.read_mod_param("zone_cleaning_value") ~= nil then
-		return "\\n" ..
-			game.translate_string("st_pri_zone_cleaning_add") ..
-			" " ..
-			sgm_g.read_mod_param("zone_cleaning_value") .. " " .. game.translate_string("st_pri_zone_cleaning_add2")
-	else
-		return ""
-	end
+   if read_mod_param("zone_cleaning_value")~=nil then
+      return "\\n"..game.translate_string("st_pri_zone_cleaning_add").." "..read_mod_param("zone_cleaning_value").." "..game.translate_string("st_pri_zone_cleaning_add2")
+   else
+      return ""
+   end
 end

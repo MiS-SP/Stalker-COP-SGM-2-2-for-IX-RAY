@@ -5,70 +5,70 @@
 ---==================================================================================================---
 --' Наложение метки при спауне обьекта.
 local on_create_table = {
-   { "mar_mine_sensor_passage_spot", "st_help_point_spot_name", sgm_flags.spot_help_point },
-   { "jup_rasvet_base_spot",         "st_rasvet_base_name",     sgm_flags.spot_stalker_base },
-   { "jup_killer_base_spot",         "st_killer_base_name",     sgm_flags.spot_stalker_base }
+{"mar_mine_sensor_passage_spot","st_help_point_spot_name",sgm_flags.spot_help_point},
+{"jup_rasvet_base_spot","st_rasvet_base_name",sgm_flags.spot_stalker_base},
+{"jup_killer_base_spot","st_killer_base_name",sgm_flags.spot_stalker_base}
 }
 --' Наложение метки при определенных обстоятельствах.
 local spots_control_table = {
-   { "zat_stalker_elbrus",                 "zat_stalker_elbrus_name",            sgm_flags.spot_quest_person,     "its_quest_var1", "zat_assault_bandit_base_complete",                  "zat_assault_bandit_base_fail" },
-   { "zat_wounded_monolith",               "st_main_npc_name",                   sgm_flags.spot_job_person,       "its_quest_var1", "zat_deliver_monolith_case_start",                   "zat_deliver_monolith_case_nepomog" },
-   { "zat_stalker_avenger",                "st_main_npc_name",                   sgm_flags.spot_job_person,       "its_quest",      "zat_danger_parcel_start" },
-   { "zat_rasvet_quest_homsa_leader",      "zat_rasvet_quest_homsa_leader_name", sgm_flags.spot_quest_person,     "its_quest",      "zat_rassvet_homsa_ready_to_attack" },
-   { "jup_rasvet_polter_quest_skaut",      "jup_rasvet_polter_quest_skaut_name", sgm_flags.spot_quest_person,     "its_quest",      "jup_rasvet_polter_skauts_to_returned" },
-   { "pri_army_fenix",                     "pri_army_fenix_name",                sgm_flags.spot_job_person,       "its_quest",      "pri_fenix_vendetta_start" },
-   { "val_night_zam_leader_kolmogor",      "st_main_npc_name",                   sgm_flags.spot_job_person,       "its_quest",      "val_zam_quest_1_otkazal",                           "val_freedom_spez_agent_lucas_talking_dolg" },
-   { "val_night_zam_leader_kolmogor_2",    "st_main_npc_name",                   sgm_flags.spot_job_person,       "its_quest",      "val_second_kolmogor_metka_destroy" },
-   { "val_freedom_spez_agent_lucas",       "val_freedom_spez_agent_lucas_name",  sgm_flags.spot_quest_person,     "its_quest",      "val_freedom_spez_agent_lucas_talking_all_dolg_dead" },
-   { "val_freedom_spez_agent_lucas_2",     "val_freedom_spez_agent_lucas_name",  sgm_flags.spot_quest_person,     "its_quest",      "val_second_kolmogor_metka_destroy" },
-   { "zat_barge_commander",                "zat_barge_commander_name",           sgm_flags.spot_quest_person,     "its_quest_var1", "zat_monsters_wave_3_controller_destroyed",          "zat_monsters_wave_fail" },
-   { "val_b2_leviafan",                    "val_b2_leviafan_name",               sgm_flags.spot_job_person,       "its_quest_var1", "val_secret_development_complete",                   "val_alt_storyline_commenced" },
-   { "jup_stalker_gromoboy",               "st_main_npc_name",                   sgm_flags.spot_job_person,       "its_quest",      "jup_find_gromoboy_vintar_fake_loot" },
-   { "jup_follower_scientist_1",           "st_main_npc_name",                   sgm_flags.spot_job_person,       "its_quest_var1", "jup_follow_scientists_nachinaem",                   "jup_follower_scientist_actor_hit" },
-   { "jup_witnesses_hostage",              "jup_witnesses_hostage_name",         sgm_flags.spot_quest_person,     "its_quest",      "jup_avoid_witnesses_safety" },
-   { "pri_monolit_brother_leader",         "pri_monolith_brother_name",          sgm_flags.spot_quest_person,     "its_quest_var2", "pri_expiation_sin_3_say_kiborg_about_retranslator", "pri_expiation_sin_3_enemy_destroyed",      "pri_expiation_sin_3_fail" },
-   { "pri_monolith_library_base_mechanic", "st_ui_pda_legend_mechanic",          "ui_pda2_mechanic_location",     "its_special",    "actor_entry_in_monolith" },
-   { "esc_b1_stalker_mechanic",            "st_ui_pda_legend_mechanic",          "ui_pda2_mechanic_location",     "its_other" },
-   { "mar_b2_stalker_mechanic",            "st_ui_pda_legend_mechanic",          "ui_pda2_mechanic_location",     "its_other" },
-   { "zat_stalker_bodyguard",              "st_bodyguard_name",                  sgm_flags.spot_actor_guard,      "its_bodyguard",  2100 },
-   { "zat_bandit_bodyguard",               "st_bodyguard_name",                  sgm_flags.spot_actor_guard,      "its_bodyguard",  2300 },
-   { "jup_freedom_bodyguard",              "st_bodyguard_name",                  sgm_flags.spot_actor_guard,      "its_bodyguard",  3600 },
-   { "jup_army_bodyguard",                 "st_bodyguard_name",                  sgm_flags.spot_actor_guard,      "its_bodyguard",  4000 },
-   { "jup_killer_bodyguard",               "st_bodyguard_name",                  sgm_flags.spot_actor_guard,      "its_bodyguard",  3800 },
-   { "pri_army_bodyguard",                 "st_bodyguard_name",                  sgm_flags.spot_actor_guard,      "its_bodyguard",  5000 },
-   { "pri_monolith_bodyguard",             "st_bodyguard_name",                  sgm_flags.spot_actor_guard,      "its_bodyguard",  6000 },
-   { "zat_stalker_trader",                 "st_trader_name",                     sgm_flags.spot_unique_trader,    "its_trader",     2 },
-   { "zat_bandit_trader",                  "st_trader_name",                     sgm_flags.spot_unique_trader,    "its_trader",     2 },
-   { "jup_freedom_trader",                 "st_trader_name",                     sgm_flags.spot_unique_trader,    "its_trader",     3 },
-   { "jup_rasvet_trader",                  "st_trader_name",                     sgm_flags.spot_unique_trader,    "its_trader",     2 },
-   { "jup_ecolog_trader",                  "st_trader_name",                     sgm_flags.spot_unique_trader,    "its_trader",     1 },
-   { "jup_killer_base_trader",             "st_trader_name",                     sgm_flags.spot_unique_trader,    "its_trader",     3 },
-   { "pri_army_trader",                    "st_trader_name",                     sgm_flags.spot_unique_trader,    "its_trader",     2 },
-   { "pri_monolit_base_trader",            "st_trader_name",                     sgm_flags.spot_unique_trader,    "its_trader",     2 },
-   { "val_b2_trader",                      "st_trader_name",                     sgm_flags.spot_unique_trader,    "its_trader",     0 },
-   { "mil_b7_trader",                      "st_trader_name",                     sgm_flags.spot_unique_trader,    "its_trader",     2 },
-   { "esc_stalker_trader",                 "trader",                             "ui_pda2_trader_location",       "its_special",    "esc_renew_spares_start" },
-   { "mar_stalker_trader",                 "trader",                             "ui_pda2_trader_location",       "its_special",    "mar_capture_church_talk" },
-   { "zat_bandit_informer",                "st_informer_name",                   sgm_flags.spot_info_dealer,      "its_informer" },
-   { "zat_stalker_bankir",                 "st_bankir_name",                     sgm_flags.spot_cash_keeper,      "its_bankir",     "true" },
-   { "jup_stalker_bankir",                 "st_bankir_name",                     sgm_flags.spot_cash_keeper,      "its_bankir",     "true" },
-   { "pri_army_bankir",                    "st_bankir_name",                     sgm_flags.spot_cash_keeper,      "its_bankir",     "true" },
-   { "mil_b7_bankir",                      "st_bankir_name",                     sgm_flags.spot_cash_keeper,      "its_bankir",     "true" },
-   { "zat_stalker_breeder",                "st_breeder_name",                    sgm_flags.spot_artefact_chemist, "its_breeder",    "st_af_type_1" },
-   { "jup_stalker_breeder",                "st_breeder_name",                    sgm_flags.spot_artefact_chemist, "its_breeder",    "st_af_type_2" },
-   { "jup_ecolog_breeder",                 "st_breeder_name",                    sgm_flags.spot_artefact_chemist, "its_breeder",    "st_af_type_3" },
-   { "pri_army_breeder",                   "st_breeder_name",                    sgm_flags.spot_artefact_chemist, "its_breeder",    "st_af_type_all" },
-   { "zat_stalker_member",                 "st_base_boss_name",                  sgm_flags.spot_base_commander,   "its_boss",       "none" },
-   { "zat_bandit_base_leader",             "st_base_boss_name",                  sgm_flags.spot_base_commander,   "its_boss",       "none" },
-   { "jup_rasvet_base_leader",             "st_base_boss_name",                  sgm_flags.spot_base_commander,   "its_boss",       "none" },
-   { "jup_killer_base_leader",             "st_base_boss_name",                  sgm_flags.spot_base_commander,   "its_boss",       "none" },
-   { "pri_monolit_base_leader",            "st_base_boss_name",                  sgm_flags.spot_base_commander,   "its_boss",       "none" },
-   { "esc_stalker_employer",               "st_employer_name",                   sgm_flags.spot_employer,         "its_employer" },
-   { "zat_stalker_employer",               "st_employer_name",                   sgm_flags.spot_employer,         "its_employer" },
-   { "jup_dolg_employer",                  "st_employer_name",                   sgm_flags.spot_employer,         "its_employer" },
-   { "pri_army_employer",                  "st_employer_name",                   sgm_flags.spot_employer,         "its_employer" },
-   { "val_b2_employer",                    "st_employer_name",                   sgm_flags.spot_employer,         "its_employer" },
-   { "mil_b7_employer",                    "st_employer_name",                   sgm_flags.spot_employer,         "its_employer" }
+{"zat_stalker_elbrus","zat_stalker_elbrus_name",sgm_flags.spot_quest_person,"its_quest_var1","zat_assault_bandit_base_complete","zat_assault_bandit_base_fail"},
+{"zat_wounded_monolith","st_main_npc_name",sgm_flags.spot_job_person,"its_quest_var1","zat_deliver_monolith_case_start","zat_deliver_monolith_case_nepomog"},
+{"zat_stalker_avenger","st_main_npc_name",sgm_flags.spot_job_person,"its_quest","zat_danger_parcel_start"},
+{"zat_rasvet_quest_homsa_leader","zat_rasvet_quest_homsa_leader_name",sgm_flags.spot_quest_person,"its_quest","zat_rassvet_homsa_ready_to_attack"},
+{"jup_rasvet_polter_quest_skaut","jup_rasvet_polter_quest_skaut_name",sgm_flags.spot_quest_person,"its_quest","jup_rasvet_polter_skauts_to_returned"},
+{"pri_army_fenix","pri_army_fenix_name",sgm_flags.spot_job_person,"its_quest","pri_fenix_vendetta_start"},
+{"val_night_zam_leader_kolmogor","st_main_npc_name",sgm_flags.spot_job_person,"its_quest","val_zam_quest_1_otkazal","val_freedom_spez_agent_lucas_talking_dolg"},
+{"val_night_zam_leader_kolmogor_2","st_main_npc_name",sgm_flags.spot_job_person,"its_quest","val_second_kolmogor_metka_destroy"},
+{"val_freedom_spez_agent_lucas","val_freedom_spez_agent_lucas_name",sgm_flags.spot_quest_person,"its_quest","val_freedom_spez_agent_lucas_talking_all_dolg_dead"},
+{"val_freedom_spez_agent_lucas_2","val_freedom_spez_agent_lucas_name",sgm_flags.spot_quest_person,"its_quest","val_second_kolmogor_metka_destroy"},
+{"zat_barge_commander","zat_barge_commander_name",sgm_flags.spot_quest_person,"its_quest_var1","zat_monsters_wave_3_controller_destroyed","zat_monsters_wave_fail"},
+{"val_b2_leviafan","val_b2_leviafan_name",sgm_flags.spot_job_person,"its_quest_var1","val_secret_development_complete","val_alt_storyline_commenced"},
+{"jup_stalker_gromoboy","st_main_npc_name",sgm_flags.spot_job_person,"its_quest","jup_find_gromoboy_vintar_fake_loot"},
+{"jup_follower_scientist_1","st_main_npc_name",sgm_flags.spot_job_person,"its_quest_var1","jup_follow_scientists_nachinaem","jup_follower_scientist_actor_hit"},
+{"jup_witnesses_hostage","jup_witnesses_hostage_name",sgm_flags.spot_quest_person,"its_quest","jup_avoid_witnesses_safety"},
+{"pri_monolit_brother_leader","pri_monolith_brother_name",sgm_flags.spot_quest_person,"its_quest_var2","pri_expiation_sin_3_say_kiborg_about_retranslator","pri_expiation_sin_3_enemy_destroyed","pri_expiation_sin_3_fail"},
+{"pri_monolith_library_base_mechanic","st_ui_pda_legend_mechanic","ui_pda2_mechanic_location","its_special","actor_entry_in_monolith"},
+{"esc_b1_stalker_mechanic","st_ui_pda_legend_mechanic","ui_pda2_mechanic_location","its_other"},
+{"mar_b2_stalker_mechanic","st_ui_pda_legend_mechanic","ui_pda2_mechanic_location","its_other"},
+{"zat_stalker_bodyguard","st_bodyguard_name",sgm_flags.spot_actor_guard,"its_bodyguard",2100},
+{"zat_bandit_bodyguard","st_bodyguard_name",sgm_flags.spot_actor_guard,"its_bodyguard",2300},
+{"jup_freedom_bodyguard","st_bodyguard_name",sgm_flags.spot_actor_guard,"its_bodyguard",3600},
+{"jup_army_bodyguard","st_bodyguard_name",sgm_flags.spot_actor_guard,"its_bodyguard",4000},
+{"jup_killer_bodyguard","st_bodyguard_name",sgm_flags.spot_actor_guard,"its_bodyguard",3800},
+{"pri_army_bodyguard","st_bodyguard_name",sgm_flags.spot_actor_guard,"its_bodyguard",5000},
+{"pri_monolith_bodyguard","st_bodyguard_name",sgm_flags.spot_actor_guard,"its_bodyguard",6000},
+{"zat_stalker_trader","st_trader_name",sgm_flags.spot_unique_trader,"its_trader",2},
+{"zat_bandit_trader","st_trader_name",sgm_flags.spot_unique_trader,"its_trader",2},
+{"jup_freedom_trader","st_trader_name",sgm_flags.spot_unique_trader,"its_trader",3},
+{"jup_rasvet_trader","st_trader_name",sgm_flags.spot_unique_trader,"its_trader",2},
+{"jup_ecolog_trader","st_trader_name",sgm_flags.spot_unique_trader,"its_trader",1},
+{"jup_killer_base_trader","st_trader_name",sgm_flags.spot_unique_trader,"its_trader",3},
+{"pri_army_trader","st_trader_name",sgm_flags.spot_unique_trader,"its_trader",2},
+{"pri_monolit_base_trader","st_trader_name",sgm_flags.spot_unique_trader,"its_trader",2},
+{"val_b2_trader","st_trader_name",sgm_flags.spot_unique_trader,"its_trader",0},
+{"mil_b7_trader","st_trader_name",sgm_flags.spot_unique_trader,"its_trader",2},
+{"esc_stalker_trader","trader","ui_pda2_trader_location","its_special","esc_renew_spares_start"},
+{"mar_stalker_trader","trader","ui_pda2_trader_location","its_special","mar_capture_church_talk"},
+{"zat_bandit_informer","st_informer_name",sgm_flags.spot_info_dealer,"its_informer"},
+{"zat_stalker_bankir","st_bankir_name",sgm_flags.spot_cash_keeper,"its_bankir","true"},
+{"jup_stalker_bankir","st_bankir_name",sgm_flags.spot_cash_keeper,"its_bankir","true"},
+{"pri_army_bankir","st_bankir_name",sgm_flags.spot_cash_keeper,"its_bankir","true"},
+{"mil_b7_bankir","st_bankir_name",sgm_flags.spot_cash_keeper,"its_bankir","true"},
+{"zat_stalker_breeder","st_breeder_name",sgm_flags.spot_artefact_chemist,"its_breeder","st_af_type_1"},
+{"jup_stalker_breeder","st_breeder_name",sgm_flags.spot_artefact_chemist,"its_breeder","st_af_type_2"},
+{"jup_ecolog_breeder","st_breeder_name",sgm_flags.spot_artefact_chemist,"its_breeder","st_af_type_3"},
+{"pri_army_breeder","st_breeder_name",sgm_flags.spot_artefact_chemist,"its_breeder","st_af_type_all"},
+{"zat_stalker_member","st_base_boss_name",sgm_flags.spot_base_commander,"its_boss","none"},
+{"zat_bandit_base_leader","st_base_boss_name",sgm_flags.spot_base_commander,"its_boss","none"},
+{"jup_rasvet_base_leader","st_base_boss_name",sgm_flags.spot_base_commander,"its_boss","none"},
+{"jup_killer_base_leader","st_base_boss_name",sgm_flags.spot_base_commander,"its_boss","none"},
+{"pri_monolit_base_leader","st_base_boss_name",sgm_flags.spot_base_commander,"its_boss","none"},
+{"esc_stalker_employer","st_employer_name",sgm_flags.spot_employer,"its_employer"},
+{"zat_stalker_employer","st_employer_name",sgm_flags.spot_employer,"its_employer"},
+{"jup_dolg_employer","st_employer_name",sgm_flags.spot_employer,"its_employer"},
+{"pri_army_employer","st_employer_name",sgm_flags.spot_employer,"its_employer"},
+{"val_b2_employer","st_employer_name",sgm_flags.spot_employer,"its_employer"},
+{"mil_b7_employer","st_employer_name",sgm_flags.spot_employer,"its_employer"}
 }
 ------------------------------------------------------------------------------
 --                            Главные модули                                --
@@ -76,619 +76,537 @@ local spots_control_table = {
 function module_actor(object)
    submodule_mines_control(object)
 end
-
-function module_npc(object, type, extra_val)
-   if type == 1 then
+function module_npc(object,type,extra_val)
+   if type==1 then
       submodule_mines_control(object)
       submodule_granade_prohibition(object)
       submodule_spots_control(object)
       submodule_profile_checker(object)
       submodule_vision_range(object)
-      submodule_section_cfg(object, "npc")
-   elseif type == 2 then
-      submodule_vision_range_flashlight(object, extra_val)
+      submodule_section_cfg(object,"npc")
+   elseif type==2 then
+      submodule_vision_range_flashlight(object,extra_val)
    end
 end
-
 function module_monster(object)
    submodule_mines_control(object)
    submodule_capture_monster(object)
-   submodule_section_cfg(object, "monster")
+   submodule_section_cfg(object,"monster")
    if object:alive() then
       submodule_particle_control(object)
       submodule_aura_inactivity(object)
    end
 end
-
 function module_squad(object)
    submodule_alfa_control(object)
 end
-
 function module_smart_terrain(object)
    submodule_smart_terrain_control(object)
 end
-
 function module_physic_object(object)
    sgm_utilizator.utilizator_checker(object)
    sgm_mechanics.mechanic_box_checker(object)
    sgm_callbacks.on_update_inventory_box(object)
    submodule_inventory_box_control(object)
-   submodule_section_cfg(object, "physic_object")
+   submodule_section_cfg(object,"physic_object")
 end
-
 function module_artefact(object)
    submodule_artefact_control(object)
-   submodule_section_cfg(object, "artefact")
+   submodule_section_cfg(object,"artefact")
 end
-
 function module_anomaly_field(object)
    submodule_anomaly_control(object)
 end
-
 function module_anomaly_zone(object)
 end
-
 ------------------------------------------------------------------------------
 --                      Вспомогательные модули                              --
 ------------------------------------------------------------------------------
-function submodule_section_cfg(object, type)
-   if type == "npc" or type == "monster" then
-      local get_spot = sgm_functions.ReadSpot(object:section())
-      if object:alive() and sgm_g.exists(get_spot) then
-         local spot_cfg = sgm_functions.check_section_stick(system_ini(), object:section(), "spot", nil)
-         if sgm_g.exists(spot_cfg[3]) and has_alife_info(tostring(spot_cfg[3])) then
-            sgm_g.add_spot_on_map(object:id(), tostring(spot_cfg[1]), tostring(spot_cfg[2]))
-         elseif sgm_g.exists(spot_cfg[4]) then
+function submodule_section_cfg(object,type)
+   if type=="npc" or type=="monster" then
+      local get_spot=sgm_functions.ReadSpot(object:section())
+      if object:alive() and exists(get_spot) then
+         local spot_cfg=sgm_functions.check_section_stick(system_ini(),object:section(),"spot",nil)
+         if exists(spot_cfg[3]) and has_alife_info(tostring(spot_cfg[3])) then
+            add_spot_on_map(object:id(),tostring(spot_cfg[1]),tostring(spot_cfg[2]))
+         elseif exists(spot_cfg[4]) then
             if has_alife_info(tostring(spot_cfg[4])) then
-               sgm_g.remove_spot_on_map(object:id(), tostring(spot_cfg[1]))
+               remove_spot_on_map(object:id(),tostring(spot_cfg[1]))
             else
-               sgm_g.add_spot_on_map(object:id(), tostring(spot_cfg[1]), tostring(spot_cfg[2]))
+               add_spot_on_map(object:id(),tostring(spot_cfg[1]),tostring(spot_cfg[2]))
             end
-         elseif (not sgm_g.exists(spot_cfg[3])) and (not sgm_g.exists(spot_cfg[4])) then
-            sgm_g.add_spot_on_map(object:id(), tostring(spot_cfg[1]), tostring(spot_cfg[2]))
+         elseif (not exists(spot_cfg[3])) and (not exists(spot_cfg[4])) then
+            add_spot_on_map(object:id(),tostring(spot_cfg[1]),tostring(spot_cfg[2]))
          end
       end
-      local get_online_cond = sgm_functions.ReadOnlineCond(object:section())
-      if object:alive() and sgm_g.exists(get_online_cond) then
-         local online_cond = sgm_functions.check_string_condlist(get_online_cond)
-         if online_cond == "false" or not online_cond then
-            sgm_offline.queue_on_offline(object:id(), get_online_cond)
+      local get_online_cond=sgm_functions.ReadOnlineCond(object:section())
+      if object:alive() and exists(get_online_cond) then
+         local online_cond=sgm_functions.check_string_condlist(get_online_cond)
+         if online_cond=="false" or not online_cond then
+            sgm_offline.queue_on_offline(object:id(),get_online_cond)
          end
       end
    end
 end
-
 function submodule_particle_control(object)
-   local particle_name = sgm_functions.ReadParticleName(object:section())
-   local particle_bone = sgm_functions.ReadParticleBone(object:section())
-   local particle_sound = sgm_functions.ReadParticleSound(object:section())
+   local particle_name=sgm_functions.ReadParticleName(object:section())
+   local particle_bone=sgm_functions.ReadParticleBone(object:section())
+   local particle_sound=sgm_functions.ReadParticleSound(object:section())
    if particle_name then
-      sgm_particle.particle_attach({
-         obj = object,
-         bone = particle_bone,
-         particle = particle_name,
-         looped = true,
-         snd =
-             particle_sound,
-         snd_looped = true
-      })
+      sgm_particle.particle_attach({obj=object,bone=particle_bone,particle=particle_name,looped=true,snd=particle_sound,snd_looped=true})
    end
    sgm_particle.particle_update(object:id())
 end
-
 function submodule_spots_control(object)
-   local npc = object
-   local npc_id = object:id()
-   local get_profile = object:profile_name()
-   local percent_data = sgm_g.read_mod_param("bankir_deposit_percent")
-   local deposit_data = sgm_g.read_mod_param("bankir_deposit_cash")
-   if sgm_g.check_seconds(2) then
-      for k, v in pairs(spots_control_table) do
-         if get_profile == v[1] then
-            if distance_between_safe(db.actor, npc) > 140 or (not npc:alive()) then
-               sgm_g.remove_spot_on_map(npc_id, v[3])
-            elseif distance_between_safe(db.actor, npc) <= 140 and npc:alive() then
-               if v[4] == "its_bodyguard" then
-                  sgm_g.add_spot_on_map(npc_id, v[3],
-                     game.translate_string(v[2]) ..
-                     "\\n" ..
-                     game.translate_string("st_bodyguard_price") ..
-                     " " .. v[5] .. " " .. game.translate_string("st_bodyguard_price_ru"))
-               elseif v[4] == "its_trader" then
-                  sgm_g.add_spot_on_map(npc_id, v[3],
-                     game.translate_string(npc:character_community()) ..
-                     "\\n" ..
-                     game.translate_string(v[2]) .. "\\n" .. game.translate_string("st_trader_order_count") .. " " ..
-                     v[5])
-               elseif v[4] == "its_bankir" then
-                  if percent_data ~= nil and deposit_data ~= nil and deposit_data ~= 0 and percent_data ~= 0 then
-                     sgm_g.add_spot_on_map(npc_id, v[3],
-                        game.translate_string(npc:character_community()) ..
-                        "\\n" ..
-                        game.translate_string(v[2]) ..
-                        "\\n" ..
-                        game.translate_string("st_bankir_deposit_title") ..
-                        " " .. deposit_data .. "\\n" ..
-                        game.translate_string("st_bankir_percent_title") .. " " .. percent_data)
-                  else
-                     sgm_g.add_spot_on_map(npc_id, v[3],
-                        game.translate_string(npc:character_community()) .. "\\n" .. game.translate_string(v[2]))
-                  end
-               elseif v[4] == "its_breeder" then
-                  sgm_g.add_spot_on_map(npc_id, v[3],
-                     game.translate_string(npc:character_community()) ..
-                     "\\n" .. game.translate_string(v[2]) .. "\\n" .. game.translate_string(v[5]))
-               elseif v[4] == "its_informer" then
-                  sgm_g.add_spot_on_map(npc_id, v[3],
-                     game.translate_string(npc:character_community()) .. "\\n" .. game.translate_string(v[2]))
-               elseif v[4] == "its_employer" then
-                  sgm_g.add_spot_on_map(npc_id, v[3],
-                     game.translate_string(npc:character_community()) .. "\\n" .. game.translate_string(v[2]))
-               elseif v[4] == "its_boss" then
-                  sgm_g.add_spot_on_map(npc_id, v[3],
-                     game.translate_string(npc:character_community()) .. "\\n" .. game.translate_string(v[2]))
-               elseif v[4] == "its_quest" then
-                  if sgm_g.dont_has_alife_info(v[5]) then
-                     sgm_g.add_spot_on_map(npc_id, v[3],
-                        game.translate_string(npc:character_community()) .. "\\n" .. game.translate_string(v[2]))
-                  else
-                     sgm_g.remove_spot_on_map(npc_id, v[3])
-                  end
-               elseif v[4] == "its_quest_var1" then
-                  if sgm_g.dont_has_alife_info(v[5]) and sgm_g.dont_has_alife_info(v[6]) then
-                     sgm_g.add_spot_on_map(npc_id, v[3],
-                        game.translate_string(npc:character_community()) .. "\\n" .. game.translate_string(v[2]))
-                  else
-                     sgm_g.remove_spot_on_map(npc_id, v[3])
-                  end
-               elseif v[4] == "its_quest_var2" then
-                  if has_alife_info(v[5]) and sgm_g.dont_has_alife_info(v[6]) and sgm_g.dont_has_alife_info(v[7]) then
-                     sgm_g.add_spot_on_map(npc_id, v[3],
-                        game.translate_string(npc:character_community()) .. "\\n" .. game.translate_string(v[2]))
-                  else
-                     sgm_g.remove_spot_on_map(npc_id, v[3])
-                  end
-               elseif v[4] == "its_special" then
-                  if has_alife_info(v[5]) then
-                     sgm_g.add_spot_on_map(npc_id, v[3], game.translate_string(v[2]))
-                  else
-                     sgm_g.remove_spot_on_map(npc_id, v[3])
-                  end
-               elseif v[4] == "its_other" then
-                  sgm_g.add_spot_on_map(npc_id, v[3],
-                     game.translate_string(npc:character_community()) .. "\\n" .. game.translate_string(v[2]))
+   local npc=object
+   local npc_id=object:id()
+   local get_profile=object:profile_name()
+   local percent_data=read_mod_param("bankir_deposit_percent")
+   local deposit_data=read_mod_param("bankir_deposit_cash")
+   if check_seconds(2) then
+    for k,v in pairs(spots_control_table) do
+      if get_profile==v[1] then
+         if distance_between_safe(db.actor,npc)>140 or (not npc:alive()) then
+            remove_spot_on_map(npc_id,v[3])
+         elseif distance_between_safe(db.actor,npc)<=140 and npc:alive() then
+            if v[4]=="its_bodyguard" then
+               add_spot_on_map(npc_id,v[3],game.translate_string(v[2]).."\\n"..game.translate_string("st_bodyguard_price").." "..v[5].." "..game.translate_string("st_bodyguard_price_ru"))
+            elseif v[4]=="its_trader" then
+               add_spot_on_map(npc_id,v[3],game.translate_string(npc:character_community()).."\\n"..game.translate_string(v[2]).."\\n"..game.translate_string("st_trader_order_count").." "..v[5])
+            elseif v[4]=="its_bankir" then
+               if percent_data~=nil and deposit_data~=nil and deposit_data~=0 and percent_data~=0 then
+                  add_spot_on_map(npc_id,v[3],game.translate_string(npc:character_community()).."\\n"..game.translate_string(v[2]).."\\n"..game.translate_string("st_bankir_deposit_title").." "..deposit_data.."\\n"..game.translate_string("st_bankir_percent_title").." "..percent_data)
+               else
+                  add_spot_on_map(npc_id,v[3],game.translate_string(npc:character_community()).."\\n"..game.translate_string(v[2]))
                end
+            elseif v[4]=="its_breeder" then
+               add_spot_on_map(npc_id,v[3],game.translate_string(npc:character_community()).."\\n"..game.translate_string(v[2]).."\\n"..game.translate_string(v[5]))
+            elseif v[4]=="its_informer" then
+               add_spot_on_map(npc_id,v[3],game.translate_string(npc:character_community()).."\\n"..game.translate_string(v[2]))
+            elseif v[4]=="its_employer" then
+               add_spot_on_map(npc_id,v[3],game.translate_string(npc:character_community()).."\\n"..game.translate_string(v[2]))
+            elseif v[4]=="its_boss" then
+               add_spot_on_map(npc_id,v[3],game.translate_string(npc:character_community()).."\\n"..game.translate_string(v[2]))
+            elseif v[4]=="its_quest" then
+               if dont_has_alife_info(v[5]) then
+                  add_spot_on_map(npc_id,v[3],game.translate_string(npc:character_community()).."\\n"..game.translate_string(v[2]))
+               else
+                  remove_spot_on_map(npc_id,v[3])
+               end
+            elseif v[4]=="its_quest_var1" then
+               if dont_has_alife_info(v[5]) and dont_has_alife_info(v[6]) then
+                  add_spot_on_map(npc_id,v[3],game.translate_string(npc:character_community()).."\\n"..game.translate_string(v[2]))
+               else
+                  remove_spot_on_map(npc_id,v[3])
+               end
+            elseif v[4]=="its_quest_var2" then
+               if has_alife_info(v[5]) and dont_has_alife_info(v[6]) and dont_has_alife_info(v[7]) then
+                  add_spot_on_map(npc_id,v[3],game.translate_string(npc:character_community()).."\\n"..game.translate_string(v[2]))
+               else
+                  remove_spot_on_map(npc_id,v[3])
+               end
+            elseif v[4]=="its_special" then
+               if has_alife_info(v[5]) then
+                  add_spot_on_map(npc_id,v[3],game.translate_string(v[2]))
+               else
+                  remove_spot_on_map(npc_id,v[3])
+               end
+            elseif v[4]=="its_other" then
+               add_spot_on_map(npc_id,v[3],game.translate_string(npc:character_community()).."\\n"..game.translate_string(v[2]))
             end
          end
       end
+    end
    end
 end
-
 function submodule_inventory_box_control(object)
-   if sgm_g.check_seconds(1) then
-      local add_exceptions = true --/sgm_g.find_out_string(object:section(),"p_secret_7")
+   if check_seconds(1) then
+      local add_exceptions=true --/find_out_string(object:section(),"p_secret_7")
       if has_alife_info("sgm_achievements_pathfinder") then
-         if sgm_g.find_in_string(object:section(), "_secret_") and (sgm_g.find_in_string(object:section(), "_a") or sgm_g.find_in_string(object:section(), "_b") or sgm_g.find_in_string(object:section(), "_c")) and add_exceptions and level.map_has_object_spot(object:id(), sgm_flags.spot_secret_v1) == 0 and object:is_inv_box_empty() == false then
-            sgm_g.add_spot_on_map(object:id(), sgm_flags.spot_secret_v1, "st_taynik_name")
-         elseif sgm_g.find_in_string(object:section(), "_secret_") and (sgm_g.find_in_string(object:section(), "_a") or sgm_g.find_in_string(object:section(), "_b") or sgm_g.find_in_string(object:section(), "_c")) and level.map_has_object_spot(object:id(), sgm_flags.spot_secret_v1) ~= 0 and object:is_inv_box_empty() == true then
-            sgm_g.remove_spot_on_map(object:id(), sgm_flags.spot_secret_v1)
+         if find_in_string(object:section(),"_secret_") and (find_in_string(object:section(),"_a") or find_in_string(object:section(),"_b") or find_in_string(object:section(),"_c")) and add_exceptions and level.map_has_object_spot(object:id(),sgm_flags.spot_secret_v1)==0 and object:is_inv_box_empty()==false then
+            add_spot_on_map(object:id(),sgm_flags.spot_secret_v1,"st_taynik_name")
+         elseif find_in_string(object:section(),"_secret_") and (find_in_string(object:section(),"_a") or find_in_string(object:section(),"_b") or find_in_string(object:section(),"_c")) and level.map_has_object_spot(object:id(),sgm_flags.spot_secret_v1)~=0 and object:is_inv_box_empty()==true then
+            remove_spot_on_map(object:id(),sgm_flags.spot_secret_v1)
          end
       else
-         sgm_g.remove_spot_on_map(object:id(), sgm_flags.spot_secret_v1)
+         remove_spot_on_map(object:id(),sgm_flags.spot_secret_v1)
       end
-      if sgm_g.find_in_string(object:section(), "_secret_") and (sgm_g.find_in_string(object:section(), "_a") or sgm_g.find_in_string(object:section(), "_b") or sgm_g.find_in_string(object:section(), "_c")) and add_exceptions then
-         if sgm_flags.table_mod_secrets[object:name()] == nil then
-            sgm_flags.table_mod_secrets[object:name()] = object:id()
+      if find_in_string(object:section(),"_secret_") and (find_in_string(object:section(),"_a") or find_in_string(object:section(),"_b") or find_in_string(object:section(),"_c")) and add_exceptions then
+         if sgm_flags.table_mod_secrets[object:name()]==nil then
+            sgm_flags.table_mod_secrets[object:name()]=object:id()
          end
       end
    end
 end
-
 function submodule_mines_control(object)
-   if sgm_g.check_seconds(1) and sgm_g.dont_has_alife_info("opt_deactivate_minetrap") and sgm_g.r_mod_params("bool", "create_mines_permition", true) == true then
-      for k, v in pairs(sgm_flags.table_mod_mineraps) do
-         if k ~= nil then
+   if check_seconds(1) and dont_has_alife_info("opt_deactivate_minetrap") and r_mod_params("bool","create_mines_permition",true)==true then
+      for k,v in pairs(sgm_flags.table_mod_mineraps) do
+         if k~=nil then
             if db.actor:object("minetrap_detector") or db.actor:object("minetrap_elite_detector") then
                if db.actor:object("minetrap_elite_detector") then
-                  if level.object_by_id(k) ~= nil and distance_between(level.object_by_id(k), db.actor) <= 145 and level.map_has_object_spot(k, sgm_flags.spot_ground_trap) == 0 then
+                  if level.object_by_id(k)~=nil and distance_between(level.object_by_id(k),db.actor)<=145 and level.map_has_object_spot(k,sgm_flags.spot_ground_trap)==0 then
                      play_snd_at_actor([[ambient\special\marsh_beep_1]])
-                     sgm_g.add_spot_on_map(k, sgm_flags.spot_ground_trap, "st_minetrap_name")
-                  elseif level.object_by_id(k) ~= nil and distance_between(level.object_by_id(k), db.actor) > 145 then
-                     sgm_g.remove_spot_on_map(k, sgm_flags.spot_ground_trap)
+                     add_spot_on_map(k,sgm_flags.spot_ground_trap,"st_minetrap_name")
+                  elseif level.object_by_id(k)~=nil and distance_between(level.object_by_id(k),db.actor)>145 then
+                     remove_spot_on_map(k,sgm_flags.spot_ground_trap)
                   end
                else
-                  if level.object_by_id(k) ~= nil and distance_between(level.object_by_id(k), db.actor) <= 50 and level.map_has_object_spot(k, sgm_flags.spot_ground_trap) == 0 then
+                  if level.object_by_id(k)~=nil and distance_between(level.object_by_id(k),db.actor)<=50 and level.map_has_object_spot(k,sgm_flags.spot_ground_trap)==0 then
                      play_snd_at_actor([[ambient\special\marsh_beep_1]])
-                     sgm_g.add_spot_on_map(k, sgm_flags.spot_ground_trap, "st_minetrap_name")
-                  elseif level.object_by_id(k) ~= nil and distance_between(level.object_by_id(k), db.actor) > 50 then
-                     sgm_g.remove_spot_on_map(k, sgm_flags.spot_ground_trap)
+                     add_spot_on_map(k,sgm_flags.spot_ground_trap,"st_minetrap_name")
+                  elseif level.object_by_id(k)~=nil and distance_between(level.object_by_id(k),db.actor)>50 then
+                     remove_spot_on_map(k,sgm_flags.spot_ground_trap)
                   end
                end
             else
                if alife():object(k) then
-                  sgm_g.remove_spot_on_map(k, sgm_flags.spot_ground_trap)
+                  remove_spot_on_map(k,sgm_flags.spot_ground_trap)
                end
             end
-            if object ~= nil and object:alive() and level.object_by_id(k) ~= nil and distance_between(level.object_by_id(k), object) <= sgm_g.r_mod_params("number", "mine_traps_radius", 4.0) then
-               if sgm_functions.ReadAvoidMines(object:section()) == false then
-                  sgm_g.remove_spot_on_map(k, sgm_flags.spot_ground_trap)
-                  sgm_flags.table_mod_mineraps[k] = true
+            if object~=nil and object:alive() and level.object_by_id(k)~=nil and distance_between(level.object_by_id(k),object)<=r_mod_params("number","mine_traps_radius",4.0) then
+               if sgm_functions.ReadAvoidMines(object:section())==false then
+                  remove_spot_on_map(k,sgm_flags.spot_ground_trap)
+                  sgm_flags.table_mod_mineraps[k]=true
                end
             end
          end
       end
    end
 end
-
 function submodule_anomaly_control(object)
-   if sgm_g.check_seconds(2) then
-      if db.actor ~= nil and (db.actor:object("minetrap_detector") or db.actor:object("minetrap_elite_detector")) then
+   if check_seconds(2) then
+      if db.actor~=nil and (db.actor:object("minetrap_detector") or db.actor:object("minetrap_elite_detector")) then
          if db.actor:object("minetrap_elite_detector") then
-            if sgm_g.find_in_string(object:section(), "_mine_field") and distance_between(object, db.actor) <= 145 and level.map_has_object_spot(object:id(), sgm_flags.spot_ground_trap) == 0 then
+            if find_in_string(object:section(),"_mine_field") and distance_between(object,db.actor)<=145 and level.map_has_object_spot(object:id(),sgm_flags.spot_ground_trap)==0 then
                play_snd_at_actor([[ambient\special\marsh_beep_1]])
-               sgm_g.add_spot_on_map(object:id(), sgm_flags.spot_ground_trap, "st_mine_field_name")
-            elseif sgm_g.find_in_string(object:section(), "_mine_field") and distance_between(object, db.actor) > 145 then
-               sgm_g.remove_spot_on_map(object:id(), sgm_flags.spot_ground_trap)
+               add_spot_on_map(object:id(),sgm_flags.spot_ground_trap,"st_mine_field_name")
+            elseif find_in_string(object:section(),"_mine_field") and distance_between(object,db.actor)>145 then
+               remove_spot_on_map(object:id(),sgm_flags.spot_ground_trap)
             end
          else
-            if sgm_g.find_in_string(object:section(), "_mine_field") and distance_between(object, db.actor) <= 50 and level.map_has_object_spot(object:id(), sgm_flags.spot_ground_trap) == 0 then
+            if find_in_string(object:section(),"_mine_field") and distance_between(object,db.actor)<=50 and level.map_has_object_spot(object:id(),sgm_flags.spot_ground_trap)==0 then
                play_snd_at_actor([[ambient\special\marsh_beep_1]])
-               sgm_g.add_spot_on_map(object:id(), sgm_flags.spot_ground_trap, "st_mine_field_name")
-            elseif sgm_g.find_in_string(object:section(), "_mine_field") and distance_between(object, db.actor) > 50 then
-               sgm_g.remove_spot_on_map(object:id(), sgm_flags.spot_ground_trap)
+               add_spot_on_map(object:id(),sgm_flags.spot_ground_trap,"st_mine_field_name")
+            elseif find_in_string(object:section(),"_mine_field") and distance_between(object,db.actor)>50 then
+               remove_spot_on_map(object:id(),sgm_flags.spot_ground_trap)
             end
          end
       else
-         if sgm_g.find_in_string(object:section(), "_mine_field") then
-            sgm_g.remove_spot_on_map(object:id(), sgm_flags.spot_ground_trap)
+         if find_in_string(object:section(),"_mine_field") then
+            remove_spot_on_map(object:id(),sgm_flags.spot_ground_trap)
          end
       end
    end
-   if sgm_g.check_seconds(1) and has_alife_info("mar_mine_detector_talk") and sgm_g.dont_has_alife_info("mar_army_cargo_complete") then
+   if check_seconds(1) and has_alife_info("mar_mine_detector_talk") and dont_has_alife_info("mar_army_cargo_complete") then
       if db.actor:object("mar_mine_detector") then
-         if sgm_g.find_in_string(object:section(), "_mine_field") and distance_between(object, db.actor) <= 40 and level.map_has_object_spot(object:id(), "mar_mine_trap_location") == 0 then
-            sgm_g.add_spot_on_map(object:id(), "mar_mine_trap_location", "st_mine_field_name")
-         elseif sgm_g.find_in_string(object:section(), "_mine_field") and distance_between(object, db.actor) > 40 then
-            sgm_g.remove_spot_on_map(object:id(), "mar_mine_trap_location")
+         if find_in_string(object:section(),"_mine_field") and distance_between(object,db.actor)<=40 and level.map_has_object_spot(object:id(),"mar_mine_trap_location")==0 then
+            add_spot_on_map(object:id(),"mar_mine_trap_location","st_mine_field_name")
+         elseif find_in_string(object:section(),"_mine_field") and distance_between(object,db.actor)>40 then
+            remove_spot_on_map(object:id(),"mar_mine_trap_location")
          end
       else
-         if sgm_g.find_in_string(object:section(), "_mine_field") then
-            sgm_g.remove_spot_on_map(object:id(), "mar_mine_trap_location")
+         if find_in_string(object:section(),"_mine_field") then
+            remove_spot_on_map(object:id(),"mar_mine_trap_location")
          end
       end
-      if db.actor:object("mar_mine_detector") and distance_between(object, db.actor) <= 5 then
+      if db.actor:object("mar_mine_detector") and distance_between(object,db.actor)<=5 then
          remove_object_by_id(object:id())
       end
    end
-   if sgm_flags.bool_show_anomalies == true and sgm_g.find_out_string(object:section(), "radioactive") and distance_between(object, db.actor) <= 10 and level.map_has_object_spot(object:id(), sgm_flags.spot_hero_rucksack) == 0 then
-      level.map_add_object_spot_ser(object:id(), sgm_flags.spot_hero_rucksack, object:name())
-      debug_to_file("anomaly_fields_in_radius.txt", object:name())
+   if sgm_flags.bool_show_anomalies==true and find_out_string(object:section(),"radioactive") and distance_between(object,db.actor)<=10 and level.map_has_object_spot(object:id(),sgm_flags.spot_hero_rucksack)==0 then
+      level.map_add_object_spot_ser(object:id(),sgm_flags.spot_hero_rucksack,object:name())
+      debug_to_file("anomaly_fields_in_radius.txt",object:name())
    end
 end
-
 function submodule_smart_terrain_control(object)
-   if sgm_flags.bool_show_smarts == true then
-      sgm_g.add_spot_on_map(object:id(), sgm_flags.spot_ground_trap, object:name())
+   if sgm_flags.bool_show_smarts==true then
+      add_spot_on_map(object:id(),sgm_flags.spot_ground_trap,object:name())
    else
-      sgm_g.remove_spot_on_map(object:id(), sgm_flags.spot_ground_trap)
+      remove_spot_on_map(object:id(),sgm_flags.spot_ground_trap)
    end
 end
-
 function submodule_artefact_control(object)
-   local detector_in_slot = db.actor:item_in_slot(9)
-   local af_sect = object:section()
-   local af_pos = object:position()
-   local af_lv = object:level_vertex_id()
-   local af_gv = object:game_vertex_id()
-   local af_exception = sgm_g.find_out_string(object:section(), "af_prodigy")
+   local detector_in_slot=db.actor:item_in_slot(9)
+   local af_sect=object:section()
+   local af_pos=object:position()
+   local af_lv=object:level_vertex_id()
+   local af_gv=object:game_vertex_id()
+   local af_exception=find_out_string(object:section(),"af_prodigy")
    --/local ground_distance=level.vertex_position(af_lv):distance_to(af_pos)
-   --/if sgm_g.find_in_string(af_sect,"af_prodigy") and object:parent()==nil and get_object_story_id(object:id())==nil and (detector_in_slot==nil or (detector_in_slot~=nil and db.actor:active_detector()==nil)) and ground_distance>50.0 then
+   --/if find_in_string(af_sect,"af_prodigy") and object:parent()==nil and get_object_story_id(object:id())==nil and (detector_in_slot==nil or (detector_in_slot~=nil and db.actor:active_detector()==nil)) and ground_distance>50.0 then
    --/   create(object:section(),level.vertex_position(af_lv).x,level.vertex_position(af_lv).y,level.vertex_position(af_lv).z,af_lv,af_gv)
    --/   remove_object_by_id(object:id())
    --/end
-   --/if detector_in_slot~=nil and db.actor:active_detector()~=nil and ((sgm_g.find_in_string(af_sect,"_breeding_") or sgm_g.find_in_string(af_sect,"af_acid_star") or sgm_g.find_in_string(af_sect,"af_monolit") or sgm_g.find_in_string(af_sect,"af_geliy") or sgm_g.find_in_string(af_sect,"af_vaselisk") or sgm_g.find_in_string(af_sect,"af_dragon_eye") or sgm_g.find_in_string(af_sect,"cev_plastin"))) then
+   --/if detector_in_slot~=nil and db.actor:active_detector()~=nil and ((find_in_string(af_sect,"_breeding_") or find_in_string(af_sect,"af_acid_star") or find_in_string(af_sect,"af_monolit") or find_in_string(af_sect,"af_geliy") or find_in_string(af_sect,"af_vaselisk") or find_in_string(af_sect,"af_dragon_eye") or find_in_string(af_sect,"cev_plastin"))) then
    --/   if distance_to_object(object,"<=",10,true) then
    --/      give_object_to_actor(object:section())
    --/      news_manager.send_tip(db.actor,sgm_functions.ReadCaption(object:section()),0,"af_autoselect",2300,nil,"st_bring_af")
    --/      remove_object_by_id(object:id())
    --/   end
    --/end
-   if detector_in_slot ~= nil and db.actor:active_detector() ~= nil and af_exception then
-      if sgm_functions.ReadRadarArea(detector_in_slot:section()) ~= -1 and distance_between(db.actor, object) < sgm_functions.ReadRadarArea(detector_in_slot:section()) then
-         if distance_to_object(object, ">", 5, true) == true then
-            local af_spot_descr = "st_generic_af"
-            if sgm_functions.ReadRadarAccuracy(detector_in_slot:section()) == true then
-               af_spot_descr = game.translate_string(sgm_functions.ReadCaption(af_sect))
+   if detector_in_slot~=nil and db.actor:active_detector()~=nil and af_exception then
+      if sgm_functions.ReadRadarArea(detector_in_slot:section())~=-1 and distance_between(db.actor,object)<sgm_functions.ReadRadarArea(detector_in_slot:section()) then
+         if distance_to_object(object,">",5,true)==true then
+            local af_spot_descr="st_generic_af"
+            if sgm_functions.ReadRadarAccuracy(detector_in_slot:section())==true then
+               af_spot_descr=game.translate_string(sgm_functions.ReadCaption(af_sect))
             end
-            sgm_g.add_spot_on_map(object:id(), sgm_flags.spot_artefact_discovered, af_spot_descr)
-         elseif distance_to_object(object, ">", 5, true) == false then
-            sgm_g.remove_spot_on_map(object:id(), sgm_flags.spot_artefact_discovered)
+            add_spot_on_map(object:id(),sgm_flags.spot_artefact_discovered,af_spot_descr)
+         elseif distance_to_object(object,">",5,true)==false then
+            remove_spot_on_map(object:id(),sgm_flags.spot_artefact_discovered)
          else
-            sgm_g.remove_spot_on_map(object:id(), sgm_flags.spot_artefact_discovered)
+            remove_spot_on_map(object:id(),sgm_flags.spot_artefact_discovered)
          end
       else
-         sgm_g.remove_spot_on_map(object:id(), sgm_flags.spot_artefact_discovered)
+         remove_spot_on_map(object:id(),sgm_flags.spot_artefact_discovered)
       end
    else
-      sgm_g.remove_spot_on_map(object:id(), sgm_flags.spot_artefact_discovered)
+      remove_spot_on_map(object:id(),sgm_flags.spot_artefact_discovered)
    end
 end
-
 function submodule_vision_range(object)
-   if sgm_g.check_seconds(3) and sgm_g.r_mod_params("bool", "night_blindness_range", true) == true and check_range_deterioration_exception(object) then
-      if sgm_g.present_day() then
-         if sgm_g.dont_has_alife_info("blackday_is_active") then
-            if object:range() <= 40 then
+   if check_seconds(3) and r_mod_params("bool","night_blindness_range",true)==true and check_range_deterioration_exception(object) then
+      if present_day() then
+         if dont_has_alife_info("blackday_is_active") then
+            if object:range()<=40 then
                object:set_range(80)
             end
          end
       else
-         if sgm_g.dont_has_alife_info("blackday_is_active") then
-            if object:range() > 40 then
+         if dont_has_alife_info("blackday_is_active") then
+            if object:range()>40 then
                object:set_range(20)
             end
          end
       end
       if has_alife_info("blackday_is_active") then
-         if object:range() > 40 then
+         if object:range()>40 then
             object:set_range(15)
          end
       end
    end
 end
-
-function submodule_vision_range_flashlight(object, flashlight_bool)
-   if sgm_g.check_seconds(4) and object ~= nil and flashlight_bool ~= nil and flashlight_bool == true and sgm_g.r_mod_params("bool", "night_blindness_range", true) == true then
-      if object:range() == 20 then
+function submodule_vision_range_flashlight(object,flashlight_bool)
+   if check_seconds(4) and object~=nil and flashlight_bool~=nil and flashlight_bool==true and r_mod_params("bool","night_blindness_range",true)==true then
+      if object:range()==20 then
          object:set_range(35)
-      elseif object:range() == 15 then
+      elseif object:range()==15 then
          object:set_range(30)
       end
    end
 end
-
 function submodule_alfa_control(squad)
-   if squad:name() ~= nil and sgm_g.find_in_string(squad:name(), "alfa_squad") then
-      local squad_level = ""
-      if sgm_g.find_in_string(squad:name(), "zat_") then
-         squad_level = "zaton"
-      elseif sgm_g.find_in_string(squad:name(), "jup_") then
-         squad_level = "jupiter"
-      elseif sgm_g.find_in_string(squad:name(), "pri_") then
-         squad_level = "pripyat"
+   if squad:name()~=nil and find_in_string(squad:name(),"alfa_squad") then
+      local squad_level=""
+      if find_in_string(squad:name(),"zat_") then squad_level="zaton"
+      elseif find_in_string(squad:name(),"jup_") then squad_level="jupiter"
+      elseif find_in_string(squad:name(),"pri_") then squad_level="pripyat"
       end
-      if squad_level ~= "" and sgm_g.read_mod_param("alfa_squad_" .. string.sub(squad:name(), 1, 1) .. "_count") ~= nil and sgm_g.read_mod_param("alfa_squad_" .. string.sub(squad:name(), 1, 1) .. "_count") > r_alfa_params("number", "max_squads_count_on_" .. squad_level, 7) then
-         if squad.position:distance_to(db.actor:position()) > 100 then
+      if squad_level~="" and read_mod_param("alfa_squad_"..string.sub(squad:name(),1,1).."_count")~=nil and read_mod_param("alfa_squad_"..string.sub(squad:name(),1,1).."_count")>r_alfa_params("number","max_squads_count_on_"..squad_level,7) then
+         if squad.position:distance_to(db.actor:position())>100 then
             squad:remove_squad()
-            dec_mod_param("alfa_squad_" .. string.sub(squad:name(), 1, 1) .. "_count")
+            dec_mod_param("alfa_squad_"..string.sub(squad:name(),1,1).."_count")
          end
       end
    end
 end
-
 function submodule_granade_prohibition(object)
-   if sgm_g.check_seconds(2) and has_alife_info("opt_disable_ai_granade") then
-      local npc = object
+   if check_seconds(2) and has_alife_info("opt_disable_ai_granade") then
+      local npc=object
       if npc:alive() then --/ and get_object_story_id(npc:id())==nil
          if npc:object("grenade_rgd5") then
-            remove_inv_item(npc, "grenade_rgd5")
+            remove_inv_item(npc,"grenade_rgd5")
          end
          if npc:object("grenade_f1") then
-            remove_inv_item(npc, "grenade_f1")
-         end
+            remove_inv_item(npc,"grenade_f1")
+         end 
       end
    end
 end
-
 function submodule_capture_monster(object)
-   if has_alife_info("capture_meal_active") and sgm_g.find_out_string(object:section(), "captured") and get_object_story_id(object:id()) == nil and sgm_functions.ReadCaptureConfirmed(object:section()) == true then
-      local m_section = object:section()
-      local m_alive = object:alive()
-      local m_id = object:id()
-      local m_pos = object:position()
-      local m_lv = object:level_vertex_id()
-      local m_gv = object:game_vertex_id()
-      local m_community = sgm_functions.ReadCommunity(object:section())
-      local m_prefix = false
-      if m_community and not m_prefix then
-         if sgm_g.find_in_string(m_community, "boar") then
-            m_prefix = "_boar"
-         elseif sgm_g.find_in_string(m_community, "dog") then
-            m_prefix = "_dog"
-         elseif sgm_g.find_in_string(m_community, "flesh") then
-            m_prefix = "_flesh"
-         elseif sgm_g.find_in_string(m_community, "pseudo_gigant") then
-            m_prefix = "_gigant"
-         elseif sgm_g.find_in_string(m_community, "tushkano") then
-            m_prefix = "_tushkano"
-         elseif sgm_g.find_in_string(m_community, "pseudodog") then
-            m_prefix = "_pseudodog"
-         elseif sgm_g.find_in_string(m_community, "snork") then
-            m_prefix = "_snork"
-         elseif sgm_g.find_in_string(m_community, "chimera") then
-            m_prefix = "_chimera"
-         end
-      end
-      if has_alife_info("capture_meal_active") and sgm_flags.string_capture_monster_target == "none" then
-         if sgm_g.read_mod_param("capture_meal_gigant_target") then
-            sgm_flags.string_capture_monster_target = "gigant"
-         elseif sgm_g.read_mod_param("capture_meal_boar_target") then
-            sgm_flags.string_capture_monster_target = "boar"
-         elseif sgm_g.read_mod_param("capture_meal_dog_target") then
-            sgm_flags.string_capture_monster_target = "dog"
-         elseif sgm_g.read_mod_param("capture_meal_flesh_target") then
-            sgm_flags.string_capture_monster_target = "flesh"
-         elseif sgm_g.read_mod_param("capture_meal_tushkano_target") then
-            sgm_flags.string_capture_monster_target = "tushkano"
-         elseif sgm_g.read_mod_param("capture_meal_pseudodog_target") then
-            sgm_flags.string_capture_monster_target = "pseudodog"
-         elseif sgm_g.read_mod_param("capture_meal_snork_target") then
-            sgm_flags.string_capture_monster_target = "snork"
-         elseif sgm_g.read_mod_param("capture_meal_chimera_target") then
-            sgm_flags.string_capture_monster_target = "chimera"
-         end
-      end
-      if sgm_flags.string_capture_monster_target ~= "none" and has_alife_info("capture_meal_active") then
-         local m_cap_prefix = "capture_meal_" .. sgm_flags.string_capture_monster_target
-         local m_cap_radius = sgm_g.read_mod_param(m_cap_prefix .. "_radius")
-         local m_cap_control = sgm_g.read_mod_param(m_cap_prefix .. "_control")
-         local m_cap_charge = sgm_g.read_mod_param(m_cap_prefix .. "_charge")
-         local m_cap_target = sgm_g.read_mod_param(m_cap_prefix .. "_target")
-         local meal_target = sgm_flags.string_capture_monster_target
-         --/Шкала прогресса
-         if sgm_g.precond_hud() then
-            show_capture_monster_bar("hud_monster_capture_wnd", "ui_mod_progress_bars.xml", "capture_bar_" .. meal_target,
-               m_cap_control, m_cap_charge, "hud_monster_capture_icon_" .. meal_target)
-         end
-         --/Таймер заряда
-         if sgm_flags.timer_monster_cap_charge == 0 then
-            start_flague_timer("timer_monster_cap_charge", 1000)
-         end
-         if sgm_flags.timer_monster_cap_charge == 1 then
-            sgm_flags.timer_monster_cap_charge = 0
-            sgm_g.write_mod_param(m_cap_prefix .. "_charge", m_cap_charge - 1)
-         end
-         if m_cap_charge <= 0 then
-            disable_info("capture_meal_active")
-            sgm_g.change_flag_value("hud_monster_capture_wnd")
-            sgm_g.change_flag_value("hud_monster_capture_icon_chimera")
-            sgm_g.change_flag_value("hud_monster_capture_icon_gigant")
-            sgm_g.change_flag_value("hud_monster_capture_icon_boar")
-            sgm_g.change_flag_value("hud_monster_capture_icon_dog")
-            sgm_g.change_flag_value("hud_monster_capture_icon_flesh")
-            sgm_g.change_flag_value("hud_monster_capture_icon_tushkano")
-            sgm_g.change_flag_value("hud_monster_capture_icon_pseudodog")
-            sgm_g.change_flag_value("hud_monster_capture_icon_snork")
-            sgm_g.clear_mod_param(m_cap_prefix .. "_radius")
-            sgm_g.clear_mod_param(m_cap_prefix .. "_control")
-            sgm_g.clear_mod_param(m_cap_prefix .. "_charge")
-            sgm_g.clear_mod_param(m_cap_prefix .. "_target")
-            sgm_flags.string_capture_monster_target = "none"
-            sgm_flags.table_m_capture_hits[m_id] = false
-            sgm_flags.timer_monster_cap_charge = 0
-            sgm_flags.timer_monster_cap_control = 0
-         end
-         --/Таймер воздействия
-         if m_prefix and m_prefix == "_" .. meal_target and m_alive then
-            if distance_to_object(object, "<=", m_cap_radius) then
-               if sgm_flags.timer_monster_cap_control == 0 then
-                  start_flague_timer("timer_monster_cap_control", 1000)
-               end
-               if sgm_flags.timer_monster_cap_control == 1 then
-                  sgm_flags.timer_monster_cap_control = 0
-                  sgm_g.write_mod_param(m_cap_prefix .. "_control", m_cap_control - 1)
-               end
-            end
-            if m_cap_control <= 0 then
-               sgm_flags.value_capture_meal_monster_id = m_id
-               object:kill(object)
-               disable_info("capture_meal_active")
-               sgm_g.change_flag_value("hud_monster_capture_wnd")
-               sgm_g.change_flag_value("hud_monster_capture_icon_chimera")
-               sgm_g.change_flag_value("hud_monster_capture_icon_gigant")
-               sgm_g.change_flag_value("hud_monster_capture_icon_boar")
-               sgm_g.change_flag_value("hud_monster_capture_icon_dog")
-               sgm_g.change_flag_value("hud_monster_capture_icon_flesh")
-               sgm_g.change_flag_value("hud_monster_capture_icon_tushkano")
-               sgm_g.change_flag_value("hud_monster_capture_icon_pseudodog")
-               sgm_g.change_flag_value("hud_monster_capture_icon_snork")
-               sgm_g.clear_mod_param(m_cap_prefix .. "_radius")
-               sgm_g.clear_mod_param(m_cap_prefix .. "_control")
-               sgm_g.clear_mod_param(m_cap_prefix .. "_charge")
-               sgm_g.clear_mod_param(m_cap_prefix .. "_target")
-               sgm_flags.string_capture_monster_target = "none"
-               sgm_flags.table_m_capture_hits[m_id] = false
-               sgm_flags.timer_monster_cap_charge = 0
-               sgm_flags.timer_monster_cap_control = 0
-               create("captured" .. m_prefix, m_pos.x, m_pos.y, m_pos.z, m_lv, m_gv)
-               remove_object_by_id(m_id)
-            end
-         end
-      end
+   if has_alife_info("capture_meal_active") and find_out_string(object:section(),"captured") and get_object_story_id(object:id())==nil and sgm_functions.ReadCaptureConfirmed(object:section())==true then
+       local m_section=object:section()
+       local m_alive=object:alive()
+       local m_id=object:id()
+       local m_pos=object:position()
+       local m_lv=object:level_vertex_id()
+       local m_gv=object:game_vertex_id()
+       local m_community=sgm_functions.ReadCommunity(object:section())
+       local m_prefix=false
+       if m_community and not m_prefix then
+          if find_in_string(m_community,"boar") then
+             m_prefix="_boar"
+          elseif find_in_string(m_community,"dog") then
+             m_prefix="_dog"
+          elseif find_in_string(m_community,"flesh") then
+             m_prefix="_flesh"
+          elseif find_in_string(m_community,"pseudo_gigant") then
+             m_prefix="_gigant"
+          elseif find_in_string(m_community,"tushkano") then
+             m_prefix="_tushkano"
+          elseif find_in_string(m_community,"pseudodog") then
+             m_prefix="_pseudodog"
+          elseif find_in_string(m_community,"snork") then
+             m_prefix="_snork"
+          elseif find_in_string(m_community,"chimera") then
+             m_prefix="_chimera"
+          end
+       end
+       if has_alife_info("capture_meal_active") and sgm_flags.string_capture_monster_target=="none" then
+          if read_mod_param("capture_meal_gigant_target") then
+             sgm_flags.string_capture_monster_target="gigant"
+          elseif read_mod_param("capture_meal_boar_target") then
+             sgm_flags.string_capture_monster_target="boar"
+          elseif read_mod_param("capture_meal_dog_target") then
+             sgm_flags.string_capture_monster_target="dog"
+          elseif read_mod_param("capture_meal_flesh_target") then
+             sgm_flags.string_capture_monster_target="flesh"
+          elseif read_mod_param("capture_meal_tushkano_target") then
+             sgm_flags.string_capture_monster_target="tushkano"
+          elseif read_mod_param("capture_meal_pseudodog_target") then
+             sgm_flags.string_capture_monster_target="pseudodog"
+          elseif read_mod_param("capture_meal_snork_target") then
+             sgm_flags.string_capture_monster_target="snork"
+          elseif read_mod_param("capture_meal_chimera_target") then
+             sgm_flags.string_capture_monster_target="chimera"
+          end
+       end
+       if sgm_flags.string_capture_monster_target~="none" and has_alife_info("capture_meal_active") then
+             local m_cap_prefix="capture_meal_"..sgm_flags.string_capture_monster_target
+             local m_cap_radius=read_mod_param(m_cap_prefix.."_radius")
+             local m_cap_control=read_mod_param(m_cap_prefix.."_control")
+             local m_cap_charge=read_mod_param(m_cap_prefix.."_charge")
+             local m_cap_target=read_mod_param(m_cap_prefix.."_target")
+             local meal_target=sgm_flags.string_capture_monster_target
+             --/Шкала прогресса
+             if precond_hud() then
+                show_capture_monster_bar("hud_monster_capture_wnd","ui_mod_progress_bars.xml","capture_bar_"..meal_target,m_cap_control,m_cap_charge,"hud_monster_capture_icon_"..meal_target)
+             end
+             --/Таймер заряда
+             if sgm_flags.timer_monster_cap_charge==0 then
+                start_flague_timer("timer_monster_cap_charge",1000)
+             end
+             if sgm_flags.timer_monster_cap_charge==1 then
+                sgm_flags.timer_monster_cap_charge=0
+                write_mod_param(m_cap_prefix.."_charge",m_cap_charge-1)
+             end
+             if m_cap_charge<=0 then
+                disable_info("capture_meal_active")
+                release_hud("hud_monster_capture_wnd")
+                release_hud("hud_monster_capture_icon_chimera")
+                release_hud("hud_monster_capture_icon_gigant")
+                release_hud("hud_monster_capture_icon_boar")
+                release_hud("hud_monster_capture_icon_dog")
+                release_hud("hud_monster_capture_icon_flesh")
+                release_hud("hud_monster_capture_icon_tushkano")
+                release_hud("hud_monster_capture_icon_pseudodog")
+                release_hud("hud_monster_capture_icon_snork")
+                clear_mod_param(m_cap_prefix.."_radius")
+                clear_mod_param(m_cap_prefix.."_control")
+                clear_mod_param(m_cap_prefix.."_charge")
+                clear_mod_param(m_cap_prefix.."_target")
+                sgm_flags.string_capture_monster_target="none"
+                sgm_flags.table_m_capture_hits[m_id]=false
+                sgm_flags.timer_monster_cap_charge=0
+                sgm_flags.timer_monster_cap_control=0
+             end
+             --/Таймер воздействия
+             if m_prefix and m_prefix=="_"..meal_target and m_alive then
+                if distance_to_object(object,"<=",m_cap_radius) then
+                   if sgm_flags.timer_monster_cap_control==0 then
+                      start_flague_timer("timer_monster_cap_control",1000)
+                   end
+                   if sgm_flags.timer_monster_cap_control==1 then
+                      sgm_flags.timer_monster_cap_control=0
+                      write_mod_param(m_cap_prefix.."_control",m_cap_control-1)
+                   end
+                end
+                if m_cap_control<=0 then
+                   sgm_flags.value_capture_meal_monster_id=m_id
+                   object:kill(object)
+                   disable_info("capture_meal_active")
+                   release_hud("hud_monster_capture_wnd")
+                   release_hud("hud_monster_capture_icon_chimera")
+                   release_hud("hud_monster_capture_icon_gigant")
+                   release_hud("hud_monster_capture_icon_boar")
+                   release_hud("hud_monster_capture_icon_dog")
+                   release_hud("hud_monster_capture_icon_flesh")
+                   release_hud("hud_monster_capture_icon_tushkano")
+                   release_hud("hud_monster_capture_icon_pseudodog")
+                   release_hud("hud_monster_capture_icon_snork")
+                   clear_mod_param(m_cap_prefix.."_radius")
+                   clear_mod_param(m_cap_prefix.."_control")
+                   clear_mod_param(m_cap_prefix.."_charge")
+                   clear_mod_param(m_cap_prefix.."_target")
+                   sgm_flags.string_capture_monster_target="none"
+                   sgm_flags.table_m_capture_hits[m_id]=false
+                   sgm_flags.timer_monster_cap_charge=0
+                   sgm_flags.timer_monster_cap_control=0
+                   create("captured"..m_prefix,m_pos.x,m_pos.y,m_pos.z,m_lv,m_gv)
+                   remove_object_by_id(m_id)
+                end
+             end
+       end
    end
 end
-
 function submodule_aura_inactivity(object)
-   local obj_section = object:section()
-   local obj_id = object:id()
-   local aura_active = sgm_functions.ReadAuraInactivityActive(obj_section)
-   local aura_effector = sgm_functions.ReadAuraInactivityEffector(obj_section)
-   local aura_radius = sgm_functions.ReadAuraInactivityRadius(obj_section)
-   local aura_frequency = sgm_functions.ReadAuraInactivityFrequency(obj_section)
-   local aura_disable_info = sgm_functions.ReadAuraInactivityDisableInfo(obj_section)
-   if aura_active == true and (aura_disable_info == "none" or (aura_disable_info ~= "none" and sgm_g.dont_has_alife_info(aura_disable_info))) then
-      setup_inactivity_aura(aura_radius, obj_section .. obj_id, aura_frequency, aura_effector, object)
+   local obj_section=object:section()
+   local obj_id=object:id()
+   local aura_active=sgm_functions.ReadAuraInactivityActive(obj_section)
+   local aura_effector=sgm_functions.ReadAuraInactivityEffector(obj_section)
+   local aura_radius=sgm_functions.ReadAuraInactivityRadius(obj_section)
+   local aura_frequency=sgm_functions.ReadAuraInactivityFrequency(obj_section)
+   local aura_disable_info=sgm_functions.ReadAuraInactivityDisableInfo(obj_section)
+   if aura_active==true and (aura_disable_info=="none" or (aura_disable_info~="none" and dont_has_alife_info(aura_disable_info))) then
+      setup_inactivity_aura(aura_radius,obj_section..obj_id,aura_frequency,aura_effector,object)
    end
 end
-
 function submodule_profile_checker(object)
-   local profile = object:profile_name()
+   local profile=object:profile_name()
    if object:alive() then
-      --/show_logic_section(object,"val_b2_assault_b1_soldier_3")
+   --/show_logic_section(object,"val_b2_assault_b1_soldier_3") 
    end
 end
-
-function submodule_on_create(who, id)
-   for s, b in pairs(on_create_table) do
-      if who == b[1] then
-         level.map_add_object_spot_ser(id, b[3], b[2])
+function submodule_on_create(who,id)
+   for s,b in pairs(on_create_table) do
+      if who==b[1] then
+         level.map_add_object_spot_ser(id,b[3],b[2])
       end
    end
-   if who == "remote_charge" then
-      if sgm_g.read_mod_param("remote_charge_1_id") == 0 then
-         sgm_g.write_mod_param("remote_charge_1_id", id)
-         if sgm_ui_mod_elements.cfg_remote_charge_delay ~= 0 then
-            sgm_g.write_mod_param("remote_charge_1_timer", sgm_ui_mod_elements.cfg_remote_charge_delay)
+   if who=="remote_charge" then
+      if read_mod_param("remote_charge_1_id")==0 then
+         write_mod_param("remote_charge_1_id",id)
+         if ui_mod_elements.cfg_remote_charge_delay~=0 then
+            write_mod_param("remote_charge_1_timer",ui_mod_elements.cfg_remote_charge_delay)
          else
-            sgm_g.write_mod_param("remote_charge_1_timer", 100)
+            write_mod_param("remote_charge_1_timer",100)
          end
-      elseif sgm_g.read_mod_param("remote_charge_2_id") == 0 then
-         sgm_g.write_mod_param("remote_charge_2_id", id)
-         if sgm_ui_mod_elements.cfg_remote_charge_delay ~= 0 then
-            sgm_g.write_mod_param("remote_charge_2_timer", sgm_ui_mod_elements.cfg_remote_charge_delay)
+      elseif read_mod_param("remote_charge_2_id")==0 then
+         write_mod_param("remote_charge_2_id",id)
+         if ui_mod_elements.cfg_remote_charge_delay~=0 then
+            write_mod_param("remote_charge_2_timer",ui_mod_elements.cfg_remote_charge_delay)
          else
-            sgm_g.write_mod_param("remote_charge_2_timer", 100)
+            write_mod_param("remote_charge_2_timer",100)
          end
-      elseif sgm_g.read_mod_param("remote_charge_3_id") == 0 then
-         sgm_g.write_mod_param("remote_charge_3_id", id)
-         if sgm_ui_mod_elements.cfg_remote_charge_delay ~= 0 then
-            sgm_g.write_mod_param("remote_charge_3_timer", sgm_ui_mod_elements.cfg_remote_charge_delay)
+      elseif read_mod_param("remote_charge_3_id")==0 then
+         write_mod_param("remote_charge_3_id",id)
+         if ui_mod_elements.cfg_remote_charge_delay~=0 then
+            write_mod_param("remote_charge_3_timer",ui_mod_elements.cfg_remote_charge_delay)
          else
-            sgm_g.write_mod_param("remote_charge_3_timer", 100)
+            write_mod_param("remote_charge_3_timer",100)
          end
       end
    end
 end
-
 ------------------------------------------------------------------------------
 --                    Вспомогательные функции                               --
 ------------------------------------------------------------------------------
 function check_range_deterioration_exception(npc)
-   if sgm_g.find_in_string(npc:profile_name(), "jup_night_killer_") then
+   if find_in_string(npc:profile_name(),"jup_night_killer_") then 
       return false
    end
    return true
 end
 
-------------------------------------------------------------------------------
---                            Inject Funcs                                  --
-------------------------------------------------------------------------------
-function sgm_stalker_schemas()
-   load_scheme("xr_move", "move", modules.stype_stalker)
-   load_scheme("xr_bodyguard", "bodyguard", modules.stype_stalker)
-   load_scheme("xr_corpse", "corpse", modules.stype_stalker)
-end
-
-function sgm_monster_schemas()
-   load_scheme("mob_move", "mob_move", modules.stype_mobile)
-end
-
-function sgm_physic_obj_schemas()
-   load_scheme("sgm_ph_universal", "sgm_ph_universal", modules.stype_item)
-end
-
-function sgm_restrictor_schemas()
-   load_scheme("sgm_sr_universal", "sgm_sr_universal", modules.stype_restrictor)
-end
 
 -------------------------------------//Copyright GeJorge//-------------------------------------------------

@@ -1,8 +1,15 @@
+---==================================================================================================---
+--------------------------------------------------------------------------------------------------------
+----------------------------------------(Версия СГМа)---------------------------------------------------
+--------------------------------------------------------------------------------------------------------
+---==================================================================================================---
 function show_version(self_main)
    local xml = CScriptXmlInit()
    xml:ParseFile("ui_main_menu.xml")
-   version = xml:InitStatic("sigerous_mod_version", self_main)
-   version:TextControl():SetText(game.translate_string("st_mod_version_title") .. " " .. sgm_g.get_mod_version())
+   version=xml:InitStatic("sigerous_mod_version",self_main)
+   version:TextControl():SetText(game.translate_string("st_mod_version_title").." "..get_mod_version())
 end
 
+
 ------------------------------//Copyright GeJorge//-------------------------------------------
+

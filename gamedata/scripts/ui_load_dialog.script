@@ -1,5 +1,4 @@
 saved_game_extension	= ".scop"
-
 class "load_item" (CUIListBoxItem)
 
 function load_item:__init(height) super(height)
@@ -29,16 +28,14 @@ end
 function load_dialog:FillList()
 	self.list_box:RemoveAll()
 	local f		= getFS()
-	local flist = f:file_list_open_ex("$game_saves$",bit.bor(FS.FS_ListFiles,FS.FS_RootOnly),"*"..saved_game_extension)
+	local flist = f:file_list_open_ex("$game_saves$",bit_or(FS.FS_ListFiles,FS.FS_RootOnly),"*"..saved_game_extension)
 	local f_cnt = flist:Size()
 
 	flist:Sort(FS.FS_sort_by_modif_down)
-
 	for	it=0, f_cnt-1 	do
 		local file		=	flist:GetAt(it)
 		local file_name = string.sub(file:NameFull(), 0, (string.len(file:NameFull()) - string.len(saved_game_extension)))
 		local date_time = "[" .. file:ModifDigitOnly() .. "]"
-		--menu_item =  ..
 		self:AddItemToList(file_name, date_time)
 	end
 end
@@ -83,15 +80,20 @@ function load_dialog:InitControls()
 
 	ctrl					= xml:Init3tButton("form:btn_load",	self.form)
 	self:Register			(ctrl, "button_load")
-
-	ctrl = xml:Init3tButton	("form:btn_delete",	self.form)
-	self:Register			(ctrl, "button_del")
-
+        --/ SGM in
+        if db.actor==nil then
+	   ctrl = xml:Init3tButton	("form:btn_delete",	self.form)
+	   self:Register		(ctrl, "button_del")
+        end
+        --/ SGM out
 	ctrl = xml:Init3tButton	("form:btn_cancel",	self.form)
 	self:Register			(ctrl, "button_back")
 
 	self.message_box		= CUIMessageBoxEx()
 	self:Register			(self.message_box,"message_box")
+        --/ SGM in
+        sgm_version.show_version(self)
+        --/ SGM out
 end
 
 function load_dialog:InitCallBacks()
@@ -109,7 +111,7 @@ end
 
 function file_exist(fname)
 	local f = getFS();
-	local flist = f:file_list_open_ex("$game_saves$",bit.bor(FS.FS_ListFiles,FS.FS_RootOnly) , fname)
+	local flist = f:file_list_open_ex("$game_saves$",bit_or(FS.FS_ListFiles,FS.FS_RootOnly) , fname)
 	local f_cnt = flist:Size()
 
 	if f_cnt > 0 then
@@ -120,21 +122,16 @@ function file_exist(fname)
 end
 
 function delete_save_game(filename)
-
 	local save_file		= filename .. saved_game_extension
 	local dds_file		= filename .. ".dds"
-
 	local f = getFS()
-
-    f:file_delete("$game_saves$", save_file)
-    if save_manager then
-        save_manager.deleteObsoleteData(filename)
-    end
-	
+	f:file_delete("$game_saves$",save_file)
 	if file_exist(dds_file) then
 		f:file_delete("$game_saves$", dds_file)
 	end
-
+        --/ SGM in
+        data_param_delete_game(data_param_get_save_name(filename))
+        --/ SGM out
 end
 
 function AddTimeDigit(str, dig)
@@ -150,7 +147,7 @@ end
 
 function file_data(fname)
 	local f = getFS();
-	local flist = f:file_list_open_ex("$game_saves$",bit.bor(FS.FS_ListFiles,FS.FS_RootOnly) , fname .. saved_game_extension)
+	local flist = f:file_list_open_ex("$game_saves$",bit_or(FS.FS_ListFiles,FS.FS_RootOnly) , fname .. saved_game_extension)
 	local f_cnt = flist:Size()
 
 	if f_cnt > 0 then
@@ -278,7 +275,6 @@ function load_dialog:OnButton_load_clicked()
 	end
 
 	local fname		= item.fn:GetText()
-
 	if ( not valid_saved_game(fname) ) then
 		self.msgbox_id						= 0
 		self.message_box:InitMessageBox		("message_box_invalid_saved_game")
@@ -326,7 +322,7 @@ function load_dialog:OnKeyboard(dik, keyboard_action)  --virtual function
 		self:OnButton_back_clicked()
 	else
 
-		 DIK_RETURN = 40
+		 DIK_RETURN = 28
 
 		if dik == DIK_RETURN and keyboard_action == ui_events.WINDOW_KEY_PRESSED then
 			self:OnButton_load_clicked()

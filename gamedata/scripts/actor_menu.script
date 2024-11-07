@@ -1,19 +1,8 @@
--- actor_menu_mode -----
-
--- int mode:
--- 0 = 	Undefined = закрыто
--- 1 = 	Inventory
--- 2 = 	Trade
--- 3 = 	Upgrade
--- 4 = 	DeadBodySearch
--- 10 =  Talk dialog  show
--- 11 =  Talk dialog  hide
 local last_mode = 0
 xr_meet_dialog_closed = false
 xr_meet_trade_closed = false
 xr_meet_upgrade_closed = false
 dead_body_searching = false
-
 function actor_menu_mode(mode)
 	if(mode==0) then
 		if(last_mode==1) then
@@ -46,41 +35,59 @@ function actor_menu_mode(mode)
 end
 
 function inventory_wnd_opened()
-	sgm_actor_menu.inventory_wnd_opened()
+        give_info("inventory_wnd_opened")
+	printf("---:>Inventory opened")
 end
 
 function inventory_wnd_closed()
-    sgm_actor_menu.inventory_wnd_closed()
+        disable_info("inventory_wnd_opened")
+	printf("---:>Inventory closed")
 end
 
 function trade_wnd_opened()
-	sgm_actor_menu.inventory_wnd_closed()
+        give_info("inventory_wnd_opened")
+	xr_meet_dialog_closed = false
+	printf("---:>Trade opened")
 end
 
 function trade_wnd_closed()
-    sgm_actor_menu.trade_wnd_closed()
+        disable_info("inventory_wnd_opened")
+	printf("---:>Trade closed")
+	xr_meet_trade_closed = true
 end
 
 function upgrade_wnd_opened()
-    sgm_actor_menu.upgrade_wnd_opened()
+        give_info("inventory_wnd_opened")
+	xr_meet_dialog_closed = false
+	printf("---:>Upgrade opened")
 end
 
 function upgrade_wnd_closed()
-    sgm_actor_menu.upgrade_wnd_closed()
+        disable_info("inventory_wnd_opened")
+	printf("---:>Upgrade closed")
+	xr_meet_upgrade_closed = true
 end
 
 function dead_body_search_wnd_opened()
-    sgm_actor_menu.dead_body_search_wnd_opened()
+        give_info("inventory_wnd_opened")
+	printf("---:>DeadBodySearch opened")
+	dead_body_searching = true
 end
 
 function dead_body_search_wnd_closed()
-    sgm_actor_menu.dead_body_search_wnd_closed()
+        disable_info("inventory_wnd_opened")
+	printf("---:>DeadBodySearch closed")
+	dead_body_searching = false
 end
 
 function dialog_wnd_showed()
-    sgm_actor_menu.dialog_wnd_showed()
+        give_info("inventory_wnd_opened")
+	printf("---:>Talk Dialog show")
 end
 
 function dialog_wnd_closed()
-    sgm_actor_menu.dialog_wnd_closed()
+        disable_info("inventory_wnd_opened")
+	printf("---:>Talk Dialog hide")
+	xr_meet_dialog_closed = true
 end
+

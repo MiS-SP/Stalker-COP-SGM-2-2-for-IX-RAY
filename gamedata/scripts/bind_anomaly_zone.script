@@ -1,5 +1,5 @@
 --'******************************************************
---'*  ?????? ??????? ???? ???????? .
+--'*  Биндер объекта зоны аномалий .
 --'******************************************************
 artefact_ways_by_id					= {}
 artefact_points_by_id				= {}
@@ -7,9 +7,7 @@ parent_zones_by_artefact_id			= {}
 ANOMAL_ZONE_SECT = "anomal_zone"
 
 function bind(obj)
-	if IsGameTypeSingle() or OnServer() then
-		obj:bind_object(anomaly_zone_binder(obj))
-	end
+	obj:bind_object(anomaly_zone_binder(obj))
 end
 
 class "anomaly_zone_binder" (object_binder)
@@ -189,11 +187,6 @@ end
 function anomaly_zone_binder:respawn_artefacts_and_replace_anomaly_zone()
 	local anom_fields = bind_anomaly_field.fields_by_names
 	self.respawn_artefacts = true
-
-	if not IsGameTypeSingle() then
-		return
-	end
-
 	if(self.custom_placement) then
 		local layer = self.cur_layer
 		for k,v in pairs(self.fields_table[layer]) do
@@ -236,12 +229,11 @@ function anomaly_zone_binder:spawn_artefact_randomly()
 		rnd_artefact = self.start_artefacts_table[layer][#self.start_artefacts_table[layer]]
 		self.forced_spawn = false
 	else
-		--/ SGM in
-		if math.random(1,100)>sgm_g.r_mod_params("number","artefacts_spawn_chance",17) then
+                --/ SGM in
+		if math.random(1,100)>r_mod_params("number","artefacts_spawn_chance",17) then
 			return
 		end
-		--/ SGM out
-
+                --/ SGM out
 		local coeff_total = 0
 		for k, v in pairs(self.artefacts_coeff_table[layer]) do
 			coeff_total = coeff_total + v
@@ -278,8 +270,6 @@ function anomaly_zone_binder:spawn_artefact_randomly()
 	self.artefact_points_by_id[artefact_obj.id] = rnd_path_point
 	parent_zones_by_artefact_id[artefact_obj.id] = self
 	self.spawned_count = self.spawned_count + 1
-	
-	pda.change_anomalies_names()
 
 end
 
@@ -355,13 +345,12 @@ function anomaly_zone_binder:update(delta)
 	elseif (not self.turned_off) and (self.spawned_count >= self.max_artefacts) and self.respawn_artefacts then
 		self.respawn_artefacts = false
 	end
-
 	if not(self.disabled) then
-		self:disable_anomaly_fields()
+	   self:disable_anomaly_fields()
 	end
-	--/ SGM in
-	sgm_modules.module_anomaly_zone(self.object)
-	--/ SGM out
+        --/ SGM in
+        sgm_modules.module_anomaly_zone(self.object)
+        --/ SGM out
 end
 
 function anomaly_zone_binder:turn_off()
@@ -413,6 +402,7 @@ end
 function anomaly_zone_binder:save(thread)
 	set_save_marker(thread, "save", false, "anomaly_zone_binder")
 	object_binder.save(self, thread)
+
 	local count = 0
 	for k,v in pairs(self.artefact_ways_by_id) do
 		count = count + 1

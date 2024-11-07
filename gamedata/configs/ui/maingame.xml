@@ -174,17 +174,17 @@
 		<back x="795" y="635" width="266" height="121">
 			<texture>ui_inGame2_Patroni_HUD_main_window</texture>
 		</back>
-		<progress_bar_health x="855" y="653" width="133" height="8" horz="1" min="0" max="100" pos="0">
+		<progress_bar_health x="855" y="653" width="133" height="8" horz="1" min="0" max="100" pos="0" expression="floor(fltPlayerHealth * 100.0)">
 			<progress>
 				<texture>ui_inGame2_Patroni_HUD_red_bar</texture>
 			</progress>
 		</progress_bar_health>
 
-	        <progress_bar_stamina x="855" y="674" width="133" height="8" horz="1" min="0" max="100" pos="0">
-	        	<progress>
-		        <texture>ui_inGame2_Patroni_HUD_blue_bar</texture>
-	        	</progress>
-	        </progress_bar_stamina>
+		<progress_bar_stamina x="855" y="674" width="133" height="8" horz="1" min="0" max="100" pos="0" expression="floor(fltPlayerPower * 100.0)">
+			<progress>
+			<texture>ui_inGame2_Patroni_HUD_blue_bar</texture>
+			</progress>
+		</progress_bar_stamina>
 
 		<static_cur_ammo x="852" y="690" width="68" height="37">
 			<text complex_mode="0" font="graffiti32" color="ui_7" align="c" vert_align="c">ammo</text>

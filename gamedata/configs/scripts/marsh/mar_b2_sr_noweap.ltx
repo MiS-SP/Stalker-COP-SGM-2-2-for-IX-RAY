@@ -1,9 +1,9 @@
 ;Зона уборки оружия. "Насосная станция".
 
 [logic]
-active = sgm_sr_universal
+active = sr_universal
 
-[sgm_sr_universal]
+[sr_universal]
 scheme_type = noweap_zone
 noweap_zone_cond = {+mar_army_cargo_georadar_timer -mar_army_cargo_order_performed} false, {-mar_army_cargo_order_performed -mar_alt_storyline_commenced} true, false
 on_info = {=actor_in_zone(mar_b2_sr_noweap) -mar_capture_church_start} %+mar_capture_church_start +mar_capture_church_b2 =give_task(mar_capture_church)%

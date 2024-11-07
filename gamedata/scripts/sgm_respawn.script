@@ -4,22 +4,22 @@
 --------------------------------------------------------------------------------------------------------
 ---==================================================================================================---
 function respawn_main()
-   if sgm_g.dont_has_alife_info("opt_disable_abandoned") then
-      respawn_abandoned()
+   if dont_has_alife_info("opt_disable_abandoned") then 
+      respawn_abandoned() 
    end
-   if has_alife_info("opt_more_monsters") then
-      respawn_monster()
+   if has_alife_info("opt_more_monsters") then 
+      respawn_monster() 
    end
-   if has_alife_info("pri_zone_cleaning_start") and sgm_g.dont_has_alife_info("pri_zone_cleaning_full_done") then
-      if sgm_g.find_in_string(sgm_g.read_string("freeplay_config", "levels", "respawn\\respawn_freeplay.ltx"), level.name()) then
-         if sgm_g.dont_has_alife_info("pri_zone_cleaning_" .. level.name() .. "_done") then
+   if has_alife_info("pri_zone_cleaning_start") and dont_has_alife_info("pri_zone_cleaning_full_done") then
+      if find_in_string(read_string("freeplay_config","levels","respawn\\respawn_freeplay.ltx"),level.name()) then
+         if dont_has_alife_info("pri_zone_cleaning_"..level.name().."_done") then
             respawn_freeplay()
          end
-         if sgm_g.check_game_timer("pri_zone_cleaning_" .. level.name() .. "_timer") == nil and sgm_g.dont_has_alife_info("pri_zone_cleaning_" .. level.name() .. "_done") then
-            sgm_g.start_game_timer("pri_zone_cleaning_" .. level.name() .. "_timer", 3)
-         elseif sgm_g.check_game_timer("pri_zone_cleaning_" .. level.name() .. "_timer") then
-            give_info("pri_zone_cleaning_" .. level.name() .. "_done")
-            abort_game_timer("pri_zone_cleaning_" .. level.name() .. "_timer")
+         if check_game_timer("pri_zone_cleaning_"..level.name().."_timer")==nil and dont_has_alife_info("pri_zone_cleaning_"..level.name().."_done") then
+            start_game_timer("pri_zone_cleaning_"..level.name().."_timer",3)
+         elseif check_game_timer("pri_zone_cleaning_"..level.name().."_timer") then
+            give_info("pri_zone_cleaning_"..level.name().."_done")
+            abort_game_timer("pri_zone_cleaning_"..level.name().."_timer")
          end
          if has_alife_info("pri_zone_cleaning_zaton_done") and has_alife_info("pri_zone_cleaning_jupiter_done") and has_alife_info("pri_zone_cleaning_pripyat_done") then
             give_info("pri_zone_cleaning_full_done")
@@ -27,184 +27,155 @@ function respawn_main()
       end
    end
 end
-
 function respawn_abandoned()
-   local level_name = level.name()
-   local hours, minutes, day = level.get_time_hours(), level.get_time_minutes(), level.get_time_days()
-   local ini = ini_file("respawn\\respawn_abandoned.ltx")
-   -- if sgm_flags.table_mod_respawn["respawn_abandoned"] == nil then
-   --    return
-   -- end
-   for k, v in pairs(sgm_flags.table_mod_respawn["respawn_abandoned"]) do
-      if string.sub(level_name, 1, 3) == string.sub(v, 1, 3) then
-         local section = v
-         local target_smart = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section, "target_smart",
-            "nil"))
-         local place = sgm_functions.check_section_comma(ini, section, "place", nil, 5)
-         local section_layers = sgm_g.to_number(sgm_functions.check_section_condlist(ini, section, "section_layers", 0))
-         local cond_bool = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section, "cond", "true"))
-         local born_info = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section, "born_info", ""))
-         local reload_info = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section, "reload_info",
-            "none"))
-         local respawn_radius = sgm_g.to_number(sgm_functions.check_section_condlist(ini, section, "respawn_radius", 2))
-         local time_of_the_day = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section,
-            "time_of_the_day", ""))
-         local precond_night = (level.get_time_hours() >= 22 or level.get_time_hours() <= 6) and time_of_the_day ==
-             "night"
-         local precond_day = (level.get_time_hours() > 6 and level.get_time_hours() < 22) and time_of_the_day == "day"
-         local precond_dist = db.actor:position():distance_to(vector():set(tonumber(place[1]), tonumber(place[2]),
-            tonumber(place[3]))) >= 145
-         local precond_smart = (target_smart == "nil" or (target_smart ~= "nil" and sgm_functions.is_smart_empty(target_smart) == true))
-         local get_random_sections
-         local sections_params = {}
-         if section_layers > 0 then
-            get_random_sections = math.random(1, section_layers)
-         else
-            get_random_sections = 0
-         end
-         if section_layers == 0 then
-            sections_params.sections = sgm_functions.cfg_get_string(ini, section, "sections", "nil")
-            sections_params.sections_tbl = utils.parse_spawns(sections_params.sections)
-         else
-            for m = 1, section_layers do
-               sections_params["sections_" .. m] = sgm_functions.cfg_get_string(ini, section, "sections_" .. m, "nil")
-               sections_params["sections_" .. m .. "_tbl"] = utils.parse_spawns(sections_params["sections_" .. m])
-            end
-         end
-         if reload_info ~= "none" and has_alife_info(born_info) and has_alife_info(reload_info) then
-            if time_of_the_day == "night" and (level.get_time_hours() > 6 and level.get_time_hours() < 22) then
-               disable_info(born_info, reload_info)
-            elseif time_of_the_day == "day" and (level.get_time_hours() >= 22 or level.get_time_hours() <= 6) then
-               disable_info(born_info, reload_info)
-            end
-         end
-         if sgm_g.exists(sections_params.sections) then
-            if (precond_day or precond_night) and cond_bool == "true" and precond_smart and precond_dist and sgm_g.dont_has_alife_info(born_info) then
-               for q, w in pairs(sections_params.sections_tbl) do
-                  for i = 1, w.prob do
-                     if has_alife_info(w.section .. "_death") then disable_info(w.section .. "_death") end
-                     create(w.section, tonumber(place[1]) + math.random(-respawn_radius, respawn_radius),
-                        tonumber(place[2]), tonumber(place[3]) + math.random(-respawn_radius, respawn_radius),
-                        tonumber(place[4]), tonumber(place[5]))
-                  end
-               end
-               give_info(born_info)
-            end
-         else
-            if (precond_day or precond_night) and cond_bool == "true" and precond_smart and precond_dist and sgm_g.dont_has_alife_info(born_info) then
-               for q, w in pairs(sections_params["sections_" .. get_random_sections .. "_tbl"]) do
-                  for i = 1, w.prob do
-                     create(w.section, tonumber(place[1]) + math.random(-respawn_radius, respawn_radius),
-                        tonumber(place[2]), tonumber(place[3]) + math.random(-respawn_radius, respawn_radius),
-                        tonumber(place[4]), tonumber(place[5]))
-                  end
-               end
-               sgm_functions.check_section_condlist(ini, section, "backup_deaths")
-               give_info(born_info)
-            end
-         end
-      end
-   end
+     local level_name=level.name()
+     local hours,minutes,day=level.get_time_hours(),level.get_time_minutes(),level.get_time_days()
+     local ini=ini_file("respawn\\respawn_abandoned.ltx")
+     for k,v in pairs(sgm_flags.table_mod_respawn["respawn_abandoned"]) do
+        if string.sub(level_name,1,3)==string.sub(v,1,3) then
+           local section=v
+           local target_smart=to_string(sgm_functions.check_section_condlist(ini,section,"target_smart","nil"))
+           local place=sgm_functions.check_section_comma(ini,section,"place",nil,5)
+           local section_layers=to_number(sgm_functions.check_section_condlist(ini,section,"section_layers",0))
+           local cond_bool=to_string(sgm_functions.check_section_condlist(ini,section,"cond","true"))
+           local born_info=to_string(sgm_functions.check_section_condlist(ini,section,"born_info",""))
+           local reload_info=to_string(sgm_functions.check_section_condlist(ini,section,"reload_info","none"))
+           local respawn_radius=to_number(sgm_functions.check_section_condlist(ini,section,"respawn_radius",2))
+           local time_of_the_day=to_string(sgm_functions.check_section_condlist(ini,section,"time_of_the_day",""))
+           local precond_night=(level.get_time_hours()>=22 or level.get_time_hours()<=6) and time_of_the_day=="night"
+           local precond_day=(level.get_time_hours()>6 and level.get_time_hours()<22) and time_of_the_day=="day"
+           local precond_dist=db.actor:position():distance_to(vector():set(tonumber(place[1]),tonumber(place[2]),tonumber(place[3])))>=145
+           local precond_smart=(target_smart=="nil" or (target_smart~="nil" and sgm_functions.is_smart_empty(target_smart)==true))
+           local get_random_sections
+           local sections_params={}
+           if section_layers>0 then 
+              get_random_sections=math.random(1,section_layers) 
+           else
+              get_random_sections=0
+           end
+           if section_layers==0 then
+              sections_params.sections=sgm_functions.cfg_get_string(ini,section,"sections","nil")
+              sections_params.sections_tbl=utils.parse_spawns(sections_params.sections)
+           else
+              for m=1,section_layers do
+                 sections_params["sections_"..m]=sgm_functions.cfg_get_string(ini,section,"sections_"..m,"nil")
+                 sections_params["sections_"..m.."_tbl"]=utils.parse_spawns(sections_params["sections_"..m])
+              end
+           end
+           if reload_info~="none" and has_alife_info(born_info) and has_alife_info(reload_info) then
+              if time_of_the_day=="night" and (level.get_time_hours()>6 and level.get_time_hours()<22) then
+                 disable_info(born_info,reload_info)
+              elseif time_of_the_day=="day" and (level.get_time_hours()>=22 or level.get_time_hours()<=6) then
+                 disable_info(born_info,reload_info)
+              end
+           end
+           if exists(sections_params.sections) then
+              if (precond_day or precond_night) and cond_bool=="true" and precond_smart and precond_dist and dont_has_alife_info(born_info) then 
+                 for q,w in pairs(sections_params.sections_tbl) do
+                    for i=1,w.prob do
+                       if has_alife_info(w.section.."_death") then disable_info(w.section.."_death") end
+                       create(w.section,tonumber(place[1])+math.random(-respawn_radius,respawn_radius),tonumber(place[2]),tonumber(place[3])+math.random(-respawn_radius,respawn_radius),tonumber(place[4]),tonumber(place[5]))
+                    end
+                 end
+                 give_info(born_info)
+              end
+           else
+              if (precond_day or precond_night) and cond_bool=="true" and precond_smart and precond_dist and dont_has_alife_info(born_info) then
+                 for q,w in pairs(sections_params["sections_"..get_random_sections.."_tbl"]) do
+                    for i=1,w.prob do
+                       create(w.section,tonumber(place[1])+math.random(-respawn_radius,respawn_radius),tonumber(place[2]),tonumber(place[3])+math.random(-respawn_radius,respawn_radius),tonumber(place[4]),tonumber(place[5]))
+                    end
+                 end
+                 sgm_functions.check_section_condlist(ini,section,"backup_deaths")
+                 give_info(born_info)
+              end
+           end
+        end
+     end
 end
-
 function respawn_freeplay()
-   local level_name = level.name()
-   local hours, minutes = level.get_time_hours(), level.get_time_minutes()
-   local ini = ini_file("respawn\\respawn_freeplay.ltx")
-   for k, v in pairs(sgm_flags.table_mod_respawn["respawn_freeplay"]) do
-      local section = v
-      local place = sgm_functions.check_section_comma(ini, section, "place", nil, 5)
-      local spawn_info = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section, "spawn_info", ""))
-      local creatures = sgm_functions.cfg_get_string(ini, section, "creatures", "")
-      local creatures_table = utils.parse_spawns(creatures)
-      if sgm_g.dont_has_alife_info(spawn_info) then
-         for m, n in pairs(creatures_table) do
-            for i = 1, n.prob do
-               create(n.section, tonumber(place[1]) + math.random(-8, 8), tonumber(place[2]),
-                  tonumber(place[3]) + math.random(-8, 8), tonumber(place[4]), tonumber(place[5]))
-            end
-         end
-         give_info(spawn_info)
-      end
-   end
+     local level_name=level.name()
+     local hours,minutes=level.get_time_hours(),level.get_time_minutes()
+     local ini=ini_file("respawn\\respawn_freeplay.ltx")
+     for k,v in pairs(sgm_flags.table_mod_respawn["respawn_freeplay"]) do
+        local section=v
+        local place=sgm_functions.check_section_comma(ini,section,"place",nil,5)
+        local spawn_info=to_string(sgm_functions.check_section_condlist(ini,section,"spawn_info",""))
+        local creatures=sgm_functions.cfg_get_string(ini,section,"creatures","")
+        local creatures_table=utils.parse_spawns(creatures)
+        if dont_has_alife_info(spawn_info) then 
+           for m,n in pairs(creatures_table) do
+              for i=1,n.prob do
+                 create(n.section,tonumber(place[1])+math.random(-8,8),tonumber(place[2]),tonumber(place[3])+math.random(-8,8),tonumber(place[4]),tonumber(place[5]))
+              end
+           end
+           give_info(spawn_info)
+        end
+     end
+end
+function respawn_monster()
+     local level_name=level.name()
+     local hours,minutes=level.get_time_hours(),level.get_time_minutes()
+     local ini=ini_file("respawn\\respawn_monster.ltx")
+     for k,v in pairs(sgm_flags.table_mod_respawn["respawn_monster"]) do
+        local section=v
+        local cond_bool=to_string(sgm_functions.check_section_condlist(ini,section,"cond","true"))
+        local reload_info=to_string(sgm_functions.check_section_condlist(ini,section,"reload_info",""))
+        local activate_place=sgm_functions.check_section_comma(ini,section,"activate_place",nil,5)
+        local activate_time=sgm_functions.check_section_comma(ini,section,"activate_time","0,30",2)
+        local monster_layers=to_number(sgm_functions.check_section_condlist(ini,section,"monster_layers",0))
+        local precond_dist=db.actor:position():distance_to(vector():set(tonumber(activate_place[1]),tonumber(activate_place[2]),tonumber(activate_place[3])))>=145
+        local precond_time=((level.get_time_hours()==tonumber(activate_time[1]) and level.get_time_minutes()==tonumber(activate_time[2])) or check_difference_missed_time(tonumber(activate_time[1]),tonumber(activate_time[2]),section))
+        local get_random_sections
+        local sections_params={}
+        if monster_layers>0 then 
+           get_random_sections=math.random(1,monster_layers) 
+        else
+           get_random_sections=0
+        end
+        if monster_layers==0 then
+           sections_params.monster_sects=sgm_functions.cfg_get_string(ini,section,"monster_sects","")
+           sections_params.monster_sects_tbl=utils.parse_spawns(sections_params.monster_sects)
+        else
+           for m=1,monster_layers do
+              sections_params["monster_sects_"..m]=sgm_functions.cfg_get_string(ini,section,"monster_sects_"..m,"nil")
+              sections_params["monster_sects_"..m.."_tbl"]=utils.parse_spawns(sections_params["monster_sects_"..m])
+           end
+        end
+        if hours~=to_number(activate_time[1]) and has_alife_info(reload_info) then
+           disable_info(reload_info)
+        end
+        if exists(sections_params.monster_sects) then
+           if precond_time and cond_bool=="true" and precond_dist and dont_has_alife_info(reload_info) then
+              for m,n in pairs(sections_params.monster_sects_tbl) do
+                 if r_mod_params("number","monster_respawn_multiplier",1)==1 then
+                    for i=1,n.prob do create(n.section,tonumber(activate_place[1]),tonumber(activate_place[2]),tonumber(activate_place[3]),tonumber(activate_place[4]),tonumber(activate_place[5])) end
+                 else
+                    for z=1,r_mod_params("number","monster_respawn_multiplier",1) do
+                       for i=1,n.prob do create(n.section,tonumber(activate_place[1]),tonumber(activate_place[2]),tonumber(activate_place[3]),tonumber(activate_place[4]),tonumber(activate_place[5])) end
+                    end
+                 end
+              end
+              use_difference_missed_time(section)
+              give_info(reload_info)
+           end
+        else
+           if precond_time and cond_bool=="true" and precond_dist and dont_has_alife_info(reload_info) then
+              for m,n in pairs(sections_params["monster_sects_"..get_random_sections.."_tbl"]) do
+                 if r_mod_params("number","monster_respawn_multiplier",1)==1 then
+                    for i=1,n.prob do create(n.section,tonumber(activate_place[1]),tonumber(activate_place[2]),tonumber(activate_place[3]),tonumber(activate_place[4]),tonumber(activate_place[5])) end
+                 else
+                    for z=1,r_mod_params("number","monster_respawn_multiplier",1) do
+                       for i=1,n.prob do create(n.section,tonumber(activate_place[1]),tonumber(activate_place[2]),tonumber(activate_place[3]),tonumber(activate_place[4]),tonumber(activate_place[5])) end
+                    end
+                 end
+              end
+              use_difference_missed_time(section)
+              give_info(reload_info)
+           end
+        end
+     end
 end
 
-function respawn_monster()
-   local level_name = level.name()
-   local hours, minutes = level.get_time_hours(), level.get_time_minutes()
-   local ini = ini_file("respawn\\respawn_monster.ltx")
-   for k, v in pairs(sgm_flags.table_mod_respawn["respawn_monster"]) do
-      local section = v
-      local cond_bool = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section, "cond", "true"))
-      local reload_info = sgm_g.to_string(sgm_functions.check_section_condlist(ini, section, "reload_info", ""))
-      local activate_place = sgm_functions.check_section_comma(ini, section, "activate_place", nil, 5)
-      local activate_time = sgm_functions.check_section_comma(ini, section, "activate_time", "0,30", 2)
-      local monster_layers = sgm_g.to_number(sgm_functions.check_section_condlist(ini, section, "monster_layers", 0))
-      local precond_dist = db.actor:position():distance_to(vector():set(tonumber(activate_place[1]),
-         tonumber(activate_place[2]), tonumber(activate_place[3]))) >= 145
-      local precond_time = ((level.get_time_hours() == tonumber(activate_time[1]) and level.get_time_minutes() == tonumber(activate_time[2])) or check_difference_missed_time(tonumber(activate_time[1]), tonumber(activate_time[2]), section))
-      local get_random_sections
-      local sections_params = {}
-      if monster_layers > 0 then
-         get_random_sections = math.random(1, monster_layers)
-      else
-         get_random_sections = 0
-      end
-      if monster_layers == 0 then
-         sections_params.monster_sects = sgm_functions.cfg_get_string(ini, section, "monster_sects", "")
-         sections_params.monster_sects_tbl = utils.parse_spawns(sections_params.monster_sects)
-      else
-         for m = 1, monster_layers do
-            sections_params["monster_sects_" .. m] = sgm_functions.cfg_get_string(ini, section, "monster_sects_" .. m,
-               "nil")
-            sections_params["monster_sects_" .. m .. "_tbl"] = utils.parse_spawns(sections_params["monster_sects_" .. m])
-         end
-      end
-      if hours ~= sgm_g.to_number(activate_time[1]) and has_alife_info(reload_info) then
-         disable_info(reload_info)
-      end
-      if sgm_g.exists(sections_params.monster_sects) then
-         if precond_time and cond_bool == "true" and precond_dist and sgm_g.dont_has_alife_info(reload_info) then
-            for m, n in pairs(sections_params.monster_sects_tbl) do
-               if sgm_g.r_mod_params("number", "monster_respawn_multiplier", 1) == 1 then
-                  for i = 1, n.prob do
-                     create(n.section, tonumber(activate_place[1]), tonumber(activate_place[2]),
-                        tonumber(activate_place[3]), tonumber(activate_place[4]), tonumber(activate_place[5]))
-                  end
-               else
-                  for z = 1, sgm_g.r_mod_params("number", "monster_respawn_multiplier", 1) do
-                     for i = 1, n.prob do
-                        create(n.section, tonumber(activate_place[1]), tonumber(activate_place[2]),
-                           tonumber(activate_place[3]), tonumber(activate_place[4]), tonumber(activate_place[5]))
-                     end
-                  end
-               end
-            end
-            use_difference_missed_time(section)
-            give_info(reload_info)
-         end
-      else
-         if precond_time and cond_bool == "true" and precond_dist and sgm_g.dont_has_alife_info(reload_info) then
-            for m, n in pairs(sections_params["monster_sects_" .. get_random_sections .. "_tbl"]) do
-               if sgm_g.r_mod_params("number", "monster_respawn_multiplier", 1) == 1 then
-                  for i = 1, n.prob do
-                     create(n.section, tonumber(activate_place[1]), tonumber(activate_place[2]),
-                        tonumber(activate_place[3]), tonumber(activate_place[4]), tonumber(activate_place[5]))
-                  end
-               else
-                  for z = 1, sgm_g.r_mod_params("number", "monster_respawn_multiplier", 1) do
-                     for i = 1, n.prob do
-                        create(n.section, tonumber(activate_place[1]), tonumber(activate_place[2]),
-                           tonumber(activate_place[3]), tonumber(activate_place[4]), tonumber(activate_place[5]))
-                     end
-                  end
-               end
-            end
-            use_difference_missed_time(section)
-            give_info(reload_info)
-         end
-      end
-   end
-end
 
 ---------------------------------//Copyright GeJorge//-----------------------------------------------

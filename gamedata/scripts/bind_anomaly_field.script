@@ -1,5 +1,5 @@
 --'******************************************************
---'*  Р‘РёРЅРґРµСЂ РѕР±СЉРµРєС‚Р° РїРѕР»СЏ Р°РЅРѕРјР°Р»РёР№.
+--'*  Биндер объекта поля аномалий.
 --'******************************************************
 fields_by_names = {}
 function bind(obj)
@@ -49,9 +49,9 @@ end
 
 function anomaly_field_binder:update(delta)
 	object_binder.update(self, delta)
-    --/ SGM in
-    sgm_modules.module_anomaly_field(self.object)
-    --/ SGM out
+        --/ SGM in
+        sgm_modules.module_anomaly_field(self.object)
+        --/ SGM out
 	if(time_global()-self.last_update<10000) then
 		return
 	end

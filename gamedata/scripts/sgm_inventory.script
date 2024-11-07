@@ -5,242 +5,240 @@
 ---==================================================================================================---
 --' Присовокупление к предмету, который подобрал ГГ, - инфопортаций, автосохранений, счетчиков.
 local on_take_important_item = {
-   { "special_helicopter_key",        "zat_get_wireing_heli_key_has" },
-   { "quest_bloodsucker_vaccine",     "pri_bloodsucker_vaccine_has_got",         "save_pri_bloodsucker_vaccine_got" },
-   { "quest_bloodsucker_letter_2",    "pri_bloodsucker_vaccine_back_to_place" },
-   { "quest_flash_light",             "zat_bring_flash_light_have",              "save_zat_bring_flash_light_got" },
-   { "quest_drink_beylis",            "zat_bring_drink_beylis_have",             "save_zat_bring_drink_beylis_got",      "jup_beylis_ambush_effect" },
-   { "quest_sharpshooter_binocular",  "zat_bring_sharpshooter_bino_have",        "save_zat_bring_sharpshooter_bino_got" },
-   { "quest_arms_case",               "jup_bring_arms_case_have",                "save_jup_bring_arms_case_got" },
-   { "quest_heavy_medkits",           "jup_bring_heavy_medkits_have",            "save_jup_bring_heavy_medkits_got" },
-   { "quest_photo_device",            "jup_bring_photo_device_have",             "save_jup_bring_photo_device_got" },
-   { "quest_live_water",              "pri_expiation_sin_1_live_water_found",    "save_pri_expiation_sin_1_water_got" },
-   { "quest_medic_medkit",            "pri_expiation_sin_1_medic_quest_found" },
-   { "af_acid_star",                  "zat_breeder_talk_and_job_founded",        "save_zat_breeder_job_executed" },
-   { "detector_modify_toolkit",       "jup_bring_detector_kit_naydeni",          "save_jup_bring_detector_kit_got" },
-   { "wpn_vintorez_bomber",           "jup_find_gromoboy_vintar_nashol",         "save_jup_find_gromoboy_vintar_got" },
-   { "device_pda_kasilov",            "pri_necessary_kill_kasilov_pda",          "save_pri_necessary_kill_kasilov_got" },
-   { "device_pda_cherniy",            "jup_founded_pda_chernogo" },
-   { "important_science_docks",       "pri_find_science_briefing_naydeno",       "save_pri_find_science_briefing_got" },
-   { "zat_intercepted_case",          "zat_deliver_monolith_case_take",          "save_zat_deliver_monolith_case_lifted" },
-   { "zat_shakal_weapon",             "zat_bandit_kill_shakal_zabral",           "save_zat_bandit_kill_shakal_fw_got" },
-   { "jup_thief_voron_pda",           "jup_find_gromoboy_vintar_fake_loot",      "save_jup_find_gromoboy_vintar_voron" },
-   { "pri_a25_explosive_charge_item", "pri_a22_yarmoshuk_body_search" },
-   { "shustriy_ingram_m10",           "shustriy_find_1_have",                    "save_shustriy_find_got_1" },
-   { "shustriy_ak47",                 "shustriy_find_2_have",                    "save_shustriy_find_got_2" },
-   { "shustriy_mossberg_590mk",       "shustriy_find_3_have",                    "save_shustriy_find_got_3" },
-   { "shustriy_steyr_aug_ss190",      "shustriy_find_4_have",                    "save_shustriy_find_got_4" },
-   { "x18_secret_docks_1",            "x18_abyss_dock_1_founded",                nil,                                    nil,                       "x18_secret_docks_founded" },
-   { "x18_secret_docks_2",            "x18_abyss_dock_2_founded",                nil,                                    nil,                       "x18_secret_docks_founded" },
-   { "x18_secret_docks_3",            "x18_abyss_dock_3_founded",                nil,                                    nil,                       "x18_secret_docks_founded" },
-   { "agru_key_from_door",            "agru_search_door_key_founded" },
-   { "agru_secret_docks_1",           "agru_underground_cave_dock_1_founded",    nil,                                    nil,                       "agru_secret_docks_founded" },
-   { "agru_secret_docks_2",           "agru_underground_cave_dock_2_founded",    nil,                                    nil,                       "agru_secret_docks_founded" },
-   { "val_key_from_safe",             "val_shade_of_time_key_searched" },
-   { "val_access_card_x18",           "val_shade_of_time_card_received" },
-   { "val_b4_baltazar_pda",           "val_shade_of_time_pda_is_found" },
-   { "zat_wisdom_book_1",             "zat_wisdom_books_book_1_taked" },
-   { "zat_wisdom_book_2",             "zat_wisdom_books_book_2_taked" },
-   { "zat_wisdom_book_3",             "zat_wisdom_books_book_3_taked" },
-   { "zat_mad_dog_pda",               "zat_mad_dog_alfa_commander_pda_founded" },
-   { "jup_killer_caravan_case",       "jup_examine_caravan_case_founded" },
-   { "pri_inquisitor_pda_1",          "pri_fenix_vendetta_pda_1_founded" },
-   { "pri_inquisitor_pda_2",          "pri_fenix_vendetta_pda_2_founded" },
-   { "pri_fenix_brother_medallion",   "pri_fenix_vendetta_hiding_place_explored" },
-   { "x18_secret_gs67",               "val_secret_development_gs67_founded" },
-   { "mil_hole_bomb",                 "mil_smash_monster_hole_bomb_founded" },
-   { "val_renegade_money_case",       "mil_boarding_money_case_founded" },
-   { "dv_monolith_inquisitor_case",   "pri_fenix_vendetta_flash_founded" },
-   { "esc_key_from_gate",             "esc_key_from_gate_founded" },
-   { "af_shapoklak",                  "esc_whimsical_artefact_founded" },
-   { "esc_b2_bomb",                   "esc_village_annex_has_c4" },
-   { "esc_b2_tamerlan_flash",         "esc_village_annex_cellar_explored" },
-   { "esc_b3_safe_flash",             "esc_atp_annex_safe_searched" },
-   { "esc_b3_safe_key",               "esc_atp_annex_key_founded" },
-   { "mar_army_cargo",                "mar_army_cargo_found_cargo" },
-   { "mar_mine_sensor",               "mar_mine_detector_sensor_founded" },
-   { "zat_alfa_customer_pda",         "zat_alfa_sabotage_alfa_info" },
-   { "jup_azot_simply_raciya",        "zat_alfa_sabotage_raciya_founded" },
+{"special_helicopter_key","zat_get_wireing_heli_key_has"},
+{"quest_bloodsucker_vaccine","pri_bloodsucker_vaccine_has_got","save_pri_bloodsucker_vaccine_got"},
+{"quest_bloodsucker_letter_2","pri_bloodsucker_vaccine_back_to_place"},
+{"quest_flash_light","zat_bring_flash_light_have","save_zat_bring_flash_light_got"},
+{"quest_drink_beylis","zat_bring_drink_beylis_have","save_zat_bring_drink_beylis_got","jup_beylis_ambush_effect"},
+{"quest_sharpshooter_binocular","zat_bring_sharpshooter_bino_have","save_zat_bring_sharpshooter_bino_got"},
+{"quest_arms_case","jup_bring_arms_case_have","save_jup_bring_arms_case_got"},
+{"quest_heavy_medkits","jup_bring_heavy_medkits_have","save_jup_bring_heavy_medkits_got"},
+{"quest_photo_device","jup_bring_photo_device_have","save_jup_bring_photo_device_got"},
+{"quest_live_water","pri_expiation_sin_1_live_water_found","save_pri_expiation_sin_1_water_got"},
+{"quest_medic_medkit","pri_expiation_sin_1_medic_quest_found"},
+{"af_acid_star","zat_breeder_talk_and_job_founded","save_zat_breeder_job_executed"},
+{"detector_modify_toolkit","jup_bring_detector_kit_naydeni","save_jup_bring_detector_kit_got"},
+{"wpn_vintorez_bomber","jup_find_gromoboy_vintar_nashol","save_jup_find_gromoboy_vintar_got"},
+{"device_pda_kasilov","pri_necessary_kill_kasilov_pda","save_pri_necessary_kill_kasilov_got"},
+{"device_pda_cherniy","jup_founded_pda_chernogo"},
+{"important_science_docks","pri_find_science_briefing_naydeno","save_pri_find_science_briefing_got"},
+{"zat_intercepted_case","zat_deliver_monolith_case_take","save_zat_deliver_monolith_case_lifted"},
+{"zat_shakal_weapon","zat_bandit_kill_shakal_zabral","save_zat_bandit_kill_shakal_fw_got"},
+{"jup_thief_voron_pda","jup_find_gromoboy_vintar_fake_loot","save_jup_find_gromoboy_vintar_voron"},
+{"pri_a25_explosive_charge_item","pri_a22_yarmoshuk_body_search"},
+{"shustriy_ingram_m10","shustriy_find_1_have","save_shustriy_find_got_1"},
+{"shustriy_ak47","shustriy_find_2_have","save_shustriy_find_got_2"},
+{"shustriy_mossberg_590mk","shustriy_find_3_have","save_shustriy_find_got_3"},
+{"shustriy_steyr_aug_ss190","shustriy_find_4_have","save_shustriy_find_got_4"},
+{"x18_secret_docks_1","x18_abyss_dock_1_founded",nil,nil,"x18_secret_docks_founded"},
+{"x18_secret_docks_2","x18_abyss_dock_2_founded",nil,nil,"x18_secret_docks_founded"},
+{"x18_secret_docks_3","x18_abyss_dock_3_founded",nil,nil,"x18_secret_docks_founded"},
+{"agru_key_from_door","agru_search_door_key_founded"},
+{"agru_secret_docks_1","agru_underground_cave_dock_1_founded",nil,nil,"agru_secret_docks_founded"},
+{"agru_secret_docks_2","agru_underground_cave_dock_2_founded",nil,nil,"agru_secret_docks_founded"},
+{"val_key_from_safe","val_shade_of_time_key_searched"},
+{"val_access_card_x18","val_shade_of_time_card_received"},
+{"val_b4_baltazar_pda","val_shade_of_time_pda_is_found"},
+{"zat_wisdom_book_1","zat_wisdom_books_book_1_taked"},
+{"zat_wisdom_book_2","zat_wisdom_books_book_2_taked"},
+{"zat_wisdom_book_3","zat_wisdom_books_book_3_taked"},
+{"zat_mad_dog_pda","zat_mad_dog_alfa_commander_pda_founded"},
+{"jup_killer_caravan_case","jup_examine_caravan_case_founded"},
+{"pri_inquisitor_pda_1","pri_fenix_vendetta_pda_1_founded"},
+{"pri_inquisitor_pda_2","pri_fenix_vendetta_pda_2_founded"},
+{"pri_fenix_brother_medallion","pri_fenix_vendetta_hiding_place_explored"},
+{"x18_secret_gs67","val_secret_development_gs67_founded"},
+{"mil_hole_bomb","mil_smash_monster_hole_bomb_founded"},
+{"val_renegade_money_case","mil_boarding_money_case_founded"},
+{"dv_monolith_inquisitor_case","pri_fenix_vendetta_flash_founded"},
+{"esc_key_from_gate","esc_key_from_gate_founded"},
+{"af_shapoklak","esc_whimsical_artefact_founded"},
+{"esc_b2_bomb","esc_village_annex_has_c4"},
+{"esc_b2_tamerlan_flash","esc_village_annex_cellar_explored"},
+{"esc_b3_safe_flash","esc_atp_annex_safe_searched"},
+{"esc_b3_safe_key","esc_atp_annex_key_founded"},
+{"mar_army_cargo","mar_army_cargo_found_cargo"},
+{"mar_mine_sensor","mar_mine_detector_sensor_founded"},
+{"zat_alfa_customer_pda","zat_alfa_sabotage_alfa_info"},
+{"jup_azot_simply_raciya","zat_alfa_sabotage_raciya_founded"},
 }
 --' Чистка квестовых предметов после провала квеста.
 local on_collapse_before_termination = {
-   { "zat_danger_parcel",   "zat_danger_parcel_fail",            "zat_danger_parcel_complete" },
-   { "jup_thief_voron_pda", "jup_find_gromoboy_vintar_complete", "jup_find_gromoboy_vintar_fail" },
-   { "jup_thief_voron_pda", "jup_find_gromoboy_vintar_fail",     "jup_find_gromoboy_vintar_complete" },
-   { "x18_secret_gs67",     "val_secret_development_fail",       "val_secret_development_complete" },
-   { "device_pda_kasilov",  "pri_necessary_kill_kasilov_fail",   "pri_necessary_kill_kasilov_reward" },
+{"zat_danger_parcel","zat_danger_parcel_fail","zat_danger_parcel_complete"},
+{"jup_thief_voron_pda","jup_find_gromoboy_vintar_complete","jup_find_gromoboy_vintar_fail"},
+{"jup_thief_voron_pda","jup_find_gromoboy_vintar_fail","jup_find_gromoboy_vintar_complete"},
+{"x18_secret_gs67","val_secret_development_fail","val_secret_development_complete"},
+{"device_pda_kasilov","pri_necessary_kill_kasilov_fail","pri_necessary_kill_kasilov_reward"},
 }
 --' Чистка квестовых предметов после успешного завершения квеста.
 local on_successfully_termination = {
-   { "jup_azot_charge_scanner",      "zat_alfa_sabotage_complete" },
-   { "jup_azot_charge_instruments",  "zat_alfa_sabotage_complete" },
-   { "pri_alf_info_1",               "pri_alf_quest_informs_fail" },
-   { "pri_alf_info_2",               "pri_alf_quest_informs_fail" },
-   { "pri_alf_info_3",               "pri_alf_quest_informs_fail" },
-   { "mar_mine_detector",            "actor_come_to_zaton" },
-   { "mar_georadar",                 "actor_come_to_zaton" },
-   { "esc_b3_safe_key",              "esc_atp_annex_safe_searched" },
-   { "esc_b3_safe_key",              "actor_come_to_marsh" },
-   { "esc_key_from_gate",            "actor_come_to_marsh" },
-   { "zat_postman_parcel",           "zat_breeder_talk_and_job_start" },
-   { "esc_b2_bomb",                  "esc_alt_storyline_commenced" },
-   { "esc_b2_bomb",                  "esc_village_annex_placed_c4" },
-   { "mil_hole_bomb",                "mil_alt_storyline_commenced" },
-   { "mil_hole_bomb",                "mil_smash_monster_hole_bomb_setuped" },
-   { "val_renegade_money_case",      "mil_alt_storyline_commenced" },
-   { "val_renegade_money_case",      "mil_boarding_money_case_fail" },
-   { "val_key_from_safe",            "val_shade_of_time_card_received" },
-   { "agru_key_from_door",           "agru_search_door_key_opened",          nil,                               true },
-   { "val_b4_baltazar_pda",          "val_shade_of_time_complete" },
-   { "zat_intercepted_case",         "zat_deliver_monolith_case_doklad" },
-   { "jup_killer_caravan_case",      "jup_examine_caravan_complete",         "jup_examine_caravan_fail" },
-   { "letter_from_agent",            "zat_meet_authorities_agent_talk" },
-   { "important_science_docks",      "pri_find_science_briefing_otneseno" },
-   { "quest_flash_light",            "zat_bring_flash_light_complete",       "zat_bring_flash_light_fail" },
-   { "quest_drink_beylis",           "zat_bring_drink_beylis_complete" },
-   { "quest_sharpshooter_binocular", "zat_bring_sharpshooter_bino_complete", "zat_bring_sharpshooter_bino_fail" },
-   { "quest_arms_case",              "jup_bring_arms_case_complete" },
-   { "quest_heavy_medkits",          "jup_bring_heavy_medkits_complete" },
-   { "quest_photo_device",           "jup_bring_photo_device_complete" },
-   { "quest_medic_medkit",           "pri_expiation_sin_1_complete",         "pri_expiation_sin_1_fail" },
-   { "quest_live_water",             "pri_expiation_sin_1_fail" },
-   { "quest_bloodsucker_vaccine",    "pri_bloodsucker_vaccine_2nd_sleep_end" },
-   { "quest_bloodsucker_letter_2",   "pri_bloodsucker_vaccine_complete" },
-   { "shustriy_ingram_m10",          "shustriy_find_1_complete" },
-   { "shustriy_ak47",                "shustriy_find_2_complete" },
-   { "shustriy_mossberg_590mk",      "shustriy_find_3_complete" },
-   { "shustriy_steyr_aug_ss190",     "shustriy_find_4_complete" },
-   { "special_helicopter_key",       "pri_a28_actor_in_zone_stay" },
+{"jup_azot_charge_scanner","zat_alfa_sabotage_complete"},
+{"jup_azot_charge_instruments","zat_alfa_sabotage_complete"},
+{"pri_alf_info_1","pri_alf_quest_informs_fail"},
+{"pri_alf_info_2","pri_alf_quest_informs_fail"},
+{"pri_alf_info_3","pri_alf_quest_informs_fail"},
+{"mar_mine_detector","actor_come_to_zaton"},
+{"mar_georadar","actor_come_to_zaton"},
+{"esc_b3_safe_key","esc_atp_annex_safe_searched"},
+{"esc_b3_safe_key","actor_come_to_marsh"},
+{"esc_key_from_gate","actor_come_to_marsh"},
+{"zat_postman_parcel","zat_breeder_talk_and_job_start"},
+{"esc_b2_bomb","esc_alt_storyline_commenced"},
+{"esc_b2_bomb","esc_village_annex_placed_c4"},
+{"mil_hole_bomb","mil_alt_storyline_commenced"},
+{"mil_hole_bomb","mil_smash_monster_hole_bomb_setuped"},
+{"val_renegade_money_case","mil_alt_storyline_commenced"},
+{"val_renegade_money_case","mil_boarding_money_case_fail"},
+{"val_key_from_safe","val_shade_of_time_card_received"},
+{"agru_key_from_door","agru_search_door_key_opened",nil,true},
+{"val_b4_baltazar_pda","val_shade_of_time_complete"},
+{"zat_intercepted_case","zat_deliver_monolith_case_doklad"},
+{"jup_killer_caravan_case","jup_examine_caravan_complete","jup_examine_caravan_fail"},
+{"letter_from_agent","zat_meet_authorities_agent_talk"},
+{"important_science_docks","pri_find_science_briefing_otneseno"},
+{"quest_flash_light","zat_bring_flash_light_complete","zat_bring_flash_light_fail"},
+{"quest_drink_beylis","zat_bring_drink_beylis_complete"},
+{"quest_sharpshooter_binocular","zat_bring_sharpshooter_bino_complete","zat_bring_sharpshooter_bino_fail"},
+{"quest_arms_case","jup_bring_arms_case_complete"},
+{"quest_heavy_medkits","jup_bring_heavy_medkits_complete"},
+{"quest_photo_device","jup_bring_photo_device_complete"},
+{"quest_medic_medkit","pri_expiation_sin_1_complete","pri_expiation_sin_1_fail"},
+{"quest_live_water","pri_expiation_sin_1_fail"},
+{"quest_bloodsucker_vaccine","pri_bloodsucker_vaccine_2nd_sleep_end"},
+{"quest_bloodsucker_letter_2","pri_bloodsucker_vaccine_complete"},
+{"shustriy_ingram_m10","shustriy_find_1_complete"},
+{"shustriy_ak47","shustriy_find_2_complete"},
+{"shustriy_mossberg_590mk","shustriy_find_3_complete"},
+{"shustriy_steyr_aug_ss190","shustriy_find_4_complete"},
+{"special_helicopter_key","pri_a28_actor_in_zone_stay"},
 }
 --' Чистка квестовых предметов которые были получены персонажами.
 local on_after_termination = {
-   { "zat_bandit_informer",                "zat_wisdom_book_1" },
-   { "zat_bandit_informer",                "zat_wisdom_book_2" },
-   { "zat_bandit_informer",                "zat_wisdom_book_3" },
-   { "zat_stalker_member",                 "zat_mad_dog_pda" },
-   { "zat_stalker_medic",                  "quest_medic_medkit" },
-   { "zat_b22_stalker_medic",              "quest_medic_medkit" },
-   { "zat_killer_shakal",                  "zat_shakal_weapon",           "zat_bandit_kill_shakal_obman" },
-   { "zat_bandit_base_leader",             "quest_sharpshooter_binocular" },
-   { "zat_bandit_base_leader",             "zat_shakal_weapon" },
-   { "zat_stalker_breeder",                "af_acid_star" },
-   { "zat_stalker_bankir",                 "zat_postman_parcel" },
-   { "zat_b30_owl_stalker_trader_id",      "quest_frequency_radio" },
-   { "zat_a2_stalker_barmen",              "quest_drink_beylis" },
-   { "zat_bandit_trader",                  "quest_flash_light" },
-   { "zat_a2_stalker_mechanic",            "toolkit_1" },
-   { "zat_a2_stalker_mechanic",            "toolkit_2" },
-   { "zat_a2_stalker_mechanic",            "toolkit_3" },
-   { "zat_stalker_employer",               "zat_employer_item_1" },
-   { "zat_stalker_employer",               "zat_employer_item_2" },
-   { "zat_stalker_employer",               "zat_employer_item_3" },
-   { "zat_stalker_employer",               "zat_employer_item_4" },
-   { "jup_authorities_agent2",             "important_science_docks" },
-   { "jup_stalker_gromoboy",               "jup_thief_voron_pda" },
-   { "jup_b19_freedom_yar",                "quest_photo_device" },
-   { "jup_a6_stalker_medik",               "quest_heavy_medkits" },
-   { "jup_a6_stalker_barmen",              "quest_arms_case" },
-   { "jup_b217_stalker_tech",              "toolkit_1" },
-   { "jup_b217_stalker_tech",              "toolkit_2" },
-   { "jup_b217_stalker_tech",              "toolkit_3" },
-   { "jup_dolg_employer",                  "jup_employer_item_1" },
-   { "jup_dolg_employer",                  "jup_employer_item_2" },
-   { "jup_dolg_employer",                  "jup_employer_item_3" },
-   { "jup_dolg_employer",                  "jup_employer_item_4" },
-   { "jup_killer_base_leader",             "jup_killer_caravan_case" },
-   { "pri_monolit_base_chief",             "zat_intercepted_case" },
-   { "pri_monolit_base_leader",            "device_pda_kasilov" },
-   { "pri_monolit_base_leader",            "quest_live_water" },
-   { "pri_a22_army_signaller",             "signaller_toolkit_1" },
-   { "pri_authorities_agent",              "x18_secret_docks_1" },
-   { "pri_authorities_agent",              "x18_secret_docks_2" },
-   { "pri_authorities_agent",              "x18_secret_docks_3" },
-   { "pri_army_fenix",                     "pri_inquisitor_pda_1" },
-   { "pri_army_fenix",                     "pri_inquisitor_pda_2" },
-   { "pri_army_fenix",                     "pri_fenix_brother_medallion" },
-   { "pri_army_employer",                  "pri_employer_item_1" },
-   { "pri_army_employer",                  "pri_employer_item_2" },
-   { "pri_army_employer",                  "pri_employer_item_3" },
-   { "pri_army_employer",                  "pri_employer_item_4" },
-   { "val_freedom_spez_agent_lucas",       "val_lucas_spez_scanner" },
-   { "val_b2_base_leader",                 "device_pda_b1_commander" },
-   { "val_b2_base_leader",                 "device_pda_b1_renegade_1" },
-   { "val_b2_base_leader",                 "device_pda_b1_renegade_2" },
-   { "val_b2_base_leader",                 "device_pda_b1_renegade_3" },
-   { "val_b2_base_leader",                 "val_renegade_money_case" },
-   { "val_b2_leviafan",                    "x18_secret_gs67" },
-   { "val_b2_employer",                    "val_employer_item_1" },
-   { "val_b2_employer",                    "val_employer_item_2" },
-   { "val_b2_employer",                    "val_employer_item_3" },
-   { "val_b2_employer",                    "val_employer_item_4" },
-   { "mil_b7_employer",                    "mil_employer_item_1" },
-   { "mil_b7_employer",                    "mil_employer_item_2" },
-   { "mil_b7_employer",                    "mil_employer_item_3" },
-   { "mil_b7_employer",                    "mil_employer_item_4" },
-   { "agr_authorities_agent",              "agru_secret_docks_1" },
-   { "agr_authorities_agent",              "agru_secret_docks_2" },
-   { "esc_stalker_employer",               "esc_employer_item_1" },
-   { "esc_stalker_employer",               "esc_employer_item_2" },
-   { "esc_stalker_employer",               "esc_employer_item_3" },
-   { "esc_b1_stalker_mechanic",            "mar_mine_sensor" },
-   { "pri_monolith_library_base_mechanic", "pri_alf_info_1" },
-   { "pri_monolith_library_base_mechanic", "pri_alf_info_2" },
-   { "pri_monolith_library_base_mechanic", "pri_alf_info_3" },
+{"zat_bandit_informer","zat_wisdom_book_1"},
+{"zat_bandit_informer","zat_wisdom_book_2"},
+{"zat_bandit_informer","zat_wisdom_book_3"},
+{"zat_stalker_member","zat_mad_dog_pda"},
+{"zat_stalker_medic","quest_medic_medkit"},
+{"zat_b22_stalker_medic","quest_medic_medkit"},
+{"zat_killer_shakal","zat_shakal_weapon","zat_bandit_kill_shakal_obman"},
+{"zat_bandit_base_leader","quest_sharpshooter_binocular"},
+{"zat_bandit_base_leader","zat_shakal_weapon"},
+{"zat_stalker_breeder","af_acid_star"},
+{"zat_stalker_bankir","zat_postman_parcel"},
+{"zat_b30_owl_stalker_trader_id","quest_frequency_radio"},
+{"zat_a2_stalker_barmen","quest_drink_beylis"},
+{"zat_bandit_trader","quest_flash_light"},
+{"zat_a2_stalker_mechanic","toolkit_1"},
+{"zat_a2_stalker_mechanic","toolkit_2"},
+{"zat_a2_stalker_mechanic","toolkit_3"},
+{"zat_stalker_employer","zat_employer_item_1"},
+{"zat_stalker_employer","zat_employer_item_2"},
+{"zat_stalker_employer","zat_employer_item_3"},
+{"zat_stalker_employer","zat_employer_item_4"},
+{"jup_authorities_agent2","important_science_docks"},
+{"jup_stalker_gromoboy","jup_thief_voron_pda"},
+{"jup_b19_freedom_yar","quest_photo_device"},
+{"jup_a6_stalker_medik","quest_heavy_medkits"},
+{"jup_a6_stalker_barmen","quest_arms_case"},
+{"jup_b217_stalker_tech","toolkit_1"},
+{"jup_b217_stalker_tech","toolkit_2"},
+{"jup_b217_stalker_tech","toolkit_3"},
+{"jup_dolg_employer","jup_employer_item_1"},
+{"jup_dolg_employer","jup_employer_item_2"},
+{"jup_dolg_employer","jup_employer_item_3"},
+{"jup_dolg_employer","jup_employer_item_4"},
+{"jup_killer_base_leader","jup_killer_caravan_case"},
+{"pri_monolit_base_chief","zat_intercepted_case"},
+{"pri_monolit_base_leader","device_pda_kasilov"},
+{"pri_monolit_base_leader","quest_live_water"},
+{"pri_a22_army_signaller","signaller_toolkit_1"},
+{"pri_authorities_agent","x18_secret_docks_1"},
+{"pri_authorities_agent","x18_secret_docks_2"},
+{"pri_authorities_agent","x18_secret_docks_3"},
+{"pri_army_fenix","pri_inquisitor_pda_1"},
+{"pri_army_fenix","pri_inquisitor_pda_2"},
+{"pri_army_fenix","pri_fenix_brother_medallion"},
+{"pri_army_employer","pri_employer_item_1"},
+{"pri_army_employer","pri_employer_item_2"},
+{"pri_army_employer","pri_employer_item_3"},
+{"pri_army_employer","pri_employer_item_4"},
+{"val_freedom_spez_agent_lucas","val_lucas_spez_scanner"},
+{"val_b2_base_leader","device_pda_b1_commander"},
+{"val_b2_base_leader","device_pda_b1_renegade_1"},
+{"val_b2_base_leader","device_pda_b1_renegade_2"},
+{"val_b2_base_leader","device_pda_b1_renegade_3"},
+{"val_b2_base_leader","val_renegade_money_case"},
+{"val_b2_leviafan","x18_secret_gs67"},
+{"val_b2_employer","val_employer_item_1"},
+{"val_b2_employer","val_employer_item_2"},
+{"val_b2_employer","val_employer_item_3"},
+{"val_b2_employer","val_employer_item_4"},
+{"mil_b7_employer","mil_employer_item_1"},
+{"mil_b7_employer","mil_employer_item_2"},
+{"mil_b7_employer","mil_employer_item_3"},
+{"mil_b7_employer","mil_employer_item_4"},
+{"agr_authorities_agent","agru_secret_docks_1"},
+{"agr_authorities_agent","agru_secret_docks_2"},
+{"esc_stalker_employer","esc_employer_item_1"},
+{"esc_stalker_employer","esc_employer_item_2"},
+{"esc_stalker_employer","esc_employer_item_3"},
+{"esc_b1_stalker_mechanic","mar_mine_sensor"},
+{"pri_monolith_library_base_mechanic","pri_alf_info_1"},
+{"pri_monolith_library_base_mechanic","pri_alf_info_2"},
+{"pri_monolith_library_base_mechanic","pri_alf_info_3"},
 }
 function inventory_main()
-   if sgm_g.check_seconds(1) then
+   if check_seconds(1) then
       take_update()
       drop_1_update()
    end
-   if sgm_g.check_seconds(10) then
+   if check_seconds(10) then
       drop_2_update()
    end
 end
-
 function drop_1_update()
-   for w, c in pairs(on_successfully_termination) do
-      if ((has_alife_info(c[2]) and c[3] == nil) or (c[3] ~= nil and (has_alife_info(c[2]) or has_alife_info(c[3])))) and db.actor:object(c[1]) then
-         if sgm_g.exists(c[4]) and c[4] == true then
-            local item_caption = game.translate_string(sgm_functions.ReadCaption(c[1]))
-            news_manager.send_tip(db.actor, item_caption, 0, "activated_item", 2000, nil, "st_activated_item_is", false)
+   for w,c in pairs(on_successfully_termination) do
+      if ((has_alife_info(c[2]) and c[3]==nil) or (c[3]~=nil and (has_alife_info(c[2]) or has_alife_info(c[3])))) and db.actor:object(c[1]) then
+         if exists(c[4]) and c[4]==true then
+            local item_caption=game.translate_string(sgm_functions.ReadCaption(c[1]))
+            news_manager.send_tip(db.actor,item_caption,0,"activated_item",2000,nil,"st_activated_item_is",false)
          end
-         sgm_g.remove_inv_item(db.actor, c[1])
+         remove_inv_item(db.actor,c[1])
       end
    end
 end
-
 function drop_2_update()
-   for k, v in pairs(on_collapse_before_termination) do
-      if has_alife_info(v[2]) and sgm_g.dont_has_alife_info(v[3]) and db.actor:object(v[1]) then
-         remove_inv_item(db.actor, v[1])
+   for k,v in pairs(on_collapse_before_termination) do
+      if has_alife_info(v[2]) and dont_has_alife_info(v[3]) and db.actor:object(v[1]) then
+         remove_inv_item(db.actor,v[1])
       end
    end
-   for z, q in pairs(on_after_termination) do
-      if (q[3] == nil or (q[3] ~= nil and has_alife_info(q[3]))) and sgm_g.get_sid_online(q[1]) and level.object_by_id(get_story_object_id(q[1])):object(q[2]) then
-         remove_inv_item(level.object_by_id(get_story_object_id(q[1])), q[2])
+   for z,q in pairs(on_after_termination) do
+      if (q[3]==nil or (q[3]~=nil and has_alife_info(q[3]))) and get_sid_online(q[1]) and level.object_by_id(get_story_object_id(q[1])):object(q[2]) then
+         remove_inv_item(level.object_by_id(get_story_object_id(q[1])),q[2])
       end
    end
 end
-
 function take_update()
-   for k, v in pairs(on_take_important_item) do
-      if db.actor:object(v[1]) and sgm_g.dont_has_alife_info(v[2]) then
+  for k,v in pairs(on_take_important_item) do
+      if db.actor:object(v[1]) and dont_has_alife_info(v[2]) then
          give_info(v[2])
-         if sgm_g.exists(v[3]) then
-            sgm_g.game_autosave_assign(v[3])
+         if exists(v[3]) then
+            game_autosave_assign(v[3])
          end
-         if sgm_g.exists(v[4]) then
-            xr_effects[v[4]](actor, npc)
+         if exists(v[4]) then
+            xr_effects[v[4]](actor,npc)
          end
-         if sgm_g.exists(v[5]) then
-            if sgm_g.read_mod_param(v[5]) == nil then
-               sgm_g.write_mod_param(v[5], 1)
+         if exists(v[5]) then
+            if read_mod_param(v[5])==nil then
+               write_mod_param(v[5],1)
             else
-               sgm_g.inc_mod_param(v[5])
+               inc_mod_param(v[5])
             end
          end
       end
    end
 end
+
 
 -------------------------------------//Copyright GeJorge//-------------------------------------------------

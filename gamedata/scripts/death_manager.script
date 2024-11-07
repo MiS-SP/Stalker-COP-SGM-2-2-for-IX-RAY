@@ -94,13 +94,13 @@ function drop_manager:create_release_item()
 	end
 	se_obj.death_droped = true
         --/ SGM in
-        if sgm_g.find_in_string(self.npc:section(),"dead_body_") then
+        if find_in_string(self.npc:section(),"dead_body_") then
 	   self.npc:iterate_inventory(corpse_exception, self.npc)
         end
-        if sgm_g.find_in_string(self.npc:section(),"_trader") then
+        if find_in_string(self.npc:section(),"_trader") then
 	   self.npc:iterate_inventory(release_all_immediately,self.npc)
         end
-        if sgm_g.find_out_string(self.npc:section(),"_trader") and sgm_g.find_out_string(self.npc:section(),"dead_body_") then
+        if find_out_string(self.npc:section(),"_trader") and find_out_string(self.npc:section(),"dead_body_") then
 	   self.npc:iterate_inventory(keep_item,self.npc)
         end
         --/ SGM out
@@ -123,7 +123,7 @@ function drop_manager:create_release_item()
            return
         end
 	for k,v in pairs(spawn_items) do
-            if sgm_g.find_in_string(self.npc:section(),"_trader") or sgm_g.find_in_string(sgm_functions.ReadCommunity(self.npc:section()),"bodyguard") then
+            if find_in_string(self.npc:section(),"_trader") or find_in_string(sgm_functions.ReadCommunity(self.npc:section()),"bodyguard") then
 	       return
             else
 		if check_item_dependence(self.npc,k)==true then
@@ -138,12 +138,12 @@ function drop_manager:create_release_item()
         --/ SGM out
 
 end
---' Р¤СѓРЅРєС†РёСЏ РІС‹Р·С‹РІР°РµС‚СЃСЏ РґР»СЏ РєР°Р¶РґРѕРіРѕ РїСЂРµРґРјРµС‚Р°, РµСЃР»Рё РІРµСЂРЅРµС‚ false С‚Рѕ РїСЂРµРґРјРµС‚ СѓРґР°Р»РёС‚СЃСЏ.
+--' Функция вызывается для каждого предмета, если вернет false то предмет удалится.
 function keep_item(npc, item)
 	local section = item:section()
 	local ini = npc:spawn_ini()
         --/ SGM in
-        if not sgm_g.check_death_item(section) then
+        if not check_death_item(section) then
            alife():release(alife():object(item:id()),true)
            return
         end
@@ -173,7 +173,7 @@ end
 function corpse_exception(npc,item)
 	local section = item:section()
 	local ini = npc:spawn_ini()
-        if not sgm_g.check_death_item(section) then
+        if not check_death_item(section) then
            alife():release(alife():object(item:id()),true)
            return
         end
@@ -201,7 +201,7 @@ end
 function release_all_immediately(npc,item)
 	local section=item:section()
 	local ini = npc:spawn_ini()
-        if not sgm_g.check_death_item(section) then
+        if not check_death_item(section) then
            alife():release(alife():object(item:id()),true)
            return
         end
@@ -230,7 +230,7 @@ end
 function set_weapon_drop_condition(item,npc)
         --/ SGM in
         local condition=math.random(set_weapon_cond_ST_from,set_weapon_cond_ST_before)/100
-        if npc~=nil and sgm_g.find_in_string(npc:profile_name(),"alfa_") then
+        if npc~=nil and find_in_string(npc:profile_name(),"alfa_") then
 	   condition=math.random(set_weapon_cond_AF_from,set_weapon_cond_AF_before)/100
         end
         --/ SGM out

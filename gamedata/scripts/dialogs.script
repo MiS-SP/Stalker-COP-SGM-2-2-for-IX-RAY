@@ -60,34 +60,70 @@ end
 function actor_have_medkit(first_speaker, second_speaker)
 	return first_speaker:object("medkit") ~= nil or
 			 first_speaker:object("medkit_army") ~= nil or
-			 first_speaker:object("medkit_scientic") ~= nil
+			 first_speaker:object("medkit_scientic") ~= nil or
+			 first_speaker:object("medkit_elite") ~= nil
 end
 function actor_hasnt_medkit(first_speaker, second_speaker)
 	return actor_have_medkit(first_speaker, second_speaker) == false
 end
 function actor_have_bandage(first_speaker, second_speaker)
-	return first_speaker:object("bandage") ~= nil
+	return first_speaker:object("bandage")~=nil
 end
-function transfer_medkit(first_speaker, second_speaker)
-	sgm_dialog.transfer_medkit(first_speaker, second_speaker)
+--/ SGM in
+function transfer_medkit(first_speaker,second_speaker)
+        local reputation_value=0
+        local medkit_half_cost=0
+	if first_speaker:object("medkit") ~= nil then
+		dialogs.relocate_item_section(second_speaker, "medkit", "out")
+                reputation_value=20
+                medkit_half_cost=125
+	elseif first_speaker:object("medkit_army") ~= nil then
+		dialogs.relocate_item_section(second_speaker, "medkit_army", "out")
+                reputation_value=30
+                medkit_half_cost=325
+	elseif first_speaker:object("medkit_scientic") ~= nil then
+		dialogs.relocate_item_section(second_speaker, "medkit_scientic", "out")
+                reputation_value=45
+                medkit_half_cost=400
+	elseif first_speaker:object("medkit_elite") ~= nil then
+		dialogs.relocate_item_section(second_speaker, "medkit_elite", "out")
+                reputation_value=60
+                medkit_half_cost=700
+	end
+	alife():create("medkit_script", second_speaker:position(), second_speaker:level_vertex_id(), second_speaker:game_vertex_id(), second_speaker:id())
+	--' Тут надо анлочить аптечку для использования.
+	xr_wounded.unlock_medkit(second_speaker)
+	if second_speaker:relation(first_speaker) ~= game_object.enemy then
+		second_speaker:set_relation(game_object.friend, first_speaker)
+	end
+	first_speaker:change_character_reputation(reputation_value)
+        if first_speaker:id()==db.actor:id() then
+           if has_alife_info("sgm_achievements_lifeguard") then
+              local sum=(r_mod_params("number","wounded_for_help_reward",100)*read_mod_param("stat_help_wounded"))+medkit_half_cost
+              dialogs.relocate_money(db.actor,sum,"in")
+              congratulate_with_event(10000,game.translate_string("st_help_wounded_payment").." - "..sum,false,false)
+           end
+           inc_mod_param("stat_help_wounded",1)
+        end
 end
+--/ SGM out
 function transfer_bandage(first_speaker, second_speaker)
-	sgm_dialogs.relocate_item_section(second_speaker, "bandage", "out")
+	dialogs.relocate_item_section(second_speaker, "bandage", "out")
 	second_speaker:set_relation(game_object.friend, first_speaker)
 end
 function kill_yourself(npc, actor)
 	npc:kill(actor)
 end
-
+--/ SGM in
 --' Use this function instead.
-function relocate_item_section(victim, section, type, amount)
+function relocate_item_section(victim, section, type, amount, show_time)
 	if db.actor then
 		if not amount then
 			amount = 1
 		end
 		for i = 1, amount do
 			if type == "in" then
-			--' пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+			--' Трансферить нужно только квестовые предметы.
 				if quest_section[section] == true and victim ~= nil and victim:object(section) ~= nil then
 					victim:transfer_item(victim:object(section), db.actor)
 				else
@@ -109,15 +145,28 @@ function relocate_item_section(victim, section, type, amount)
 			local box_size = ltx:r_s32(section, "box_size")
 			amount = amount * box_size
 		end
-		news_manager.relocate_item(db.actor, type, section, amount)
+		news_manager.relocate_item(db.actor, type, section, amount, show_time)
 	end
 end
-
-
-function relocate_money(victim, num, type)
-	sgm_dialogs.relocate_money(victim, num, type)
+function relocate_money(victim,num,type,show_time)
+	if db.actor then
+		if type == "in" then
+			db.actor:give_money(num)
+			game_stats.money_quest_update (num)
+		elseif type == "out" then
+			if victim == nil then
+				abort("Couldn't relocate money to NULL")
+			end
+			db.actor:transfer_money(num, victim)
+			game_stats.money_quest_update(-num)
+		elseif type == "out2" then
+			db.actor:give_money(-tonumber(num))
+			game_stats.money_quest_update(-num)
+		end
+		news_manager.relocate_money(db.actor, type, num, show_time)
+	end
 end
-
+--/ SGM out
 --'---------------------------------------------------------------------------------
 --' DIALOG ALLOWED
 --'---------------------------------------------------------------------------------
@@ -207,10 +256,9 @@ function not_level_jupiter(first_speaker, second_speaker)
 end
 
 function not_level_pripyat(first_speaker, second_speaker)
-	--/ SGM in
-	return level.name() ~= "pripyat" and level.name() ~= "escape" and level.name() ~= "marsh" and
-		level.name() ~= "agroprom" and level.name() ~= "red_forest"
-	--/ SGM out
+        --/ SGM in
+	return level.name() ~= "pripyat" and level.name() ~= "escape" and level.name() ~= "marsh" and level.name() ~= "agroprom" and level.name() ~= "red_forest"
+        --/ SGM out
 end
 
 -----------------------------------------------------------------------------------
@@ -354,7 +402,7 @@ end
 
 function npc_dolg(first_speaker, second_speaker)
 	local npc = who_is_npc(first_speaker, second_speaker)
-	return character_community(npc) == "dolg"
+	return character_community(npc)=="dolg" --/or character_community(npc)=="monolith" or character_community(npc)=="monolith_alies" or character_community(npc)=="rasvet" or character_community(npc)=="bandit_alies" or character_community(npc)=="killer_alies" or character_community(npc)=="killer" or character_community(npc)=="stalker_alies" or character_community(npc)=="army_alies" or character_community(npc)=="renegade" or character_community(npc)=="night_stalker"
 end
 
 function npc_army(first_speaker, second_speaker)
@@ -371,7 +419,7 @@ end
 -----------------------------------------------------------------------------------
 -- TRADE
 -----------------------------------------------------------------------------------
---' пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+--' Инициализация торговли
 function trade_init(seller, buyer)
 	db.storage[seller:id()].meet.begin_wait_to_see.begin = time_global()/1000
 	xr_position.setPosition(db.storage[seller:id()].meet.Seller,
@@ -394,21 +442,74 @@ function dont_want_trade(seller, buyer)
 end
 
 ----------------------------------------------------------------------------------
--- пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ!!!
+-- Новые функции трансфера предметов в диалогах!!!
 ----------------------------------------------------------------------------------
-
+--/ SGM in
 function relocate_item_section_to_actor(first_speaker, second_speaker, section, amount, show_time)
-	sgm_dialogs.relocate_item_section_to_actor(first_speaker, second_speaker, section, amount, show_time)
+	-- Сначала выясним кто из них актер
+	local npc = who_is_npc(first_speaker, second_speaker)
+	local v = 0
+	--' Трансферить нужно только квестовые предметы.
+	if not amount then
+		amount = 1
+	end
+
+	local function transfer_object_item(temp, item)
+		--printf("item:section(): [%s]", item:section())
+		if (item:section() == section and v ~= 0) then
+			npc:transfer_item(item, db.actor)
+			v = v - 1
+		end
+	end
+
+	if amount > 1 then
+		v = amount
+		npc:iterate_inventory(transfer_object_item, nil)
+	else
+		if npc:object(section) ~= nil then
+			npc:transfer_item(npc:object(section), db.actor)
+		else
+			alife():create(section,
+					db.actor:position(),
+					db.actor:level_vertex_id(),
+					db.actor:game_vertex_id(),
+					db.actor:id())
+		end
+	end
+
+	if v ~= 0 then
+		for i = 1, v do
+			alife():create(section,
+					db.actor:position(),
+					db.actor:level_vertex_id(),
+					db.actor:game_vertex_id(),
+					db.actor:id())
+		end
+	end
+	if death_manager.ammo_sections[section] == true then
+		local ltx = system_ini()
+		local box_size = ltx:r_s32(section, "box_size")
+		amount = amount * box_size
+	end
+	news_manager.relocate_item(db.actor, "in", section, amount, show_time)
 end
 
 function relocate_money_to_actor(first_speaker, second_speaker, num, show_time)
-	sgm_dialogs.relocate_money_to_actor(first_speaker, second_speaker, num, show_time)
+	db.actor:give_money(num)
+	game_stats.money_quest_update (num)
+	news_manager.relocate_money(db.actor, "in", num, show_time)
 end
 
 function relocate_money_from_actor(first_speaker, second_speaker, num, show_time)
-	sgm_dialogs.relocate_money_to_actor(first_speaker, second_speaker, num, show_time)
+	local victim = who_is_npc(first_speaker, second_speaker)
+	if victim == nil then
+		abort("Couldn't relocate money to NULL")
+	end
+	db.actor:transfer_money(num, victim)
+	game_stats.money_quest_update(-num)
+	news_manager.relocate_money(db.actor, "out", num, show_time)
 end
-
+--/ SGM out
 --[[ Old one
 function relocate_item_section_from_actor(first_speaker, second_speaker, section)
 	local npc = who_is_npc(first_speaker, second_speaker)
@@ -424,12 +525,51 @@ function who_is_actor(first_speaker, second_speaker)
 	end
 	return npc
 end
-
---section - пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ; amount - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ "all"
+--/ SGM in
+--section - Имя секции для передачи; amount - количество, также принимает стринг "all"
 function relocate_item_section_from_actor(first_speaker, second_speaker, section, amount, show_time)
-	sgm_dialogs.relocate_item_section_from_actor(first_speaker, second_speaker, section, amount, show_time)
-end
+	local npc = who_is_npc(first_speaker, second_speaker)
+	local actor = who_is_actor(first_speaker, second_speaker)
+	local i = 0
+	--printf("Amount [%s]", tostring(amount))
+	if not amount then
+		amount = 1
+	end
 
+	local function transfer_object_item(temp, item)
+		--printf("item:section(): [%s]", item:section())
+		if (item:section() == section and i ~= 0) then
+			db.actor:transfer_item(item, npc)
+			i = i - 1
+		end
+	end
+
+	if amount == "all" then
+		i = -1
+		actor:iterate_inventory(transfer_object_item, nil)
+		amount = (i+1)*(-1)
+		i = 0
+	elseif amount > 1 then
+		i = amount
+		actor:iterate_inventory(transfer_object_item, nil)
+	elseif amount < 1 then
+		abort("Wrong parameters in function 'relocate_item_section_from_actor'!")
+	else
+		actor:transfer_item(actor:object(section), npc)
+	end
+
+	if i~=0 then
+		assert("Actor do not has enough items! Transferred [%s], needed [%s]", tostring(amount - i), tostring(amount))
+	end
+
+	if death_manager.ammo_sections[db.actor.section] == true then
+		local ltx = system_ini()
+		local box_size = ltx:r_s32(section, "box_size")
+		amount = amount * box_size
+	end
+	news_manager.relocate_item(db.actor, "out", section, amount - i, show_time)
+end
+--/ SGM out
 function actor_has_item(first_speaker, second_speaker, section)
 	return db.actor:object(section) ~= nil
 end
@@ -594,9 +734,9 @@ function quest_dialog_squad_precond(first_speaker, second_speaker)
 end
 
 function quest_dialog_toolkits_precond(first_speaker, second_speaker)
-	if has_alife_info("zat_a2_mechanic_toolkit_search") and not has_alife_info("zat_b3_task_end") then
+	if has_alife_info("zat_a2_mechanic_toolkit_search") and dont_has_alife_info("zat_b3_task_end") then
 		return true
-	elseif has_alife_info("jup_b217_tech_instruments_start") and not has_alife_info("jup_b217_task_end") then
+	elseif has_alife_info("jup_b217_tech_instruments_start") and dont_has_alife_info("jup_b217_task_end") then
 		return true
 	end
 	return false
@@ -779,15 +919,17 @@ function medic_magic_potion(first_speaker, second_speaker)
 	db.actor.power = 1
 	db.actor.radiation = -1
 	db.actor.bleeding = 1
-	sgm_dialogs.medic_magic_potion(first_speaker, second_speaker)
+        --/ SGM in
+        write_mod_param("actor_toxicity",-1.0)
+        --/ SGM out
 end
 
 function actor_needs_bless(first_speaker, second_speaker)
-	-- SGM in
-	if db.actor.health < 1 or db.actor.radiation > 0 or db.actor.bleeding > 0 or sgm_g.read_mod_param("actor_toxicity") > -1.0 then
-		return true
+        --/ SGM in
+	if db.actor.health<1 or db.actor.radiation>0 or db.actor.bleeding>0 or read_mod_param("actor_toxicity")>-1.0 then
+	    return true
 	end
-	-- SGM out
+        --/ SGM out
 	return false
 end
 
@@ -832,7 +974,7 @@ function save_pri_a17_hospital_start(first_speaker, second_speaker)
 end
 
 function save_jup_a10_gonna_return_debt(first_speaker, second_speaker)
-	if not has_alife_info("jup_a10_avtosave") then
+	if dont_has_alife_info("jup_a10_avtosave") then
 		xr_effects.scenario_autosave(db.actor,nil,{"st_save_jup_a10_gonna_return_debt"})
 		db.actor:give_info_portion("jup_a10_avtosave")
 	end

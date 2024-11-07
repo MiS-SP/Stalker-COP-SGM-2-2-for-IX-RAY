@@ -1,10 +1,8 @@
 ----------------------------------------------------------------------------------------------------
 --' Cutscene trigger
 ----------------------------------------------------------------------------------------------------
---' Р’СЂРµРјРµРЅРЅС‹Рµ РїРµСЂРµРјРµРЅРЅС‹Рµ
 local object_cutscene = nil
 local storage_scene = nil
-
 class "cam_effector_set"
 function cam_effector_set:__init(set,storage)
 	self.set = set
@@ -15,29 +13,23 @@ function cam_effector_set:__init(set,storage)
 	self.enabled = true
 	self.st = storage
 end
-
 function cam_effector_set:start_effect(eff)
-	--printf("playing effect [camera_effects\\"..eff.anim..".anm], time [%s]", device():time_global())
-	--callstack()
-
 	if not (eff.global_cameffect) then
 		level.add_cam_effector("camera_effects\\"..eff.anim..".anm", 210408, false, "sr_cutscene.effector_callback")
 	else
 		level.add_cam_effector2("camera_effects\\"..eff.anim..".anm", 210408, false, "sr_cutscene.effector_callback", self.st.fov or db.actor:fov()*0.75)
 	end
 	self.playing = true
-	--/ SGM in
-	set_ui_disabled()
-	--/ SGM out
+        --/ SGM in
+        set_ui_disabled()
+        --/ SGM out
 end
-
 function cam_effector_set:stop_effect()
 	level.remove_cam_effector(210408)
 	self.playing = false
 	self.state = "release"
 	self.cur_effect = 0
 end
-
 function cam_effector_set:update()
 	if(device().precache_frame > 0) then
 		return
@@ -48,7 +40,6 @@ function cam_effector_set:update()
 			local cond = xr_logic.pick_section_from_condlist(db.actor, nil, self.condlist)
 					if(cond=="false") then
 				self.looped = false
---	            self:stop_effect()
 					end
 		end
 	else
@@ -130,7 +121,7 @@ function cam_effector_set:select_effect()
 end
 --------------------------------------------------------------------------------
 class "action_cutscene"
---' РёРЅРёС†РёР°Р»РёР·Р°С†РёСЏ РѕР±СЉРµРєС‚Р° РєР»Р°СЃСЃР°
+--' инициализация объекта класса
 function action_cutscene:__init(obj, storage)
 	self.object = obj
 	self.st = storage
@@ -138,21 +129,16 @@ function action_cutscene:__init(obj, storage)
 	self.motion_id = 1
 	self.postprocess = false
 end
---' РёРЅРёС†РёР°Р»РёР·Р°С†РёСЏ СЃС…РµРјС‹ РїРѕРІРµРґРµРЅРёСЏ
+--' инициализация схемы поведения
 function action_cutscene:reset_scheme()
 	self.state = ""
-	self.st.signals = {} --' РѕР±РЅСѓР»СЏРµРј СЃРёРіРЅР°Р»С‹
+	self.st.signals = {} --' обнуляем сигналы
 	self.motion = nil
-
 	self:zone_enter()
 end
---' С„СѓРЅРєС†РёСЏ РѕР±РЅРѕРІР»РµРЅРёСЏ, РІС‹Р·С‹РІР°РµРјР°СЏ РєРѕРЅРІРµРµСЂРѕРј
+--' функция обновления, вызываемая конвеером
 function action_cutscene:update(delta)
 	local state = self.state
---	if(state~="run") then
---		self:zone_enter()
---	end
-
 	if(self.motion) then
 		self.motion:update()
 	    if(self.st.signals["cam_effector_stop"]~=nil) then
@@ -161,30 +147,19 @@ function action_cutscene:update(delta)
 			self.st.signals["cam_effector_stop"] = nil
 	    end
 	end
-		--' РІС‹РїРѕР»РЅСЏРµРј Р°СЂС…РёС‚РµРєС‚СѓСЂРЅРѕРµ С‚СЂРµР±РѕРІР°РЅРёРµ
+	--' выполняем архитектурное требование
 	if(xr_logic.try_switch_to_another_section(self.object, self.st, db.actor)) then
 		return
 	end
 end
---' С‚СѓС‚ РЅСѓР¶РЅРѕ Р·Р°РїСѓСЃС‚РёС‚СЊ СЃС†РµРЅСѓ
+function action_cutscene:actor_teleport(actor_pos,actor_look)
+   db.actor:set_actor_position(level.vertex_position(actor_pos))
+   --/db.actor:set_actor_direction(level.vertex_position(actor_look):getH())
+end
+--' тут нужно запустить сцену
 function action_cutscene:zone_enter()
-    -- Handle camera change to play cutscenes properly
-	if not is_first_person() then
-		set_first_person()
-		if not xr_state:get_camera_state() then 
-			xr_state:reg_camera_change(true)
-		end 
-	end
-	if is_actor_shadow() then
-		set_actor_shadow(false)
-		-- get_console():execute("r_actor_shadow 0")
-		xr_state:reg_actor_shadow_change(true)
-	end
-	
 	self.state = "run"
-	--' С‚РµР»РµРїРѕСЂС‚ РІ РІС‹Р±СЂР°РЅРЅСѓСЋ С‚РѕС‡РєСѓ
-	--printf("%s ZONE ENTER %s", self.object:name(), device():time_global())
-
+	--' телепорт в выбранную точку
 	xr_effects.teleport_actor(db.actor, self.object, {self.st.point, self.st.look})
 
 	if self.st.pp_effector ~= "nil.ppe" then
@@ -206,11 +181,11 @@ function action_cutscene:zone_enter()
 	object_cutscene = self.object
 	storage_scene = self.st
 end
---' Р’С‹Р±РѕСЂ Рё РЅР°С‡Р°Р»Рѕ РѕС‚С‹РіСЂС‹С€Р° СЃР»РµРґСѓСЋС‰РµРіРѕ РїСЂРѕР»РµС‚Р°
+--' Выбор и начало отыгрыша следующего пролета
 function action_cutscene:select_next_motion()
 	local motion = self.st.cam_effector[self.motion_id]
 
-	if cam_effector_sets[motion] == nil then --Р­С‚Рѕ РёРјСЏ С„Р°Р№Р»Р°, Р° РЅРµ РёРјСЏ С‚Р°Р±Р»РёС†С‹.
+	if cam_effector_sets[motion] == nil then --Это имя файла, а не имя таблицы.
 		self.motion = cam_effector_set({start={},idle={{anim=motion, looped=false, global_cameffect = self.st.global_cameffect}},finish={}}, self.st)
 	else
 		self.motion = cam_effector_set(cam_effector_sets[motion], self.st)
@@ -221,14 +196,14 @@ function action_cutscene:select_next_motion()
 
 	self.motion_id = self.motion_id + 1
 end
---' РРІРµРЅС‚ РѕР± РѕРєРѕРЅС‡Р°РЅРёРё РїСЂРѕР»РµС‚Р°
+--' Ивент об окончании пролета
 function action_cutscene:cutscene_callback()
 	if(self.motion.state=="release") then
-		--/ SGM in
-		if (sgm_g.dont_has_alife_info("pri_a28_cam_started")) or has_alife_info("pri_a28_actor_in_zone_stay") then
-			set_ui_worked()
-		end
-		--/ SGM out
+                --/ SGM in
+                if (dont_has_alife_info("pri_a28_cam_started")) or has_alife_info("pri_a28_actor_in_zone_stay") then
+                   set_ui_worked()
+                end
+                --/ SGM out
 		self.motion = nil
 		if(self.motion_id<=#self.st.cam_effector) then
 			self:select_next_motion()
@@ -239,19 +214,6 @@ function action_cutscene:cutscene_callback()
 				level.remove_complex_effector(1999)
 				--level.remove_pp_effector(1999)
 			end
-			
-			-- Restore camera at end if needed
-		    if xr_state:get_camera_state() then 
-				set_third_person()
-				xr_state:reg_camera_change(false)
-		    end
-			-- Restore actor shadow if needed
-			if xr_state:get_actor_shadow_state() then
-				set_actor_shadow(true)
-				-- get_console():execute("r_actor_shadow 1")
-				xr_state:reg_actor_shadow_change(false)
-			end
-			
 			if(self.ui_disabled) then
 				if not db.actor:is_talking() and self.st.enable_ui_on_end then
 					xr_effects.enable_ui(db.actor, nil)
@@ -276,7 +238,7 @@ function add_to_binder(npc, ini, scheme, section, storage)
 	local new_action = action_cutscene(npc, storage)
 
 	storage.cutscene_action = new_action
-	--' Р—Р°СЂРµРіРёСЃС‚СЂРёСЂРѕРІР°С‚СЊ РІСЃРµ actions, РІ РєРѕС‚РѕСЂС‹С… РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ РІС‹Р·РІР°РЅ РјРµС‚РѕРґ reset_scheme РїСЂРё РёР·РјРµРЅРµРЅРёРё РЅР°СЃС‚СЂРѕРµРє СЃС…РµРјС‹:
+	--' Зарегистрировать все actions, в которых должен быть вызван метод reset_scheme при изменении настроек схемы:
 	xr_logic.subscribe_action_for_events(npc, storage, new_action)
 end
 function set_scheme(obj, ini, scheme, section, gulag_name)

@@ -6,163 +6,113 @@
 function update_main()
    update_update()
 end
-
 function update_update()
    dunin_ammo.on_update()
-   sgm_ui_mod_elements.allspawn_editor_update()
-   if sgm_g.check_seconds(2) then
-      sgm_ui_mod_elements.mp3_update()
+   ui_mod_elements.allspawn_editor_update()
+   if check_seconds(2) then
+      ui_mod_elements.mp3_update()
    end
-   if sgm_g.check_seconds(4) then
-      sgm_ui_mod_pda.pda_update()
+   if check_seconds(4) then
+      ui_mod_pda.pda_update()
    end
-   if sgm_g.check_seconds(5) then
-      if sgm_g.check_ui_worked(true) then
+   if check_seconds(5) then
+      if check_ui_worked(true) then
          pda.check_and_found_pda_areas()
       end
    end
    --/Контроль погоды вне выброса и затмения.
-   if sgm_g.check_seconds(2) and sgm_g.dont_has_alife_info("blackday_is_active") and sgm_g.dont_has_alife_info("vibros_is_active") then
+   if check_seconds(2) and dont_has_alife_info("blackday_is_active") and dont_has_alife_info("vibros_is_active") then
       if level_weathers.get_weather_manager().weather_fx then
          level.stop_weather_fx()
       end
    end
    --/Определитель стрельбы ГГ. Выводит на колобок.
-   local active_item = db.actor:active_item()
+   local active_item=db.actor:active_item()
    if active_item then
-      if sgm_flags.string_shot_item_name ~= active_item:section() then
-         sgm_flags.string_shot_item_name = active_item:section()
-         sgm_flags.value_shot_item_ammo = -1
+      if sgm_flags.string_shot_item_name~=active_item:section() then
+         sgm_flags.string_shot_item_name=active_item:section()
+         sgm_flags.value_shot_item_ammo=-1
       end
-      if sgm_flags.value_shot_item_ammo ~= active_item:get_ammo_in_magazine() then
-         if sgm_flags.value_shot_item_ammo ~= -1 and sgm_flags.value_shot_item_ammo > active_item:get_ammo_in_magazine() and sgm_g.precond_hud() then
+      if sgm_flags.value_shot_item_ammo~=active_item:get_ammo_in_magazine() then
+         if sgm_flags.value_shot_item_ammo~=-1 and sgm_flags.value_shot_item_ammo>active_item:get_ammo_in_magazine() and precond_hud() then
             sgm_callbacks.on_weapon_shot(active_item)
          end
-         sgm_flags.value_shot_item_ammo = active_item:get_ammo_in_magazine()
+         sgm_flags.value_shot_item_ammo=active_item:get_ammo_in_magazine()
       end
    end
    --/Бонус достижения "Электронный магнат".
    if has_alife_info("sgm_achievements_magnate") then
-      sgm_g.change_flag_value("value_webmoney_course_from", 90)
-      sgm_g.change_flag_value("value_webmoney_course_before", 185)
-      sgm_g.change_flag_value("value_card_21_max_rate", 2000)
+      change_flag_value("value_webmoney_course_from",90)
+      change_flag_value("value_webmoney_course_before",185)
+      change_flag_value("value_card_21_max_rate",2000)
    end
    --/Проверка слота на содержание. Выводит на колобок.
-   if db.actor:item_in_slot(2) ~= nil then
-      if sgm_flags.table_mod_callbacks["on_slot_2"] == nil then sgm_flags.table_mod_callbacks["on_slot_2"] = false end
-      if sgm_flags.table_mod_callbacks["on_slot_2"] == false then
-         sgm_flags.table_mod_callbacks["on_slot_2"] = true
-         sgm_callbacks.on_slot_2()
-      end
-      if sgm_flags.table_mod_callbacks["on_slot_2_i"] == nil then
-         sgm_flags.table_mod_callbacks["on_slot_2_i"] = db
-             .actor:item_in_slot(2):section()
-      end
-      if sgm_flags.table_mod_callbacks["on_slot_2_i"] ~= db.actor:item_in_slot(2):section() then
-         sgm_flags.table_mod_callbacks["on_slot_2_i"] = db.actor:item_in_slot(2):section()
-         sgm_callbacks.on_slot_2()
-      end
+   if db.actor:item_in_slot(2)~=nil then
+      if sgm_flags.table_mod_callbacks["on_slot_2"]==nil then sgm_flags.table_mod_callbacks["on_slot_2"]=false end
+      if sgm_flags.table_mod_callbacks["on_slot_2"]==false then sgm_flags.table_mod_callbacks["on_slot_2"]=true sgm_callbacks.on_slot_2() end
+      if sgm_flags.table_mod_callbacks["on_slot_2_i"]==nil then sgm_flags.table_mod_callbacks["on_slot_2_i"]=db.actor:item_in_slot(2):section() end
+      if sgm_flags.table_mod_callbacks["on_slot_2_i"]~=db.actor:item_in_slot(2):section() then sgm_flags.table_mod_callbacks["on_slot_2_i"]=db.actor:item_in_slot(2):section() sgm_callbacks.on_slot_2() end
    else
-      if sgm_flags.table_mod_callbacks["on_slot_2"] == nil then sgm_flags.table_mod_callbacks["on_slot_2"] = true end
-      if sgm_flags.table_mod_callbacks["on_slot_2"] == true then
-         sgm_flags.table_mod_callbacks["on_slot_2"] = false
-         sgm_callbacks.on_slot_2()
-      end
+      if sgm_flags.table_mod_callbacks["on_slot_2"]==nil then sgm_flags.table_mod_callbacks["on_slot_2"]=true end
+      if sgm_flags.table_mod_callbacks["on_slot_2"]==true then sgm_flags.table_mod_callbacks["on_slot_2"]=false sgm_callbacks.on_slot_2() end
    end
-   if db.actor:item_in_slot(3) ~= nil then
-      if sgm_flags.table_mod_callbacks["on_slot_3"] == nil then sgm_flags.table_mod_callbacks["on_slot_3"] = false end
-      if sgm_flags.table_mod_callbacks["on_slot_3"] == false then
-         sgm_flags.table_mod_callbacks["on_slot_3"] = true
-         sgm_callbacks.on_slot_3()
-      end
-      if sgm_flags.table_mod_callbacks["on_slot_3_i"] == nil then
-         sgm_flags.table_mod_callbacks["on_slot_3_i"] = db
-             .actor:item_in_slot(3):section()
-      end
-      if sgm_flags.table_mod_callbacks["on_slot_3_i"] ~= db.actor:item_in_slot(3):section() then
-         sgm_flags.table_mod_callbacks["on_slot_3_i"] = db.actor:item_in_slot(3):section()
-         sgm_callbacks.on_slot_3()
-      end
+   if db.actor:item_in_slot(3)~=nil then
+      if sgm_flags.table_mod_callbacks["on_slot_3"]==nil then sgm_flags.table_mod_callbacks["on_slot_3"]=false end
+      if sgm_flags.table_mod_callbacks["on_slot_3"]==false then sgm_flags.table_mod_callbacks["on_slot_3"]=true sgm_callbacks.on_slot_3() end
+      if sgm_flags.table_mod_callbacks["on_slot_3_i"]==nil then sgm_flags.table_mod_callbacks["on_slot_3_i"]=db.actor:item_in_slot(3):section() end
+      if sgm_flags.table_mod_callbacks["on_slot_3_i"]~=db.actor:item_in_slot(3):section() then sgm_flags.table_mod_callbacks["on_slot_3_i"]=db.actor:item_in_slot(3):section() sgm_callbacks.on_slot_3() end
    else
-      if sgm_flags.table_mod_callbacks["on_slot_3"] == nil then sgm_flags.table_mod_callbacks["on_slot_3"] = true end
-      if sgm_flags.table_mod_callbacks["on_slot_3"] == true then
-         sgm_flags.table_mod_callbacks["on_slot_3"] = false
-         sgm_callbacks.on_slot_3()
-      end
+      if sgm_flags.table_mod_callbacks["on_slot_3"]==nil then sgm_flags.table_mod_callbacks["on_slot_3"]=true end
+      if sgm_flags.table_mod_callbacks["on_slot_3"]==true then sgm_flags.table_mod_callbacks["on_slot_3"]=false sgm_callbacks.on_slot_3() end
    end
-   if db.actor:item_in_slot(7) ~= nil then
-      if sgm_flags.table_mod_callbacks["on_slot_7"] == nil then sgm_flags.table_mod_callbacks["on_slot_7"] = false end
-      if sgm_flags.table_mod_callbacks["on_slot_7"] == false then
-         sgm_flags.table_mod_callbacks["on_slot_7"] = true
-         sgm_callbacks.on_slot_7()
-      end
-      if sgm_flags.table_mod_callbacks["on_slot_7_i"] == nil then
-         sgm_flags.table_mod_callbacks["on_slot_7_i"] = db
-             .actor:item_in_slot(7):section()
-      end
-      if sgm_flags.table_mod_callbacks["on_slot_7_i"] ~= db.actor:item_in_slot(7):section() then
-         sgm_flags.table_mod_callbacks["on_slot_7_i"] = db.actor:item_in_slot(7):section()
-         sgm_callbacks.on_slot_7()
-      end
+   if db.actor:item_in_slot(7)~=nil then
+      if sgm_flags.table_mod_callbacks["on_slot_7"]==nil then sgm_flags.table_mod_callbacks["on_slot_7"]=false end
+      if sgm_flags.table_mod_callbacks["on_slot_7"]==false then sgm_flags.table_mod_callbacks["on_slot_7"]=true sgm_callbacks.on_slot_7() end
+      if sgm_flags.table_mod_callbacks["on_slot_7_i"]==nil then sgm_flags.table_mod_callbacks["on_slot_7_i"]=db.actor:item_in_slot(7):section() end
+      if sgm_flags.table_mod_callbacks["on_slot_7_i"]~=db.actor:item_in_slot(7):section() then sgm_flags.table_mod_callbacks["on_slot_7_i"]=db.actor:item_in_slot(7):section() sgm_callbacks.on_slot_7() end
    else
-      if sgm_flags.table_mod_callbacks["on_slot_7"] == nil then sgm_flags.table_mod_callbacks["on_slot_7"] = true end
-      if sgm_flags.table_mod_callbacks["on_slot_7"] == true then
-         sgm_flags.table_mod_callbacks["on_slot_7"] = false
-         sgm_callbacks.on_slot_7()
-      end
+      if sgm_flags.table_mod_callbacks["on_slot_7"]==nil then sgm_flags.table_mod_callbacks["on_slot_7"]=true end
+      if sgm_flags.table_mod_callbacks["on_slot_7"]==true then sgm_flags.table_mod_callbacks["on_slot_7"]=false sgm_callbacks.on_slot_7() end
    end
-   if db.actor:item_in_slot(12) ~= nil then
-      if sgm_flags.table_mod_callbacks["on_slot_12"] == nil then sgm_flags.table_mod_callbacks["on_slot_12"] = false end
-      if sgm_flags.table_mod_callbacks["on_slot_12"] == false then
-         sgm_flags.table_mod_callbacks["on_slot_12"] = true
-         sgm_callbacks.on_slot_12()
-      end
-      if sgm_flags.table_mod_callbacks["on_slot_12_i"] == nil then
-         sgm_flags.table_mod_callbacks["on_slot_12_i"] = db
-             .actor:item_in_slot(12):section()
-      end
-      if sgm_flags.table_mod_callbacks["on_slot_12_i"] ~= db.actor:item_in_slot(12):section() then
-         sgm_flags.table_mod_callbacks["on_slot_12_i"] = db.actor:item_in_slot(12):section()
-         sgm_callbacks.on_slot_12()
-      end
+   if db.actor:item_in_slot(12)~=nil then
+      if sgm_flags.table_mod_callbacks["on_slot_12"]==nil then sgm_flags.table_mod_callbacks["on_slot_12"]=false end
+      if sgm_flags.table_mod_callbacks["on_slot_12"]==false then sgm_flags.table_mod_callbacks["on_slot_12"]=true sgm_callbacks.on_slot_12() end
+      if sgm_flags.table_mod_callbacks["on_slot_12_i"]==nil then sgm_flags.table_mod_callbacks["on_slot_12_i"]=db.actor:item_in_slot(12):section() end
+      if sgm_flags.table_mod_callbacks["on_slot_12_i"]~=db.actor:item_in_slot(12):section() then sgm_flags.table_mod_callbacks["on_slot_12_i"]=db.actor:item_in_slot(12):section() sgm_callbacks.on_slot_12() end
    else
-      if sgm_flags.table_mod_callbacks["on_slot_12"] == nil then sgm_flags.table_mod_callbacks["on_slot_12"] = true end
-      if sgm_flags.table_mod_callbacks["on_slot_12"] == true then
-         sgm_flags.table_mod_callbacks["on_slot_12"] = false
-         sgm_callbacks.on_slot_12()
-      end
+      if sgm_flags.table_mod_callbacks["on_slot_12"]==nil then sgm_flags.table_mod_callbacks["on_slot_12"]=true end
+      if sgm_flags.table_mod_callbacks["on_slot_12"]==true then sgm_flags.table_mod_callbacks["on_slot_12"]=false sgm_callbacks.on_slot_12() end
    end
    --/Отображение зон в которые входит ГГ.
-   if sgm_flags.bool_show_restrictors == true then
-      if sgm_g.check_seconds(1) then
-         for k, v in pairs(db.zone_by_name) do
-            if k ~= nil and actor_in_restrictor(k) then
+   if sgm_flags.bool_show_restrictors==true then
+      if check_seconds(1) then
+         for k,v in pairs(db.zone_by_name) do
+            if k~=nil and actor_in_restrictor(k) then
                give_quick_news(k)
             end
          end
       end
    end
    --/Отображение дистанции к отладочному маяку.
-   if sgm_flags.bool_remote_marker == true then
-      if sgm_flags.value_remote_marker ~= 0 then
-         show_hud_message(distance_between_safe(db.actor, level.object_by_id(sgm_flags.value_remote_marker)) ..
-            " метр(ов)")
+   if sgm_flags.bool_remote_marker==true then
+      if sgm_flags.value_remote_marker~=0 then
+         show_hud_message(distance_between_safe(db.actor,level.object_by_id(sgm_flags.value_remote_marker)).." метр(ов)")
       end
    end
    --/Отладка игровых данных в файл.
-   if sgm_g.check_seconds(20) then
-      if sgm_functions.read_variable("sigerous_top_name") ~= nil and sgm_functions.read_variable("sigerous_top_location") ~= nil and sgm_functions.read_variable("sigerous_top_name") ~= "nil" and sgm_functions.read_variable("sigerous_top_location") ~= "nil" then
-         if sgm_functions.read_variable("sigerous_top_difficulty") ~= nil then
-            local r_diff = sgm_functions.read_variable("sigerous_top_difficulty")
-            if r_diff ~= get_difficulty() then
-               if sgm_functions.read_variable("sigerous_top_allowed") == "true" then
-                  sgm_functions.write_variable("sigerous_top_allowed", "false")
-                  run_choose_box("yes", "sigerous_top", game.translate_string("st_sigerous_top_5_text"))
+   if check_seconds(20) then
+      if sgm_functions.read_variable("sigerous_top_name")~=nil and sgm_functions.read_variable("sigerous_top_location")~=nil and sgm_functions.read_variable("sigerous_top_name")~="nil" and sgm_functions.read_variable("sigerous_top_location")~="nil" then
+         if sgm_functions.read_variable("sigerous_top_difficulty")~=nil then
+            local r_diff=sgm_functions.read_variable("sigerous_top_difficulty")
+            if r_diff~=get_difficulty() then
+               if sgm_functions.read_variable("sigerous_top_allowed")=="true" then
+                  sgm_functions.write_variable("sigerous_top_allowed","false")
+                  run_choose_box("yes","sigerous_top",game.translate_string("st_sigerous_top_5_text"))
                end
             else
-               if sgm_functions.read_variable("sigerous_top_allowed") == "false" then
-                  if not sgm_g.get_flag_value("bool_cheat_mode_activate") then
-                     sgm_functions.write_variable("sigerous_top_allowed", "true")
+               if sgm_functions.read_variable("sigerous_top_allowed")=="false" then
+                  if not get_flag_value("bool_cheat_mode_activate") then
+                     sgm_functions.write_variable("sigerous_top_allowed","true")
                   end
                end
             end
