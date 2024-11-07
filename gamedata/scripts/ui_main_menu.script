@@ -52,6 +52,10 @@ function main_menu:Show(f)
 end
 
 function main_menu:InitCallBacks()
+	-- SGM in
+	self:AddCallback("btn_mod_option", ui_events.BUTTON_CLICKED, self.mod_options, self)
+	self:AddCallback("btn_coord_pos", ui_events.BUTTON_CLICKED, self.OnButton_coord_pos_clicked, self)
+	-- SGM out
 	-- new game
 	self:AddCallback("btn_novice", ui_events.BUTTON_CLICKED, self.OnButton_new_novice_game, self)
 	self:AddCallback("btn_stalker", ui_events.BUTTON_CLICKED, self.OnButton_new_stalker_game, self)
@@ -221,7 +225,7 @@ end
 
 function main_menu:OnButton_save_clicked()
 	if self.save_dlg == nil then
-		self.save_dlg = sgm_ui_save_dialog.save_dialog()
+		self.save_dlg = ui_save_dialog.save_dialog()
 		self.save_dlg.owner = self
 	end
 
@@ -335,6 +339,139 @@ function main_menu:OnKeyboard(dik, keyboard_action) --virtual function
 	local console = get_console()
 
 	if keyboard_action == ui_events.WINDOW_KEY_PRESSED then
+		-------------------------------------------------------------------
+		--                           SGM Mod                             --
+		-------------------------------------------------------------------
+		function main_menu:screenshot_mode_on()
+			level.hide_indicators_safe()
+			game_hide_menu()
+			give_info("screenshot_mode")
+		end
+
+		function main_menu:screenshot_mode_off()
+			level.show_indicators()
+			disable_info("screenshot_mode")
+		end
+
+		function main_menu:set_rich_actor()
+			dialogs.relocate_money(db.actor, 1000000, "in")
+			write_mod_param("actor_web_money", 1000000)
+		end
+
+		function main_menu:inc_actor_rank()
+			xr_statistic.add_50_actor_rank()
+		end
+
+		function main_menu:deliver_mp3_and_bonus()
+			give_object_to_actor("mp3_player")
+			for k = 1, 40 do give_mp3_bonus() end
+		end
+
+		function main_menu:set_0_factor()
+			if db.actor ~= nil then
+				level.set_time_factor(DefaultTimeFactor())
+			end
+		end
+
+		function main_menu:set_1_factor()
+			if db.actor ~= nil then
+				level.set_time_factor(50)
+			end
+		end
+
+		function main_menu:set_2_factor()
+			if db.actor ~= nil then
+				level.set_time_factor(100)
+			end
+		end
+
+		function main_menu:set_3_factor()
+			if db.actor ~= nil then
+				level.set_time_factor(500)
+			end
+		end
+
+		function main_menu:set_4_factor()
+			if db.actor ~= nil then
+				level.set_time_factor(1000)
+			end
+		end
+
+		function main_menu:set_5_factor()
+			if db.actor ~= nil then
+				level.set_time_factor(5000)
+			end
+		end
+
+		function main_menu:set_remote_marker()
+			if sgm_flags.bool_remote_marker == false then
+				local rm_id = create("remote_marker", db.actor:position().x, db.actor:position().y, db.actor:position()
+				.z, db.actor:level_vertex_id(), db.actor:game_vertex_id(), sgm_flags.spot_toolkit_place, "точка отсчёта")
+				sgm_flags.value_remote_marker = rm_id.id
+				sgm_flags.bool_remote_marker = true
+			elseif sgm_flags.bool_remote_marker == true then
+				local marker_obj = level.object_by_id(sgm_flags.value_remote_marker)
+				debug_to_file("remote_points.txt",
+					marker_obj:position().x ..
+					"," ..
+					marker_obj:position().y ..
+					"," .. marker_obj:position().z .. "," ..
+					marker_obj:level_vertex_id() .. "," .. marker_obj:game_vertex_id())
+				sgm_flags.bool_remote_marker = false
+				remove_object_by_id(sgm_flags.value_remote_marker)
+				sgm_flags.value_remote_marker = 0
+			end
+		end
+
+		function main_menu:OnButton_coord_pos_clicked()
+			text = "Позиция:\\nX= " ..
+			db.actor:position().x ..
+			"\\nY= " ..
+			db.actor:position().y ..
+			"\\nZ= " ..
+			db.actor:position().z ..
+			"\\nlevel_vertex= " ..
+			db.actor:level_vertex_id() ..
+			"\\ngame_vertex_id= " .. db.actor:game_vertex_id() .. "\\ndirection= " .. db.actor:direction():getH()
+			news_manager.send_tip(db.actor, text, 0, mutant_hunter, 10000, nil, "Координата")
+			fill_log(db.actor:position().x ..
+			"," ..
+			db.actor:position().y ..
+			"," .. db.actor:position().z .. "," .. db.actor:level_vertex_id() .. "," .. db.actor:game_vertex_id())
+			--/debug_to_file("points.txt",db.actor:level_vertex_id()..","..db.actor:game_vertex_id())
+			debug_to_file("points.txt",
+				db.actor:position().x ..
+				"," ..
+				db.actor:position().y ..
+				"," ..
+				db.actor:position().z ..
+				"," ..
+				db.actor:level_vertex_id() ..
+				"," ..
+				db.actor:game_vertex_id() ..
+				"|" .. db.actor:direction().x .. "," .. db.actor:direction().y .. "," .. db.actor:direction().z)
+		end
+
+		function main_menu:mod_modes()
+			if self.mod_modes_dlg == nil then
+				self.mod_modes_dlg = ui_mod_modes.mod_modes()
+				self.mod_modes_dlg.owner = self
+			end
+			self.mod_modes_dlg:ShowDialog(true)
+			self:HideDialog()
+			self:Show(false)
+		end
+
+		function main_menu:mod_options()
+			if self.mod_dlg == nil then
+				self.mod_dlg = ui_mod_options.mod_options()
+				self.mod_dlg.owner = self
+			end
+			self.mod_dlg:ShowDialog(true)
+			self:HideDialog()
+			self:Show(false)
+		end
+
 		if dik == DIK_keys.DIK_ESCAPE then
 			if level.present() and
 				(((db.actor ~= nil) and (db.actor:alive())) or
@@ -360,4 +497,136 @@ end
 function main_menu:OnMenuReloaded()
 	self:OnButton_options_clicked()
 	self.opt_dlg:OnMenuReloaded()
+end
+
+-------------------------------------------------------------------
+--                           SGM Mod                             --
+-------------------------------------------------------------------
+function main_menu:screenshot_mode_on()
+	level.hide_indicators_safe()
+	game_hide_menu()
+	give_info("screenshot_mode")
+end
+
+function main_menu:screenshot_mode_off()
+	level.show_indicators()
+	disable_info("screenshot_mode")
+end
+
+function main_menu:set_rich_actor()
+	dialogs.relocate_money(db.actor, 1000000, "in")
+	write_mod_param("actor_web_money", 1000000)
+end
+
+function main_menu:inc_actor_rank()
+	xr_statistic.add_50_actor_rank()
+end
+
+function main_menu:deliver_mp3_and_bonus()
+	give_object_to_actor("mp3_player")
+	for k = 1, 40 do give_mp3_bonus() end
+end
+
+function main_menu:set_0_factor()
+	if db.actor ~= nil then
+		level.set_time_factor(DefaultTimeFactor())
+	end
+end
+
+function main_menu:set_1_factor()
+	if db.actor ~= nil then
+		level.set_time_factor(50)
+	end
+end
+
+function main_menu:set_2_factor()
+	if db.actor ~= nil then
+		level.set_time_factor(100)
+	end
+end
+
+function main_menu:set_3_factor()
+	if db.actor ~= nil then
+		level.set_time_factor(500)
+	end
+end
+
+function main_menu:set_4_factor()
+	if db.actor ~= nil then
+		level.set_time_factor(1000)
+	end
+end
+
+function main_menu:set_5_factor()
+	if db.actor ~= nil then
+		level.set_time_factor(5000)
+	end
+end
+
+function main_menu:set_remote_marker()
+	if sgm_flags.bool_remote_marker == false then
+		local rm_id = create("remote_marker", db.actor:position().x, db.actor:position().y, db.actor:position().z,
+			db.actor:level_vertex_id(), db.actor:game_vertex_id(), sgm_flags.spot_toolkit_place, "точка отсчёта")
+		sgm_flags.value_remote_marker = rm_id.id
+		sgm_flags.bool_remote_marker = true
+	elseif sgm_flags.bool_remote_marker == true then
+		local marker_obj = level.object_by_id(sgm_flags.value_remote_marker)
+		debug_to_file("remote_points.txt",
+			marker_obj:position().x ..
+			"," ..
+			marker_obj:position().y ..
+			"," .. marker_obj:position().z .. "," .. marker_obj:level_vertex_id() .. "," .. marker_obj:game_vertex_id())
+		sgm_flags.bool_remote_marker = false
+		remove_object_by_id(sgm_flags.value_remote_marker)
+		sgm_flags.value_remote_marker = 0
+	end
+end
+
+function main_menu:OnButton_coord_pos_clicked()
+	text = "Позиция:\\nX= " ..
+	db.actor:position().x ..
+	"\\nY= " ..
+	db.actor:position().y ..
+	"\\nZ= " ..
+	db.actor:position().z ..
+	"\\nlevel_vertex= " ..
+	db.actor:level_vertex_id() ..
+	"\\ngame_vertex_id= " .. db.actor:game_vertex_id() .. "\\ndirection= " .. db.actor:direction():getH()
+	news_manager.send_tip(db.actor, text, 0, mutant_hunter, 10000, nil, "Координата")
+	fill_log(db.actor:position().x ..
+	"," ..
+	db.actor:position().y .. "," ..
+	db.actor:position().z .. "," .. db.actor:level_vertex_id() .. "," .. db.actor:game_vertex_id())
+	--/debug_to_file("points.txt",db.actor:level_vertex_id()..","..db.actor:game_vertex_id())
+	debug_to_file("points.txt",
+		db.actor:position().x ..
+		"," ..
+		db.actor:position().y ..
+		"," ..
+		db.actor:position().z ..
+		"," ..
+		db.actor:level_vertex_id() ..
+		"," ..
+		db.actor:game_vertex_id() ..
+		"|" .. db.actor:direction().x .. "," .. db.actor:direction().y .. "," .. db.actor:direction().z)
+end
+
+function main_menu:mod_modes()
+	if self.mod_modes_dlg == nil then
+		self.mod_modes_dlg = ui_mod_modes.mod_modes()
+		self.mod_modes_dlg.owner = self
+	end
+	self.mod_modes_dlg:ShowDialog(true)
+	self:HideDialog()
+	self:Show(false)
+end
+
+function main_menu:mod_options()
+	if self.mod_dlg == nil then
+		self.mod_dlg = ui_mod_options.mod_options()
+		self.mod_dlg.owner = self
+	end
+	self.mod_dlg:ShowDialog(true)
+	self:HideDialog()
+	self:Show(false)
 end
