@@ -2,9 +2,7 @@
 #include "ui\map_spots_mp.xml"
 #include "ui\map_spots_relations.xml"
 #include "ui\map_spots_complex.xml"
-        <!---------------->
         <!-- Метки мода -->
-        <!---------------->
         <unique_treasure_location>
                 <level_map spot="unique_treasure_location_spot"/>
                 <mini_map spot="unique_treasure_location_mini_spot"/>
