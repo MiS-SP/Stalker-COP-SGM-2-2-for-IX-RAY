@@ -4802,10 +4802,16 @@ function data_param_save_game(save_name)
 end
 
 -- 'Перезапись базы переменных с исключением выбранного сохранения.
+function get_mod_save_data_path(filename)
+   return getFS():update_path("$app_data_root$", "sgm_data//" .. filename .. ".sgm")
+end
+function get_mod_log_path()
+   return getFS():update_path("$logs$", "")
+end
 function data_param_delete_game(save_n)
    local p_list = {}
    local counter = 1
-   local file = io.open("gamedata//configs//mod_parameters//save_data//save_data.sgm", "r")
+   local file = io.open(get_mod_save_data_path("save_data"), "r")
    for line in file:lines() do
       if find_out_string(tostring(line), "save_data") then
          p_list["param" .. counter] = tostring(read_string_removal_r(line, "="))
@@ -4813,7 +4819,7 @@ function data_param_delete_game(save_n)
       end
    end
    file:close()
-   local file = io.open("gamedata//configs//mod_parameters//save_data//save_data.sgm", "w")
+   local file = io.open(get_mod_save_data_path("save_data"), "w")
    file:write("[save_data]", "\n")
    for k, v in pairs(p_list) do
       if k ~= nil then
@@ -4828,7 +4834,7 @@ end
 
 -- 'Чтение имени сохранения без пробелов.
 function data_param_get_save_name(v_name)
-   local file = io.open("gamedata//configs//mod_parameters//save_data//save_utils.sgm", "w")
+   local file = io.open(get_mod_save_data_path("save_utils"), "w")
    file:write("[save_utils]", "\n")
    file:write("save_name=" .. v_name, "\n")
    file:close()
@@ -4838,7 +4844,7 @@ end
 -- 'Чтение параметра секции из файла.
 function data_param_read_section_1(ini_name, sect, str)
    local result = nil
-   local file = io.open("gamedata//configs//mod_parameters//save_data//" .. ini_name .. ".sgm", "r")
+   local file = io.open(get_mod_save_data_path(ini_name), "r")
    for line in file:lines() do
       if find_out_string(tostring(line), "save_data") or find_out_string(tostring(line), "save_utils") then
          local ini = ini_file("mod_parameters\\save_data\\" .. ini_name .. ".sgm")
@@ -4854,7 +4860,7 @@ end
 
 function data_param_read_section_2(ini_name, str)
    local result = nil
-   local file = io.open("gamedata//configs//mod_parameters//save_data//" .. ini_name .. ".sgm", "r")
+   local file = io.open(get_mod_save_data_path(ini_name), "r")
    for line in file:lines() do
       if find_out_string(tostring(line), "save_data") or find_out_string(tostring(line), "save_utils") then
          if find_in_string(tostring(line), str .. "=") then
@@ -4889,7 +4895,7 @@ end
 -- 'Проверка содержания базы переменных.
 function data_param_exist()
    local founded = false
-   local file_path = "gamedata//configs//mod_parameters//save_data//save_data.sgm"
+   local file_path = get_mod_save_data_path("save_data")
    local file = io.open(file_path, "r")
    for line in file:lines() do
       if find_in_string(tostring(line), "save_data") then
@@ -5013,7 +5019,7 @@ end
 -- 'Переброска всех глобальных переменных в файл.
 function data_param_save_all()
    local counter = 1
-   local file = io.open("gamedata//configs//mod_parameters//save_data//save_data.sgm", "w")
+   local file = io.open(get_mod_save_data_path("save_data"), "w")
    file:write("[save_data]", "\n")
    data_param_save_write()
    data_param_extend()
@@ -5049,7 +5055,7 @@ end
 
 -- 'Выгрузка всех глобальных переменных из файла в две таблицы.
 function data_param_load_all()
-   local file = io.open("gamedata//configs//mod_parameters//save_data//save_data.sgm", "r")
+   local file = io.open(get_mod_save_data_path("save_data"), "r")
    for line in file:lines() do
       if tostring(line) ~= "[save_data]" then
          local r_d = sgm_functions.check_section_stick(nil, read_string_removal_r(line, "="))
