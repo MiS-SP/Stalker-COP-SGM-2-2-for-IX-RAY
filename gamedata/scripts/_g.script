@@ -96,25 +96,23 @@ local scripts_to_print = {
    ["task_objects"]        = true
 }
 function printf(fmt, ...)
-   local is_g = 0
-   local result = fmt
-   if debug == nil then
-      log(string.format(fmt, ...))
-      return
-   end
-   local info_table = debug.getinfo(2)
-   local script_name = string.gsub(info_table.short_src, "%.script", "")
-   script_name = string.gsub(script_name, "gamedata\\scripts\\", "")
+	local is_g = 0
+	local result = fmt
+	if debug == nil then
+		log(string.format(fmt, ...))
+		return
+	end
+	local info_table = debug.getinfo(2)
+	local script_name = string.match(info_table.short_src, "%w+%p+%w+")
+	if scripts_to_print[script_name] == false or scripts_to_print[script_name] == nil then return end
 
-   if scripts_to_print[script_name] == false then return end
-
-   script_name, is_g = string.gsub(script_name, "_g", "")
-   if is_g == 0 then
-      result = script_name .. ":(" .. info_table.currentline .. "):" .. fmt
-   else
-      result = fmt
-   end
-   log(string.format(result, ...))
+	script_name, is_g = string.gsub(script_name, "_g", "")
+	if is_g == 0 then
+		result = script_name .. ":(" .. info_table.currentline .. "):" .. fmt
+	else
+		result = fmt
+	end
+	log(string.format(result, ...))
 end
 
 ----------------------------------------------------------------------
@@ -928,15 +926,9 @@ function abort(fmt, ...)
    end
 end
 
---=============================================================--
---=======================/SGM/=================================--
---=============================================================--
-local pistol_state_bar = nil
-local rifle_state_bar = nil
-local boss_health_bar = nil
-local radiation_bar = nil
-local capture_monster_bar = nil
-local battery_power_bar = nil
+
+----================================/SGM/=====================================----
+
 ------------------------------------------------------------------------------
 --                              Работа со спауном                           --
 ------------------------------------------------------------------------------
@@ -1000,46 +992,6 @@ function create_random(who, count_pos, pos_1, pos_2, pos_3, pos_4, pos_5, pos_6,
    obj = alife():create(get_random_string(who_table),
       vector():set(tonumber(get_coord[1]), tonumber(get_coord[2]), tonumber(get_coord[3])), tonumber(get_coord[4]),
       tonumber(get_coord[5]))
-   if obj then
-      sgm_modules.submodule_on_create(who, obj.id)
-   end
-   return obj
-end
-
--- 'Создание нескольких объектов с рандомной позицией.
-function create_objects_random(who_list, count_pos, pos_1, pos_2, pos_3, pos_4, pos_5, pos_6, pos_7, pos_8, pos_9, pos_10)
-   local parse_who_list = utils.parse_spawns(who_list)
-   local selected_pos = get_rnd(1, count_pos)
-   local pos_value = pos_1
-   if selected_pos == 1 then
-      pos_value = pos_1
-   elseif selected_pos == 2 then
-      pos_value = pos_2
-   elseif selected_pos == 3 then
-      pos_value = pos_3
-   elseif selected_pos == 4 then
-      pos_value = pos_4
-   elseif selected_pos == 5 then
-      pos_value = pos_5
-   elseif selected_pos == 6 then
-      pos_value = pos_6
-   elseif selected_pos == 7 then
-      pos_value = pos_7
-   elseif selected_pos == 8 then
-      pos_value = pos_8
-   elseif selected_pos == 9 then
-      pos_value = pos_9
-   elseif selected_pos == 10 then
-      pos_value = pos_10
-   end
-   local get_coord = parse_comma_names(pos_value, count_pos, true)
-   for k, v in pairs(parse_who_list) do
-      for i = 1, v.prob do
-         obj = alife():create(v.section,
-            vector():set(tonumber(get_coord[1]), tonumber(get_coord[2]), tonumber(get_coord[3])), tonumber(get_coord[4]),
-            tonumber(get_coord[5]))
-      end
-   end
    if obj then
       sgm_modules.submodule_on_create(who, obj.id)
    end
@@ -1128,26 +1080,6 @@ function give_object_to_npc(section, npc, count)
    end
 end
 
--- 'Создание предметов в рюкзаке НПС.
-function give_objects_to_npc(items_list, npc)
-   local parse_items_list = utils.parse_spawns(items_list)
-   for k, v in pairs(parse_items_list) do
-      for i = 1, v.prob do
-         alife():create(v.section, npc:position(), npc:level_vertex_id(), npc:game_vertex_id(), npc:id())
-      end
-   end
-end
-
--- 'Создание предметов для обьекта с выбранным ID.
-function give_object_to_object(items, obj_id)
-   local parse_items = utils.parse_spawns(items)
-   for k, v in pairs(parse_items) do
-      for i = 1, v.prob do
-         alife():create(v.section, vector(), 0, 0, obj_id)
-      end
-   end
-end
-
 -- 'Создание предметов, для обьекта с выбранным SID.
 function give_item_to_sid(items, sid)
    local parse_items = utils.parse_spawns(items)
@@ -1221,22 +1153,6 @@ function create_dead_body(dead_name, item_table, x, y, z, lv, gv)
    end
 end
 
-function create_suicide_body(suicide_name, item_table, x, y, z, lv, gv)
-   if z == nil and lv == nil and gv == nil then
-      body_case = alife():create(suicide_name, level.vertex_position(x), x, y)
-   else
-      body_case = alife():create(suicide_name, vector():set(x, y, z), lv, gv)
-   end
-   if exists(item_table) then
-      local parse_table = utils.parse_spawns(item_table)
-      for k, v in pairs(parse_table) do
-         for i = 1, v.prob do
-            alife():create(v.section, vector(), 0, 0, body_case.id)
-         end
-      end
-   end
-end
-
 -- 'Создание инвентаря с ценным хабаром. Сокровища группировки.
 function create_base_treasure(model, x, y, z, lv, gv)
    local param_sid = sgm_functions.ReadStoryId(model)
@@ -1274,29 +1190,6 @@ function create_gps_guide(x, y, z, lv, gv)
    return gps_guide.id
 end
 
--- 'Создание рестриктора.
-function create_restrictor(custom_add, radius, x, y, z, lv, gv)
-   if z == nil and lv == nil and gv == nil then
-      se_obj = alife():create("space_restrictor", level.vertex_position(x), x, y)
-   else
-      se_obj = alife():create("space_restrictor", vector():set(x, y, z), lv, gv)
-   end
-   local custom_pack = "[logic]\n" .. "cfg = " .. custom_add
-   sgm_packet.setup_restrictor(se_obj, custom_pack, radius, x, y, z, lv, gv)
-end
-
--- 'Создание зоны случайного телепорта.
-function create_throw_zone(custom_add, radius, x, y, z, lv, gv)
-   sgm_packet.create_anomaly("sgm_throw_field", radius, lv, gv)
-   if z == nil and lv == nil and gv == nil then
-      se_obj = alife():create("space_restrictor", level.vertex_position(x), x, y)
-   else
-      se_obj = alife():create("space_restrictor", vector():set(x, y, z), lv, gv)
-   end
-   local custom_pack = "[logic]\n" .. "cfg = " .. custom_add
-   sgm_packet.setup_restrictor(se_obj, custom_pack, radius, x, y, z, lv, gv)
-end
-
 -- 'Замена исчезнувшего квестового трупа на рюкзак с нужным предметом.
 function replace_quest_corpse(spot_name, quest_item, x, y, z, lv, gv)
    create(spot_name, x, y, z, lv, gv)
@@ -1320,94 +1213,9 @@ function use_power_mode(val_first, val_second)
    end
 end
 
--- 'Использовать режим остановки любых кровотечений.
-function use_bleeding_mode()
-   local blood_level = db.actor.bleeding
-   if blood_level > 0.05 then
-      if db.actor:object("bandage") then
-         db.actor:eat(db.actor:object("bandage"))
-      else
-         alife():create("bandage", db.actor:position(), db.actor:level_vertex_id(), db.actor:game_vertex_id(),
-            db.actor:id())
-      end
-   end
-end
-
--- 'Использовать режим авто-ремонта.
-function use_repair_mode(val_first, val_second)
-   local active_slot = db.actor:active_slot()
-   local active_item = db.actor:active_item()
-   local pistol_in_slot = db.actor:item_in_slot(2)
-   local rifle_in_slot = db.actor:item_in_slot(3)
-   local outfit_in_slot = db.actor:item_in_slot(7)
-   local helm_in_slot = db.actor:item_in_slot(12)
-   local actor = db.actor
-   local pistol_contain
-   local rifle_contain
-   local outfit_contain
-   local artefact_contain
-   local helm_contain
-   if outfit_in_slot ~= nil then outfit_contain = outfit_in_slot:section() end
-   if pistol_in_slot ~= nil then pistol_contain = pistol_in_slot:section() end
-   if rifle_in_slot ~= nil then rifle_contain = rifle_in_slot:section() end
-   if helm_in_slot ~= nil then helm_contain = helm_in_slot:section() end
-   if outfit_contain ~= nil and outfit_in_slot ~= nil then
-      if outfit_in_slot:condition() < val_first then
-         outfit_in_slot:set_condition(val_second)
-      end
-   end
-   if helm_contain ~= nil and helm_in_slot ~= nil then
-      if helm_in_slot:condition() < val_first then
-         helm_in_slot:set_condition(val_second)
-      end
-   end
-   if pistol_contain ~= nil and pistol_in_slot ~= nil then
-      if pistol_in_slot:condition() < val_first then
-         pistol_in_slot:set_condition(val_second)
-      end
-   end
-   if rifle_contain ~= nil and rifle_in_slot ~= nil then
-      if rifle_in_slot:condition() < val_first then
-         rifle_in_slot:set_condition(val_second)
-      end
-   end
-end
-
--- 'Использовать все режимы.
-function use_all_modes(val_first, val_second)
-   use_immortal_mode(val_first, val_second)
-   use_power_mode(val_first, val_second)
-   use_repair_mode(val_first, val_second)
-   use_bleeding_mode()
-end
-
 ------------------------------------------------------------------------------
 --                         Работа с инфопортациями                          --
 ------------------------------------------------------------------------------
--- 'Выдача инфопортации, если таковая отсутствует.
-function recover_info(dont_info)
-   if dont_has_alife_info(dont_info) then
-      give_info(dont_info)
-   end
-end
-
--- 'Выдача инфопортации, если первая присутствует, а вторая отсутствует.
-function recover_info2(has_info, grant_info)
-   if has_alife_info(has_info) and dont_has_alife_info(grant_info) then
-      give_info(grant_info)
-   end
-end
-
--- 'Выдача нескольких инфопортаций по возрастающим номерам.
-function give_several_info(l_part, r_part, count_a, count_b)
-   if count_b == nil then
-      count_b = count_a
-      count_a = 1
-   end
-   for i = count_a, count_b do
-      give_info(l_part .. i .. r_part)
-   end
-end
 
 -- 'Удаление нескольких инфопортаций по возрастающим номерам.
 function disable_several_info(l_part, r_part, count_a, count_b)
@@ -1429,21 +1237,6 @@ function has_several_info(l_part, r_part, count_a, count_b)
    local info_cnt = 0
    for i = count_a, count_b do
       if has_alife_info(l_part .. i .. r_part) then
-         info_cnt = info_cnt + 1
-      end
-   end
-   return info_cnt >= count_b
-end
-
--- 'Подсчет нескольких неполученных инфопортаций по возрастающим номерам.
-function dont_has_several_info(l_part, r_part, count_a, count_b)
-   if count_b == nil then
-      count_b = count_a
-      count_a = 1
-   end
-   local info_cnt = 0
-   for i = count_a, count_b do
-      if dont_has_alife_info(l_part .. i .. r_part) then
          info_cnt = info_cnt + 1
       end
    end
@@ -1494,23 +1287,6 @@ function has_any_info(info_list)
       local info_count = get_table_names(info_table)
       for k, v in pairs(info_table) do
          if has_alife_info(v.section) then
-            info_result = true
-         end
-      end
-      return info_result
-   end
-end
-
--- 'Проверка на отсутствие любой из нескольких инфопортаций.
-function dont_any_chosen_info(info_list)
-   if find_out_string(info_list, ",") then
-      return dont_has_alife_info(info_list)
-   else
-      local info_result = false
-      local info_table = utils.parse_spawns(info_list)
-      local info_count = get_table_names(info_table)
-      for k, v in pairs(info_table) do
-         if dont_has_alife_info(v.section) then
             info_result = true
          end
       end
@@ -1637,14 +1413,6 @@ function give_quick_news(text)
    end
 end
 
-function give_quick_news2(info)
-   if db.actor ~= nil then
-      if has_alife_info(info) then
-         news_manager.send_tip(db.actor, "has " .. info, 0, "diplomat", 2000, nil, "Быстрое сообщение:")
-      end
-   end
-end
-
 function show_hud_message(text)
    if db.actor ~= nil then
       if text == true then
@@ -1665,23 +1433,6 @@ function show_hud_message(text)
    end
 end
 
-function show_hud_message2(info)
-   if has_alife_info(info) then
-      add_hud("hud_event", "yes")
-   else
-      add_hud("hud_event", "no")
-   end
-end
-
--- 'Проверка на отсутствие UI.
-function check_ui_disabled(check_frame)
-   if check_frame == true then
-      return sgm_flags.bool_is_ui_disabled == true and device().precache_frame == 0
-   else
-      return sgm_flags.bool_is_ui_disabled == true
-   end
-end
-
 -- 'Проверка на присутствие UI.
 function check_ui_worked(check_frame)
    if check_frame == true then
@@ -1699,185 +1450,6 @@ end
 -- 'Установка присутствия UI.
 function set_ui_worked()
    sgm_flags.bool_is_ui_disabled = false
-end
-
--- 'Вывод на экран текущей секции логики НПС. По профилю.
-function show_logic_section(npc, profile)
-   local ids = npc:id()
-   local hud = get_hud()
-   if db.actor ~= nil and npc:profile_name() == profile and db.storage[ids].active_section ~= nil then
-      local w_txt = "Схема = " .. db.storage[ids].active_section
-      add_hud("hud_event", w_txt)
-   end
-end
-
--- 'Вывод на экран полосы прогресса. Состояние оружия во 1-м слоте.
-function show_pistol_state_bar(hud_name, xml_name, xml_sect, show_func, clear_bool)
-   local hud = get_hud()
-   local xml = CScriptXmlInit()
-   if hud:GetCustomStatic(hud_name) == nil and (clear_bool == nil or clear_bool ~= true) then
-      add_hud(hud_name)
-      xml:ParseFile(xml_name)
-      pistol_state_bar = xml:InitProgressBar(xml_sect, hud:GetCustomStatic(hud_name):wnd())
-      if hud:GetCustomStatic(hud_name) ~= nil then
-         add_hud(hud_name)
-         pistol_level = show_func
-         if pistol_level ~= nil then
-            pistol_state_bar:Show(true)
-            pistol_state_bar:SetProgressPos(show_func)
-         end
-      end
-   elseif hud:GetCustomStatic(hud_name) ~= nil and (clear_bool == nil or clear_bool ~= true) then
-      xml:ParseFile(xml_name)
-      add_hud(hud_name)
-      pistol_level = show_func
-      if pistol_level ~= nil then
-         pistol_state_bar:Show(true)
-         pistol_state_bar:SetProgressPos(show_func)
-      end
-   elseif clear_bool ~= nil and clear_bool == true and pistol_state_bar ~= nil then
-      pistol_state_bar:Show(false)
-   end
-end
-
--- 'Вывод на экран полосы прогресса. Состояние оружия во 2-м слоте.
-function show_rifle_state_bar(hud_name, xml_name, xml_sect, show_func, clear_bool)
-   local hud = get_hud()
-   local xml = CScriptXmlInit()
-   if hud:GetCustomStatic(hud_name) == nil and (clear_bool == nil or clear_bool ~= true) then
-      add_hud(hud_name)
-      xml:ParseFile(xml_name)
-      rifle_state_bar = xml:InitProgressBar(xml_sect, hud:GetCustomStatic(hud_name):wnd())
-      if hud:GetCustomStatic(hud_name) ~= nil then
-         add_hud(hud_name)
-         rifle_level = show_func
-         if rifle_level ~= nil then
-            rifle_state_bar:Show(true)
-            rifle_state_bar:SetProgressPos(show_func)
-         end
-      end
-   elseif hud:GetCustomStatic(hud_name) ~= nil and (clear_bool == nil or clear_bool ~= true) then
-      xml:ParseFile(xml_name)
-      add_hud(hud_name)
-      rifle_level = show_func
-      if rifle_level ~= nil then
-         rifle_state_bar:Show(true)
-         rifle_state_bar:SetProgressPos(show_func)
-      end
-   elseif clear_bool ~= nil and clear_bool == true and rifle_state_bar ~= nil then
-      rifle_state_bar:Show(false)
-   end
-end
-
--- 'Вывод на экран полосы прогресса. Радиоактивное излучение.
-function show_radiation_bar(hud_name, xml_name, xml_sect, show_func)
-   local hud = get_hud()
-   local xml = CScriptXmlInit()
-   if hud:GetCustomStatic(hud_name) == nil then
-      add_hud(hud_name)
-      xml:ParseFile(xml_name)
-      radiation_bar = xml:InitProgressBar(xml_sect, hud:GetCustomStatic(hud_name):wnd())
-      if hud:GetCustomStatic(hud_name) ~= nil then
-         add_hud(hud_name)
-         bar_level = show_func
-         if bar_level ~= nil then
-            radiation_bar:Show(true)
-            radiation_bar:SetProgressPos(bar_level)
-         end
-      end
-   elseif hud:GetCustomStatic(hud_name) ~= nil then
-      xml:ParseFile(xml_name)
-      add_hud(hud_name)
-      bar_level = show_func
-      if bar_level ~= nil then
-         radiation_bar:Show(true)
-         radiation_bar:SetProgressPos(bar_level)
-      end
-   end
-end
-
--- 'Вывод на экран полосы прогресса. Жизнь босса.
-function show_boss_health_bar(hud_name, xml_name, xml_sect, show_func)
-   local hud = get_hud()
-   local xml = CScriptXmlInit()
-   if hud:GetCustomStatic(hud_name) == nil then
-      add_hud(hud_name)
-      xml:ParseFile(xml_name)
-      boss_health_bar = xml:InitProgressBar(xml_sect, hud:GetCustomStatic(hud_name):wnd())
-      if hud:GetCustomStatic(hud_name) ~= nil then
-         add_hud(hud_name)
-         bar_level = show_func
-         if bar_level ~= nil then
-            boss_health_bar:Show(true)
-            boss_health_bar:SetProgressPos(bar_level)
-         end
-      end
-   elseif hud:GetCustomStatic(hud_name) ~= nil then
-      xml:ParseFile(xml_name)
-      add_hud(hud_name)
-      bar_level = show_func
-      if bar_level ~= nil then
-         boss_health_bar:Show(true)
-         boss_health_bar:SetProgressPos(bar_level)
-      end
-   end
-end
-
--- 'Вывод на экран полосы прогресса. Вербовка монстров.
-function show_capture_monster_bar(hud_name, xml_name, xml_sect, show_func, show_text, icon)
-   local hud = get_hud()
-   local xml = CScriptXmlInit()
-   if hud:GetCustomStatic(hud_name) == nil then
-      add_hud(icon)
-      add_hud(hud_name, show_text)
-      xml:ParseFile(xml_name)
-      capture_monster_bar = xml:InitProgressBar(xml_sect, hud:GetCustomStatic(hud_name):wnd())
-      if hud:GetCustomStatic(hud_name) ~= nil then
-         add_hud(icon)
-         add_hud(hud_name, show_text)
-         bar_level = show_func
-         if bar_level ~= nil then
-            capture_monster_bar:Show(true)
-            capture_monster_bar:SetProgressPos(bar_level)
-         end
-      end
-   elseif hud:GetCustomStatic(hud_name) ~= nil then
-      xml:ParseFile(xml_name)
-      add_hud(icon)
-      add_hud(hud_name, show_text)
-      bar_level = show_func
-      if bar_level ~= nil then
-         capture_monster_bar:Show(true)
-         capture_monster_bar:SetProgressPos(bar_level)
-      end
-   end
-end
-
--- 'Вывод на экран полосы прогресса. Вербовка монстров.
-function show_battery_power_bar(hud_name, xml_name, xml_sect, show_func, show_text)
-   local hud = get_hud()
-   local xml = CScriptXmlInit()
-   if hud:GetCustomStatic(hud_name) == nil then
-      add_hud(hud_name, show_text)
-      xml:ParseFile(xml_name)
-      battery_power_bar = xml:InitProgressBar(xml_sect, hud:GetCustomStatic(hud_name):wnd())
-      if hud:GetCustomStatic(hud_name) ~= nil then
-         add_hud(hud_name, show_text)
-         bar_level = show_func
-         if bar_level ~= nil then
-            battery_power_bar:Show(true)
-            battery_power_bar:SetProgressPos(bar_level)
-         end
-      end
-   elseif hud:GetCustomStatic(hud_name) ~= nil then
-      xml:ParseFile(xml_name)
-      add_hud(hud_name, show_text)
-      bar_level = show_func
-      if bar_level ~= nil then
-         battery_power_bar:Show(true)
-         battery_power_bar:SetProgressPos(bar_level)
-      end
-   end
 end
 
 -- 'Запуск динамического окна.
@@ -2042,12 +1614,6 @@ function congratulate_with_event(delay, descr, sound_bool, check_talking)
    end
 end
 
--- 'Используется для проверки работы биндера.
-function show_crash_event(delay, descr)
-   add_hud("hud_crash_info", descr)
-   start_flague_timer("timer_hud_crash", delay)
-end
-
 ------------------------------------------------------------------------------
 --                      Работа с автосохранениями                           --
 ------------------------------------------------------------------------------
@@ -2144,38 +1710,6 @@ function play_snd_at_actor(sound, count1, count2)
    end
 end
 
--- 'Воспроизвести зацыкленный звук от НПС.
-function play_loop_snd_at_pos(npc, sound, count1, count2)
-   local snd_souce
-   if count1 == nil or count2 == nil then
-      snd_souce = sound_object(sound)
-      if snd_souce:playing() == false then
-         snd_souce:play_at_pos(npc, npc:position(), 0, sound_object.s3d + sound_object.looped)
-      end
-   elseif count1 ~= nil and count2 ~= nil then
-      snd_souce = sound_object(sound .. math.random(count1, count2))
-      if snd_souce:playing() == false then
-         snd_souce:play_at_pos(npc, npc:position(), 0, sound_object.s3d + sound_object.looped)
-      end
-   end
-end
-
--- 'Воспроизвести зацыкленный звук в голове ГГ.
-function play_loop_snd_at_actor(sound, count1, count2)
-   local snd_souce
-   if count1 == nil or count2 == nil then
-      snd_souce = sound_object(sound)
-      if snd_souce:playing() == false then
-         snd_souce:play(db.actor, 0, sound_object.s2d + sound_object.looped)
-      end
-   elseif count1 ~= nil and count2 ~= nil then
-      snd_souce = sound_object(sound .. math.random(count1, count2))
-      if snd_souce:playing() == false then
-         snd_souce:play(db.actor, 0, sound_object.s2d + sound_object.looped)
-      end
-   end
-end
-
 -- 'Воспроизвести звуковую схему.
 function play_theme_snd(npc, snd)
    if npc == nil then npc = db.actor end
@@ -2185,26 +1719,11 @@ end
 ------------------------------------------------------------------------------
 --                     Работа с секциями и строками                         --
 ------------------------------------------------------------------------------
--- 'Чтение текста слева от указанного знака.
-function read_string_removal_l(target_str, sign)
-   if target_str ~= nil then
-      return string.sub(target_str, 1, string.find(target_str, sign) - 1)
-   end
-   return nil
-end
 
 -- 'Чтение текста справа от указанного знака.
 function read_string_removal_r(target_str, sign)
    if target_str ~= nil then
       return string.sub(target_str, string.find(target_str, sign) + 1)
-   end
-   return nil
-end
-
--- 'Чтение текста c указанной буквы по счету.
-function read_string_from_symbol(target_str, s_num)
-   if target_str ~= nil then
-      return string.sub(target_str, s_num)
    end
    return nil
 end
@@ -2244,16 +1763,6 @@ function save_and_transform_ini_table(ini_path, ini_table, script_path, script_t
          table.insert(sgm_flags[script_path][list_name_2], id)
       end
    end
-end
-
--- 'Проверка таблицы на наличие составляющих.
-function check_table(tbl)
-   for k, v in pairs(tbl) do
-      if v ~= nil then
-         return true
-      end
-   end
-   return false
 end
 
 -- 'Проверка таблицы на количество {}.
@@ -2348,20 +1857,6 @@ function file_write_param(filename, param, value)
    file:close(file)
 end
 
-function file_read_param(filename)
-   f = io.input(filename)
-   s = f:read("*l")
-   if s then
-      return s
-   else
-      return 0
-   end
-end
-
-function file_remove(filename)
-   os.remove(filename)
-end
-
 ------------------------------------------------------------------------------
 --                         Работа с инвентарем                              --
 ------------------------------------------------------------------------------
@@ -2400,46 +1895,6 @@ function check_actor_item_to_remove(target_item)
    end
 end
 
--- 'Проверка на наличие перечня указанных предметов.
-function has_chosen_items(items)
-   if find_out_string(items, ",") then
-      return db.actor:object(items)
-   else
-      local items_result = 0
-      local items_table = utils.parse_spawns(items)
-      local items_count = get_table_names(items_table)
-      for k, v in pairs(items_table) do
-         if db.actor:object(v.section) then
-            if v.prob > 1 then
-               if get_item_count(v.section) >= v.prob then
-                  items_result = items_result + 1
-               end
-            else
-               items_result = items_result + 1
-            end
-         end
-      end
-      return items_result >= items_count
-   end
-end
-
--- 'Проверка на отсутствие перечня указанных предметов.
-function dont_has_chosen_items(items)
-   if find_out_string(items, ",") then
-      return not db.actor:object(items)
-   else
-      local items_result = 0
-      local items_table = utils.parse_spawns(items)
-      local items_count = get_table_names(items_table)
-      for k, v in pairs(items_table) do
-         if not db.actor:object(v.section) then
-            items_result = items_result + 1
-         end
-      end
-      return items_result >= items_count
-   end
-end
-
 -- 'Проверка на наличие любого предмета из перечня.
 function has_any_items(items)
    if find_out_string(items, ",") then
@@ -2450,23 +1905,6 @@ function has_any_items(items)
       local items_count = get_table_names(items_table)
       for k, v in pairs(items_table) do
          if db.actor:object(v.section) then
-            items_result = true
-         end
-      end
-      return items_result
-   end
-end
-
--- 'Проверка на отсутствие любого предмета из перечня.
-function dont_has_any_items(items)
-   if find_out_string(items, ",") then
-      return not db.actor:object(items)
-   else
-      local items_result = false
-      local items_table = utils.parse_spawns(items)
-      local items_count = get_table_names(items_table)
-      for k, v in pairs(items_table) do
-         if not db.actor:object(v.section) then
             items_result = true
          end
       end
@@ -2555,15 +1993,6 @@ function check_slot_filled(need_slot)
    return false
 end
 
--- 'Возвращение предмета в слоте.
-function get_slot_object(slot)
-   local currert_slot = db.actor:item_in_slot(slot)
-   if currert_slot ~= nil and currert_slot:section() ~= nil then
-      return currert_slot
-   end
-   return nil
-end
-
 -- 'Проверка по количеству предметов одного типа.
 function have_item_count(need_item, num, st_find)
    local item_section = need_item
@@ -2615,56 +2044,6 @@ function check_item_count(need_items, type_count, glass)
    return has_count >= need_count
 end
 
--- 'Возвращение ID предмета из инвентаря ГГ. С проверкой на не совпадение ID с exclude_id.
-function get_utils_id(need_item, exclude_id)
-   local item_section = need_item
-   local utils_id = 0
-   local function calc(temp, item)
-      if item:id() ~= exclude_id and item:section() == item_section then
-         utils_id = item:id()
-      end
-   end
-   db.actor:iterate_inventory(calc, db.actor)
-   return utils_id
-end
-
--- 'Вернуть таблицу с ID для одного предмета.
-function parse_one_item_table(need_item)
-   local item_table = {}
-   local item_section = need_item
-   local item_cnt = 0
-   local function calc(temp, item)
-      if item:section() == item_section then
-         if item_cnt == 0 then
-            item_cnt = 1
-            table.insert(item_table, item:id())
-         end
-      end
-   end
-   db.actor:iterate_inventory(calc, db.actor)
-   return item_table
-end
-
--- 'Вернуть таблицу с IDшниками для двух предметов.
-function parse_two_item_table(need_item)
-   local item_table = {}
-   local item_section = need_item
-   local item_cnt = 0
-   local function calc(temp, item)
-      if item:section() == item_section then
-         if item_cnt == 0 then
-            item_cnt = 1
-            table.insert(item_table, item:id())
-         elseif item_cnt == 1 then
-            item_cnt = 2
-            table.insert(item_table, item:id())
-         end
-      end
-   end
-   db.actor:iterate_inventory(calc, db.actor)
-   return item_table
-end
-
 -- 'Удаление предметов из инвентаря.
 function release_inventory(victim, from_what)
    local function get_release_inventory(victim, item)
@@ -2676,95 +2055,6 @@ function release_inventory(victim, from_what)
    victim:iterate_inventory(get_release_inventory, victim)
 end
 
--- 'Удаление предметов из инвентарного обьекта.
-function clear_items_from_inv_box(victim)
-   local function calc(temp, item)
-      if item ~= nil then
-         if alife():object(item:id()) then
-            alife():release(alife():object(item:id()), true)
-         end
-      end
-   end
-   victim:iterate_inventory_box(calc, victim)
-end
-
--- 'Удаление предметов по их принадлежности к определенному слоту.
-function clear_slot_items_from_inventory(victim, target_slot)
-   local function calc(temp, item)
-      if item ~= nil then
-         if sgm_functions.GetItemSlot(item:section()) == target_slot then
-            if alife():object(item:id()) then
-               alife():release(alife():object(item:id()), true)
-            end
-         end
-      end
-   end
-   victim:iterate_inventory(calc, victim)
-end
-
--- 'Удаление определённых предметов.
-function clear_item_from_inventory(victim, target_item)
-   local function calc(temp, item)
-      if item ~= nil then
-         if item:section() == target_item then
-            if alife():object(item:id()) then
-               alife():release(alife():object(item:id()), true)
-            end
-         end
-      end
-   end
-   victim:iterate_inventory(calc, victim)
-end
-
--- 'Перенос предметов от одного обьекта к другому.
-function inventory_box_transfer_to(from, to)
-   local transfer_items = {}
-   local function transfer_functor(from, item)
-      table.insert(transfer_items, item)
-   end
-   from:iterate_inventory_box(transfer_functor, from)
-   for k, v in pairs(transfer_items) do
-      from:transfer_item(v, to)
-   end
-end
-
--- 'Проверка текущего веса в рюкзаке ГГ.
-function get_actor_inventory_weight()
-   local weight = 0.0
-   local function calculate_weight(temp, item)
-      if item ~= nil and item:section() ~= nil then
-         weight = weight + sgm_functions.ReadItemWeight(item:section()) * item:condition()
-      end
-   end
-   db.actor:iterate_inventory(calculate_weight, db.actor)
-   return weight
-end
-
--- 'Проверка наличия предметов с указанной секцией, в инвентарном обьекте.
-function get_item_section_in_inventory_box(obj_box, target_item)
-   local result = false
-   local function check_items(temp, item)
-      if item ~= nil and item:section() == target_item then
-         result = true
-         return true
-      end
-   end
-   obj_box:iterate_inventory_box(check_items, obj_box)
-   return result
-end
-
--- 'Проверка количества предметов с указанной секцией, в инвентарном обьекте.
-function get_item_count_in_inventory_box(obj_box, target_item)
-   local result = 0
-   local function check_items(temp, item)
-      if item ~= nil and item:section() == target_item then
-         result = result + 1
-      end
-   end
-   obj_box:iterate_inventory_box(check_items, obj_box)
-   return result
-end
-
 -- 'Проверка наличия предметов с указанной частью секции, в инвентарном обьекте.
 function get_item_section_f_inventory_box(obj_box, target_item)
    local result = false
@@ -2772,18 +2062,6 @@ function get_item_section_f_inventory_box(obj_box, target_item)
       if item ~= nil and find_in_string(item:section(), target_item) then
          result = true
          return true
-      end
-   end
-   obj_box:iterate_inventory_box(check_items, obj_box)
-   return result
-end
-
--- 'Проверка количества предметов с указанной частью секции, в инвентарном обьекте.
-function get_item_count_f_inventory_box(obj_box, target_item)
-   local result = 0
-   local function check_items(temp, item)
-      if item ~= nil and find_in_string(item:section(), target_item) then
-         result = result + 1
       end
    end
    obj_box:iterate_inventory_box(check_items, obj_box)
@@ -2981,33 +2259,6 @@ function clear_all_objects(victim_type, range_min, range_max)
    end
 end
 
--- 'Пометить на карте все обьекты с указанной секцией.
-function reveal_objects_by_section(find_string)
-   for a = 1, 65534 do
-      local obj = alife():object(a)
-      if obj then
-         if obj:section_name() ~= nil and string.find(obj:section_name(), find_string) then
-            local sect = obj:section_name()
-            add_spot_on_map(obj.id, sgm_flags.spot_toolkit_place, obj:section_name())
-            --debug_to_file("on_take_item_from_box.txt",obj:name())
-         end
-      end
-   end
-end
-
--- 'Пометить на карте все обьекты с указанным именем.
-function reveal_objects_by_name(find_string)
-   for a = 1, 65534 do
-      local obj = alife():object(a)
-      if obj then
-         if obj:name() ~= nil and string.find(obj:name(), find_string) then
-            local sect = obj:name()
-            add_spot_on_map(obj.id, sgm_flags.spot_toolkit_place, obj:name())
-         end
-      end
-   end
-end
-
 -- 'Скрыть все обьекты с указанной секцией.
 function hide_spot_by_section(find_string, location_name)
    for a = 1, 65534 do
@@ -3070,15 +2321,6 @@ function distance_to_object(obj, type, dist_value, absence_parent)
    return false
 end
 
--- 'Дистанция до обьекта. В квадратных метрах.
-function distance_to_sqr_object(obj, type, dist_value, absence_parent)
-   local currert_distance = db.actor:position():distance_to_sqr(obj:position())
-   if ((type == "<=" and currert_distance <= dist_value) or (type == "<" and currert_distance < dist_value) or (type == ">=" and currert_distance >= dist_value) or (type == ">" and currert_distance > dist_value) or (type == "==" and currert_distance < dist_value)) and ((absence_parent == nil) or (absence_parent ~= nil and absence_parent == false and obj:parent() ~= nil) or (absence_parent ~= nil and absence_parent == true and obj:parent() == nil)) then
-      return true
-   end
-   return false
-end
-
 -- 'Контрольная зона телепорта.
 function make_teleport_control_zone(nx, ny, nz, nlv, ngv, ndist, tx, ty, tz, dir_h, g_info)
    if sgm_flags.bool_travel_level_change ~= true and db.actor:position():distance_to(vector():set(nx, ny, nz), nlv, ngv) <= ndist then
@@ -3094,42 +2336,13 @@ function actor_in_restrictor(zone_name)
    return utils.npc_in_zone(db.actor, zone)
 end
 
--- 'ГГ не в зоне рестриктора.
-function actor_out_restrictor(zone_name)
-   local zone = db.zone_by_name[zone_name]
-   if zone == nil then
-      return false
-   end
-   return not utils.npc_in_zone(db.actor, db.zone_by_name[zone_name])
-end
-
 ------------------------------------------------------------------------------
 --                      Работа с отношениями                                --
 ------------------------------------------------------------------------------
--- 'Чтение текущего отношения ГГ к группировке.
-function get_actor_relation_to(to_community)
-   return relation_registry.community_relation(db.actor:character_community(), to_community) +
-   db.actor:community_goodwill(to_community)
-end
-
--- 'Улучшить отношения между группировкой и ГГ.
-function increase_faction_goodwill(community, value)
-   game_relations.change_factions_community_num(community, db.actor:id(), tonumber(value))
-end
 
 -- 'Ухудшить отношения между группировкой и ГГ.
 function decrease_faction_goodwill(community, value)
    game_relations.change_factions_community_num(community, db.actor:id(), -tonumber(value))
-end
-
--- 'Улучшить отношения между группировкой и обьектом.
-function increase_faction_goodwill_to(obj_id, community, value)
-   game_relations.change_factions_community_num(community, obj_id, tonumber(value))
-end
-
--- 'Ухудшить отношения между группировкой и обьектом.
-function decrease_faction_goodwill_to(obj_id, community, value)
-   game_relations.change_factions_community_num(community, obj_id, -tonumber(value))
 end
 
 -- 'Установка отношений одной группировки к другой.
@@ -3145,17 +2358,6 @@ function set_faction_to_faction_relation(from_faction, to_faction, type_relation
    relation_registry.set_community_relation(from_faction, to_faction, relation_value)
    if double_effect == true then
       relation_registry.set_community_relation(to_faction, from_faction, relation_value)
-   end
-end
-
--- 'Установка отношений одного обьекта к другому.
-function set_relation_between(obj1, obj2, type)
-   if type == nil or type == "enemy" or type == "e" then
-      obj1:set_relation(game_object.enemy, obj2)
-   elseif type == "friend" or type == "f" then
-      obj1:set_relation(game_object.friend, obj2)
-   elseif type == "neutral" or type == "n" then
-      obj1:set_relation(game_object.neutral, obj2)
    end
 end
 
@@ -3223,18 +2425,6 @@ function read_string(section, param, ini_path)
    end
    if ltx_ini:line_exist(section, param) then
       return ltx_ini:r_string(section, param)
-   else
-      return "nil"
-   end
-end
-
-function read_boolean(section, param, ini_path)
-   local ltx_ini = system_ini()
-   if ini_path ~= nil and ini_path ~= "nil" then
-      ltx_ini = ini_file(ini_path)
-   end
-   if ltx_ini:line_exist(section, param) then
-      return ltx_ini:r_bool(section, param)
    else
       return "nil"
    end
@@ -3338,16 +2528,6 @@ end
 ------------------------------------------------------------------------------
 --                          Использование предметов                         --
 ------------------------------------------------------------------------------
--- 'Использование предмета ГГ-м.
-function eat_item(item_name, with_news)
-   if db.actor:object(item_name) then
-      db.actor:eat(db.actor:object(item_name))
-      if with_news == true then
-         news_manager.send_tip(db.actor, sgm_functions.ReadCaption(item_name), 0, "got_medicine", 2000, nil,
-            "st_item_used")
-      end
-   end
-end
 
 -- 'Автоматическое использование предмета, с выдачей сообщения о причине расходования.
 function automatic_use(item_name, effect_type)
@@ -3375,29 +2555,6 @@ function set_item_activation(val)
 end
 
 ------------------------------------------------------------------------------
---                            Работа с аномалиями                           --
-------------------------------------------------------------------------------
--- 'Выключить аномалию.
-function anomaly_turn_off(a_name)
-   local anomal_zone = db.anomaly_by_name[a_name]
-   if anomal_zone == nil then
-      return
-   end
-   anomal_zone:turn_off()
-end
-
--- 'Включить аномалию.
-function anomaly_turn_on(a_name)
-   local anomal_zone = db.anomaly_by_name[a_name]
-   if anomal_zone == nil then
-      return
-   end
-   if anomal_zone then
-      anomal_zone:turn_on(true)
-   end
-end
-
-------------------------------------------------------------------------------
 --                        Проверка и обработка обьектов                     --
 ------------------------------------------------------------------------------
 -- 'Обьект живой.
@@ -3413,32 +2570,11 @@ function object_exists(obj, is_live)
    return level.present() and obj ~= nil and (is_live == false or ((is_live == nil or is_live == true) and obj:alive() == true))
 end
 
--- 'Обьект находится в online.
-function object_online(victim)
-   if victim ~= nil then
-      local obj = alife():object(victim:id())
-      if obj then
-         if obj.online then
-            return true
-         else
-            return false
-         end
-      end
-   end
-   return false
-end
-
 -- 'SID обьект является врагом для ГГ.
 function sid_thinks_that_actor_is_enemy(npc_sid)
    local soid = get_story_object_id(npc_sid)
    return soid ~= nil and level.object_by_id(soid) ~= nil and
    check_relation_between(level.object_by_id(soid), db.actor) == "enemy"
-end
-
--- 'SID обьект есть, и он уже погиб.
-function sid_is_dead(npc_sid)
-   local soid = get_story_object_id(npc_sid)
-   return soid ~= nil and level.object_by_id(soid) ~= nil and level.object_by_id(soid):alive() == false
 end
 
 -- 'SID обьект есть, и он online.
@@ -3615,13 +2751,6 @@ function present_day()
    end
 end
 
--- 'Старт таймера в игровом времени. Пример:
--- '   if check_game_timer("имя таймера")==nil then
--- '      start_game_timer("имя таймера",1)
--- '   elseif check_game_timer("имя таймера") then
--- '      действие, если таймер истек
--- '      start_game_timer("имя таймера",1) --/Продолжаем таймер.
--- '   end
 function start_game_timer(name, value, format)
    if format == "d" or format == "days" then
       write_mod_param(name, get_general_game_time() + ((60 * 24) * value))
@@ -3654,62 +2783,6 @@ function abort_game_timer(name)
    end
 end
 
--- 'Старт таймера в реальном времени. Пример:
--- '   if check_real_timer("имя таймера")==nil then
--- '      start_real_timer("имя таймера",1)
--- '   elseif check_real_timer("имя таймера") then
--- '      действие, если таймер истек
--- '      start_real_timer("имя таймера",1) --/Продолжаем таймер.
--- '   end
-function start_real_timer(name, value, format)
-   local calculate_value
-   value = value * 1000
-   if format == "d" or format == "days" then
-      calculate_value = time_global() + ((60 * 60 * 24) * value)
-   elseif format == "h" or format == "hours" then
-      calculate_value = time_global() + ((60 * 60) * value)
-   elseif format == "m" or format == "minutes" then
-      calculate_value = time_global() + (value * 60)
-   else
-      calculate_value = math.floor(time_global() + value)
-   end
-   write_mod_param(name, calculate_value)
-end
-
--- 'Проверка таймера в игровом времени.
-function check_real_timer(name, ret_val)
-   if ret_val == true then
-      if read_mod_param(name) ~= nil then
-         local countdown = math.floor((read_mod_param(name) - time_global()) * 0.001)
-         if countdown >= 0 then
-            return countdown
-         else
-            return 0
-         end
-      end
-   end
-   if read_mod_param(name) ~= nil and read_mod_param(name) <= time_global() then
-      return true
-   elseif read_mod_param(name) == nil then
-      return nil
-   end
-   return false
-end
-
--- 'Очистка таймера в игровом времени.
-function abort_real_timer(name)
-   if read_mod_param(name) ~= nil then
-      clear_mod_param(name)
-   end
-end
-
--- 'Старт флагового таймера в реальном времени. Пример:
--- '   if check_flague_timer("название флага таймера")==nil then
--- '      start_flague_timer("название флага таймера",1000)
--- '   elseif check_flague_timer("название флага таймера") then
--- '      действие, если таймер истек
--- '      start_flague_timer("название флага таймера",1000) --/Продолжаем таймер.
--- '   end
 -- 'Запуск флагового таймера. В реальном времени.
 function start_flague_timer(flag_name, ms_val)
    sgm_flags[flag_name] = time_global() + ms_val
@@ -3755,52 +2828,10 @@ end
 ------------------------------------------------------------------------------
 --                           Контроль событий                               --
 ------------------------------------------------------------------------------
--- 'Активация потери сознания, из-за недосыпания.
-function activate_approach_sleep()
-   sgm_flags.bool_approach_sleep = true
-end
-
---= Активны ли в данный момент: =--
--- 'Затмение
-function check_is_black_day()
-   return has_alife_info("blackday_is_active")
-end
-
--- 'Выброс
-function check_is_surge_day()
-   return has_alife_info("vibros_is_active")
-end
 
 -- 'Лимит сна
 function check_is_dream_limited()
    return read_mod_param("dream_limited") ~= nil and read_mod_param("dream_limited") ~= "none"
-end
-
--- 'Принудительное засыпание
-function check_is_approach_sleep()
-   return sgm_flags.bool_approach_sleep
-end
-
--- 'Аура бездействия ГГ
-function check_is_aura_inactivity()
-   return sgm_flags.bool_aura_inactivity_inc
-end
-
--- 'Чит режимы
-function check_is_cheats_mode()
-   return has_alife_info("opt_activate_immortal") or has_alife_info("opt_activate_power") or
-   has_alife_info("opt_activate_bleeding") or has_alife_info("opt_activate_repair") or
-   has_alife_info("opt_activate_ammo")
-end
-
--- 'Воспроизведение в МП-3 плеере
-function check_is_mp3_playing()
-   return ui_mod_elements.mp3_obj ~= nil and ui_mod_elements.mp3_obj:playing()
-end
-
--- 'Вербовка мутанта
-function check_is_capture_meal()
-   return has_alife_info("capture_meal_active")
 end
 
 -- 'Проверка на разрешение затмений.
@@ -3838,11 +2869,6 @@ function blackday_activate()
       write_mod_param("blackday_stage", "step_end")
       start_game_timer("blackday_main_timer", 0)
    end
-end
-
--- 'Активация спауна артефактов без затмения.
-function blackday_birth_activate()
-   sgm_blackday.get_black_day():blackday_birth()
 end
 
 ------------------------------------------------------------------------------
@@ -3925,22 +2951,10 @@ function get_flag_value(param)
    return sgm_flags[param]
 end
 
--- 'Установка значения флага.
-function set_flag_value(param, value)
-   sgm_flags[param] = value
-end
-
 -- 'Исправление значения флага.
 function change_flag_value(param, value)
    if sgm_flags[param] ~= value then
       sgm_flags[param] = value
-   end
-end
-
--- 'Исправление значения табличного флага.
-function change_tbl_flag_value(param1, param2, value)
-   if sgm_flags[param1][param2] ~= value then
-      sgm_flags[param1][param2] = value
    end
 end
 
@@ -4215,81 +3229,8 @@ function give_secret(count)
 end
 
 ------------------------------------------------------------------------------
---                       Работа с уровнем торговли                          --
-------------------------------------------------------------------------------
--- 'Проверка уровня торговли.
-function get_trader_stage()
-   if read_mod_param("trader_supplies_stage") == nil then return 0 end
-   return read_mod_param("trader_supplies_stage")
-end
-
--- 'Установка уровня торговли.
-function set_trader_stage(stage)
-   write_mod_param("trader_supplies_stage", stage)
-end
-
--- 'Повышение уровня торговли.
-function inc_trader_stage(val)
-   local p_value = 1
-   if val ~= nil then p_value = val end
-   write_mod_param("trader_supplies_stage", read_mod_param("trader_supplies_stage") + p_value)
-end
-
--- 'Снижение уровня торговли.
-function dec_trader_stage(val)
-   local p_value = 1
-   if val ~= nil then p_value = val end
-   write_mod_param("trader_supplies_stage", read_mod_param("trader_supplies_stage") - p_value)
-end
-
-------------------------------------------------------------------------------
 --                         Функции параметров ГГ                            --
 ------------------------------------------------------------------------------
--- 'Проверка параметров жизнедеятельности ГГ.
-function get_actor_state(type, with_mul)
-   local multiplier
-   if with_mul == true then
-      multiplier = 100
-   else
-      multiplier = 1
-   end
-   if type == "health" or type == "h" then
-      return db.actor.health * multiplier
-   elseif type == "psy_health" or type == "ph" then
-      return db.actor.psy_health * multiplier
-   elseif type == "power" or type == "p" then
-      return db.actor.power * multiplier
-   elseif type == "bleeding" or type == "b" then
-      return db.actor.bleeding * multiplier
-   elseif type == "toxicity" or type == "t" then
-      return read_mod_param("actor_toxicity") * multiplier
-   elseif type == "toxicity_percent" or type == "t_p" then
-      local result = 0
-      if read_mod_param("actor_toxicity") * 100 < 0 then
-         result = 100 - ((read_mod_param("actor_toxicity") - (read_mod_param("actor_toxicity") * 2)) * 100)
-      else
-         result = 100 + (read_mod_param("actor_toxicity") * 100)
-      end
-      return result * 0.5
-   end
-   return db.actor.health * multiplier
-end
-
--- 'Восстановление параметров жизнедеятельности ГГ.
-function restore_actor_state(type)
-   if type == "health" or type == "h" then
-      db.actor.health = 1.0
-   elseif type == "psy_health" or type == "ph" then
-      db.actor.psy_health = 1.0
-   elseif type == "power" or type == "p" then
-      db.actor.power = 1.0
-   elseif type == "bleeding" or type == "b" then
-      db.actor.bleeding = 0.0
-   elseif type == "toxicity" or type == "t" then
-      write_mod_param("actor_toxicity", -1.0)
-   end
-end
-
 -- 'Замена внешнего вида ГГ, его визуала.
 function replace_actor_visual(if_v, then_v, v_find, v_invert)
    if v_invert == nil or v_invert == false then
@@ -4337,16 +3278,6 @@ function get_web_money()
    return read_mod_param("actor_web_money")
 end
 
--- 'Заставить ГГ спрятать оружие.
-function actor_forced_hide_weapon()
-   bind_stalker.hide_weapon("forced_hide")
-end
-
--- 'Заставить ГГ вернуть оружие.
-function actor_forced_restore_weapon()
-   bind_stalker.restore_weapon("forced_hide")
-end
-
 -- 'Закрыть инвентарь/КПК.
 function game_hide_menu(type)
    if type == 1 then
@@ -4362,21 +3293,6 @@ end
 ------------------------------------------------------------------------------
 --                      Работа с нанесением урона                           --
 ------------------------------------------------------------------------------
--- 'Проверка названия кости отвечающей за голову. Только для мутантов.
-function get_monster_head_bone_name(section_name)
-   if section_name then
-      if find_in_string(section_name, "burer") then
-         return "head"
-      elseif find_in_string(section_name, "gigant") or find_in_string(section_name, "giant") then
-         return "head"
-      elseif find_in_string(section_name, "chimera") then
-         return "head_boss"
-      else
-         return "bip01_head"
-      end
-   end
-   return "bip01_head"
-end
 
 -- 'Нанесение повреждений обьекту.
 function set_hit_damage_to(victim, h_type, h_power, h_impulse, is_actor_hit)
@@ -4667,15 +3583,7 @@ end
 ------------------------------------------------------------------------------
 --                          Работа со сквадами                              --
 ------------------------------------------------------------------------------
--- 'Присутствует ли ограничитель респауна для определенной локации.
-function level_has_respawn_limiter(is_level)
-   local config_section = "limiter_" .. is_level
-   local ini = ini_file("misc\\config_squads.ltx")
-   if ini:section_exist(config_section) then
-      return true
-   end
-   return false
-end
+
 
 -- 'Проверка возможности спауна сквада.
 function squad_outside_of_limiter(squad_name, squad_level)
@@ -4725,49 +3633,13 @@ function squad_outside_of_limiter(squad_name, squad_level)
    return get_result
 end
 
--- 'Респаун отрядов войны группировок.
-function check_and_respawn_community_war()
-   local par_war = {}
-   local target_section = "community_war_" .. level.name()
-   local ini = ini_file("misc\\config_squads.ltx")
-   if ini:section_exist(target_section) then
-      local items_count = ini:line_count(target_section)
-      local item_section = ""
-      for i = 0, items_count - 1 do
-         result, item_section, str = ini:r_line(target_section, i, "", "")
-         if item_section ~= "cond" then
-            par_war[item_section] = str
-         end
-      end
-      for k, v in pairs(par_war) do
-         if k ~= nil then
-            local r_cond = sgm_functions.check_section_condlist(ini, target_section, "cond", "true")
-            local r_param = sgm_functions.check_section_stick(nil, v)
-            local r_max_count = to_number(r_param[1])
-            local r_home_smart = to_string(r_param[2])
-            if r_cond == "true" and exists(r_max_count) then
-               if read_mod_param(k .. "_count", true) then
-                  local currert_count = tonumber(read_mod_param(k .. "_count", true))
-                  local max_count = tonumber(r_max_count)
-                  if currert_count < max_count then
-                     create_force(k, r_home_smart)
-                     inc_mod_param(k .. "_count")
-                  end
-               end
-            end
-         end
-      end
-      par_war = {}
-   end
-end
-
 ------------------------------------------------------------------------------
 --          Система сохранения глобальных переменных в файл                 --
 ------------------------------------------------------------------------------
 -- 'Проверка на валидность уникального серийного номера игры.
 function check_game_unique_id(value)
    local result = true
-   local file = io.open("gamedata//configs//mod_parameters//save_data//save_data.sgm", "r")
+   local file = io.open(get_mod_save_data_path("save_data"), "r")
    for line in file:lines() do
       if find_in_string(tostring(line), "|" .. value .. "|0|") then
          result = false
@@ -4804,9 +3676,6 @@ end
 -- 'Перезапись базы переменных с исключением выбранного сохранения.
 function get_mod_save_data_path(filename)
    return getFS():update_path("$app_data_root$", "sgm_data//" .. filename .. ".sgm")
-end
-function get_mod_log_path()
-   return getFS():update_path("$logs$", "")
 end
 function data_param_delete_game(save_n)
    local p_list = {}
@@ -4858,23 +3727,6 @@ function data_param_read_section_1(ini_name, sect, str)
    return result
 end
 
-function data_param_read_section_2(ini_name, str)
-   local result = nil
-   local file = io.open(get_mod_save_data_path(ini_name), "r")
-   for line in file:lines() do
-      if find_out_string(tostring(line), "save_data") or find_out_string(tostring(line), "save_utils") then
-         if find_in_string(tostring(line), str .. "=") then
-            local r_d = sgm_functions.check_section_stick(nil, read_string_removal_r(line, "="))
-            if exists(r_d) then
-               result = r_d
-            end
-         end
-      end
-   end
-   file:close()
-   return result
-end
-
 -- 'Проверка быстрого сохранения.
 function data_param_save_write()
    if sgm_flags.string_savegame_type == "default" then
@@ -4903,32 +3755,6 @@ function data_param_exist()
       end
    end
    return founded
-end
-
--- 'Проверка по номеру игры на повторяемость сохранения.
-function data_param_save_is_repeated(f_save)
-   local founded_a = false
-   local founded_b = false
-   for k, v in pairs(sgm_flags.table_mod_data_all) do
-      if k ~= nil and sgm_flags.table_mod_data_all[k] ~= nil then
-         for s, m in pairs(sgm_flags.table_mod_data_all[k]) do
-            for a, b in pairs(sgm_flags.table_mod_data_all[k][s]) do
-               for c, d in pairs(sgm_flags.table_mod_data_all[k][s][a]) do
-                  if get_mod_params_savegame() then
-                     if tostring(k) == tostring(f_save) then
-                        if tostring(s) == tostring(get_game_unique_id()) then
-                           founded_a = true
-                        elseif tostring(s) ~= tostring(get_game_unique_id()) then
-                           founded_b = true
-                        end
-                     end
-                  end
-               end
-            end
-         end
-      end
-   end
-   return founded_a and founded_b
 end
 
 -- 'Переброска текущих глобальных переменных в общий список.
@@ -5215,7 +4041,19 @@ end
 -- 'Обновление данных Sigerous Top.
 function sigerous_top_update()
    local filename = "gamedata/textures/ui/ui_pda_menu_anims_16.dds"
-   file_remove(filename)
+   local function sigerous_top_split_minutes(r_time)
+      local s_h = r_time / 60
+      local s_m = r_time - (math.floor(s_h) * 60)
+      if math.floor(s_h) < 10 and math.floor(s_m) < 10 then
+         return "0" .. math.floor(s_h) .. ":0" .. math.floor(s_m)
+      elseif math.floor(s_h) < 10 and math.floor(s_m) >= 10 then
+         return "0" .. math.floor(s_h) .. ":" .. math.floor(s_m)
+      elseif math.floor(s_m) < 10 then
+         return math.floor(s_h) .. ":0" .. math.floor(s_m)
+      end
+      return math.floor(s_h) .. ":" .. math.floor(s_m)
+   end
+   os.remove(filename)
    file_write_param(filename, nil, "[global]")
    file_write_param(filename, "username", sgm_functions.read_variable("sigerous_top_name"))
    file_write_param(filename, "location", sgm_functions.read_variable("sigerous_top_location"))
@@ -5234,19 +4072,6 @@ function sigerous_top_update()
    local get_play = sigerous_top_split_minutes((get_general_game_time() - sgm_functions.read_variable("start_game_timer")))
    file_write_param(filename, "player_time_in_play", get_play)
    file_write_param(filename, "mod_version", get_mod_version())
-end
-
-function sigerous_top_split_minutes(r_time)
-   local s_h = r_time / 60
-   local s_m = r_time - (math.floor(s_h) * 60)
-   if math.floor(s_h) < 10 and math.floor(s_m) < 10 then
-      return "0" .. math.floor(s_h) .. ":0" .. math.floor(s_m)
-   elseif math.floor(s_h) < 10 and math.floor(s_m) >= 10 then
-      return "0" .. math.floor(s_h) .. ":" .. math.floor(s_m)
-   elseif math.floor(s_m) < 10 then
-      return math.floor(s_h) .. ":0" .. math.floor(s_m)
-   end
-   return math.floor(s_h) .. ":" .. math.floor(s_m)
 end
 
 -- 'Проверка уровня сложности.
@@ -5276,11 +4101,6 @@ function clear_mod_params_for_npc(npc_id)
    end
 end
 
--- 'Убийство сквада.
-function set_squad_killed(squad_name)
-   xr_effects.kill_squad(db.actor, nil, { squad_name })
-end
-
 -- 'Удаление сквада.
 function set_squad_removed(squad_name)
    xr_effects.remove_squad(db.actor, nil, { squad_name })
@@ -5293,17 +4113,6 @@ function get_object_squad_name(object)
       return nil
    end
    return squad.settings_id
-end
-
--- 'Проверка обновления скриптов мода.
-function mod_update()
-   return sgm_flags.bool_mod_update == nil or sgm_flags.bool_mod_update == true
-end
-
--- 'Выброс из игры.
-function mod_abort(fmt, ...)
-   local reason = string.format(fmt, ...)
-   error_log(reason)
 end
 
 -- 'Проверка версии мода.
@@ -5349,16 +4158,6 @@ function check_death_item(item_section)
    end
    return true
 end
-
--- 'Проверка текущей локации.
-function on_level(this_level)
-   local level_name = level.name()
-   if level_name == this_level then
-      return true
-   end
-   return false
-end
-
 -- 'Проверка старых локаций.
 function check_default_location()
    local level_name = level.name()
@@ -5371,11 +4170,6 @@ end
 -- 'Проверка локации, на которой находится game vertex.
 function get_level_by_game_vertex(gv)
    return alife():level_name(game_graph():vertex(gv):level_id())
-end
-
--- 'Проверка количества переменных в pstor.
-function get_pstor_capacity()
-   return get_table_lines(db.storage[db.actor:id()].pstor)
 end
 
 -- 'Уникальный ID текущей игры. Генерируется когда игрок начинает новую игру.

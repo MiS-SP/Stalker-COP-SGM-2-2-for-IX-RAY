@@ -1,5 +1,40 @@
 ---=============================================================================================---
 ---------------------------------------------------------------------------------------------------
+--------------------------------------(Утилиты)----------------------------------------------------
+---------------------------------------------------------------------------------------------------
+---=============================================================================================---
+-- 'Проверка параметров жизнедеятельности ГГ.
+function get_actor_state(type, with_mul)
+   local multiplier
+   if with_mul == true then
+      multiplier = 100
+   else
+      multiplier = 1
+   end
+   if type == "health" or type == "h" then
+      return db.actor.health * multiplier
+   elseif type == "psy_health" or type == "ph" then
+      return db.actor.psy_health * multiplier
+   elseif type == "power" or type == "p" then
+      return db.actor.power * multiplier
+   elseif type == "bleeding" or type == "b" then
+      return db.actor.bleeding * multiplier
+   elseif type == "toxicity" or type == "t" then
+      return read_mod_param("actor_toxicity") * multiplier
+   elseif type == "toxicity_percent" or type == "t_p" then
+      local result = 0
+      if read_mod_param("actor_toxicity") * 100 < 0 then
+         result = 100 - ((read_mod_param("actor_toxicity") - (read_mod_param("actor_toxicity") * 2)) * 100)
+      else
+         result = 100 + (read_mod_param("actor_toxicity") * 100)
+      end
+      return result * 0.5
+   end
+   return db.actor.health * multiplier
+end
+
+---=============================================================================================---
+---------------------------------------------------------------------------------------------------
 --------------------------------------(КПК Дегтярёва)----------------------------------------------
 ---------------------------------------------------------------------------------------------------
 ---=============================================================================================---
@@ -920,7 +955,7 @@ function personal_pda:change_diplomatia_relation(to_community,cost)
    for k,v in pairs(community_table) do
       for i=1,v.prob do
          if has_alife_info("agreement_check_friend") then
-            increase_faction_goodwill(v.section,5000)
+            game_relations.change_factions_community_num(v.section, db.actor:id(), 5000)
             set_faction_to_faction_relation(db.actor:character_community(),v.section,"friend",true)
          elseif has_alife_info("agreement_check_enemy") then
             decrease_faction_goodwill(v.section,5000)

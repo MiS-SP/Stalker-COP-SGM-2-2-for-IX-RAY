@@ -1,5 +1,45 @@
 ---==================================================================================================---
 --------------------------------------------------------------------------------------------------------
+----------------------------------------------(Утилиты)-------------------------------------------------
+--------------------------------------------------------------------------------------------------------
+---==================================================================================================---
+-- 'Респаун отрядов войны группировок.
+function check_and_respawn_community_war()
+   local par_war = {}
+   local target_section = "community_war_" .. level.name()
+   local ini = ini_file("misc\\config_squads.ltx")
+   if ini:section_exist(target_section) then
+      local items_count = ini:line_count(target_section)
+      local item_section = ""
+      for i = 0, items_count - 1 do
+         result, item_section, str = ini:r_line(target_section, i, "", "")
+         if item_section ~= "cond" then
+            par_war[item_section] = str
+         end
+      end
+      for k, v in pairs(par_war) do
+         if k ~= nil then
+            local r_cond = sgm_functions.check_section_condlist(ini, target_section, "cond", "true")
+            local r_param = sgm_functions.check_section_stick(nil, v)
+            local r_max_count = to_number(r_param[1])
+            local r_home_smart = to_string(r_param[2])
+            if r_cond == "true" and exists(r_max_count) then
+               if read_mod_param(k .. "_count", true) then
+                  local currert_count = tonumber(read_mod_param(k .. "_count", true))
+                  local max_count = tonumber(r_max_count)
+                  if currert_count < max_count then
+                     create_force(k, r_home_smart)
+                     inc_mod_param(k .. "_count")
+                  end
+               end
+            end
+         end
+      end
+      par_war = {}
+   end
+end
+---==================================================================================================---
+--------------------------------------------------------------------------------------------------------
 -----------------------------------(Работа с таймерами)-------------------------------------------------
 --------------------------------------------------------------------------------------------------------
 ---==================================================================================================---

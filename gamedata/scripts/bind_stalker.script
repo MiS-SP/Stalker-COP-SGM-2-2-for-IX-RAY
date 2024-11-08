@@ -344,7 +344,7 @@ function actor_binder:update(delta)
 	end
 	pda.fill_sleep_zones()
         --/ SGM in
-        if mod_update() then
+        if sgm_flags.bool_mod_update == nil or sgm_flags.bool_mod_update == true then
            sgm_loader.sigerous_mod_main()
         end
         --/ SGM out
@@ -430,8 +430,9 @@ function actor_binder:load(reader)
         if game_difficulty~=nil and game_difficulty>=0 and game_difficulty<=3 then
 	   get_console():execute("g_game_difficulty "..game_difficulty_by_num[game_difficulty])
         else
-           mod_abort("SGM: cохранение накрылось кармой. Попробуйте загрузится c раннего сохранения.")
-	   get_console():execute("g_game_difficulty "..game_difficulty_by_num[game_difficulty])
+			local reason = string.format("SGM: cохранение накрылось кармой. Попробуйте загрузится c раннего сохранения.")
+			error_log(reason)
+	   		get_console():execute("g_game_difficulty "..game_difficulty_by_num[game_difficulty])
         end
 	local stored_input_time = reader:r_u8()
 	if stored_input_time == true then

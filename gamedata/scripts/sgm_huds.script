@@ -1,3 +1,121 @@
+local pistol_state_bar = nil
+local rifle_state_bar = nil
+local boss_health_bar = nil
+local radiation_bar = nil
+---==================================================================================================---
+--------------------------------------------------------------------------------------------------------
+-------------------------------------------(Утилиты)----------------------------------------------------
+--------------------------------------------------------------------------------------------------------
+---==================================================================================================---
+-- 'Вывод на экран полосы прогресса. Радиоактивное излучение.
+function show_radiation_bar(hud_name, xml_name, xml_sect, show_func)
+   local hud = get_hud()
+   local xml = CScriptXmlInit()
+   if hud:GetCustomStatic(hud_name) == nil then
+      add_hud(hud_name)
+      xml:ParseFile(xml_name)
+      radiation_bar = xml:InitProgressBar(xml_sect, hud:GetCustomStatic(hud_name):wnd())
+      if hud:GetCustomStatic(hud_name) ~= nil then
+         add_hud(hud_name)
+         bar_level = show_func
+         if bar_level ~= nil then
+            radiation_bar:Show(true)
+            radiation_bar:SetProgressPos(bar_level)
+         end
+      end
+   elseif hud:GetCustomStatic(hud_name) ~= nil then
+      xml:ParseFile(xml_name)
+      add_hud(hud_name)
+      bar_level = show_func
+      if bar_level ~= nil then
+         radiation_bar:Show(true)
+         radiation_bar:SetProgressPos(bar_level)
+      end
+   end
+end
+
+-- 'Вывод на экран полосы прогресса. Жизнь босса.
+function show_boss_health_bar(hud_name, xml_name, xml_sect, show_func)
+   local hud = get_hud()
+   local xml = CScriptXmlInit()
+   if hud:GetCustomStatic(hud_name) == nil then
+      add_hud(hud_name)
+      xml:ParseFile(xml_name)
+      boss_health_bar = xml:InitProgressBar(xml_sect, hud:GetCustomStatic(hud_name):wnd())
+      if hud:GetCustomStatic(hud_name) ~= nil then
+         add_hud(hud_name)
+         bar_level = show_func
+         if bar_level ~= nil then
+            boss_health_bar:Show(true)
+            boss_health_bar:SetProgressPos(bar_level)
+         end
+      end
+   elseif hud:GetCustomStatic(hud_name) ~= nil then
+      xml:ParseFile(xml_name)
+      add_hud(hud_name)
+      bar_level = show_func
+      if bar_level ~= nil then
+         boss_health_bar:Show(true)
+         boss_health_bar:SetProgressPos(bar_level)
+      end
+   end
+end
+-- 'Вывод на экран полосы прогресса. Состояние оружия во 2-м слоте.
+function show_rifle_state_bar(hud_name, xml_name, xml_sect, show_func, clear_bool)
+   local hud = get_hud()
+   local xml = CScriptXmlInit()
+   if hud:GetCustomStatic(hud_name) == nil and (clear_bool == nil or clear_bool ~= true) then
+      add_hud(hud_name)
+      xml:ParseFile(xml_name)
+      rifle_state_bar = xml:InitProgressBar(xml_sect, hud:GetCustomStatic(hud_name):wnd())
+      if hud:GetCustomStatic(hud_name) ~= nil then
+         add_hud(hud_name)
+         rifle_level = show_func
+         if rifle_level ~= nil then
+            rifle_state_bar:Show(true)
+            rifle_state_bar:SetProgressPos(show_func)
+         end
+      end
+   elseif hud:GetCustomStatic(hud_name) ~= nil and (clear_bool == nil or clear_bool ~= true) then
+      xml:ParseFile(xml_name)
+      add_hud(hud_name)
+      rifle_level = show_func
+      if rifle_level ~= nil then
+         rifle_state_bar:Show(true)
+         rifle_state_bar:SetProgressPos(show_func)
+      end
+   elseif clear_bool ~= nil and clear_bool == true and rifle_state_bar ~= nil then
+      rifle_state_bar:Show(false)
+   end
+end
+-- 'Вывод на экран полосы прогресса. Состояние оружия во 1-м слоте.
+function show_pistol_state_bar(hud_name, xml_name, xml_sect, show_func, clear_bool)
+   local hud = get_hud()
+   local xml = CScriptXmlInit()
+   if hud:GetCustomStatic(hud_name) == nil and (clear_bool == nil or clear_bool ~= true) then
+      add_hud(hud_name)
+      xml:ParseFile(xml_name)
+      pistol_state_bar = xml:InitProgressBar(xml_sect, hud:GetCustomStatic(hud_name):wnd())
+      if hud:GetCustomStatic(hud_name) ~= nil then
+         add_hud(hud_name)
+         pistol_level = show_func
+         if pistol_level ~= nil then
+            pistol_state_bar:Show(true)
+            pistol_state_bar:SetProgressPos(show_func)
+         end
+      end
+   elseif hud:GetCustomStatic(hud_name) ~= nil and (clear_bool == nil or clear_bool ~= true) then
+      xml:ParseFile(xml_name)
+      add_hud(hud_name)
+      pistol_level = show_func
+      if pistol_level ~= nil then
+         pistol_state_bar:Show(true)
+         pistol_state_bar:SetProgressPos(show_func)
+      end
+   elseif clear_bool ~= nil and clear_bool == true and pistol_state_bar ~= nil then
+      pistol_state_bar:Show(false)
+   end
+end
 ---==================================================================================================---
 --------------------------------------------------------------------------------------------------------
 ---------------------------------------(Загрузчик HUDa)-------------------------------------------------

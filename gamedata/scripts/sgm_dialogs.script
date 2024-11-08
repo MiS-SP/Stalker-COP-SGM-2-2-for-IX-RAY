@@ -3,6 +3,12 @@
 -------------------------------------(Функции для диалогов)---------------------------------------------
 --------------------------------------------------------------------------------------------------------
 ---==================================================================================================---
+-- 'Выдача инфопортации, если таковая отсутствует.
+function recover_info(dont_info)
+   if dont_has_alife_info(dont_info) then
+      give_info(dont_info)
+   end
+end
 function switch_to_trade(actor,npc)
    db.actor:switch_to_trade()
 end
@@ -35,6 +41,22 @@ end
 ------------------------------------------------------------------------------
 --                        Проверочные функции                               --
 ------------------------------------------------------------------------------
+-- 'Проверка на отсутствие любой из нескольких инфопортаций.
+function dont_any_chosen_info(info_list)
+   if find_out_string(info_list, ",") then
+      return dont_has_alife_info(info_list)
+   else
+      local info_result = false
+      local info_table = utils.parse_spawns(info_list)
+      local info_count = get_table_names(info_table)
+      for k, v in pairs(info_table) do
+         if dont_has_alife_info(v.section) then
+            info_result = true
+         end
+      end
+      return info_result
+   end
+end
 function mod_dialog_precond(first_speaker,second_speaker,dn)
    return not is_wounded(first_speaker,second_speaker)
 end

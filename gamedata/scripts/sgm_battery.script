@@ -1,3 +1,35 @@
+local battery_power_bar = nil
+---==================================================================================================---
+--------------------------------------------------------------------------------------------------------
+------------------------------------------(Утилиты)-----------------------------------------------------
+--------------------------------------------------------------------------------------------------------
+---==================================================================================================---
+-- 'Вывод на экран полосы прогресса. Вербовка монстров.
+function show_battery_power_bar(hud_name, xml_name, xml_sect, show_func, show_text)
+   local hud = get_hud()
+   local xml = CScriptXmlInit()
+   if hud:GetCustomStatic(hud_name) == nil then
+      add_hud(hud_name, show_text)
+      xml:ParseFile(xml_name)
+      battery_power_bar = xml:InitProgressBar(xml_sect, hud:GetCustomStatic(hud_name):wnd())
+      if hud:GetCustomStatic(hud_name) ~= nil then
+         add_hud(hud_name, show_text)
+         bar_level = show_func
+         if bar_level ~= nil then
+            battery_power_bar:Show(true)
+            battery_power_bar:SetProgressPos(bar_level)
+         end
+      end
+   elseif hud:GetCustomStatic(hud_name) ~= nil then
+      xml:ParseFile(xml_name)
+      add_hud(hud_name, show_text)
+      bar_level = show_func
+      if bar_level ~= nil then
+         battery_power_bar:Show(true)
+         battery_power_bar:SetProgressPos(bar_level)
+      end
+   end
+end
 ---==================================================================================================---
 --------------------------------------------------------------------------------------------------------
 -----------------------------(Аккумулятор для детектора)------------------------------------------------
