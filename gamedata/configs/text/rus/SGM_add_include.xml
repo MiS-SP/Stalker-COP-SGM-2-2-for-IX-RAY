@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="windows-1251" standalone="yes" ?>
 <string_table>
-<!-- Р—Р°РіСЂСѓР·РєР° "SGM" С‚РµРєСЃС‚РѕРІ  -->
+<!-- Загрузка "SGM" текстов  -->
 #include "text\rus\SGM_autosave_titles.xml"
 #include "text\rus\SGM_character_names.xml"
 #include "text\rus\SGM_descr_activators.xml"
@@ -17,6 +17,7 @@
 #include "text\rus\SGM_descr_medals.xml"
 #include "text\rus\SGM_descr_medics.xml"
 #include "text\rus\SGM_descr_outfit.xml"
+#include "text\rus\SGM_descr_weapons.xml"
 #include "text\rus\SGM_descr_physic.xml"
 #include "text\rus\SGM_descr_quest_items.xml"
 #include "text\rus\SGM_descr_use_items.xml"
@@ -33,7 +34,7 @@
 #include "text\rus\SGM_spots.xml"
 #include "text\rus\SGM_stories.xml"
 #include "text\rus\SGM_tasks.xml"
-#include "text\rus\SGM_tutorials.xml"<!-- СЂСѓРіР°РµС‚СЃСЏ! -->
+#include "text\rus\SGM_tutorials.xml"<!-- ругается! -->
 #include "text\rus\SGM_xml_dialogs.xml"
 #include "text\rus\st_dialogs_darkvalley.xml"
 </string_table>
