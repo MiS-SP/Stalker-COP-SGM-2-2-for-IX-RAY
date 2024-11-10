@@ -11,6 +11,11 @@ isLfs = lfs ~= nil
 --// Some X-Ray block
 DebugLog = false
 
+bit_and = bit.band
+bit_or = bit.bor
+bit_xor = bit.bxor
+bit_not = bit.bnot
+
 function empty(container)
    if (type(container) == "function") then
       for i in container do
