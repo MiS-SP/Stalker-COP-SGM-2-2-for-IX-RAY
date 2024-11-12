@@ -345,7 +345,7 @@ function actor_binder:update(delta)
 	pda.fill_sleep_zones()
         --/ SGM in
         if sgm_flags.bool_mod_update == nil or sgm_flags.bool_mod_update == true then
-           sgm_loader.sigerous_mod_main()
+           sgm_loader.init()
         end
         --/ SGM out
 end
