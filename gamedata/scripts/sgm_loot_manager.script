@@ -1,0 +1,234 @@
+---==================================================================================================---
+--------------------------------------------------------------------------------------------------------
+--------------------------------(Спаун брони и артефактов в трупы)--------------------------------------
+--------------------------------------------------------------------------------------------------------
+---==================================================================================================---
+
+getter = {}
+class "SGMLootManager"
+function SGMLootManager:__init()
+   self.randomizer = {
+      tier = {
+         easy = {
+            af = { "af_medusa", "af_cristall_flower", "af_cristall", "af_blood", "af_mincer_meat",
+               "af_electra_sparkler" }
+         },
+         medium = {
+            af = {
+               "af_night_star", "af_vyvert", "af_gravi", "af_fireball", "af_dummy_glassbeads", "af_soul",
+               "af_electra_flash", "af_dummy_battery"
+            }
+         },
+         hard = {
+            af = {
+               "af_gold_fish", "af_eye", "af_fire", "af_soul", "af_fuzz_kolobok", "af_baloon", "af_glass",
+               "af_electra_moonlight", "af_dummy_dummy", "af_ice"
+            }
+         }
+      }
+   }
+   self.lists = {
+      af = {
+         { "stalker_neutral_1",          self.randomizer.tier.easy.af,   0.04 },
+         { "stalker_neutral_2",          self.randomizer.tier.easy.af,   0.05 },
+         { "stalker_neutral_3",          self.randomizer.tier.medium.af, 0.03 },
+         { "stalker_neutral_4",          self.randomizer.tier.hard.af,   0.01 },
+         { "stalker_neutral_5",          self.randomizer.tier.easy.af,   0.04 },
+         { "stalker_neutral_6",          self.randomizer.tier.easy.af,   0.05 },
+         { "stalker_neutral_7",          self.randomizer.tier.easy.af,   0.05 },
+         { "stalker_neutral_8",          self.randomizer.tier.easy.af,   0.05 },
+         { "stalker_neutral_9",          self.randomizer.tier.easy.af,   0.05 },
+         { "stalker_neutral_10",         self.randomizer.tier.easy.af,   0.04 },
+         { "stalker_neutral_11",         self.randomizer.tier.easy.af,   0.04 },
+         { "stalker_neutral_nauchniy",   self.randomizer.tier.medium.af, 0.03 },
+         { "stalker_neutral_reinforced", self.randomizer.tier.hard.af,   0.04 },
+         { "stalker_bandit_1",           self.randomizer.tier.easy.af,   0.05 },
+         { "stalker_bandit_2",           self.randomizer.tier.easy.af,   0.05 },
+         { "stalker_bandit_3",           self.randomizer.tier.medium.af, 0.03 },
+         { "stalker_bandit_4",           self.randomizer.tier.medium.af, 0.03 },
+         { "stalker_bandit_5",           self.randomizer.tier.easy.af,   0.05 },
+         { "stalker_bandit_6",           self.randomizer.tier.easy.af,   0.05 },
+         { "stalker_bandit_7",           self.randomizer.tier.easy.af,   0.05 },
+         { "stalker_bandit_8",           self.randomizer.tier.easy.af,   0.05 },
+         { "stalker_bandit_9",           self.randomizer.tier.easy.af,   0.05 },
+         { "stalker_bandit_exo",         self.randomizer.tier.hard.af,   0.02 },
+         { "stalker_soldier_1",          self.randomizer.tier.easy.af,   0.05 },
+         { "stalker_soldier_2",          self.randomizer.tier.easy.af,   0.04 },
+         { "stalker_soldier_3",          self.randomizer.tier.medium.af, 0.03 },
+         { "stalker_soldier_4",          self.randomizer.tier.hard.af,   0.01 },
+         { "stalker_soldier_5",          self.randomizer.tier.hard.af,   0.05 },
+         { "stalker_dolg_1",             self.randomizer.tier.medium.af, 0.04 },
+         { "stalker_dolg_2",             self.randomizer.tier.easy.af,   0.07 },
+         { "stalker_dolg_3",             self.randomizer.tier.medium.af, 0.06 },
+         { "stalker_dolg_4",             self.randomizer.tier.hard.af,   0.01 },
+         { "stalker_freedom_1",          self.randomizer.tier.easy.af,   0.07 },
+         { "stalker_freedom_2",          self.randomizer.tier.medium.af, 0.03 },
+         { "stalker_freedom_3",          self.randomizer.tier.medium.af, 0.02 },
+         { "stalker_freedom_4",          self.randomizer.tier.hard.af,   0.01 },
+         { "stalker_monolith_1",         self.randomizer.tier.medium.af, 0.03 },
+         { "stalker_monolith_2",         self.randomizer.tier.easy.af,   0.06 },
+         { "stalker_monolith_3",         self.randomizer.tier.hard.af,   0.01 },
+         { "stalker_monolith_4",         self.randomizer.tier.hard.af,   0.01 },
+         { "stalker_kiborg",             self.randomizer.tier.hard.af,   0.08 },
+         { "stalker_merc_1",             self.randomizer.tier.easy.af,   0.06 },
+         { "stalker_merc_2",             self.randomizer.tier.easy.af,   0.06 },
+         { "stalker_merc_3",             self.randomizer.tier.easy.af,   0.06 },
+         { "stalker_merc_4",             self.randomizer.tier.medium.af, 0.03 },
+         { "stalker_merc_5",             self.randomizer.tier.easy.af,   0.06 },
+         { "stalker_merc_6",             self.randomizer.tier.easy.af,   0.06 },
+         { "stalker_merc_7",             self.randomizer.tier.medium.af, 0.04 },
+         { "stalker_merc_8",             self.randomizer.tier.easy.af,   0.06 },
+         { "stalker_merc_9",             self.randomizer.tier.medium.af, 0.03 },
+         { "stalker_ecolog",             self.randomizer.tier.medium.af, 0.07 },
+         { "stalker_renegade_1",         self.randomizer.tier.medium.af, 0.04 },
+         { "stalker_renegade_2",         self.randomizer.tier.medium.af, 0.06 },
+         { "stalker_renegade_3",         self.randomizer.tier.medium.af, 0.08 },
+         { "stalker_renegade_4",         self.randomizer.tier.medium.af, 0.15 },
+         { "stalker_rasvet_1",           self.randomizer.tier.medium.af, 0.06 },
+         { "stalker_rasvet_2",           self.randomizer.tier.medium.af, 0.06 },
+         { "stalker_rasvet_3",           self.randomizer.tier.hard.af,   0.06 },
+         { "stalker_rasvet_4",           self.randomizer.tier.medium.af, 0.06 },
+         { "stalker_rasvet_exo",         self.randomizer.tier.hard.af,   0.08 },
+         { "stalker_night_1",            self.randomizer.tier.easy.af,   0.05 },
+         { "stalker_night_2",            self.randomizer.tier.medium.af, 0.05 },
+         { "stalker_night_3",            self.randomizer.tier.hard.af,   0.05 },
+         { "stalker_mercenary_1",        self.randomizer.tier.easy.af,   0.06 },
+         { "stalker_shakal",             self.randomizer.tier.medium.af, 0.06 },
+         { "stalker_molfar",             self.randomizer.tier.hard.af,   0.10 },
+         { "stalker_elbrus",             self.randomizer.tier.easy.af,   0.09 },
+         { "stalker_akulov",             self.randomizer.tier.hard.af,   0.08 },
+      },
+      outfit = {
+         { "stalker_zombied_1",          "reduce_novice_stalker_outfit", 0.20 },
+         { "stalker_zombied_2",          "reduce_stalker_outfit",        0.13 },
+         { "stalker_zombied_3",          "reduce_specops_outfit",        0.10 },
+         { "stalker_zombied_4",          "reduce_exo_outfit",            0.01 },
+         { "stalker_neutral_1",          "reduce_novice_stalker_outfit", 0.20 },
+         { "stalker_neutral_2",          "reduce_stalker_outfit",        0.15 },
+         { "stalker_neutral_3",          "reduce_scientific_outfit",     0.12 },
+         { "stalker_neutral_4",          "reduce_exo_outfit",            0.01 },
+         { "stalker_neutral_5",          "reduce_novice_stalker_outfit", 0.20 },
+         { "stalker_neutral_6",          "reduce_stalker_outfit",        0.15 },
+         { "stalker_neutral_7",          "reduce_stalker_outfit",        0.15 },
+         { "stalker_neutral_8",          "reduce_stalker_outfit",        0.15 },
+         { "stalker_neutral_9",          "reduce_stalker_outfit",        0.15 },
+         { "stalker_neutral_10",         "reduce_novice_stalker_outfit", 0.20 },
+         { "stalker_neutral_11",         "reduce_novice_stalker_outfit", 0.20 },
+         { "stalker_neutral_nauchniy",   "reduce_scientific_outfit",     0.14 },
+         { "stalker_neutral_reinforced", "reduce_exo_outfit",            0.02 },
+         { "stalker_bandit_1",           "reduce_novice_bandit_outfit",  0.27 },
+         { "stalker_bandit_2",           "reduce_bandit_raid_outfit",    0.25 },
+         { "stalker_bandit_3",           "reduce_novice_outfit",         0.19 },
+         { "stalker_bandit_4",           "reduce_novice_outfit",         0.19 },
+         { "stalker_bandit_5",           "reduce_novice_bandit_outfit",  0.27 },
+         { "stalker_bandit_6",           "reduce_novice_bandit_outfit",  0.27 },
+         { "stalker_bandit_7",           "reduce_bandit_raid_outfit",    0.25 },
+         { "stalker_bandit_8",           "reduce_bandit_raid_outfit",    0.25 },
+         { "stalker_bandit_9",           "reduce_bandit_raid_outfit",    0.28 },
+         { "stalker_bandit_exo",         "reduce_bandit_exo_outfit",     0.01 },
+         { "stalker_soldier_1",          "reduce_specops_outfit",        0.15 },
+         { "stalker_soldier_2",          "reduce_specops_outfit",        0.16 },
+         { "stalker_soldier_3",          "reduce_military_outfit",       0.14 },
+         { "stalker_soldier_4",          "reduce_military_outfit",       0.13 },
+         { "stalker_soldier_5",          "reduce_military_outfit",       0.16 },
+         { "stalker_army_exo",           "reduce_army_exo_outfit",       0.01 },
+         { "stalker_dolg_1",             "reduce_scientific_outfit",     0.21 },
+         { "stalker_dolg_2",             "reduce_dolg_outfit",           0.25 },
+         { "stalker_dolg_3",             "reduce_dolg_heavy_outfit",     0.12 },
+         { "stalker_dolg_4",             "reduce_dolg_exo_outfit",       0.01 },
+         { "stalker_freedom_1",          "reduce_svoboda_light_outfit",  0.32 },
+         { "stalker_freedom_2",          "reduce_svoboda_heavy_outfit",  0.25 },
+         { "stalker_freedom_3",          "reduce_svoboda_heavy_outfit",  0.17 },
+         { "stalker_freedom_4",          "reduce_freedom_exo_outfit",    0.01 },
+         { "stalker_monolith_1",         "reduce_scientific_outfit",     0.11 },
+         { "stalker_monolith_2",         "reduce_scientific_outfit",     0.10 },
+         { "stalker_monolith_3",         "reduce_monolit_exo_outfit",    0.01 },
+         { "stalker_monolith_4",         "reduce_monolit_exo_outfit",    0.01 },
+         { "stalker_rasvet_1",           "reduce_cs_heavy_outfit",       0.31 },
+         { "stalker_rasvet_2",           "reduce_cs_heavy_outfit",       0.32 },
+         { "stalker_rasvet_3",           "reduce_cs_specnaz_outfit",     0.65 },
+         { "stalker_rasvet_4",           "reduce_cs_heavy_outfit",       0.32 },
+         { "stalker_rasvet_exo",         "reduce_csky_exo_outfit",       0.10 },
+         { "stalker_merc_1",             "reduce_killer_outfit",         0.17 },
+         { "stalker_merc_2",             "reduce_killer_outfit",         0.17 },
+         { "stalker_merc_3",             "reduce_killer_outfit",         0.17 },
+         { "stalker_merc_4",             "reduce_killer_exo_outfit",     0.01 },
+         { "stalker_merc_5",             "reduce_killer_outfit",         0.17 },
+         { "stalker_merc_6",             "reduce_killer_outfit",         0.17 },
+         { "stalker_merc_7",             "reduce_killer_outfit",         0.19 },
+         { "stalker_merc_8",             "reduce_killer_outfit",         0.17 },
+         { "stalker_merc_9",             "reduce_killer_exo_outfit",     0.01 },
+         { "stalker_mercenary_1",        "reduce_killer_outfit",         0.20 },
+         { "stalker_ecolog",             "reduce_ecolog_regular_outfit", 0.33 },
+         { "stalker_elbrus",             "reduce_stalker_outfit",        0.20 },
+         { "stalker_akulov",             "reduce_exo_outfit",            0.06 },
+         { "stalker_kiborg",             "reduce_monolit_exo_outfit",    0.05 },
+         { "stalker_molfar",             "reduce_killer_exo_outfit",     0.04 },
+      },
+      monster = {
+         { "boar",          "mutant_boar_booty",      r_booty_params("number", "boar_prob", 0.16) },
+         { "bloodsucker",   "mutant_krovosos_booty",  r_booty_params("number", "bloodsucker_prob", 0.25) },
+         { "dog",           "mutant_dog_booty",       r_booty_params("number", "dog_prob", 0.15) },
+         { "pseudodog",     "mutant_psevdodog_booty", r_booty_params("number", "pseudodog_prob", 0.20) },
+         { "flesh",         "mutant_flesh_booty",     r_booty_params("number", "flesh_prob", 0.20) },
+         { "chimera",       "mutant_chimera_booty",   r_booty_params("number", "chimera_prob", 0.45) },
+         { "pseudo_gigant", "mutant_giant_booty",     r_booty_params("number", "pseudo_gigant_prob", 0.58) },
+         { "burer",         "mutant_burer_booty",     r_booty_params("number", "burer_prob", 0.45) },
+         { "controller",    "mutant_controler_booty", r_booty_params("number", "controller_prob", 0.50) },
+         { "snork",         "mutant_snork_booty",     r_booty_params("number", "snork_prob", 0.20) },
+      }
+   }
+   getter = self
+end
+
+function SGMLootManager:container_monster_death(victim)
+   local monster_community = sgm_functions.ReadCommunity(victim:section())
+   local monster_pos = victim:position()
+   local monster_id = victim:id()
+   for k, v in pairs(self.lists.monster) do
+      if monster_community ~= nil and monster_community == v[1] and math.random(100) <= v[3] * 100 then
+         if sgm_flags.value_capture_meal_monster_id ~= monster_id then
+            create(v[2], monster_pos.x + 0.1, monster_pos.y, monster_pos.z - 0.1, victim:level_vertex_id(),
+               victim:game_vertex_id())
+         end
+      end
+   end
+end
+
+function SGMLootManager:container_stalker_death(victim)
+   local victim_visual = victim:get_visual_name()
+   local victim_exceptions = find_out_string(sgm_functions.ReadCommunity(victim:section()), "bodyguard")
+   if victim_exceptions then
+      if has_alife_info("opt_marauder_container") then
+         for k, v in pairs(self.lists.outfit) do
+            if find_in_string(victim_visual, v[1]) and math.random(100) <= v[3] * 100 then
+               local sobj = alife():create(v[2], vector(), 0, 0, victim:id())
+               sgm_flags.value_marauder_outfit_id = sobj.id
+            end
+         end
+      end
+      for a, m in pairs(self.lists.af) do
+         if find_in_string(victim_visual, m[1]) and math.random(100) <= m[3] * 100 then
+            local rnd_af = m[2][math.random(#m[2])]
+            alife():create((rnd_af), vector(), 0, 0, victim:id())
+         end
+      end
+   end
+end
+
+function SGMLootManager:spawn_marauder_outfit()
+   if sgm_flags.value_marauder_outfit_id ~= 0 and level.object_by_id(sgm_flags.value_marauder_outfit_id) ~= nil then
+      local rnd_cond = math.random(r_mod_params("number", "marauder_outfit_cond_from", 15),
+         r_mod_params("number", "marauder_outfit_cond_before", 60)) / 100
+      level.object_by_id(sgm_flags.value_marauder_outfit_id):set_condition(rnd_cond)
+      sgm_flags.value_marauder_outfit_id = 0
+   end
+end
+
+function SGMLootManager:update() end
+
+function init()
+   SGMLootManager()
+end
+
+-------------------------------------//Copyright GeJorge//-------------------------------------------------

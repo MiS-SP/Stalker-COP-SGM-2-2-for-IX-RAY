@@ -3,13 +3,14 @@
 --------------------------------(Загрузчик файлов Sigerous MOD)-----------------------------------------
 --------------------------------------------------------------------------------------------------------
 ---==================================================================================================---
-local save_manager=sgm_save.get_save_manager()
-local hud_manager=sgm_huds.get_hud_manager()
-local battery_manager=sgm_battery.get_battery_manager()
-local blackday_manager=sgm_blackday.get_black_day()
+local save_manager = sgm_save.get_save_manager()
+local hud_manager = sgm_huds.get_hud_manager()
+local battery_manager = sgm_battery.get_battery_manager()
+local blackday_manager = sgm_blackday.get_black_day()
 function sigerous_mod_main()
    sigerous_mod_loader()
 end
+
 function sigerous_mod_loader()
    save_manager:update()
    battery_manager:update()
@@ -17,7 +18,7 @@ function sigerous_mod_loader()
       blackday_manager:initialize()
       blackday_manager:update()
    end
-   sgm_container.container_main()
+   sgm_loot_manager.init()
    if check_seconds(3) then
       sgm_cleaners.cleaners_main()
    end
@@ -64,16 +65,15 @@ function sigerous_mod_loader()
    sgm_update.update_main()
    sgm_timers.timers_main()
 end
+
 function save(packet)
    save_manager:save(packet)
    battery_manager:save(packet)
 end
+
 function load(reader)
    save_manager:load(reader)
    battery_manager:load(reader)
 end
 
-
-
-
-----------------------                                                                                     
+----------------------
