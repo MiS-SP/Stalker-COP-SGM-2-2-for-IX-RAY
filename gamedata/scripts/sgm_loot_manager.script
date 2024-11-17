@@ -3,10 +3,11 @@
 --------------------------------(Спаун брони и артефактов в трупы)--------------------------------------
 --------------------------------------------------------------------------------------------------------
 ---==================================================================================================---
+dofile("gamedata/scripts/lib/class.lua")
+local SGMLootManager = Class()
+local instance = nil
 
-getter = {}
-class "SGMLootManager"
-function SGMLootManager:__init()
+function SGMLootManager:init()
    self.randomizer = {
       tier = {
          easy = {
@@ -178,7 +179,6 @@ function SGMLootManager:__init()
          { "snork",         "mutant_snork_booty",     r_booty_params("number", "snork_prob", 0.20) },
       }
    }
-   getter = self
 end
 
 function SGMLootManager:container_monster_death(victim)
@@ -227,8 +227,11 @@ end
 
 function SGMLootManager:update() end
 
-function init()
-   SGMLootManager()
+function get_instance()
+   if instance == nil then
+      instance = SGMLootManager()
+   end
+   return instance
 end
 
 -------------------------------------//Copyright GeJorge//-------------------------------------------------

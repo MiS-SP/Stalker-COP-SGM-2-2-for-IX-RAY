@@ -2881,13 +2881,14 @@ end
 ------------------------------------------------------------------------------
 -- 'Возвращение значения счетчика статистики.
 function get_statistic_counter(type, counter_name)
+   local saver = sgm_save.get_instance()
    if type == "k_m" then
-      if sgm_save.statistic_killed_monsters[counter_name] ~= nil then
-         return sgm_save.statistic_killed_monsters[counter_name]
+      if saver.statistic.killed.monsters[counter_name] ~= nil then
+         return saver.statistic.killed.monsters[counter_name]
       end
    elseif type == "k_s" then
-      if sgm_save.statistic_killed_stalkers[counter_name] ~= nil then
-         return sgm_save.statistic_killed_stalkers[counter_name]
+      if saver.statistic.killed.stalkers[counter_name] ~= nil then
+         return saver.statistic.killed.stalkers[counter_name]
       end
    end
    return nil
@@ -2895,34 +2896,37 @@ end
 
 -- 'Редактирование счетчиков статистики.
 function edit_statistic_counter(type, counter_name, value, action)
+   local saver = sgm_save.get_instance()
    if value == nil then value = 1 end
    if action == nil then action = "+" end
    if type == "k_m" then
       if action == "+" then
-         sgm_save.statistic_killed_monsters[counter_name] = sgm_save.statistic_killed_monsters[counter_name] + value
+         saver.statistic.killed.monsters[counter_name] = saver.statistic.killed.monsters[counter_name] + value
       else
-         sgm_save.statistic_killed_monsters[counter_name] = sgm_save.statistic_killed_monsters[counter_name] - value
+         saver.statistic.killed.monsters[counter_name] = saver.statistic.killed.monsters[counter_name] - value
       end
    elseif type == "k_s" then
       if action == "+" then
-         sgm_save.statistic_killed_stalkers[counter_name] = sgm_save.statistic_killed_stalkers[counter_name] + value
+         saver.statistic.killed.stalkers[counter_name] = saver.statistic.killed.stalkers[counter_name] + value
       else
-         sgm_save.statistic_killed_stalkers[counter_name] = sgm_save.statistic_killed_stalkers[counter_name] - value
+         saver.statistic.killed.stalkers[counter_name] = saver.statistic.killed.stalkers[counter_name] - value
       end
    end
 end
 
 -- 'Возвращение текущего предмета заказа для торговца.
 function get_trader_order(trader_name)
-   if sgm_save.trader_orders[trader_name] ~= nil and sgm_save.trader_orders[trader_name] ~= "none" then
-      return sgm_save.trader_orders[trader_name]
+   local saver = sgm_save.get_instance()
+   if saver.statistic.trader.orders[trader_name] ~= nil and saver.statistic.trader.orders[trader_name] ~= "none" then
+      return saver.statistic.trader.orders[trader_name]
    end
    return nil
 end
 
 -- 'Возвращение текущего времени заказа для торговца.
 function get_trader_order_time(trader_name)
-   if sgm_save.trader_orders[trader_name .. "_t"] ~= nil and sgm_save.trader_orders[trader_name .. "_t"] ~= 0 and get_general_game_time() >= sgm_save.trader_orders[trader_name .. "_t"] then
+   local saver = sgm_save.get_instance()
+   if saver.statistic.trader.orders[trader_name .. "_t"] ~= nil and saver.statistic.trader.orders[trader_name .. "_t"] ~= 0 and get_general_game_time() >= saver.statistic.trader.orders[trader_name .. "_t"] then
       return true
    end
    return false
@@ -2930,20 +2934,22 @@ end
 
 -- 'Установка текущего предмета заказа для торговца.
 function edit_trader_order(trader_name, order_item)
-   if sgm_save.trader_orders[trader_name] == nil then return end
-   if sgm_save.trader_orders[trader_name] ~= order_item then
-      sgm_save.trader_orders[trader_name] = order_item
+   local saver = sgm_save.get_instance()
+   if saver.statistic.trader.orders[trader_name] == nil then return end
+   if saver.statistic.trader.orders[trader_name] ~= order_item then
+      saver.statistic.trader.orders[trader_name] = order_item
    end
 end
 
 -- 'Установка текущего времени заказа для торговца.
 function edit_trader_order_time(trader_name, time_minutes)
-   if sgm_save.trader_orders[trader_name .. "_t"] == nil then return end
-   if sgm_save.trader_orders[trader_name .. "_t"] ~= nil then
+   local saver = sgm_save.get_instance()
+   if saver.statistic.trader.orders[trader_name .. "_t"] == nil then return end
+   if saver.statistic.trader.orders[trader_name .. "_t"] ~= nil then
       if time_minutes == -1 then
-         sgm_save.trader_orders[trader_name .. "_t"] = 0
+         saver.statistic.trader.orders[trader_name .. "_t"] = 0
       else
-         sgm_save.trader_orders[trader_name .. "_t"] = get_general_game_time() + time_minutes
+         saver.statistic.trader.orders[trader_name .. "_t"] = get_general_game_time() + time_minutes
       end
    end
 end

@@ -51,6 +51,7 @@ function actor_binder:net_spawn(data)
 	self.loaded = false
 	benchmark.main()
         --/ SGM in
+		vivient_conexec.set_params()
         sgm_callbacks.on_game_load()
         --/ SGM out
 	return true
@@ -343,11 +344,11 @@ function actor_binder:update(delta)
 		primary_objects_filled = true
 	end
 	pda.fill_sleep_zones()
-        --/ SGM in
+        -- --/ SGM in
         if sgm_flags.bool_mod_update == nil or sgm_flags.bool_mod_update == true then
-           sgm_loader.init()
+           sgm_system.get_instance():update()
         end
-        --/ SGM out
+        -- --/ SGM out
 end
 ------------------------------------>
 function actor_binder:save(packet)
@@ -370,7 +371,7 @@ function actor_binder:save(packet)
 	release_body_manager.get_release_body_manager():save(packet)
 	self.surge_manager:save(packet)
         --/ SGM in
-	sgm_loader.save(packet)
+	sgm_system.get_instance():save(packet)
         --/ SGM out
 	sr_psy_antenna.save( packet )
 	packet:w_bool(sim_board.get_sim_board().simulation_started)
@@ -442,9 +443,9 @@ function actor_binder:load(reader)
 	self.weather_manager:load(reader)
 	release_body_manager.get_release_body_manager():load(reader)
 	self.surge_manager:load(reader)
-        --/ SGM in
-	sgm_loader.load(reader)
-        --/ SGM out
+	--/ SGM in
+	sgm_system.get_instance():load(reader)
+	--/ SGM out
 	self.f_surge_manager_loaded = true
 	sr_psy_antenna.load(reader)
 	sim_board.get_sim_board().simulation_started = reader:r_bool()

@@ -6,8 +6,6 @@
 local black_day=nil
 class "CBlackDay"
 function CBlackDay:__init()
-end
-function CBlackDay:initialize()
    self.ini=ini_file("misc\\config_blackday.ltx")
    self.currert_level=level.name()
    self.birth_section="birth_"..self.currert_level
@@ -15,8 +13,6 @@ function CBlackDay:initialize()
    self.blackday_duration=32
 end
 function CBlackDay:update()
-   local hours_time=level.get_time_hours()
-   local minutes_time=level.get_time_minutes()
    if read_mod_param("blackday_main_timer") then
       local blackday_stage=read_mod_param("blackday_stage")
       --/self:show_blackday_info()

@@ -34,7 +34,7 @@ end
 function repack_ammo(section, box_size)
 	local s, t = enum_ammo(section, box_size)
 	if s > 0 then
-		if table.getn(t) > 1 then
+		if #t > 1 then
 			local i, id
 			local sim = alife()
 			local pos = db.actor:position()

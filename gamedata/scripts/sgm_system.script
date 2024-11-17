@@ -1,0 +1,34 @@
+---==================================================================================================---
+--------------------------------------------------------------------------------------------------------
+---------------------------------------(Загрузчик Sigerous MOD)-----------------------------------------
+--------------------------------------------------------------------------------------------------------
+---==================================================================================================---
+
+local mt = {}
+local instance = nil
+
+SGMSYS = setmetatable({}, mt)
+function mt.__call(self)
+   self.saver = sgm_save.get_instance()
+   return self
+end
+
+function SGMSYS:save(packet)
+   self.saver:save(packet)
+end
+
+function SGMSYS:update()
+   sgm_update.SGMUpdate()
+end
+
+
+function SGMSYS:load(packet)
+   self.saver:load(packet)
+end
+
+function get_instance()
+   if instance == nil then
+      instance = SGMSYS()
+   end
+   return instance
+end
