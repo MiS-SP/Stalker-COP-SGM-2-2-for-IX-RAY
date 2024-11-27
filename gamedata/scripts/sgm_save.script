@@ -73,7 +73,7 @@ function SGMSaveManager:init()
       }
    }
    self.dependancy = {
-      battery = sgm_battery.get_battery_manager()
+      battery = sgm_battery.get_instance()
    }
 end
 

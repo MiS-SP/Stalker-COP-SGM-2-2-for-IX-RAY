@@ -121,13 +121,14 @@ end
 ---------------------------------------(Загрузчик HUDa)-------------------------------------------------
 --------------------------------------------------------------------------------------------------------
 ---==================================================================================================---
-local hud_manager=nil
-class "CHudManager"
-function CHudManager:__init()
+local instance=nil
+dofile("gamedata/scripts/lib/class.lua")
+local HUD = Class()
+function HUD:__init()
 end
-function CHudManager:initialize()
+function HUD:initialize()
 end
-function CHudManager:update()
+function HUD:update()
    local hud_elements_precond=precond_hud(1)
    local hud_carrying_precond=precond_hud(2)
    self:hud_carrying(hud_carrying_precond)
@@ -139,7 +140,7 @@ function CHudManager:update()
       self:hud_release()
    end
 end
-function CHudManager:hud_carrying(cond)
+function HUD:hud_carrying(cond)
    local active_item=db.actor:active_item()
    local outfit_in_slot=db.actor:item_in_slot(7)
    local helm_in_slot=db.actor:item_in_slot(12)
@@ -230,7 +231,7 @@ function CHudManager:hud_carrying(cond)
       change_flag_value("bool_carrying_snd_end",false)
   end
 end
-function CHudManager:hud_weapons()
+function HUD:hud_weapons()
    local active_item=db.actor:active_item()
    local pistol_in_slot=db.actor:item_in_slot(2)
    local rifle_in_slot=db.actor:item_in_slot(3)
@@ -321,7 +322,7 @@ function CHudManager:hud_weapons()
       release_hud("hud_wpn_state_bar2")
    end
 end
-function CHudManager:ReadDamage(section,object)
+function HUD:ReadDamage(section,object)
    local ltx = system_ini()
    local s_status = ltx:r_float(section,"silencer_status")
    local default_value = ltx:r_float(section,"hit_power")
@@ -370,7 +371,7 @@ function CHudManager:ReadDamage(section,object)
    end
    return 0
 end
-function CHudManager:ReadDistance(section,object)
+function HUD:ReadDistance(section,object)
    local ltx = system_ini()
    local s_status = ltx:r_float(section,"silencer_status")
    local default_value = ltx:r_float(section,"fire_distance")
@@ -389,22 +390,22 @@ function CHudManager:ReadDistance(section,object)
    end
    return 0
 end
-function CHudManager:ReadExplosion(section)
+function HUD:ReadExplosion(section)
    local ltx = system_ini()
    local value = ltx:r_float(section,"blast_r")
    return value
 end
-function CHudManager:ReadSplinter(section)
+function HUD:ReadSplinter(section)
    local ltx = system_ini()
    local value = ltx:r_float(section,"frags_r")
    return value
 end
-function CHudManager:ReadExplodeDuration(section)
+function HUD:ReadExplodeDuration(section)
    local ltx = system_ini()
    local value = ltx:r_float(section,"explode_duration")
    return value
 end
-function CHudManager:setup_carrying_hud(item,type,sound)
+function HUD:setup_carrying_hud(item,type,sound)
     local item_section=item:section()
     local item_cond=item:condition()
     local item_hud=sgm_functions.ReadHudCarryingOutfit(item_section)
@@ -454,7 +455,7 @@ function CHudManager:setup_carrying_hud(item,type,sound)
        end
     end
 end
-function CHudManager:check_broken_snd(state)
+function HUD:check_broken_snd(state)
    local pre_1=sgm_flags.string_carrying_last_state=="_damaged" and (state=="_scratched" or state=="_unharmed")
    local pre_2=sgm_flags.string_carrying_last_state=="_scratched" and state=="_unharmed"
    local pre_all=pre_1 and pre_2
@@ -467,7 +468,7 @@ function CHudManager:check_broken_snd(state)
    end
    sgm_flags.string_carrying_last_state=state
 end
-function CHudManager:hud_indikators()
+function HUD:hud_indikators()
    if r_mod_params("bool","need_actor_dream",true) and check_seconds(2) and read_mod_param("sleep_factor")~=nil then
       local sleep_factor=read_mod_param("sleep_factor")
       local max_time=r_mod_params("number","max_no_dream_time",18)*60
@@ -574,7 +575,7 @@ function CHudManager:hud_indikators()
       end
    end
 end
-function CHudManager:hud_utils()
+function HUD:hud_utils()
    if check_seconds(2) then
       if get_flag_value("bool_cheat_mode_activate")==true then
          add_hud("hud_cheat_mode_static")
@@ -648,7 +649,7 @@ function CHudManager:hud_utils()
       end
    end
 end
-function CHudManager:hud_release()
+function HUD:hud_release()
    release_hud("hud_monster_capture_wnd")
    release_hud("hud_monster_capture_icon_chimera")
    release_hud("hud_monster_capture_icon_gigant")
@@ -689,11 +690,11 @@ function CHudManager:hud_release()
    release_hud("hud_geiger_bar")
    release_hud("hud_timer_wnd")
 end
-function get_hud_manager()
-   if hud_manager==nil then
-      hud_manager=CHudManager()
+function get_instance()
+   if instance==nil then
+      instance=HUD()
    end
-   return hud_manager
+   return instance
 end
 
 

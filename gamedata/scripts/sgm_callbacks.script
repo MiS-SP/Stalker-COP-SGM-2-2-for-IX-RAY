@@ -718,7 +718,7 @@ function on_monster_death(victim,killer)
    if sgm_flags.table_m_skill_hits[victim:name()]==nil or sgm_flags.table_m_skill_hits[victim:name()]==false then
       sgm_ranks.read_monster_death(victim,killer,"default_death")
    end
-   sgm_loot_manager.get_instance().container_stalker_death(sgm_loot_manager.get_instance(), victim)
+   sgm_loot_manager.get_instance().container_monster_death(sgm_loot_manager.get_instance(), victim)
    remove_spot_on_map(victim:id(),sgm_flags.spot_quest_tip)
    remove_spot_on_map(victim:id(),sgm_flags.spot_quest_enemy_squad_1)
    remove_spot_on_map(victim:id(),sgm_flags.spot_quest_enemy_squad_2)
@@ -969,7 +969,7 @@ function on_new_game_load()
    if r_mod_params("bool","create_mines_permition",true) then
       sgm_place.place_minetraps()
    end
-   sgm_battery.get_battery_manager()
+   sgm_battery.get_instance()
    if level.name()=="escape" then
       db.actor:set_actor_position(vector():set(-123.25936889648,-26.306539535522,-475.29595947266))
       db.actor:set_actor_direction(0.035)

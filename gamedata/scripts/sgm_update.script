@@ -10,9 +10,9 @@ SGMUpdate = setmetatable({}, mt)
 function mt.__call(self)
    self.subscribes = {
       save = sgm_save.get_instance().update,
-      battery = sgm_battery.get_battery_manager().update,
-      blackday = sgm_blackday.get_black_day().update,
-      hud = sgm_huds.get_hud_manager().update,
+      battery = sgm_battery.get_instance().update,
+      blackday = sgm_blackday.get_instance().update,
+      hud = sgm_huds.get_instance().update,
       loot = sgm_loot_manager.get_instance().update,
       ammo = dunin_ammo.on_update,
       ui_elements = ui_mod_elements.allspawn_editor_update,
@@ -40,11 +40,12 @@ function mt.__call(self)
    }
 
    -- Моментальные
+   self.subscribes.battery(sgm_battery.get_instance())
    self.subscribes.ammo()
    self.subscribes.ui_elements()
    self.subscribes.loot()
    self.subscribes.effects()
-   self.subscribes.hud(sgm_huds.get_hud_manager())
+   self.subscribes.hud(sgm_huds.get_instance())
    self.subscribes.inventory()
    self.subscribes.options()
    self.subscribes.queue()
@@ -71,9 +72,7 @@ function mt.__call(self)
       self:weatherControl()
    end
    if check_seconds(3) then
-      -- todo добавить геттер на update
-      -- self.subscribes.blackday:update()
-      self.subscribes.blackday(sgm_blackday.get_black_day())
+      self.subscribes.blackday(sgm_blackday.get_instance())
       self.subscribes.cleaners()
       self.subscribes.offline()
       self.subscribes.respawn()

@@ -75,6 +75,7 @@ gamedata/anims
 gamedata/levels
 gamedata/meshes
 gamedata/sounds
+unpacker
 **/.vscode/*
 **/.vscode
 helpers
