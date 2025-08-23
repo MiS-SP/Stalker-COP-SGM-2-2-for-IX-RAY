@@ -1,0 +1,42 @@
+[logic]
+active = move@monolith_saint_1
+
+[move@monolith_saint_1]
+move_dest_number       = 37734
+move_look_vertex       = 36059
+move_state_when_center = psy_pain
+move_state_when_move   = run
+move_combat_disable    = true
+combat_ignore_cond     = true
+combat_ignore_keep_when_attacked = true
+on_timer               = 12000|move@monolith_saint_2 %=play_s3d_sound(characters_voice\human_01\monolith\states\idle\idle_20)%
+
+[move@monolith_saint_2]
+move_dest_number       = 37734
+move_look_vertex       = 36059
+move_state_when_center = psy_pain
+move_state_when_move   = run
+move_combat_disable    = true
+combat_ignore_cond     = true
+combat_ignore_keep_when_attacked = true
+on_timer               = 10000|move@monolith_saint_3 %=play_s3d_sound(characters_voice\human_01\monolith\states\idle\idle_18)%
+
+[move@monolith_saint_3]
+move_dest_number       = 37734
+move_look_vertex       = 36059
+move_state_when_center = psy_pain
+move_state_when_move   = run
+move_combat_disable    = true
+combat_ignore_cond     = true
+combat_ignore_keep_when_attacked = true
+on_timer               = 10000|move@monolith_saint_4 %=play_s3d_sound(characters_voice\human_01\monolith\states\idle\idle_17)%
+
+[move@monolith_saint_4]
+move_dest_number       = 37734
+move_look_vertex       = 36059
+move_state_when_center = psy_pain
+move_state_when_move   = run
+move_combat_disable    = true
+combat_ignore_cond     = true
+combat_ignore_keep_when_attacked = true
+on_timer               = 10000|move@monolith_saint_1 %=play_s3d_sound(characters_voice\human_01\monolith\states\idle\idle_15)%
