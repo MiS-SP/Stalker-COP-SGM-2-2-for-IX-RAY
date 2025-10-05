@@ -92,6 +92,7 @@ helpers
 *.omf
 *.ttf
 all.spawn
+*.ppdb
 
 # original files
 .orig
